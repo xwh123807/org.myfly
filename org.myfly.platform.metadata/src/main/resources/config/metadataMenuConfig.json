@@ -1,0 +1,24 @@
+[
+	{
+		"name":"元模型",
+		"icon":"glyphicon glyphicon-bullhorn",
+		"subMenus":[
+			{
+				"name":"数据源",
+				"orderNumber":1,
+				"url":"/vp/list/mdatasource"
+			},
+	
+			{
+				"name":"表",
+				"orderNumber":10,
+				"url":"/vp/list/mtable"
+			},
+			{
+				"name":"字段",
+				"orderNumber":20,
+				"url":"/vp/list/mfield"
+			}
+		]
+	}
+]

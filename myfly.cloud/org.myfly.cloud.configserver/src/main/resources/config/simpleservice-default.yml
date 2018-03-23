@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:derby:memory:myfly;create=true
+    username: sa
+    password: sa
+    driverClassName: org.apache.derby.jdbc.EmbeddedDriver
+    dialect: org.hibernate.dialect.DerbyDialect
+    
+  jpa:
+    showSql: true
+    hibernate:
+      #create|create-drop|update|validate
+      ddlAuto: create-drop
+      formatSql: true    
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:18761/eureka/
+  instance:
+    preferIpAddress: true      

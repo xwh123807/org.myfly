@@ -1,0 +1,182 @@
+{
+  "entityName" : "std_test_employee",
+  "entityClass" : null,
+  "tableDefinition" : {
+    "title" : "基准测试职员表",
+    "description" : "用于性能时",
+    "schema" : "PT",
+    "tableName" : "PT.std_test_employee",
+    "labelField" : "name"
+  },
+  "pkFieldDefinition" : {
+    "idClass" : null,
+    "idFields" : [ "uid" ],
+    "keyType" : null
+  },
+  "fieldMap" : {
+    "uid" : {
+      "name" : "uid",
+      "label" : "UID",
+      "fieldName" : "uid",
+      "description" : null,
+      "required" : false,
+      "dataType" : "UUID",
+      "value" : null,
+      "relationClass" : null,
+      "relationTable" : null,
+      "relationField" : null,
+      "minLength" : 0,
+      "maxLength" : 32,
+      "precision" : 0,
+      "mask" : null,
+      "type" : "java.lang.String",
+      "linkUrl" : null,
+      "readonly" : false,
+      "labelField" : null,
+      "idField" : true
+    },
+    "address" : {
+      "name" : "address",
+      "label" : "地址",
+      "fieldName" : "address",
+      "description" : null,
+      "required" : false,
+      "dataType" : "VARCHAR",
+      "value" : null,
+      "relationClass" : null,
+      "relationTable" : null,
+      "relationField" : null,
+      "minLength" : 0,
+      "maxLength" : 255,
+      "precision" : 0,
+      "mask" : null,
+      "type" : "java.lang.String",
+      "linkUrl" : null,
+      "readonly" : false,
+      "labelField" : null,
+      "idField" : false
+    },
+    "name" : {
+      "name" : "name",
+      "label" : "姓名",
+      "fieldName" : "name",
+      "description" : null,
+      "required" : true,
+      "dataType" : "VARCHAR",
+      "value" : null,
+      "relationClass" : null,
+      "relationTable" : null,
+      "relationField" : null,
+      "minLength" : 0,
+      "maxLength" : 255,
+      "precision" : 0,
+      "mask" : null,
+      "type" : "java.lang.String",
+      "linkUrl" : null,
+      "readonly" : false,
+      "labelField" : null,
+      "idField" : false
+    }
+  },
+  "listDefinitions" : {
+    "all" : {
+      "name" : "all",
+      "title" : "基准测试职员表",
+      "header" : null,
+      "entityName" : "StdTestEmployee",
+      "subTableAttr" : null,
+      "serverSideMode" : true,
+      "enableActions" : false,
+      "listActions" : [ "NEW", "SHOWEXCELIMPORT", "EXCEL", "PDF", "PRINT" ],
+      "itemActions" : [ "VIEW", "EDIT", "DEL" ],
+      "labelField" : "name",
+      "orders" : null,
+      "fields" : [ "uid", "address", "name", "actions" ],
+      "filters" : [ {
+        "name" : "uid",
+        "field" : "uid",
+        "value" : null,
+        "operator" : "EQUAL",
+        "show" : true,
+        "fieldName" : null,
+        "multiValues" : null
+      }, {
+        "name" : "address",
+        "field" : "address",
+        "value" : null,
+        "operator" : "EQUAL",
+        "show" : true,
+        "fieldName" : null,
+        "multiValues" : null
+      }, {
+        "name" : "name",
+        "field" : "name",
+        "value" : null,
+        "operator" : "EQUAL",
+        "show" : true,
+        "fieldName" : null,
+        "multiValues" : null
+      } ]
+    },
+    "default" : {
+      "name" : "default",
+      "title" : "列表",
+      "header" : "",
+      "entityName" : "StdTestEmployee",
+      "subTableAttr" : null,
+      "serverSideMode" : true,
+      "enableActions" : false,
+      "listActions" : [ "NEW", "SHOWEXCELIMPORT", "EXCEL", "PDF", "PRINT" ],
+      "itemActions" : [ "VIEW", "EDIT", "DEL" ],
+      "labelField" : "name",
+      "orders" : null,
+      "fields" : [ "uid", "name", "address", "actions" ],
+      "filters" : [ {
+        "name" : "name",
+        "field" : "name",
+        "value" : "",
+        "operator" : "LIKE",
+        "show" : true,
+        "fieldName" : null,
+        "multiValues" : null
+      }, {
+        "name" : "address",
+        "field" : "address",
+        "value" : "",
+        "operator" : "LIKE",
+        "show" : true,
+        "fieldName" : null,
+        "multiValues" : null
+      } ]
+    }
+  },
+  "formDefinitions" : {
+    "all" : {
+      "name" : "all",
+      "sections" : [ {
+        "name" : null,
+        "title" : "基本信息",
+        "fieldSets" : [ {
+          "title" : "基本信息一",
+          "fields" : [ "uid" ]
+        }, {
+          "title" : "基本信息二",
+          "fields" : [ "address", "name" ]
+        } ],
+        "subTables" : null
+      } ]
+    },
+    "default" : {
+      "name" : "default",
+      "sections" : [ {
+        "name" : null,
+        "title" : "主表区域",
+        "fieldSets" : [ {
+          "title" : "基本信息",
+          "fields" : [ "name", "address" ]
+        } ],
+        "subTables" : null
+      } ]
+    }
+  }
+}

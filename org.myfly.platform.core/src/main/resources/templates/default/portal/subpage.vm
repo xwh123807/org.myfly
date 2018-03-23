@@ -1,0 +1,6 @@
+#parse(${pageInfo.template})
+<!-- inline scripts related to this page -->
+#foreach ($script in $pageInfo.scripts)
+<script src="${pageInfo.contextPath}${script}"></script>
+#end
+<!-- <script src="${pageInfo.contextPath}js/myflybind.js"></script> -->

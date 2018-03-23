@@ -1,0 +1,28 @@
+configserver:
+  image: myfly/org.myfly.cloud.configserver
+  ports:
+   - "8888:8888"
+  links:
+   - discovery   
+
+discovery:
+  image: myfly/org.myfly.cloud.discovery
+  ports:
+   - "8761:8761"
+
+simpleservice:
+  image: myfly/org.myfly.cloud.simpleservice
+  ports:
+   - "9080:9080"
+  links:
+   - discovery
+   - configserver
+   
+simpleweb:
+  image: myfly/org.myfly.cloud.simpleweb
+  ports:
+   - "9081:9081"
+  links:
+   - discovery
+   - configserver
+   - simpleservice

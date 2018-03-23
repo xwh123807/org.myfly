@@ -1,0 +1,30 @@
+<div class="col-xs-12">
+	<table class="table table-bordered table-striped dataTable">
+		<thead>
+			<tr>
+				<td>前缀</td>
+				<td>参数</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan=2 style="background-color: antiquewhite">positiveMatches</td>
+			</tr>
+			#foreach($obj in $report.positiveMatches.entrySet())
+			<tr>
+				<td>$!{obj.key}</td>
+				<td>$!{obj.value[0].message}</td>
+			</tr>
+			#end
+			<tr>
+				<td colspan=2 style="background-color: antiquewhite">negativeMatches</td>
+			</tr>
+			#foreach($obj in $report.negativeMatches.entrySet())
+			<tr>
+				<td>$!{obj.key}</td>
+				<td>$!{obj.value[0].message}</td>
+			</tr>
+			#end
+		</tbody>
+	</table>
+</div>

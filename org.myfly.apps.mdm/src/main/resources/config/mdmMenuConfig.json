@@ -1,0 +1,18 @@
+[
+	{
+		"name":"主数据管理",
+		"icon":"glyphicon glyphicon-bullhorn",
+		"subMenus":[
+			{
+				"name":"部门",
+				"orderNumber":10,
+				"url":"/vp/list/department"
+			},
+			{
+				"name":"员工",
+				"orderNumber":20,
+				"url":"/vp/list/employee"
+			}
+		]
+	}
+]

@@ -1,0 +1,22 @@
+<link rel="stylesheet"
+	href="${pageInfo.contextPath}assets/css/fileinput/fileinput.min.css">
+<script
+	src="${pageInfo.contextPath}assets/js/fileinput/fileinput.min.js"></script>
+<script
+	src="${pageInfo.contextPath}assets/js/fileinput/fileinput_locale_zh.js"></script>
+
+<!-- 表单提交
+<form method="POST" enctype="multipart/form-data" action="/file/upload">
+	<div class="form-group">
+		<input type="hidden" name="sourceUrl" value="/#$!{sourceUrl}"/>
+		<label class="control-label">选择要上传的文件</label> <input class="inputFiles"
+			name="inputFiles" type="file" multiple class="file-loading">
+	</div>
+</form>
+ -->
+
+<!-- Ajax提交 -->
+<div class="form-group">
+	<label class="control-label">选择要上传的文件</label> <input class="inputFiles"
+		name="inputFiles" type="file" multiple class="file-loading" uploadUrl="/file/upload?processUrl=$!{processUrl}&nohash">
+</div>

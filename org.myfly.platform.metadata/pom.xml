@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>myfly.platform.metadata</artifactId>
+	<name> 对象元数据管理</name>
+	<description>对象模型自定义，元数据管理</description>
+
+	<parent>
+		<groupId>org.myfly.platform.microapps</groupId>
+		<artifactId>myfly.platform.parent</artifactId>
+		<version>0.0.1</version>
+	</parent>
+	<packaging>jar</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.myfly.platform.microapps</groupId>
+			<artifactId>org.myfly.platform.core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.myfly.platform.microapps</groupId>
+			<artifactId>myfly.platform.system</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.myfly.platform.microapps</groupId>
+			<artifactId>myfly.platform.test</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

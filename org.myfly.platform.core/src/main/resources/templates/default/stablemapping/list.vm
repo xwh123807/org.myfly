@@ -1,0 +1,22 @@
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<!-- <td>ID</td> -->
+			<td>表名</td>
+			<td>实体名</td>
+			<td>类名</td>
+			<td>模式</td>
+		</tr>
+	</thead>
+	<tbody>
+		#foreach($obj in $objlist)
+		<tr>
+			<!-- <td>${obj.uid}</td> -->
+			<td><a href="/vp/list/$!{obj.tableName}">$!{obj.tableName}</a></td>
+			<td>$!{obj.entityName}</td>	
+			<td>$!{obj.className}</td>	
+			<td>$!{obj.schemaName}</td>	
+		</tr>
+		#end
+	</tbody>
+</table>

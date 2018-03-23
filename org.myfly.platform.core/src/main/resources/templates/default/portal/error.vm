@@ -1,0 +1,5 @@
+<div class="alert alert-danger" role="alert">$!{pageInfo.subTitle}</div>
+
+#foreach($obj in $messages)
+<h3>$!{obj}</h3>
+#end

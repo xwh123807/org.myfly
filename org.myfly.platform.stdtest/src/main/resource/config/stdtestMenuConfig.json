@@ -1,0 +1,72 @@
+[
+	{
+		"name":"TPCC",
+		"icon":"glyphicon glyphicon-screenshot",
+		"subMenus":[
+			{
+				"name":"生成数据",
+				"orderNumber": 1,
+				"url":"/admin/tpcc/10/1"
+			},			
+			{
+				"name":"Warehouse",
+				"orderNumber": 10,
+				"url":"/vp/list/warehouse"
+			},
+			{
+				"name":"District",
+				"orderNumber": 20,
+				"url":"/vp/list/district"
+			},
+			{
+				"name":"Customer",
+				"orderNumber": 30,
+				"url":"/vp/list/customer"
+			},
+			{
+				"name":"Item",
+				"orderNumber": 40,
+				"url":"/vp/list/item"
+			},
+			{
+				"name":"Stock",
+				"orderNumber": 50,
+				"url":"/vp/list/stock"
+			},
+			{
+				"name":"Order",
+				"orderNumber": 60,
+				"url":"/vp/list/sorder"
+			},
+			{
+				"name":"History",
+				"orderNumber": 70,
+				"url":"/vp/list/history"
+			},
+			{
+				"name":"New Order",
+				"orderNumber": 80,
+				"url":"/vp/list/neworder"
+			}
+		]
+		
+	},
+	{
+		"name":"基准测试",
+		"icon":"glyphicon glyphicon-edit",
+		"subMenus":[
+			{
+				"name":"StdTestTable",
+				"orderNumber": 10,
+				"url":"/vp/list/stdtesttable"
+			},
+			{
+				"name":"StdTestEmployee",
+				"orderNumber": 20,
+				"url":"/vp/list/stdtestemployee"
+			}
+			
+		]
+		
+	}
+]

@@ -1,0 +1,7 @@
+---
+applications:
+- name: research
+  host: research-${random-word}
+  memory: 512M
+  instances: 1
+  path: target/org.myfly.research-0.0.1.jar

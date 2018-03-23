@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: simpleservice
+    
+  cloud:
+    config:
+      uri: http://localhost:18888    

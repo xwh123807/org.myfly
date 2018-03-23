@@ -1,0 +1,23 @@
+redis:
+  image: redis
+  ports: 
+   - "6379:6379"
+elasticsearch:
+  image: elasticsearch
+  ports:
+   - "9200:9200"
+   - "9300:9300"
+mysql:
+  image: mysql
+  ports:
+   - "3306:3306"
+  environment:
+   - MYSQL_ROOT_PASSWORD=password
+  volumes:
+   - /tmp/data/mysql:/var/lib/mysql
+   - ./mysql:/etc/mysql/conf.d
+rabbitmq:
+  image: rabbitmq:management
+  ports:
+   - "5672:5672"
+   - "15672:15672"

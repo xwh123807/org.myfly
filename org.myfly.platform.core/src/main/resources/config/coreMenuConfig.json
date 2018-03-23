@@ -1,0 +1,210 @@
+[
+	{
+		"name":"仪表板",
+		"url":"/",
+		"orderNumber":0,
+		"icon":"fa fa-tachometer"
+	},
+	{
+		"name":"管理",
+		"icon":"glyphicon glyphicon-asterisk",
+		"subMenus":[
+			{
+				"name":"模板构造器",
+				"icon":"fa fa-leaf",
+				"orderNumber":10,
+				"url":"/admin/templatebuilders"
+			},
+			{
+				"name":"缓存",
+				"icon":"",
+				"orderNumber":20,
+				"url":"/admin/cache"
+			},
+			{
+				"name":"资源映射",
+				"icon":"",
+				"orderNumber":30,
+				"url":"/admin/mappings"
+			},
+			{
+				"name":"SpringBeans",
+				"icon":"",
+				"orderNumber":40,
+				"url":"/admin/beans"
+			},
+			{
+				"name":"线程",
+				"icon":"",
+				"orderNumber":50,
+				"url":"/admin/dump"
+			},
+			{
+				"name":"配置",
+				"icon":"",
+				"orderNumber":60,
+				"url":"/admin/autoconfig"
+			},
+			{
+				"name":"环境",
+				"icon":"",
+				"orderNumber":70,
+				"url":"/admin/env"
+			},
+			{
+				"name":"参数",
+				"icon":"",
+				"orderNumber":80,
+				"url":"/admin/configprops"
+			},
+			{
+				"name":"统计",
+				"icon":"",
+				"orderNumber":90,
+				"url":"/admin/metrics"
+			},
+			{
+				"name":"跟踪",
+				"icon":"",
+				"orderNumber":100,
+				"url":"/admin/trace"
+			},
+			{
+				"name":"消息统计",
+				"icon":"",
+				"orderNumber":110,
+				"url":"/admin/jms"
+			},
+			{
+				"name":"调度(未实现)",
+				"icon":"",
+				"orderNumber":115,
+				"url":"/admin/schedule"
+			},
+			{
+				"name":"全文索引配置",
+				"icon":"",
+				"orderNumber":160,
+				"url":"/vp/index"
+			}
+			
+		]
+		
+	},
+	{
+		"name":"系统",
+		"icon":"glyphicon glyphicon-book",
+		"subMenus":[
+			{
+				"name":"全局名称",
+				"icon":"",
+				"orderNumber":5,
+				"url":"/vp/list/sglobalname"
+			},
+			{
+				"name":"枚举",
+				"icon":"",
+				"orderNumber":6,
+				"url":"/vp/list/enumtype"
+			},
+			{
+				"name":"应用程序",
+				"icon":"",
+				"orderNumber":7,
+				"url":"/vp/list/softapp"
+			},
+			{
+				"name":"租户",
+				"icon":"",
+				"orderNumber":30,
+				"url":"/vp/list/tenant"
+			},
+			{
+				"name":"用户",
+				"icon":"glyphicon glyphicon-user",
+				"orderNumber":40,
+				"url":"/vp/list/suser"
+			},
+			{
+				"name":"角色",
+				"icon":"fa fa-tachometer",
+				"orderNumber":50,
+				"url":"/vp/list/srole"
+			},
+			{
+				"name":"菜单",
+				"icon":"",
+				"orderNumber":60,
+				"url":"/vp/list/menu"
+			}
+			
+		]
+		
+	},
+	{
+		"name":"搜索",
+		"icon":"glyphicon glyphicon-search",
+		"subMenus":[
+			{
+				"name":"重建索引",
+				"orderNumber":10,
+				"icon":"glyphicon glyphicon-refresh",
+				"url":"/search/rebuildAll"
+			},
+			{
+				"name":"重建附件索引",
+				"orderNumber":11,
+				"icon":"glyphicon glyphicon-refresh",
+				"url":"/search2/attachments/rebuild"
+			},
+			{
+				"name":"全局名称",
+				"orderNumber":30,
+				"url":"/vp/search/sglobalname"
+			}
+		]
+		
+	},
+	{
+		"name":"实体视图",
+		"icon":"glyphicon glyphicon-th-large",
+		"url":"/admin/entityviews"
+	},
+	{
+		"name":"中间件",
+		"icon":"glyphicon glyphicon-bullhorn",
+		"subMenus":[
+			{
+				"name":"REST浏览器",
+				"orderNumber":10,
+				"icon":"glyphicon glyphicon-th-list",
+				"url":"javascript:window.open('/api/browser')"
+			},
+			{
+				"name":"数据浏览器",
+				"orderNumber":20,
+				"icon":"glyphicon glyphicon-th-list",
+				"url":"javascript:window.open('/h2-console')"
+			},
+			{
+				"name":"RabbitMQ",
+				"orderNumber":30,
+				"icon":"glyphicon glyphicon-th-list",
+				"url":"javascript:window.open('http://192.168.99.100:15672')"
+			},
+			{
+				"name":"ElasticSearch",
+				"orderNumber":40,
+				"icon":"glyphicon glyphicon-th-list",
+				"url":"javascript:window.open('http://192.168.99.100:9200/_cat')"
+			},
+			{
+				"name":"Redis",
+				"orderNumber":50,
+				"icon":"glyphicon glyphicon-th-list",
+				"url":"/admin/redis"
+			}
+		]
+		
+	}
+]

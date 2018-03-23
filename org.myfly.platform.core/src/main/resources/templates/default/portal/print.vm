@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>$!{pageInfo.subTitle} - $!{pageInfo.title}</title>
+<meta name="description" content="打印模板" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+<!-- <link rel="stylesheet"
+	href="${pageInfo.contextPath}assets/css/bootstrap.min.css" /> -->
+<link rel="stylesheet"
+	href="${pageInfo.contextPath}css/print-pdf.css" />
+	
+<!-- <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="/assets/css/dataTable/dataTables.bootstrap.css">
+<link rel="stylesheet"
+	href="/assets/css/dataTable/responsive.bootstrap.min.css">	
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/dataTable/jquery.dataTables.min.js"></script>
+<script src="/assets/js/dataTable/dataTables.bootstrap.min.js"></script>
+<script src="/assets/js/dataTable/dataTables.responsive.js"></script>
+<script src="/assets/js/dataTable/responsive.bootstrap.js"></script> -->	
+
+</head>
+<body>#parse(${pageInfo.template})
+</body>
+</html>

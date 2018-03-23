@@ -1,0 +1,265 @@
+<div class="row">
+	<div class="col-xs-12">
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active"><a href="#activity"
+				aria-controls="activity" role="tab" data-toggle="tab">活动</a></li>
+			<li role="presentation"><a href="#teamwork"
+				aria-controls="teamwork" role="tab" data-toggle="tab">协作</a></li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="activity">
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="hide"><a href="#tmp"
+						aria-controls="tmp" role="tab" data-toggle="tab">tmp</a></li>
+					<li role="presentation" class="active"><a href="#telphone"
+						aria-controls="telphone" role="tab" data-toggle="tab">记录电话</a></li>
+					<li role="presentation"><a href="#task" aria-controls="task"
+						role="tab" data-toggle="tab">新建任务</a></li>
+					<li role="presentation"><a href="#event" aria-controls="event"
+						role="tab" data-toggle="tab">新建事件</a></li>
+					<li role="presentation"><a href="#email" aria-controls="email"
+						role="tab" data-toggle="tab">电子邮件</a></li>
+				</ul>
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane" id="tmp">
+						<form>
+							<span>不知名原因，第一个tab中的form标记会丢失。临时解决办法，添加无用的tmp</span>
+						</form>
+					</div>
+					<div role="tabpanel" class="tab-pane active" id="telphone">
+						<form class="form-edit"
+							action="/flydata/saveEntity/task?whoId=${uid}" method="post">
+							<input type="hidden" name="taskSubtype" value="CALL">
+							<div class="form-group">
+								<label for="exampleInputEmail1">主题</label> <input type="text"
+									class="form-control focusshow" name="name"
+									showdiv="telphoneDefaultHide" placeholder="" value="电话">
+							</div>
+							<div id="telphoneDefaultHide" class="hide">
+								<div class="form-group">
+									<label for="exampleInputEmail1">留言</label>
+									<textarea class="form-control" name="description" rows=5></textarea>
+								</div>
+								<!-- 
+								<div class="form-group">
+									<label for="exampleInputEmail1">名称</label>
+									<div class="input-group" style="width: 100%">
+										<select class="select2-entity" name="whoId"
+											style="width: 100%" data-entity="SUser">
+										</select>
+									</div>
+								</div>
+								 -->
+								<div class="form-group">
+									<label for="exampleInputEmail1">相关项</label>
+									<div class="input-group" style="width: 100%">
+										<select class="select2-entity" style="width: 100%"
+											name="whatId" data-entity="SUser" multiple="multiple">
+										</select>
+									</div>
+								</div>
+								<button type="button" class="btn btn-primary" name="_method"
+									value="POST"
+									onclick="javascript:formSubmit(event, socialReLoad)">保存</button>
+							</div>
+						</form>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="task">
+						<form class="form-edit"
+							action="/flydata/saveEntity/task?whoId=${uid}" method="post">
+							<input type="hidden" name="taskSubtype" value="TASK">
+							<div class="form-group">
+								<label for="exampleInputEmail1">主题</label> <input type="text"
+									class="form-control focusshow" name="name"
+									showdiv="taskDefaultHide">
+							</div>
+							<div id="taskDefaultHide" class="hide">
+								<div class="form-group">
+									<label for="exampleInputEmail1">到期日期</label>
+									<div class="input-group">
+										<input class="form-control date-picker" name="activityDate"
+											id="id-date-picker-1" type="text"
+											data-date-format="yyyy-mm-dd"> <span
+											class="input-group-addon"> <i
+											class="fa fa-calendar bigger-110"></i>
+										</span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">被分配人</label>
+									<div class="input-group" style="width: 100%">
+										<select class="select2-entity" style="width: 100%"
+											name="ownerId" data-entity="SUser">
+										</select>
+									</div>
+								</div>
+								<!--  
+								<div class="form-group">
+									<label for="exampleInputEmail1">名称</label>
+									<div class="input-group" style="width: 100%">
+										<select class="select2-entity" style="width: 100%"
+											data-entity="SUser">
+										</select>
+									</div>
+								</div>
+								-->
+								<div class="form-group">
+									<label for="exampleInputEmail1">相关项</label> <input type="text"
+										class="form-control" name="whatId">
+								</div>
+								<button type="button" class="btn btn-primary" name="_method"
+									value="POST"
+									onclick="javascript:formSubmit(event, socialReLoad)">保存</button>
+							</div>
+						</form>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="event">
+						<form class="form-edit"
+							action="/flydata/saveEntity/task?whoId=${uid}" method="post">
+							<div class="form-group">
+								<label for="exampleInputEmail1">主题</label> <input type="text"
+									class="form-control focusshow" name="name"
+									showdiv="eventDefaultHide">
+							</div>
+							<div id="eventDefaultHide" class="hide">
+								<div class="form-group">
+									<label for="exampleInputEmail1">内容</label>
+									<textarea class="form-control" name="description" rows=5></textarea>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">开始时间</label>
+									<div class="input-group">
+										<input id="date-timepicker1" data-date-format="" type="text"
+											class="form-control datetime-picker"> <span
+											class="input-group-addon"> <i
+											class="fa fa-clock-o bigger-110"></i>
+										</span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">结束时间</label>
+									<div class="input-group">
+										<input id="date-timepicker1" data-date-format="" type="text"
+											class="form-control datetime-picker"> <span
+											class="input-group-addon"> <i
+											class="fa fa-clock-o bigger-110"></i>
+										</span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">位置</label> <input type="text"
+										class="form-control" id="title">
+								</div>
+								<!-- 
+								<div class="form-group">
+									<label for="exampleInputEmail1">名称</label>
+									<div class="input-group" style="width: 100%">
+										<select class="select2-entity" style="width: 100%"
+											data-entity="SUser">
+										</select>
+									</div>
+								</div>
+								 -->
+								<div class="form-group">
+									<label for="exampleInputEmail1">相关项</label> <input type="text"
+										class="form-control" id="title">
+								</div>
+								<button type="button" class="btn btn-primary" name="_method"
+									value="POST"
+									onclick="javascript:formSubmit(event, socialReLoad)">保存</button>
+							</div>
+						</form>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="email">
+						<form class="form-edit"
+							action="/flydata/saveEntity/task?whoId=${uid}" method="post">
+							<input type="hidden" name="taskSubtype" value="EMAIL">
+							<div class="form-group">
+								<label for="exampleInputEmail1">收件人</label>
+								<div class="input-group" style="width: 100%">
+									<select class="select2-entity focusshow" style="width: 100%"
+										multiple="multiple" data-entity="SUser" name="ownerId"
+										showdiv="emailDefaultHide">
+									</select>
+								</div>
+							</div>
+							<div id="emailDefaultHide" class="">
+								<div class="form-group">
+									<label for="exampleInputEmail1">抄送</label>
+									<div class="input-group" style="width: 100%">
+										<select class="select2-entity" style="width: 100%"
+											multiple="multiple" data-entity="SUser">
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">秘密抄送</label>
+									<div class="input-group" style="width: 100%">
+										<select class="select2-entity" style="width: 100%"
+											multiple="multiple" data-entity="SUser">
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">主题</label> <input type="text"
+										class="form-control" id="title" name="name">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">正文</label>
+									<textarea class="form-control" id="note" rows=5 name="email"></textarea>
+								</div>
+								<button type="button" class="btn btn-primary" name="_method"
+									value="POST"
+									onclick="javascript:formSubmit(event, socialReLoad)">发送</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="teamwork">
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="#post"
+						aria-controls="post" role="tab" data-toggle="tab">张贴</a></li>
+				</ul>
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="post">
+						<form class="form-edit" action="/vp/note" method="post">
+							<div class="form-group">
+								<label for="exampleInputEmail1">留言</label>
+								<textarea class="form-control" id="note" rows=5></textarea>
+							</div>
+							<button type="button" class="btn btn-primary" name="_method"
+								value="POST" onclick="javascript:formSubmit(event)">保存</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="taskContainer"></div>
+	</div>
+</div>
+<!-- 
+<script src="/js/myflybind.js"></script> -->
+<script>
+	var socialReLoad = function() {
+		$.getJSON("/flydata/task?whoId=${uid}", function(data) {
+			var html = "";
+			$.each(data, function(i, item) {
+				html += "<br><div>" + item.name + "<br>"
+						+ item["createdBy__link"] + "创建于" + item.created
+						+ "</div>"
+			});
+			$("#taskContainer").html(html);
+		});
+	};
+	socialReLoad();
+	$(".focusshow").focus(function(event) {
+		var showDiv = $(event.target).attr("showdiv");
+		if (showDiv) {
+			$("#" + showDiv).removeClass("hide");
+		}
+	});
+</script>

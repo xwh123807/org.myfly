@@ -1,0 +1,37 @@
+server:
+  port: 9080
+
+balance:
+  server: 192.168.99.100
+
+spring:
+  datasource:
+#    url: jdbc:derby:memory:myfly;create=true
+#    username: sa
+#    password: sa
+#    driverClassName: org.apache.derby.jdbc.EmbeddedDriver
+#    dialect: org.hibernate.dialect.DerbyDialect
+     url: jdbc:mysql://${balance.server}/myfly
+     driverClassName: com.mysql.jdbc.Driver
+     dialect: org.hibernate.dialect.MySQLDialect
+     username: root
+     password: password
+  redis:
+    host: ${balance.server}
+  data:
+    solr:
+      host: http://${balance.server}:8983/solr
+    elasticsearch:
+      clusterNodes: ${balance.server}:9300
+  jpa:
+    showSql: true
+    hibernate:
+      ddlAuto: create-drop
+      formatSql: true
+  activemq:
+    brokerUrl: tcp://${balance.server}:61616      
+    user: admin
+    password: admin
+  rabbitmq:
+    host: ${balance.server}
+    port: 5672
