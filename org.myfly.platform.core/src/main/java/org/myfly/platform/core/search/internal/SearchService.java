@@ -110,8 +110,8 @@ public class SearchService implements ISearchService {
 		Assert.hasLength(uid);
 		String indexName = getIndexName(entity.getClass());
 		try {
-			searchTemplate.getClient().prepareUpdate(indexName, indexName, uid)
-					.setSource(JSONUtil.toJSON(entity).getBytes()).get();
+			searchTemplate.getClient().prepareUpdate(indexName, indexName, uid).setDoc(JSONUtil.toJSON(entity).getBytes());
+					//.setSource(JSONUtil.toJSON(entity).getBytes()).get();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());

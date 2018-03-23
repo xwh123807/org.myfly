@@ -18,7 +18,7 @@ public class SecurityAutoConfiguration {
 		return new ApplicationSecurity();
 	}
 
-	@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+	@Order(SecurityProperties.BASIC_AUTH_ORDER)
 	protected static class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
 		@Override
