@@ -12,7 +12,7 @@ import org.myfly.platform.core.metadata.internal.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.test.MockMVCTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * 实体子表Web页测试基类，测试实体
@@ -20,7 +20,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
  * @author xiangwanhong
  *
  */
-@SpringApplicationConfiguration(classes = CoreApplication.class)
+@SpringBootTest(classes = CoreApplication.class)
 public abstract class SubEntityActionsWebPageTestCase<M, T, MP extends Serializable, TP extends Serializable>
 		extends MockMVCTestCase {
 	@Autowired

@@ -5,9 +5,9 @@ import org.junit.Test;
 import org.myfly.platform.CoreApplication;
 import org.myfly.platform.core.utils.StringUtil;
 import org.myfly.platform.test.ServiceTestCase;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringApplicationConfiguration(classes = CoreApplication.class)
+@SpringBootTest(classes = CoreApplication.class)
 public class StringUtilTest extends ServiceTestCase{
 	@Test
 	public void isEmptyForNull() {

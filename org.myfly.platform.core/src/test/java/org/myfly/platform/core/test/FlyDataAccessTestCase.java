@@ -19,9 +19,9 @@ import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.test.ServiceTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringApplicationConfiguration(classes = CoreApplication.class)
+@SpringBootTest(classes = CoreApplication.class)
 public abstract class FlyDataAccessTestCase extends ServiceTestCase {
 	@Autowired
 	private IJdbcDataAccessService jdbcDataAccessService;

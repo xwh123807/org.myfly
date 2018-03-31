@@ -3,9 +3,9 @@ package org.myfly.platform.core.controller;
 import org.junit.Test;
 import org.myfly.platform.CoreApplication;
 import org.myfly.platform.test.MockMVCTestCase;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringApplicationConfiguration(classes = CoreApplication.class)
+@SpringBootTest(classes = CoreApplication.class)
 public class AdminControllerWebTest extends MockMVCTestCase {
 	@Test
 	public void beans() throws Exception {

@@ -15,9 +15,9 @@ import org.myfly.platform.core.visualpage.internal.TemplateBuilderFactory;
 import org.myfly.platform.core.visualpage.ui.ViewMode;
 import org.myfly.platform.test.ServiceTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringApplicationConfiguration(classes = CoreApplication.class)
+@SpringBootTest(classes = CoreApplication.class)
 public class TemplateBuilderFactoryTest extends ServiceTestCase {
 	@Autowired
 	private MockTemplateBuilder testTemplateBuilder;

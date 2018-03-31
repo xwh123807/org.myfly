@@ -28,12 +28,6 @@ import org.myfly.platform.core.visualpage.domain.VisualPageType;
 import org.myfly.platform.core.visualpage.service.VisualPageConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.boot.actuate.endpoint.AutoConfigurationReportEndpoint;
-import org.springframework.boot.actuate.endpoint.ConfigurationPropertiesReportEndpoint;
-import org.springframework.boot.actuate.endpoint.EnvironmentEndpoint;
-import org.springframework.boot.actuate.endpoint.MetricsEndpoint;
-import org.springframework.boot.actuate.endpoint.RequestMappingEndpoint;
-import org.springframework.boot.actuate.trace.TraceRepository;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -56,18 +50,18 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController extends BaseController {
 	@Autowired
 	private ApplicationContext applicationContext;
-	@Autowired
-	private TraceRepository traceRepository;
-	@Autowired
-	private ConfigurationPropertiesReportEndpoint configurationPropertiesReportEndpoint;
-	@Autowired
-	private MetricsEndpoint metricsEndpoint;
-	@Autowired
-	private AutoConfigurationReportEndpoint autoConfigurationReportEndpoint;
-	@Autowired
-	private EnvironmentEndpoint environmentEndpoint;
-	@Autowired
-	private RequestMappingEndpoint requestMappingEndpoint;
+//	@Autowired
+//	private TraceRepository traceRepository;
+//	@Autowired
+//	private ConfigurationPropertiesReportEndpoint configurationPropertiesReportEndpoint;
+//	@Autowired
+//	private MetricsEndpoint metricsEndpoint;
+//	@Autowired
+//	private AutoConfigurationReportEndpoint autoConfigurationReportEndpoint;
+//	@Autowired
+//	private EnvironmentEndpoint environmentEndpoint;
+//	@Autowired
+//	private RequestMappingEndpoint requestMappingEndpoint;
 	@Autowired
 	private ICacheService cacheService;
 	@Autowired
@@ -171,7 +165,7 @@ public class AdminController extends BaseController {
 				ObjectListView.class, VisualPageType.OLIST));
 		ModelAndView mv = getBaseModelAndView(request);
 		mv.addObject("pageInfo", pageInfo);
-		mv.addObject("objlist", requestMappingEndpoint.invoke().entrySet());
+//		mv.addObject("objlist", requestMappingEndpoint.invoke().entrySet());
 		return mv;
 	}
 
@@ -189,7 +183,7 @@ public class AdminController extends BaseController {
 		pageInfo.setTemplate(getVisualPageService().getTemplateFile(VisualPageConstants.ADMIN_TEMPLATE_AUTOCONFIG));
 		ModelAndView mv = getBaseModelAndView(request);
 		mv.addObject("pageInfo", pageInfo);
-		mv.addObject("report", autoConfigurationReportEndpoint.invoke());
+//		mv.addObject("report", autoConfigurationReportEndpoint.invoke());
 		return mv;
 	}
 
@@ -211,7 +205,7 @@ public class AdminController extends BaseController {
 				ObjectListView.class, VisualPageType.OLIST));
 		ModelAndView mv = getBaseModelAndView(request);
 		mv.addObject("pageInfo", pageInfo);
-		mv.addObject("objlist", traceRepository.findAll());
+//		mv.addObject("objlist", traceRepository.findAll());
 		return mv;
 	}
 
@@ -240,7 +234,7 @@ public class AdminController extends BaseController {
 				ObjectListView.class, VisualPageType.OLIST));
 		ModelAndView mv = getBaseModelAndView(request);
 		mv.addObject("pageInfo", pageInfo);
-		mv.addObject("objlist", metricsEndpoint.invoke().entrySet());
+//		mv.addObject("objlist", metricsEndpoint.invoke().entrySet());
 		return mv;
 	}
 
@@ -303,7 +297,7 @@ public class AdminController extends BaseController {
 		pageInfo.setTemplate(getVisualPageService().getTemplateFile(VisualPageConstants.ADMIN_TEMPLATE_ENV));
 		ModelAndView mv = getBaseModelAndView(request);
 		mv.addObject("pageInfo", pageInfo);
-		mv.addObject("map", environmentEndpoint.invoke());
+//		mv.addObject("map", environmentEndpoint.invoke());
 		return mv;
 	}
 
@@ -324,7 +318,7 @@ public class AdminController extends BaseController {
 				"configprops", ObjectListView.class, VisualPageType.OLIST));
 		ModelAndView mv = getBaseModelAndView(request);
 		mv.addObject("pageInfo", pageInfo);
-		mv.addObject("objlist", configurationPropertiesReportEndpoint.invoke().entrySet());
+//		mv.addObject("objlist", configurationPropertiesReportEndpoint.invoke().entrySet());
 
 		// Map<String, Object> configBeans =
 		// applicationContext.getBeansWithAnnotation(ConfigurationProperties.class);

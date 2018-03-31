@@ -2,7 +2,6 @@
     <wb-module deploy-name="org.myfly.platform.system">
         <wb-resource deploy-path="/" source-path="/src/main/java"/>
         <wb-resource deploy-path="/" source-path="/src/main/resources"/>
-        <wb-resource deploy-path="/" source-path="/crack"/>
         <wb-resource deploy-path="/" source-path="/src/main/docker"/>
     </wb-module>
 </project-modules>

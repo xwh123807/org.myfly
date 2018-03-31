@@ -1,0 +1,15 @@
+network.host: 0.0.0.0
+
+# this value is required because we set "network.host"
+# be sure to modify it appropriately for a production cluster deployment
+discovery.zen.minimum_master_nodes: 1
+
+thread_pool:
+  bulk:
+    queue_size: 2000
+
+# xpack.security.authc:
+#   anonymous:
+#     username: anonymous_user
+#     roles: role1, superuser
+#     authz_exception: true    

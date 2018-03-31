@@ -18,9 +18,9 @@ import org.myfly.platform.core.user.domain.SUser;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.test.ServiceTestCase;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringApplicationConfiguration(classes=CoreApplication.class)
+@SpringBootTest(classes=CoreApplication.class)
 public class ClassUtilTest extends ServiceTestCase{
 
 	@Test

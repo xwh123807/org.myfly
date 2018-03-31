@@ -9,10 +9,10 @@ import org.myfly.platform.core.metadata.internal.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.test.ServiceTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
 
-@SpringApplicationConfiguration(classes=CoreApplication.class)
+@SpringBootTest(classes=CoreApplication.class)
 public class AllEntityMetaDataTest extends ServiceTestCase{
 	@Autowired
 	private IEntityMetaDataService entityMetaDataService;

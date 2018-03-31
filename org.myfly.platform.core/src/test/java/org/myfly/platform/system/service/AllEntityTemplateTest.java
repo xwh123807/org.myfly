@@ -11,9 +11,9 @@ import org.myfly.platform.core.visualpage.domain.VisualPageType;
 import org.myfly.platform.core.visualpage.service.IVisualPageService;
 import org.myfly.platform.test.ServiceTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringApplicationConfiguration(classes = CoreApplication.class)
+@SpringBootTest(classes = CoreApplication.class)
 public class AllEntityTemplateTest extends ServiceTestCase {
 	@Autowired
 	private IVisualPageService visualPageService;

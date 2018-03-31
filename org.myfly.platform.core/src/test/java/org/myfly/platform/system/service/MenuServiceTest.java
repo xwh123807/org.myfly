@@ -9,9 +9,9 @@ import org.myfly.platform.core.user.domain.Menu;
 import org.myfly.platform.core.user.service.IMenuService;
 import org.myfly.platform.test.ServiceTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringApplicationConfiguration(classes = CoreApplication.class)
+@SpringBootTest(classes = CoreApplication.class)
 public class MenuServiceTest extends ServiceTestCase {
 	@Autowired
 	private IMenuService menuService;
