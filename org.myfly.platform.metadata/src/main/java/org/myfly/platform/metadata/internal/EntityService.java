@@ -7,19 +7,19 @@ import javax.transaction.Transactional;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.metadata.internal.EntityMetaData;
+import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
+import org.myfly.platform.core.utils.DateUtil;
+import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.metadata.config.MetaDataProperties;
 import org.myfly.platform.metadata.domain.MField;
 import org.myfly.platform.metadata.domain.MTable;
 import org.myfly.platform.metadata.service.IEntitySerivce;
-import org.myfly.platform.system.core.domain.DevelopStateType;
-import org.myfly.platform.system.core.domain.OwnerLevel;
-import org.myfly.platform.system.core.domain.TableMapping;
-import org.myfly.platform.system.data.service.IJpaAccessService;
-import org.myfly.platform.system.metadata.define.FieldDefinition;
-import org.myfly.platform.system.metadata.internal.EntityMetaData;
-import org.myfly.platform.system.metadata.service.IEntityMetaDataService;
-import org.myfly.platform.system.utils.DateUtil;
-import org.myfly.platform.system.utils.UUIDUtil;
+import org.myfly.platform.system.domain.DevelopStateType;
+import org.myfly.platform.system.domain.OwnerLevel;
+import org.myfly.platform.system.domain.TableMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

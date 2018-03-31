@@ -7,9 +7,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.myfly.platform.system.core.domain.SBaseEntity;
-import org.myfly.platform.system.core.domain.SchemaConstants;
-import org.myfly.platform.system.metadata.annotation.FieldView;
+import org.myfly.platform.core.domain.SBaseEntity;
+import org.myfly.platform.core.domain.SchemaConstants;
+import org.myfly.platform.core.metadata.annotation.FieldView;
 
 /**
  * 索引定义

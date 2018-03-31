@@ -1,8 +1,8 @@
 package org.myfly.platform.metadata.service;
 
-import org.myfly.platform.system.core.domain.DBType;
-import org.myfly.platform.system.core.domain.MDataSource;
-import org.myfly.platform.system.utils.UUIDUtil;
+import org.myfly.platform.core.domain.DBType;
+import org.myfly.platform.core.utils.UUIDUtil;
+import org.myfly.platform.system.domain.MDataSource;
 
 public class TestUtil {
 	

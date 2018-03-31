@@ -16,30 +16,41 @@ import java.util.function.Function;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
+import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.flydata.internal.ConnectionFactory;
+import org.myfly.platform.core.flydata.service.DataSourceInfo;
+import org.myfly.platform.core.metadata.internal.EntityMetaData;
+import org.myfly.platform.core.metadata.internal.JsonEntityMetaData;
+import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.metadata.domain.MFKConstraint;
 import org.myfly.platform.metadata.domain.MField;
 import org.myfly.platform.metadata.domain.MIndex;
 import org.myfly.platform.metadata.domain.MTable;
 import org.myfly.platform.metadata.service.IMetadataRepository;
-import org.myfly.platform.system.core.domain.FieldDataType;
-import org.myfly.platform.system.core.domain.MDataSource;
-import org.myfly.platform.system.data.internal.ConnectionFactory;
-import org.myfly.platform.system.metadata.internal.EntityMetaData;
-import org.myfly.platform.system.metadata.internal.JsonEntityMetaData;
-import org.myfly.platform.system.metadata.internal.JsonEntityMetaData.JsonFieldDefinition;
-import org.myfly.platform.system.utils.UUIDUtil;
+import org.myfly.platform.system.domain.MDataSource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 @Service("DBMetadataRepository")
 public class DBMetadataRepository extends AbstractMetadataRepository implements IMetadataRepository {
+	
+	private DataSourceInfo convertToDataSourceInfo(MDataSource currentDataSource) {
+		DataSourceInfo info = new DataSourceInfo();
+		info.setDbType(currentDataSource.getDbType());
+		info.setDialect(currentDataSource.getDialect());
+		info.setDriverClassName(currentDataSource.getDriverClassName());
+		info.setPassword(currentDataSource.getPassword());
+		info.setUrl(currentDataSource.getUrl());
+		info.setUsername(currentDataSource.getUsername());
+		return info;
+	}
 
 	private <T> List<T> fetchAll(MDataSource currentDataSource, Function<Connection, ResultSet> feachFunc,
 			Function<ResultSet, T> mapFunc) {
 		List<T> list = new ArrayList<>();
 		Connection connection = null;
 		try {
-			connection = ConnectionFactory.getConnection(currentDataSource);
+			connection = ConnectionFactory.getConnection(convertToDataSourceInfo(currentDataSource));
 			ResultSet rs = feachFunc.apply(connection);
 			while (rs.next()) {
 				T item = mapFunc.apply(rs);
@@ -58,7 +69,7 @@ public class DBMetadataRepository extends AbstractMetadataRepository implements 
 			Function<ResultSet, T> mapFunc) {
 		Connection connection = null;
 		try {
-			connection = ConnectionFactory.getConnection(currentDataSource);
+			connection = ConnectionFactory.getConnection(convertToDataSourceInfo(currentDataSource));
 			ResultSet rs = feachFunc.apply(connection);
 			Assert.notNull(rs);
 			rs.next();

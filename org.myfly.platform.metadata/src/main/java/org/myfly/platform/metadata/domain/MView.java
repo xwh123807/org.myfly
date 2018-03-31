@@ -4,15 +4,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.myfly.platform.system.core.domain.SBaseEntity;
-import org.myfly.platform.system.core.domain.SchemaConstants;
-import org.myfly.platform.system.metadata.annotation.FieldSetView;
-import org.myfly.platform.system.metadata.annotation.FieldView;
-import org.myfly.platform.system.metadata.annotation.FormView;
-import org.myfly.platform.system.metadata.annotation.ListView;
-import org.myfly.platform.system.metadata.annotation.MetaDataView;
-import org.myfly.platform.system.metadata.annotation.SectionView;
-import org.myfly.platform.system.metadata.annotation.TableView;
+import org.myfly.platform.core.domain.SBaseEntity;
+import org.myfly.platform.core.domain.SchemaConstants;
+import org.myfly.platform.core.metadata.annotation.FieldSetView;
+import org.myfly.platform.core.metadata.annotation.FieldView;
+import org.myfly.platform.core.metadata.annotation.FormView;
+import org.myfly.platform.core.metadata.annotation.ListView;
+import org.myfly.platform.core.metadata.annotation.MetaDataView;
+import org.myfly.platform.core.metadata.annotation.SectionView;
+import org.myfly.platform.core.metadata.annotation.TableView;
 
 /**
  * 视图

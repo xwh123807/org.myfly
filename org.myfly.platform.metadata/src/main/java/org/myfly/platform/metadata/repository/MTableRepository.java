@@ -2,8 +2,8 @@ package org.myfly.platform.metadata.repository;
 
 import java.util.List;
 
+import org.myfly.platform.core.user.domain.Tenant;
 import org.myfly.platform.metadata.domain.MTable;
-import org.myfly.platform.system.core.domain.Tenant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;

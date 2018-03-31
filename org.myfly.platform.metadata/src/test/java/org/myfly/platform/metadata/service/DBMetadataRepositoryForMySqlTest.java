@@ -5,14 +5,14 @@ import java.util.function.Consumer;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.metadata.define.FKFieldDefinition;
+import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.metadata.internal.EntityMetaData;
+import org.myfly.platform.core.metadata.internal.JsonEntityMetaData;
 import org.myfly.platform.metadata.domain.MTable;
 import org.myfly.platform.metadata.internal.DBMetadataRepository;
-import org.myfly.platform.system.core.domain.FieldDataType;
-import org.myfly.platform.system.core.domain.MDataSource;
-import org.myfly.platform.system.metadata.define.FKFieldDefinition;
-import org.myfly.platform.system.metadata.define.FieldDefinition;
-import org.myfly.platform.system.metadata.internal.EntityMetaData;
-import org.myfly.platform.system.metadata.internal.JsonEntityMetaData;
+import org.myfly.platform.system.domain.MDataSource;
 
 public class DBMetadataRepositoryForMySqlTest {
 	@Test

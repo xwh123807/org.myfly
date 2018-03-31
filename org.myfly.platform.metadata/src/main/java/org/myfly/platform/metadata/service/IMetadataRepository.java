@@ -7,6 +7,7 @@ import org.myfly.platform.core.metadata.internal.EntityMetaData;
 import org.myfly.platform.core.metadata.internal.JsonEntityMetaData;
 import org.myfly.platform.metadata.domain.MField;
 import org.myfly.platform.metadata.domain.MTable;
+import org.myfly.platform.system.domain.MDataSource;
 
 public interface IMetadataRepository {
 

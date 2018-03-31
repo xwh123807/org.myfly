@@ -2,8 +2,9 @@ package org.myfly.platform.metadata.service;
 
 import java.util.List;
 
+import org.myfly.platform.core.user.domain.SGlobalName;
 import org.myfly.platform.metadata.domain.MTable;
-import org.myfly.platform.system.domain.SGlobalName;
+import org.myfly.platform.system.domain.TableMapping;
 
 public interface IMetaDataService {
 

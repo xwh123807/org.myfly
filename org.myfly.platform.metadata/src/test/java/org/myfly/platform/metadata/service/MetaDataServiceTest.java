@@ -5,7 +5,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.MetaDataApplication;
-import org.myfly.platform.system.core.domain.TableMapping;
+import org.myfly.platform.system.domain.TableMapping;
 import org.myfly.platform.test.ServiceTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;

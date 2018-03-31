@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.utils.AssertConstants;
+import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.metadata.domain.MField;
 import org.myfly.platform.metadata.domain.MTable;
-import org.myfly.platform.system.metadata.define.FieldDefinition;
-import org.myfly.platform.system.utils.AssertConstants;
-import org.myfly.platform.system.utils.AssertUtil;
 
 public class MetadataUtil {
 	private static Log log = LogFactory.getLog(MetadataUtil.class);

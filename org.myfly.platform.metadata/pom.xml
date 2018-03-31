@@ -20,12 +20,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.myfly.platform.microapps</groupId>
-			<artifactId>myfly.platform.system</artifactId>
+			<artifactId>org.myfly.platform.system</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.myfly.platform.microapps</groupId>
-			<artifactId>myfly.platform.test</artifactId>
+			<artifactId>org.myfly.platform.test</artifactId>
 			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>

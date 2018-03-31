@@ -2,16 +2,16 @@ package org.myfly.platform.metadata.internal;
 
 import java.util.List;
 
+import org.myfly.platform.core.user.domain.SGlobalName;
+import org.myfly.platform.core.user.repository.SGlobalNameRepository;
+import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.metadata.domain.MField;
 import org.myfly.platform.metadata.domain.MTable;
 import org.myfly.platform.metadata.repository.MFieldRepository;
 import org.myfly.platform.metadata.repository.MTableRepository;
 import org.myfly.platform.metadata.service.IMetaDataService;
-import org.myfly.platform.system.core.domain.SGlobalName;
-import org.myfly.platform.system.core.domain.TableMapping;
-import org.myfly.platform.system.core.repository.SGlobalNameRepository;
-import org.myfly.platform.system.core.repository.STableMappingRepository;
-import org.myfly.platform.system.utils.AssertUtil;
+import org.myfly.platform.system.domain.TableMapping;
+import org.myfly.platform.system.repository.TableMappingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -25,7 +25,7 @@ public class MetaDataService implements IMetaDataService{
 	@Autowired
 	private MFieldRepository mfieldRepository;
 	@Autowired
-	private STableMappingRepository tableMappingRepository;
+	private TableMappingRepository tableMappingRepository;
 	@Autowired
 	private SGlobalNameRepository globalNameRepository;
 	

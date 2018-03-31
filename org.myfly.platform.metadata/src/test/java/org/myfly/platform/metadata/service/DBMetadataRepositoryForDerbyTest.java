@@ -6,11 +6,11 @@ import java.util.function.Consumer;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.myfly.platform.core.metadata.internal.EntityMetaData;
 import org.myfly.platform.metadata.domain.MField;
 import org.myfly.platform.metadata.domain.MTable;
 import org.myfly.platform.metadata.internal.DBMetadataRepository;
-import org.myfly.platform.system.core.domain.MDataSource;
-import org.myfly.platform.system.metadata.internal.EntityMetaData;
+import org.myfly.platform.system.domain.MDataSource;
 
 public class DBMetadataRepositoryForDerbyTest {
 	@Test

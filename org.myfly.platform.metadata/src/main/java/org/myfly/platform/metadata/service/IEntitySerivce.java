@@ -1,6 +1,7 @@
 package org.myfly.platform.metadata.service;
 
 import org.myfly.platform.metadata.domain.MTable;
+import org.myfly.platform.system.domain.TableMapping;
 
 public interface IEntitySerivce {
 
