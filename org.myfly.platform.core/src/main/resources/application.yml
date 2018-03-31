@@ -19,7 +19,7 @@ server:
   port: 9080
   
 balance:
-  server: 192.168.99.100
+  server: localhost
 
 security:
   basic:
