@@ -190,7 +190,7 @@
 		<module>org.myfly.apps.mdm</module>
 		<module>org.myfly.research</module>
 		<module>org.myfly.platform.system</module>
-
+		<module>org.myfly.platform.metadata</module>
 	</modules>
 
 	<!-- Add Spring repositories -->
