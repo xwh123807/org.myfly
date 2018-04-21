@@ -6,7 +6,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import org.myfly.platform.core.visualpage.ui.EntityAction;
+import org.myfly.platform.core.metadata.define.EntityAction;
 
 /**
  * 注解，实体表单视图

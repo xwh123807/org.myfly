@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
-import org.myfly.platform.core.metadata.internal.EntityMetaData;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AppUtil;
 import org.springframework.util.Assert;
 

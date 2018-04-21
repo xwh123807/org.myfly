@@ -3,7 +3,7 @@ package org.myfly.platform.core.metadata.define;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.core.metadata.internal.EntityMetaDataConstants;
+import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AppUtil;
 
 public class FlySearchRelationGetFieldValueHandler implements GetFieldValueHandler {

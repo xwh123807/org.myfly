@@ -1,6 +1,6 @@
 package org.myfly.platform.core.visualpage.ui.view;
 
-import org.myfly.platform.core.metadata.internal.EntityMetaData;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.visualpage.ui.ViewType;
 

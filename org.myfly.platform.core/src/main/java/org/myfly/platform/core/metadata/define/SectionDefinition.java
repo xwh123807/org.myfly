@@ -1,6 +1,7 @@
 package org.myfly.platform.core.metadata.define;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.springframework.util.Assert;
 
 public class SectionDefinition extends BaseDenifition {
@@ -16,6 +17,13 @@ public class SectionDefinition extends BaseDenifition {
 		super(parent);
 		setTitle(title);
 		setType(SectionType.CUSTOM);
+	}
+
+	public SectionDefinition(SectionView view) {
+		super(null);
+		setName(view.name());
+		setTitle(view.title());
+		setType(view.type());
 	}
 
 	public String getTitle() {
@@ -72,12 +80,12 @@ public class SectionDefinition extends BaseDenifition {
 	public void validate() {
 		Assert.notNull(getType());
 		if (ArrayUtils.isNotEmpty(getFieldSets())) {
-			for (FieldSetDefinition fieldSet : getFieldSets()){
+			for (FieldSetDefinition fieldSet : getFieldSets()) {
 				fieldSet.validate();
 			}
 		}
 		if (ArrayUtils.isNotEmpty(getSubTables())) {
-			for (SubTableDefinition subtable : getSubTables()){
+			for (SubTableDefinition subtable : getSubTables()) {
 				subtable.validate();
 			}
 		}

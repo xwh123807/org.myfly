@@ -1,4 +1,4 @@
-package org.myfly.platform.core.metadata.internal;
+package org.myfly.platform.core.metadata.service;
 
 import java.io.Serializable;
 import java.util.ArrayList;

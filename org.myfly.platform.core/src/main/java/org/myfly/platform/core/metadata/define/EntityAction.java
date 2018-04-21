@@ -1,9 +1,10 @@
-package org.myfly.platform.core.visualpage.ui;
+package org.myfly.platform.core.metadata.define;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.myfly.platform.core.domain.BaseEnum;
+import org.myfly.platform.core.visualpage.ui.ViewType;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**

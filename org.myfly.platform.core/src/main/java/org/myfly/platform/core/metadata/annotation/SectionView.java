@@ -23,7 +23,7 @@ public @interface SectionView {
 	 */
 	String name() default "";
 	/**
-	 * 部件类型
+	 * 部件类型，当类型为SectionType.CUSTOM时，可以设置fieldSets或subTables；当类型为其他时，表示预制标准部件。
 	 * @return
 	 */
 	SectionType type() default SectionType.CUSTOM;

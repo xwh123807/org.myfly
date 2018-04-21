@@ -1,5 +1,6 @@
 package org.myfly.platform.core.visualpage.ui;
 
+import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.visualpage.ui.control.button.BackButtonRender;
 import org.myfly.platform.core.visualpage.ui.control.button.CustomButtonRender;

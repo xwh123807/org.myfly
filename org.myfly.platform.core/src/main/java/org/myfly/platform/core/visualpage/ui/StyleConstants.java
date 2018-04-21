@@ -3,6 +3,8 @@ package org.myfly.platform.core.visualpage.ui;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.myfly.platform.core.metadata.define.EntityAction;
+
 public class StyleConstants {
 	/**
 	 * Bootstrap 表格基本样式

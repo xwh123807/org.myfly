@@ -1,13 +1,13 @@
 package org.myfly.platform.core.visualpage.ui.view;
 
+import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.metadata.define.FormDefinition;
-import org.myfly.platform.core.metadata.internal.EntityMetaData;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.EntityUrlUtil;
 import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.core.visualpage.ui.BaseButtonRender;
 import org.myfly.platform.core.visualpage.ui.ButtonRenderFactory;
-import org.myfly.platform.core.visualpage.ui.EntityAction;
 import org.myfly.platform.core.visualpage.ui.ViewMode;
 import org.myfly.platform.core.visualpage.ui.ViewType;
 import org.myfly.platform.core.visualpage.ui.control.DivsRender;

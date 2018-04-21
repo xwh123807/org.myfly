@@ -1,12 +1,12 @@
 package org.myfly.platform.core.visualpage.ui.control;
 
+import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.metadata.define.FormDefinition;
 import org.myfly.platform.core.utils.EntityUrlUtil;
 import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.core.visualpage.ui.BaseButtonRender;
 import org.myfly.platform.core.visualpage.ui.BaseFieldRender;
 import org.myfly.platform.core.visualpage.ui.ButtonRenderFactory;
-import org.myfly.platform.core.visualpage.ui.EntityAction;
 
 /**
  * 表单工具条

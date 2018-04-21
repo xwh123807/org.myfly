@@ -1,7 +1,7 @@
-package org.myfly.platform.core.metadata.internal;
+package org.myfly.platform.core.metadata.service;
 
+import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.metadata.define.ListStyle;
-import org.myfly.platform.core.visualpage.ui.EntityAction;
 
 public class EntityMetaDataConstants {
 	/**

@@ -2,6 +2,7 @@ package org.myfly.platform.core.visualpage.ui;
 
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.GetFieldValueHandler;
 import org.myfly.platform.core.utils.AssertUtil;

@@ -1,8 +1,8 @@
 package org.myfly.platform.core.visualpage.ui.control;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.utils.EntityLinkUtil;
-import org.myfly.platform.core.visualpage.ui.EntityAction;
 import org.myfly.platform.core.visualpage.ui.EntityActionInfo;
 import org.myfly.platform.core.visualpage.ui.ViewType;
 import org.myfly.platform.core.visualpage.ui.view.BaseRender;

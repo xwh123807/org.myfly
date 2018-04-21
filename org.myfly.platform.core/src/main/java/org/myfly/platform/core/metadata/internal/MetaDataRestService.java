@@ -3,10 +3,11 @@ package org.myfly.platform.core.metadata.internal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.myfly.platform.core.metadata.internal.JsonEntityMetaData.JsonFieldDefinition;
-import org.myfly.platform.core.metadata.internal.JsonEntityMetaData.JsonFormDefinition;
-import org.myfly.platform.core.metadata.internal.JsonEntityMetaData.JsonListDefinition;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
+import org.myfly.platform.core.metadata.service.JsonEntityMetaData;
+import org.myfly.platform.core.metadata.service.JsonEntityMetaData.JsonFieldDefinition;
+import org.myfly.platform.core.metadata.service.JsonEntityMetaData.JsonFormDefinition;
+import org.myfly.platform.core.metadata.service.JsonEntityMetaData.JsonListDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

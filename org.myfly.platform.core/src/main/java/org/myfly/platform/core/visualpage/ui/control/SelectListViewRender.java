@@ -3,8 +3,8 @@ package org.myfly.platform.core.visualpage.ui.control;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.utils.EntityUrlUtil;
-import org.myfly.platform.core.visualpage.ui.EntityAction;
 import org.myfly.platform.core.visualpage.ui.ViewType;
 
 public class SelectListViewRender extends SelectViewRender {

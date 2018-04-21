@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.core.metadata.internal.EntityMetaData;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.metadata.domain.MField;
 import org.myfly.platform.metadata.domain.MTable;
 import org.myfly.platform.metadata.internal.DBMetadataRepository;

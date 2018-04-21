@@ -6,8 +6,8 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.metadata.define.ListStyle;
-import org.myfly.platform.core.visualpage.ui.EntityAction;
 
 /**
  * 实体子表视图
@@ -25,7 +25,7 @@ public @interface SubTableView {
 	 */
 	String tableAttr();
 	/**
-	 * 如果是引用，则为引用名称，如果没指定，表示取自己定义
+	 * 如果是引用，则为引用名称，指向子表实体的名称项目的列表视图；如果没指定，表示由自己定义
 	 */
 	String refName() default "default";
 

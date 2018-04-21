@@ -17,10 +17,9 @@ import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.FormView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.SubTableView;
-import org.myfly.platform.core.metadata.internal.EntityMetaData;
-import org.myfly.platform.core.metadata.internal.EntityMetaDataConstants;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AssertUtil;
-import org.myfly.platform.core.visualpage.ui.EntityAction;
 import org.springframework.util.Assert;
 
 /**

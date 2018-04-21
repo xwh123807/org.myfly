@@ -34,7 +34,7 @@ public @interface TableView {
 	String labelField() default "name";
 	
 	/**
-	 * 通用子表
+	 * 显示的通用子表
 	 * 
 	 * @return
 	 */

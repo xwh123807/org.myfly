@@ -3,7 +3,7 @@ package org.myfly.platform.core.metadata.define;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.metadata.annotation.SubTableView;
-import org.myfly.platform.core.metadata.internal.EntityMetaData;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.visualpage.ui.EntityActionInfo.EntityActionField;

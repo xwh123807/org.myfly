@@ -2,10 +2,8 @@ package org.myfly.platform.core.metadata.service;
 
 import java.net.URL;
 
-import org.myfly.platform.core.metadata.internal.EntityMetaData;
-
 /**
- * 
+ * 扩展元模型注册
  * @author xiangwanhong
  *
  */

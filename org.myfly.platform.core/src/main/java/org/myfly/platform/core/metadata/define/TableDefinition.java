@@ -3,7 +3,7 @@ package org.myfly.platform.core.metadata.define;
 import org.springframework.util.Assert;
 
 /**
- * 数据库表信息定义
+ * 数据库表信息定义，对应实体定义信息
  * @author xiangwanhong
  *
  */

@@ -13,8 +13,8 @@ import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.TableView;
+import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.metadata.define.ListStyle;
-import org.myfly.platform.core.visualpage.ui.EntityAction;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 /**

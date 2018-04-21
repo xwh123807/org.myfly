@@ -24,7 +24,7 @@ import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 import org.myfly.platform.core.metadata.define.SQLOperator;
 import org.myfly.platform.core.metadata.define.SubTableDefinition;
-import org.myfly.platform.core.metadata.internal.EntityMetaData;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

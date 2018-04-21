@@ -2,7 +2,7 @@ package org.myfly.platform.core.metadata.define;
 
 import java.util.Map;
 
-import org.myfly.platform.core.metadata.internal.EntityMetaData;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
 

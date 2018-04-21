@@ -3,8 +3,8 @@ package org.myfly.platform.core.visualpage.ui.control;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
-import org.myfly.platform.core.visualpage.ui.EntityAction;
 import org.myfly.platform.core.visualpage.ui.EntityActionInfo.EntityActionField;
 import org.myfly.platform.core.visualpage.ui.control.VelocityTemplateTableRender;
 

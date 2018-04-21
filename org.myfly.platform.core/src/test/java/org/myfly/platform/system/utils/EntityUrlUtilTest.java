@@ -2,9 +2,9 @@ package org.myfly.platform.system.utils;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.utils.EntityUrlUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
-import org.myfly.platform.core.visualpage.ui.EntityAction;
 
 public class EntityUrlUtilTest {
 

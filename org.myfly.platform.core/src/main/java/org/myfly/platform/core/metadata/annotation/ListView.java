@@ -6,8 +6,8 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.metadata.define.ListStyle;
-import org.myfly.platform.core.visualpage.ui.EntityAction;
 
 /**
  * 注解，实体列表视图
@@ -105,7 +105,7 @@ public @interface ListView {
 	String labelField() default "";
 
 	/**
-	 * 排序
+	 * 定义排序字段
 	 * 
 	 * @return
 	 */

@@ -13,7 +13,7 @@ import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
 import org.myfly.platform.core.flydata.service.IJdbcDataAccessService;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
-import org.myfly.platform.core.metadata.internal.EntityMetaData;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.ClassUtil;

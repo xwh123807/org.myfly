@@ -14,7 +14,7 @@ import org.myfly.platform.core.flydata.service.EntityQueryMap;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
 import org.myfly.platform.core.flydata.service.IJpaAccessService;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
-import org.myfly.platform.core.metadata.internal.EntityMetaData;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.system.tpcc.domain.Customer;
 import org.myfly.platform.system.tpcc.domain.CustomerPK;

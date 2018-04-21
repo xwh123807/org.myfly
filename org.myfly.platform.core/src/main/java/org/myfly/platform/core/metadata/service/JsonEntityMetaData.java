@@ -1,4 +1,4 @@
-package org.myfly.platform.core.metadata.internal;
+package org.myfly.platform.core.metadata.service;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.define.DefaultGetFieldValueHandler;
 import org.myfly.platform.core.metadata.define.DivDefinition;
+import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.metadata.define.FKFieldDefinition;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.FieldSetDefinition;
@@ -28,7 +29,6 @@ import org.myfly.platform.core.metadata.define.SectionType;
 import org.myfly.platform.core.metadata.define.SubTableDefinition;
 import org.myfly.platform.core.metadata.define.TableDefinition;
 import org.myfly.platform.core.utils.JSONUtil;
-import org.myfly.platform.core.visualpage.ui.EntityAction;
 
 public final class JsonEntityMetaData {
 	/**

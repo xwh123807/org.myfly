@@ -1,4 +1,4 @@
-package org.myfly.platform.core.metadata.internal;
+package org.myfly.platform.core.metadata.service;
 
 public class EntityException extends RuntimeException {
 

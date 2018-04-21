@@ -2,8 +2,8 @@ package org.myfly.platform.system.utils;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.utils.EntityLinkUtil;
-import org.myfly.platform.core.visualpage.ui.EntityAction;
 
 public class EntityLinkUtilTest {
 	private String tableName = "stdtesttable";

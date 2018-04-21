@@ -1,5 +1,10 @@
 package org.myfly.platform.core.metadata.define;
 
+/**
+ * 排序定义
+ * @author xiangwanhong
+ *
+ */
 public class OrderDefinition extends BaseDenifition{
 	private OrderType orderType;
 	

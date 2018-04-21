@@ -1,6 +1,5 @@
 package org.myfly.platform.core.metadata.annotation;
 
-import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.ElementType;

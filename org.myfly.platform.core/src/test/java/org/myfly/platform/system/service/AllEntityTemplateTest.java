@@ -5,7 +5,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.CoreApplication;
-import org.myfly.platform.core.metadata.internal.EntityMetaData;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.visualpage.domain.VisualPageType;
 import org.myfly.platform.core.visualpage.service.IVisualPageService;

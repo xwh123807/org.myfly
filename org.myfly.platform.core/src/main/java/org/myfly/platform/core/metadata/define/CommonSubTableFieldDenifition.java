@@ -2,7 +2,7 @@ package org.myfly.platform.core.metadata.define;
 
 import org.apache.commons.lang.ClassUtils;
 import org.myfly.platform.core.domain.FieldDataType;
-import org.myfly.platform.core.metadata.internal.EntityMetaData;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AppUtil;
 import org.springframework.util.Assert;
 

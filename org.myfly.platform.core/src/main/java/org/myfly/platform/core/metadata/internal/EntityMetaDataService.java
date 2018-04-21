@@ -40,8 +40,11 @@ import org.myfly.platform.core.metadata.define.FlySearchRelationGetFieldValueHan
 import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 import org.myfly.platform.core.metadata.define.SearchRelationGetFieldValueHandler;
 import org.myfly.platform.core.metadata.define.TableDefinition;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.metadata.service.IMetaDataRegister;
+import org.myfly.platform.core.metadata.service.JsonEntityMetaData;
 import org.myfly.platform.core.user.domain.EnumType;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
@@ -157,6 +160,7 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 		if (cachedEntityMetaDatas.containsKey(entityNameOrClassName)) {
 			return cachedEntityMetaDatas.get(entityNameOrClassName);
 		}
+		//先从jpa环境中获取实体类
 		Class<?> entityClass = getEntityClass(entityNameOrClassName);
 		EntityMetaData metaData = null;
 		if (entityClass == null) {

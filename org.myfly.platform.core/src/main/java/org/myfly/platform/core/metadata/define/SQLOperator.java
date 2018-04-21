@@ -9,9 +9,29 @@ import org.myfly.platform.core.domain.BaseEnum;
  *
  */
 public enum SQLOperator implements BaseEnum {
-	EQUAL("等于"), NOTEQUAL("不等于"), ISNULL("为空"), NOTNULL("不为空"), IN("在...范围"), GREATERTHAN("大于"), LESSTHAN(
-			"小于"), GREATERTHANOREQUALTO("大于等于"), LESSTHANOREQUALTO("小于等于"), LIKE("LIKE"), NOTLIKE("NOT LIKE"), BETWEEN(
-					"之间");
+	EQUAL("等于"),
+	//
+	NOTEQUAL("不等于"),
+	//
+	ISNULL("为空"),
+	//
+	NOTNULL("不为空"),
+	//
+	IN("在...范围"),
+	//
+	GREATERTHAN("大于"),
+	//
+	LESSTHAN("小于"),
+	//
+	GREATERTHANOREQUALTO("大于等于"),
+	//
+	LESSTHANOREQUALTO("小于等于"),
+	//
+	LIKE("LIKE"),
+	//
+	NOTLIKE("NOT LIKE"),
+	//
+	BETWEEN("之间");
 
 	private String title;
 
