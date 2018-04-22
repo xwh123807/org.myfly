@@ -9,7 +9,7 @@ import org.myfly.platform.core.visualpage.ui.ViewType;
  * @author xiangwanhong
  *
  */
-public class BaseViewRender extends BaseRender{
+public abstract class BaseViewRender extends BaseRender{
 
 	private ViewMode viewMode;
 

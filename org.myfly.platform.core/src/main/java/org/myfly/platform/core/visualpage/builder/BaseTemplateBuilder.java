@@ -7,15 +7,16 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.utils.AssertUtil;
-import org.myfly.platform.core.visualpage.domain.VisualPageType;
 import org.myfly.platform.core.visualpage.internal.TemplateBuilderFactory;
+import org.myfly.platform.core.visualpage.service.VisualPageConstants;
+import org.myfly.platform.core.visualpage.service.VisualPageType;
 import org.myfly.platform.core.visualpage.ui.BaseRender;
 import org.myfly.platform.core.visualpage.ui.ViewMode;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 
 /**
- * 模板基类
+ * 页面模板基类
  * 
  * @author xiangwanhong
  *
@@ -43,7 +44,9 @@ public abstract class BaseTemplateBuilder {
 	 * 
 	 * @return
 	 */
-	public abstract String getLayoutName();
+	public String getLayoutName() {
+		return VisualPageConstants.LAYOUT_DEFAULT_NAME;
+	}
 
 	public BaseTemplateBuilder() {
 		TemplateBuilderFactory.registerTemplate(this);
@@ -90,7 +93,8 @@ public abstract class BaseTemplateBuilder {
 	 *            实体名称
 	 * @param templateFileName
 	 */
-	public void buildTemplateFile(String templateFileName, String entityName, final String viewName, final ViewMode viewMode) {
+	public void buildTemplateFile(String templateFileName, String entityName, final String viewName,
+			final ViewMode viewMode) {
 		AssertUtil.parameterEmpty(templateFileName, "templateFileName");
 		AssertUtil.parameterEmpty(entityName, "entityName");
 		try {
@@ -128,6 +132,7 @@ public abstract class BaseTemplateBuilder {
 
 	/**
 	 * 构建Render的模板
+	 * 
 	 * @param templateFileName
 	 * @param render
 	 */

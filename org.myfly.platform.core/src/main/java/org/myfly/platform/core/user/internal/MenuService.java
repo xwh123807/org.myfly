@@ -11,7 +11,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.context.UserContext;
 import org.myfly.platform.core.domain.SBaseEntity;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.user.domain.Menu;
 import org.myfly.platform.core.user.service.IMenuService;
 import org.myfly.platform.core.utils.AssertUtil;
@@ -32,7 +32,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MenuService implements IMenuService {
 	@Autowired
-	private IJpaAccessService dataAccessService;
+	private IJpaDataAccessService dataAccessService;
 
 	/*
 	 * (non-Javadoc)

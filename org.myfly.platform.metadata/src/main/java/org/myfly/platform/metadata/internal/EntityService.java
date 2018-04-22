@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
@@ -34,7 +34,7 @@ import org.springframework.stereotype.Service;
 public class EntityService implements IEntitySerivce {
 	private static Log log = LogFactory.getLog(EntityService.class);
 	@Autowired
-	private IJpaAccessService jpaAccessService;
+	private IJpaDataAccessService jpaAccessService;
 	@Autowired
 	private IEntityMetaDataService entityMetaDataService;
 	@Autowired

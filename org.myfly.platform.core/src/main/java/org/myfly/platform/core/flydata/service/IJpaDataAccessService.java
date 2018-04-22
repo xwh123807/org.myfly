@@ -11,7 +11,7 @@ import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
-public interface IJpaAccessService {
+public interface IJpaDataAccessService {
 	/**
 	 * 获取JpaRepository
 	 * 

@@ -14,7 +14,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.domain.AppStartLevel;
 import org.myfly.platform.core.domain.DBType;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.metadata.service.IMetaDataRegister;
 import org.myfly.platform.core.metadata.service.JsonEntityMetaData;
 import org.myfly.platform.core.starter.IAppConfigEvent;
@@ -38,7 +38,7 @@ public class MetadataDataInitConfigEvent implements IAppConfigEvent {
 	private IMetadataRepository dbMetadataRepository;
 
 	@Autowired
-	private IJpaAccessService dataService;
+	private IJpaDataAccessService dataService;
 
 	@Override
 	public AppStartLevel getAppStartLevel() {

@@ -3,7 +3,7 @@ package org.myfly.platform.core.flydata.internal;
 import java.util.HashMap;
 
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.utils.AssertUtil;
 
 /**
@@ -16,9 +16,9 @@ public class TransNameToIDCache extends HashMap<String, HashMap<String, String>>
 	 * 
 	 */
 	private static final long serialVersionUID = -3319220894219349995L;
-	private IJpaAccessService dataAccessService;
+	private IJpaDataAccessService dataAccessService;
 
-	public TransNameToIDCache(IJpaAccessService dataAccessService) {
+	public TransNameToIDCache(IJpaDataAccessService dataAccessService) {
 		AssertUtil.parameterEmpty(dataAccessService, "dataAccessService");
 		this.dataAccessService = dataAccessService;
 	}

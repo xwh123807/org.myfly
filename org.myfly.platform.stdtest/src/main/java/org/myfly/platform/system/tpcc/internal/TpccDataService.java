@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.lang.ClassUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.system.tpcc.domain.Customer;
@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TpccDataService implements ITpccDataService {
 	@Autowired
-	private IJpaAccessService dataAccessService;
+	private IJpaDataAccessService dataAccessService;
 	/**
 	 * 数据规模
 	 */

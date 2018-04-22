@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.SKeyEntity;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.utils.AssertUtil;
@@ -34,7 +34,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class JpaDataAccessService implements IJpaAccessService {
+public class JpaDataAccessService implements IJpaDataAccessService {
 	@Autowired
 	private EntityManager entityManager;
 	@Autowired

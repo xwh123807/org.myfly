@@ -23,6 +23,9 @@ public class ListViewRender extends BaseViewRender {
 	private EntityMetaData entityMetaData;
 	private String entityName;
 	private ListDefinition listDefinition;
+	private EntityTableWidgetBoxRender box;
+	private FilterSectionViewRender filters;
+	
 
 	/**
 	 * 当有指定列表显示注解时，按注解定义显示；如果没有则显示全部字段
@@ -58,11 +61,11 @@ public class ListViewRender extends BaseViewRender {
 		// 查询区域
 		if (listDefinition != null && ArrayUtils.isNotEmpty(listDefinition.getFilters())) {
 			String url = EntityUrlUtil.getEntityActionUrl(EntityAction.LIST, entityName, null, listDefinition.getName());
-			FilterSectionViewRender filters = new FilterSectionViewRender(listDefinition.getFilters(), getViewType(), url);
+			filters = new FilterSectionViewRender(listDefinition.getFilters(), getViewType(), url);
 			buffer.append(filters.html());
 		}
 		// 查询结果区域
-		EntityTableWidgetBoxRender box = new EntityTableWidgetBoxRender(listDefinition, getViewType());
+		box = new EntityTableWidgetBoxRender(listDefinition, getViewType());
 		buffer.append(box.html());
 		buffer.append("</div>");
 		return buffer.toString();
@@ -70,7 +73,7 @@ public class ListViewRender extends BaseViewRender {
 	
 	@Override
 	public String htmlForPrint() {
-		EntityTableWidgetBoxRender box = new EntityTableWidgetBoxRender(listDefinition, getViewType());
+		box = new EntityTableWidgetBoxRender(listDefinition, getViewType());
 		return box.html();
 	}
 

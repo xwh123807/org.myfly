@@ -24,7 +24,7 @@ import org.myfly.platform.core.flydata.service.EntityMap;
 import org.myfly.platform.core.flydata.service.EntityQueryMap;
 import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.flydata.service.Search;
 import org.myfly.platform.core.message.service.IMessageQueueService;
 import org.myfly.platform.core.message.service.MessageQueueConstants;
@@ -71,7 +71,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 	@Autowired
 	private IFullTextSearchService fullTextSearchService;
 	@Autowired
-	private IJpaAccessService jpaDataAccessService;
+	private IJpaDataAccessService jpaDataAccessService;
 	@Autowired
 	private IMessageQueueService messageService;
 
@@ -101,7 +101,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 		return fullTextSearchService;
 	}
 
-	public IJpaAccessService getJpaDataAccessService() {
+	public IJpaDataAccessService getJpaDataAccessService() {
 		return jpaDataAccessService;
 	}
 

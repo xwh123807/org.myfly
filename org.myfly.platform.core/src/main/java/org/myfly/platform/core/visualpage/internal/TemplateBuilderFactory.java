@@ -7,7 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.visualpage.builder.BaseTemplateBuilder;
-import org.myfly.platform.core.visualpage.domain.VisualPageType;
+import org.myfly.platform.core.visualpage.service.VisualPageType;
 
 public class TemplateBuilderFactory {
 	private static Log log = LogFactory.getLog(TemplateBuilderFactory.class);

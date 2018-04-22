@@ -2,7 +2,7 @@ package org.myfly.platform.system.application.queue;
 
 import javax.transaction.Transactional;
 
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.message.service.MessageQueueConstants;
 import org.myfly.platform.core.utils.UrlUtils;
 import org.myfly.platform.system.domain.AccessLog;
@@ -34,7 +34,7 @@ public class AccessLogQueueProcessor {
 	}
 
 	@Autowired
-	private IJpaAccessService jpaAccessService;
+	private IJpaDataAccessService jpaAccessService;
 
 	@RabbitListener(queues = MessageQueueConstants.QUEUE_ACCESS_LOG)
 	@RabbitHandler

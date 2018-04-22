@@ -12,7 +12,7 @@ import org.myfly.platform.SystemApplication;
 import org.myfly.platform.core.flydata.internal.DataTablesResponse;
 import org.myfly.platform.core.flydata.service.EntityQueryMap;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
@@ -45,7 +45,7 @@ public class TPCCStandardEntityTest extends ServiceTestCase {
 	@Autowired
 	private IEntityMetaDataService entityMetaDataService;
 	@Autowired
-	private IJpaAccessService dataAccessService;
+	private IJpaDataAccessService dataAccessService;
 	@Autowired
 	@Qualifier("jdbcFlyDataAccessService")
 	private IFlyDataAccessService queryUseMetaDataService;

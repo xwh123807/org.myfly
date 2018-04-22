@@ -10,6 +10,11 @@ import org.myfly.platform.core.domain.BaseEnum;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.visualpage.ui.InputType;
 
+/**
+ * 系统枚举选择，枚举由枚举类定义
+ * @author xiangwanhong
+ *
+ */
 public class SysEnumSelectFieldRender extends SelectFieldRender {
 	private static final Log log = LogFactory.getLog(SysEnumSelectFieldRender.class);
 

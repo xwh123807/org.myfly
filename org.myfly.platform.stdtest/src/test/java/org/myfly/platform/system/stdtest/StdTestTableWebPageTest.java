@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.test.EntityActionsWebPageTestCase;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
@@ -16,7 +16,7 @@ public class StdTestTableWebPageTest extends EntityActionsWebPageTestCase<StdTes
 	@Autowired
 	private IStdTestDataService stdTestDataService;
 	@Autowired
-	private IJpaAccessService dataAccessService;
+	private IJpaDataAccessService dataAccessService;
 	private static String stdTestTableUid;
 	private static boolean isInited;
 

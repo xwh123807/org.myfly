@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.myfly.platform.CoreApplication;
 import org.myfly.platform.core.flydata.internal.EntityUtil;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.test.MockMVCTestCase;
@@ -26,7 +26,7 @@ public abstract class SubEntityActionsWebPageTestCase<M, T, MP extends Serializa
 	@Autowired
 	private IEntityMetaDataService entityMetaDataService;
 	@Autowired
-	private IJpaAccessService dataAccessService;
+	private IJpaDataAccessService dataAccessService;
 
 	public abstract Class<M> getEntityClass();
 
@@ -237,11 +237,11 @@ public abstract class SubEntityActionsWebPageTestCase<M, T, MP extends Serializa
 		mockMvc.perform(get("/admin/meta/" + getSubEntityName())).andExpect(status().isOk());
 	}
 
-	public IJpaAccessService getDataAccessService() {
+	public IJpaDataAccessService getDataAccessService() {
 		return dataAccessService;
 	}
 
-	public void setDataAccessService(IJpaAccessService dataAccessService) {
+	public void setDataAccessService(IJpaDataAccessService dataAccessService) {
 		this.dataAccessService = dataAccessService;
 	}
 

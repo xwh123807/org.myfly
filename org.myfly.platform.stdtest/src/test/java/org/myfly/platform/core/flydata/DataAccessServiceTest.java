@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.myfly.platform.CoreApplication;
 import org.myfly.platform.core.context.SystemContext;
 import org.myfly.platform.core.flydata.internal.EntityUtil;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.user.domain.SUser;
 import org.myfly.platform.core.user.domain.Tenant;
 import org.myfly.platform.core.utils.AppUtil;
@@ -34,7 +34,7 @@ import org.springframework.data.jpa.domain.Specifications;
 @SpringApplicationConfiguration(classes = CoreApplication.class)
 public class DataAccessServiceTest extends ServiceTestCase {
 	@Autowired
-	private IJpaAccessService dataAccessService;
+	private IJpaDataAccessService dataAccessService;
 	
 	@Before
 	public void before(){

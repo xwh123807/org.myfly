@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.myfly.platform.core.domain.TemplateBuilderInfo;
 import org.myfly.platform.core.metadata.internal.EntityViewInfo;
-import org.myfly.platform.core.visualpage.domain.VisualPageType;
 import org.myfly.platform.core.visualpage.ui.ViewMode;
 
 public interface IVisualPageService {

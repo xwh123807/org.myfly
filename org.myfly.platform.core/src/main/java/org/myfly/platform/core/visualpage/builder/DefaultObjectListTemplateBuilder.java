@@ -4,8 +4,7 @@ import java.lang.annotation.Annotation;
 
 import org.myfly.platform.core.metadata.annotation.ObjectListView;
 import org.myfly.platform.core.utils.AssertUtil;
-import org.myfly.platform.core.visualpage.domain.VisualPageType;
-import org.myfly.platform.core.visualpage.service.VisualPageConstants;
+import org.myfly.platform.core.visualpage.service.VisualPageType;
 import org.myfly.platform.core.visualpage.ui.view.ObjectListViewRender;
 import org.springframework.stereotype.Component;
 
@@ -14,11 +13,6 @@ public class DefaultObjectListTemplateBuilder extends BaseTemplateBuilder {
 	@Override
 	public VisualPageType getType() {
 		return VisualPageType.OLIST;
-	}
-
-	@Override
-	public String getLayoutName() {
-		return VisualPageConstants.LAYOUT_DEFAULT_NAME;
 	}
 
 	@Override

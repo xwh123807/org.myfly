@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.myfly.platform.CoreApplication;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.test.MyMatcher;
 import org.myfly.platform.system.stdtest.domain.StdTestTable;
 import org.myfly.platform.system.stdtest.domain.StdTestTableSubA;
@@ -22,7 +22,7 @@ public class SubEntityVisualPageControllerTest extends MockMVCTestCase {
 	private String subUid;
 
 	@Autowired
-	private IJpaAccessService dataAccessService;
+	private IJpaDataAccessService dataAccessService;
 
 	@Before
 	public void before() {

@@ -1,6 +1,6 @@
 package org.myfly.platform.core.visualpage.builder;
 
-import org.myfly.platform.core.visualpage.domain.VisualPageType;
+import org.myfly.platform.core.visualpage.service.VisualPageType;
 import org.myfly.platform.core.visualpage.ui.ViewMode;
 import org.springframework.stereotype.Component;
 

@@ -24,6 +24,7 @@ public class FormViewRender extends BaseViewRender {
 	private EntityMetaData entityMetaData;
 	private FormDefinition formDefinition;
 	private String entityName;
+	private SectionViewRender[] sections;
 
 	/**
 	 * 
@@ -66,7 +67,7 @@ public class FormViewRender extends BaseViewRender {
 			buffer.append(toolbar.html());
 		}
 
-		SectionViewRender[] sections = new SectionViewRender[formDefinition.getSections().length];
+		sections = new SectionViewRender[formDefinition.getSections().length];
 		for (int i = 0; i < sections.length; i++) {
 			sections[i] = new SectionViewRender(formDefinition.getSections()[i], getViewType());
 		}

@@ -16,6 +16,9 @@ import org.myfly.platform.core.visualpage.ui.control.SearchBoxRender;
 public class SearchListViewRender extends BaseRender {
 	private String name;
 	private String entityName;
+	private EntityMetaData entityMetaData;
+	private ListDefinition listDefinition;
+	private CardListRender cardListRender;
 
 	public SearchListViewRender(final String entityName, ViewType viewType, final String name) {
 		super(viewType);
@@ -25,9 +28,9 @@ public class SearchListViewRender extends BaseRender {
 
 	@Override
 	public String html() {
-		EntityMetaData entityMetaData = getEntityMataData(this.entityName);
-		ListDefinition listDefinition = entityMetaData.getListDefinition(this.name);
-		CardListRender cardListRender = new CardListRender(listDefinition);
+		entityMetaData = getEntityMataData(this.entityName);
+		listDefinition = entityMetaData.getListDefinition(this.name);
+		cardListRender = new CardListRender(listDefinition);
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("<div" + HtmlUtils.addPropertys(new String[] { "render" }, new String[] { getClass().getName() })
 				+ ">");

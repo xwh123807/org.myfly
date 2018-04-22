@@ -3,7 +3,7 @@ package org.myfly.platform.system.tpcc;
 import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.RandomUtils;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.system.tpcc.domain.Customer;
 import org.myfly.platform.system.tpcc.domain.CustomerPK;
 import org.myfly.platform.system.tpcc.domain.District;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TpccInitData {
 	@Autowired
-	private IJpaAccessService dataAccessService;
+	private IJpaDataAccessService dataAccessService;
 
 	private Warehouse warehouse;
 

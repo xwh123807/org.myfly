@@ -2,7 +2,7 @@ package org.myfly.platform.core.flydata.queue;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.message.service.IMessageQueueService;
 import org.myfly.platform.core.message.service.MessageQueueConstants;
 import org.myfly.platform.core.search.service.ISearchService;
@@ -31,7 +31,7 @@ public class GlobalNameQueueProcessor {
 	}
 
 	@Autowired
-	private IJpaAccessService globalNameRepository;
+	private IJpaDataAccessService globalNameRepository;
 
 	@Autowired
 	private IMessageQueueService messageQueueService;

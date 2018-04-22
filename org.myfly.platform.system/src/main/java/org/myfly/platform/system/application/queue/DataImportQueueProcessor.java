@@ -3,7 +3,7 @@ package org.myfly.platform.system.application.queue;
 import java.sql.Timestamp;
 
 import org.myfly.platform.core.domain.DataImportInfo;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.message.service.IMessageQueueService;
 import org.myfly.platform.core.message.service.MessageQueueConstants;
 import org.myfly.platform.core.utils.UUIDUtil;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataImportQueueProcessor {
 	@Autowired
-	private IJpaAccessService jpaDataAccessService;
+	private IJpaDataAccessService jpaDataAccessService;
 	
 	@Autowired
 	private IMessageQueueService messageQueueService;

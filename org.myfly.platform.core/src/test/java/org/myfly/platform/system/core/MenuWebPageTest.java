@@ -1,7 +1,7 @@
 package org.myfly.platform.system.core;
 
 import org.junit.Before;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.test.EntityActionsWebPageTestCase;
 import org.myfly.platform.core.user.domain.Menu;
 import org.myfly.platform.core.utils.UUIDUtil;
@@ -11,7 +11,7 @@ public class MenuWebPageTest extends EntityActionsWebPageTestCase<Menu, String> 
 	private static boolean isInited;
 	private static String menuUid;
 	@Autowired
-	private IJpaAccessService jpaDataAccessService;
+	private IJpaDataAccessService jpaDataAccessService;
 
 	@Before
 	public void init() {

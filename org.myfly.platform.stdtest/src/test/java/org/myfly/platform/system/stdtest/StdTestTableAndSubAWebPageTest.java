@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Before;
-import org.myfly.platform.core.flydata.service.IJpaAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.test.SubEntityActionsWebPageTestCase;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
@@ -19,7 +19,7 @@ public class StdTestTableAndSubAWebPageTest
 	@Autowired
 	private IStdTestDataService stdTestDataService;
 	@Autowired
-	private IJpaAccessService dataAccessService;
+	private IJpaDataAccessService dataAccessService;
 	private static String stdTestTableUid;
 	private static String stdTestTableSubAUid;
 	private static boolean isInited;

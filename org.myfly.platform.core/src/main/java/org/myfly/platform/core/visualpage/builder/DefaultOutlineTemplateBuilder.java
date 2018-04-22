@@ -1,12 +1,16 @@
 package org.myfly.platform.core.visualpage.builder;
 
-import org.myfly.platform.core.visualpage.domain.VisualPageType;
-import org.myfly.platform.core.visualpage.service.VisualPageConstants;
+import org.myfly.platform.core.visualpage.service.VisualPageType;
 import org.myfly.platform.core.visualpage.ui.ViewMode;
 import org.myfly.platform.core.visualpage.ui.ViewType;
 import org.myfly.platform.core.visualpage.ui.view.OutlineViewRender;
 import org.springframework.stereotype.Component;
 
+/**
+ * 用于实体摘要视图页面
+ * @author xiangwanhong
+ *
+ */
 @Component
 public class DefaultOutlineTemplateBuilder extends BaseTemplateBuilder{
 
@@ -18,11 +22,6 @@ public class DefaultOutlineTemplateBuilder extends BaseTemplateBuilder{
 	@Override
 	public String getDescription() {
 		return "默认大纲表单模板构建器";
-	}
-
-	@Override
-	public String getLayoutName() {
-		return VisualPageConstants.LAYOUT_DEFAULT_NAME;
 	}
 
 	@Override
