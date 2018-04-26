@@ -8,10 +8,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.visualpage.internal.TemplateBuilderFactory;
+import org.myfly.platform.core.visualpage.service.ViewMode;
 import org.myfly.platform.core.visualpage.service.VisualPageConstants;
 import org.myfly.platform.core.visualpage.service.VisualPageType;
 import org.myfly.platform.core.visualpage.ui.BaseRender;
-import org.myfly.platform.core.visualpage.ui.ViewMode;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 

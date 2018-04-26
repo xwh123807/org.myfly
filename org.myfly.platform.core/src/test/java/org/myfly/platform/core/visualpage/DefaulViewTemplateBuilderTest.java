@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.myfly.platform.CoreApplication;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core.visualpage.builder.DefaultViewTemplateBuilder;
-import org.myfly.platform.core.visualpage.ui.ViewMode;
+import org.myfly.platform.core.visualpage.service.ViewMode;
 import org.myfly.platform.test.ServiceTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;

@@ -3,8 +3,8 @@ package org.myfly.platform.core.visualpage.ui.control;
 import org.myfly.platform.core.metadata.define.FieldSetDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.utils.HtmlUtils;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.BaseRender;
-import org.myfly.platform.core.visualpage.ui.ViewType;
 import org.myfly.platform.core.visualpage.ui.view.FieldSetViewRender;
 
 /**

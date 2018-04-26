@@ -2,8 +2,8 @@ package org.myfly.platform.core.visualpage.ui.control;
 
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.ListStyle;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.EntityActionInfo;
-import org.myfly.platform.core.visualpage.ui.ViewType;
 import org.myfly.platform.core.visualpage.ui.WidgetBoxRender;
 
 /**

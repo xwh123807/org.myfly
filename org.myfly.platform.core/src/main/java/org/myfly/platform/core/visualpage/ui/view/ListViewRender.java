@@ -8,8 +8,8 @@ import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.EntityUrlUtil;
 import org.myfly.platform.core.utils.HtmlUtils;
-import org.myfly.platform.core.visualpage.ui.ViewMode;
-import org.myfly.platform.core.visualpage.ui.ViewType;
+import org.myfly.platform.core.visualpage.service.ViewMode;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.control.EntityTableWidgetBoxRender;
 import org.myfly.platform.core.visualpage.ui.control.SelectListViewRender;
 

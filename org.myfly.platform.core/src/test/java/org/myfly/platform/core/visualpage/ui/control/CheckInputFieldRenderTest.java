@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
-import org.myfly.platform.core.visualpage.ui.ViewType;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.control.CheckInputFieldRender;
 
 public class CheckInputFieldRenderTest {

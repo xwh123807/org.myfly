@@ -3,7 +3,7 @@ package org.myfly.platform.core.visualpage.ui.view;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.CoreApplication;
-import org.myfly.platform.core.visualpage.ui.ViewType;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.view.FilterSectionViewRender;
 import org.myfly.platform.test.ServiceTestCase;
 import org.springframework.boot.test.SpringApplicationConfiguration;

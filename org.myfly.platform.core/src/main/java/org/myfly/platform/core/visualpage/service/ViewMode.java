@@ -1,4 +1,4 @@
-package org.myfly.platform.core.visualpage.ui;
+package org.myfly.platform.core.visualpage.service;
 
 import org.myfly.platform.core.domain.BaseEnum;
 

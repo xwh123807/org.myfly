@@ -4,9 +4,9 @@ import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.FieldSetDefinition;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.HtmlUtils;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.BaseFieldRender;
 import org.myfly.platform.core.visualpage.ui.FieldRenderFactory;
-import org.myfly.platform.core.visualpage.ui.ViewType;
 
 /**
  * 字段集

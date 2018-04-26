@@ -9,9 +9,9 @@ import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.utils.EntityLinkUtil;
 import org.myfly.platform.core.utils.EntityUrlUtil;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.EntityActionInfo;
 import org.myfly.platform.core.visualpage.ui.StyleConstants;
-import org.myfly.platform.core.visualpage.ui.ViewType;
 
 /**
  * DataTable Veloctity表格模板

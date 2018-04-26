@@ -2,7 +2,7 @@ package org.myfly.platform.core.visualpage.ui.view;
 
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AppUtil;
-import org.myfly.platform.core.visualpage.ui.ViewType;
+import org.myfly.platform.core.visualpage.service.ViewType;
 
 public abstract class BaseRender {
 	private ViewType viewType = ViewType.VIEW;

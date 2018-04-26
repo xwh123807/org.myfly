@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.myfly.platform.core.admin.BaseController;
 import org.myfly.platform.core.flydata.service.EntityQueryMap;
 import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.flydata.service.Pagination;
@@ -19,9 +18,9 @@ import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.HttpUtil;
 import org.myfly.platform.core.visualpage.domain.PageInfo;
+import org.myfly.platform.core.visualpage.service.ViewMode;
 import org.myfly.platform.core.visualpage.service.VisualPageConstants;
 import org.myfly.platform.core.visualpage.service.VisualPageType;
-import org.myfly.platform.core.visualpage.ui.ViewMode;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -33,14 +32,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * 实体列表查询
+ * 实体列表查询页面
  * 
  * @author xiangwanhong
  *
  */
 @Controller
 @RequestMapping("vp")
-public class EntityListVisualPageController extends BaseController {
+public class EntityListVisualPageController extends BaseVisualPageController {
 	private Log log = LogFactory.getLog(getClass());
 	
 	@RequestMapping()

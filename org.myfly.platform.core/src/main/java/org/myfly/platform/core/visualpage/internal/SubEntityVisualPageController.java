@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.myfly.platform.core.admin.BaseController;
 import org.myfly.platform.core.domain.AlertInfo;
 import org.myfly.platform.core.domain.AlertLevel;
 import org.myfly.platform.core.flydata.service.EntityMap;
@@ -22,9 +21,9 @@ import org.myfly.platform.core.utils.EntityUrlUtil;
 import org.myfly.platform.core.utils.HttpUtil;
 import org.myfly.platform.core.utils.StringUtil;
 import org.myfly.platform.core.visualpage.domain.PageInfo;
+import org.myfly.platform.core.visualpage.service.ViewMode;
 import org.myfly.platform.core.visualpage.service.VisualPageConstants;
 import org.myfly.platform.core.visualpage.service.VisualPageType;
-import org.myfly.platform.core.visualpage.ui.ViewMode;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,14 +32,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * 实体子表增删改查UI<br>
+ * 实体子表增删改查页面<br>
  * 
  * @author xiangwanhong
  *
  */
 @Controller
 @RequestMapping("vp")
-public class SubEntityVisualPageController extends BaseController {
+public class SubEntityVisualPageController extends BaseVisualPageController {
 	private Log log = LogFactory.getLog(getClass());
 
 	public static Map<String, String> help() {

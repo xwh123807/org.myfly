@@ -3,8 +3,8 @@ package org.myfly.platform.core.visualpage.ui.view;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.utils.AssertUtil;
-import org.myfly.platform.core.visualpage.ui.ViewMode;
-import org.myfly.platform.core.visualpage.ui.ViewType;
+import org.myfly.platform.core.visualpage.service.ViewMode;
+import org.myfly.platform.core.visualpage.service.ViewType;
 
 /**
  * 大纲视图

@@ -708,7 +708,7 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dA9ockXJEeiaMpImppUXPQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dA9oc0XJEeiaMpImppUXPQ" value="*"/>
       </ownedEnd>
-      <ownedEnd xmi:id="_dA9odEXJEeiaMpImppUXPQ" name="visualPageTypes" type="_DLk-0EXJEeiaMpImppUXPQ" association="_dA9ocEXJEeiaMpImppUXPQ">
+      <ownedEnd xmi:id="_dA9odEXJEeiaMpImppUXPQ" name="visualPageTypes" association="_dA9ocEXJEeiaMpImppUXPQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dA9odUXJEeiaMpImppUXPQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dA9odkXJEeiaMpImppUXPQ" value="*"/>
       </ownedEnd>
@@ -740,29 +740,6 @@
     <packagedElement xmi:type="uml:Class" xmi:id="_o6IZYEXKEeiaMpImppUXPQ" name="DefaultOutlineTemplateBuilder" visibility="public">
       <generalization xmi:id="_tvHyYEXKEeiaMpImppUXPQ" general="_uEGOwEXIEeiaMpImppUXPQ"/>
       <ownedOperation xmi:id="_kVjlgEXLEeiaMpImppUXPQ" name="buildTemplateContent"/>
-    </packagedElement>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_5-Y2gEXIEeiaMpImppUXPQ" name="org.myfly.platform.core.visualpage.service">
-    <packagedElement xmi:type="uml:Interface" xmi:id="_BmCkYEXJEeiaMpImppUXPQ" name="IVisualPageService" visibility="public"/>
-    <packagedElement xmi:type="uml:Enumeration" xmi:id="_DLk-0EXJEeiaMpImppUXPQ" name="VisualPageType" visibility="public">
-      <ownedLiteral xmi:id="_k61HsEXJEeiaMpImppUXPQ" name="LIST">
-        <specification xmi:type="uml:LiteralInteger" xmi:id="_k61HsUXJEeiaMpImppUXPQ"/>
-      </ownedLiteral>
-      <ownedLiteral xmi:id="_mQX-UEXJEeiaMpImppUXPQ" name="VIEW">
-        <specification xmi:type="uml:LiteralInteger" xmi:id="_mQX-UUXJEeiaMpImppUXPQ" value="1"/>
-      </ownedLiteral>
-      <ownedLiteral xmi:id="_nRqcMEXJEeiaMpImppUXPQ" name="EDIT">
-        <specification xmi:type="uml:LiteralInteger" xmi:id="_nRqcMUXJEeiaMpImppUXPQ" value="2"/>
-      </ownedLiteral>
-      <ownedLiteral xmi:id="_oXBhwEXJEeiaMpImppUXPQ" name="NEW">
-        <specification xmi:type="uml:LiteralInteger" xmi:id="_oXBhwUXJEeiaMpImppUXPQ" value="3"/>
-      </ownedLiteral>
-      <ownedLiteral xmi:id="_pgsfkEXJEeiaMpImppUXPQ" name="SEARCH">
-        <specification xmi:type="uml:LiteralInteger" xmi:id="_pgsfkUXJEeiaMpImppUXPQ" value="4"/>
-      </ownedLiteral>
-      <ownedLiteral xmi:id="_qpQqIEXJEeiaMpImppUXPQ" name="LISTPRINT">
-        <specification xmi:type="uml:LiteralInteger" xmi:id="_qpQqIUXJEeiaMpImppUXPQ" value="5"/>
-      </ownedLiteral>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_6_g_gEXMEeiaMpImppUXPQ" name="org.myfly.platform.core.visualpage.ui.view">
@@ -909,6 +886,150 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_jEGLYEXQEeiaMpImppUXPQ" name="SearchRelationSelectRender" visibility="public">
       <generalization xmi:id="_lqbUcEXQEeiaMpImppUXPQ" general="_QxRJsEXPEeiaMpImppUXPQ"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Y1t2sElQEeiaMpImppUXPQ" name="org.myfly.platform.core.visualpage.service">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_jT1bYElQEeiaMpImppUXPQ" name="IVisualPageService" visibility="public">
+      <ownedOperation xmi:id="_bwJOMElVEeiaMpImppUXPQ" name="getEntityTemplateFile"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_mJyU0ElQEeiaMpImppUXPQ" name="VisualPageType" visibility="public">
+      <ownedLiteral xmi:id="_AHFkUElREeiaMpImppUXPQ" name="LIST">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_AHFkUUlREeiaMpImppUXPQ"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_BZ7sQElREeiaMpImppUXPQ" name="VIEW">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_BZ8TUElREeiaMpImppUXPQ" value="1"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_DLE5wElREeiaMpImppUXPQ" name="EDIT">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_DLE5wUlREeiaMpImppUXPQ" value="2"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_ESBTsElREeiaMpImppUXPQ" name="NEW">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_ESB6wElREeiaMpImppUXPQ" value="3"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_F-ljMElREeiaMpImppUXPQ" name="SEARCH">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_F-ljMUlREeiaMpImppUXPQ" value="4"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_HJHcoElREeiaMpImppUXPQ" name="LISTPRINT">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_HJIDsElREeiaMpImppUXPQ" value="5"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_IshwIElREeiaMpImppUXPQ" name="PRINT">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_IshwIUlREeiaMpImppUXPQ" value="6"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_LaPTkElREeiaMpImppUXPQ" name="OUTLINE">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_LaPTkUlREeiaMpImppUXPQ" value="7"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_NJKTgElREeiaMpImppUXPQ" name="LISTOUTLINE">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_NJK6kElREeiaMpImppUXPQ" value="8"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_OTUZgElREeiaMpImppUXPQ" name="OLIST">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_OTUZgUlREeiaMpImppUXPQ" value="9"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_PdefgElREeiaMpImppUXPQ" name="OVIEW">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_PdefgUlREeiaMpImppUXPQ" value="10"/>
+      </ownedLiteral>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_kPJFsElTEeiaMpImppUXPQ" name="ViewMode" visibility="public">
+      <ownedLiteral xmi:id="_mHBNUElTEeiaMpImppUXPQ" name="PAGE">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_mHB0YElTEeiaMpImppUXPQ"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_nPJ6EElTEeiaMpImppUXPQ" name="SUBPAGE">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_nPJ6EUlTEeiaMpImppUXPQ" value="1"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_ocyx4ElTEeiaMpImppUXPQ" name="OUTLINEPAGE">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_oczY8ElTEeiaMpImppUXPQ" value="2"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_phWmMElTEeiaMpImppUXPQ" name="MODALPAGE">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_phWmMUlTEeiaMpImppUXPQ" value="3"/>
+      </ownedLiteral>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_O_5rUElUEeiaMpImppUXPQ" name="ViewType" visibility="public">
+      <ownedLiteral xmi:id="_SyRJsElUEeiaMpImppUXPQ" name="OUTLINE">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_SyRwwElUEeiaMpImppUXPQ"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_VSVSsElUEeiaMpImppUXPQ" name="LIST">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_VSVSsUlUEeiaMpImppUXPQ" value="1"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_WUZMoElUEeiaMpImppUXPQ" name="NEW">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_WUZMoUlUEeiaMpImppUXPQ" value="2"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_XXwuIElUEeiaMpImppUXPQ" name="VIEW">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_XXwuIUlUEeiaMpImppUXPQ" value="3"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_YgxkoElUEeiaMpImppUXPQ" name="PRINT">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_YgxkoUlUEeiaMpImppUXPQ" value="4"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_aP3jsElUEeiaMpImppUXPQ" name="EDIT">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_aP3jsUlUEeiaMpImppUXPQ" value="5"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_bKq_EElUEeiaMpImppUXPQ" name="PDF">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_bKq_EUlUEeiaMpImppUXPQ" value="6"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_cJJZgElUEeiaMpImppUXPQ" name="EXCEL">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_cJJZgUlUEeiaMpImppUXPQ" value="7"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_dSUBAElUEeiaMpImppUXPQ" name="DEL">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_dSUBAUlUEeiaMpImppUXPQ" value="8"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_eW0yAElUEeiaMpImppUXPQ" name="SEARCH">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_eW0yAUlUEeiaMpImppUXPQ" value="9"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_fV6QcElUEeiaMpImppUXPQ" name="EXCELIMPORT">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_fV6QcUlUEeiaMpImppUXPQ" value="10"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_gLd_cElUEeiaMpImppUXPQ" name="LISTOUTLINE">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_gLd_cUlUEeiaMpImppUXPQ" value="11"/>
+      </ownedLiteral>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_dqAA4ElXEeiaMpImppUXPQ" name="BaseController" visibility="public" isAbstract="true"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lqwLQElXEeiaMpImppUXPQ" memberEnd="_lqwLQUlXEeiaMpImppUXPQ _lqwLRElXEeiaMpImppUXPQ" navigableOwnedEnd="_lqwLRElXEeiaMpImppUXPQ">
+      <ownedEnd xmi:id="_lqwLQUlXEeiaMpImppUXPQ" name="baseControllers" type="_dqAA4ElXEeiaMpImppUXPQ" association="_lqwLQElXEeiaMpImppUXPQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lqwLQklXEeiaMpImppUXPQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lqwLQ0lXEeiaMpImppUXPQ" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_lqwLRElXEeiaMpImppUXPQ" name="iVisualPageServices" type="_jT1bYElQEeiaMpImppUXPQ" association="_lqwLQElXEeiaMpImppUXPQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lqwLRUlXEeiaMpImppUXPQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lqwLRklXEeiaMpImppUXPQ" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_cJ3vEElQEeiaMpImppUXPQ" name="org.myfly.platform.core.visualpage.internal">
+    <packagedElement xmi:type="uml:Class" xmi:id="_dOZRsElREeiaMpImppUXPQ" name="VisualPageService" visibility="public">
+      <interfaceRealization xmi:id="_iCZMMElREeiaMpImppUXPQ" client="_dOZRsElREeiaMpImppUXPQ" supplier="_jT1bYElQEeiaMpImppUXPQ" contract="_jT1bYElQEeiaMpImppUXPQ"/>
+      <ownedOperation xmi:id="_fpbz8ElVEeiaMpImppUXPQ" name="getEntityTemplateFile"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wo3GUElREeiaMpImppUXPQ" name="EntityVisualPageController" visibility="public">
+      <generalization xmi:id="_SJcSUElYEeiaMpImppUXPQ" general="_494BwElXEeiaMpImppUXPQ"/>
+      <ownedOperation xmi:id="_x7ogUElSEeiaMpImppUXPQ" name="viewOrEditEntity"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_494BwElXEeiaMpImppUXPQ" name="BaseVisualPageController" visibility="public" isAbstract="true">
+      <generalization xmi:id="_K6hNgElYEeiaMpImppUXPQ" general="_dqAA4ElXEeiaMpImppUXPQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_tvtqwElYEeiaMpImppUXPQ" name="org.myfly.platform.core.visualpage.internal">
+      <ownedAttribute xmi:id="_4xPegElYEeiaMpImppUXPQ" name="VisualPageService" type="_dOZRsElREeiaMpImppUXPQ"/>
+      <ownedAttribute xmi:id="__qWEUklYEeiaMpImppUXPQ" name="Actor1" type="__qWEUElYEeiaMpImppUXPQ"/>
+      <ownedAttribute xmi:id="_sW2k8ElZEeiaMpImppUXPQ" name="TemplateBuilderFactory" type="_lin4EElZEeiaMpImppUXPQ"/>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_CKRqcUlZEeiaMpImppUXPQ" name="Operation_2"/>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_u7wxsklZEeiaMpImppUXPQ" name="Operation_1"/>
+      <lifeline xmi:id="__qWEUUlYEeiaMpImppUXPQ" name="Actor1" represents="__qWEUklYEeiaMpImppUXPQ" coveredBy="_CKRqc0lZEeiaMpImppUXPQ _CKSRg0lZEeiaMpImppUXPQ"/>
+      <lifeline xmi:id="_4xQFkElYEeiaMpImppUXPQ" name="VisualPageService" represents="_4xPegElYEeiaMpImppUXPQ" coveredBy="_CKSRgElZEeiaMpImppUXPQ _CKSRgklZEeiaMpImppUXPQ _CKSRgUlZEeiaMpImppUXPQ _u7wxtElZEeiaMpImppUXPQ _u7wxuElZEeiaMpImppUXPQ"/>
+      <lifeline xmi:id="_sW3MAElZEeiaMpImppUXPQ" name="TemplateBuilderFactory" represents="_sW2k8ElZEeiaMpImppUXPQ" coveredBy="_u7wxtUlZEeiaMpImppUXPQ _u7wxt0lZEeiaMpImppUXPQ _u7wxtklZEeiaMpImppUXPQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_CKRqc0lZEeiaMpImppUXPQ" name="Operation_2_sender" covered="__qWEUUlYEeiaMpImppUXPQ" message="_CKRqcElZEeiaMpImppUXPQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_CKSRgElZEeiaMpImppUXPQ" name="Operation_2_receiver" covered="_4xQFkElYEeiaMpImppUXPQ" message="_CKRqcElZEeiaMpImppUXPQ"/>
+      <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_CKSRgklZEeiaMpImppUXPQ" name="Operation_2" covered="_4xQFkElYEeiaMpImppUXPQ" finish="_CKSRgUlZEeiaMpImppUXPQ" start="_CKSRgElZEeiaMpImppUXPQ" behavior="_CKRqcUlZEeiaMpImppUXPQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_u7wxtElZEeiaMpImppUXPQ" name="Operation_1_sender" covered="_4xQFkElYEeiaMpImppUXPQ" message="_u7wxsUlZEeiaMpImppUXPQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_u7wxtUlZEeiaMpImppUXPQ" name="Operation_1_receiver" covered="_sW3MAElZEeiaMpImppUXPQ" message="_u7wxsUlZEeiaMpImppUXPQ"/>
+      <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_u7wxt0lZEeiaMpImppUXPQ" name="getTemplate" covered="_sW3MAElZEeiaMpImppUXPQ" finish="_u7wxtklZEeiaMpImppUXPQ" start="_u7wxtUlZEeiaMpImppUXPQ" behavior="_u7wxsklZEeiaMpImppUXPQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_u7wxtklZEeiaMpImppUXPQ" name="Operation_1_reply_sender" covered="_sW3MAElZEeiaMpImppUXPQ" message="_u7wxs0lZEeiaMpImppUXPQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_u7wxuElZEeiaMpImppUXPQ" name="Operation_1_reply_receiver" covered="_4xQFkElYEeiaMpImppUXPQ" message="_u7wxs0lZEeiaMpImppUXPQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_CKSRgUlZEeiaMpImppUXPQ" name="Operation_2_reply_sender" covered="_4xQFkElYEeiaMpImppUXPQ" message="_CKRqcklZEeiaMpImppUXPQ"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_CKSRg0lZEeiaMpImppUXPQ" name="Operation_2_reply_receiver" covered="__qWEUUlYEeiaMpImppUXPQ" message="_CKRqcklZEeiaMpImppUXPQ"/>
+      <message xmi:id="_CKRqcElZEeiaMpImppUXPQ" name="getEntityTemplateFile" receiveEvent="_CKSRgElZEeiaMpImppUXPQ" sendEvent="_CKRqc0lZEeiaMpImppUXPQ"/>
+      <message xmi:id="_CKRqcklZEeiaMpImppUXPQ" name="Operation_2_reply" messageSort="reply" receiveEvent="_CKSRg0lZEeiaMpImppUXPQ" sendEvent="_CKSRgUlZEeiaMpImppUXPQ"/>
+      <message xmi:id="_u7wxsUlZEeiaMpImppUXPQ" name="getTemplate" receiveEvent="_u7wxtUlZEeiaMpImppUXPQ" sendEvent="_u7wxtElZEeiaMpImppUXPQ" signature="_u7wxsElZEeiaMpImppUXPQ"/>
+      <message xmi:id="_u7wxs0lZEeiaMpImppUXPQ" name="Operation_1_reply" messageSort="reply" receiveEvent="_u7wxuElZEeiaMpImppUXPQ" sendEvent="_u7wxtklZEeiaMpImppUXPQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Actor" xmi:id="__qWEUElYEeiaMpImppUXPQ" name="Actor1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lin4EElZEeiaMpImppUXPQ" name="TemplateBuilderFactory" visibility="public">
+      <ownedOperation xmi:id="_u7wxsElZEeiaMpImppUXPQ" name="Operation_1"/>
     </packagedElement>
   </packagedElement>
 </uml:Model>

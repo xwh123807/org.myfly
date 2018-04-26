@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.myfly.platform.core.admin.BaseController;
 import org.myfly.platform.core.domain.AlertInfo;
 import org.myfly.platform.core.domain.AlertLevel;
 import org.myfly.platform.core.flydata.internal.EntityUtil;
@@ -19,8 +18,8 @@ import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.EntityUrlUtil;
 import org.myfly.platform.core.utils.StringUtil;
+import org.myfly.platform.core.visualpage.service.ViewMode;
 import org.myfly.platform.core.visualpage.service.VisualPageType;
-import org.myfly.platform.core.visualpage.ui.ViewMode;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,16 +28,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * 实体增删改查UI<br>
+ * 实体增删改查页面<br>
  * 
  * @author xiangwanhong
  *
  */
 @Controller
 @RequestMapping("vp")
-public class EntityVisualPageController extends BaseController {
+public class EntityVisualPageController extends BaseVisualPageController {
 	private Log log = LogFactory.getLog(getClass());
 
+	@RequestMapping(value = { "/", "help" })
 	public static Map<String, String> help() {
 		Map<String, String> map = new LinkedHashMap<>();
 		map.put("/vp/{table}/{uid}", "显示实体查看视图");
@@ -55,7 +55,7 @@ public class EntityVisualPageController extends BaseController {
 	}
 
 	/**
-	 * 打开查看或编辑实体UI，如果参数中有form表示编辑打开
+	 * 打开查看或编辑实体UI，如果参数中有form表示编辑模式打开
 	 * 
 	 * @param table
 	 * @param uid

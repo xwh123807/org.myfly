@@ -4,8 +4,8 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.utils.EntityUrlUtil;
 import org.myfly.platform.core.utils.HtmlUtils;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.EntityActionInfo;
-import org.myfly.platform.core.visualpage.ui.ViewType;
 
 /**
  * 表格操作工具条

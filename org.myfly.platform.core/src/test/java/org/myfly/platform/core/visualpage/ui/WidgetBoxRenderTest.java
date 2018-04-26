@@ -2,7 +2,7 @@ package org.myfly.platform.core.visualpage.ui;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.core.visualpage.ui.ViewType;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.WidgetBoxRender;
 
 public class WidgetBoxRenderTest {

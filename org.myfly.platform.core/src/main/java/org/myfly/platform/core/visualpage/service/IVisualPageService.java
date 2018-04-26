@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.myfly.platform.core.domain.TemplateBuilderInfo;
 import org.myfly.platform.core.metadata.internal.EntityViewInfo;
-import org.myfly.platform.core.visualpage.ui.ViewMode;
 
 public interface IVisualPageService {
 
@@ -52,9 +51,13 @@ public interface IVisualPageService {
 	 *            表名
 	 * @param pageType
 	 *            视图类型
+	 * @param formViewName
+	 * 			  表单视图名
+	 * @param viewMode
+	 * 			  视图模式
 	 * @return
 	 */
-	String getEntityTemplateFile(String table, VisualPageType pageType, String view, ViewMode viewMode);
+	String getEntityTemplateFile(String table, VisualPageType pageType, String formViewName, ViewMode viewMode);
 
 	/**
 	 * 根据显示注解获取对象页面模板

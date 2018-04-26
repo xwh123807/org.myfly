@@ -1,7 +1,7 @@
 package org.myfly.platform.core.visualpage.ui.control;
 
 import org.myfly.platform.core.metadata.define.ListDefinition;
-import org.myfly.platform.core.visualpage.ui.ViewType;
+import org.myfly.platform.core.visualpage.service.ViewType;
 
 /**
  * 供打印的表格，用于输出成Pdf

@@ -1,9 +1,9 @@
 package org.myfly.platform.core.visualpage.ui.control;
 
 import org.myfly.platform.core.utils.AssertUtil;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.BaseFieldRender;
 import org.myfly.platform.core.visualpage.ui.InputType;
-import org.myfly.platform.core.visualpage.ui.ViewType;
 
 /**
  * Input控件基类<br>

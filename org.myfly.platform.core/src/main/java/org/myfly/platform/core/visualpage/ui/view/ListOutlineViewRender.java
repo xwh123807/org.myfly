@@ -2,8 +2,8 @@ package org.myfly.platform.core.visualpage.ui.view;
 
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
-import org.myfly.platform.core.visualpage.ui.ViewMode;
-import org.myfly.platform.core.visualpage.ui.ViewType;
+import org.myfly.platform.core.visualpage.service.ViewMode;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.control.EntityTableWidgetBoxRender;
 
 public class ListOutlineViewRender extends BaseRender{

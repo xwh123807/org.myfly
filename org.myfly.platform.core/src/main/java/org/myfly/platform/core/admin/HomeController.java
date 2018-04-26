@@ -1,5 +1,6 @@
 package org.myfly.platform.core.admin;
 
+import org.myfly.platform.core.visualpage.service.BaseController;
 import org.myfly.platform.core.visualpage.service.VisualPageConstants;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,6 +1,6 @@
 package org.myfly.platform.core.security;
 
-import org.myfly.platform.core.admin.BaseController;
+import org.myfly.platform.core.visualpage.service.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

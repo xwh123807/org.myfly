@@ -2,6 +2,7 @@ package org.myfly.platform.core.visualpage.ui;
 
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.utils.HtmlUtils;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.view.BaseRender;
 
 /**

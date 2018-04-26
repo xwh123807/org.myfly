@@ -6,6 +6,7 @@ import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.GetFieldValueHandler;
 import org.myfly.platform.core.utils.AssertUtil;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.control.EntityActionsFieldRender;
 
 /**

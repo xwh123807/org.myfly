@@ -4,7 +4,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.metadata.define.SectionDefinition;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.HtmlUtils;
-import org.myfly.platform.core.visualpage.ui.ViewType;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.WidgetBoxRender;
 import org.myfly.platform.core.visualpage.ui.control.component.SocialRender;
 

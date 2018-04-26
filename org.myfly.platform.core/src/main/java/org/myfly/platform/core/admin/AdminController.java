@@ -24,6 +24,7 @@ import org.myfly.platform.core.metadata.service.JsonEntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.visualpage.domain.PageInfo;
+import org.myfly.platform.core.visualpage.service.BaseController;
 import org.myfly.platform.core.visualpage.service.VisualPageConstants;
 import org.myfly.platform.core.visualpage.service.VisualPageType;
 import org.springframework.beans.factory.annotation.Autowired;

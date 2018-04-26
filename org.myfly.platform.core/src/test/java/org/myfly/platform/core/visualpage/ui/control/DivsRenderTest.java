@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.myfly.platform.core.metadata.define.DivDefinition;
 import org.myfly.platform.core.metadata.define.SectionDefinition;
 import org.myfly.platform.core.metadata.define.SectionType;
-import org.myfly.platform.core.visualpage.ui.ViewType;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.control.DivsRender;
 import org.myfly.platform.core.visualpage.ui.view.SectionViewRender;
 

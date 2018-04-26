@@ -7,8 +7,8 @@ import org.apache.commons.lang.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.StyleConstants;
-import org.myfly.platform.core.visualpage.ui.ViewType;
 
 /**
  * 服务端表格，只包含格式定义，不包含数据

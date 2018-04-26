@@ -1,7 +1,7 @@
 package org.myfly.platform.core.visualpage.ui.control.component;
 
 import org.myfly.platform.core.utils.HtmlUtils;
-import org.myfly.platform.core.visualpage.ui.ViewType;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.view.BaseRender;
 
 public abstract class BaseComponentRender extends BaseRender{

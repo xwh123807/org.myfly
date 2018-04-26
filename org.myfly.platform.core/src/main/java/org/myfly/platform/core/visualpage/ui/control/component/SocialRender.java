@@ -1,6 +1,6 @@
 package org.myfly.platform.core.visualpage.ui.control.component;
 
-import org.myfly.platform.core.visualpage.ui.ViewType;
+import org.myfly.platform.core.visualpage.service.ViewType;
 
 /**
  * 社交化组件，和实体绑定使用。可以记录电话、发送邮件、创建任务

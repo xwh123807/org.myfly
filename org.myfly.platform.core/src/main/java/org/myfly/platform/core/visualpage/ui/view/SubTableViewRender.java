@@ -3,7 +3,7 @@ package org.myfly.platform.core.visualpage.ui.view;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.HtmlUtils;
-import org.myfly.platform.core.visualpage.ui.ViewType;
+import org.myfly.platform.core.visualpage.service.ViewType;
 import org.myfly.platform.core.visualpage.ui.control.EntityTableWidgetBoxRender;
 
 /**
