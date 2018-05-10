@@ -1,21 +1,23 @@
 server:
-  port: 18888
+  port: 8888
 
 spring:
   cloud:
     config:
       server:
-        native:
-          searchLocations: classpath:/config/
+         git:
+           uri: classpath:/config/
+#        native:
+#          searchLocations: classpath:/config/
 #        git:
 #          uri: https://github.com/xwh123807/microapps.git
 #          searchPaths: org.myfly.platform.parent/myfly.cloud/myfly-config-repo
 
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://localhost:18761/eureka/          
+#eureka:
+#  instance:
+#    hostname: localhost
+#  client:
+#    registerWithEureka: true
+#    fetchRegistry: true
+#    serviceUrl:
+#      defaultZone: http://localhost:18761/eureka/          
