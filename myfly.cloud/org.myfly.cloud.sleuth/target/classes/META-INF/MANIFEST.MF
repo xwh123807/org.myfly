@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: org.myfly.cloud.sleuth
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: xiangwanhong
+Implementation-Vendor-Id: org.myfly.cloud.sleuth
+Build-Jdk: 1.8.0_40
+Implementation-URL: http://projects.spring.io/spring-boot/org.myfly.cl
+ oud.parent/org.myfly.cloud.sleuth/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
