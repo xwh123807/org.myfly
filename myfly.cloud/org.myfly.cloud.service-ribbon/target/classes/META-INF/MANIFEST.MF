@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: org.myfly.cloud.service-ribbon
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: xiangwanhong
+Implementation-Vendor-Id: org.myfly.cloud.service-ribbon
+Build-Jdk: 1.8.0_40
+Implementation-URL: http://projects.spring.io/spring-boot/org.myfly.cl
+ oud.parent/org.myfly.cloud.service-ribbon/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

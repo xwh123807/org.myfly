@@ -1,0 +1,25 @@
+server:
+  port: 8000
+  
+spring:
+  application:
+    name: gateway
+    
+  cloud:
+    config:
+      uri: http://localhost:8888    
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+      
+zuul:
+  routes:
+    api-a:
+      path: /api/ribbon/**
+      serivceId: SERVICE-RIBBON
+    api-b:
+      path: /api/feign/**
+      serivceId: SERVICE-FEIGN
+            
