@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: service-feign
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      percentage: 1.0    
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: config-server
+      profile: dev
+      
+server:
+  port: 9081
+  
+management:
+  security:
+    enabled: false
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka      
