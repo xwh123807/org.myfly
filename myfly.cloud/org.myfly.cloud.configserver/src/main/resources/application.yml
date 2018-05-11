@@ -9,6 +9,10 @@ spring:
         git:
           uri: https://github.com/xwh123807/org.myfly/
           searchPaths: myfly.cloud/myfly-config-repo
+        native:
+          searchLocations: classpath:/config
+  profiles:
+    active: native  
   rabbitmq:
     host: localhost
     port: 5672

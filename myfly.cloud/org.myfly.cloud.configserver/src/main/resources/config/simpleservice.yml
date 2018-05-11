@@ -1,0 +1,10 @@
+spring:    
+  jpa:
+    showSql: true
+    hibernate:
+      #create|create-drop|update|validate
+      ddlAuto: create-drop
+      formatSql: true    
+
+config:
+    version: 1.3
