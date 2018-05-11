@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Fri May 11 08:59:17 CST 2018:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-0163-4cb5-90ce-00000dbebe08 
+Fri May 11 14:46:51 CST 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-0163-4df3-c3ba-000008b67558 
 on database directory memory:/xwh.work/git/org.myfly/myfly.cloud/org.myfly.cloud.simpleservice/testdb with class loader sun.misc.Launcher$AppClassLoader@4e25154f 
 Loaded from file:/Users/xiangwanhong/.m2/repository/org/apache/derby/derby/10.13.1.1/derby-10.13.1.1.jar
 java.vendor=Oracle Corporation

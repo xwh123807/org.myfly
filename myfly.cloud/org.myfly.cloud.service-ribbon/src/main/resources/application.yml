@@ -11,9 +11,9 @@ spring:
     sampler:
       percentage: 1.0       
     
-  cloud:
-    config:
-      uri: http://localhost:8888    
+management:
+  security:
+    enabled: false 
 
 eureka:
   client:
