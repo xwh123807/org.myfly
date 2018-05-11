@@ -8,10 +8,11 @@ spring:
       percentage: 1.0    
   cloud:
     config:
+      label: spring-boot-1.4
       discovery:
         enabled: true
         serviceId: config-server
-      profile: dev
+      profile: test
       
 server:
   port: 9080
@@ -23,4 +24,4 @@ management:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka      
+      defaultZone: http://localhost:8761/eureka
