@@ -6,4 +6,3 @@ spring:
     driverClassName: org.apache.derby.jdbc.EmbeddedDriver
     dialect: org.hibernate.dialect.DerbyDialect
     
-org.myfly.version=1.0

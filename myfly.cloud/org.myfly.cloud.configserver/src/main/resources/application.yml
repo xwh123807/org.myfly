@@ -4,8 +4,8 @@ server:
 spring:
   cloud:
     config:
-      label: spring-boot-1.4
       server:
+        label: spring-boot-1.4
         git:
           uri: https://github.com/xwh123807/org.myfly/
           searchPaths: myfly.cloud/myfly-config-repo
