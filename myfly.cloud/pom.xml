@@ -87,6 +87,7 @@
 		<module>org.myfly.cloud.service-feign</module>
 		<module>org.myfly.cloud.gateway</module>
 		<module>org.myfly.cloud.sleuth</module>
+		<module>org.myfly.cloud.uilibs</module>
 	</modules>
 
 </project>
