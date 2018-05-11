@@ -18,7 +18,7 @@ public class SimpleService {
 		return userRepo.findAll();
 	}
 	
-	@Value("${org.myfly.version}")
+	//@Value("${org.myfly.version}")
 	private String value;
 	
 	@RequestMapping("hi")
