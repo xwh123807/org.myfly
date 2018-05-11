@@ -21,7 +21,7 @@ public class SimpleService {
 	@Value("${config.version}")
 	private String value;
 	
-	@RequestMapping("hi")
+	@RequestMapping("version")
 	public String hi() {
 		return "config version: " + value;
 	}
