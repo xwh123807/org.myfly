@@ -10,16 +10,25 @@ spring:
       uri: http://localhost:8888    
 
 eureka:
+  instance:
+    preferIpAddress: true
   client:
+    fetchRegistry: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
-      
+        
 zuul:
   routes:
     api-a:
       path: /api/ribbon/**
-      serivceId: SERVICE-RIBBON
+      serivceId: service-ribbon
+      stripPrefix: true
     api-b:
       path: /api/feign/**
-      serivceId: SERVICE-FEIGN
+      serivceId: service-feign
+      stripPrefix: true
+    api-c:
+      path: /api/direct/**
+      servieId: simpleservice
+      stripPrefix: true
             

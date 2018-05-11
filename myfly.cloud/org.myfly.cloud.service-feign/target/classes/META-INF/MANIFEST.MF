@@ -3,7 +3,7 @@ Implementation-Title: org.myfly.cloud.service-feign
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: xiangwanhong
 Implementation-Vendor-Id: org.myfly.cloud
-Build-Jdk: 1.8.0_40
+Build-Jdk: 1.8.0_112
 Implementation-URL: http://projects.spring.io/spring-boot/org.myfly.cl
  oud.parent/org.myfly.cloud.service-feign/
 Created-By: Maven Integration for Eclipse
