@@ -18,11 +18,11 @@ public class SimpleService {
 		return userRepo.findAll();
 	}
 	
-	//@Value("${org.myfly.version}")
+	@Value("${config.version}")
 	private String value;
 	
 	@RequestMapping("hi")
 	public String hi() {
-		return "org.myfly.version: " + value;
+		return "config version: " + value;
 	}
 }
