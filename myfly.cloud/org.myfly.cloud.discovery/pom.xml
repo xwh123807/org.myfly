@@ -14,4 +14,7 @@
 			<artifactId>spring-cloud-starter-eureka-server</artifactId>
 		</dependency>
 	</dependencies>
+	<properties>
+		<docker.image>eureka-server</docker.image>
+	</properties>
 </project>

@@ -24,4 +24,7 @@
 			<artifactId>zipkin-autoconfigure-ui</artifactId>
 		</dependency>
 	</dependencies>
+	<properties>
+		<docker.image>sleuth-server</docker.image>
+	</properties>
 </project>

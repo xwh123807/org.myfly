@@ -14,15 +14,17 @@ spring:
   profiles:
     active: native  
   rabbitmq:
-    host: localhost
-    port: 5672
+    host: ${rabbitmq-server:localhost}
+    port: ${rabbitmq-port:5672}
     username: admin
     password: admin
 
 eureka:
+  instance:
+    hostname: ${spring.cloud.client.ipAddress}
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka   
+      defaultZone: ${eureka-service-url:http://localhost:8761/eureka/}
       
 management:
   security:

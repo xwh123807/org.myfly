@@ -10,7 +10,8 @@
 		<java.version>1.8</java.version>
 		<spring.cloud.version>1.1.1.RELEASE</spring.cloud.version>
 		<docker.plugin.version>0.3.258</docker.plugin.version>
-		<docker.image.prefix>myfly</docker.image.prefix>
+		<docker.image.prefix>myfly.org</docker.image.prefix>
+		<docker.image></docker.image>
 	</properties>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -29,6 +30,11 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
+		<!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -44,6 +50,18 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<dependencies>
+					<!-- spring热部署 -->
+					<dependency>
+						<groupId>org.springframework</groupId>
+						<artifactId>springloaded</artifactId>
+						<version>1.2.6.RELEASE</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 				<executions>
 					<execution>
 						<goals>
@@ -55,18 +73,15 @@
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>${docker.plugin.version}</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>build</goal>
-						</goals>
-					</execution>
-				</executions>
+				<version>1.0.0</version>
 				<configuration>
-					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-					<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+					<imageName>${docker.image.prefix}/${docker.image}</imageName>
+					<baseImage>java:8-jre</baseImage>
+					<maintainer>builder@org.myfly</maintainer>
+					<workdir>/</workdir>
+					<!-- expose无效，但端口仍能够使用 -->
+					<expose>80</expose>
+					<entryPoint>["java", "-jar","-Djava.security.egd=file:/dev/./urandom", "-Dserver.port=80","${project.build.finalName}.jar"]</entryPoint>
 					<resources>
 						<resource>
 							<targetPath>/</targetPath>

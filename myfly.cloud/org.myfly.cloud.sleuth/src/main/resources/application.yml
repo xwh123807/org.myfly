@@ -6,6 +6,8 @@ spring:
     name: sleuth
     
 eureka:
+  instance:
+    hostname: ${spring.cloud.client.ipAddress}
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: ${eureka-service-url:http://localhost:8761/eureka/}

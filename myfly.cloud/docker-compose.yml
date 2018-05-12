@@ -13,3 +13,49 @@ mysql:
     - MYSQL_ROOT_PASSWORD=password  
   ports:
     - 3306:3306
+    
+eureka-server:
+  image: myfly.org/eureka-server
+  environment:
+    - eureka-service-url=http://localhost:80/eureka
+  ports:
+    - 8761:80
+
+config-server:
+  image: myfly.org/config-server
+  environment:
+    - rabbitmq-server=rabbitmq
+    - rabbitmq-port=5672
+    - eureka-service-url=http://eureka-server:80/eureka
+  ports:
+    - 8800:80
+  links:
+    - rabbitmq
+    - eureka-server
+    
+gateway-server:
+  image: myfly.org/gateway-server
+  environment:
+    - eureka-service-url=http://eureka-server:80/eureka
+  ports:
+    - 80:80
+  links:
+    - eureka-server
+    
+sleuth-server:
+  image: myfly.org/sleuth-server
+  environment:
+    - eureka-service-url=http://eureka-server:80/eureka
+  ports:
+    - 9411:80
+  links:
+    - eureka-server
+    
+ui-libs:
+  image: myfly.org/ui-libs
+  environment:
+    - eureka-service-url=http://eureka-server:80/eureka
+  ports:
+    - 8100:80
+  links:
+    - eureka-server    

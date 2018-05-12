@@ -2,20 +2,21 @@ spring:
   application:
     name: simpleservice
   zipkin:
-    base-url: http://localhost:9411
+    base-url: ${sleuth-service-url:http://localhost:9411}
   sleuth:
     sampler:
       percentage: 1.0    
   cloud:
     config:
       label: spring-boot-1.4
-      discovery:
-        enabled: true
-        serviceId: config-server
+      uri: ${config-service-url:http://localhost:8800}
+#      discovery:
+#        enabled: true
+#        serviceId: config-server
       profile: test
   rabbitmq:
-    host: localhost
-    port: 5672
+    host: ${rabbitmq-server:localhost}
+    port: ${rabbitmq-port:5672}
     username: admin
     password: admin      
       
@@ -25,8 +26,10 @@ server:
 management:
   security:
     enabled: false
-    
+
 eureka:
+  instance:
+    hostname: ${spring.cloud.client.ipAddress}
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: ${eureka-service-url:http://localhost:8761/eureka/}

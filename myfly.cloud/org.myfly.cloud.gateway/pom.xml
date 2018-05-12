@@ -33,4 +33,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<properties>
+		<docker.image>gateway-server</docker.image>
+	</properties>
 </project>
