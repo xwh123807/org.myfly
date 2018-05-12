@@ -191,6 +191,9 @@
 		<module>org.myfly.research</module>
 		<module>org.myfly.platform.system</module>
 		<module>org.myfly.platform.metadata</module>
+		<module>org.myfly.platform.flydata</module>
+		<module>org.myfly.platform.visualpage</module>
+		<module>org.myfly.platform.metamodel</module>
 	</modules>
 
 	<!-- Add Spring repositories -->
