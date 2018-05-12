@@ -1,0 +1,27 @@
+package org.myfly.platform.visualpage.ui.view;
+
+import org.junit.Test;
+import org.myfly.platform.test.ServiceTestCase;
+
+public class OutlineViewRenderTest extends ServiceTestCase{
+	@Test
+	public void empty(){
+		
+	}
+	
+//	@Test
+//	public void outlineViewRenderForSUser(){
+//		OutlineViewRender render = new OutlineViewRender(SUser.class.getName(), ViewType.VIEW);
+//		String html = render.html();
+//		Assert.assertNotNull(html);
+//		System.out.println(html);
+//	}
+//	
+//	@Test
+//	public void outlineViewRenderForSUserAndOutlineViewIsNull(){
+//		OutlineViewRender render = new OutlineViewRender(SUser.class.getName(), ViewType.VIEW);
+//		String html = render.html();
+//		Assert.assertNotNull(html);
+//		System.out.println(html);
+//	}
+}
