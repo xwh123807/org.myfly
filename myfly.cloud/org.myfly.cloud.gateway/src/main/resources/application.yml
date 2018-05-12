@@ -23,6 +23,8 @@ management:
         
 zuul:
   routes:
+    sleuth:
+      path: /zipkin/**
     service-ribbon:
       path: /api/ribbon/**
     service-feign:

@@ -12,7 +12,12 @@ spring:
         enabled: true
         serviceId: config-server
       profile: dev
-      
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin   
+          
 server:
   port: 9082
   

@@ -5,10 +5,6 @@ spring:
   application:
     name: sleuth
     
-  cloud:
-    config:
-      uri: http://localhost:8888    
-
 eureka:
   client:
     serviceUrl:
