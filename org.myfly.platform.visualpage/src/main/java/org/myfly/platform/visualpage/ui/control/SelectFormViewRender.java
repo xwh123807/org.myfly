@@ -3,8 +3,8 @@ package org.myfly.platform.visualpage.ui.control;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.myfly.platform.metamodel.define.EntityAction;
-import org.myfly.platform.metamodel.define.ViewType;
+import org.myfly.platform.metamodel.domain.EntityAction;
+import org.myfly.platform.metamodel.domain.ViewType;
 import org.myfly.platform.metamodel.utils.EntityUrlUtil;
 
 public class SelectFormViewRender extends SelectViewRender{

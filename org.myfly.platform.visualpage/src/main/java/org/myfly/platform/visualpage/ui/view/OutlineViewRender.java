@@ -2,8 +2,8 @@ package org.myfly.platform.visualpage.ui.view;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.myfly.platform.metamodel.define.ViewMode;
-import org.myfly.platform.metamodel.define.ViewType;
+import org.myfly.platform.metamodel.domain.ViewMode;
+import org.myfly.platform.metamodel.domain.ViewType;
 import org.myfly.platform.metamodel.utils.AssertUtil;
 
 /**

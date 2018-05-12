@@ -6,8 +6,8 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.myfly.platform.metamodel.define.FieldDefinition;
 import org.myfly.platform.metamodel.define.ListDefinition;
-import org.myfly.platform.metamodel.define.ViewType;
 import org.myfly.platform.metamodel.domain.FieldDataType;
+import org.myfly.platform.metamodel.domain.ViewType;
 import org.myfly.platform.visualpage.ui.StyleConstants;
 
 /**

@@ -6,8 +6,8 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import org.myfly.platform.metamodel.define.EntityAction;
-import org.myfly.platform.metamodel.define.ListStyle;
+import org.myfly.platform.metamodel.domain.EntityAction;
+import org.myfly.platform.metamodel.domain.ListStyle;
 
 /**
  * 实体子表视图

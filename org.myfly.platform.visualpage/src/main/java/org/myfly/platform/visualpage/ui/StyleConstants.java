@@ -3,7 +3,7 @@ package org.myfly.platform.visualpage.ui;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.myfly.platform.metamodel.define.EntityAction;
+import org.myfly.platform.metamodel.domain.EntityAction;
 
 public class StyleConstants {
 	/**

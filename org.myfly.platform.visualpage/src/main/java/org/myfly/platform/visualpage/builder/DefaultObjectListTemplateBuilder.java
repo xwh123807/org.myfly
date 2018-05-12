@@ -3,7 +3,7 @@ package org.myfly.platform.visualpage.builder;
 import java.lang.annotation.Annotation;
 
 import org.myfly.platform.metamodel.annotation.ObjectListView;
-import org.myfly.platform.metamodel.define.VisualPageType;
+import org.myfly.platform.metamodel.domain.VisualPageType;
 import org.myfly.platform.metamodel.utils.AssertUtil;
 import org.myfly.platform.visualpage.ui.view.ObjectListViewRender;
 import org.springframework.stereotype.Component;

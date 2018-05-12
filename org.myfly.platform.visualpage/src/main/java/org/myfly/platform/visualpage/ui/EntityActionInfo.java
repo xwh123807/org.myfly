@@ -1,11 +1,11 @@
 package org.myfly.platform.visualpage.ui;
 
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.metamodel.define.EntityAction;
 import org.myfly.platform.metamodel.define.FieldDefinition;
 import org.myfly.platform.metamodel.define.GetFieldValueHandler;
-import org.myfly.platform.metamodel.define.ViewType;
+import org.myfly.platform.metamodel.domain.EntityAction;
 import org.myfly.platform.metamodel.domain.FieldDataType;
+import org.myfly.platform.metamodel.domain.ViewType;
 import org.myfly.platform.metamodel.utils.AssertUtil;
 import org.myfly.platform.visualpage.ui.control.EntityActionsFieldRender;
 

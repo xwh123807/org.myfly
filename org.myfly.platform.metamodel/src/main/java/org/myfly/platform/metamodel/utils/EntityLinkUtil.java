@@ -3,7 +3,7 @@ package org.myfly.platform.metamodel.utils;
 import java.text.MessageFormat;
 
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.metamodel.define.EntityAction;
+import org.myfly.platform.metamodel.domain.EntityAction;
 import org.myfly.platform.metamodel.domain.StyleConstants;
 
 public class EntityLinkUtil {

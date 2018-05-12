@@ -1,6 +1,6 @@
 package org.myfly.platform.metamodel.annotation;
 
-import org.myfly.platform.metamodel.define.DivType;
+import org.myfly.platform.metamodel.domain.DivType;
 
 /**
  * 响应式布局定义

@@ -1,5 +1,8 @@
 package org.myfly.platform.metamodel.define;
 
+import org.myfly.platform.metamodel.domain.EntityAction;
+import org.myfly.platform.metamodel.domain.ListStyle;
+
 public class EntityMetaDataConstants {
 	/**
 	 * 元模型默认名称，没有定义元模型或定义了元模型但没有指定名称时，缺省使用的名称

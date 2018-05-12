@@ -1,5 +1,7 @@
 package org.myfly.platform.metamodel.define;
 
+import org.myfly.platform.metamodel.domain.OrderType;
+
 /**
  * 排序定义
  * @author xiangwanhong

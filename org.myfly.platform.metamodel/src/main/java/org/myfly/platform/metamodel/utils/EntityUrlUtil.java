@@ -1,7 +1,7 @@
 package org.myfly.platform.metamodel.utils;
 
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.metamodel.define.EntityAction;
+import org.myfly.platform.metamodel.domain.EntityAction;
 
 /**
  * 实体常用操作url

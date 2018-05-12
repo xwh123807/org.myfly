@@ -1,10 +1,10 @@
 package org.myfly.platform.visualpage.ui.view;
 
-import org.myfly.platform.metamodel.define.EntityAction;
 import org.myfly.platform.metamodel.define.EntityMetaData;
 import org.myfly.platform.metamodel.define.FormDefinition;
-import org.myfly.platform.metamodel.define.ViewMode;
-import org.myfly.platform.metamodel.define.ViewType;
+import org.myfly.platform.metamodel.domain.EntityAction;
+import org.myfly.platform.metamodel.domain.ViewMode;
+import org.myfly.platform.metamodel.domain.ViewType;
 import org.myfly.platform.metamodel.utils.AssertUtil;
 import org.myfly.platform.metamodel.utils.EntityUrlUtil;
 import org.myfly.platform.metamodel.utils.HtmlUtils;

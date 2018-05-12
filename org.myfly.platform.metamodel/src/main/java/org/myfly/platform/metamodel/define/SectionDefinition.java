@@ -2,6 +2,7 @@ package org.myfly.platform.metamodel.define;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.metamodel.annotation.SectionView;
+import org.myfly.platform.metamodel.domain.SectionType;
 import org.springframework.util.Assert;
 
 public class SectionDefinition extends BaseDenifition {

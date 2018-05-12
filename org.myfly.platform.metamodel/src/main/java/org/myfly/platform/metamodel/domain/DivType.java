@@ -1,4 +1,4 @@
-package org.myfly.platform.metamodel.define;
+package org.myfly.platform.metamodel.domain;
 
 public enum DivType {
 	//缺省

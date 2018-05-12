@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.myfly.platform.metamodel.define.VisualPageType;
+import org.myfly.platform.metamodel.domain.VisualPageType;
 import org.myfly.platform.metamodel.utils.AssertUtil;
 
 public class TemplateBuilderFactory {

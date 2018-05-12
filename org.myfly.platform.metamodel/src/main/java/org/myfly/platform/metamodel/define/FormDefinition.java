@@ -16,7 +16,10 @@ import org.myfly.platform.metamodel.annotation.FieldSetView;
 import org.myfly.platform.metamodel.annotation.FormView;
 import org.myfly.platform.metamodel.annotation.SectionView;
 import org.myfly.platform.metamodel.annotation.SubTableView;
+import org.myfly.platform.metamodel.domain.CommonSubTableType;
+import org.myfly.platform.metamodel.domain.EntityAction;
 import org.myfly.platform.metamodel.domain.FieldDataType;
+import org.myfly.platform.metamodel.domain.SectionType;
 import org.myfly.platform.metamodel.utils.AssertUtil;
 import org.springframework.util.Assert;
 

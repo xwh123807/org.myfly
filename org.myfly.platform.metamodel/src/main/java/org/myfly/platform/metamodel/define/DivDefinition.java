@@ -1,5 +1,7 @@
 package org.myfly.platform.metamodel.define;
 
+import org.myfly.platform.metamodel.domain.DivType;
+
 public class DivDefinition extends BaseDenifition{
 	private DivType divType;
 	

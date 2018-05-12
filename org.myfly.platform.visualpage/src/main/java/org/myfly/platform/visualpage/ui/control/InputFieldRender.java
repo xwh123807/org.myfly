@@ -1,6 +1,6 @@
 package org.myfly.platform.visualpage.ui.control;
 
-import org.myfly.platform.metamodel.define.ViewType;
+import org.myfly.platform.metamodel.domain.ViewType;
 import org.myfly.platform.metamodel.utils.AssertUtil;
 import org.myfly.platform.visualpage.ui.BaseFieldRender;
 import org.myfly.platform.visualpage.ui.InputType;

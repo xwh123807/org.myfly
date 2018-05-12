@@ -1,4 +1,4 @@
-package org.myfly.platform.metamodel.define;
+package org.myfly.platform.metamodel.domain;
 
 /**
  * 通用子表类型定义

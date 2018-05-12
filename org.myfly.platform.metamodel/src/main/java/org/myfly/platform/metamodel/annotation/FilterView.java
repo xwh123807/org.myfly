@@ -6,7 +6,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import org.myfly.platform.metamodel.define.SQLOperator;
+import org.myfly.platform.metamodel.domain.SQLOperator;
 
 /**
  * 过滤器注解，用于定义实体查询条件。<br>

@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.metamodel.define.FieldDefinition;
 import org.myfly.platform.metamodel.define.ListDefinition;
-import org.myfly.platform.metamodel.define.ViewType;
+import org.myfly.platform.metamodel.domain.ViewType;
 
 public class EntityServerSideTableRenderTest {
 	@Test

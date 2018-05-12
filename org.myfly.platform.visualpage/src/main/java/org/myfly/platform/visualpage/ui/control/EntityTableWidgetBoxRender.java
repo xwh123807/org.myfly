@@ -1,8 +1,8 @@
 package org.myfly.platform.visualpage.ui.control;
 
 import org.myfly.platform.metamodel.define.ListDefinition;
-import org.myfly.platform.metamodel.define.ListStyle;
-import org.myfly.platform.metamodel.define.ViewType;
+import org.myfly.platform.metamodel.domain.ListStyle;
+import org.myfly.platform.metamodel.domain.ViewType;
 import org.myfly.platform.visualpage.ui.EntityActionInfo;
 import org.myfly.platform.visualpage.ui.WidgetBoxRender;
 

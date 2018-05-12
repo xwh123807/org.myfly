@@ -2,7 +2,7 @@ package org.myfly.platform.visualpage.ui.view;
 
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.metamodel.define.FilterDefinition;
-import org.myfly.platform.metamodel.define.ViewType;
+import org.myfly.platform.metamodel.domain.ViewType;
 import org.myfly.platform.metamodel.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.BaseFieldRender;
 import org.myfly.platform.visualpage.ui.FieldRenderFactory;

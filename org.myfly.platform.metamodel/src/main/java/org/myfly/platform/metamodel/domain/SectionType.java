@@ -1,4 +1,4 @@
-package org.myfly.platform.metamodel.define;
+package org.myfly.platform.metamodel.domain;
 
 /**
  * 部件类型，CUSTOM为自定义部件，其他均为预制标准部件

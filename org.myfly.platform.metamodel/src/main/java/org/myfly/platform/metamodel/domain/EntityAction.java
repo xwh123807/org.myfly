@@ -1,9 +1,8 @@
-package org.myfly.platform.metamodel.define;
+package org.myfly.platform.metamodel.domain;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.myfly.platform.metamodel.domain.BaseEnum;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**

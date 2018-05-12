@@ -1,8 +1,8 @@
 package org.myfly.platform.visualpage.ui.control;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.myfly.platform.metamodel.define.EntityAction;
-import org.myfly.platform.metamodel.define.ViewType;
+import org.myfly.platform.metamodel.domain.EntityAction;
+import org.myfly.platform.metamodel.domain.ViewType;
 import org.myfly.platform.metamodel.utils.EntityUrlUtil;
 import org.myfly.platform.metamodel.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.EntityActionInfo;

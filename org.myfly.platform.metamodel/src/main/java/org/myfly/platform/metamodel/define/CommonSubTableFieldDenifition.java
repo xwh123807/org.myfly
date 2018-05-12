@@ -1,6 +1,7 @@
 package org.myfly.platform.metamodel.define;
 
 import org.apache.commons.lang.ClassUtils;
+import org.myfly.platform.metamodel.domain.CommonSubTableType;
 import org.myfly.platform.metamodel.domain.FieldDataType;
 import org.myfly.platform.metamodel.utils.AppUtil;
 import org.springframework.util.Assert;

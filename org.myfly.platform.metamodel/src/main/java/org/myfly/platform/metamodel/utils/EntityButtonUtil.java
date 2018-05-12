@@ -2,7 +2,7 @@ package org.myfly.platform.metamodel.utils;
 
 import java.text.MessageFormat;
 
-import org.myfly.platform.metamodel.define.EntityAction;
+import org.myfly.platform.metamodel.domain.EntityAction;
 
 public class EntityButtonUtil {
 	private static final String BUTTON_OPEN_TEMPLATE = "<input type='button' value='{0}' onclick='javascript:openModal(\"{1}\", false)'>";

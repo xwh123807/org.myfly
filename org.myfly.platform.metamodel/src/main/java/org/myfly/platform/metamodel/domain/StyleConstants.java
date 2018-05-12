@@ -3,8 +3,6 @@ package org.myfly.platform.metamodel.domain;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.myfly.platform.metamodel.define.EntityAction;
-
 public class StyleConstants {
 	/**
 	 * Bootstrap 表格基本样式

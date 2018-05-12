@@ -2,8 +2,8 @@ package org.myfly.platform.visualpage.ui.control;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.metamodel.define.EntityAction;
 import org.myfly.platform.metamodel.define.FieldDefinition;
+import org.myfly.platform.metamodel.domain.EntityAction;
 import org.myfly.platform.metamodel.domain.FieldDataType;
 import org.myfly.platform.visualpage.ui.EntityActionInfo.EntityActionField;
 

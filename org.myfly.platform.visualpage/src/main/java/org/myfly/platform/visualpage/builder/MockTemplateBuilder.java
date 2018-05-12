@@ -1,7 +1,7 @@
 package org.myfly.platform.visualpage.builder;
 
-import org.myfly.platform.metamodel.define.ViewMode;
-import org.myfly.platform.metamodel.define.VisualPageType;
+import org.myfly.platform.metamodel.domain.ViewMode;
+import org.myfly.platform.metamodel.domain.VisualPageType;
 import org.springframework.stereotype.Component;
 
 @Component

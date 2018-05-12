@@ -2,7 +2,7 @@ package org.myfly.platform.visualpage.ui.control;
 
 import org.myfly.platform.metamodel.define.FieldSetDefinition;
 import org.myfly.platform.metamodel.define.ListDefinition;
-import org.myfly.platform.metamodel.define.ViewType;
+import org.myfly.platform.metamodel.domain.ViewType;
 import org.myfly.platform.metamodel.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.BaseRender;
 import org.myfly.platform.visualpage.ui.view.FieldSetViewRender;

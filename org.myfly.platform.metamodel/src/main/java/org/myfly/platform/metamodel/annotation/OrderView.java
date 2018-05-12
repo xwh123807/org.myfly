@@ -1,6 +1,6 @@
 package org.myfly.platform.metamodel.annotation;
 
-import org.myfly.platform.metamodel.define.OrderType;
+import org.myfly.platform.metamodel.domain.OrderType;
 
 public @interface OrderView {
 	/**

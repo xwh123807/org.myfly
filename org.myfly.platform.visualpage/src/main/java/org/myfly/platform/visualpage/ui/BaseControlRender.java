@@ -1,6 +1,6 @@
 package org.myfly.platform.visualpage.ui;
 
-import org.myfly.platform.metamodel.define.ViewType;
+import org.myfly.platform.metamodel.domain.ViewType;
 import org.myfly.platform.metamodel.utils.AssertUtil;
 
 /**

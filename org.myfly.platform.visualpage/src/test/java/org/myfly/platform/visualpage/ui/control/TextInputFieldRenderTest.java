@@ -3,8 +3,8 @@ package org.myfly.platform.visualpage.ui.control;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.metamodel.define.FieldDefinition;
-import org.myfly.platform.metamodel.define.ViewType;
 import org.myfly.platform.metamodel.domain.FieldDataType;
+import org.myfly.platform.metamodel.domain.ViewType;
 
 public class TextInputFieldRenderTest {
 	@Test

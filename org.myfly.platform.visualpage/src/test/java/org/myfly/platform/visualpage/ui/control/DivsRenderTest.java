@@ -3,8 +3,8 @@ package org.myfly.platform.visualpage.ui.control;
 import org.junit.Test;
 import org.myfly.platform.metamodel.define.DivDefinition;
 import org.myfly.platform.metamodel.define.SectionDefinition;
-import org.myfly.platform.metamodel.define.SectionType;
-import org.myfly.platform.metamodel.define.ViewType;
+import org.myfly.platform.metamodel.domain.SectionType;
+import org.myfly.platform.metamodel.domain.ViewType;
 import org.myfly.platform.visualpage.ui.view.SectionViewRender;
 
 public class DivsRenderTest {

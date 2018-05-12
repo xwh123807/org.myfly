@@ -1,6 +1,7 @@
 package org.myfly.platform.metamodel.define;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.myfly.platform.metamodel.domain.SQLOperator;
 
 public class FilterDefinition extends BaseDenifition {
 	private FieldDefinition field;

@@ -1,6 +1,4 @@
-package org.myfly.platform.metamodel.define;
-
-import org.myfly.platform.metamodel.domain.BaseEnum;
+package org.myfly.platform.metamodel.domain;
 
 /**
  * 页面视图显示模式
