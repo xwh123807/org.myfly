@@ -1,7 +1,7 @@
 package org.myfly.platform.core.visualpage.ui.view;
 
-import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.visualpage.ui.control.EntityTableWidgetBoxRender;
+import org.myfly.platform.metamodel.define.EntityMetaData;
 import org.myfly.platform.metamodel.define.ListDefinition;
 import org.myfly.platform.metamodel.define.ViewMode;
 import org.myfly.platform.metamodel.define.ViewType;

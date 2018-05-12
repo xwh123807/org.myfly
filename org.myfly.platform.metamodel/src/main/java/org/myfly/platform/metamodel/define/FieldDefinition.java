@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.annotations.GenericGenerator;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.metamodel.domain.FieldDataType;
 import org.myfly.platform.metamodel.utils.AppUtil;
 import org.myfly.platform.metamodel.utils.AssertUtil;
@@ -332,7 +331,7 @@ public class FieldDefinition extends BaseDenifition {
 				if (StringUtils.isBlank(getLabelField())) {
 					AssertUtil.parameterInvalide("field", "字段[" + getName() + "]没有配置LabelField字段");
 				}
-				EntityMetaData metaData = AppUtil.getEntityMataDataService().getEntityMetaData(getRelationClass());
+				EntityMetaData metaData = AppUtil.getEntityMetaData(getRelationClass());
 				AssertUtil.parameterEmpty(metaData, "metaData", "没有名称为[" + getRelationClass() + "]的实体元模型");
 				labelFieldDefinition = metaData.getField(getLabelField());
 				AssertUtil.parameterEmpty(labelFieldDefinition, "labelFieldDefinition", "字段[" + getName()
@@ -355,8 +354,7 @@ public class FieldDefinition extends BaseDenifition {
 		if (pkFieldDefinition == null) {
 			AssertUtil.parameterInvalide(!FieldDataType.SEARCHRELATION.equals(getDataType()),
 					"字段[" + getName() + "]不是关联属性，只有[" + FieldDataType.SEARCHRELATION.getTitle() + "]的字段才支持.");
-			pkFieldDefinition = AppUtil.getEntityMataDataService().getEntityMetaData(getRelationClass())
-					.getPKFieldDefinition();
+			pkFieldDefinition = AppUtil.getEntityMetaData(getRelationClass()).getPKFieldDefinition();
 		}
 		return pkFieldDefinition;
 	}
@@ -371,8 +369,7 @@ public class FieldDefinition extends BaseDenifition {
 			if (relationField != null && relationField.getDataType() == null) {
 				// 由于在元模型构造时存在循环调用，更改为需要时获取。 更新关联字段等信息
 				AssertUtil.parameterEmpty(getRelationTable(), "getRelationTable()");
-				EntityMetaData relEntityMetaData = AppUtil.getEntityMataDataService()
-						.getEntityMetaData(getRelationTable());
+				EntityMetaData relEntityMetaData = AppUtil.getEntityMetaData(getRelationTable());
 				relationField = relEntityMetaData.getField(relationField.getName());
 			}
 		}
@@ -386,8 +383,7 @@ public class FieldDefinition extends BaseDenifition {
 				if (fieldName.contains("=")) {
 					String searchField = fieldName.substring(4);
 					EntityMetaData metaData = getParent();
-					EntityMetaData relEntityMetaData = AppUtil.getEntityMataDataService()
-							.getEntityMetaData(getRelationTable());
+					EntityMetaData relEntityMetaData = AppUtil.getEntityMetaData(getRelationTable());
 					String[] items = searchField.split(";");
 					String result = "";
 					for (String item : items) {
@@ -427,7 +423,7 @@ public class FieldDefinition extends BaseDenifition {
 
 	public Boolean relationClassIsFlyEntity() {
 		if (isFlyEntityForRelationClass == null) {
-			EntityMetaData relEntityMetaData = AppUtil.getEntityMataDataService().getEntityMetaData(getRelationTable());
+			EntityMetaData relEntityMetaData = AppUtil.getEntityMetaData(getRelationTable());
 			isFlyEntityForRelationClass = relEntityMetaData.isFlyEntity();
 		}
 		return isFlyEntityForRelationClass;

@@ -2,7 +2,6 @@ package org.myfly.platform.metamodel.define;
 
 import java.util.Map;
 
-import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.metamodel.utils.AppUtil;
 import org.myfly.platform.metamodel.utils.AssertUtil;
 
@@ -18,8 +17,8 @@ public class AssociationSetFieldValueHandler implements SetFieldValueHandler {
 		if (obj instanceof Map) {
 			Map<String, Object> entity = ((Map<String, Object>) obj);
 			if (field.getFieldName().contains("=")) {
-				
-			}else{
+
+			} else {
 				entity.put(field.getFieldName(), value);
 			}
 		} else {
@@ -29,8 +28,7 @@ public class AssociationSetFieldValueHandler implements SetFieldValueHandler {
 					field.getSetter().invoke(obj, value);
 				} else {
 					// 类型不同，需要进行转换
-					EntityMetaData metaData = AppUtil.getEntityMataDataService()
-							.getEntityMetaData(field.getRelationClass());
+					EntityMetaData metaData = AppUtil.getEntityMetaData(field.getRelationClass());
 					Object newEntity = metaData.getPKFieldDefinition().newEntity((String) value);
 					field.getSetter().invoke(obj, newEntity);
 				}

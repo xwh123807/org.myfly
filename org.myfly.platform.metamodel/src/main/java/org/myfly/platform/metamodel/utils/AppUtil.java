@@ -4,8 +4,8 @@ import javax.persistence.EntityManagerFactory;
 
 import org.hibernate.SessionFactory;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
+import org.myfly.platform.metamodel.define.EntityMetaData;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.convert.ConversionService;
@@ -94,7 +94,7 @@ public class AppUtil {
 	 * @param entityName
 	 * @return
 	 */
-	public static EntityMetaData getEntityMetadata(String entityName) {
+	public static EntityMetaData getEntityMetaData(String entityName) {
 		Assert.hasLength(entityName);
 		EntityMetaData metaData = null;
 		try {
@@ -145,7 +145,7 @@ public class AppUtil {
 	 * @return
 	 */
 	private static boolean isJpaEntity(String entityName) {
-		return getEntityMetadata(entityName).isJpaEntity();
+		return getEntityMetaData(entityName).isJpaEntity();
 	}
 
 	/**

@@ -2,10 +2,9 @@ package org.myfly.platform.metamodel.utils;
 
 import java.text.MessageFormat;
 
-import javax.swing.text.StyleConstants;
-
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.metamodel.define.EntityAction;
+import org.myfly.platform.metamodel.domain.StyleConstants;
 
 public class EntityLinkUtil {
 	private static final String LINK_URL_TEMPLATE = "<a href=\"{0}\" target=\"{1}\" title=\"{2}\">{3}</a>";

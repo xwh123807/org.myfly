@@ -2,7 +2,6 @@ package org.myfly.platform.metamodel.define;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.ArrayUtils;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.visualpage.ui.EntityActionInfo.EntityActionField;
 import org.myfly.platform.metamodel.annotation.SubTableView;
 import org.myfly.platform.metamodel.utils.AppUtil;

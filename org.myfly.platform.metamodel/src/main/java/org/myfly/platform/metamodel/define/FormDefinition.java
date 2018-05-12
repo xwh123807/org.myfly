@@ -9,8 +9,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
-import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.metamodel.annotation.Div1View;
 import org.myfly.platform.metamodel.annotation.Div2View;
 import org.myfly.platform.metamodel.annotation.Div3View;

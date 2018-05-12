@@ -4,8 +4,8 @@ import java.util.Map;
 
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.visualpage.ui.view.BaseRender;
+import org.myfly.platform.metamodel.define.EntityMetaData;
 import org.myfly.platform.metamodel.define.ViewType;
 import org.myfly.platform.metamodel.utils.HtmlUtils;
 

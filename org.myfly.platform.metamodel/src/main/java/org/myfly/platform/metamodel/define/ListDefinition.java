@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
-import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.visualpage.ui.EntityActionInfo.EntityActionField;
 import org.myfly.platform.metamodel.annotation.FilterView;
 import org.myfly.platform.metamodel.annotation.ListView;
