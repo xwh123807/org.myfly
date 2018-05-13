@@ -2,6 +2,8 @@ package org.myfly.platform.core.user.internal;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.transaction.Transactional;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.context.SystemContext;
@@ -35,6 +37,7 @@ public class SystemDataInitial {
 	/**
 	 * 初始化系统初始数据
 	 */
+	@Transactional
 	public void initSystemInternalData() {
 		if (isInited) {
 			return;
