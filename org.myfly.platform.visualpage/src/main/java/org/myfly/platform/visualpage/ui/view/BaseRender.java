@@ -1,6 +1,6 @@
 package org.myfly.platform.visualpage.ui.view;
 
-import org.myfly.platform.metamodel.define.EntityMetaData;
+import org.myfly.platform.metamodel.domain.EntityMetaData;
 import org.myfly.platform.metamodel.domain.ViewType;
 import org.myfly.platform.metamodel.utils.AppUtil;
 

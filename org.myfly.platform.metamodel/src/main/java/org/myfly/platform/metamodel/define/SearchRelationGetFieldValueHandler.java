@@ -4,9 +4,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+import org.myfly.platform.metamodel.domain.EntityMetaData;
 import org.myfly.platform.metamodel.utils.AppUtil;
 import org.myfly.platform.metamodel.utils.ClassUtil;
-
 
 /**
  * 关联字段取值，包括SearchRelation和AutoRelation
@@ -47,8 +47,7 @@ public class SearchRelationGetFieldValueHandler implements GetFieldValueHandler 
 						}
 						keyParams.put(relName, entity.get(name));
 					}
-					relEntity = AppUtil.getJdbcFlyDataAccessService().findOne(fieldDefinition.getRelationTable(),
-							keyParams);
+					relEntity = AppUtil.findEntity(fieldDefinition.getRelationTable(), keyParams);
 					EntityMetaData relMetaData = relField.getParent();
 					value = relMetaData.getPKFieldDefinition().getPKValue(relEntity);
 				} else {
@@ -60,8 +59,7 @@ public class SearchRelationGetFieldValueHandler implements GetFieldValueHandler 
 						value = (String) tmp1;
 					}
 					if (value != null) {
-						relEntity = AppUtil.getJdbcFlyDataAccessService().findOne(fieldDefinition.getRelationTable(),
-								value);
+						relEntity = AppUtil.findEntity(fieldDefinition.getRelationTable(), value);
 					}
 				}
 				if (relEntity != null) {

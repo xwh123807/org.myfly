@@ -1,9 +1,8 @@
 package org.myfly.platform.visualpage.ui.control;
 
-import java.awt.Menu;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.myfly.platform.metamodel.domain.Menu;
 import org.myfly.platform.metamodel.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.BaseRender;
 

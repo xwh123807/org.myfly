@@ -18,6 +18,8 @@ import org.myfly.platform.metamodel.annotation.SectionView;
 import org.myfly.platform.metamodel.annotation.SubTableView;
 import org.myfly.platform.metamodel.domain.CommonSubTableType;
 import org.myfly.platform.metamodel.domain.EntityAction;
+import org.myfly.platform.metamodel.domain.EntityMetaData;
+import org.myfly.platform.metamodel.domain.EntityMetaDataConstants;
 import org.myfly.platform.metamodel.domain.FieldDataType;
 import org.myfly.platform.metamodel.domain.SectionType;
 import org.myfly.platform.metamodel.utils.AssertUtil;

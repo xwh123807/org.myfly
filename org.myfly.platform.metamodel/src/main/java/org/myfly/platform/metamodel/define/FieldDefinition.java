@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.annotations.GenericGenerator;
+import org.myfly.platform.metamodel.domain.EntityMetaData;
 import org.myfly.platform.metamodel.domain.FieldDataType;
 import org.myfly.platform.metamodel.utils.AppUtil;
 import org.myfly.platform.metamodel.utils.AssertUtil;

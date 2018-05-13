@@ -1,7 +1,4 @@
-package org.myfly.platform.metamodel.define;
-
-import org.myfly.platform.metamodel.domain.EntityAction;
-import org.myfly.platform.metamodel.domain.ListStyle;
+package org.myfly.platform.metamodel.domain;
 
 public class EntityMetaDataConstants {
 	/**

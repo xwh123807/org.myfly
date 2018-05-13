@@ -2,6 +2,7 @@ package org.myfly.platform.metamodel.define;
 
 import java.util.Map;
 
+import org.myfly.platform.metamodel.domain.EntityMetaData;
 import org.myfly.platform.metamodel.utils.AppUtil;
 import org.myfly.platform.metamodel.utils.AssertUtil;
 

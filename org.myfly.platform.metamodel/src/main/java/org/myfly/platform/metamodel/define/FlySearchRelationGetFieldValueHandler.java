@@ -3,6 +3,7 @@ package org.myfly.platform.metamodel.define;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.myfly.platform.metamodel.domain.EntityMetaDataConstants;
 import org.myfly.platform.metamodel.utils.AppUtil;
 
 public class FlySearchRelationGetFieldValueHandler implements GetFieldValueHandler {
@@ -36,8 +37,7 @@ public class FlySearchRelationGetFieldValueHandler implements GetFieldValueHandl
 			// 获取显示名称
 			if (StringUtils.isNotBlank(uid)) {
 				try {
-					relEntity = AppUtil.getJdbcFlyDataAccessService()
-							.findOne(EntityMetaDataConstants.TABLENAME_SGLOBAL_NAME, uid);
+					relEntity = AppUtil.findEntity(EntityMetaDataConstants.TABLENAME_SGLOBAL_NAME, uid);
 					value = (String) relField.getGetValueHandler().getFieldValue(relEntity);
 				} catch (Exception e) {
 					value = uid;

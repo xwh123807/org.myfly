@@ -1,11 +1,13 @@
 package org.myfly.platform.metamodel.utils;
 
+import java.util.Map;
+
 import javax.persistence.EntityManagerFactory;
 
 import org.hibernate.SessionFactory;
-import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
-import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
-import org.myfly.platform.metamodel.define.EntityMetaData;
+import org.myfly.platform.metamodel.domain.EntityMetaData;
+import org.myfly.platform.metamodel.service.IEntityMetaDataService;
+import org.myfly.platform.metamodel.service.IFlyDataAccessService;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.convert.ConversionService;
@@ -159,5 +161,13 @@ public class AppUtil {
 			throw new NullPointerException("factory is not a hibernate factory");
 		}
 		return factory.unwrap(SessionFactory.class);
+	}
+	
+	public static Object findEntity(final String entityName, final String uid) {
+		return getFlyDataAccessService(entityName).findOne(entityName, uid);
+	}
+	
+	public static Object findEntity(final String entityName, final Map<String, Object> keyParams) {
+		return getFlyDataAccessService(entityName).findOne(entityName, keyParams);
 	}
 }

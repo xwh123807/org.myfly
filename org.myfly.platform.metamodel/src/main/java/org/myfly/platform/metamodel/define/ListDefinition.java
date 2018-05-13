@@ -5,11 +5,12 @@ import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.core.visualpage.ui.EntityActionInfo.EntityActionField;
 import org.myfly.platform.metamodel.annotation.FilterView;
 import org.myfly.platform.metamodel.annotation.ListView;
 import org.myfly.platform.metamodel.annotation.OrderView;
 import org.myfly.platform.metamodel.domain.EntityAction;
+import org.myfly.platform.metamodel.domain.EntityMetaData;
+import org.myfly.platform.metamodel.domain.EntityMetaDataConstants;
 import org.myfly.platform.metamodel.domain.ListStyle;
 import org.myfly.platform.metamodel.domain.OrderType;
 import org.myfly.platform.metamodel.domain.SQLOperator;

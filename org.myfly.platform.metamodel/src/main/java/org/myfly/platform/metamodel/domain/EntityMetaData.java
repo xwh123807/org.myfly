@@ -1,4 +1,4 @@
-package org.myfly.platform.metamodel.define;
+package org.myfly.platform.metamodel.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,8 +15,13 @@ import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.metamodel.annotation.FormView;
 import org.myfly.platform.metamodel.annotation.ListView;
 import org.myfly.platform.metamodel.annotation.MetaDataView;
-import org.myfly.platform.metamodel.domain.FieldDataType;
-import org.myfly.platform.metamodel.domain.SKeyEntity;
+import org.myfly.platform.metamodel.define.FKFieldDefinition;
+import org.myfly.platform.metamodel.define.FieldDefinition;
+import org.myfly.platform.metamodel.define.FormDefinition;
+import org.myfly.platform.metamodel.define.ListDefinition;
+import org.myfly.platform.metamodel.define.PKFieldDefinition;
+import org.myfly.platform.metamodel.define.SearchRelationGetFieldValueHandler;
+import org.myfly.platform.metamodel.define.TableDefinition;
 import org.myfly.platform.metamodel.utils.AppUtil;
 import org.myfly.platform.metamodel.utils.AssertUtil;
 import org.springframework.util.Assert;

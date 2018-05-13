@@ -11,6 +11,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.metamodel.define.PKFieldDefinition.KeyType;
 import org.myfly.platform.metamodel.domain.EntityAction;
+import org.myfly.platform.metamodel.domain.EntityMetaData;
 import org.myfly.platform.metamodel.domain.FieldDataType;
 import org.myfly.platform.metamodel.domain.SQLOperator;
 import org.myfly.platform.metamodel.domain.SectionType;
