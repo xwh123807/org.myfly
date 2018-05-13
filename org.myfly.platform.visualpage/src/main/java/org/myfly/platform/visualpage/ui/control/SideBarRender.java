@@ -2,8 +2,8 @@ package org.myfly.platform.visualpage.ui.control;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.metamodel.domain.Menu;
-import org.myfly.platform.metamodel.utils.HtmlUtils;
+import org.myfly.platform.core.user.domain.Menu;
+import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.BaseRender;
 
 public class SideBarRender implements BaseRender {

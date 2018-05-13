@@ -3,8 +3,9 @@ package org.myfly.platform.visualpage.service;
 import java.lang.annotation.Annotation;
 import java.util.List;
 
-import org.myfly.platform.metamodel.domain.ViewMode;
-import org.myfly.platform.metamodel.domain.VisualPageType;
+import org.myfly.platform.core.domain.ViewMode;
+import org.myfly.platform.core.metadata.internal.EntityViewInfo;
+import org.myfly.platform.visualpage.domain.TemplateBuilderInfo;
 
 public interface IVisualPageService {
 

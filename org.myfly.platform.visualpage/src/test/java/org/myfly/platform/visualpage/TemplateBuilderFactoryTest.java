@@ -7,14 +7,17 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.metamodel.domain.ViewMode;
-import org.myfly.platform.metamodel.domain.VisualPageType;
+import org.myfly.platform.CoreApplication;
+import org.myfly.platform.core.domain.ViewMode;
 import org.myfly.platform.test.ServiceTestCase;
 import org.myfly.platform.visualpage.builder.BaseTemplateBuilder;
 import org.myfly.platform.visualpage.builder.MockTemplateBuilder;
-import org.myfly.platform.visualpage.builder.TemplateBuilderFactory;
+import org.myfly.platform.visualpage.internal.TemplateBuilderFactory;
+import org.myfly.platform.visualpage.service.VisualPageType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 
+@SpringApplicationConfiguration(classes = CoreApplication.class)
 public class TemplateBuilderFactoryTest extends ServiceTestCase {
 	@Autowired
 	private MockTemplateBuilder testTemplateBuilder;

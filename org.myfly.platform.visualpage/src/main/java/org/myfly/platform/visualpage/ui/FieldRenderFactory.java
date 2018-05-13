@@ -1,7 +1,7 @@
 package org.myfly.platform.visualpage.ui;
 
-import org.myfly.platform.metamodel.define.FieldDefinition;
-import org.myfly.platform.metamodel.utils.AssertUtil;
+import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.visualpage.ui.control.CheckInputFieldRender;
 import org.myfly.platform.visualpage.ui.control.DateInputFieldRender;
 import org.myfly.platform.visualpage.ui.control.DateTimeInputFieldRender;

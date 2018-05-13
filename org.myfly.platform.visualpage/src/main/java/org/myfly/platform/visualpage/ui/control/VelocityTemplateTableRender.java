@@ -3,15 +3,15 @@ package org.myfly.platform.visualpage.ui.control;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.myfly.platform.metamodel.define.FieldDefinition;
-import org.myfly.platform.metamodel.define.ListDefinition;
-import org.myfly.platform.metamodel.domain.EntityAction;
-import org.myfly.platform.metamodel.domain.FieldDataType;
-import org.myfly.platform.metamodel.domain.ViewType;
-import org.myfly.platform.metamodel.utils.EntityLinkUtil;
-import org.myfly.platform.metamodel.utils.EntityUrlUtil;
-import org.myfly.platform.visualpage.ui.EntityActionInfo;
-import org.myfly.platform.visualpage.ui.StyleConstants;
+import org.myfly.platform.core.domain.EntityActionInfo;
+import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.domain.StyleConstants;
+import org.myfly.platform.core.domain.ViewType;
+import org.myfly.platform.core.metadata.define.EntityAction;
+import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.utils.EntityLinkUtil;
+import org.myfly.platform.core.utils.EntityUrlUtil;
 
 /**
  * DataTable Veloctity表格模板

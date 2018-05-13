@@ -1,9 +1,9 @@
 package org.myfly.platform.visualpage.ui.control;
 
-import org.myfly.platform.metamodel.define.FormDefinition;
-import org.myfly.platform.metamodel.domain.EntityAction;
-import org.myfly.platform.metamodel.utils.EntityUrlUtil;
-import org.myfly.platform.metamodel.utils.HtmlUtils;
+import org.myfly.platform.core.metadata.define.EntityAction;
+import org.myfly.platform.core.metadata.define.FormDefinition;
+import org.myfly.platform.core.utils.EntityUrlUtil;
+import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.BaseButtonRender;
 import org.myfly.platform.visualpage.ui.BaseFieldRender;
 import org.myfly.platform.visualpage.ui.ButtonRenderFactory;

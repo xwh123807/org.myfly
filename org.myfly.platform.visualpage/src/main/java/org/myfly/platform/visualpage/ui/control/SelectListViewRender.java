@@ -3,9 +3,9 @@ package org.myfly.platform.visualpage.ui.control;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.myfly.platform.metamodel.domain.EntityAction;
-import org.myfly.platform.metamodel.domain.ViewType;
-import org.myfly.platform.metamodel.utils.EntityUrlUtil;
+import org.myfly.platform.core.domain.ViewType;
+import org.myfly.platform.core.metadata.define.EntityAction;
+import org.myfly.platform.core.utils.EntityUrlUtil;
 
 public class SelectListViewRender extends SelectViewRender {
 

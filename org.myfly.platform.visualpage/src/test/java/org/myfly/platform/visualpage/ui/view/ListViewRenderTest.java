@@ -2,8 +2,12 @@ package org.myfly.platform.visualpage.ui.view;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.myfly.platform.CoreApplication;
 import org.myfly.platform.test.ServiceTestCase;
+import org.myfly.platform.visualpage.ui.view.ListViewRender;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 
+@SpringApplicationConfiguration(classes=CoreApplication.class)
 public class ListViewRenderTest extends ServiceTestCase{
 	@Test
 	public void renderForStdTestTable(){

@@ -15,7 +15,6 @@ import org.myfly.platform.core.spring.ExtendConvertersRegister;
 import org.myfly.platform.core.user.service.IMenuService;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
-import org.myfly.platform.core.visualpage.config.FlyVPProperties;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -32,9 +31,6 @@ public class ApplicationStarter implements ApplicationRunner {
 	private static Log log = LogFactory.getLog(ApplicationStarter.class);
 
 	private ApplicationContext applicationContext;
-
-	@Autowired
-	private FlyVPProperties myFlyVPProperties;
 
 	@Autowired
 	private FlyDataProperties myFlyDataProperties;
@@ -72,7 +68,7 @@ public class ApplicationStarter implements ApplicationRunner {
 		}
 
 		// 初始化元模型数据，随机2条
-		if (myFlyVPProperties.isClearWorkTemplatePath()) {
+		if (myFlyDataProperties.isClearWorkTemplatePath()) {
 			doClearVPWorkTemplatePath();
 		}
 
@@ -83,11 +79,11 @@ public class ApplicationStarter implements ApplicationRunner {
 	 * 清除动态产生的页面模板工作目录。只有在临时目录下才清除，避免误操作
 	 */
 	public void doClearVPWorkTemplatePath() {
-		if (myFlyVPProperties.getWorkTemplatePath().contains(FileUtils.getTempDirectory().getAbsolutePath())) {
+		if (myFlyDataProperties.getWorkTemplatePath().contains(FileUtils.getTempDirectory().getAbsolutePath())) {
 			if (log.isInfoEnabled()) {
-				log.info("清除目录，" + myFlyVPProperties.getWorkTemplatePath());
+				log.info("清除目录，" + myFlyDataProperties.getWorkTemplatePath());
 			}
-			FileUtils.deleteQuietly(new File(myFlyVPProperties.getWorkTemplatePath()));
+			FileUtils.deleteQuietly(new File(myFlyDataProperties.getWorkTemplatePath()));
 		}
 	}
 

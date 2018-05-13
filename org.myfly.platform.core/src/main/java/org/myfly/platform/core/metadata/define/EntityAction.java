@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.myfly.platform.core.domain.BaseEnum;
-import org.myfly.platform.core.visualpage.service.ViewType;
+import org.myfly.platform.core.domain.ViewType;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**

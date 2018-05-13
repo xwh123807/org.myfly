@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.metamodel.define.DivDefinition;
-import org.myfly.platform.metamodel.utils.HtmlUtils;
+import org.myfly.platform.core.metadata.define.DivDefinition;
+import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.BaseRender;
 import org.myfly.platform.visualpage.ui.view.SectionViewRender;
 

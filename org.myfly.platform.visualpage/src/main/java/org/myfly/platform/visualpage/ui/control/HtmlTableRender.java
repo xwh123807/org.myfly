@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.myfly.platform.metamodel.utils.HtmlUtils;
-import org.myfly.platform.visualpage.ui.StyleConstants;
+import org.myfly.platform.core.domain.StyleConstants;
+import org.myfly.platform.core.utils.HtmlUtils;
 
 /**
  * HTML表格

@@ -6,8 +6,8 @@ import org.apache.commons.lang.ClassUtils;
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.myfly.platform.metamodel.domain.BaseEnum;
-import org.myfly.platform.metamodel.utils.AssertUtil;
+import org.myfly.platform.core.domain.BaseEnum;
+import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.visualpage.ui.InputType;
 
 /**

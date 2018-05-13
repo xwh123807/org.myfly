@@ -2,9 +2,9 @@ package org.myfly.platform.visualpage.ui.control;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.metamodel.define.FieldDefinition;
-import org.myfly.platform.metamodel.domain.FieldDataType;
-import org.myfly.platform.metamodel.domain.ViewType;
+import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.domain.ViewType;
+import org.myfly.platform.core.metadata.define.FieldDefinition;
 
 public class TextInputFieldRenderTest {
 	@Test

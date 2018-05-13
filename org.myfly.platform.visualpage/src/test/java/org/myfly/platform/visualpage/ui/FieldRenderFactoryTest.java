@@ -2,8 +2,10 @@ package org.myfly.platform.visualpage.ui;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.metamodel.define.FieldDefinition;
-import org.myfly.platform.metamodel.domain.FieldDataType;
+import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.visualpage.ui.BaseFieldRender;
+import org.myfly.platform.visualpage.ui.FieldRenderFactory;
 import org.myfly.platform.visualpage.ui.control.CheckInputFieldRender;
 import org.myfly.platform.visualpage.ui.control.SysEnumSelectFieldRender;
 import org.myfly.platform.visualpage.ui.control.TextInputFieldRender;

@@ -1,6 +1,6 @@
 package org.myfly.platform.visualpage.ui.control.button;
 
-import org.myfly.platform.metamodel.utils.HttpUtil;
+import org.myfly.platform.core.utils.HttpUtil;
 import org.myfly.platform.visualpage.ui.BaseButtonRender;
 import org.springframework.web.bind.annotation.RequestMethod;
 

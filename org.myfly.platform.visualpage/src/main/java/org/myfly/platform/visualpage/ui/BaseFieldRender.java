@@ -3,7 +3,7 @@ package org.myfly.platform.visualpage.ui;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.myfly.platform.metamodel.define.FieldDefinition;
+import org.myfly.platform.core.metadata.define.FieldDefinition;
 
 public abstract class BaseFieldRender extends BaseControlRender{
 	/**

@@ -1,10 +1,10 @@
 package org.myfly.platform.visualpage.ui.view;
 
-import org.myfly.platform.metamodel.define.FieldDefinition;
-import org.myfly.platform.metamodel.define.FieldSetDefinition;
-import org.myfly.platform.metamodel.domain.ViewType;
-import org.myfly.platform.metamodel.utils.AssertUtil;
-import org.myfly.platform.metamodel.utils.HtmlUtils;
+import org.myfly.platform.core.domain.ViewType;
+import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.metadata.define.FieldSetDefinition;
+import org.myfly.platform.core.utils.AssertUtil;
+import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.BaseFieldRender;
 import org.myfly.platform.visualpage.ui.FieldRenderFactory;
 

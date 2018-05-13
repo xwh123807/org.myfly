@@ -1,8 +1,8 @@
 package org.myfly.platform.visualpage.ui.view;
 
-import org.myfly.platform.metamodel.domain.EntityMetaData;
-import org.myfly.platform.metamodel.domain.ViewType;
-import org.myfly.platform.metamodel.utils.AppUtil;
+import org.myfly.platform.core.domain.ViewType;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.utils.AppUtil;
 
 public abstract class BaseRender {
 	private ViewType viewType = ViewType.VIEW;
@@ -22,7 +22,7 @@ public abstract class BaseRender {
 	 * @return
 	 */
 	public EntityMetaData getEntityMataData(final String entityName) {
-		return AppUtil.getEntityMetaData(entityName);
+		return AppUtil.getEntityMataDataService().getEntityMetaData(entityName);
 	}
 
 	public String html() {

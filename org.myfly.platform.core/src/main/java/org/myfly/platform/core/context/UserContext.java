@@ -6,7 +6,6 @@ import java.util.Map;
 import org.myfly.platform.core.user.domain.SUser;
 import org.myfly.platform.core.user.domain.Tenant;
 import org.myfly.platform.core.utils.AssertUtil;
-import org.myfly.platform.core.visualpage.service.VisualPageConstants;
 
 /**
  * 用户上下文
@@ -86,7 +85,7 @@ public class UserContext {
 		Tenant tenant = new Tenant();
 		tenant.setUid(SystemContext.SYS_STENANT_UID);
 		userSession.setTenant(tenant);
-		userSession.setLayoutName(VisualPageConstants.LAYOUT_DEFAULT_NAME);
+		userSession.setLayoutName("default");
 		userSessions.put(userSession.getTokenuid(), userSession);
 	}
 }

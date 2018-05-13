@@ -2,10 +2,11 @@ package org.myfly.platform.visualpage.ui.view;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.metamodel.annotation.ObjectListView;
-import org.myfly.platform.metamodel.domain.CacheInfo;
-import org.myfly.platform.metamodel.domain.CacheObjectInfo;
-import org.myfly.platform.metamodel.utils.ClassUtil;
+import org.myfly.platform.core.cache.service.CacheInfo;
+import org.myfly.platform.core.cache.service.CacheObjectInfo;
+import org.myfly.platform.core.metadata.annotation.ObjectListView;
+import org.myfly.platform.core.utils.ClassUtil;
+import org.myfly.platform.visualpage.ui.view.ObjectListViewRender;
 
 public class ObjectListViewRenderTest {
 	@Test

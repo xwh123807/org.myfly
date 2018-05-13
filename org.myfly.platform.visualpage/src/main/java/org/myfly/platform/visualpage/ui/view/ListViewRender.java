@@ -1,15 +1,15 @@
 package org.myfly.platform.visualpage.ui.view;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.myfly.platform.metamodel.define.ListDefinition;
-import org.myfly.platform.metamodel.domain.EntityAction;
-import org.myfly.platform.metamodel.domain.EntityMetaData;
-import org.myfly.platform.metamodel.domain.EntityMetaDataConstants;
-import org.myfly.platform.metamodel.domain.ViewMode;
-import org.myfly.platform.metamodel.domain.ViewType;
-import org.myfly.platform.metamodel.utils.AssertUtil;
-import org.myfly.platform.metamodel.utils.EntityUrlUtil;
-import org.myfly.platform.metamodel.utils.HtmlUtils;
+import org.myfly.platform.core.domain.ViewMode;
+import org.myfly.platform.core.domain.ViewType;
+import org.myfly.platform.core.metadata.define.EntityAction;
+import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
+import org.myfly.platform.core.utils.AssertUtil;
+import org.myfly.platform.core.utils.EntityUrlUtil;
+import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.control.EntityTableWidgetBoxRender;
 import org.myfly.platform.visualpage.ui.control.SelectListViewRender;
 

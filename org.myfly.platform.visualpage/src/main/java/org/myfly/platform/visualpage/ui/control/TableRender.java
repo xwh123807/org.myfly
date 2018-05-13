@@ -4,10 +4,10 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.myfly.platform.metamodel.define.FieldDefinition;
-import org.myfly.platform.metamodel.domain.FieldDataType;
-import org.myfly.platform.metamodel.utils.AssertUtil;
-import org.myfly.platform.metamodel.utils.StringUtil;
+import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.utils.AssertUtil;
+import org.myfly.platform.core.utils.StringUtil;
 
 /**
  * 表格控件

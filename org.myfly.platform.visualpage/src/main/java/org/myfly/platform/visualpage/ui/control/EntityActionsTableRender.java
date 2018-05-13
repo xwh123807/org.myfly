@@ -1,11 +1,11 @@
 package org.myfly.platform.visualpage.ui.control;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.myfly.platform.metamodel.domain.EntityAction;
-import org.myfly.platform.metamodel.domain.ViewType;
-import org.myfly.platform.metamodel.utils.EntityUrlUtil;
-import org.myfly.platform.metamodel.utils.HtmlUtils;
-import org.myfly.platform.visualpage.ui.EntityActionInfo;
+import org.myfly.platform.core.domain.EntityActionInfo;
+import org.myfly.platform.core.domain.ViewType;
+import org.myfly.platform.core.metadata.define.EntityAction;
+import org.myfly.platform.core.utils.EntityUrlUtil;
+import org.myfly.platform.core.utils.HtmlUtils;
 
 /**
  * 表格操作工具条

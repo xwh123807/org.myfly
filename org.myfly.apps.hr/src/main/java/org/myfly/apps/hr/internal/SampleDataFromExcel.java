@@ -20,10 +20,10 @@ import org.myfly.apps.hr.domain.Rank;
 import org.myfly.apps.hr.domain.Skill;
 import org.myfly.apps.hr.domain.SkillScoreDefine;
 import org.myfly.apps.hr.domain.Special;
-import org.myfly.platform.metamodel.service.IFlyDataAccessService;
-import org.myfly.platform.metamodel.utils.AppUtil;
-import org.myfly.platform.metamodel.utils.ExcelUtil;
-import org.myfly.platform.metamodel.utils.UUIDUtil;
+import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
+import org.myfly.platform.core.utils.AppUtil;
+import org.myfly.platform.core.utils.ExcelUtil;
+import org.myfly.platform.core.utils.UUIDUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 /**

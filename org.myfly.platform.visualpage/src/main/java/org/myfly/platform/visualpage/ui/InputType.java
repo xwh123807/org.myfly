@@ -1,6 +1,6 @@
 package org.myfly.platform.visualpage.ui;
 
-import org.myfly.platform.metamodel.domain.BaseEnum;
+import org.myfly.platform.core.domain.BaseEnum;
 
 /**
  * HTML5 Input控件类型

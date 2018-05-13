@@ -5,13 +5,13 @@ import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.myfly.platform.core.domain.EntityActionInfo.EntityActionField;
 import org.myfly.platform.core.metadata.annotation.FilterView;
 import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.OrderView;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AssertUtil;
-import org.myfly.platform.core.visualpage.ui.EntityActionInfo.EntityActionField;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;

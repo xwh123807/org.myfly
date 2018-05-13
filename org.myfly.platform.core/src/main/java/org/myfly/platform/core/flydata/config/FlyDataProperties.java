@@ -18,6 +18,18 @@ public class FlyDataProperties {
 	 * 导出最大记录数
 	 */
 	private int maxExportSize = 10000;
+	
+	/**
+	 * 
+	 */
+	private boolean clearWorkTemplatePath = true;
+
+	/**
+	 * 
+	 */
+	private String defaultLayout = "default";
+
+	private String workTemplatePath = "${java.io.tmpdir}velocity/";
 
 	public int getMaxExportSize() {
 		return maxExportSize;
@@ -41,5 +53,29 @@ public class FlyDataProperties {
 
 	public void setInitSampleData(boolean initSampleData) {
 		this.initSampleData = initSampleData;
+	}
+	
+	public boolean isClearWorkTemplatePath() {
+		return clearWorkTemplatePath;
+	}
+
+	public void setClearWorkTemplatePath(boolean clearWorkTemplatePath) {
+		this.clearWorkTemplatePath = clearWorkTemplatePath;
+	}
+
+	public String getDefaultLayout() {
+		return defaultLayout;
+	}
+
+	public void setDefaultLayout(String defaultLayout) {
+		this.defaultLayout = defaultLayout;
+	}
+
+	public String getWorkTemplatePath() {
+		return workTemplatePath;
+	}
+
+	public void setWorkTemplatePath(String workTemplatePath) {
+		this.workTemplatePath = workTemplatePath;
 	}
 }

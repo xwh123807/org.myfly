@@ -4,9 +4,9 @@ import java.util.Map;
 
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.metamodel.domain.EntityMetaData;
-import org.myfly.platform.metamodel.domain.ViewType;
-import org.myfly.platform.metamodel.utils.HtmlUtils;
+import org.myfly.platform.core.domain.ViewType;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.view.BaseRender;
 
 public class SelectViewRender extends BaseRender {

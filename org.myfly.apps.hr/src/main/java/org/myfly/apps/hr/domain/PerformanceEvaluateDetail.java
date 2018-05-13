@@ -5,16 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.myfly.platform.metamodel.annotation.FieldSetView;
-import org.myfly.platform.metamodel.annotation.FieldView;
-import org.myfly.platform.metamodel.annotation.FormView;
-import org.myfly.platform.metamodel.annotation.ListView;
-import org.myfly.platform.metamodel.annotation.MetaDataView;
-import org.myfly.platform.metamodel.annotation.SectionView;
-import org.myfly.platform.metamodel.annotation.TableView;
-import org.myfly.platform.metamodel.domain.ListStyle;
-import org.myfly.platform.metamodel.domain.SBaseEntity;
-import org.myfly.platform.metamodel.domain.SchemaConstants;
+import org.myfly.platform.core.domain.SBaseEntity;
+import org.myfly.platform.core.domain.SchemaConstants;
+import org.myfly.platform.core.metadata.annotation.FieldSetView;
+import org.myfly.platform.core.metadata.annotation.FieldView;
+import org.myfly.platform.core.metadata.annotation.FormView;
+import org.myfly.platform.core.metadata.annotation.ListView;
+import org.myfly.platform.core.metadata.annotation.MetaDataView;
+import org.myfly.platform.core.metadata.annotation.SectionView;
+import org.myfly.platform.core.metadata.annotation.TableView;
+import org.myfly.platform.core.metadata.define.ListStyle;
 
 @Entity
 @Table(schema = SchemaConstants.HR)

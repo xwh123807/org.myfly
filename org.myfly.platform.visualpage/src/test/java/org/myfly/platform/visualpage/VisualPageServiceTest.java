@@ -7,17 +7,20 @@ import javax.transaction.Transactional;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.metamodel.annotation.ObjectListView;
-import org.myfly.platform.metamodel.annotation.PropertyView;
-import org.myfly.platform.metamodel.domain.ViewMode;
-import org.myfly.platform.metamodel.domain.VisualPageType;
+import org.myfly.platform.CoreApplication;
+import org.myfly.platform.core.domain.ViewMode;
+import org.myfly.platform.core.metadata.annotation.ObjectListView;
+import org.myfly.platform.core.metadata.annotation.PropertyView;
+import org.myfly.platform.core.metadata.internal.EntityViewInfo;
 import org.myfly.platform.test.ServiceTestCase;
-import org.myfly.platform.visualpage.domain.VisualPageConstants;
-import org.myfly.platform.visualpage.service.EntityViewInfo;
+import org.myfly.platform.visualpage.domain.TemplateBuilderInfo;
 import org.myfly.platform.visualpage.service.IVisualPageService;
-import org.myfly.platform.visualpage.service.TemplateBuilderInfo;
+import org.myfly.platform.visualpage.service.VisualPageConstants;
+import org.myfly.platform.visualpage.service.VisualPageType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 
+@SpringApplicationConfiguration(classes = CoreApplication.class)
 public class VisualPageServiceTest extends ServiceTestCase {
 
 	@Autowired

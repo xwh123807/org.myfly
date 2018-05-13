@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.myfly.platform.metamodel.annotation.ObjectListView;
-import org.myfly.platform.metamodel.annotation.PropertyView;
-import org.myfly.platform.metamodel.define.FieldDefinition;
-import org.myfly.platform.metamodel.domain.FieldDataType;
-import org.myfly.platform.metamodel.utils.AssertUtil;
-import org.myfly.platform.metamodel.utils.HtmlUtils;
+import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.metadata.annotation.ObjectListView;
+import org.myfly.platform.core.metadata.annotation.PropertyView;
+import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.utils.AssertUtil;
+import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.control.TableRender;
 
 /**

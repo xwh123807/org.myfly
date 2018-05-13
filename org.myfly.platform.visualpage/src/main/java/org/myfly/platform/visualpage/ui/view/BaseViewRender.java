@@ -1,8 +1,8 @@
 package org.myfly.platform.visualpage.ui.view;
 
-import org.myfly.platform.metamodel.domain.ViewMode;
-import org.myfly.platform.metamodel.domain.ViewType;
-import org.myfly.platform.metamodel.utils.UUIDUtil;
+import org.myfly.platform.core.domain.ViewMode;
+import org.myfly.platform.core.domain.ViewType;
+import org.myfly.platform.core.utils.UUIDUtil;
 
 /**
  * 视图基类，可以独立返回到前端显示
