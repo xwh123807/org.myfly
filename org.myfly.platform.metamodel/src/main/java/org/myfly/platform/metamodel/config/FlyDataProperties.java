@@ -1,4 +1,4 @@
-package org.myfly.platform.flydata.config;
+package org.myfly.platform.metamodel.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

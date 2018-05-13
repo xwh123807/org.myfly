@@ -17,13 +17,13 @@ import org.myfly.apps.hr.domain.PostScore;
 import org.myfly.apps.hr.domain.Rank;
 import org.myfly.apps.hr.domain.Skill;
 import org.myfly.apps.hr.domain.Special;
-import org.myfly.platform.core.context.UserContext;
-import org.myfly.platform.core.domain.SBaseEntity;
-import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
-import org.myfly.platform.core.user.domain.SUser;
-import org.myfly.platform.core.utils.AppUtil;
-import org.myfly.platform.core.utils.DateUtil;
-import org.myfly.platform.core.utils.UUIDUtil;
+import org.myfly.platform.metamodel.context.UserContext;
+import org.myfly.platform.metamodel.domain.SBaseEntity;
+import org.myfly.platform.metamodel.domain.SUser;
+import org.myfly.platform.metamodel.service.IFlyDataAccessService;
+import org.myfly.platform.metamodel.utils.AppUtil;
+import org.myfly.platform.metamodel.utils.DateUtil;
+import org.myfly.platform.metamodel.utils.UUIDUtil;
 import org.springframework.stereotype.Component;
 
 @Component
