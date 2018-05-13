@@ -1,0 +1,84 @@
+org:
+  myfly:
+    platform:
+      data:
+        initSysData: true
+        initSampleData: true
+        maxExportSize: 2000
+      vp:
+        clearWorkTemplatePath: true
+        defaultLayout: default
+        workTemplatePath: ${java.io.tmpdir}velocity/
+      security: false
+      system:
+        admin:
+          enableAccesslog: false
+          enableMetrics: false
+
+server:
+  port: 9080
+  
+balance:
+  server: localhost
+
+security:
+  basic:
+    enabled: false  
+
+spring:
+  data:
+    rest:
+      basePath: /api
+    elasticsearch:
+      clusterNodes: ${balance.server}:9300
+      properties:
+        path.data: target/data
+        path.logs: target/logs
+  jpa:
+    showSql: true
+    hibernate:
+      #create|create-drop|update|validate
+      ddlAuto: create
+      formatSql: true
+#  cache:
+#    ehcache:
+#      config: ehcache.xml
+  datasource:
+    url: jdbc:derby:memory:myfly;create=true
+    username: sa
+    password: sa
+    driverClassName: org.apache.derby.jdbc.EmbeddedDriver
+    dialect: org.hibernate.dialect.DerbyDialect
+#    url: jdbc:mysql://${balance.server}/myfly
+#    driverClassName: com.mysql.jdbc.Driver
+#    dialect: org.hibernate.dialect.MySQLDialect
+#    username: root
+#    password: password
+  activemq:
+    inMemory: true
+    pooled: false
+    brokerUrl: tcp://${balance.server}:61616      
+    user: admin
+    password: admin
+  rabbitmq:
+    host: ${balance.server}
+    port: 5672  
+  velocity:
+    resource:
+      loader: myfly
+    velocimacro:
+      library:
+        autoreload: true
+    checkTemplateLocation: false
+    resourceLoaderPath: file:${org.myfly.platform.vp.workTemplatePath},classpath:/templates/      
+    myfly:
+      resource:
+        loader.class: org.myfly.platform.system.velocity.TemplateResourceLoader
+  h2:
+    console:
+      enabled: true
+  redis:
+    host: ${balance.server}
+    port: 6379    
+    
+    

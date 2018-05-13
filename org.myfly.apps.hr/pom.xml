@@ -22,6 +22,16 @@
 		</dependency>
 		<dependency>
 			<groupId>org.myfly.platform.microapps</groupId>
+			<artifactId>org.myfly.platform.flydata</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.myfly.platform.microapps</groupId>
+			<artifactId>org.myfly.platform.visualpage</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.myfly.platform.microapps</groupId>
 			<artifactId>org.myfly.platform.test</artifactId>
 			<version>${project.version}</version>
 			<scope>test</scope>

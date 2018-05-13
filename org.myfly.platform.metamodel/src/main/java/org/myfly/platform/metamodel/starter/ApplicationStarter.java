@@ -39,13 +39,13 @@ public class ApplicationStarter implements ApplicationRunner {
 	@Autowired
 	private FlyDataProperties myFlyDataProperties;
 
-	@Autowired
+	@Autowired(required=false)
 	private List<IAppConfigEvent> appConfigEvents;
 
 	@Autowired
 	private FileMetaDataRegister fileMetaDataRegister;
 
-	@Autowired
+	@Autowired(required=false)
 	private IMenuService menuService;
 
 	@Autowired
