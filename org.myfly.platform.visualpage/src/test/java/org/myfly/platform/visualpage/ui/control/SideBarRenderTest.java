@@ -1,10 +1,10 @@
 package org.myfly.platform.visualpage.ui.control;
 
-import java.awt.Menu;
 import java.net.URL;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.myfly.platform.metamodel.domain.Menu;
 import org.myfly.platform.metamodel.utils.JSONUtil;
 
 public class SideBarRenderTest {
