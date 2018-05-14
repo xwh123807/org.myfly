@@ -1,4 +1,4 @@
-package org.myfly.platform.core.velocity;
+package org.myfly.platform.visualpage.velocity;
 
 import java.io.File;
 import java.io.FileInputStream;

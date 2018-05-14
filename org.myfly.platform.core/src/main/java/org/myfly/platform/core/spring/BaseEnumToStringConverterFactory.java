@@ -6,6 +6,7 @@ import org.springframework.core.convert.converter.ConverterFactory;
 
 public class BaseEnumToStringConverterFactory implements ConverterFactory<BaseEnum, String>{
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends String> Converter<BaseEnum, T> getConverter(Class<T> targetType) {
 		return (Converter<BaseEnum, T>) new BaseEnumToString<>();

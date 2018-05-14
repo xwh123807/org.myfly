@@ -17,12 +17,12 @@
 package org.springframework.web.servlet.view.velocity;
 
 import java.io.IOException;
+
 import javax.servlet.ServletContext;
 
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.exception.VelocityException;
-import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
-import org.myfly.platform.core.velocity.TemplateResourceLoader;
+import org.myfly.platform.visualpage.velocity.TemplateResourceLoader;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.ui.velocity.VelocityEngineFactory;

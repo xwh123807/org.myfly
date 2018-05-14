@@ -1,8 +1,7 @@
-package org.myfly.platform.system.velocity;
+package org.myfly.platform.visualpage.velocity;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.core.velocity.TemplateResourceLoader;
 
 public class TemplateResourceLoaderTest {
 	@Test
