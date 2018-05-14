@@ -1,11 +1,12 @@
-package org.myfly.platform.system.service;
+package org.myfly.platform.system.core;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
 import org.myfly.platform.CoreApplication;
-import org.myfly.platform.core.user.service.IMenuService;
+import org.myfly.platform.core.system.domain.IMenu;
+import org.myfly.platform.core.system.service.IMenuService;
 import org.myfly.platform.system.domain.Menu;
 import org.myfly.platform.test.ServiceTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class MenuServiceTest extends ServiceTestCase {
 	public void registerMenu() {
 		Menu menu = new Menu();
 		menu.setName("topmenu");
-		Set<Menu> subMenus = new HashSet<>();
-		Menu subMenu = new Menu();
+		Set<IMenu> subMenus = new HashSet<>();
+		IMenu subMenu = new Menu();
 		subMenu.setName("sub1");
 		subMenu.setParent(menu);
 		menu.setSubMenus(subMenus);

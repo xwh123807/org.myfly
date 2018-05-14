@@ -1,4 +1,4 @@
-package org.myfly.platform.visualpage.ui.control;
+package org.myfly.platform.system.core;
 
 import java.net.URL;
 

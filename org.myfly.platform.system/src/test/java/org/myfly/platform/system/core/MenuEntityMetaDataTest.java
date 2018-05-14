@@ -1,4 +1,5 @@
-package org.myfly.platform.system.metadata;
+package org.myfly.platform.system.core;
+
 
 import org.myfly.platform.core.test.EntityMetaDataTestCase;
 import org.myfly.platform.system.domain.Menu;

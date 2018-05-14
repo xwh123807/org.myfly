@@ -2,14 +2,15 @@ package org.myfly.platform.system.core;
 
 import org.junit.Before;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
+import org.myfly.platform.core.system.domain.IMenu;
 import org.myfly.platform.core.test.EntityActionsWebPageTestCase;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.system.domain.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class MenuWebPageTest extends EntityActionsWebPageTestCase<Menu, String> {
+public class MenuWebPageTest extends EntityActionsWebPageTestCase<IMenu, String> {
 	private static boolean isInited;
-	private static String menuUid;
+	private static String IMenuUid;
 	@Autowired
 	private IJpaDataAccessService jpaDataAccessService;
 
@@ -18,17 +19,17 @@ public class MenuWebPageTest extends EntityActionsWebPageTestCase<Menu, String> 
 		if (!isInited) {
 			isInited = true;
 			
-			Menu menu = new Menu();
-			menu.setUid(UUIDUtil.newUUID());
-			menu.setName("hello");
-			jpaDataAccessService.saveEntity(menu);
-			menuUid = menu.getUid();
+			IMenu IMenu = new Menu();
+			IMenu.setUid(UUIDUtil.newUUID());
+			IMenu.setName("hello");
+			jpaDataAccessService.saveEntity(IMenu);
+			IMenuUid = IMenu.getUid();
 		}
 	}
 
 	@Override
-	public Class<Menu> getEntityClass() {
-		return Menu.class;
+	public Class<IMenu> getEntityClass() {
+		return IMenu.class;
 	}
 
 	@Override
@@ -38,28 +39,28 @@ public class MenuWebPageTest extends EntityActionsWebPageTestCase<Menu, String> 
 
 	@Override
 	public String getEntityPk() {
-		return menuUid;
+		return IMenuUid;
 	}
 
 	@Override
-	public Menu getNewEntity() {
-		Menu entity = new Menu();
+	public IMenu getNewEntity() {
+		IMenu entity = new Menu();
 		entity.setUid(UUIDUtil.newUUID());
 		entity.setName("hello");
 		return entity;
 	}
 
 	@Override
-	public Menu getSaveAndNewEntity() {
-		Menu entity = new Menu();
+	public IMenu getSaveAndNewEntity() {
+		IMenu entity = new Menu();
 		entity.setUid(UUIDUtil.newUUID());
 		entity.setName("hello 2");
 		return entity;
 	}
 
 	@Override
-	public Menu getUpdateEntity() {
-		Menu entity = new Menu();
+	public IMenu getUpdateEntity() {
+		IMenu entity = new Menu();
 		entity.setName("hello changed");
 		return entity;
 	}

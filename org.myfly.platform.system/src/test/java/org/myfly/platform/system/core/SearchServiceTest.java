@@ -1,20 +1,17 @@
-package org.myfly.platform.system.search;
+package org.myfly.platform.system.core;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.myfly.platform.CoreApplication;
 import org.myfly.platform.core.search.service.ISearchService;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
-import org.myfly.platform.system.domain.SGlobalName;
+import org.myfly.platform.system.domain.GlobalName;
 import org.myfly.platform.test.ServiceTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
 import org.springframework.data.elasticsearch.core.query.IndexQueryBuilder;
-import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringApplicationConfiguration(classes = CoreApplication.class)
 public class SearchServiceTest extends ServiceTestCase{
@@ -51,7 +48,7 @@ public class SearchServiceTest extends ServiceTestCase{
 
 	@Test
 	public void crud() {
-		SGlobalName entity = new SGlobalName();
+		GlobalName entity = new GlobalName();
 		entity.setUid(UUIDUtil.newUUID());
 		entity.setName("jone");
 		entity.setInternalTable("suser");
@@ -59,7 +56,7 @@ public class SearchServiceTest extends ServiceTestCase{
 				.withId(entity.getUid()).withSource(JSONUtil.toJSON(entity)).build();
 		searchService.index(indexQuery);
 		
-		SGlobalName entity1 = searchService.search(entity.getUid(), SGlobalName.class);
+		GlobalName entity1 = searchService.search(entity.getUid(), GlobalName.class);
 		Assert.assertNotNull(entity1);
 	}
 }
