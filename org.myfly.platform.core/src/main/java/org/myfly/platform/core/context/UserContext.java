@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.myfly.platform.core.utils.AssertUtil;
-import org.myfly.platform.system.domain.SUser;
-import org.myfly.platform.system.domain.Tenant;
 
 /**
  * 用户上下文
@@ -75,17 +73,4 @@ public class UserContext {
 		return getUserSession(getUserTokenid());
 	}
 
-	static {
-		// TODO 系统初始化时填值，仅用于开发不登录不验证用户身份
-		UserSession userSession = new UserSession();
-		userSession.setTokenuid(SystemContext.SYS_SUSER_UID);
-		SUser user = new SUser();
-		user.setUid(SystemContext.SYS_SUSER_UID);
-		userSession.setUser(user);
-		Tenant tenant = new Tenant();
-		tenant.setUid(SystemContext.SYS_STENANT_UID);
-		userSession.setTenant(tenant);
-		userSession.setLayoutName("default");
-		userSessions.put(userSession.getTokenuid(), userSession);
-	}
 }

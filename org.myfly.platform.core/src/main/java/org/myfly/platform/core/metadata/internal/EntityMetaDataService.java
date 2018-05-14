@@ -20,9 +20,9 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.type.EnumType;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.domain.FieldDataType.FieldAttr;
+import org.myfly.platform.core.flydata.service.IEnumDataService;
 import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.metadata.annotation.FlyEnum;
 import org.myfly.platform.core.metadata.annotation.FlySearchRelation;
@@ -46,8 +46,6 @@ import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.metadata.service.IMetaDataRegister;
 import org.myfly.platform.core.metadata.service.JsonEntityMetaData;
-import org.myfly.platform.core.system.domain.IEnumType;
-import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.StringUtil;
@@ -81,6 +79,8 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 	@Autowired
 	@Qualifier("defaultConversionService")
 	private ConversionService conversionService;
+	@Autowired(required=false)
+	private IEnumDataService enumDataService;
 	/**
 	 * 存储扩展注册的元模型
 	 */
@@ -429,15 +429,16 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 			}
 
 			private void registerEnumType(String entityName, String attrName, String title) {
-				IEnumType entity = new EnumType();
-				entity.setEntityName(entityName);
-				entity.setAttrName(attrName);
-				entity.setName(title);
-				try {
-					AppUtil.getJpaFlyDataAccessService().saveEntity(entity);
-				} catch (Exception e) {
-					// 数据重复异常
-				}
+				enumDataService.addEnumType(title, entityName, attrName);
+//				IEnumType entity = new EnumType();
+//				entity.setEntityName(entityName);
+//				entity.setAttrName(attrName);
+//				entity.setName(title);
+//				try {
+//					AppUtil.getJpaFlyDataAccessService().saveEntity(entity);
+//				} catch (Exception e) {
+//					// 数据重复异常
+//				}
 			}
 		});
 		model.doWithAssociations(new SimpleAssociationHandler() {

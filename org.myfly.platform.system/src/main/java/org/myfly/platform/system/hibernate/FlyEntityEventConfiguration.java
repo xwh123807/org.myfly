@@ -1,4 +1,4 @@
-package org.myfly.platform.core.flydata.internal.hibernate;
+package org.myfly.platform.system.hibernate;
 
 import javax.persistence.EntityManagerFactory;
 

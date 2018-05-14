@@ -2,14 +2,14 @@ package org.myfly.platform.visualpage.ui.control;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.myfly.platform.core.system.domain.IMenu;
 import org.myfly.platform.core.utils.HtmlUtils;
-import org.myfly.platform.system.domain.Menu;
 import org.myfly.platform.visualpage.ui.BaseRender;
 
 public class SideBarRender implements BaseRender {
-	private Menu[] menus;
+	private IMenu[] menus;
 
-	public SideBarRender(Menu[] menus) {
+	public SideBarRender(IMenu[] menus) {
 		this.menus = menus;
 	}
 
@@ -17,19 +17,19 @@ public class SideBarRender implements BaseRender {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("<ul" + HtmlUtils.addPropertys(new String[] { "class", "render" },
 				new String[] { "nav nav-list", getClass().getName() }) + ">").append("\n");
-		for (Menu menu : menus) {
+		for (IMenu menu : menus) {
 			buffer.append(htmlForMenu(menu));
 		}
 		buffer.append("</ul>");
 		return buffer.toString();
 	}
 
-	private String htmlForMenu(Menu menu) {
+	private String htmlForMenu(IMenu menu) {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(getMenuItemHtml(menu)).append("\n");
 		if (CollectionUtils.isNotEmpty(menu.getSubMenus())) {
 			buffer.append("<ul class='submenu'>").append("\n");
-			for (Menu item : menu.getSubMenus()) {
+			for (IMenu item : menu.getSubMenus()) {
 				buffer.append(getMenuItemHtml(item)).append("\n");
 			}
 			buffer.append("</ul>").append("\n");
@@ -37,7 +37,7 @@ public class SideBarRender implements BaseRender {
 		return buffer.toString();
 	}
 
-	private String getMenuItemHtml(Menu menu) {
+	private String getMenuItemHtml(IMenu menu) {
 		String html = "";
 		if (CollectionUtils.isNotEmpty(menu.getSubMenus())) {
 			// 有子菜单

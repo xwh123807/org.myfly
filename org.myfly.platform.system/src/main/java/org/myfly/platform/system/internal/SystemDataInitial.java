@@ -1,4 +1,4 @@
-package org.myfly.platform.core.user.internal;
+package org.myfly.platform.system.internal;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -7,12 +7,12 @@ import javax.transaction.Transactional;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.context.SystemContext;
-import org.myfly.platform.core.domain.SBaseEntity;
+import org.myfly.platform.core.system.domain.IFlyEntity;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.DateUtil;
-import org.myfly.platform.system.domain.User;
 import org.myfly.platform.system.domain.SoftApp;
 import org.myfly.platform.system.domain.Tenant;
+import org.myfly.platform.system.domain.User;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -88,7 +88,7 @@ public class SystemDataInitial {
 		isInited = true;
 	}
 
-	private void saveEntity(SBaseEntity entity) {
+	private void saveEntity(IFlyEntity entity) {
 		Assert.notNull(entity);
 		try {
 			AppUtil.getFlyDataAccessService(entity.getClass().getName()).saveEntity(entity);

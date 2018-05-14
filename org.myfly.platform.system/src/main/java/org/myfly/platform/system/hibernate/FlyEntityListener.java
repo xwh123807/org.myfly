@@ -1,4 +1,4 @@
-package org.myfly.platform.core.flydata.internal.hibernate;
+package org.myfly.platform.system.hibernate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +24,7 @@ import org.myfly.platform.core.system.domain.IUser;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.system.application.queue.GlobalNameQueueProcessor;
 import org.myfly.platform.system.application.queue.IndexQueueProcessor;
-import org.myfly.platform.system.domain.SGlobalName;
+import org.myfly.platform.system.domain.GlobalName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -56,7 +56,7 @@ public class FlyEntityListener implements PostInsertEventListener, PostUpdateEve
 	public void onPostDelete(PostDeleteEvent event) {
 		if (event.getEntity() instanceof IFlyEntity) {
 			IFlyEntity entity = (IFlyEntity) event.getEntity();
-			SGlobalName nameEntity = new SGlobalName();
+			GlobalName nameEntity = new GlobalName();
 			entity.setUid((String) event.getId());
 			globalNameQueueProcessor.sendGlobalNameData(EntityOperator.DELETE, nameEntity);
 			indexQueueProcessor.sendIndexData(EntityOperator.DELETE, entity.getClass().getName(), (String) event.getId());
@@ -70,7 +70,7 @@ public class FlyEntityListener implements PostInsertEventListener, PostUpdateEve
 	public void onPostUpdate(PostUpdateEvent event) {
 		if (event.getEntity() instanceof IFlyEntity) {
 			IFlyEntity entity = (IFlyEntity) event.getEntity();
-			SGlobalName nameEntity = new SGlobalName();
+			GlobalName nameEntity = new GlobalName();
 			nameEntity.setUid(entity.getUid());
 			nameEntity.setName(entity.getName());
 			nameEntity.setInternalTable(entity.getClass().getSimpleName());
@@ -86,7 +86,7 @@ public class FlyEntityListener implements PostInsertEventListener, PostUpdateEve
 	public void onPostInsert(PostInsertEvent event) {
 		if (event.getEntity() instanceof IFlyEntity) {
 			IFlyEntity entity = (IFlyEntity) event.getEntity();
-			SGlobalName nameEntity = new SGlobalName();
+			GlobalName nameEntity = new GlobalName();
 			nameEntity.setUid(entity.getUid());
 			nameEntity.setName(entity.getName());
 			nameEntity.setInternalTable(entity.getClass().getSimpleName());

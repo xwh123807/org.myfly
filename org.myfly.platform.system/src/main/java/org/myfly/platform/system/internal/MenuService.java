@@ -1,4 +1,4 @@
-package org.myfly.platform.core.user.internal;
+package org.myfly.platform.system.internal;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -10,8 +10,9 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.context.UserContext;
-import org.myfly.platform.core.domain.SBaseEntity;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
+import org.myfly.platform.core.system.domain.IFlyEntity;
+import org.myfly.platform.core.system.domain.IMenu;
 import org.myfly.platform.core.system.service.IMenuService;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.DateUtil;
@@ -41,8 +42,8 @@ public class MenuService implements IMenuService {
 	 * org.myfly.platform.system.service.internal.IMenuService#getAllMenus()
 	 */
 	@Override
-	public List<Menu> getAllMenus() {
-		List<Menu> list = new ArrayList<>();
+	public List<IMenu> getAllMenus() {
+		List<IMenu> list = new ArrayList<>();
 		for (Menu item : dataAccessService.findAll(Menu.class, new Sort(Direction.ASC, "orderNumber"))){
 			//只返回顶级菜单
 			if (item.getParent() == null){
@@ -69,7 +70,7 @@ public class MenuService implements IMenuService {
 
 	@Override
 	@Transactional
-	public void registerMenu(Menu menu) {
+	public void registerMenu(IMenu menu) {
 		AssertUtil.parameterEmpty(menu, "menu");
 		updateMenuAudit(menu);
 		dataAccessService.saveEntity(menu);
@@ -80,11 +81,11 @@ public class MenuService implements IMenuService {
 	 * 
 	 * @param menu
 	 */
-	private void updateMenuAudit(Menu menu) {
+	private void updateMenuAudit(IMenu menu) {
 		updateAudit(menu);
 		if (CollectionUtils.isNotEmpty(menu.getSubMenus())) {
 			long orderNumber = 0;
-			for (Menu item : menu.getSubMenus()) {
+			for (IMenu item : menu.getSubMenus()) {
 				if (item.getOrderNumber() == null){
 					item.setOrderNumber(orderNumber);
 				}
@@ -100,7 +101,7 @@ public class MenuService implements IMenuService {
 	 * 
 	 * @param entity
 	 */
-	private void updateAudit(SBaseEntity entity) {
+	private void updateAudit(IFlyEntity entity) {
 		if (StringUtils.isBlank(entity.getUid())){
 			entity.setUid(UUIDUtil.newUUID());
 		}

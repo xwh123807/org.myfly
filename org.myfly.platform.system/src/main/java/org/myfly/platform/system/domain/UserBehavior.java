@@ -20,6 +20,7 @@ import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.OutlineView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
+import org.myfly.platform.core.system.domain.IUser;
 import org.myfly.platform.core.system.domain.KeyEntity;
 
 /**
@@ -59,7 +60,7 @@ public class UserBehavior extends KeyEntity {
 	@FieldView(title = "创建者")
 	@JoinColumn(name = "createdId")
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	private User createdBy;
+	private IUser createdBy;
 	/**
 	 * 访问页面
 	 */
@@ -95,11 +96,11 @@ public class UserBehavior extends KeyEntity {
 		this.created = created;
 	}
 
-	public User getCreatedBy() {
+	public IUser getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(User createdBy) {
+	public void setCreatedBy(IUser createdBy) {
 		this.createdBy = createdBy;
 	}
 

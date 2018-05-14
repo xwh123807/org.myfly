@@ -17,9 +17,9 @@ import org.myfly.platform.core.domain.ViewMode;
 import org.myfly.platform.core.metadata.internal.EntityViewInfo;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
-import org.myfly.platform.core.user.service.IMenuService;
+import org.myfly.platform.core.system.domain.IMenu;
+import org.myfly.platform.core.system.service.IMenuService;
 import org.myfly.platform.core.utils.AssertUtil;
-import org.myfly.platform.system.domain.Menu;
 import org.myfly.platform.visualpage.builder.BaseTemplateBuilder;
 import org.myfly.platform.visualpage.config.FlyVPProperties;
 import org.myfly.platform.visualpage.domain.TemplateBuilderInfo;
@@ -168,7 +168,7 @@ public class VisualPageService implements IVisualPageService {
 		if (layout == null) {
 			layout = getCurrentLayout();
 			String templateFileName = getWorkTemplatePath() + layout + "/" + viewName;
-			SideBarRender render = new SideBarRender(menuService.getAllMenus().toArray(new Menu[] {}));
+			SideBarRender render = new SideBarRender(menuService.getAllMenus().toArray(new IMenu[] {}));
 			TemplateBuilderFactory.getTemplate(getCurrentLayout(), pageType).buildTemplateFile(templateFileName,
 					render);
 			if (log.isInfoEnabled()) {
