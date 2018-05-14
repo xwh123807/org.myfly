@@ -7,7 +7,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.myfly.platform.core.domain.SBaseEntity;
 import org.myfly.platform.core.domain.SchemaConstants;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.FieldView;
@@ -17,6 +16,7 @@ import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
 import org.myfly.platform.core.metadata.define.ListStyle;
+import org.myfly.platform.core.system.domain.FlyEntity;
 
 /**
  * 职位分值定义
@@ -37,7 +37,7 @@ listViews = {
 				@FormView(name = "default", sections = {
 						@SectionView(fieldSets = { @FieldSetView(fields = { "post", "skill", "score" }) }) }) })
 @Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class PostScore extends SBaseEntity {
+public class PostScore extends FlyEntity {
 
 	/**
 	 * 

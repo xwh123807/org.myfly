@@ -6,7 +6,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.myfly.platform.core.domain.SBaseEntity;
 import org.myfly.platform.core.domain.SchemaConstants;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.FieldView;
@@ -16,6 +15,7 @@ import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
 import org.myfly.platform.core.metadata.define.ListStyle;
+import org.myfly.platform.core.system.domain.FlyEntity;
 
 /**
  * 职级
@@ -36,7 +36,7 @@ listViews = {
 				@FormView(name = "default", sections = {
 						@SectionView(fieldSets = { @FieldSetView(fields = { "name", "title", "description" }) }) }) })
 @Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Rank extends SBaseEntity {
+public class Rank extends FlyEntity {
 
 	/**
 	 * 

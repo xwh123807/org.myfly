@@ -9,7 +9,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.myfly.platform.core.domain.SBaseEntity;
 import org.myfly.platform.core.domain.SchemaConstants;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.FieldView;
@@ -20,7 +19,8 @@ import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.SubTableView;
 import org.myfly.platform.core.metadata.annotation.TableView;
 import org.myfly.platform.core.metadata.define.ListStyle;
-import org.myfly.platform.system.domain.SUser;
+import org.myfly.platform.core.system.domain.FlyEntity;
+import org.myfly.platform.core.system.domain.IUser;
 
 @Entity
 @Table(schema = SchemaConstants.HR)
@@ -35,7 +35,7 @@ listViews = {
 				@FormView(name = "default", sections = {
 						@SectionView(fieldSets = { @FieldSetView(fields = { "name", "user", "post", "totalScore" }) }),
 						@SectionView(subTables = { @SubTableView(tableAttr = "details") }) }) })
-public class PerformanceEvaluate extends SBaseEntity {
+public class PerformanceEvaluate extends FlyEntity {
 
 	/**
 	 * 
@@ -43,7 +43,7 @@ public class PerformanceEvaluate extends SBaseEntity {
 	private static final long serialVersionUID = -452531940935076679L;
 	@ManyToOne
 	@FieldView(title = "用户")
-	private SUser user;
+	private IUser user;
 	@Column
 	@FieldView(title = "期间")
 	private Date period;
@@ -56,11 +56,11 @@ public class PerformanceEvaluate extends SBaseEntity {
 	@OneToMany(mappedBy = "performanceEvaluate")
 	private Set<PerformanceEvaluateDetail> details;
 
-	public SUser getUser() {
+	public IUser getUser() {
 		return user;
 	}
 
-	public void setUser(SUser user) {
+	public void setUser(IUser user) {
 		this.user = user;
 	}
 

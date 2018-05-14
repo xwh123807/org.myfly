@@ -18,24 +18,24 @@ import org.myfly.apps.hr.domain.Rank;
 import org.myfly.apps.hr.domain.Skill;
 import org.myfly.apps.hr.domain.Special;
 import org.myfly.platform.core.context.UserContext;
-import org.myfly.platform.core.domain.SBaseEntity;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
+import org.myfly.platform.core.system.domain.FlyEntity;
+import org.myfly.platform.core.system.domain.IUser;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
-import org.myfly.platform.system.domain.SUser;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SampleDataBuilder {
-	private interface IEntityBuilder<T extends SBaseEntity> {
+	private interface IEntityBuilder<T extends FlyEntity> {
 		T buildEntity(Object[] data);
 	}
 
 	private <T> Map<String, T> buildEntityMap(Object[][] datas, IEntityBuilder<?> builder) {
 		Map<String, T> result = new LinkedHashMap<>();
 		for (Object[] data : datas) {
-			SBaseEntity entity = builder.buildEntity(data);
+			FlyEntity entity = builder.buildEntity(data);
 			result.put(entity.getName(), (T) entity);
 		}
 		return result;
@@ -255,7 +255,7 @@ public class SampleDataBuilder {
 			@Override
 			public PerformanceEvaluate buildEntity(Object[] data) {
 				PerformanceEvaluate entity = new PerformanceEvaluate();
-				entity.setUser((SUser) data[0]);
+				entity.setUser((IUser) data[0]);
 				entity.setPost(posts.get(data[1]));
 				entity.setPeriod(DateUtil.nowDate());
 				entity.setTotalScore((Long) data[2]);

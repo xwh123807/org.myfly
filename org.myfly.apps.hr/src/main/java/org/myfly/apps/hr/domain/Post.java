@@ -10,7 +10,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.myfly.platform.core.domain.SBaseEntity;
 import org.myfly.platform.core.domain.SchemaConstants;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.FieldView;
@@ -21,6 +20,7 @@ import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.SubTableView;
 import org.myfly.platform.core.metadata.annotation.TableView;
 import org.myfly.platform.core.metadata.define.ListStyle;
+import org.myfly.platform.core.system.domain.FlyEntity;
 
 /**
  * 职位
@@ -45,7 +45,7 @@ listViews = {
 								@SectionView(subTables = { @SubTableView(tableAttr = "postSkillDescs"),
 										@SubTableView(tableAttr = "postScores") }) }) })
 @Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Post extends SBaseEntity {
+public class Post extends FlyEntity {
 
 	/**
 	 * 

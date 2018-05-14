@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.myfly.platform.core.domain.SBaseEntity;
 import org.myfly.platform.core.domain.SchemaConstants;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.FieldView;
@@ -15,6 +14,7 @@ import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
 import org.myfly.platform.core.metadata.define.ListStyle;
+import org.myfly.platform.core.system.domain.FlyEntity;
 
 @Entity
 @Table(schema = SchemaConstants.HR)
@@ -28,7 +28,7 @@ listViews = {
 				//
 				@FormView(name = "default", sections = {
 						@SectionView(fieldSets = { @FieldSetView(fields = { "name", "skill", "score" }) }) }) })
-public class PerformanceEvaluateDetail extends SBaseEntity {
+public class PerformanceEvaluateDetail extends FlyEntity {
 	/**
 	 * 
 	 */
