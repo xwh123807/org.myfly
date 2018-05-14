@@ -9,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.myfly.platform.core.domain.SKeyEntity;
 import org.myfly.platform.core.domain.SchemaConstants;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.FieldView;
@@ -21,7 +20,8 @@ import org.myfly.platform.core.metadata.annotation.OutlineView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
 import org.myfly.platform.core.metadata.define.SQLOperator;
-import org.myfly.platform.core.user.domain.SUser;
+import org.myfly.platform.core.system.domain.IUser;
+import org.myfly.platform.core.system.domain.KeyEntity;
 
 /**
  * Http 访问日志
@@ -48,7 +48,7 @@ listViews = @ListView(fields = { "host", "created", "method", "url", "status", "
 								outlineViews = @OutlineView(title = "访问日志", sections = { @SectionView(fieldSets = {
 										@FieldSetView(title = "访问日志", fields = { "host", "created", "method", "url",
 												"status", "usedtime", "referer", "createdBy" }) }) }) )
-public class AccessLog extends SKeyEntity {
+public class AccessLog extends KeyEntity {
 	/**
 	 * 
 	 */
@@ -65,7 +65,7 @@ public class AccessLog extends SKeyEntity {
 	@FieldView(title = "访问人")
 	@JoinColumn(name = "createdId")
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	private SUser createdBy;
+	private IUser createdBy;
 	/**
 	 * 访问方式 GET|POST
 	 */
@@ -124,11 +124,11 @@ public class AccessLog extends SKeyEntity {
 		this.created = created;
 	}
 
-	public SUser getCreatedBy() {
+	public IUser getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(SUser createdBy) {
+	public void setCreatedBy(IUser createdBy) {
 		this.createdBy = createdBy;
 	}
 

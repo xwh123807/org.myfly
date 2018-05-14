@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.myfly.platform.core.domain.SBaseEntity;
 import org.myfly.platform.core.domain.SchemaConstants;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.FieldView;
@@ -13,6 +12,7 @@ import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
+import org.myfly.platform.core.system.domain.FlyEntity;
 
 /**
  * 系统字典
@@ -31,7 +31,7 @@ listViews = @ListView(fields = { "name", "description", "active", "createdBy", "
 formViews = @FormView(sections = { @SectionView(title = "系统字典信息", fieldSets = {
 		@FieldSetView(title = "基本信息", fields = { "name", "description" }),
 		@FieldSetView(title = "审计", fields = { "active", "createdBy", "created", "updatedBy", "updated" }) }) }) )
-public class Dictionary extends SBaseEntity {
+public class Dictionary extends FlyEntity {
 
 	/**
 	 * 
@@ -46,7 +46,6 @@ public class Dictionary extends SBaseEntity {
 	private String description;
 
 	public Dictionary() {
-		setInternalTable("SDictionary");
 	}
 
 	public String getDescription() {

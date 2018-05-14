@@ -7,10 +7,10 @@ import java.util.Map;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
-import org.myfly.platform.core.domain.SKeyEntity;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.system.domain.KeyEntity;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 
@@ -160,8 +160,8 @@ public class EntityUtil {
 						if (FieldDataType.SYSENUM.equals(field.getDataType())) {
 							value = ((Enum<?>) value).name();
 						}
-						if (value instanceof SKeyEntity) {
-							value = ((SKeyEntity) value).getUid();
+						if (value instanceof KeyEntity) {
+							value = ((KeyEntity) value).getUid();
 						}
 					}
 				} catch (Exception e) {

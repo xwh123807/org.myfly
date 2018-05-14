@@ -12,7 +12,7 @@ import org.myfly.platform.core.domain.AppStartLevel;
 import org.myfly.platform.core.flydata.config.FlyDataProperties;
 import org.myfly.platform.core.metadata.internal.FileMetaDataRegister;
 import org.myfly.platform.core.spring.ExtendConvertersRegister;
-import org.myfly.platform.core.user.service.IMenuService;
+import org.myfly.platform.core.system.service.IMenuService;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;

@@ -2,7 +2,7 @@ package org.myfly.platform.core.starter;
 
 import org.myfly.platform.core.domain.AppStartLevel;
 import org.myfly.platform.core.metadata.service.IMetaDataRegister;
-import org.myfly.platform.core.user.service.IMenuService;
+import org.myfly.platform.core.system.service.IMenuService;
 
 /**
  * 微服务配置接口，需要初始化时，微服务实现此接口

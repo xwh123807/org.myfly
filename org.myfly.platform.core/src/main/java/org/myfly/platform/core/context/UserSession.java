@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.myfly.platform.core.domain.AlertInfo;
-import org.myfly.platform.core.user.domain.SUser;
-import org.myfly.platform.core.user.domain.Tenant;
+import org.myfly.platform.core.system.domain.ITenant;
+import org.myfly.platform.core.system.domain.IUser;
 
 /**
  * 用户会话信息，成功登录后登记
@@ -21,11 +21,11 @@ public class UserSession implements Serializable {
 	/**
 	 * 用户
 	 */
-	private SUser user;
+	private IUser user;
 	/**
 	 * 租户
 	 */
-	private Tenant tenant;
+	private ITenant tenant;
 	/**
 	 * 登录时间
 	 */
@@ -43,19 +43,19 @@ public class UserSession implements Serializable {
 	 */
 	private AlertInfo alertInfo;
 
-	public SUser getUser() {
+	public IUser getUser() {
 		return user;
 	}
 
-	public void setUser(SUser user) {
+	public void setUser(IUser user) {
 		this.user = user;
 	}
 
-	public Tenant getTenant() {
+	public ITenant getTenant() {
 		return tenant;
 	}
 
-	public void setTenant(Tenant tenant) {
+	public void setTenant(ITenant tenant) {
 		this.tenant = tenant;
 	}
 

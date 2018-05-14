@@ -17,14 +17,14 @@ import org.hibernate.event.spi.PreUpdateEventListener;
 import org.hibernate.persister.entity.EntityPersister;
 import org.myfly.platform.core.context.UserContext;
 import org.myfly.platform.core.context.UserSession;
-import org.myfly.platform.core.domain.SBaseEntity;
 import org.myfly.platform.core.flydata.queue.EntityOperator;
-import org.myfly.platform.core.flydata.queue.GlobalNameQueueProcessor;
-import org.myfly.platform.core.flydata.queue.IndexQueueProcessor;
-import org.myfly.platform.core.user.domain.SGlobalName;
-import org.myfly.platform.core.user.domain.SUser;
-import org.myfly.platform.core.user.domain.Tenant;
+import org.myfly.platform.core.system.domain.IFlyEntity;
+import org.myfly.platform.core.system.domain.ITenant;
+import org.myfly.platform.core.system.domain.IUser;
 import org.myfly.platform.core.utils.DateUtil;
+import org.myfly.platform.system.application.queue.GlobalNameQueueProcessor;
+import org.myfly.platform.system.application.queue.IndexQueueProcessor;
+import org.myfly.platform.system.domain.SGlobalName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -54,8 +54,8 @@ public class FlyEntityListener implements PostInsertEventListener, PostUpdateEve
 	 */
 	@Override
 	public void onPostDelete(PostDeleteEvent event) {
-		if (event.getEntity() instanceof SBaseEntity) {
-			SBaseEntity entity = (SBaseEntity) event.getEntity();
+		if (event.getEntity() instanceof IFlyEntity) {
+			IFlyEntity entity = (IFlyEntity) event.getEntity();
 			SGlobalName nameEntity = new SGlobalName();
 			entity.setUid((String) event.getId());
 			globalNameQueueProcessor.sendGlobalNameData(EntityOperator.DELETE, nameEntity);
@@ -68,8 +68,8 @@ public class FlyEntityListener implements PostInsertEventListener, PostUpdateEve
 	 */
 	@Override
 	public void onPostUpdate(PostUpdateEvent event) {
-		if (event.getEntity() instanceof SBaseEntity) {
-			SBaseEntity entity = (SBaseEntity) event.getEntity();
+		if (event.getEntity() instanceof IFlyEntity) {
+			IFlyEntity entity = (IFlyEntity) event.getEntity();
 			SGlobalName nameEntity = new SGlobalName();
 			nameEntity.setUid(entity.getUid());
 			nameEntity.setName(entity.getName());
@@ -84,8 +84,8 @@ public class FlyEntityListener implements PostInsertEventListener, PostUpdateEve
 	 */
 	@Override
 	public void onPostInsert(PostInsertEvent event) {
-		if (event.getEntity() instanceof SBaseEntity) {
-			SBaseEntity entity = (SBaseEntity) event.getEntity();
+		if (event.getEntity() instanceof IFlyEntity) {
+			IFlyEntity entity = (IFlyEntity) event.getEntity();
 			SGlobalName nameEntity = new SGlobalName();
 			nameEntity.setUid(entity.getUid());
 			nameEntity.setName(entity.getName());
@@ -145,10 +145,10 @@ public class FlyEntityListener implements PostInsertEventListener, PostUpdateEve
 	 */
 	@Override
 	public boolean onPreInsert(PreInsertEvent event) {
-		if (event.getEntity() instanceof SBaseEntity && !(event.getEntity() instanceof Tenant)
-				&& !(event.getEntity() instanceof SUser)) {
+		if (event.getEntity() instanceof IFlyEntity && !(event.getEntity() instanceof ITenant)
+				&& !(event.getEntity() instanceof IUser)) {
 			if (ProperyIndexCache.containsEntity(event.getEntityName(), event.getPersister())) {
-				SBaseEntity entity = (SBaseEntity) event.getEntity();
+				IFlyEntity entity = (IFlyEntity) event.getEntity();
 				entity.setCreated(DateUtil.nowSqlTimestamp());
 				UserSession userSession = UserContext.getUserSession();
 				entity.setCreatedBy(userSession.getUser());
@@ -171,10 +171,10 @@ public class FlyEntityListener implements PostInsertEventListener, PostUpdateEve
 	 */
 	@Override
 	public boolean onPreUpdate(PreUpdateEvent event) {
-		if (event.getEntity() instanceof SBaseEntity && !(event.getEntity() instanceof Tenant)
-				&& !(event.getEntity() instanceof SUser)) {
+		if (event.getEntity() instanceof IFlyEntity && !(event.getEntity() instanceof ITenant)
+				&& !(event.getEntity() instanceof IUser)) {
 			if (ProperyIndexCache.containsEntity(event.getEntityName(), event.getPersister())) {
-				SBaseEntity entity = (SBaseEntity) event.getEntity();
+				IFlyEntity entity = (IFlyEntity) event.getEntity();
 				entity.setUpdated(DateUtil.nowSqlTimestamp());
 				UserSession userSession = UserContext.getUserSession();
 				entity.setUpdatedBy(userSession.getUser());

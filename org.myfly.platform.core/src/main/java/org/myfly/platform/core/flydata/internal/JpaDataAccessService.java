@@ -10,10 +10,10 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.core.domain.SKeyEntity;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
+import org.myfly.platform.core.system.domain.IKeyEntity;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -464,7 +464,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 		AssertUtil.parameterEmpty(name, "name");
 		Map<String, Object> params = new HashMap<>();
 		params.put("name", name);
-		List<? extends SKeyEntity> items = findAll(tableName, params);
+		List<? extends IKeyEntity> items = findAll(tableName, params);
 		if (items.size() != 1) {
 			AssertUtil.parameterInvalide("name",
 					"实体[" + tableName + "]只能有一条记录Name=[" + name + "]，实际是[" + items.size() + "]条");
@@ -501,9 +501,9 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 * @param entity
 	 */
 	private void beforeInsertFlyEntity(Object entity) {
-		SKeyEntity entity2 = null;
-		if (entity instanceof SKeyEntity) {
-			entity2 = (SKeyEntity) entity;
+		IKeyEntity entity2 = null;
+		if (entity instanceof IKeyEntity) {
+			entity2 = (IKeyEntity) entity;
 			if (StringUtils.isBlank(entity2.getUid())) {
 				entity2.setUid(UUIDUtil.newUUID());
 			}

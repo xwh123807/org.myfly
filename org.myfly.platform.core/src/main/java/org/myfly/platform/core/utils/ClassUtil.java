@@ -22,7 +22,7 @@ import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.domain.BaseEnum;
-import org.myfly.platform.core.domain.SKeyEntity;
+import org.myfly.platform.core.system.domain.KeyEntity;
 
 public class ClassUtil {
 	private static final Log log = LogFactory.getLog(ClassUtil.class);
@@ -116,10 +116,10 @@ public class ClassUtil {
 	 * @return
 	 */
 	public static <T> T convert(Object source, Class<T> targetType) {
-		if (targetType.getSuperclass() == SKeyEntity.class && source instanceof String) {
+		if (targetType.getSuperclass() == KeyEntity.class && source instanceof String) {
 			// 为实体查找关系
 			try {
-				SKeyEntity entity = (SKeyEntity) targetType.newInstance();
+				KeyEntity entity = (KeyEntity) targetType.newInstance();
 				entity.setUid((String) source);
 				return (T) entity;
 			} catch (Exception e) {

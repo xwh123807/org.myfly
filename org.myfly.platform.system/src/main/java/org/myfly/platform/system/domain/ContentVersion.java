@@ -1,6 +1,6 @@
 package org.myfly.platform.system.domain;
 
-import org.myfly.platform.core.domain.SBaseEntity;
+import org.myfly.platform.core.system.domain.FlyEntity;
 
 /**
  * 内容版本
@@ -15,7 +15,7 @@ import org.myfly.platform.core.domain.SBaseEntity;
  * @author xiangwanhong
  *
  */
-public class ContentVersion extends SBaseEntity{
+public class ContentVersion extends FlyEntity{
 
 	/**
 	 * 

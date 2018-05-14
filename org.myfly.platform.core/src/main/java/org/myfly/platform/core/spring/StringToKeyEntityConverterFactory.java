@@ -1,6 +1,6 @@
 package org.myfly.platform.core.spring;
 
-import org.myfly.platform.core.domain.IKeyEntity;
+import org.myfly.platform.core.system.domain.IKeyEntity;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
 

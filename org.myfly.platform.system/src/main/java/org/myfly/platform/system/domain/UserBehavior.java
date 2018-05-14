@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.myfly.platform.core.domain.SKeyEntity;
 import org.myfly.platform.core.domain.SchemaConstants;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.FieldView;
@@ -21,7 +20,7 @@ import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.OutlineView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
-import org.myfly.platform.core.user.domain.SUser;
+import org.myfly.platform.core.system.domain.KeyEntity;
 
 /**
  * 用户行为记录表
@@ -43,7 +42,7 @@ formViews = @FormView(sections = { @SectionView(title = "用户行为信息", fi
 		outlineViews = @OutlineView(title = "用户行为信息", sections = {
 				@SectionView(fieldSets = { @FieldSetView(title = "用户行为信息", fields = { "created", "createdBy",
 						"userAction", "url", "referer" }) }) }) )
-public class UserBehavior extends SKeyEntity {
+public class UserBehavior extends KeyEntity {
 	/**
 	 * 
 	 */
@@ -60,7 +59,7 @@ public class UserBehavior extends SKeyEntity {
 	@FieldView(title = "创建者")
 	@JoinColumn(name = "createdId")
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	private SUser createdBy;
+	private User createdBy;
 	/**
 	 * 访问页面
 	 */
@@ -96,11 +95,11 @@ public class UserBehavior extends SKeyEntity {
 		this.created = created;
 	}
 
-	public SUser getCreatedBy() {
+	public User getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(SUser createdBy) {
+	public void setCreatedBy(User createdBy) {
 		this.createdBy = createdBy;
 	}
 

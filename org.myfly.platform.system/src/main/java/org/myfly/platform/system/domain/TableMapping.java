@@ -7,8 +7,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NaturalId;
-import org.myfly.platform.core.domain.SKeyEntity;
 import org.myfly.platform.core.domain.SchemaConstants;
+import org.myfly.platform.core.system.domain.KeyEntity;
 
 /**
  * 表和实体对应关系，用于知道数据库表名，查找Hibernate Entity名称
@@ -18,7 +18,7 @@ import org.myfly.platform.core.domain.SchemaConstants;
 @Entity
 @Table(schema=SchemaConstants.PB)
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class TableMapping extends SKeyEntity{
+public class TableMapping extends KeyEntity{
 
 	/**
 	 * 

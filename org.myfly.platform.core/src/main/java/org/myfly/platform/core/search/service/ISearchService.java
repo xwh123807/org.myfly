@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.elasticsearch.action.search.SearchResponse;
-import org.myfly.platform.core.domain.SKeyEntity;
+import org.myfly.platform.core.system.domain.IKeyEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.elasticsearch.core.query.DeleteQuery;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
@@ -62,32 +62,32 @@ public interface ISearchService {
 	 * @param domainClass
 	 * @return
 	 */
-	<T extends SKeyEntity> boolean createIndex(Class<T> domainClass);
+	<T extends IKeyEntity> boolean createIndex(Class<T> domainClass);
 	
 	/**
 	 * 删除Fly实体类索引
 	 * @param domainClass
 	 * @return
 	 */
-	<T extends SKeyEntity> boolean deleteIndex(Class<T> domainClass);
+	<T extends IKeyEntity> boolean deleteIndex(Class<T> domainClass);
 	
 	/**
 	 * 为实体对象创建索引
 	 * @param document
 	 */
-	<T extends SKeyEntity> void index(T entity);
+	<T extends IKeyEntity> void index(T entity);
 	
 	/**
 	 * 更新实体对象索引
 	 * @param entity
 	 */
-	<T extends SKeyEntity> void update(T entity);
+	<T extends IKeyEntity> void update(T entity);
 	
 	/**
 	 * 删除索引
 	 * @param entity
 	 */
-	<T extends SKeyEntity> void delete(T entity);
+	<T extends IKeyEntity> void delete(T entity);
 	
 	/**
 	 * 为对象创建索引

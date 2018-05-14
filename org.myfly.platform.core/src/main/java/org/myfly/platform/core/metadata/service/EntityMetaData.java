@@ -13,7 +13,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.domain.FieldDataType;
-import org.myfly.platform.core.domain.SKeyEntity;
 import org.myfly.platform.core.metadata.annotation.FormView;
 import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
@@ -24,6 +23,7 @@ import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 import org.myfly.platform.core.metadata.define.SearchRelationGetFieldValueHandler;
 import org.myfly.platform.core.metadata.define.TableDefinition;
+import org.myfly.platform.core.system.domain.IFlyEntity;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.springframework.util.Assert;
@@ -104,7 +104,7 @@ public class EntityMetaData implements Serializable {
 	public EntityMetaData(Class<?> entityClass) {
 		AssertUtil.parameterEmpty(entityClass, "entityClass");
 		this.setEntityClass(entityClass);
-		if (entityClass.getSuperclass() == SKeyEntity.class) {
+		if (entityClass.getSuperclass() == IFlyEntity.class) {
 			this.setFlyEntity(true);
 		}
 		this.setEntityName(ClassUtils.getShortClassName(entityClass));

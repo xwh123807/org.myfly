@@ -4,11 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.myfly.platform.core.domain.SBaseEntity;
 import org.myfly.platform.core.domain.SchemaConstants;
 import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.TableView;
+import org.myfly.platform.core.system.domain.FlyEntity;
 
 /**
  * 导出日志，包括导出Excel、导出Pdf、下载附件时，记录日志，并存储导出文件快照
@@ -19,7 +19,7 @@ import org.myfly.platform.core.metadata.annotation.TableView;
 @Entity
 @Table(schema=SchemaConstants.PB)
 @MetaDataView(tableView=@TableView(title="导出日志"))
-public class ExportLog extends SBaseEntity{
+public class ExportLog extends FlyEntity{
 
 	/**
 	 * 

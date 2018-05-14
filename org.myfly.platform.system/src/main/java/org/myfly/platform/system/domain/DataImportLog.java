@@ -8,7 +8,6 @@ import javax.persistence.Table;
 
 import org.myfly.platform.core.domain.DataImportState;
 import org.myfly.platform.core.domain.FieldDataType;
-import org.myfly.platform.core.domain.SBaseEntity;
 import org.myfly.platform.core.domain.SchemaConstants;
 import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.metadata.annotation.FilterView;
@@ -16,6 +15,7 @@ import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.TableView;
 import org.myfly.platform.core.metadata.define.SQLOperator;
+import org.myfly.platform.core.system.domain.FlyEntity;
 
 /**
  * 数据导入日志
@@ -35,7 +35,7 @@ listViews = @ListView(name = "default", title = "数据导入日志", fields = {
 				@FilterView(field = "createdBy", operator = SQLOperator.EQUAL),
 				@FilterView(field = "groupUid", operator = SQLOperator.EQUAL, show = false) }) )
 @Entity
-public class DataImportLog extends SBaseEntity {
+public class DataImportLog extends FlyEntity {
 	/**
 	 * 
 	 */

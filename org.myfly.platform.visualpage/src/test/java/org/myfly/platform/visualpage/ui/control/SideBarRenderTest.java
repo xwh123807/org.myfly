@@ -4,8 +4,8 @@ import java.net.URL;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.core.user.domain.Menu;
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.system.domain.Menu;
 import org.myfly.platform.visualpage.ui.control.SideBarRender;
 
 public class SideBarRenderTest {

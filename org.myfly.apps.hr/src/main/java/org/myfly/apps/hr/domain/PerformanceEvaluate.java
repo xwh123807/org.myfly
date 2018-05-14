@@ -20,7 +20,7 @@ import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.SubTableView;
 import org.myfly.platform.core.metadata.annotation.TableView;
 import org.myfly.platform.core.metadata.define.ListStyle;
-import org.myfly.platform.core.user.domain.SUser;
+import org.myfly.platform.system.domain.SUser;
 
 @Entity
 @Table(schema = SchemaConstants.HR)

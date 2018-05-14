@@ -14,7 +14,6 @@ import javax.transaction.Transactional;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.domain.FieldDataType;
-import org.myfly.platform.core.domain.SKeyEntity;
 import org.myfly.platform.core.flydata.service.EntityMap;
 import org.myfly.platform.core.flydata.service.EntityQueryMap;
 import org.myfly.platform.core.flydata.service.FlyEntityMap;
@@ -25,6 +24,7 @@ import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 import org.myfly.platform.core.metadata.define.SQLOperator;
 import org.myfly.platform.core.metadata.define.SubTableDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.system.domain.IKeyEntity;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -67,9 +67,9 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 		Serializable pkValue = entityMetaData.getPKFieldDefinition().buildPK(uid);
 		Object result = getJpaDataAccessService().findOne(entityName, pkValue);
 		if (result != null) {
-			if (result instanceof SKeyEntity) {
+			if (result instanceof IKeyEntity) {
 				try {
-					String value = ((SKeyEntity) result).getUid();
+					String value = ((IKeyEntity) result).getUid();
 					Assert.hasLength(value);
 				} catch (Exception e) {
 					return null;

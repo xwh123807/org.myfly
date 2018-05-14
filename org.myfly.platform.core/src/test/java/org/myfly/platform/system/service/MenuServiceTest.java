@@ -5,8 +5,8 @@ import java.util.Set;
 
 import org.junit.Test;
 import org.myfly.platform.CoreApplication;
-import org.myfly.platform.core.user.domain.Menu;
 import org.myfly.platform.core.user.service.IMenuService;
+import org.myfly.platform.system.domain.Menu;
 import org.myfly.platform.test.ServiceTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;

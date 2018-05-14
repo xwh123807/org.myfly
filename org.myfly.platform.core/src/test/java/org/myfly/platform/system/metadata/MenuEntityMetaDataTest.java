@@ -1,7 +1,7 @@
 package org.myfly.platform.system.metadata;
 
 import org.myfly.platform.core.test.EntityMetaDataTestCase;
-import org.myfly.platform.core.user.domain.Menu;
+import org.myfly.platform.system.domain.Menu;
 
 public class MenuEntityMetaDataTest extends EntityMetaDataTestCase<Menu> {
 

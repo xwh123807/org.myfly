@@ -9,13 +9,13 @@ import org.apache.commons.lang.ClassUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.elasticsearch.action.search.SearchResponse;
-import org.myfly.platform.core.domain.SKeyEntity;
 import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.search.service.ISearchService;
+import org.myfly.platform.core.system.domain.IKeyEntity;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,26 +71,26 @@ public class SearchService implements ISearchService {
 	}
 
 	@Override
-	public <T extends SKeyEntity> boolean createIndex(Class<T> domainClass) {
+	public <T extends IKeyEntity> boolean createIndex(Class<T> domainClass) {
 		Assert.notNull(domainClass);
 		return searchTemplate.createIndex(domainClass);
 	}
 
 	@Override
-	public <T extends SKeyEntity> boolean deleteIndex(Class<T> domainClass) {
+	public <T extends IKeyEntity> boolean deleteIndex(Class<T> domainClass) {
 		Assert.notNull(domainClass);
 		return searchTemplate.deleteIndex(domainClass);
 	}
 
 	@Override
-	public <T extends SKeyEntity> void index(T entity) {
+	public <T extends IKeyEntity> void index(T entity) {
 		Assert.notNull(entity);
 		Assert.hasLength(entity.getUid());
 		index(entity, entity.getUid());
 	}
 
 	@Override
-	public <T extends SKeyEntity> void update(T entity) {
+	public <T extends IKeyEntity> void update(T entity) {
 		Assert.notNull(entity);
 		Assert.hasLength(entity.getUid());
 		update(entity, entity.getUid());
@@ -119,7 +119,7 @@ public class SearchService implements ISearchService {
 	}
 
 	@Override
-	public <T extends SKeyEntity> void delete(T entity) {
+	public <T extends IKeyEntity> void delete(T entity) {
 		Assert.notNull(entity);
 		Assert.hasLength(entity.getUid());
 		String indexName = getIndexName(entity.getClass());

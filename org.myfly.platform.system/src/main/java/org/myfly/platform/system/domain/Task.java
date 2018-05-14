@@ -11,7 +11,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 import org.myfly.platform.core.domain.FieldDataType;
-import org.myfly.platform.core.domain.SBaseEntity;
 import org.myfly.platform.core.domain.SchemaConstants;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.FieldView;
@@ -21,7 +20,7 @@ import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
-import org.myfly.platform.core.user.domain.EnumValue;
+import org.myfly.platform.core.system.domain.FlyEntity;
 
 /**
  * 任务
@@ -73,7 +72,7 @@ formViews = {
 		@FormView(name = "task") },
 		//
 		listViews = { @ListView(name = "default", fields = { "name", "accountId", "phone", "email", "ownerId" }) })
-public class Task extends SBaseEntity {
+public class Task extends FlyEntity {
 
 	/**
 	 * 

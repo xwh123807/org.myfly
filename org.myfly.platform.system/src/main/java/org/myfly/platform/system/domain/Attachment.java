@@ -7,7 +7,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
-import org.myfly.platform.core.domain.SBaseEntity;
 import org.myfly.platform.core.domain.SchemaConstants;
 import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.metadata.annotation.ListView;
@@ -15,6 +14,7 @@ import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.TableView;
 import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.metadata.define.ListStyle;
+import org.myfly.platform.core.system.domain.FlyEntity;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 /**
@@ -52,7 +52,7 @@ listViews = {
 				"createdBy" }, listStyle = ListStyle.CARDLIST, listActions = { EntityAction.UPLOAD }, itemActions = {
 						EntityAction.VIEW }) })
 @Document(indexName="attachment")
-public class Attachment extends SBaseEntity {
+public class Attachment extends FlyEntity {
 
 	/**
 	 * 

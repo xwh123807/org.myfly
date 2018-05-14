@@ -3,8 +3,8 @@ package org.myfly.platform.system.core;
 import org.junit.Before;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.test.EntityActionsWebPageTestCase;
-import org.myfly.platform.core.user.domain.Menu;
 import org.myfly.platform.core.utils.UUIDUtil;
+import org.myfly.platform.system.domain.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class MenuWebPageTest extends EntityActionsWebPageTestCase<Menu, String> {

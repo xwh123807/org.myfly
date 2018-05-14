@@ -5,9 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import org.myfly.platform.core.domain.DBType;
-import org.myfly.platform.core.domain.SBaseEntity;
 import org.myfly.platform.core.domain.SchemaConstants;
 import org.myfly.platform.core.metadata.annotation.FieldView;
+import org.myfly.platform.core.system.domain.FlyEntity;
 
 /**
  * 数据库连接配置信息
@@ -17,7 +17,7 @@ import org.myfly.platform.core.metadata.annotation.FieldView;
  */
 @Entity
 @Table(schema = SchemaConstants.PM)
-public class MDataSource extends SBaseEntity {
+public class MDataSource extends FlyEntity {
 	/**
 	 * 
 	 */

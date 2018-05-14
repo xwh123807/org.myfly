@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.myfly.platform.core.domain.SKeyEntity;
 import org.myfly.platform.core.domain.SchemaConstants;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.FieldView;
@@ -17,6 +16,7 @@ import org.myfly.platform.core.metadata.annotation.OutlineView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
 import org.myfly.platform.core.metadata.define.ListStyle;
+import org.myfly.platform.core.system.domain.KeyEntity;
 
 /**
  * 系统监控数据，定时收集
@@ -38,7 +38,7 @@ listViews = @ListView(fields = { "created", "name",
 				//
 				outlineViews = @OutlineView(title = "监控数据", sections = { @SectionView(fieldSets = {
 						@FieldSetView(title = "监控数据", fields = { "created", "name", "value" }) }) }) )
-public class SystemMetrics extends SKeyEntity {
+public class SystemMetrics extends KeyEntity {
 	/**
 	 * 
 	 */

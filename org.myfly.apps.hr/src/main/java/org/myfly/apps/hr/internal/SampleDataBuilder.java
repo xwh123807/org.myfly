@@ -20,10 +20,10 @@ import org.myfly.apps.hr.domain.Special;
 import org.myfly.platform.core.context.UserContext;
 import org.myfly.platform.core.domain.SBaseEntity;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
-import org.myfly.platform.core.user.domain.SUser;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
+import org.myfly.platform.system.domain.SUser;
 import org.springframework.stereotype.Component;
 
 @Component
