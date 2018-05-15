@@ -27,7 +27,7 @@ public class MetaDataDefinition extends BaseDenifition {
 		setFormDefinitions(view.formViews());
 		setOutlineDefinitions(view.outlineViews());
 	}
-
+	
 	private void setOutlineDefinitions(OutlineView[] outlineViews) {
 		outlineDefinitions = FuncUtil.convert(outlineViews, new ConvertAction<OutlineView, OutlineDefinition>() {
 
