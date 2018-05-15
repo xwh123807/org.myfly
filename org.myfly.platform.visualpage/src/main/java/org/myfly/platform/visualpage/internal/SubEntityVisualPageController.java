@@ -16,7 +16,7 @@ import org.myfly.platform.core.domain.ViewMode;
 import org.myfly.platform.core.flydata.service.EntityMap;
 import org.myfly.platform.core.flydata.service.EntityQueryMap;
 import org.myfly.platform.core.flydata.service.FlyEntityMap;
-import org.myfly.platform.core.metadata.define.EntityAction;
+import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.EntityUrlUtil;
 import org.myfly.platform.core.utils.HttpUtil;

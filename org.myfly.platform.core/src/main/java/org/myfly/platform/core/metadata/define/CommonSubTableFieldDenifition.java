@@ -2,6 +2,7 @@ package org.myfly.platform.core.metadata.define;
 
 import org.apache.commons.lang.ClassUtils;
 import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.metadata.annotation.CommonSubTableType;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AppUtil;
 import org.springframework.util.Assert;
@@ -17,13 +18,13 @@ public class CommonSubTableFieldDenifition extends FieldDefinition {
 			String relationClass) {
 		setDataType(FieldDataType.FLYMDRELATION);
 		setName(commonSubTableType.getAttrName());
-		setLabel(commonSubTableType.getTitle());
+		setTitle(commonSubTableType.getTitle());
 		setRelationClass(commonSubTableType.getTableClass());
 		setRelationTable(ClassUtils.getShortClassName(commonSubTableType.getTableClass()));
 		setType(String.class);
 
 		FieldDefinition fieldDefinition = new FieldDefinition();
-		fieldDefinition.setLabel("临时，读取时更新");
+		fieldDefinition.setTitle("临时，读取时更新");
 		fieldDefinition.setName(commonSubTableType.getParentAttrName());
 		fieldDefinition.setRelationTable(relationTable);
 		fieldDefinition.setRelationClass(relationClass);

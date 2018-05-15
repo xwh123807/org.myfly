@@ -1,6 +1,6 @@
 package org.myfly.platform.visualpage.ui.control;
 
-import org.myfly.platform.core.metadata.define.EntityAction;
+import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.FormDefinition;
 import org.myfly.platform.core.utils.EntityUrlUtil;
 import org.myfly.platform.core.utils.HtmlUtils;

@@ -6,8 +6,6 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import org.myfly.platform.core.metadata.define.SQLOperator;
-
 /**
  * 过滤器注解，用于定义实体查询条件。<br>
  * 1、可用于在ListView注解中定义列表视图的过滤条件；<br>

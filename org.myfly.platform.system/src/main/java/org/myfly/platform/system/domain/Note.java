@@ -6,18 +6,18 @@ import javax.persistence.Table;
 
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.domain.SchemaConstants;
+import org.myfly.platform.core.metadata.annotation.CommonSubTableType;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.metadata.annotation.FlySearchRelation;
 import org.myfly.platform.core.metadata.annotation.FormView;
+import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
+import org.myfly.platform.core.metadata.annotation.OrderType;
 import org.myfly.platform.core.metadata.annotation.OrderView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
-import org.myfly.platform.core.metadata.define.CommonSubTableType;
-import org.myfly.platform.core.metadata.define.ListStyle;
-import org.myfly.platform.core.metadata.define.OrderType;
 import org.myfly.platform.core.system.domain.FlyEntity;
 
 /**

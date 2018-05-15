@@ -2,7 +2,7 @@ package org.myfly.platform.visualpage.ui.view;
 
 import org.myfly.platform.core.domain.ViewMode;
 import org.myfly.platform.core.domain.ViewType;
-import org.myfly.platform.core.metadata.define.EntityAction;
+import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.FormDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;

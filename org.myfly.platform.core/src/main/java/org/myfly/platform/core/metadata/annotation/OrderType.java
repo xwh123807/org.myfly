@@ -1,4 +1,4 @@
-package org.myfly.platform.core.metadata.define;
+package org.myfly.platform.core.metadata.annotation;
 
 import org.myfly.platform.core.domain.BaseEnum;
 

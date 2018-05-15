@@ -1,13 +1,17 @@
 package org.myfly.platform.core.metadata.define;
 
+import org.myfly.platform.core.metadata.annotation.OrderType;
+import org.myfly.platform.core.metadata.annotation.OrderView;
+
 /**
  * 排序定义
+ * 
  * @author xiangwanhong
  *
  */
-public class OrderDefinition extends BaseDenifition{
+public class OrderDefinition extends BaseDenifition {
 	private OrderType orderType;
-	
+
 	public OrderDefinition() {
 		super(null);
 	}
@@ -16,6 +20,12 @@ public class OrderDefinition extends BaseDenifition{
 		super(owner);
 		setName(name);
 		setOrderType(orderType);
+	}
+
+	public OrderDefinition(OrderView view) {
+		super(null);
+		setName(view.field());
+		setOrderType(view.orderType());
 	}
 
 	public OrderType getOrderType() {

@@ -1,4 +1,4 @@
-package org.myfly.platform.core.metadata.define;
+package org.myfly.platform.core.metadata.annotation;
 
 public enum ListStyle {
 	//未指定

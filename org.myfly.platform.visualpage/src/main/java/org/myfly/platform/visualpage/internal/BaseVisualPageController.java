@@ -14,7 +14,7 @@ import org.myfly.platform.core.flydata.service.EntityQueryMap;
 import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.message.service.IMessageQueueService;
 import org.myfly.platform.core.message.service.MessageQueueConstants;
-import org.myfly.platform.core.metadata.define.EntityAction;
+import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;

@@ -13,7 +13,7 @@ import org.myfly.platform.core.domain.AlertLevel;
 import org.myfly.platform.core.domain.ViewMode;
 import org.myfly.platform.core.flydata.internal.EntityUtil;
 import org.myfly.platform.core.flydata.service.EntityMap;
-import org.myfly.platform.core.metadata.define.EntityAction;
+import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.service.EntityException;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;

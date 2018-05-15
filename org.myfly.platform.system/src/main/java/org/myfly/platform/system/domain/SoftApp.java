@@ -17,9 +17,9 @@ import org.myfly.platform.core.metadata.annotation.FilterView;
 import org.myfly.platform.core.metadata.annotation.FormView;
 import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
+import org.myfly.platform.core.metadata.annotation.SectionType;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
-import org.myfly.platform.core.metadata.define.SectionType;
 import org.myfly.platform.core.system.domain.FlyEntity;
 
 /**

@@ -1,7 +1,5 @@
 package org.myfly.platform.core.metadata.annotation;
 
-import org.myfly.platform.core.metadata.define.DivType;
-
 /**
  * 响应式布局定义
  * 

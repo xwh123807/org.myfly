@@ -1,13 +1,16 @@
 package org.myfly.platform.core.metadata.define;
 
+import org.myfly.platform.core.metadata.annotation.CommonSubTableType;
+import org.myfly.platform.core.metadata.annotation.TableView;
 import org.springframework.util.Assert;
 
 /**
  * 数据库表信息定义，对应实体定义信息
+ * 
  * @author xiangwanhong
  *
  */
-public class TableDefinition {
+public class TableDefinition extends BaseDenifition {
 	/**
 	 * 表标题，也就是简要名称
 	 */
@@ -32,30 +35,38 @@ public class TableDefinition {
 	 * 显示字段，用于标记记录简要显示时显示的字段
 	 */
 	private String labelField;
-	
+
 	/**
 	 * 通用子表
 	 */
-	private CommonSubTableType[]  commonSubTables;
+	private CommonSubTableType[] commonSubTables;
 	/**
-	 * 是否创建索引
+	 * 是否创建全文索引
 	 */
 	private boolean createIndex;
 	/**
-	 * 索引名称
+	 * 全文索引索引名称，默认情况下和name相同
 	 */
 	private String indexName;
 	/**
 	 * 主键字段
 	 */
-	private String primaryKeys;
+	private String[] primaryKeys;
 
-	public TableDefinition() {
+	public TableDefinition(Object owner) {
+		super(owner);
 	}
 
-	public TableDefinition(String title, String description) {
-		setTitle(title);
-		setDescription(description);
+	public TableDefinition(Object owner, TableView view) {
+		super(owner);
+		setName(view.name());
+		setTitle(view.title());
+		setDescription(view.description());
+		setLabelField(view.labelField());
+		setCommonSubTables(view.commonSubTables());
+		setCreateIndex(view.createIndex());
+		setIndexName(view.indexName());
+		setPrimaryKeys(view.primaryKeys());
 	}
 
 	public String getTitle() {
@@ -128,18 +139,13 @@ public class TableDefinition {
 		this.indexName = indexName;
 	}
 
-	public String getPrimaryKeys() {
-		return primaryKeys;
-	}
-
-	public void setPrimaryKeys(String primaryKeys) {
-		this.primaryKeys = primaryKeys;
-	}
-	
-	public void validate(){
+	public void validate() {
+		Assert.hasLength(getName());
 		Assert.hasLength(getTitle());
 		Assert.hasLength(getTableName());
-		Assert.hasLength(getPrimaryKeys());
+		Assert.notEmpty(getPrimaryKeys());
+		if (isCreateIndex())
+			Assert.hasLength(getIndexName());
 	}
 
 	public String getCatalog() {
@@ -148,5 +154,13 @@ public class TableDefinition {
 
 	public void setCatalog(String catalog) {
 		this.catalog = catalog;
+	}
+
+	public String[] getPrimaryKeys() {
+		return primaryKeys;
+	}
+
+	public void setPrimaryKeys(String[] primaryKeys) {
+		this.primaryKeys = primaryKeys;
 	}
 }

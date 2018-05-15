@@ -2,7 +2,7 @@ package org.myfly.platform.core.test.utils;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.core.metadata.define.EntityAction;
+import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.utils.EntityLinkUtil;
 
 public class EntityLinkUtilTest {

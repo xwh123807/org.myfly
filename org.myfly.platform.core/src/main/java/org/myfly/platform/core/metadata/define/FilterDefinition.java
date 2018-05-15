@@ -1,6 +1,8 @@
 package org.myfly.platform.core.metadata.define;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.myfly.platform.core.metadata.annotation.FilterView;
+import org.myfly.platform.core.metadata.annotation.SQLOperator;
 
 public class FilterDefinition extends BaseDenifition {
 	private FieldDefinition field;
@@ -29,6 +31,14 @@ public class FilterDefinition extends BaseDenifition {
 		setFieldName(fieldName);
 		setOperator(operator);
 		setMultiValues(values);
+	}
+
+	public FilterDefinition(FilterView view) {
+		super(null);
+		setFieldName(view.field());
+		setValue(view.value());
+		setShow(view.show());
+		setOperator(view.operator());
 	}
 
 	public Object getValue() {
@@ -81,7 +91,7 @@ public class FilterDefinition extends BaseDenifition {
 	public void setShow(boolean show) {
 		this.show = show;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "field: " + field.getName() + ", operator: " + operator.getTitle();

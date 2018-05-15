@@ -10,9 +10,11 @@ import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.metadata.annotation.EntityAction;
+import org.myfly.platform.core.metadata.annotation.SQLOperator;
+import org.myfly.platform.core.metadata.annotation.SectionType;
 import org.myfly.platform.core.metadata.define.DefaultGetFieldValueHandler;
 import org.myfly.platform.core.metadata.define.DivDefinition;
-import org.myfly.platform.core.metadata.define.EntityAction;
 import org.myfly.platform.core.metadata.define.FKFieldDefinition;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.FieldSetDefinition;
@@ -22,10 +24,8 @@ import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.OrderDefinition;
 import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 import org.myfly.platform.core.metadata.define.PKFieldDefinition.KeyType;
-import org.myfly.platform.core.metadata.define.SQLOperator;
 import org.myfly.platform.core.metadata.define.SearchRelationGetFieldValueHandler;
 import org.myfly.platform.core.metadata.define.SectionDefinition;
-import org.myfly.platform.core.metadata.define.SectionType;
 import org.myfly.platform.core.metadata.define.SubTableDefinition;
 import org.myfly.platform.core.metadata.define.TableDefinition;
 import org.myfly.platform.core.utils.JSONUtil;
@@ -286,7 +286,7 @@ public final class JsonEntityMetaData {
 		/**
 		 * 标签
 		 */
-		private String label;
+		private String title;
 
 		/**
 		 * 字段名称

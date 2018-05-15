@@ -1,7 +1,7 @@
 package org.myfly.platform.core.utils;
 
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.core.metadata.define.EntityAction;
+import org.myfly.platform.core.metadata.annotation.EntityAction;
 
 /**
  * 实体常用操作url

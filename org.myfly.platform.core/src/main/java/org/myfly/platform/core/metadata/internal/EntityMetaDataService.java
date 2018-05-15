@@ -23,6 +23,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.domain.FieldDataType.FieldAttr;
 import org.myfly.platform.core.flydata.service.IEnumDataService;
+import org.myfly.platform.core.metadata.annotation.CommonSubTableType;
 import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.metadata.annotation.FlyEnum;
 import org.myfly.platform.core.metadata.annotation.FlySearchRelation;
@@ -30,7 +31,6 @@ import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.TableView;
 import org.myfly.platform.core.metadata.define.AssociationSetFieldValueHandler;
 import org.myfly.platform.core.metadata.define.CommonSubTableFieldDenifition;
-import org.myfly.platform.core.metadata.define.CommonSubTableType;
 import org.myfly.platform.core.metadata.define.ComplexGetPKFieldValueHandler;
 import org.myfly.platform.core.metadata.define.ComplexSetPKFieldValueHandler;
 import org.myfly.platform.core.metadata.define.DefaultGetFieldValueHandler;
@@ -79,7 +79,7 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 	@Autowired
 	@Qualifier("defaultConversionService")
 	private ConversionService conversionService;
-	@Autowired(required=false)
+	@Autowired(required = false)
 	private IEnumDataService enumDataService;
 	/**
 	 * 存储扩展注册的元模型
@@ -95,8 +95,7 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 	/*
 	 * (non-Javadoc)ø
 	 * 
-	 * @see
-	 * org.myfly.platform.system.service.IEntityMetaDataService#getEntityClass(
+	 * @see org.myfly.platform.system.service.IEntityMetaDataService#getEntityClass(
 	 * java.lang.String)
 	 */
 	@SuppressWarnings("unchecked")
@@ -161,7 +160,7 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 		if (cachedEntityMetaDatas.containsKey(entityNameOrClassName)) {
 			return cachedEntityMetaDatas.get(entityNameOrClassName);
 		}
-		//先从jpa环境中获取实体类
+		// 先从jpa环境中获取实体类
 		Class<?> entityClass = getEntityClass(entityNameOrClassName);
 		EntityMetaData metaData = null;
 		if (entityClass == null) {
@@ -264,7 +263,7 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 	 */
 	private void updateMetaDataTableDefinitions(final EntityMetaData metaData) {
 		MetaDataView metaDataView = metaData.getEntityClass().getAnnotation(MetaDataView.class);
-		TableDefinition tableDefinition = new TableDefinition();
+		TableDefinition tableDefinition = new TableDefinition(null);
 		if (metaDataView != null && metaDataView.tableView() != null) {
 			// 有定义表定义
 			TableView tableView = metaDataView.tableView();
@@ -298,6 +297,7 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 		if (StringUtils.isBlank(tableDefinition.getIndexName())) {
 			tableDefinition.setIndexName(metaData.getEntityName().toLowerCase());
 		}
+		tableDefinition.setName(metaData.getEntityName());
 		metaData.setTableDefinition(tableDefinition);
 	}
 
@@ -313,7 +313,8 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 		String label = (fieldView != null && StringUtils.isNotBlank(fieldView.title())) ? fieldView.title()
 				: property.getName();
 		String description = (fieldView != null && StringUtils.isNotBlank(fieldView.description()))
-				? fieldView.description() : property.getName();
+				? fieldView.description()
+				: property.getName();
 		FieldDataType dataType = (fieldView != null) ? fieldView.dataType() : FieldDataType.NONE;
 		FieldDefinition field = new FieldDefinition(label, property.getName());
 		field.setDescription(description);
@@ -430,15 +431,15 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 
 			private void registerEnumType(String entityName, String attrName, String title) {
 				enumDataService.addEnumType(title, entityName, attrName);
-//				IEnumType entity = new EnumType();
-//				entity.setEntityName(entityName);
-//				entity.setAttrName(attrName);
-//				entity.setName(title);
-//				try {
-//					AppUtil.getJpaFlyDataAccessService().saveEntity(entity);
-//				} catch (Exception e) {
-//					// 数据重复异常
-//				}
+				// IEnumType entity = new EnumType();
+				// entity.setEntityName(entityName);
+				// entity.setAttrName(attrName);
+				// entity.setName(title);
+				// try {
+				// AppUtil.getJpaFlyDataAccessService().saveEntity(entity);
+				// } catch (Exception e) {
+				// // 数据重复异常
+				// }
 			}
 		});
 		model.doWithAssociations(new SimpleAssociationHandler() {

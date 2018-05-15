@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.domain.EntityActionInfo.EntityActionField;
 import org.myfly.platform.core.domain.FieldDataType;
-import org.myfly.platform.core.metadata.define.EntityAction;
+import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 
 public class VelocityTemplateTableRenderTest {

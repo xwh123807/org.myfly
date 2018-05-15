@@ -2,7 +2,7 @@ package org.myfly.platform.core.utils;
 
 import java.text.MessageFormat;
 
-import org.myfly.platform.core.metadata.define.EntityAction;
+import org.myfly.platform.core.metadata.annotation.EntityAction;
 
 public class EntityButtonUtil {
 	private static final String BUTTON_OPEN_TEMPLATE = "<input type='button' value='{0}' onclick='javascript:openModal(\"{1}\", false)'>";

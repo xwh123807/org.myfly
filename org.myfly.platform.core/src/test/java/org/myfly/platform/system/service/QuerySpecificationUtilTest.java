@@ -9,8 +9,8 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.flydata.internal.QuerySpecificationUtil;
+import org.myfly.platform.core.metadata.annotation.SQLOperator;
 import org.myfly.platform.core.metadata.define.FilterDefinition;
-import org.myfly.platform.core.metadata.define.SQLOperator;
 
 public class QuerySpecificationUtilTest {
 	@Test

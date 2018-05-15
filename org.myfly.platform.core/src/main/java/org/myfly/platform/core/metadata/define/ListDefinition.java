@@ -6,9 +6,13 @@ import java.util.List;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.EntityActionInfo.EntityActionField;
+import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.annotation.FilterView;
+import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.annotation.ListView;
+import org.myfly.platform.core.metadata.annotation.OrderType;
 import org.myfly.platform.core.metadata.annotation.OrderView;
+import org.myfly.platform.core.metadata.annotation.SQLOperator;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AssertUtil;
@@ -78,6 +82,10 @@ public class ListDefinition extends BaseDenifition {
 	 */
 	private ListStyle listStyle;
 
+	private String linkField;
+
+	private String linkUrl;
+
 	public ListDefinition(final Object parent, final String name, final String title) {
 		super(parent);
 		setName(name);
@@ -93,6 +101,48 @@ public class ListDefinition extends BaseDenifition {
 
 	public ListDefinition(EntityMetaData metaData) {
 		super(metaData);
+	}
+
+	public ListDefinition(ListView view) {
+		super(null);
+		setName(view.name());
+		setTitle(view.title());
+		setHeader(view.header());
+		setLabelField(view.labelField());
+		setListStyle(view.listStyle());
+		setEnableActions(view.enableActions());
+		setServerSideMode(view.serverSideMode());
+		setListActions(view.listActions());
+		setItemActions(view.itemActions());
+		setFields(view.fields());
+		setFilters(view.filters());
+		setOrders(view.orders());
+	}
+
+	private void setOrders(OrderView[] views) {
+		orders = convert(views, OrderDefinition.class, new Action<OrderView, OrderDefinition>() {
+
+			@Override
+			public OrderDefinition execute(int index, OrderView orderView) {
+				return new OrderDefinition(orderView);
+			}
+
+		}).toArray(new OrderDefinition[] {});
+	}
+
+	public void setFilters(FilterView[] views) {
+		filters = convert(views, FilterDefinition.class, new Action<FilterView, FilterDefinition>() {
+
+			@Override
+			public FilterDefinition execute(int index, FilterView view) {
+				return new FilterDefinition(view);
+			}
+
+		}).toArray(new FilterDefinition[] {});
+	}
+
+	public void setFields(String[] names) {
+		fields = buildFieldDefinitions(names);
 	}
 
 	public String getHeader() {
@@ -235,6 +285,10 @@ public class ListDefinition extends BaseDenifition {
 		}
 	}
 
+	public String[] getFieldNames() {
+		return getFieldNames(getFields());
+	}
+
 	public ListStyle getListStyle() {
 		return listStyle;
 	}
@@ -364,12 +418,12 @@ public class ListDefinition extends BaseDenifition {
 	private static void updateBaseEntityDefaultOrder(ListDefinition listDefinition) {
 		// 增加排序字段,且实体为SBaseEntity，自定添加按最后修改时间降序排序
 		/*
-		if (((EntityMetaData) listDefinition.getParent()).newEntityInstance() instanceof SBaseEntity) {
-			listDefinition.addOrder(new OrderDefinition(listDefinition, "updated", OrderType.DESC));
-		}
-		*/
+		 * if (((EntityMetaData) listDefinition.getParent()).newEntityInstance()
+		 * instanceof SBaseEntity) { listDefinition.addOrder(new
+		 * OrderDefinition(listDefinition, "updated", OrderType.DESC)); }
+		 */
 	}
-	
+
 	/**
 	 * 构建默认包含全部字段的ListDefinition
 	 * 
@@ -401,9 +455,25 @@ public class ListDefinition extends BaseDenifition {
 		}
 		return listDefinition;
 	}
-	
-	public void validate(){
+
+	public void validate() {
 		Assert.hasLength(getEntityName());
 		Assert.notEmpty(getFields());
+	}
+
+	public String getLinkField() {
+		return linkField;
+	}
+
+	public void setLinkField(String linkField) {
+		this.linkField = linkField;
+	}
+
+	public String getLinkUrl() {
+		return linkUrl;
+	}
+
+	public void setLinkUrl(String linkUrl) {
+		this.linkUrl = linkUrl;
 	}
 }

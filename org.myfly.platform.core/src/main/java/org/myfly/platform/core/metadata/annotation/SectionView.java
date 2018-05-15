@@ -6,8 +6,6 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import org.myfly.platform.core.metadata.define.SectionType;
-
 /**
  * Section对应UI上一块行区域
  * 

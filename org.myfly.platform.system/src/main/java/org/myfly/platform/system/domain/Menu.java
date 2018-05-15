@@ -17,12 +17,12 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.domain.SchemaConstants;
+import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.annotation.FieldView;
+import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.TableView;
-import org.myfly.platform.core.metadata.define.EntityAction;
-import org.myfly.platform.core.metadata.define.ListStyle;
 import org.myfly.platform.core.system.domain.FlyEntity;
 import org.myfly.platform.core.system.domain.IMenu;
 

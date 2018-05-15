@@ -13,8 +13,8 @@ import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.metadata.annotation.FilterView;
 import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
+import org.myfly.platform.core.metadata.annotation.SQLOperator;
 import org.myfly.platform.core.metadata.annotation.TableView;
-import org.myfly.platform.core.metadata.define.SQLOperator;
 import org.myfly.platform.core.system.domain.FlyEntity;
 
 /**

@@ -1,4 +1,4 @@
-package org.myfly.platform.core.metadata.define;
+package org.myfly.platform.core.metadata.annotation;
 
 public enum DivType {
 	//缺省

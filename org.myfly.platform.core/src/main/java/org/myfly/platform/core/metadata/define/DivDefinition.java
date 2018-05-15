@@ -1,5 +1,7 @@
 package org.myfly.platform.core.metadata.define;
 
+import org.myfly.platform.core.metadata.annotation.DivType;
+
 public class DivDefinition extends BaseDenifition{
 	private DivType divType;
 	

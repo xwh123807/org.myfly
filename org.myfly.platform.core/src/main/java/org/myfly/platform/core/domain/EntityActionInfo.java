@@ -1,7 +1,7 @@
 package org.myfly.platform.core.domain;
 
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.core.metadata.define.EntityAction;
+import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.GetFieldValueHandler;
 import org.myfly.platform.core.utils.AssertUtil;
@@ -70,7 +70,7 @@ public class EntityActionInfo {
 	 */
 	public static final class EntityActionField extends FieldDefinition {
 		public EntityActionField(final EntityAction ...actionDenifitions) {
-			setLabel("操作");
+			setTitle("操作");
 			setName("actions");
 			setDataType(FieldDataType.ACTIONS);
 			setGetValueHandler(new GetFieldValueHandler() {

@@ -7,7 +7,7 @@ import org.myfly.platform.core.domain.EntityActionInfo;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.domain.StyleConstants;
 import org.myfly.platform.core.domain.ViewType;
-import org.myfly.platform.core.metadata.define.EntityAction;
+import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.utils.EntityLinkUtil;

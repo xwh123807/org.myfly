@@ -3,6 +3,7 @@ package org.myfly.platform.core.metadata.define;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.domain.EntityActionInfo.EntityActionField;
+import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.annotation.SubTableView;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AppUtil;
@@ -32,6 +33,10 @@ public class SubTableDefinition extends ListDefinition {
 		super(parent, null, title);
 	}
 
+	public SubTableDefinition(Object parent, SubTableView view) {
+		super(parent, null, view.title());
+	}
+
 	/**
 	 * 实体子表直接引用子实体列表视图定义
 	 * 
@@ -58,7 +63,7 @@ public class SubTableDefinition extends ListDefinition {
 		// 从子表实体listviews定义中获取listview定义，并复制到当前子表定义中
 		ListDefinition listDefinition = subEntityMetaData.getListDefinition(refName);
 
-		SubTableDefinition subTable = new SubTableDefinition(metaData, subTableField.getLabel());
+		SubTableDefinition subTable = new SubTableDefinition(metaData, subTableField.getTitle());
 		subTable.setRefName(refName);
 		subTable.setEntityName(metaData.getEntityName());
 		subTable.setSubTableAttr(subTableField.getName());
@@ -123,7 +128,7 @@ public class SubTableDefinition extends ListDefinition {
 		AssertUtil.parameterEmpty(subTableField, "subTableField",
 				"实体[" + metaData.getEntityClass().getName() + "]不存在属性[" + subTableView.tableAttr() + "]");
 		if (StringUtils.isBlank(subTable.getTitle())) {
-			subTable.setTitle(subTableField.getLabel());
+			subTable.setTitle(subTableField.getTitle());
 		}
 		EntityMetaData subEntityMetaData = null;
 		if (subTableField.getRelationClass().equals(metaData.getEntityClass().getName())) {

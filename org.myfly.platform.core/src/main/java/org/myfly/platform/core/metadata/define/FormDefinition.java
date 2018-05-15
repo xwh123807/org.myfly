@@ -5,16 +5,19 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.metadata.annotation.CommonSubTableType;
 import org.myfly.platform.core.metadata.annotation.Div1View;
 import org.myfly.platform.core.metadata.annotation.Div2View;
 import org.myfly.platform.core.metadata.annotation.Div3View;
+import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.FormView;
+import org.myfly.platform.core.metadata.annotation.SectionType;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.SubTableView;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
@@ -38,7 +41,6 @@ public class FormDefinition extends BaseDenifition {
 	 * 显示内容定义
 	 */
 	private SectionDefinition[] sections;
-
 	/**
 	 * 实体操作集
 	 */
@@ -49,12 +51,29 @@ public class FormDefinition extends BaseDenifition {
 		setName(name);
 	}
 
+	public FormDefinition(FormView view) {
+		super(null);
+		setName(view.name());
+		setDivs(view.divs());
+		setSections(view.sections());
+		setActions(view.actions());
+	}
+
 	public SectionDefinition[] getSections() {
 		return sections;
 	}
 
 	public void setSections(SectionDefinition[] sections) {
 		this.sections = sections;
+	}
+
+	public void setSections(SectionView[] views) {
+		if (views != null && views.length > 0) {
+			sections = new SectionDefinition[views.length];
+			for (int i = 0; i < views.length; i++) {
+				sections[i] = new SectionDefinition(views[0]);
+			}
+		}
 	}
 
 	/**
@@ -137,6 +156,15 @@ public class FormDefinition extends BaseDenifition {
 
 	public void setDivs(DivDefinition[] divs) {
 		this.divs = divs;
+	}
+
+	public void setDivs(Div1View[] views) {
+		if (views != null && views.length > 0) {
+			divs = new DivDefinition[views.length];
+			for (int i = 0; i < views.length; i++) {
+				divs[i] = new DivDefinition(views[0]);
+			}
+		}
 	}
 
 	/**
@@ -258,7 +286,8 @@ public class FormDefinition extends BaseDenifition {
 					try {
 						FormDefinition.class.forName(commonSubTableType.getTableClass());
 						SubTableDefinition subTable = SubTableDefinition.buildSubTable(metaData,
-								metaData.getField(commonSubTableType.getAttrName()), EntityMetaDataConstants.DEFAULT_NAME);
+								metaData.getField(commonSubTableType.getAttrName()),
+								EntityMetaDataConstants.DEFAULT_NAME);
 						subTables.add(subTable);
 					} catch (ClassNotFoundException e) {
 						log.warn("找不到子表实现类[" + commonSubTableType.getTableClass() + "]，将忽略");
@@ -317,8 +346,7 @@ public class FormDefinition extends BaseDenifition {
 		// 没有定义布局时，生成默认布局
 		if (ArrayUtils.isNotEmpty(formDefinition.getSections())) {
 			/**
-			 * 默认布局： <div width=8> </div>
-			 * <div width=4> <div name='' class='SOCIAL'> </div>
+			 * 默认布局： <div width=8> </div> <div width=4> <div name='' class='SOCIAL'> </div>
 			 */
 			DivDefinition[] divs = new DivDefinition[2];
 			divs[0] = new DivDefinition(formDefinition);

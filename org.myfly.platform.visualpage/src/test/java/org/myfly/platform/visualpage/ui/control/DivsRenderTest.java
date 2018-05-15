@@ -2,9 +2,9 @@ package org.myfly.platform.visualpage.ui.control;
 
 import org.junit.Test;
 import org.myfly.platform.core.domain.ViewType;
+import org.myfly.platform.core.metadata.annotation.SectionType;
 import org.myfly.platform.core.metadata.define.DivDefinition;
 import org.myfly.platform.core.metadata.define.SectionDefinition;
-import org.myfly.platform.core.metadata.define.SectionType;
 import org.myfly.platform.visualpage.ui.view.SectionViewRender;
 
 public class DivsRenderTest {
