@@ -34,4 +34,11 @@ public @interface Div3View {
 	 * @return
 	 */
 	String extClass() default "";
+
+	/**
+	 * 内容
+	 * 
+	 * @return
+	 */
+	SectionView[] sections() default {};
 }

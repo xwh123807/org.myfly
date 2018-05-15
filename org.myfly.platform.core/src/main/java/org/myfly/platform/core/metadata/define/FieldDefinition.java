@@ -120,6 +120,10 @@ public class FieldDefinition extends BaseDenifition {
 	 */
 	private GenericGenerator generator;
 
+	public FieldDefinition() {
+		super(null);
+	}
+
 	public FieldDefinition(String name) {
 		super(null);
 		setName(name);

@@ -1,6 +1,10 @@
 package org.myfly.platform.core.metadata.define;
 
+import org.myfly.platform.core.metadata.annotation.Div1View;
 import org.myfly.platform.core.metadata.annotation.OutlineView;
+import org.myfly.platform.core.metadata.annotation.SectionView;
+import org.myfly.platform.core.utils.FuncUtil;
+import org.myfly.platform.core.utils.FuncUtil.ConvertAction;
 
 /**
  * 大纲视图定义
@@ -8,7 +12,7 @@ import org.myfly.platform.core.metadata.annotation.OutlineView;
  * @author xiangwanhong
  *
  */
-public class OutlineDefinition {
+public class OutlineDefinition extends BaseDenifition {
 	/**
 	 * 显示标题
 	 */
@@ -18,18 +22,38 @@ public class OutlineDefinition {
 	 */
 	private SectionDefinition[] sections;
 
+	private DivDefinition[] divs;
+
 	/**
 	 * 
 	 * @param view
 	 */
 	public OutlineDefinition(OutlineView view) {
-//		title = view.title();
-//		if (view.sections().length > 0) {
-//			sections = new SectionDefinition();
-//			for (int i = 0; i < view.sections().length; i++) {
-//				sections[i] = new SectionDefinition(view.sections()[i]);
-//			}
-//		}
+		super(null);
+		setSections(view.sections());
+		setDivs(view.divs());
+	}
+
+	private void setDivs(Div1View[] views) {
+		divs = FuncUtil.convert(views, new ConvertAction<Div1View, DivDefinition>() {
+
+			@Override
+			public DivDefinition execute(int index, Div1View item) {
+				return new DivDefinition(item);
+			}
+
+		}).toArray(new DivDefinition[] {});
+	}
+
+	private void setSections(SectionView[] views) {
+		sections = FuncUtil.convert(views, new ConvertAction<SectionView, SectionDefinition>() {
+
+			@Override
+			public SectionDefinition execute(int index, SectionView item) {
+				return new SectionDefinition(item);
+			}
+
+		}).toArray(new SectionDefinition[] {});
 	}
 
 	public String getTitle() {
@@ -46,5 +70,13 @@ public class OutlineDefinition {
 
 	public void setSections(SectionDefinition[] sections) {
 		this.sections = sections;
+	}
+
+	public DivDefinition[] getDivs() {
+		return divs;
+	}
+
+	public void setDivs(DivDefinition[] divs) {
+		this.divs = divs;
 	}
 }

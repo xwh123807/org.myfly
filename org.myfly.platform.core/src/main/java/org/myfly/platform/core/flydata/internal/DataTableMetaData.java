@@ -17,8 +17,8 @@ public class DataTableMetaData {
 		this.printMode = printMode;
 		buildFieldMetaDatas(fields);
 	}
-	
-	public DataTableMetaData(ListDefinition listDefinition, boolean printMode){
+
+	public DataTableMetaData(ListDefinition listDefinition, boolean printMode) {
 		this.setEntityName(listDefinition.getEntityName());
 		this.printMode = printMode;
 		buildFieldMetaDatas(listDefinition.getFields());
@@ -28,9 +28,9 @@ public class DataTableMetaData {
 		List<FieldMetaData> list = new ArrayList<>();
 		for (FieldDefinition field : fields) {
 			if (FieldDataType.ACTIONS.equals(field.getDataType()) && printMode) {
-				//打印模式不处理操作字段
+				// 打印模式不处理操作字段
 			} else {
-				list.add(new FieldMetaData(field.getName(), field.getLabel()));
+				list.add(new FieldMetaData(field.getName(), field.getTitle()));
 			}
 		}
 		setFields(list.toArray(new FieldMetaData[] {}));
@@ -51,18 +51,18 @@ public class DataTableMetaData {
 		}
 		return list.toArray(new String[] {});
 	}
-	
-	public int getFieldIndex(String name){
+
+	public int getFieldIndex(String name) {
 		int index = -1;
 		for (FieldMetaData field : getFields()) {
-			index ++;
-			if (field.getName().equals(name)){
+			index++;
+			if (field.getName().equals(name)) {
 				break;
 			}
 		}
 		return index;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "entityName: " + getEntityName() + ", printMode: " + printMode + ", fields: " + getFields();
@@ -100,7 +100,7 @@ public class DataTableMetaData {
 		public void setTitle(String title) {
 			this.title = title;
 		}
-		
+
 		@Override
 		public String toString() {
 			return "name: " + getName() + ", title: " + getTitle();

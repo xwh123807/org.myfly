@@ -156,7 +156,7 @@ public class TableRender {
 		}
 
 		public String thead() {
-			return "<th>" + field.getLabel() + "</th>";
+			return "<th>" + field.getTitle() + "</th>";
 		}
 
 		public String tbody() {

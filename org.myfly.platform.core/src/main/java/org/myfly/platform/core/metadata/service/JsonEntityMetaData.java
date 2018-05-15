@@ -367,7 +367,7 @@ public final class JsonEntityMetaData {
 			field.setDescription(getDescription());
 			field.setFieldName(getFieldName());
 			field.setIdField(isIdField());
-			field.setLabel(getLabel());
+			field.setTitle(getTitle());
 			field.setLabelField(getLabelField());
 			field.setLinkUrl(getLinkUrl());
 			field.setMask(getMask());
@@ -396,7 +396,7 @@ public final class JsonEntityMetaData {
 			setDataType(field.getDataType());
 			setFieldName(field.getFieldName());
 			setIdField(field.isIdField());
-			setLabel(field.getLabel());
+			setTitle(field.getTitle());
 			setLabelField(field.getLabelField());
 			setLinkUrl(field.getLinkUrl());
 			setMask(field.getMask());
@@ -415,14 +415,6 @@ public final class JsonEntityMetaData {
 			if (field.getRelationField() != null) {
 				setRelationField(field.getRelationField().getName());
 			}
-		}
-
-		public String getLabel() {
-			return label;
-		}
-
-		public void setLabel(String label) {
-			this.label = label;
 		}
 
 		public String getFieldName() {
@@ -567,6 +559,14 @@ public final class JsonEntityMetaData {
 
 		public void setType(String type) {
 			this.type = type;
+		}
+
+		public String getTitle() {
+			return title;
+		}
+
+		public void setTitle(String title) {
+			this.title = title;
 		}
 	}
 

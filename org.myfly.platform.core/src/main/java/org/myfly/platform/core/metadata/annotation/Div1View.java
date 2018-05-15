@@ -27,15 +27,24 @@ public @interface Div1View {
 	 * @return
 	 */
 	int width() default 12;
-	
+
 	/**
 	 * 附加样式
+	 * 
 	 * @return
 	 */
 	String extClass() default "";
 
 	/**
+	 * 内容
+	 * 
+	 * @return
+	 */
+	SectionView[] sections() default {};
+
+	/**
 	 * 子Div
+	 * 
 	 * @return
 	 */
 	Div2View[] subs() default {};

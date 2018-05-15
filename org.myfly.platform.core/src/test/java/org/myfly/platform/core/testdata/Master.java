@@ -4,11 +4,14 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.myfly.platform.core.metadata.annotation.Div1View;
+import org.myfly.platform.core.metadata.annotation.Div2View;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.metadata.annotation.FilterView;
@@ -17,9 +20,11 @@ import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.OrderView;
+import org.myfly.platform.core.metadata.annotation.OutlineView;
 import org.myfly.platform.core.metadata.annotation.SQLOperator;
 import org.myfly.platform.core.metadata.annotation.SectionType;
 import org.myfly.platform.core.metadata.annotation.SectionView;
+import org.myfly.platform.core.metadata.annotation.SubTableView;
 import org.myfly.platform.core.metadata.annotation.TableView;
 import org.myfly.platform.core.system.domain.FlyEntity;
 
@@ -29,6 +34,7 @@ import org.myfly.platform.core.system.domain.FlyEntity;
  * @author xiangwanhong
  *
  */
+@Entity
 @MetaDataView(
 		//
 		tableView = @TableView(title = "主表", description = "主表信息"),
@@ -40,12 +46,22 @@ import org.myfly.platform.core.system.domain.FlyEntity;
 						"created" }, listStyle = ListStyle.CARDLIST, filters = {
 								@FilterView(field = "name", operator = SQLOperator.LIKE) }, orders = @OrderView(field = "name")) },
 		//
-		formViews = @FormView(sections = {
-				@SectionView(title = "用户信息", fieldSets = {
-						@FieldSetView(title = "基本信息", fields = { "name", "description" }),
-						@FieldSetView(title = "审计", fields = { "active", "createdBy", "created", "updatedBy",
-								"updated" }) }),
-				@SectionView(type = SectionType.NOTE), @SectionView(type = SectionType.ATTACHMENT) }))
+		formViews = {
+				//
+				@FormView(sections = {
+						@SectionView(title = "用户信息", fieldSets = {
+								@FieldSetView(title = "基本信息", fields = { "name", "description" }),
+								@FieldSetView(title = "审计", fields = { "active", "createdBy", "created", "updatedBy",
+										"updated" }) }),
+						@SectionView(type = SectionType.NOTE), @SectionView(type = SectionType.ATTACHMENT),
+						@SectionView(title = "子表区域", subTables = @SubTableView(title = "明细记录", tableAttr = "details")) }),
+				//
+				@FormView(name = "form2", divs = @Div1View(subs = @Div2View(sections = @SectionView(type = SectionType.ATTACHMENT)))) },
+		//
+		outlineViews = { @OutlineView(title = "摘要信息", sections = @SectionView(title = "用户信息", fieldSets = {
+				@FieldSetView(title = "基本信息", fields = { "name", "description" }),
+				@FieldSetView(title = "审计", fields = { "active", "createdBy", "created", "updatedBy",
+						"updated" }) })) })
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Master extends FlyEntity {
 

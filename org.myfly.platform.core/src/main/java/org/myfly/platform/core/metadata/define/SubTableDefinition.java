@@ -29,12 +29,24 @@ public class SubTableDefinition extends ListDefinition {
 	 * @param title
 	 *            标题
 	 */
-	public SubTableDefinition(Object parent, String title) {
-		super(parent, null, title);
+	public SubTableDefinition(Object parent) {
+		super(parent, null, null);
 	}
 
 	public SubTableDefinition(Object parent, SubTableView view) {
 		super(parent, null, view.title());
+		setSubTableAttr(view.tableAttr());
+		setRefName(view.refName());
+		setHeader(view.header());
+		setFields(view.fields());
+		setLinkField(view.linkField());
+		setLinkUrl(view.linkUrl());
+		setEnableActions(view.enableActions());
+		setServerSideMode(view.serverSideMode());
+		setListActions(view.listActions());
+		setItemActions(view.itemActions());
+		setLabelField(view.labelField());
+		setListStyle(view.listStyle());
 	}
 
 	/**
@@ -55,7 +67,7 @@ public class SubTableDefinition extends ListDefinition {
 			// 自关联时
 			subEntityMetaData = metaData;
 		} else {
-			if (!AppUtil.isSpringContext()){
+			if (!AppUtil.isSpringContext()) {
 				return null;
 			}
 			subEntityMetaData = metaData.getSubEntityMetaData(subTableField.getName());
@@ -63,7 +75,7 @@ public class SubTableDefinition extends ListDefinition {
 		// 从子表实体listviews定义中获取listview定义，并复制到当前子表定义中
 		ListDefinition listDefinition = subEntityMetaData.getListDefinition(refName);
 
-		SubTableDefinition subTable = new SubTableDefinition(metaData, subTableField.getTitle());
+		SubTableDefinition subTable = new SubTableDefinition(metaData);
 		subTable.setRefName(refName);
 		subTable.setEntityName(metaData.getEntityName());
 		subTable.setSubTableAttr(subTableField.getName());
@@ -113,7 +125,8 @@ public class SubTableDefinition extends ListDefinition {
 	private static SubTableDefinition buildSubTable2(EntityMetaData metaData, SubTableView subTableView,
 			String viewName) {
 		AssertUtil.parameterNotEmpty(null, metaData, subTableView);
-		SubTableDefinition subTable = new SubTableDefinition(metaData, subTableView.title());
+		SubTableDefinition subTable = new SubTableDefinition(metaData);
+		subTable.setTitle(subTableView.title());
 		subTable.setEntityName(metaData.getEntityName());
 		subTable.setHeader(subTableView.header());
 		subTable.setServerSideMode(subTableView.serverSideMode());

@@ -58,7 +58,7 @@ public class EntityServerSideTableRender extends HtmlTableRender {
 			if (ViewType.PRINT.equals(getViewType()) && FieldDataType.ACTIONS.equals(field.getDataType())) {
 				continue;
 			} else {
-				HtmlCellRender cell = new HtmlCellRender(field.getLabel());
+				HtmlCellRender cell = new HtmlCellRender(field.getTitle());
 				cell.setHeader(true);
 				cells.add(cell);
 			}

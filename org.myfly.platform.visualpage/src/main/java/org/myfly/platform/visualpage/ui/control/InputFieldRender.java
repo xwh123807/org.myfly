@@ -59,7 +59,7 @@ public abstract class InputFieldRender extends BaseFieldRender {
 		AssertUtil.parameterEmpty(getField(), "getField()");
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("<div class=\"form-group\">");
-		buffer.append("  <label class=\"col-sm-4 control-label\">" + getField().getLabel() + "</label>");
+		buffer.append("  <label class=\"col-sm-4 control-label\">" + getField().getTitle() + "</label>");
 		buffer.append("  <div class=\"col-sm-8\">");
 		buffer.append("    " + control());
 		buffer.append("  </div>");

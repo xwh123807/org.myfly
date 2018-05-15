@@ -11,8 +11,8 @@ public class DivsRenderTest {
 	@Test
 	public void htmlForDefault() {
 		DivDefinition[] divs = new DivDefinition[2];
-		divs[0] = new DivDefinition(null);
-		divs[1] = new DivDefinition(null);
+		divs[0] = new DivDefinition();
+		divs[1] = new DivDefinition();
 		divs[1].setName("div1");
 		divs[1].setExtClass("extclass1");
 
@@ -27,7 +27,7 @@ public class DivsRenderTest {
 	@Test
 	public void htmlForFiles() {
 		DivDefinition[] divs = new DivDefinition[1];
-		divs[0] = new DivDefinition(null);
+		divs[0] = new DivDefinition();
 		divs[0].setName("div1");
 
 		SectionViewRender[] sectionRenders = new SectionViewRender[1];
@@ -47,14 +47,14 @@ public class DivsRenderTest {
 	@Test
 	public void htmlForFilesAndNotes() {
 		DivDefinition[] divs = new DivDefinition[1];
-		divs[0] = new DivDefinition(null);
+		divs[0] = new DivDefinition();
 		// divs[0].setName("div1");
 
 		DivDefinition[] divs2 = new DivDefinition[2];
 		divs[0].setSubs(divs2);
-		divs2[0] = new DivDefinition(divs[0]);
+		divs2[0] = new DivDefinition();
 		divs2[0].setName("div11");
-		divs2[1] = new DivDefinition(divs[0]);
+		divs2[1] = new DivDefinition();
 		divs2[1].setName("div12");
 
 		SectionViewRender[] sectionRenders = new SectionViewRender[2];

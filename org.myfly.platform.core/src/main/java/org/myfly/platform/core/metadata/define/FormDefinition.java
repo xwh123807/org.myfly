@@ -9,6 +9,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.joda.time.field.DividedDateTimeField;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.annotation.CommonSubTableType;
 import org.myfly.platform.core.metadata.annotation.Div1View;
@@ -23,6 +24,8 @@ import org.myfly.platform.core.metadata.annotation.SubTableView;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AssertUtil;
+import org.myfly.platform.core.utils.FuncUtil;
+import org.myfly.platform.core.utils.FuncUtil.ConvertAction;
 import org.springframework.util.Assert;
 
 /**
@@ -68,12 +71,14 @@ public class FormDefinition extends BaseDenifition {
 	}
 
 	public void setSections(SectionView[] views) {
-		if (views != null && views.length > 0) {
-			sections = new SectionDefinition[views.length];
-			for (int i = 0; i < views.length; i++) {
-				sections[i] = new SectionDefinition(views[0]);
+		sections = FuncUtil.convert(views, new ConvertAction<SectionView, SectionDefinition>() {
+
+			@Override
+			public SectionDefinition execute(int index, SectionView item) {
+				return new SectionDefinition(item);
 			}
-		}
+
+		}).toArray(new SectionDefinition[] {});
 	}
 
 	/**
@@ -159,12 +164,14 @@ public class FormDefinition extends BaseDenifition {
 	}
 
 	public void setDivs(Div1View[] views) {
-		if (views != null && views.length > 0) {
-			divs = new DivDefinition[views.length];
-			for (int i = 0; i < views.length; i++) {
-				divs[i] = new DivDefinition(views[0]);
+		divs = FuncUtil.convert(views, new ConvertAction<Div1View, DivDefinition>() {
+
+			@Override
+			public DivDefinition execute(int index, Div1View item) {
+				return new DivDefinition(item);
 			}
-		}
+
+		}).toArray(new DivDefinition[] {});
 	}
 
 	/**
@@ -182,50 +189,51 @@ public class FormDefinition extends BaseDenifition {
 		List<SectionDefinition> sections = new ArrayList<>();
 		// 布局定义
 		if (ArrayUtils.isNotEmpty(formView.divs())) {
-			List<DivDefinition> divs = new ArrayList<>();
-			for (Div1View divView : formView.divs()) {
-				DivDefinition divDefinition = new DivDefinition(formDefinition);
-				divDefinition.setName(divView.name());
-				divDefinition.setDivType(divView.divType());
-				divDefinition.setExtClass(divView.extClass());
-				divDefinition.setWidth(divView.width());
-				if (ArrayUtils.isNotEmpty(divView.subs())) {
-					List<DivDefinition> divs2 = new ArrayList<>();
-					for (Div2View div2View : divView.subs()) {
-						DivDefinition div2Definition = new DivDefinition(divDefinition);
-						div2Definition.setName(div2View.name());
-						div2Definition.setDivType(div2View.divType());
-						div2Definition.setExtClass(div2View.extClass());
-						div2Definition.setWidth(div2View.width());
-						if (ArrayUtils.isNotEmpty(div2View.subs())) {
-							List<DivDefinition> divs3 = new ArrayList<>();
-							for (Div3View div3View : div2View.subs()) {
-								DivDefinition div3Definition = new DivDefinition(div2Definition);
-								div3Definition.setName(div3View.name());
-								div3Definition.setDivType(div3View.divType());
-								div3Definition.setExtClass(div3View.extClass());
-								div3Definition.setWidth(div3View.width());
-								divs3.add(div3Definition);
-							}
-							div2Definition.setSubs(divs3.toArray(new DivDefinition[] {}));
-						}
-						divs2.add(div2Definition);
-					}
-					divDefinition.setSubs(divs2.toArray(new DivDefinition[] {}));
-				}
-				divs.add(divDefinition);
-			}
-			formDefinition.setDivs(divs.toArray(new DivDefinition[] {}));
+			formDefinition.setDivs(formView.divs());
+//			List<DivDefinition> divs = new ArrayList<>();
+//			for (Div1View divView : formView.divs()) {
+//				DivDefinition divDefinition = new DivDefinition(formDefinition);
+//				divDefinition.setName(divView.name());
+//				divDefinition.setDivType(divView.divType());
+//				divDefinition.setExtClass(divView.extClass());
+//				divDefinition.setWidth(divView.width());
+//				if (ArrayUtils.isNotEmpty(divView.subs())) {
+//					List<DivDefinition> divs2 = new ArrayList<>();
+//					for (Div2View div2View : divView.subs()) {
+//						DivDefinition div2Definition = new DivDefinition(divDefinition);
+//						div2Definition.setName(div2View.name());
+//						div2Definition.setDivType(div2View.divType());
+//						div2Definition.setExtClass(div2View.extClass());
+//						div2Definition.setWidth(div2View.width());
+//						if (ArrayUtils.isNotEmpty(div2View.subs())) {
+//							List<DivDefinition> divs3 = new ArrayList<>();
+//							for (Div3View div3View : div2View.subs()) {
+//								DivDefinition div3Definition = new DivDefinition(div2Definition);
+//								div3Definition.setName(div3View.name());
+//								div3Definition.setDivType(div3View.divType());
+//								div3Definition.setExtClass(div3View.extClass());
+//								div3Definition.setWidth(div3View.width());
+//								divs3.add(div3Definition);
+//							}
+//							div2Definition.setSubs(divs3.toArray(new DivDefinition[] {}));
+//						}
+//						divs2.add(div2Definition);
+//					}
+//					divDefinition.setSubs(divs2.toArray(new DivDefinition[] {}));
+//				}
+//				divs.add(divDefinition);
+//			}
+//			formDefinition.setDivs(divs.toArray(new DivDefinition[] {}));
 		} else {
 			// 没有定义布局时，生成默认布局
 			if (ArrayUtils.isNotEmpty(formView.sections())) {
 				int index = 0;
 				DivDefinition[] divs0 = new DivDefinition[2];
-				divs0[0] = new DivDefinition(formDefinition);
+				divs0[0] = new DivDefinition();
 				divs0[0].setWidth(8);
 				DivDefinition[] divs = new DivDefinition[formView.sections().length];
 				for (SectionView sectionView : formView.sections()) {
-					DivDefinition divDefinition = new DivDefinition(divs0[0]);
+					DivDefinition divDefinition = new DivDefinition();
 					if (StringUtils.isBlank(sectionView.name())) {
 						divDefinition.setName("div" + index);
 					} else {
@@ -236,7 +244,7 @@ public class FormDefinition extends BaseDenifition {
 				}
 				divs0[0].setSubs(divs);
 
-				divs0[1] = new DivDefinition(formDefinition);
+				divs0[1] = new DivDefinition();
 				divs0[1].setWidth(4);
 				divs0[1].setName("div" + formView.sections().length);
 				SectionDefinition social = new SectionDefinition(formDefinition, "活动");
@@ -349,13 +357,13 @@ public class FormDefinition extends BaseDenifition {
 			 * 默认布局： <div width=8> </div> <div width=4> <div name='' class='SOCIAL'> </div>
 			 */
 			DivDefinition[] divs = new DivDefinition[2];
-			divs[0] = new DivDefinition(formDefinition);
+			divs[0] = new DivDefinition();
 			divs[0].setWidth(8);
 			int index = 0;
 			DivDefinition[] div1s = new DivDefinition[formDefinition.getSections().length];
 			for (SectionDefinition sectionDefinition2 : formDefinition.getSections()) {
 				sectionDefinition2.setName("div" + index);
-				DivDefinition divDefinition = new DivDefinition(divs[0]);
+				DivDefinition divDefinition = new DivDefinition();
 				divDefinition.setName(sectionDefinition2.getName());
 				div1s[index] = divDefinition;
 				index++;
@@ -367,7 +375,7 @@ public class FormDefinition extends BaseDenifition {
 			socialSection.setName("div" + sections.size());
 			socialSection.setType(SectionType.SOCIAL);
 
-			divs[1] = new DivDefinition(formDefinition);
+			divs[1] = new DivDefinition();
 			divs[1].setWidth(4);
 			divs[1].setName(socialSection.getName());
 

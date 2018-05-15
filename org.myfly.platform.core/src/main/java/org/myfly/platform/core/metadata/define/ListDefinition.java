@@ -16,6 +16,8 @@ import org.myfly.platform.core.metadata.annotation.SQLOperator;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AssertUtil;
+import org.myfly.platform.core.utils.FuncUtil;
+import org.myfly.platform.core.utils.FuncUtil.ConvertAction;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
@@ -120,7 +122,7 @@ public class ListDefinition extends BaseDenifition {
 	}
 
 	private void setOrders(OrderView[] views) {
-		orders = convert(views, OrderDefinition.class, new Action<OrderView, OrderDefinition>() {
+		orders = FuncUtil.convert(views, new ConvertAction<OrderView, OrderDefinition>() {
 
 			@Override
 			public OrderDefinition execute(int index, OrderView orderView) {
@@ -131,7 +133,7 @@ public class ListDefinition extends BaseDenifition {
 	}
 
 	public void setFilters(FilterView[] views) {
-		filters = convert(views, FilterDefinition.class, new Action<FilterView, FilterDefinition>() {
+		filters = FuncUtil.convert(views, new ConvertAction<FilterView, FilterDefinition>() {
 
 			@Override
 			public FilterDefinition execute(int index, FilterView view) {

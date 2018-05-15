@@ -24,4 +24,6 @@ public @interface OutlineView {
 	 * @return
 	 */
 	SectionView[] sections() default {};
+	
+	Div1View[] divs() default {};
 }

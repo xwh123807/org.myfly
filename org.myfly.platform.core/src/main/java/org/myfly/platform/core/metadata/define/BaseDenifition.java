@@ -1,7 +1,7 @@
 package org.myfly.platform.core.metadata.define;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.myfly.platform.core.utils.FuncUtil;
+import org.myfly.platform.core.utils.FuncUtil.ConvertAction;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -50,14 +50,14 @@ public abstract class BaseDenifition {
 	 * @return
 	 */
 	public FieldDefinition[] buildFieldDefinitions(final String[] names) {
-		FieldDefinition[] fields = null;
-		if (names != null && names.length > 0) {
-			fields = new FieldDefinition[names.length];
-			for (int i = 0; i < names.length; i++) {
-				fields[i] = new FieldDefinition(names[i]);
+		return FuncUtil.convert(names, new ConvertAction<String, FieldDefinition>() {
+
+			@Override
+			public FieldDefinition execute(int index, String item) {
+				return new FieldDefinition(item);
 			}
-		}
-		return fields;
+
+		}).toArray(new FieldDefinition[] {});
 	}
 
 	/**
@@ -67,25 +67,13 @@ public abstract class BaseDenifition {
 	 * @return
 	 */
 	public String[] getFieldNames(FieldDefinition[] fields) {
-		String[] names = new String[fields.length];
-		for (int i = 0; i < fields.length; i++) {
-			names[i] = fields[i].getName();
-		}
-		return names;
-	}
+		return FuncUtil.convert(fields, new ConvertAction<FieldDefinition, String>() {
 
-	public <T, R> List<R> convert(final T[] items, Class<R> targetClass, Action<T, R> action) {
-		List<R> results = new ArrayList<R>();
-		if (items != null && items.length > 0) {
-			for (int i = 0; i < items.length; i++) {
-				results.add(action.execute(i, items[i]));
+			@Override
+			public String execute(int index, FieldDefinition item) {
+				return item.getName();
 			}
-		}
-		return results;
-	}
-
-	public interface Action<T, R> {
-		R execute(int index, T item);
+		}).toArray(new String[] {});
 	}
 
 	// /**

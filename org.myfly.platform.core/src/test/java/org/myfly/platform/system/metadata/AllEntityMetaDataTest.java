@@ -11,19 +11,20 @@ import org.myfly.platform.test.ServiceTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 
-
 @SpringApplicationConfiguration(classes=CoreApplication.class)
-public class AllEntityMetaDataTest extends ServiceTestCase{
+public class AllEntityMetaDataTest extends ServiceTestCase {
 	@Autowired
 	private IEntityMetaDataService entityMetaDataService;
-	
+
 	@Test
-	public void fetchAllEntities(){
+	public void fetchAllEntities() {
 		List<Class<?>> list = entityMetaDataService.getAllEntityClasses();
-		for (Class<?> item : list){
+		Assert.assertNotNull(list);
+		Assert.assertTrue(list.size() > 0);
+		for (Class<?> item : list) {
 			EntityMetaData metaData = entityMetaDataService.getEntityMetaData(item.getName());
 			Assert.assertEquals(item.getName(), metaData.getEntityClass().getName());
 		}
 	}
-	
+
 }

@@ -1,10 +1,13 @@
 package org.myfly.platform.core.metadata.define;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.hsqldb.lib.StringUtil;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.SectionType;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.SubTableView;
+import org.myfly.platform.core.utils.FuncUtil;
+import org.myfly.platform.core.utils.FuncUtil.ConvertAction;
 import org.springframework.util.Assert;
 
 /**
@@ -44,6 +47,13 @@ public class SectionDefinition extends BaseDenifition {
 		setType(view.type());
 		setFieldSets(view.fieldSets());
 		setSubTables(view.subTables());
+		if (StringUtil.isEmpty(getTitle())) {
+			if (getType() == SectionType.NOTE) {
+				setTitle(SectionType.NOTE.getTitle());
+			} else if (getType() == SectionType.ATTACHMENT) {
+				setTitle(SectionType.ATTACHMENT.getTitle());
+			}
+		}
 	}
 
 	public String getTitle() {
@@ -63,12 +73,14 @@ public class SectionDefinition extends BaseDenifition {
 	}
 
 	public void setFieldSets(FieldSetView[] views) {
-		if (views != null && views.length > 0) {
-			fieldSets = new FieldSetDefinition[views.length];
-			for (int i = 0; i < views.length; i++) {
-				fieldSets[i] = new FieldSetDefinition(views[i]);
+		fieldSets = FuncUtil.convert(views, new ConvertAction<FieldSetView, FieldSetDefinition>() {
+
+			@Override
+			public FieldSetDefinition execute(int index, FieldSetView item) {
+				return new FieldSetDefinition(item);
 			}
-		}
+
+		}).toArray(new FieldSetDefinition[] {});
 	}
 
 	public SubTableDefinition[] getSubTables() {
@@ -80,12 +92,14 @@ public class SectionDefinition extends BaseDenifition {
 	}
 
 	public void setSubTables(SubTableView[] views) {
-		if (views != null && views.length > 0) {
-			subTables = new SubTableDefinition[views.length];
-			for (int i = 0; i < views.length; i++) {
-				subTables[i] = new SubTableDefinition(getParent(), views[i]);
+		subTables = FuncUtil.convert(views, new ConvertAction<SubTableView, SubTableDefinition>() {
+
+			@Override
+			public SubTableDefinition execute(int index, SubTableView item) {
+				return new SubTableDefinition(getParent(), item);
 			}
-		}
+
+		}).toArray(new SubTableDefinition[] {});
 	}
 
 	/**
@@ -117,6 +131,9 @@ public class SectionDefinition extends BaseDenifition {
 
 	public void validate() {
 		Assert.notNull(getType());
+		if (getType() == SectionType.CUSTOM) {
+			Assert.hasLength(getTitle());
+		}
 		if (ArrayUtils.isNotEmpty(getFieldSets())) {
 			for (FieldSetDefinition fieldSet : getFieldSets()) {
 				fieldSet.validate();

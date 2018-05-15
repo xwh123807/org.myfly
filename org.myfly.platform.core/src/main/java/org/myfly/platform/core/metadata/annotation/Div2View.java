@@ -36,6 +36,13 @@ public @interface Div2View {
 	String extClass() default "";
 
 	/**
+	 * 内容
+	 * 
+	 * @return
+	 */
+	SectionView[] sections() default {};
+
+	/**
 	 * 子Div
 	 * 
 	 * @return

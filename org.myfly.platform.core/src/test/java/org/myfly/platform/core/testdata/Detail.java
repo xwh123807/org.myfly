@@ -1,6 +1,7 @@
 package org.myfly.platform.core.testdata;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,6 +19,7 @@ import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
 import org.myfly.platform.core.system.domain.FlyEntity;
 
+@Entity
 @MetaDataView(
 		//
 		tableView = @TableView(title = "角色", description = "角色信息"),

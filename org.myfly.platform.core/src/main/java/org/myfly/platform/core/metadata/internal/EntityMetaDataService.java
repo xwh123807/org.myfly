@@ -356,7 +356,7 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 						// 在FlyEnum注解中，没有指定引用关系，表示需要新注册枚举类型
 						entityName = metaData.getEntityName();
 						attrName = field.getName();
-						registerEnumType(entityName, attrName, field.getLabel());
+						registerEnumType(entityName, attrName, field.getTitle());
 					} else if (StringUtils.isNotBlank(enumView.entityName())
 							&& StringUtils.isNotBlank(enumView.attrName())) {
 						// 表示引用
@@ -462,7 +462,7 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 					OneToMany oneToMany = association.getInverse().findAnnotation(OneToMany.class);
 					if (oneToMany != null && StringUtils.isNotBlank(oneToMany.mappedBy())) {
 						FieldDefinition tmp = new FieldDefinition();
-						tmp.setLabel("临时，读取时更新");
+						tmp.setTitle("临时，读取时更新");
 						tmp.setName(oneToMany.mappedBy());
 						field.setRelationField(tmp);
 					} else {
