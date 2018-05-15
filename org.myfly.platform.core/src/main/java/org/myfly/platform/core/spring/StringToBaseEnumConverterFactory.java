@@ -5,7 +5,6 @@ import org.myfly.platform.core.utils.ClassUtil;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
 
-
 public class StringToBaseEnumConverterFactory implements ConverterFactory<String, BaseEnum> {
 	@Override
 	public <T extends BaseEnum> Converter<String, T> getConverter(Class<T> targetType) {
@@ -22,7 +21,7 @@ public class StringToBaseEnumConverterFactory implements ConverterFactory<String
 
 		@Override
 		public T convert(String source) {
-			if (source.length() == 0) {
+			if (source == null || source.length() == 0) {
 				return null;
 			}
 			try {
