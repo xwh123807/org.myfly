@@ -30,6 +30,7 @@ public class OutlineDefinition extends BaseDenifition {
 	 */
 	public OutlineDefinition(OutlineView view) {
 		super(null);
+		setTitle(view.title());
 		setSections(view.sections());
 		setDivs(view.divs());
 	}

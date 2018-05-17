@@ -144,6 +144,30 @@ public class MasterMetaDataTest {
 			public void execute(int index, OutlineView item) {
 				OutlineDefinition outlineDefinition = new OutlineDefinition(item);
 				Assert.assertEquals("摘要信息", outlineDefinition.getTitle());
+				Assert.assertEquals(1, outlineDefinition.getSections().length);
+
+				FuncUtil.forEach(outlineDefinition.getSections(), new Action<SectionDefinition>() {
+
+					@Override
+					public void execute(int index, SectionDefinition item) {
+						if (index == 0) {
+							Assert.assertEquals("用户信息", item.getTitle());
+							Assert.assertEquals(2, item.getFieldSets().length);
+							FuncUtil.forEach(item.getFieldSets(), new Action<FieldSetDefinition>() {
+
+								@Override
+								public void execute(int index, FieldSetDefinition item) {
+									if (index == 0) {
+										Assert.assertArrayEquals(new String[] { "name", "description" },
+												item.getFieldNames());
+									}
+								}
+
+							});
+						}
+					}
+
+				});
 			}
 
 		});

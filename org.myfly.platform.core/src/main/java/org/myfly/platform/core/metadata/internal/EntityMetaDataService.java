@@ -38,6 +38,7 @@ import org.myfly.platform.core.metadata.define.DefaultSetFieldValueHandler;
 import org.myfly.platform.core.metadata.define.FKFieldDefinition;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.FlySearchRelationGetFieldValueHandler;
+import org.myfly.platform.core.metadata.define.MetaDataDefinition;
 import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 import org.myfly.platform.core.metadata.define.SearchRelationGetFieldValueHandler;
 import org.myfly.platform.core.metadata.define.TableDefinition;
@@ -220,7 +221,7 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 		JsonEntityMetaData metaData = new JsonEntityMetaData(entityMetaData);
 		return metaData;
 	}
-
+	
 	/**
 	 * 更新实体主键定义信息
 	 * 

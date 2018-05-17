@@ -22,12 +22,16 @@ public class MetaDataDefinition extends BaseDenifition {
 
 	public MetaDataDefinition(MetaDataView view) {
 		super(null);
+		setMetaDataView(view);
+	}
+
+	private void setMetaDataView(MetaDataView view) {
 		setTableDefinition(new TableDefinition(null, view.tableView()));
 		setListDefinitions(view.listViews());
 		setFormDefinitions(view.formViews());
 		setOutlineDefinitions(view.outlineViews());
 	}
-	
+
 	private void setOutlineDefinitions(OutlineView[] outlineViews) {
 		outlineDefinitions = FuncUtil.convert(outlineViews, new ConvertAction<OutlineView, OutlineDefinition>() {
 

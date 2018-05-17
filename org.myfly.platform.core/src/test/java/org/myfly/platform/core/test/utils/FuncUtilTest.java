@@ -1,5 +1,11 @@
 package org.myfly.platform.core.test.utils;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
+
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.ListUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.utils.FuncUtil;
@@ -18,6 +24,8 @@ public class FuncUtilTest {
 			}
 
 		});
+
+		FuncUtil.forEach(items, (index, item) -> Assert.assertEquals(items[index], item));
 	}
 
 	@Test
@@ -27,10 +35,25 @@ public class FuncUtilTest {
 
 			@Override
 			public String execute(int index, String item) {
+				Assert.assertEquals(items[index], item);
 				return item;
 			}
 
 		}).toArray(new String[] {});
 		Assert.assertArrayEquals(items, destItems);
+	}
+
+	@Test
+	public void convertCollection() {
+		List<String> items = Arrays.asList(new String[] { "hello", "world" });
+		List<String> destItems = FuncUtil.convertCollection(items, new Function<String, String>() {
+
+			@Override
+			public String apply(String t) {
+				return t;
+			}
+
+		});
+		Assert.assertArrayEquals(items.toArray(new String[] {}), destItems.toArray(new String[] {}));
 	}
 }

@@ -47,6 +47,10 @@ public class ListDefinition extends BaseDenifition {
 	 */
 	private String subTableAttr;
 	/**
+	 * 字段列表
+	 */
+	private String[] fieldNames;
+	/**
 	 * 字段列表定义
 	 */
 	private FieldDefinition[] fields;
@@ -116,7 +120,7 @@ public class ListDefinition extends BaseDenifition {
 		setServerSideMode(view.serverSideMode());
 		setListActions(view.listActions());
 		setItemActions(view.itemActions());
-		setFields(view.fields());
+		setFieldNames(view.fields());
 		setFilters(view.filters());
 		setOrders(view.orders());
 	}
@@ -141,10 +145,6 @@ public class ListDefinition extends BaseDenifition {
 			}
 
 		}).toArray(new FilterDefinition[] {});
-	}
-
-	public void setFields(String[] names) {
-		fields = buildFieldDefinitions(names);
 	}
 
 	public String getHeader() {
@@ -288,7 +288,7 @@ public class ListDefinition extends BaseDenifition {
 	}
 
 	public String[] getFieldNames() {
-		return getFieldNames(getFields());
+		return fieldNames;
 	}
 
 	public ListStyle getListStyle() {
@@ -477,5 +477,9 @@ public class ListDefinition extends BaseDenifition {
 
 	public void setLinkUrl(String linkUrl) {
 		this.linkUrl = linkUrl;
+	}
+
+	public void setFieldNames(String[] fieldNames) {
+		this.fieldNames = fieldNames;
 	}
 }

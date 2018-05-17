@@ -16,16 +16,21 @@ import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.annotation.FormView;
 import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
+import org.myfly.platform.core.metadata.define.EntityMetaDataDefinition;
 import org.myfly.platform.core.metadata.define.FKFieldDefinition;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.FormDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.metadata.define.MetaDataDefinition;
+import org.myfly.platform.core.metadata.define.OutlineDefinition;
 import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 import org.myfly.platform.core.metadata.define.SearchRelationGetFieldValueHandler;
 import org.myfly.platform.core.metadata.define.TableDefinition;
 import org.myfly.platform.core.system.domain.IFlyEntity;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
+import org.myfly.platform.core.utils.FuncUtil;
+import org.springframework.data.jpa.mapping.JpaPersistentEntity;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -75,6 +80,10 @@ public class EntityMetaData implements Serializable {
 	 */
 	private Map<String, FormDefinition> formDefinitions;
 	/**
+	 * 摘要视图定义
+	 */
+	private Map<String, OutlineDefinition> outlineDefinitions;
+	/**
 	 * 主键定义
 	 */
 	private PKFieldDefinition pkFieldDefinition;
@@ -99,6 +108,7 @@ public class EntityMetaData implements Serializable {
 		listDefinitions = new LinkedHashMap<>();
 		formDefinitions = new LinkedHashMap<>();
 		fkFieldDefinitions = new LinkedHashMap<>();
+		outlineDefinitions = new LinkedHashMap<>();
 	}
 
 	public EntityMetaData(Class<?> entityClass) {
@@ -109,6 +119,20 @@ public class EntityMetaData implements Serializable {
 		}
 		this.setEntityName(ClassUtils.getShortClassName(entityClass));
 		init();
+	}
+
+	public EntityMetaData(JpaPersistentEntity<?> entity) {
+		EntityMetaDataDefinition metaDataDefinition = new EntityMetaDataDefinition(entity);
+		setTableDefinition(metaDataDefinition.getTableDefinition());
+		FuncUtil.forEach(metaDataDefinition.getListDefinitions(), (index, item) -> {
+			addListDenifition(item);
+		});
+		FuncUtil.forEach(metaDataDefinition.getFormDefinitions(), (index, item) -> {
+			addFormDefinition(item);
+		});
+		FuncUtil.forEach(metaDataDefinition.getOutlineDefinitions(), (index, item) -> {
+			addOutlineDefinition(item);
+		});
 	}
 
 	public Class<?> getEntityClass() {
@@ -381,6 +405,25 @@ public class EntityMetaData implements Serializable {
 	}
 
 	/**
+	 * 增加表单视图定义
+	 * 
+	 * @param formDefinition
+	 */
+	public void addOutlineDefinition(OutlineDefinition outlineDefinition) {
+		AssertUtil.parameterEmpty(outlineDefinition, "outlineDefinition");
+		AssertUtil.parameterEmpty(outlineDefinition.getName(), "outlineDefinition.getName()");
+		if (getFormDefinitions().containsKey(outlineDefinition.getName())) {
+			AssertUtil.parameterInvalide("outlineDefinition", "名称为[" + outlineDefinition.getName()
+					+ "]OutlineDefinition已经存在，请检查实体[" + getEntityName() + "]元模型定义.");
+		}
+		getOutlineDefinitions().put(outlineDefinition.getName(), outlineDefinition);
+	}
+
+	private Map<String, OutlineDefinition> getOutlineDefinitions() {
+		return outlineDefinitions;
+	}
+
+	/**
 	 * 获取实体子表实体定义
 	 * 
 	 * @param subTableAttr
@@ -425,8 +468,7 @@ public class EntityMetaData implements Serializable {
 	 * @return
 	 */
 	private FieldDefinition buildAutoRelationField(FieldDefinition field, String relAttr) {
-		String relLabel = AppUtil.getEntityMetadata(field.getRelationClass())
-				.getField(relAttr).getTitle();
+		String relLabel = AppUtil.getEntityMetadata(field.getRelationClass()).getField(relAttr).getTitle();
 		FieldDefinition newField = new FieldDefinition(relLabel, field.getName() + "__" + relAttr,
 				FieldDataType.AUTORELATION);
 		newField.setFieldName(field.getFieldName());
@@ -547,7 +589,7 @@ public class EntityMetaData implements Serializable {
 				field.validate();
 			}
 		});
-		
+
 		getFkFieldDefinitions().forEach(new BiConsumer<String, FKFieldDefinition>() {
 
 			@Override
@@ -555,7 +597,7 @@ public class EntityMetaData implements Serializable {
 				fkField.validate();
 			}
 		});
-		
+
 		getListDefinitions().forEach(new BiConsumer<String, ListDefinition>() {
 
 			@Override
@@ -563,7 +605,7 @@ public class EntityMetaData implements Serializable {
 				list.validate();
 			}
 		});
-		
+
 		getFormDefinitions().forEach(new BiConsumer<String, FormDefinition>() {
 
 			@Override

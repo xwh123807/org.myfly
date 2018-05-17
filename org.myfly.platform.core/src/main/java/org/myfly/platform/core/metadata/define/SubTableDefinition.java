@@ -38,7 +38,7 @@ public class SubTableDefinition extends ListDefinition {
 		setSubTableAttr(view.tableAttr());
 		setRefName(view.refName());
 		setHeader(view.header());
-		setFields(view.fields());
+		setFieldNames(view.fields());
 		setLinkField(view.linkField());
 		setLinkUrl(view.linkUrl());
 		setEnableActions(view.enableActions());

@@ -9,6 +9,12 @@ import java.util.List;
  *
  */
 public interface IEntityMetaDataService {
+	/**
+	 * 获取系统中所有的实体
+	 * 
+	 * @return
+	 */
+	List<Class<?>> getAllEntityClasses();
 
 	/**
 	 * 根据名称或类获取实体类，名称忽略大小写
@@ -25,13 +31,6 @@ public interface IEntityMetaDataService {
 	 * @return
 	 */
 	EntityMetaData getEntityMetaData(String entityNameOrClassName);
-
-	/**
-	 * 获取系统中所有的实体
-	 * 
-	 * @return
-	 */
-	List<Class<?>> getAllEntityClasses();
 
 	/**
 	 * 获取子表属性名，获取子表元模型

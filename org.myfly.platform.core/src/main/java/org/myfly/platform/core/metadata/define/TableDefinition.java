@@ -1,5 +1,7 @@
 package org.myfly.platform.core.metadata.define;
 
+import javax.persistence.Table;
+
 import org.myfly.platform.core.metadata.annotation.CommonSubTableType;
 import org.myfly.platform.core.metadata.annotation.TableView;
 import org.springframework.util.Assert;
@@ -52,6 +54,10 @@ public class TableDefinition extends BaseDenifition {
 	 * 主键字段
 	 */
 	private String[] primaryKeys;
+	/**
+	 * 字段列表
+	 */
+	private FieldDefinition[] fields;
 
 	public TableDefinition(Object owner) {
 		super(owner);
@@ -162,5 +168,21 @@ public class TableDefinition extends BaseDenifition {
 
 	public void setPrimaryKeys(String[] primaryKeys) {
 		this.primaryKeys = primaryKeys;
+	}
+	
+	public void merge(Table table) {
+		if (table != null) {
+			setName(table.name());
+			setSchema(table.schema());
+			setCatalog(table.catalog());
+		}
+	}
+
+	public FieldDefinition[] getFields() {
+		return fields;
+	}
+
+	public void setFields(FieldDefinition[] fields) {
+		this.fields = fields;
 	}
 }

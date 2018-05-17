@@ -5,6 +5,7 @@ import org.springframework.util.Assert;
 
 public class FieldSetDefinition extends BaseDenifition {
 	private String title;
+	private String[] fieldNames;
 	private FieldDefinition[] fields;
 
 	public FieldSetDefinition(String title) {
@@ -15,7 +16,7 @@ public class FieldSetDefinition extends BaseDenifition {
 	public FieldSetDefinition(FieldSetView view) {
 		super(null);
 		setTitle(view.title());
-		setFields(view.fields());
+		setFieldNames(view.fields());
 	}
 
 	public String getTitle() {
@@ -34,12 +35,8 @@ public class FieldSetDefinition extends BaseDenifition {
 		this.fields = fields;
 	}
 
-	public void setFields(String[] names) {
-		fields = buildFieldDefinitions(names);
-	}
-
 	public String[] getFieldNames() {
-		return getFieldNames(getFields());
+		return fieldNames;
 	}
 
 	@Override
@@ -49,5 +46,9 @@ public class FieldSetDefinition extends BaseDenifition {
 
 	public void validate() {
 		Assert.notEmpty(getFields());
+	}
+
+	public void setFieldNames(String[] fieldNames) {
+		this.fieldNames = fieldNames;
 	}
 }

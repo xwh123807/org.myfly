@@ -12,6 +12,7 @@ import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
+import org.springframework.data.mapping.PersistentProperty;
 import org.springframework.util.Assert;
 
 public class FieldDefinition extends BaseDenifition {
@@ -64,6 +65,10 @@ public class FieldDefinition extends BaseDenifition {
 	 * 精度
 	 */
 	private int precision;
+	/**
+	 * 小数位数
+	 */
+	private int scale;
 	/**
 	 * 输入限制
 	 */
@@ -144,9 +149,14 @@ public class FieldDefinition extends BaseDenifition {
 
 	public FieldDefinition(FieldView fieldView) {
 		super(null);
+		setTitle(fieldView.title());
 		setDescription(fieldView.description());
 		setDataType(fieldView.dataType());
 		setMinLength(fieldView.minLength());
+	}
+	
+	public FieldDefinition(PersistentProperty<?> property) {
+		super(null);
 	}
 
 	public void setFieldName(String fieldName) {
@@ -463,5 +473,13 @@ public class FieldDefinition extends BaseDenifition {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public int getScale() {
+		return scale;
+	}
+
+	public void setScale(int scale) {
+		this.scale = scale;
 	}
 }
