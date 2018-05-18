@@ -7,14 +7,11 @@ import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.CoreApplication;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.test.ServiceTestCase;
-import org.springframework.boot.test.SpringApplicationConfiguration;
 
-@SpringApplicationConfiguration(classes=CoreApplication.class)
 public class ClassUtilTest extends ServiceTestCase{
 
 //	@Test
