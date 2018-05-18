@@ -8,11 +8,21 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.system.domain.ITenant;
+import org.myfly.platform.core.testdata.Detail;
+import org.myfly.platform.core.testdata.Master;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.DateUtil;
+<<<<<<< HEAD
 import org.myfly.platform.test.ServiceTestCase;
+=======
+>>>>>>> refs/remotes/origin/v2.0
 
+<<<<<<< HEAD
 public class ClassUtilTest extends ServiceTestCase{
+=======
+public class ClassUtilTest{
+>>>>>>> refs/remotes/origin/v2.0
 
 //	@Test
 //	public void getClassAnnotationForStdTestTable(){
@@ -149,5 +159,15 @@ public class ClassUtilTest extends ServiceTestCase{
 		GregorianCalendar now = (GregorianCalendar) GregorianCalendar.getInstance();
 		String value = ClassUtil.convertValueToString(now);
 		Assert.assertEquals(DateUtil.dateToStr(now), value);
+	}
+	
+	@Test
+	public void getFieldType() throws Exception {
+		Class<?> cls = ClassUtil.getFieldType(Master.class.getDeclaredField("details"));
+		Assert.assertEquals(Detail.class, cls);
+		cls = ClassUtil.getFieldType(Master.class.getSuperclass().getDeclaredField("name"));
+		Assert.assertEquals(String.class, cls);
+		cls = ClassUtil.getFieldType(Master.class.getSuperclass().getDeclaredField("tenant"));
+		Assert.assertEquals(ITenant.class, cls);
 	}
 }

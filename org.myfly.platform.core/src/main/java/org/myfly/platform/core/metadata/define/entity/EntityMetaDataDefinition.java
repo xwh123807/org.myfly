@@ -1,4 +1,4 @@
-package org.myfly.platform.core.metadata.define;
+package org.myfly.platform.core.metadata.define.entity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +20,14 @@ import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.metadata.annotation.FlyEnum;
 import org.myfly.platform.core.metadata.annotation.FlySearchRelation;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
+import org.myfly.platform.core.metadata.define.AssociationSetFieldValueHandler;
+import org.myfly.platform.core.metadata.define.DefaultGetFieldValueHandler;
+import org.myfly.platform.core.metadata.define.DefaultSetFieldValueHandler;
+import org.myfly.platform.core.metadata.define.FKFieldDefinition;
+import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.metadata.define.FlySearchRelationGetFieldValueHandler;
+import org.myfly.platform.core.metadata.define.MetaDataDefinition;
+import org.myfly.platform.core.metadata.define.SearchRelationGetFieldValueHandler;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.ClassUtil;

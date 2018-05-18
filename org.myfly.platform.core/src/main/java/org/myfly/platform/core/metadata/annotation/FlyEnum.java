@@ -23,5 +23,5 @@ public @interface FlyEnum {
 	 * 属性名
 	 * @return
 	 */
-	String attrName() default "";
+	String attrName();
 }

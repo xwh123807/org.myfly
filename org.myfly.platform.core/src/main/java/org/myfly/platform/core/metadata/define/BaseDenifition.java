@@ -54,7 +54,7 @@ public abstract class BaseDenifition {
 
 			@Override
 			public FieldDefinition execute(int index, String item) {
-				return new FieldDefinition(item);
+				return new FieldDefinition(item, null, null);
 			}
 
 		}).toArray(new FieldDefinition[] {});

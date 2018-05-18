@@ -24,7 +24,7 @@ public class KeyEntity implements IKeyEntity{
 	
 	@Id
 	@org.springframework.data.annotation.Id
-	@Column(length=32, updatable=false)
+	@Column(length=32, updatable=false, nullable=false)
 	//TODO 屏蔽自动生成值，由于hibernate设置自动生成值后，无法强制手工赋值
 	//@GeneratedValue(generator="system-uuid")
 	//@GenericGenerator(name="system-uuid", strategy="uuid")
