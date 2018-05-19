@@ -2,7 +2,7 @@ package org.myfly.platform.core.metadata.define;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.core.metadata.entity.EntityMetaData;
+import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.testdata.Master;
 
 public class EntityMetaDataTest {

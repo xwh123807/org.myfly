@@ -5,6 +5,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.domain.EntityActionInfo.EntityActionField;
 import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.annotation.SubTableView;
+import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
@@ -57,7 +58,7 @@ public class SubTableDefinition extends ListDefinition {
 	 * @param refName
 	 * @return
 	 */
-	public static SubTableDefinition buildSubTable(EntityMetaData metaData, FieldDefinition subTableField,
+	public static SubTableDefinition buildSubTable(EntityMetaData metaData, MDRelationFieldDefinition subTableField,
 			String refName) {
 		Assert.notNull(subTableField);
 		Assert.notNull(refName);

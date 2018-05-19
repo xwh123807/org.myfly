@@ -3,6 +3,7 @@ package org.myfly.platform.core.metadata.define;
 import org.apache.commons.lang.ClassUtils;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.annotation.CommonSubTableType;
+import org.myfly.platform.core.metadata.entity.RelationFieldDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AppUtil;
 import org.springframework.util.Assert;
@@ -13,9 +14,10 @@ import org.springframework.util.Assert;
  * @author xiangwanhong
  *
  */
-public class CommonSubTableFieldDenifition extends FieldDefinition {
+public class CommonSubTableFieldDenifition extends RelationFieldDefinition {
 	public CommonSubTableFieldDenifition(CommonSubTableType commonSubTableType, String relationTable,
 			String relationClass) {
+		super(null);
 		setDataType(FieldDataType.FLYMDRELATION);
 		setName(commonSubTableType.getAttrName());
 		setTitle(commonSubTableType.getTitle());
@@ -23,7 +25,7 @@ public class CommonSubTableFieldDenifition extends FieldDefinition {
 		setRelationTable(ClassUtils.getShortClassName(commonSubTableType.getTableClass()));
 		setType(String.class);
 
-		FieldDefinition fieldDefinition = new FieldDefinition();
+		RelationFieldDefinition fieldDefinition = new RelationFieldDefinition(null);
 		fieldDefinition.setTitle("临时，读取时更新");
 		fieldDefinition.setName(commonSubTableType.getParentAttrName());
 		fieldDefinition.setRelationTable(relationTable);
@@ -33,9 +35,9 @@ public class CommonSubTableFieldDenifition extends FieldDefinition {
 
 		EntityMetaData metaData = AppUtil.getEntityMataDataService()
 				.getEntityMetaData(commonSubTableType.getTableClass());
-		FieldDefinition parentField = metaData.getField(commonSubTableType.getParentAttrName());
-		Assert.notNull(parentField, "实体[" + commonSubTableType.getTableClass() + "]不存在属性["
-				+ commonSubTableType.getParentAttrName() + "]");
+		RelationFieldDefinition parentField = metaData.getField(commonSubTableType.getParentAttrName());
+		Assert.notNull(parentField,
+				"实体[" + commonSubTableType.getTableClass() + "]不存在属性[" + commonSubTableType.getParentAttrName() + "]");
 		fieldDefinition.setSetValueHandler(parentField.getSetValueHandler());
 		fieldDefinition.setGetValueHandler(parentField.getGetValueHandler());
 		fieldDefinition.setGetter(parentField.getGetter());

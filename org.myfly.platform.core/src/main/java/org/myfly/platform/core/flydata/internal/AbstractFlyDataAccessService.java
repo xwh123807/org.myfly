@@ -34,6 +34,7 @@ import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 import org.myfly.platform.core.metadata.define.SetFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
@@ -296,7 +297,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 		keyParams.put(labelField.getFieldName(), name);
 		Object entity = findOne(entityName, keyParams);
 		if (entity != null) {
-			return metaData.getPKFieldDefinition().getPKValue(entity);
+			return metaData.getPkFieldDefinition().getPKValue(entity);
 		} else {
 			return null;
 		}
@@ -330,7 +331,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 		// 将分页查询结果转换成String[][]类型，数据类型都转为字符串
 		String[][] data = new String[page.size()][2];
 		EntityMetaData metaData = getEntityMetaDataService().getEntityMetaData(entityName);
-		PKFieldDefinition pkFieldDefinition = metaData.getPKFieldDefinition();
+		PKFieldDefinition pkFieldDefinition = metaData.getPkFieldDefinition();
 		FieldDefinition labelFieldDefinition = metaData.getLabelField();
 		for (int row = 0; row < page.size(); row++) {
 			final Object entity = page.get(row);
@@ -378,7 +379,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 		List<FlyEntityMap> list = new ArrayList<>();
 		ListDefinition listDefinition = entityMetaData.getListDefinition(listViewName);
 		for (Object entity : pageData.getContent()) {
-			String pkValue = entityMetaData.getPKFieldDefinition().getPKValue(entity);
+			String pkValue = entityMetaData.getPkFieldDefinition().getPKValue(entity);
 			list.add(convertToViewMap(entityName, null, null, entity, listDefinition.getFields(),
 					listDefinition.getLabelField(), pkValue, listViewName, false));
 		}
@@ -589,9 +590,9 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 	 */
 	@SuppressWarnings("unchecked")
 	public FlyEntityMap convertToViewMap(String entityName, String uid, String subTableAttr, Object entity,
-			FieldDefinition[] fields, String labelFieldName, String pkValue, String formViewName, boolean printMode) {
+			EntityFieldDefinition[] fields, String labelFieldName, String pkValue, String formViewName, boolean printMode) {
 		FlyEntityMap result = new FlyEntityMap();
-		for (FieldDefinition fieldDefinition : fields) {
+		for (EntityFieldDefinition fieldDefinition : fields) {
 			// 先取出字段值，再转换为字符串
 			String value = null;
 			Object tmp = null;

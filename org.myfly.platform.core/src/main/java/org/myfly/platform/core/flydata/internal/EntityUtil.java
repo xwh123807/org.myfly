@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.PKFieldDefinition;
+import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.system.domain.KeyEntity;
 import org.myfly.platform.core.utils.AppUtil;
@@ -27,7 +28,7 @@ public class EntityUtil {
 		if (metaData == null) {
 			metaData = AppUtil.getEntityMataDataService().getEntityMetaData(entity.getClass().getName());
 		}
-		for (FieldDefinition field : metaData.getAllFields()) {
+		for (EntityFieldDefinition field : metaData.getAllFields()) {
 			String[] items = values.get(field.getName());
 			if (ArrayUtils.isNotEmpty(items) && StringUtils.isNotEmpty(items[0])) {
 				// 只处理有赋值的属性
@@ -35,7 +36,7 @@ public class EntityUtil {
 			}
 		}
 	}
-	
+
 	/**
 	 * 修改实体属性
 	 * 
@@ -47,7 +48,7 @@ public class EntityUtil {
 		if (metaData == null) {
 			metaData = AppUtil.getEntityMataDataService().getEntityMetaData(entity.getClass().getName());
 		}
-		for (FieldDefinition field : metaData.getAllFields()) {
+		for (EntityFieldDefinition field : metaData.getAllFields()) {
 			Object value = values.get(field.getName());
 			if (value != null) {
 				// 只处理有赋值的属性
@@ -124,7 +125,7 @@ public class EntityUtil {
 		if (entity != null) {
 			Class<T> entityClass = (Class<T>) entity.getClass();
 			EntityMetaData metaData = AppUtil.getEntityMataDataService().getEntityMetaData(entityClass.getName());
-			for (FieldDefinition field : metaData.getAllFields()) {
+			for (EntityFieldDefinition field : metaData.getAllFields()) {
 				Object value = null;
 				try {
 					value = field.getGetter().invoke(entity);
@@ -151,7 +152,7 @@ public class EntityUtil {
 		if (entity != null) {
 			Class<T> entityClass = (Class<T>) entity.getClass();
 			EntityMetaData metaData = AppUtil.getEntityMataDataService().getEntityMetaData(entityClass.getName());
-			for (FieldDefinition field : metaData.getAllFields()) {
+			for (EntityFieldDefinition field : metaData.getAllFields()) {
 				Object value = null;
 				try {
 					value = field.getGetter().invoke(entity);
@@ -208,7 +209,7 @@ public class EntityUtil {
 	public static <T> T buildNewEntityForRequest(String tableName, EntityMetaData metaData, Serializable pkValue,
 			Map<String, String[]> values) {
 		T entity = buildNewEntityForRequest(tableName, metaData, values);
-		metaData.getPKFieldDefinition().setPKValue(entity, pkValue);
+		metaData.getPkFieldDefinition().setPKValue(entity, pkValue);
 		return entity;
 	}
 
@@ -224,11 +225,11 @@ public class EntityUtil {
 	 */
 	public static <T> T buildNewSubEntityForRequest(EntityMetaData masterMetaData, String masterUid,
 			String subTableAttr, String subUid, Map<String, String[]> values) {
-		FieldDefinition field = masterMetaData.getField(subTableAttr).getRelationField();
+		EntityFieldDefinition field = masterMetaData.getField(subTableAttr).getRelationField();
 		EntityMetaData metaData = field.getParent();
 		T newEntity = EntityUtil.buildNewEntityForRequest(metaData.getEntityName(), metaData, values);
 		if (StringUtils.isNotBlank(subUid)) {
-			metaData.getPKFieldDefinition().setPKValue(newEntity, subUid);
+			metaData.getPkFieldDefinition().setPKValue(newEntity, subUid);
 		}
 		field.getSetValueHandler().setFieldValue(newEntity, masterUid);
 		return newEntity;
@@ -259,7 +260,7 @@ public class EntityUtil {
 			return "";
 		} else {
 			EntityMetaData metaData = AppUtil.getEntityMataDataService().getEntityMetaData(entity.getClass().getName());
-			PKFieldDefinition pkField = metaData.getPKFieldDefinition();
+			PKFieldDefinition pkField = metaData.getPkFieldDefinition();
 			return pkField.getPKValue(entity);
 		}
 	}

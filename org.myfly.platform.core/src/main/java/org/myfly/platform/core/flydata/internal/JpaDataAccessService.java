@@ -290,7 +290,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	@Transactional
 	public <T> T updateEntity(Serializable uid, T entity) {
 		EntityMetaData metaData = entityMetaDataService.getEntityMetaData(entity.getClass().getName());
-		metaData.getPKFieldDefinition().setPKValue(entity, uid);
+		metaData.getPkFieldDefinition().setPKValue(entity, uid);
 		return updateEntity(entity);
 	}
 

@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.GetFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.utils.AssertUtil;
 
 /**
@@ -68,8 +69,9 @@ public class EntityActionInfo {
 	 * @author xiangwanhong
 	 *
 	 */
-	public static final class EntityActionField extends FieldDefinition {
-		public EntityActionField(final EntityAction ...actionDenifitions) {
+	public static final class EntityActionField extends EntityFieldDefinition {
+		public EntityActionField(final EntityAction... actionDenifitions) {
+			super(null);
 			setTitle("操作");
 			setName("actions");
 			setDataType(FieldDataType.ACTIONS);
@@ -79,9 +81,10 @@ public class EntityActionInfo {
 				public Object getFieldValue(Object obj) {
 					if (obj instanceof EntityActionInfo) {
 						EntityActionInfo entityActionInfo = (EntityActionInfo) obj;
-//						EntityActionsFieldRender render = new EntityActionsFieldRender(ViewType.VIEW, actionDenifitions,
-//								entityActionInfo);
-//						return render.html();
+						// EntityActionsFieldRender render = new EntityActionsFieldRender(ViewType.VIEW,
+						// actionDenifitions,
+						// entityActionInfo);
+						// return render.html();
 					} else {
 						if (obj != null) {
 							AssertUtil.parameterInvalide("(EntityActionInfo) obj",

@@ -88,7 +88,7 @@ public class JdbcFlyDataAccessService extends AbstractFlyDataAccessService {
 		AssertUtil.parameterEmpty(entityMetaData, "entityMetaData");
 
 		// 构建主键
-		Map<String, Object> pkValue = entityMetaData.getPKFieldDefinition().buildPKMap(uid);
+		Map<String, Object> pkValue = entityMetaData.getPkFieldDefinition().buildPKMap(uid);
 		AssertUtil.parameterEmpty(pkValue, "pkValue");
 
 		// 查询数据，结果返回为Map
@@ -118,7 +118,7 @@ public class JdbcFlyDataAccessService extends AbstractFlyDataAccessService {
 				convertTableName(entityName), keyParams);
 		AssertUtil.parameterEmpty(dbEntity, "dbEntity");
 
-		String uid = entityMetaData.getPKFieldDefinition().getPKValue(dbEntity);
+		String uid = entityMetaData.getPkFieldDefinition().getPKValue(dbEntity);
 		AssertUtil.parameterEmpty(uid, "uid");
 
 		return (T) convertToViewMap(entityName, null, null, dbEntity, uid);
@@ -139,7 +139,7 @@ public class JdbcFlyDataAccessService extends AbstractFlyDataAccessService {
 		AssertUtil.parameterEmpty(entityMetaData, "entityMetaData");
 
 		// 构建主键
-		Map<String, Object> pkValue = entityMetaData.getPKFieldDefinition().buildPKMap(uid);
+		Map<String, Object> pkValue = entityMetaData.getPkFieldDefinition().buildPKMap(uid);
 		AssertUtil.parameterEmpty(pkValue, "pkValue");
 
 		// 查询数据，结果返回为Map
@@ -168,7 +168,7 @@ public class JdbcFlyDataAccessService extends AbstractFlyDataAccessService {
 		EntityMetaData entityMetaData = getEntityMetaData(entityName);
 		AssertUtil.parameterEmpty(entityMetaData, "entityMetaData");
 
-		PKFieldDefinition pkFieldDefinition = entityMetaData.getPKFieldDefinition();
+		PKFieldDefinition pkFieldDefinition = entityMetaData.getPkFieldDefinition();
 
 		List<T> list = (List<T>) jdbcDataAccessService.findAll(entityMetaData.getDataSourceId(),
 				convertTableName(entityName), params);
@@ -211,7 +211,7 @@ public class JdbcFlyDataAccessService extends AbstractFlyDataAccessService {
 		ListDefinition listDefinition = entityMetaData.getListDefinition(listViewName);
 		AssertUtil.parameterEmpty(listDefinition, "listDefinition");
 		String labelFieldName = listDefinition.getLabelField();
-		PKFieldDefinition pkField = entityMetaData.getPKFieldDefinition();
+		PKFieldDefinition pkField = entityMetaData.getPkFieldDefinition();
 
 		FieldDefinition[] fields = listDefinition.getFields(printMode);
 		FilterDefinition[] filters = QuerySpecificationUtil.buildFilterDefinition(listDefinition.getFilters(), params);
@@ -255,7 +255,7 @@ public class JdbcFlyDataAccessService extends AbstractFlyDataAccessService {
 		AssertUtil.parameterEmpty(fkFieldDefinition, "fkFieldDefinition");
 
 		Map<String, Object> params2 = new HashMap<>();
-		Map<String, Object> pkMap = entityMetaData.getPKFieldDefinition().buildPKMap(uid);
+		Map<String, Object> pkMap = entityMetaData.getPkFieldDefinition().buildPKMap(uid);
 		for (String fkField : fkFieldDefinition.getFkFields()) {
 			Object value = pkMap.get(fkFieldDefinition.getRelationFieldByFKField(fkField));
 			params2.put(subEntityMetaData.getField(fkField).getFieldName(), value);
@@ -288,7 +288,7 @@ public class JdbcFlyDataAccessService extends AbstractFlyDataAccessService {
 
 		FilterDefinition[] filters = QuerySpecificationUtil.buildFilterDefinition(subTableDefinition.getFilters(),
 				params);
-		Map<String, Object> pkMap = entityMetaData.getPKFieldDefinition().buildPKMap(uid);
+		Map<String, Object> pkMap = entityMetaData.getPkFieldDefinition().buildPKMap(uid);
 		for (String fkField : fkFieldDefinition.getFkFields()) {
 			String fkFieldName = subEntityMetaData.getField(fkField).getFieldName();
 			FilterDefinition filter = new FilterDefinition(fkFieldName, SQLOperator.EQUAL);
@@ -303,7 +303,7 @@ public class JdbcFlyDataAccessService extends AbstractFlyDataAccessService {
 		// 结果转换
 		String labelFieldName = subTableDefinition.getLabelField();
 		FieldDefinition[] fields = subTableDefinition.getFields(printMode);
-		PKFieldDefinition pkFieldDefinition = subEntityMetaData.getPKFieldDefinition();
+		PKFieldDefinition pkFieldDefinition = subEntityMetaData.getPkFieldDefinition();
 		List<FlyEntityMap> resultList = new ArrayList<>();
 		for (Map<String, Object> entity : dbEntities) {
 			String pkValue = pkFieldDefinition.getPKValueByFieldName(entity);
@@ -394,7 +394,7 @@ public class JdbcFlyDataAccessService extends AbstractFlyDataAccessService {
 		EntityMetaData entityMetaData = getEntityMetaData(entityName);
 		AssertUtil.parameterEmpty(entityMetaData, "entityMetaData");
 
-		Map<String, Object> pkParams = entityMetaData.getPKFieldDefinition().buildPKMap(uid);
+		Map<String, Object> pkParams = entityMetaData.getPkFieldDefinition().buildPKMap(uid);
 		return jdbcDataAccessService.delOne(entityMetaData.getDataSourceId(),
 				entityMetaData.getTableDefinition().getTableName(), pkParams);
 	}
@@ -477,13 +477,13 @@ public class JdbcFlyDataAccessService extends AbstractFlyDataAccessService {
 		if (metaData.isFlyEntity()) {
 			saveGlobalName(table, values.get("UID"), values.get("NAME"));
 		}
-		return metaData.getPKFieldDefinition().getPKValue(values);
+		return metaData.getPkFieldDefinition().getPKValue(values);
 	}
 
 	@Override
 	public void updateEntity(String table, String uid, Map<String, Object> values) {
 		EntityMetaData metaData = getEntityMetaData(table);
-		Map<String, Object> keyParams = metaData.getPKFieldDefinition().buildPKMap(uid);
+		Map<String, Object> keyParams = metaData.getPkFieldDefinition().buildPKMap(uid);
 		if (MapUtils.isNotEmpty(values)) {
 			int count = jdbcDataAccessService.updateEntity(metaData.getDataSourceId(),
 					metaData.getTableDefinition().getTableName(), keyParams, values);
