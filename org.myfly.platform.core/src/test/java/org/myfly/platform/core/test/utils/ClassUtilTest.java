@@ -13,17 +13,7 @@ import org.myfly.platform.core.testdata.Detail;
 import org.myfly.platform.core.testdata.Master;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.DateUtil;
-<<<<<<< HEAD
-import org.myfly.platform.test.ServiceTestCase;
-=======
->>>>>>> refs/remotes/origin/v2.0
-
-<<<<<<< HEAD
-public class ClassUtilTest extends ServiceTestCase{
-=======
 public class ClassUtilTest{
->>>>>>> refs/remotes/origin/v2.0
-
 //	@Test
 //	public void getClassAnnotationForStdTestTable(){
 //		Table table = ClassUtil.getClassAnnotation(SUser.class, Table.class);

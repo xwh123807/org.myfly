@@ -10,7 +10,7 @@
   <dependencies>
 		<dependency>
 			<groupId>org.myfly.platform.microapps</groupId>
-			<artifactId>org.myfly.platform.metamodel</artifactId>
+			<artifactId>org.myfly.platform.core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>

@@ -7,9 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.annotation.Div1View;
 import org.myfly.platform.core.metadata.annotation.Div2View;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
@@ -35,14 +37,15 @@ import org.myfly.platform.core.system.domain.FlyEntity;
  *
  */
 @Entity
+@Table(name="SM_MASTER", catalog="TEST", schema="SAMPLE")
 @MetaDataView(
 		//
 		tableView = @TableView(title = "主表", description = "主表信息"),
 		//
 		listViews = {
-				@ListView(fields = { "name", "description", "active", "createdBy",
+				@ListView(name="default", fields = { "name", "description", "active", "createdBy",
 						"created" }, listStyle = ListStyle.TABLE),
-				@ListView(fields = { "name", "description", "createdBy",
+				@ListView(name="list2", fields = { "name", "description", "createdBy",
 						"created" }, listStyle = ListStyle.CARDLIST, filters = {
 								@FilterView(field = "name", operator = SQLOperator.LIKE) }, orders = @OrderView(field = "name")) },
 		//
@@ -76,6 +79,10 @@ public class Master extends FlyEntity {
 	@FieldView(title = "简述")
 	@Column(length = 1000)
 	private String description;
+	
+	@FieldView(title = "数据类型")
+	@Column(length = 50)
+	private FieldDataType dataType;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "master")
 	@FieldView(title = "明细记录")
@@ -95,5 +102,13 @@ public class Master extends FlyEntity {
 
 	public void setDetails(Set<Detail> details) {
 		this.details = details;
+	}
+
+	public FieldDataType getDataType() {
+		return dataType;
+	}
+
+	public void setDataType(FieldDataType dataType) {
+		this.dataType = dataType;
 	}
 }

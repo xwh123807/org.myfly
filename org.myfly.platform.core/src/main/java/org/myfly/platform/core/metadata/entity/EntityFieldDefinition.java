@@ -1,22 +1,33 @@
-package org.myfly.platform.core.metadata.define.entity;
+package org.myfly.platform.core.metadata.entity;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.domain.FieldDataType.FieldAttr;
 import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.metadata.define.GetFieldValueHandler;
+import org.myfly.platform.core.metadata.define.SetFieldValueHandler;
 import org.myfly.platform.core.utils.EntityClassUtil;
 import org.myfly.platform.core.utils.EntityClassUtil.FieldInfo;
 import org.myfly.platform.core.utils.StringUtil;
-import org.springframework.data.mapping.PersistentProperty;
+import org.springframework.util.Assert;
 
 public class EntityFieldDefinition extends FieldDefinition {
+	/**
+	 * 值不为空时，取值由此函数确定
+	 */
+	private GetFieldValueHandler getValueHandler;
+	/**
+	 * 设置实体函数
+	 */
+	private SetFieldValueHandler setValueHandler;
 	/**
 	 * get方法
 	 */
@@ -44,6 +55,7 @@ public class EntityFieldDefinition extends FieldDefinition {
 		if (StringUtils.isBlank(getFieldName())) {
 			setFieldName(StringUtil.getHibernateName(getName()));
 		}
+		setIdField(property.getAnnotation(Id.class) != null);
 		FieldAttr fieldAttr = FieldDataType.fromJavaType(getType(), column);
 		if (FieldDataType.NONE.equals(getDataType())) {
 			setDataType(fieldAttr.getDataType());
@@ -55,10 +67,8 @@ public class EntityFieldDefinition extends FieldDefinition {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public EntityFieldDefinition(PersistentProperty<?> property) {
-		this(property.getField());
+		setGetValueHandler(new DefaultGetFieldValueHandler(this));
+		setSetValueHandler(new DefaultSetFieldValueHandler(this));
 	}
 
 	public Method getGetter() {
@@ -75,5 +85,31 @@ public class EntityFieldDefinition extends FieldDefinition {
 
 	public void setSetter(Method setter) {
 		this.setter = setter;
+	}
+
+	public GetFieldValueHandler getGetValueHandler() {
+		return getValueHandler;
+	}
+
+	public void setGetValueHandler(GetFieldValueHandler getValueHandler) {
+		this.getValueHandler = getValueHandler;
+	}
+
+	public SetFieldValueHandler getSetValueHandler() {
+		return setValueHandler;
+	}
+
+	public void setSetValueHandler(SetFieldValueHandler setValueHandler) {
+		this.setValueHandler = setValueHandler;
+	}
+
+	@Override
+	public void validate() {
+		super.validate();
+		Assert.hasLength(getName());
+		Assert.notNull(getGetter());
+		Assert.notNull(getSetter());
+		Assert.notNull(getGetValueHandler());
+		Assert.notNull(getSetValueHandler());
 	}
 }

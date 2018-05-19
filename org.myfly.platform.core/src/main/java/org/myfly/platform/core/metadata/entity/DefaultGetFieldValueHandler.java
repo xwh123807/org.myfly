@@ -1,13 +1,14 @@
-package org.myfly.platform.core.metadata.define;
+package org.myfly.platform.core.metadata.entity;
 
 import java.util.Map;
 
+import org.myfly.platform.core.metadata.define.GetFieldValueHandler;
 import org.myfly.platform.core.utils.AssertUtil;
 
 public class DefaultGetFieldValueHandler implements GetFieldValueHandler {
-	private FieldDefinition field;
+	private EntityFieldDefinition field;
 
-	public DefaultGetFieldValueHandler(FieldDefinition field) {
+	public DefaultGetFieldValueHandler(EntityFieldDefinition field) {
 		this.field = field;
 	}
 
@@ -18,7 +19,7 @@ public class DefaultGetFieldValueHandler implements GetFieldValueHandler {
 			return null;
 		} else {
 			if (entity instanceof Map) {
-				return ((Map)entity).get(field.getName());
+				return ((Map) entity).get(field.getName());
 			} else {
 				try {
 					return field.getGetter().invoke(entity);

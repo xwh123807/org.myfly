@@ -23,6 +23,7 @@ import org.myfly.platform.core.metadata.define.FilterDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 import org.myfly.platform.core.metadata.define.SubTableDefinition;
+import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.system.domain.IKeyEntity;
 import org.myfly.platform.core.utils.AssertUtil;
@@ -197,8 +198,8 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 		AssertUtil.parameterEmpty(entityMetaData, "entityMetaData");
 		SubTableDefinition subTable = entityMetaData.getFormDefinition(view).getSubTableDefinition(subTableAttr);
 		Assert.notNull(subTable, "实体[" + entityName + "]在视图[" + view + "]下没有显示定义子表[" + subTableAttr + "]");
-		FieldDefinition subField = entityMetaData.getField(subTableAttr);
-		String subentityName = subField.getRelationTable();
+		MDRelationFieldDefinition subField = entityMetaData.getField(subTableAttr);
+		String subentityName = subField.getRelationClass();
 		AssertUtil.parameterEmpty(subField, "subField", "实体[" + entityName + "]不存在属性[" + subTableAttr + "]");
 		final String subTableField = subField.getRelationField().getName();
 		AssertUtil.parameterEmpty(subTableField, "subTableField");
@@ -213,7 +214,7 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 		Specifications specifications = getEntityQuerySpecifications(subentityName, view, params);
 		if (FieldDataType.MDRELATION.equals(subField.getDataType())) {
 			try {
-				final Object entity = Class.forName(subField.getRelationField().getRelationClass()).newInstance();
+				final Object entity = Class.forName(subField.getRelationClass()).newInstance();
 				entityMetaData.getPKFieldDefinition().setPKValue(entity, uid);
 				Specification entityFilter = new Specification() {
 					@Override

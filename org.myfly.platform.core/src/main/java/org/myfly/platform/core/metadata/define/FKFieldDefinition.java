@@ -1,14 +1,15 @@
 package org.myfly.platform.core.metadata.define;
 
+import org.myfly.platform.core.metadata.entity.SearchRelationFieldDefinition;
 import org.springframework.util.Assert;
 
 /**
- * 实体外键定义。
- * 用于查找关系和ManyToOne
+ * 实体外键定义。 用于查找关系和ManyToOne
+ * 
  * @author xiangwanhong
  *
  */
-public class FKFieldDefinition extends BaseDenifition{
+public class FKFieldDefinition extends BaseDenifition {
 	/**
 	 * 外键关联表名
 	 */
@@ -18,10 +19,6 @@ public class FKFieldDefinition extends BaseDenifition{
 	 */
 	private String relationClass;
 	/**
-	 * 外键定义所在字段
-	 */
-	private String field;
-	/**
 	 * 外键字段，有多个值时表示复合外键
 	 */
 	private String[] fkFields;
@@ -30,8 +27,11 @@ public class FKFieldDefinition extends BaseDenifition{
 	 */
 	private String[] relationFields;
 
-	public FKFieldDefinition(Object owner) {
-		super(owner);
+	public FKFieldDefinition(SearchRelationFieldDefinition field) {
+		super(null);
+		setName(field.getName());
+		setRelationClass(field.getRelationClass());
+		setRelationTable(field.getRelationTable());
 	}
 
 	public String getRelationTable() {
@@ -66,36 +66,29 @@ public class FKFieldDefinition extends BaseDenifition{
 		this.relationFields = relationFields;
 	}
 
-	public String getField() {
-		return field;
-	}
-
-	public void setField(String field) {
-		this.field = field;
-	}
-
 	/**
 	 * 获取外键字段对应关联表的字段
+	 * 
 	 * @param fkField
 	 * @return
 	 */
-	public String getRelationFieldByFKField(String fkField){
+	public String getRelationFieldByFKField(String fkField) {
 		int index = -1;
-		for (String name : getFkFields()){
-			index ++;
-			if (fkField.equals(name)){
+		for (String name : getFkFields()) {
+			index++;
+			if (fkField.equals(name)) {
 				break;
 			}
 		}
-		if (index != -1){
+		if (index != -1) {
 			return getRelationFields()[index];
-		}else{
+		} else {
 			return null;
 		}
 	}
 
 	public void validate() {
-		Assert.hasLength(getField());
+		Assert.hasLength(getName());
 		Assert.notEmpty(getFkFields());
 		Assert.notEmpty(getRelationFields());
 		Assert.hasLength(getRelationTable());

@@ -7,7 +7,6 @@ import org.hibernate.annotations.GenericGenerator;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.utils.UUIDUtil;
-import org.springframework.util.Assert;
 
 public class FieldDefinition extends BaseDenifition {
 	/**
@@ -56,14 +55,6 @@ public class FieldDefinition extends BaseDenifition {
 	 */
 	private String mask;
 	/**
-	 * 值不为空时，取值由此函数确定
-	 */
-	private GetFieldValueHandler getValueHandler;
-	/**
-	 * 设置实体函数
-	 */
-	private SetFieldValueHandler setValueHandler;
-	/**
 	 * 字段值类型
 	 */
 	private Class<?> type;
@@ -76,7 +67,7 @@ public class FieldDefinition extends BaseDenifition {
 	 * 只读，不能更改
 	 */
 	private boolean readonly;
-	
+
 	/**
 	 * 是否为主键字段，如果是复合主键，则一个实体中有多个属性
 	 */
@@ -105,11 +96,11 @@ public class FieldDefinition extends BaseDenifition {
 		setDataType(fieldView.dataType());
 		setMinLength(fieldView.minLength());
 	}
-	
+
 	public String getFieldName() {
 		return fieldName;
 	}
-	
+
 	public void setFieldName(String fieldName) {
 		this.fieldName = fieldName;
 	}
@@ -178,14 +169,6 @@ public class FieldDefinition extends BaseDenifition {
 		this.mask = mask;
 	}
 
-	public GetFieldValueHandler getGetValueHandler() {
-		return getValueHandler;
-	}
-
-	public void setGetValueHandler(GetFieldValueHandler getValueHandler) {
-		this.getValueHandler = getValueHandler;
-	}
-
 	public String getLinkUrl() {
 		return linkUrl;
 	}
@@ -200,14 +183,6 @@ public class FieldDefinition extends BaseDenifition {
 
 	public void setType(Class<?> type) {
 		this.type = type;
-	}
-
-	public SetFieldValueHandler getSetValueHandler() {
-		return setValueHandler;
-	}
-
-	public void setSetValueHandler(SetFieldValueHandler setValueHandler) {
-		this.setValueHandler = setValueHandler;
 	}
 
 	public boolean isReadonly() {
@@ -259,14 +234,6 @@ public class FieldDefinition extends BaseDenifition {
 	}
 
 	public void validate() {
-		Assert.hasLength(getName());
-		Assert.hasLength(getTitle());
-		if (FieldDataType.FLYMDRELATION.equals(getDataType()) || FieldDataType.MDRELATION.equals(getDataType())) {
-		} else {
-			Assert.hasLength(getName());
-		}
-		Assert.notNull(getDataType());
-		Assert.notNull(getType());
 	}
 
 	public String getTitle() {
@@ -285,97 +252,109 @@ public class FieldDefinition extends BaseDenifition {
 		this.scale = scale;
 	}
 
-//	private Boolean isFlyEntityForRelationClass;
-//
-//	public Boolean relationClassIsFlyEntity() {
-//		if (isFlyEntityForRelationClass == null) {
-//			EntityMetaData relEntityMetaData = AppUtil.getEntityMetadata(getRelationTable());
-//			isFlyEntityForRelationClass = relEntityMetaData.isFlyEntity();
-//		}
-//		return isFlyEntityForRelationClass;
-//	}
-//	
-//	/**
-//	 * 查找关系时，获取查找表显示字段定义
-//	 * 
-//	 * @return
-//	 */
-//	public FieldDefinition getLabelFieldDefinition() {
-//		if (labelFieldDefinition == null) {
-//			if (FieldDataType.SEARCHRELATION.equals(getDataType())
-//					|| FieldDataType.FLYSEARCHRELATION.equals(getDataType())
-//					|| FieldDataType.AUTORELATION.equals(getDataType())
-//					|| FieldDataType.FLYMDRELATION.equals(getDataType())) {
-//				if (StringUtils.isBlank(getLabelField())) {
-//					AssertUtil.parameterInvalide("field", "字段[" + getName() + "]没有配置LabelField字段");
-//				}
-//				EntityMetaData metaData = AppUtil.getEntityMetadata(getRelationClass());
-//				AssertUtil.parameterEmpty(metaData, "metaData", "没有名称为[" + getRelationClass() + "]的实体元模型");
-//				labelFieldDefinition = metaData.getField(getLabelField());
-//				AssertUtil.parameterEmpty(labelFieldDefinition, "labelFieldDefinition", "字段[" + getName()
-//						+ "]的LabelField属性配置错误，实体[" + getRelationClass() + "]中没有字段[" + getLabelField() + "]");
-//			} else {
-//				AssertUtil.parameterInvalide(true,
-//						"字段[" + getName() + "]不是关联属性，只有[" + FieldDataType.SEARCHRELATION.getTitle() + "和"
-//								+ FieldDataType.AUTORELATION.getTitle() + "]的字段才支持.");
-//			}
-//		}
-//		return labelFieldDefinition;
-//	}
-//
-//	/**
-//	 * 查找关系时，获取查找表主键定义
-//	 * 
-//	 * @return
-//	 */
-//	public PKFieldDefinition getPKFieldDefinition() {
-//		if (pkFieldDefinition == null) {
-//			AssertUtil.parameterInvalide(!FieldDataType.SEARCHRELATION.equals(getDataType()),
-//					"字段[" + getName() + "]不是关联属性，只有[" + FieldDataType.SEARCHRELATION.getTitle() + "]的字段才支持.");
-//			pkFieldDefinition = AppUtil.getEntityMetadata(getRelationClass()).getPKFieldDefinition();
-//		}
-//		return pkFieldDefinition;
-//	}
-//
-//	/**
-//	 * 为主子表关联字段时，获取关联属性
-//	 * 
-//	 * @return
-//	 */
-//	public FieldDefinition getRelationField() {
-//		if (FieldDataType.MDRELATION.equals(getDataType())) {
-//			if (relationField != null && relationField.getDataType() == null) {
-//				// 由于在元模型构造时存在循环调用，更改为需要时获取。 更新关联字段等信息
-//				AssertUtil.parameterEmpty(getRelationTable(), "getRelationTable()");
-//				EntityMetaData relEntityMetaData = AppUtil.getEntityMetadata(getRelationTable());
-//				relationField = relEntityMetaData.getField(relationField.getName());
-//			}
-//		}
-//		return relationField;
-//	}
-//
-//	public String getFieldName() {
-//		if (FieldDataType.SEARCHRELATION.equals(getDataType())) {
-//			// 复合外键，wid=wid;did=did；将属性名转换为字段名
-//			if (fieldName.startsWith("tmp|")) {
-//				if (fieldName.contains("=")) {
-//					String searchField = fieldName.substring(4);
-//					EntityMetaData metaData = getParent();
-//					EntityMetaData relEntityMetaData = AppUtil.getEntityMetadata(getRelationTable());
-//					String[] items = searchField.split(";");
-//					String result = "";
-//					for (String item : items) {
-//						String name = metaData.getField(StringUtils.substringBefore(item, "=")).getFieldName();
-//						String value = relEntityMetaData.getField(StringUtils.substringAfter(item, "=")).getFieldName();
-//						result += ";" + name + "=" + value;
-//					}
-//					if (StringUtils.isNotBlank(result)) {
-//						result = result.substring(1);
-//					}
-//					fieldName = result;
-//				}
-//			}
-//		}
-//		return fieldName;
-//	}
+	// private Boolean isFlyEntityForRelationClass;
+	//
+	// public Boolean relationClassIsFlyEntity() {
+	// if (isFlyEntityForRelationClass == null) {
+	// EntityMetaData relEntityMetaData =
+	// AppUtil.getEntityMetadata(getRelationTable());
+	// isFlyEntityForRelationClass = relEntityMetaData.isFlyEntity();
+	// }
+	// return isFlyEntityForRelationClass;
+	// }
+	//
+	// /**
+	// * 查找关系时，获取查找表显示字段定义
+	// *
+	// * @return
+	// */
+	// public FieldDefinition getLabelFieldDefinition() {
+	// if (labelFieldDefinition == null) {
+	// if (FieldDataType.SEARCHRELATION.equals(getDataType())
+	// || FieldDataType.FLYSEARCHRELATION.equals(getDataType())
+	// || FieldDataType.AUTORELATION.equals(getDataType())
+	// || FieldDataType.FLYMDRELATION.equals(getDataType())) {
+	// if (StringUtils.isBlank(getLabelField())) {
+	// AssertUtil.parameterInvalide("field", "字段[" + getName() +
+	// "]没有配置LabelField字段");
+	// }
+	// EntityMetaData metaData = AppUtil.getEntityMetadata(getRelationClass());
+	// AssertUtil.parameterEmpty(metaData, "metaData", "没有名称为[" + getRelationClass()
+	// + "]的实体元模型");
+	// labelFieldDefinition = metaData.getField(getLabelField());
+	// AssertUtil.parameterEmpty(labelFieldDefinition, "labelFieldDefinition", "字段["
+	// + getName()
+	// + "]的LabelField属性配置错误，实体[" + getRelationClass() + "]中没有字段[" + getLabelField()
+	// + "]");
+	// } else {
+	// AssertUtil.parameterInvalide(true,
+	// "字段[" + getName() + "]不是关联属性，只有[" + FieldDataType.SEARCHRELATION.getTitle() +
+	// "和"
+	// + FieldDataType.AUTORELATION.getTitle() + "]的字段才支持.");
+	// }
+	// }
+	// return labelFieldDefinition;
+	// }
+	//
+	// /**
+	// * 查找关系时，获取查找表主键定义
+	// *
+	// * @return
+	// */
+	// public PKFieldDefinition getPKFieldDefinition() {
+	// if (pkFieldDefinition == null) {
+	// AssertUtil.parameterInvalide(!FieldDataType.SEARCHRELATION.equals(getDataType()),
+	// "字段[" + getName() + "]不是关联属性，只有[" + FieldDataType.SEARCHRELATION.getTitle() +
+	// "]的字段才支持.");
+	// pkFieldDefinition =
+	// AppUtil.getEntityMetadata(getRelationClass()).getPKFieldDefinition();
+	// }
+	// return pkFieldDefinition;
+	// }
+	//
+	// /**
+	// * 为主子表关联字段时，获取关联属性
+	// *
+	// * @return
+	// */
+	// public FieldDefinition getRelationField() {
+	// if (FieldDataType.MDRELATION.equals(getDataType())) {
+	// if (relationField != null && relationField.getDataType() == null) {
+	// // 由于在元模型构造时存在循环调用，更改为需要时获取。 更新关联字段等信息
+	// AssertUtil.parameterEmpty(getRelationTable(), "getRelationTable()");
+	// EntityMetaData relEntityMetaData =
+	// AppUtil.getEntityMetadata(getRelationTable());
+	// relationField = relEntityMetaData.getField(relationField.getName());
+	// }
+	// }
+	// return relationField;
+	// }
+	//
+	// public String getFieldName() {
+	// if (FieldDataType.SEARCHRELATION.equals(getDataType())) {
+	// // 复合外键，wid=wid;did=did；将属性名转换为字段名
+	// if (fieldName.startsWith("tmp|")) {
+	// if (fieldName.contains("=")) {
+	// String searchField = fieldName.substring(4);
+	// EntityMetaData metaData = getParent();
+	// EntityMetaData relEntityMetaData =
+	// AppUtil.getEntityMetadata(getRelationTable());
+	// String[] items = searchField.split(";");
+	// String result = "";
+	// for (String item : items) {
+	// String name = metaData.getField(StringUtils.substringBefore(item,
+	// "=")).getFieldName();
+	// String value = relEntityMetaData.getField(StringUtils.substringAfter(item,
+	// "=")).getFieldName();
+	// result += ";" + name + "=" + value;
+	// }
+	// if (StringUtils.isNotBlank(result)) {
+	// result = result.substring(1);
+	// }
+	// fieldName = result;
+	// }
+	// }
+	// }
+	// return fieldName;
+	// }
 }

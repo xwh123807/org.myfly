@@ -6,11 +6,13 @@ import org.hibernate.SessionFactory;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
+import org.myfly.platform.core.starter.ApplicationStarter;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
+import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.util.Assert;
 
 /**
@@ -68,14 +70,14 @@ public class AppUtil {
 		GenericConversionService conversionService = null;
 		try {
 			conversionService = (GenericConversionService) getApplicationConext().getBean("mvcConversionService");
-		} catch (NoSuchBeanDefinitionException e) {
+		} catch (Exception e) {
+		}
+		
+		if (conversionService == null) {
+			conversionService = new DefaultFormattingConversionService();
+			(new ApplicationStarter()).registerConverterFactory(conversionService);
 		}
 		Assert.notNull(conversionService);
-		// if (conversionService == null) {
-		// conversionService = new DefaultFormattingConversionService();
-		// (new
-		// ApplicationStarter()).registerConverterFactory(conversionService);
-		// }
 		return conversionService;
 	}
 

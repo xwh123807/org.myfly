@@ -1,13 +1,11 @@
-package org.myfly.platform.core.metadata.define.entity;
+package org.myfly.platform.core.metadata.entity;
 
 import java.lang.reflect.Field;
 
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.utils.ClassUtil;
-import org.springframework.data.mapping.Association;
-import org.springframework.data.mapping.PersistentProperty;
 
-public class RelationFieldDefinition extends EntityFieldDefinition{
+public class RelationFieldDefinition extends EntityFieldDefinition {
 	/**
 	 * 如果是枚举类型，存放枚举类型名；如果是关联关系，存放关联类名
 	 */
@@ -20,21 +18,15 @@ public class RelationFieldDefinition extends EntityFieldDefinition{
 	 * 如果是主子表关系，存放子表对应的字段<br>
 	 */
 	private FieldDefinition relationField;
-	
+
 	public RelationFieldDefinition(Field field) {
 		super(field);
 		try {
 			setRelationClass(ClassUtil.getFieldType(field).getName());
+			setRelationTable(ClassUtil.getClassShortName(getRelationClass()));
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public RelationFieldDefinition(Association<? extends PersistentProperty<?>> property) {
-		super(property.getInverse());
-		setType(property.getInverse().getComponentType());
-		setRelationClass(getType().getName());
-		setRelationTable(ClassUtil.getClassShortName(getRelationClass()));
 	}
 
 	public String getRelationClass() {

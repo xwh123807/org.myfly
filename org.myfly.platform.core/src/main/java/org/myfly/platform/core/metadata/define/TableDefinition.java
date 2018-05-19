@@ -1,6 +1,6 @@
 package org.myfly.platform.core.metadata.define;
 
-import javax.persistence.Table;
+import java.util.Map;
 
 import org.myfly.platform.core.metadata.annotation.CommonSubTableType;
 import org.myfly.platform.core.metadata.annotation.TableView;
@@ -58,6 +58,14 @@ public class TableDefinition extends BaseDenifition {
 	 * 字段列表
 	 */
 	private FieldDefinition[] fields;
+	/**
+	 * 主键字段
+	 */
+	private PKFieldDefinition primaryKey;
+	/**
+	 * 外键定义,查找关系
+	 */
+	private Map<String, FKFieldDefinition> fkFieldDefinitions;
 
 	public TableDefinition(Object owner) {
 		super(owner);
@@ -170,19 +178,27 @@ public class TableDefinition extends BaseDenifition {
 		this.primaryKeys = primaryKeys;
 	}
 	
-	public void merge(Table table) {
-		if (table != null) {
-			setName(table.name());
-			setSchema(table.schema());
-			setCatalog(table.catalog());
-		}
-	}
-
 	public FieldDefinition[] getFields() {
 		return fields;
 	}
 
 	public void setFields(FieldDefinition[] fields) {
 		this.fields = fields;
+	}
+
+	public PKFieldDefinition getPrimaryKey() {
+		return primaryKey;
+	}
+
+	public void setPrimaryKey(PKFieldDefinition primaryKey) {
+		this.primaryKey = primaryKey;
+	}
+
+	public Map<String, FKFieldDefinition> getFkFieldDefinitions() {
+		return fkFieldDefinitions;
+	}
+
+	public void setFkFieldDefinitions(Map<String, FKFieldDefinition> fkFieldDefinitions) {
+		this.fkFieldDefinitions = fkFieldDefinitions;
 	}
 }

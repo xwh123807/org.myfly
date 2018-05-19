@@ -41,7 +41,7 @@ public class FieldSetDefinition extends BaseDenifition {
 
 	@Override
 	public String toString() {
-		return "title: " + getTitle() + ", fields: " + FieldDefinition.getNames(fields);
+		return "title: " + getTitle() + ", fields: " + getFieldNames();
 	}
 
 	public void validate() {

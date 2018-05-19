@@ -1824,4 +1824,54 @@
   <packagedElement xmi:type="uml:Package" xmi:id="_P1sQ8FXjEeiQ9rigdUywJg" name="org.myfly.platform.flydata">
     <packagedElement xmi:type="uml:Dependency" xmi:id="_VulW8FXjEeiQ9rigdUywJg" client="_P1sQ8FXjEeiQ9rigdUywJg" supplier="_B8Qb8FXjEeiQ9rigdUywJg"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_tHqDEFqtEeiQ9rigdUywJg" name="org.myfly.platform.core.metadata.define.entity">
+    <packagedElement xmi:type="uml:Class" xmi:id="_0vKnAFqtEeiQ9rigdUywJg" name="EntityFieldDefinition" visibility="public">
+      <ownedAttribute xmi:id="_QtjkgFquEeiQ9rigdUywJg" name="getter" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QtjkgVquEeiQ9rigdUywJg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QtjkglquEeiQ9rigdUywJg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_SMYS8FquEeiQ9rigdUywJg" name="setter" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SMYS8VquEeiQ9rigdUywJg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SMYS8lquEeiQ9rigdUywJg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_DQAaQFquEeiQ9rigdUywJg" name="RelationFieldDefinition" visibility="public">
+      <generalization xmi:id="_FTeG0FquEeiQ9rigdUywJg" general="_0vKnAFqtEeiQ9rigdUywJg"/>
+      <ownedAttribute xmi:id="_L342EFquEeiQ9rigdUywJg" name="relationClass" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_L35dIFquEeiQ9rigdUywJg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_L35dIVquEeiQ9rigdUywJg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ax0ewFquEeiQ9rigdUywJg" name="MDRelationFieldDefinition" visibility="public">
+      <generalization xmi:id="_dMGI0FquEeiQ9rigdUywJg" general="_DQAaQFquEeiQ9rigdUywJg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_iFBmoFquEeiQ9rigdUywJg" name="SearchRelationFieldDefinition" visibility="public">
+      <generalization xmi:id="_jr9IMFquEeiQ9rigdUywJg" general="_DQAaQFquEeiQ9rigdUywJg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_oVF2gFquEeiQ9rigdUywJg" name="DefaultGetFieldValueHandler" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_rhPpcFquEeiQ9rigdUywJg" name="DefaultSetFieldValueHandler" visibility="public"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_0ajMcFquEeiQ9rigdUywJg" memberEnd="_0ajMcVquEeiQ9rigdUywJg _0ajMdFquEeiQ9rigdUywJg" navigableOwnedEnd="_0ajMdFquEeiQ9rigdUywJg">
+      <ownedEnd xmi:id="_0ajMcVquEeiQ9rigdUywJg" name="entityFieldDefinitions" type="_0vKnAFqtEeiQ9rigdUywJg" association="_0ajMcFquEeiQ9rigdUywJg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0ajMclquEeiQ9rigdUywJg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0ajMc1quEeiQ9rigdUywJg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_0ajMdFquEeiQ9rigdUywJg" name="defaultGetFieldValueHandlers" type="_oVF2gFquEeiQ9rigdUywJg" association="_0ajMcFquEeiQ9rigdUywJg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0ajMdVquEeiQ9rigdUywJg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0ajMdlquEeiQ9rigdUywJg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_3xX-UFquEeiQ9rigdUywJg" memberEnd="_3xX-UVquEeiQ9rigdUywJg _3xX-VFquEeiQ9rigdUywJg" navigableOwnedEnd="_3xX-VFquEeiQ9rigdUywJg">
+      <ownedEnd xmi:id="_3xX-UVquEeiQ9rigdUywJg" name="entityFieldDefinitions" type="_0vKnAFqtEeiQ9rigdUywJg" association="_3xX-UFquEeiQ9rigdUywJg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3xX-UlquEeiQ9rigdUywJg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3xX-U1quEeiQ9rigdUywJg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_3xX-VFquEeiQ9rigdUywJg" name="defaultSetFieldValueHandlers" type="_rhPpcFquEeiQ9rigdUywJg" association="_3xX-UFquEeiQ9rigdUywJg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3xX-VVquEeiQ9rigdUywJg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3xX-VlquEeiQ9rigdUywJg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
 </uml:Model>

@@ -1,16 +1,17 @@
-package org.myfly.platform.core.metadata.define;
+package org.myfly.platform.core.metadata.entity;
 
 import java.util.Map;
 
 import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.metadata.define.SetFieldValueHandler;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.springframework.util.Base64Utils;
 
 public class DefaultSetFieldValueHandler implements SetFieldValueHandler {
-	private FieldDefinition field;
+	private EntityFieldDefinition field;
 
-	public DefaultSetFieldValueHandler(FieldDefinition field) {
+	public DefaultSetFieldValueHandler(EntityFieldDefinition field) {
 		this.field = field;
 	}
 

@@ -1,4 +1,4 @@
-package org.myfly.platform.core.metadata.define.entity;
+package org.myfly.platform.core.metadata.entity;
 
 import java.lang.reflect.Field;
 
@@ -6,8 +6,6 @@ import javax.persistence.ManyToOne;
 
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.define.PKFieldDefinition;
-import org.springframework.data.mapping.Association;
-import org.springframework.data.mapping.PersistentProperty;
 
 public class SearchRelationFieldDefinition extends RelationFieldDefinition {
 	/**
@@ -22,8 +20,6 @@ public class SearchRelationFieldDefinition extends RelationFieldDefinition {
 		setRequired(!manyToOne.optional());
 	}
 
-	public SearchRelationFieldDefinition(Association<? extends PersistentProperty<?>> association) {
-		super(association);
 /*		
 
 		ManyToOne manyToOne = association.getInverse().findAnnotation(ManyToOne.class);
@@ -86,7 +82,6 @@ public class SearchRelationFieldDefinition extends RelationFieldDefinition {
 			}
 		}
 */		
-	}
 
 	public PKFieldDefinition getPkFieldDefinition() {
 		return pkFieldDefinition;

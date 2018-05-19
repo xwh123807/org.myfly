@@ -1,8 +1,5 @@
 package org.myfly.platform.core.metadata.define;
 
-import org.myfly.platform.core.utils.FuncUtil;
-import org.myfly.platform.core.utils.FuncUtil.ConvertAction;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -43,38 +40,38 @@ public abstract class BaseDenifition {
 		this.parent = parent;
 	};
 
-	/**
-	 * 根据字段属性名称构建字段定义
-	 * 
-	 * @param names
-	 * @return
-	 */
-	public FieldDefinition[] buildFieldDefinitions(final String[] names) {
-		return FuncUtil.convert(names, new ConvertAction<String, FieldDefinition>() {
-
-			@Override
-			public FieldDefinition execute(int index, String item) {
-				return new FieldDefinition(item, null, null);
-			}
-
-		}).toArray(new FieldDefinition[] {});
-	}
-
-	/**
-	 * 获取字段定义属性名列表
-	 * 
-	 * @param fields
-	 * @return
-	 */
-	public String[] getFieldNames(FieldDefinition[] fields) {
-		return FuncUtil.convert(fields, new ConvertAction<FieldDefinition, String>() {
-
-			@Override
-			public String execute(int index, FieldDefinition item) {
-				return item.getName();
-			}
-		}).toArray(new String[] {});
-	}
+//	/**
+//	 * 根据字段属性名称构建字段定义
+//	 * 
+//	 * @param names
+//	 * @return
+//	 */
+//	public FieldDefinition[] buildFieldDefinitions(final String[] names) {
+//		return FuncUtil.convert(names, new ConvertAction<String, FieldDefinition>() {
+//
+//			@Override
+//			public FieldDefinition execute(int index, String item) {
+//				return new FieldDefinition(item, null, null);
+//			}
+//
+//		}).toArray(new FieldDefinition[] {});
+//	}
+//
+//	/**
+//	 * 获取字段定义属性名列表
+//	 * 
+//	 * @param fields
+//	 * @return
+//	 */
+//	public String[] getFieldNames(FieldDefinition[] fields) {
+//		return FuncUtil.convert(fields, new ConvertAction<FieldDefinition, String>() {
+//
+//			@Override
+//			public String execute(int index, FieldDefinition item) {
+//				return item.getName();
+//			}
+//		}).toArray(new String[] {});
+//	}
 
 	// /**
 	// * 按给定的动作集构建功能集

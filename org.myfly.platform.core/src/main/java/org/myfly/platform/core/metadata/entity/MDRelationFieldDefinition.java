@@ -1,4 +1,4 @@
-package org.myfly.platform.core.metadata.define.entity;
+package org.myfly.platform.core.metadata.entity;
 
 import java.lang.reflect.Field;
 
@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.utils.AssertUtil;
-import org.myfly.platform.core.utils.ClassUtil;
 import org.springframework.data.mapping.Association;
 import org.springframework.data.mapping.PersistentProperty;
 
@@ -30,11 +29,6 @@ public class MDRelationFieldDefinition extends RelationFieldDefinition {
 	public MDRelationFieldDefinition(Field field) {
 		super(field);
 		setDataType(FieldDataType.MDRELATION);
-		try {
-			setType(ClassUtil.getFieldType(field));
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public MDRelationFieldDefinition(Association<? extends PersistentProperty<?>> property) {

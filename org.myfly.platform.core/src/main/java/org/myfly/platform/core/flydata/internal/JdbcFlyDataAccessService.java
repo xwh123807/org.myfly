@@ -25,6 +25,7 @@ import org.myfly.platform.core.metadata.define.FormDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 import org.myfly.platform.core.metadata.define.SubTableDefinition;
+import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AssertUtil;
@@ -230,8 +231,7 @@ public class JdbcFlyDataAccessService extends AbstractFlyDataAccessService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.myfly.platform.system.data.service.IFlyDataAccessService#count(java.
+	 * @see org.myfly.platform.system.data.service.IFlyDataAccessService#count(java.
 	 * lang.String, java.lang.String, java.lang.String, java.lang.String,
 	 * java.util.Map)
 	 */
@@ -248,9 +248,10 @@ public class JdbcFlyDataAccessService extends AbstractFlyDataAccessService {
 
 		EntityMetaData entityMetaData = getEntityMetaData(entityName);
 		AssertUtil.parameterEmpty(entityMetaData, "entityMetaData");
-		EntityMetaData subEntityMetaData = getEntityMetaData(entityMetaData.getField(subTableAttr).getRelationTable());
+		MDRelationFieldDefinition subField = entityMetaData.getField(subTableAttr);
+		EntityMetaData subEntityMetaData = getEntityMetaData(subField.getRelationClass());
 		FKFieldDefinition fkFieldDefinition = subEntityMetaData.getFkFieldDefinitions()
-				.get(entityMetaData.getField(subTableAttr).getRelationField().getName());
+				.get(subField.getRelationField().getName());
 		AssertUtil.parameterEmpty(fkFieldDefinition, "fkFieldDefinition");
 
 		Map<String, Object> params2 = new HashMap<>();
@@ -275,7 +276,7 @@ public class JdbcFlyDataAccessService extends AbstractFlyDataAccessService {
 		SubTableDefinition subTableDefinition = entityMetaData.getFormDefinition(formViewName)
 				.getSubTableDefinition(subTableAttr);
 		AssertUtil.parameterEmpty(subTableDefinition, "subTableDefinition");
-		FieldDefinition subField = entityMetaData.getField(subTableAttr);
+		MDRelationFieldDefinition subField = entityMetaData.getField(subTableAttr);
 		AssertUtil.parameterEmpty(subField, "subField");
 		FieldDefinition relationField = subField.getRelationField();
 		AssertUtil.parameterEmpty(relationField, "relationField");
@@ -335,8 +336,7 @@ public class JdbcFlyDataAccessService extends AbstractFlyDataAccessService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.myfly.platform.system.data.service.IFlyDataAccessService#count(java.
+	 * @see org.myfly.platform.system.data.service.IFlyDataAccessService#count(java.
 	 * lang.String, java.util.Map)
 	 */
 	@Override
@@ -587,9 +587,9 @@ public class JdbcFlyDataAccessService extends AbstractFlyDataAccessService {
 	@Override
 	public String saveEntity(String table, String uid, String subTableAttr, String formViewName, EntityMap values) {
 		EntityMetaData metaData = getEntityMetaData(table);
-		FieldDefinition subField = metaData.getField(subTableAttr);
+		MDRelationFieldDefinition subField = metaData.getField(subTableAttr);
 		Map<String, Object> entity = values.newSubEntity(metaData, uid, subTableAttr, null);
-		return internalSaveEntity(subField.getRelationTable(), entity, false);
+		return internalSaveEntity(subField.getRelationClass(), entity, false);
 	}
 
 	@Override
@@ -608,8 +608,8 @@ public class JdbcFlyDataAccessService extends AbstractFlyDataAccessService {
 	public void updateEntity(String table, String uid, String subTableAttr, String subUid, String formViewName,
 			EntityMap values) {
 		EntityMetaData metaData = getEntityMetaData(table);
-		FieldDefinition subField = metaData.getField(subTableAttr);
+		MDRelationFieldDefinition subField = metaData.getField(subTableAttr);
 		Map<String, Object> entity = values.newSubEntity(metaData, uid, subTableAttr, subUid);
-		updateEntity(subField.getRelationTable(), subUid, entity);
+		updateEntity(subField.getRelationClass(), subUid, entity);
 	}
 }

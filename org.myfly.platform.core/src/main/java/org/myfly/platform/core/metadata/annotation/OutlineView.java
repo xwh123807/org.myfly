@@ -15,6 +15,11 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 public @interface OutlineView {
 	/**
+	 * 视图名称
+	 * @return
+	 */
+	String name() default "default";
+	/**
 	 * 标题
 	 * @return
 	 */

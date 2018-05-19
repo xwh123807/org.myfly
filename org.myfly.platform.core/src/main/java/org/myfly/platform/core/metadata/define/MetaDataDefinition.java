@@ -16,16 +16,8 @@ public class MetaDataDefinition extends BaseDenifition {
 
 	private OutlineDefinition[] outlineDefinitions;
 
-	public MetaDataDefinition(Object owner) {
-		super(owner);
-	}
-
 	public MetaDataDefinition(MetaDataView view) {
 		super(null);
-		setMetaDataView(view);
-	}
-
-	private void setMetaDataView(MetaDataView view) {
 		setTableDefinition(new TableDefinition(null, view.tableView()));
 		setListDefinitions(view.listViews());
 		setFormDefinitions(view.formViews());

@@ -34,6 +34,7 @@ import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 import org.myfly.platform.core.metadata.define.SetFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
@@ -200,7 +201,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 	public String importExcel(String table, final String uid, String subTableAttr, String listViewName,
 			String uploadDir, String actionUrl) {
 		EntityMetaData entityMetaData = getEntityMetaDataService().getEntityMetaData(table);
-		FieldDefinition subField = entityMetaData.getField(subTableAttr);
+		MDRelationFieldDefinition subField = entityMetaData.getField(subTableAttr);
 		final SetFieldValueHandler setHandler = subField.getRelationField().getSetValueHandler();
 		return importExcel(subField.getRelationTable(), listViewName, uploadDir, actionUrl, new ImportActions() {
 			@Override

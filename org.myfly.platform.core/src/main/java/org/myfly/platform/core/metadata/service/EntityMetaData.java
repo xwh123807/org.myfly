@@ -25,7 +25,7 @@ import org.myfly.platform.core.metadata.define.OutlineDefinition;
 import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 import org.myfly.platform.core.metadata.define.SearchRelationGetFieldValueHandler;
 import org.myfly.platform.core.metadata.define.TableDefinition;
-import org.myfly.platform.core.metadata.define.entity.EntityMetaDataDefinition;
+import org.myfly.platform.core.metadata.entity.EntityMetaDataDefinition;
 import org.myfly.platform.core.system.domain.IFlyEntity;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
@@ -151,8 +151,9 @@ public class EntityMetaData implements Serializable {
 		this.tableDefinition = tableDefinition;
 	}
 
-	public FieldDefinition getField(String name) {
-		return getFieldMap().get(name);
+	@SuppressWarnings("unchecked")
+	public <T extends FieldDefinition> T getField(String name) {
+		return (T) getFieldMap().get(name);
 	}
 
 	@JsonIgnore

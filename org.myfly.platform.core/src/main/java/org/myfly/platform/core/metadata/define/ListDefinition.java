@@ -309,7 +309,7 @@ public class ListDefinition extends BaseDenifition {
 
 	@Override
 	public String toString() {
-		return "name: " + getName() + ", fields: [" + FieldDefinition.getNames(getFields()) + "]";
+		return "name: " + getName() + ", fields: [" + getFieldNames() + "]";
 	}
 
 	/**

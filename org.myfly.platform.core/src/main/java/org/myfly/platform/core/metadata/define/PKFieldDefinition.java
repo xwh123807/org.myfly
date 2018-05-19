@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.ClassUtil;
@@ -38,7 +39,7 @@ public class PKFieldDefinition extends BaseDenifition {
 	/**
 	 * 主键字段，已经按名称排好了顺序
 	 */
-	private FieldDefinition[] idFields;
+	private EntityFieldDefinition[] idFields;
 	/**
 	 * 复合主键类
 	 */
@@ -87,11 +88,11 @@ public class PKFieldDefinition extends BaseDenifition {
 		this.setValueHandler = setValueHandler;
 	}
 
-	public FieldDefinition[] getIdFields() {
+	public EntityFieldDefinition[] getIdFields() {
 		return idFields;
 	}
 
-	public void setIdFields(FieldDefinition[] idFields) {
+	public void setIdFields(EntityFieldDefinition[] idFields) {
 		this.idFields = idFields;
 		Arrays.sort(this.idFields, new Comparator<FieldDefinition>() {
 
@@ -291,7 +292,7 @@ public class PKFieldDefinition extends BaseDenifition {
 		Map<String, Object> result = new LinkedHashMap<>();
 		if (getIdFields().length > 1) {
 			// 在实体中@Id标示多个主键
-			for (FieldDefinition field : getIdFields()) {
+			for (EntityFieldDefinition field : getIdFields()) {
 				Object value = field.getGetValueHandler().getFieldValue(entity);
 				result.put(field.getName(), value);
 			}
@@ -354,7 +355,7 @@ public class PKFieldDefinition extends BaseDenifition {
 		if (getIdFields().length > 1) {
 			// 在实体中@Id标示多个主键
 			String result = "";
-			for (FieldDefinition field : getIdFields()) {
+			for (EntityFieldDefinition field : getIdFields()) {
 				Object value = field.getGetValueHandler().getFieldValue(entity);
 				result += "_" + ClassUtil.convertValueToString(value);
 			}
@@ -380,14 +381,14 @@ public class PKFieldDefinition extends BaseDenifition {
 					// 实体中多个@Id属性模式
 					String[] values = ((String) value).split("_");
 					int index = 0;
-					for (FieldDefinition field : getIdFields()){
+					for (EntityFieldDefinition field : getIdFields()){
 						field.getSetValueHandler().setFieldValue(entity, values[index]);
 						index ++;
 					}
 				} else {
 					// 主键为主键类时
 					int index = 0;
-					for (FieldDefinition field : getIdFields()) {
+					for (EntityFieldDefinition field : getIdFields()) {
 						Object value2 = idClassGetMethods[index].invoke(value);
 						field.getSetValueHandler().setFieldValue(entity, value2);
 						index++;
