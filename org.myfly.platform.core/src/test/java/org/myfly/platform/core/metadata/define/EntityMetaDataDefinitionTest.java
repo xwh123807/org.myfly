@@ -22,7 +22,7 @@ public class EntityMetaDataDefinitionTest {
 		FuncUtil.forEach(metaData.getTableDefinition().getFields(), field -> {
 
 		});
-		PKFieldDefinition pkField = metaData.getTableDefinition().getPrimaryKey();
+		PKFieldDefinition pkField = metaData.getTableDefinition().getPkFieldDefinition();
 		Assert.assertEquals(1, pkField.getIdFields().length);
 		EntityFieldDefinition uidField = pkField.getIdFields()[0];
 		Assert.assertEquals("uid", uidField.getName());

@@ -16,5 +16,8 @@ public class EntityMetaDataTest {
 		Assert.assertEquals(2, metaData.getListDefinitions().size());
 		Assert.assertEquals(1, metaData.getOutlineDefinitions().size());
 		Assert.assertEquals(1, metaData.getPkFieldDefinition().getIdFields().length);
+
+		Assert.assertEquals(10, metaData.getAllFields().length);
+		Assert.assertEquals(Master.class, metaData.newEntityInstance().getClass());
 	}
 }

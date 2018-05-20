@@ -51,17 +51,17 @@ public class TableDefinition extends BaseDenifition {
 	 */
 	private String indexName;
 	/**
-	 * 主键字段
-	 */
-	private String[] primaryKeys;
-	/**
 	 * 字段列表
 	 */
 	private FieldDefinition[] fields;
 	/**
+	 * 设置主键
+	 */
+	private String[] primaryKeys;
+	/**
 	 * 主键字段
 	 */
-	private PKFieldDefinition primaryKey;
+	private PKFieldDefinition pkFieldDefinition;
 	/**
 	 * 外键定义,查找关系
 	 */
@@ -157,9 +157,9 @@ public class TableDefinition extends BaseDenifition {
 		Assert.hasLength(getName());
 		Assert.hasLength(getTitle());
 		Assert.hasLength(getTableName());
-		Assert.notEmpty(getPrimaryKeys());
 		if (isCreateIndex())
 			Assert.hasLength(getIndexName());
+		Assert.notNull(getPkFieldDefinition());
 	}
 
 	public String getCatalog() {
@@ -170,14 +170,6 @@ public class TableDefinition extends BaseDenifition {
 		this.catalog = catalog;
 	}
 
-	public String[] getPrimaryKeys() {
-		return primaryKeys;
-	}
-
-	public void setPrimaryKeys(String[] primaryKeys) {
-		this.primaryKeys = primaryKeys;
-	}
-	
 	public FieldDefinition[] getFields() {
 		return fields;
 	}
@@ -186,19 +178,27 @@ public class TableDefinition extends BaseDenifition {
 		this.fields = fields;
 	}
 
-	public PKFieldDefinition getPrimaryKey() {
-		return primaryKey;
-	}
-
-	public void setPrimaryKey(PKFieldDefinition primaryKey) {
-		this.primaryKey = primaryKey;
-	}
-
 	public Map<String, FKFieldDefinition> getFkFieldDefinitions() {
 		return fkFieldDefinitions;
 	}
 
 	public void setFkFieldDefinitions(Map<String, FKFieldDefinition> fkFieldDefinitions) {
 		this.fkFieldDefinitions = fkFieldDefinitions;
+	}
+
+	public PKFieldDefinition getPkFieldDefinition() {
+		return pkFieldDefinition;
+	}
+
+	public void setPkFieldDefinition(PKFieldDefinition pkFieldDefinition) {
+		this.pkFieldDefinition = pkFieldDefinition;
+	}
+
+	public String[] getPrimaryKeys() {
+		return primaryKeys;
+	}
+
+	public void setPrimaryKeys(String[] primaryKeys) {
+		this.primaryKeys = primaryKeys;
 	}
 }

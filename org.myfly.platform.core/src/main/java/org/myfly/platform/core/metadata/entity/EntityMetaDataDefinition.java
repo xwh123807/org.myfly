@@ -49,7 +49,7 @@ public class EntityMetaDataDefinition extends MetaDataDefinition {
 		List<EntityFieldDefinition> idFieldList = fields.stream().filter(item -> item.isIdField())
 				.collect(Collectors.toList());
 		pkField.setIdFields(idFieldList.toArray(new EntityFieldDefinition[] {}));
-		getTableDefinition().setPrimaryKey(pkField);
+		getTableDefinition().setPkFieldDefinition(pkField);
 		// 设置实体外键
 		Map<String, FKFieldDefinition> fkFields = new HashedMap<>();
 		fields.stream().filter(item -> FieldDataType.SEARCHRELATION.equals(item.getDataType())).forEach(field -> {

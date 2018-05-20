@@ -2,14 +2,15 @@ package org.myfly.platform.core.metadata.define;
 
 import java.util.Map;
 
+import org.myfly.platform.core.metadata.entity.RelationFieldDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
 
 public class AssociationSetFieldValueHandler implements SetFieldValueHandler {
-	private FieldDefinition field;
+	private RelationFieldDefinition field;
 
-	public AssociationSetFieldValueHandler(FieldDefinition field) {
+	public AssociationSetFieldValueHandler(RelationFieldDefinition field) {
 		this.field = field;
 	}
 
@@ -31,7 +32,7 @@ public class AssociationSetFieldValueHandler implements SetFieldValueHandler {
 					// 类型不同，需要进行转换
 					EntityMetaData metaData = AppUtil.getEntityMataDataService()
 							.getEntityMetaData(field.getRelationClass());
-					Object newEntity = metaData.getPKFieldDefinition().newEntity((String) value);
+					Object newEntity = metaData.getPkFieldDefinition().newEntity((String) value);
 					field.getSetter().invoke(obj, newEntity);
 				}
 			} catch (Exception e) {

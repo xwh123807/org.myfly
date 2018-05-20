@@ -77,36 +77,6 @@
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_WxO5YEUREeiaMpImppUXPQ" name="PKFieldDefinition" visibility="public"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_YxQ3cEUREeiaMpImppUXPQ" memberEnd="_YxQ3cUUREeiaMpImppUXPQ _YxQ3dEUREeiaMpImppUXPQ" navigableOwnedEnd="_YxQ3dEUREeiaMpImppUXPQ">
-      <ownedEnd xmi:id="_YxQ3cUUREeiaMpImppUXPQ" name="fieldDefinitions" type="__vNksEUPEeiaMpImppUXPQ" association="_YxQ3cEUREeiaMpImppUXPQ">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YxQ3ckUREeiaMpImppUXPQ"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YxQ3c0UREeiaMpImppUXPQ" value="1"/>
-      </ownedEnd>
-      <ownedEnd xmi:id="_YxQ3dEUREeiaMpImppUXPQ" name="pKFieldDefinitions" type="_WxO5YEUREeiaMpImppUXPQ" association="_YxQ3cEUREeiaMpImppUXPQ">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YxQ3dUUREeiaMpImppUXPQ"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YxQ3dkUREeiaMpImppUXPQ" value="*"/>
-      </ownedEnd>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_alJP4EUREeiaMpImppUXPQ" memberEnd="_alJP4UUREeiaMpImppUXPQ _alJP5EUREeiaMpImppUXPQ" navigableOwnedEnd="_alJP5EUREeiaMpImppUXPQ">
-      <ownedEnd xmi:id="_alJP4UUREeiaMpImppUXPQ" name="pKFieldDefinitions" type="_WxO5YEUREeiaMpImppUXPQ" association="_alJP4EUREeiaMpImppUXPQ">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_alJP4kUREeiaMpImppUXPQ"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_alJP40UREeiaMpImppUXPQ" value="*"/>
-      </ownedEnd>
-      <ownedEnd xmi:id="_alJP5EUREeiaMpImppUXPQ" name="getFieldValueHandlers" type="_vcCbsEUQEeiaMpImppUXPQ" association="_alJP4EUREeiaMpImppUXPQ">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_alJP5UUREeiaMpImppUXPQ"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_alJP5kUREeiaMpImppUXPQ" value="*"/>
-      </ownedEnd>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_cLEr4EUREeiaMpImppUXPQ" memberEnd="_cLEr4UUREeiaMpImppUXPQ _cLEr5EUREeiaMpImppUXPQ" navigableOwnedEnd="_cLEr5EUREeiaMpImppUXPQ">
-      <ownedEnd xmi:id="_cLEr4UUREeiaMpImppUXPQ" name="pKFieldDefinitions" type="_WxO5YEUREeiaMpImppUXPQ" association="_cLEr4EUREeiaMpImppUXPQ">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cLEr4kUREeiaMpImppUXPQ"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cLEr40UREeiaMpImppUXPQ" value="1"/>
-      </ownedEnd>
-      <ownedEnd xmi:id="_cLEr5EUREeiaMpImppUXPQ" name="setFieldValueHandlers" type="_yu56oEUQEeiaMpImppUXPQ" association="_cLEr4EUREeiaMpImppUXPQ">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cLEr5UUREeiaMpImppUXPQ"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cLEr5kUREeiaMpImppUXPQ" value="*"/>
-      </ownedEnd>
-    </packagedElement>
     <packagedElement xmi:type="uml:Enumeration" xmi:id="_xqaiUEUREeiaMpImppUXPQ" name="OrderType" visibility="public">
       <ownedLiteral xmi:id="_fLNCwEUWEeiaMpImppUXPQ" name="ASC">
         <specification xmi:type="uml:LiteralInteger" xmi:id="_fLNCwUUWEeiaMpImppUXPQ"/>
@@ -380,6 +350,27 @@
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_W5EVMEVdEeiaMpImppUXPQ" client="_VL9PkEUPEeiaMpImppUXPQ" supplier="_Mt_oUEVdEeiaMpImppUXPQ"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_xXBnYFwqEei8fL2NKOUI8Q" memberEnd="_xXBnYVwqEei8fL2NKOUI8Q _xXCOclwqEei8fL2NKOUI8Q" navigableOwnedEnd="_xXCOclwqEei8fL2NKOUI8Q">
+      <ownedEnd xmi:id="_xXBnYVwqEei8fL2NKOUI8Q" name="tableDefinitions" type="_wPcEAEUPEeiaMpImppUXPQ" association="_xXBnYFwqEei8fL2NKOUI8Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xXCOcFwqEei8fL2NKOUI8Q"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xXCOcVwqEei8fL2NKOUI8Q" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_xXCOclwqEei8fL2NKOUI8Q" name="pKFieldDefinitions" type="_WxO5YEUREeiaMpImppUXPQ" association="_xXBnYFwqEei8fL2NKOUI8Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xXC1gFwqEei8fL2NKOUI8Q"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xXC1gVwqEei8fL2NKOUI8Q" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_40gFkFwqEei8fL2NKOUI8Q" name="FKFieldDefinition" visibility="public"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_7VQLEFwqEei8fL2NKOUI8Q" memberEnd="_7VQLEVwqEei8fL2NKOUI8Q _7VQLFFwqEei8fL2NKOUI8Q" navigableOwnedEnd="_7VQLFFwqEei8fL2NKOUI8Q">
+      <ownedEnd xmi:id="_7VQLEVwqEei8fL2NKOUI8Q" name="tableDefinitions" type="_wPcEAEUPEeiaMpImppUXPQ" association="_7VQLEFwqEei8fL2NKOUI8Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7VQLElwqEei8fL2NKOUI8Q"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7VQLE1wqEei8fL2NKOUI8Q" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_7VQLFFwqEei8fL2NKOUI8Q" name="fKFieldDefinitions" type="_40gFkFwqEei8fL2NKOUI8Q" association="_7VQLEFwqEei8fL2NKOUI8Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7VQyIFwqEei8fL2NKOUI8Q"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7VQyIVwqEei8fL2NKOUI8Q" value="*"/>
+      </ownedEnd>
+    </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_Mt_oUEVdEeiaMpImppUXPQ" name="org.myfly.platform.core.metadata.annotation">
     <packagedElement xmi:type="uml:Interface" xmi:id="_tO9ZIEVdEeiaMpImppUXPQ" name="MetaDataView" visibility="public"/>
@@ -1387,7 +1378,7 @@
         </ownedLiteral>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_RKdZkFXlEeiQ9rigdUywJg" name="SearchRelationGetFieldValueHandler" visibility="public"/>
-      <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_RKfOwFXlEeiQ9rigdUywJg" client="_RK76vlXlEeiQ9rigdUywJg _RK76vlXlEeiQ9rigdUywJg" supplier="_RKUPoFXlEeiQ9rigdUywJg" contract="_RKUPoFXlEeiQ9rigdUywJg"/>
+      <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_RKfOwFXlEeiQ9rigdUywJg" client="_RK76vlXlEeiQ9rigdUywJg" supplier="_RKUPoFXlEeiQ9rigdUywJg" contract="_RKUPoFXlEeiQ9rigdUywJg"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_RKf10FXlEeiQ9rigdUywJg" name="fieldSetDefinitionsToFieldDefinitions" memberEnd="_RKf10VXlEeiQ9rigdUywJg _RKf11FXlEeiQ9rigdUywJg" navigableOwnedEnd="_RKf11FXlEeiQ9rigdUywJg">
         <ownedEnd xmi:id="_RKf10VXlEeiQ9rigdUywJg" name="fieldSetDefinitions" type="_RKYhEFXlEeiQ9rigdUywJg" association="_RKf10FXlEeiQ9rigdUywJg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RKf10lXlEeiQ9rigdUywJg"/>
@@ -1425,7 +1416,7 @@
         </ownedEnd>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_RKnKl1XlEeiQ9rigdUywJg" name="OrderDefinition" visibility="public"/>
-      <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_RKLswVXlEeiQ9rigdUywJg" client="_RKLswFXlEeiQ9rigdUywJg _RKLswFXlEeiQ9rigdUywJg" supplier="_RKIpcFXlEeiQ9rigdUywJg" contract="_RKIpcFXlEeiQ9rigdUywJg"/>
+      <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_RKLswVXlEeiQ9rigdUywJg" client="_RKLswFXlEeiQ9rigdUywJg" supplier="_RKIpcFXlEeiQ9rigdUywJg" contract="_RKIpcFXlEeiQ9rigdUywJg"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_RKpm0FXlEeiQ9rigdUywJg" name="divDefinitionsToDivDefinitions" memberEnd="_RKpm0VXlEeiQ9rigdUywJg _RKpm1FXlEeiQ9rigdUywJg" navigableOwnedEnd="_RKpm1FXlEeiQ9rigdUywJg">
         <ownedEnd xmi:id="_RKpm0VXlEeiQ9rigdUywJg" name="divDefinitions" type="_RKM64FXlEeiQ9rigdUywJg" association="_RKpm0FXlEeiQ9rigdUywJg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RKpm0lXlEeiQ9rigdUywJg"/>
@@ -1477,8 +1468,8 @@
           <specification xmi:type="uml:LiteralInteger" xmi:id="_RKqN-1XlEeiQ9rigdUywJg" value="2"/>
         </ownedLiteral>
       </packagedElement>
-      <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_RKHbUVXlEeiQ9rigdUywJg" client="_RKHbUFXlEeiQ9rigdUywJg _RKHbUFXlEeiQ9rigdUywJg" supplier="_RKUPoFXlEeiQ9rigdUywJg" contract="_RKUPoFXlEeiQ9rigdUywJg"/>
-      <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_RKufUFXlEeiQ9rigdUywJg" client="_RLCoYFXlEeiQ9rigdUywJg _RLCoYFXlEeiQ9rigdUywJg" supplier="_RKUPoFXlEeiQ9rigdUywJg" contract="_RKUPoFXlEeiQ9rigdUywJg"/>
+      <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_RKHbUVXlEeiQ9rigdUywJg" client="_RKHbUFXlEeiQ9rigdUywJg" supplier="_RKUPoFXlEeiQ9rigdUywJg" contract="_RKUPoFXlEeiQ9rigdUywJg"/>
+      <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_RKufUFXlEeiQ9rigdUywJg" client="_RLCoYFXlEeiQ9rigdUywJg" supplier="_RKUPoFXlEeiQ9rigdUywJg" contract="_RKUPoFXlEeiQ9rigdUywJg"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_RKufUVXlEeiQ9rigdUywJg" memberEnd="_RKufUlXlEeiQ9rigdUywJg _RKufVVXlEeiQ9rigdUywJg" navigableOwnedEnd="_RKufVVXlEeiQ9rigdUywJg">
         <ownedEnd xmi:id="_RKufUlXlEeiQ9rigdUywJg" name="fieldDefinitions" type="_RKw7l1XlEeiQ9rigdUywJg" association="_RKufUVXlEeiQ9rigdUywJg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RKufU1XlEeiQ9rigdUywJg"/>
@@ -1583,8 +1574,8 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RLFrxFXlEeiQ9rigdUywJg" value="*"/>
         </ownedEnd>
       </packagedElement>
-      <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_RK5ecVXlEeiQ9rigdUywJg" client="_RK5ecFXlEeiQ9rigdUywJg _RK5ecFXlEeiQ9rigdUywJg" supplier="_RKIpcFXlEeiQ9rigdUywJg" contract="_RKIpcFXlEeiQ9rigdUywJg"/>
-      <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_RKdZkVXlEeiQ9rigdUywJg" client="_RKdZkFXlEeiQ9rigdUywJg _RKdZkFXlEeiQ9rigdUywJg" supplier="_RKUPoFXlEeiQ9rigdUywJg" contract="_RKUPoFXlEeiQ9rigdUywJg"/>
+      <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_RK5ecVXlEeiQ9rigdUywJg" client="_RK5ecFXlEeiQ9rigdUywJg" supplier="_RKIpcFXlEeiQ9rigdUywJg" contract="_RKIpcFXlEeiQ9rigdUywJg"/>
+      <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_RKdZkVXlEeiQ9rigdUywJg" client="_RKdZkFXlEeiQ9rigdUywJg" supplier="_RKUPoFXlEeiQ9rigdUywJg" contract="_RKUPoFXlEeiQ9rigdUywJg"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_RLGSwFXlEeiQ9rigdUywJg" name="BaseDenifition" visibility="public" isAbstract="true">
         <ownedAttribute xmi:id="_RLGSwVXlEeiQ9rigdUywJg" name="parent"/>
         <ownedAttribute xmi:id="_RLGSwlXlEeiQ9rigdUywJg" name="name"/>

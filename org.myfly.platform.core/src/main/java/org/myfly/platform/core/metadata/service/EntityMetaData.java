@@ -59,7 +59,7 @@ public class EntityMetaData {
 		setEntityClass(entityClass);
 		setEntityName(metaData.getName());
 		setTableDefinition(metaData.getTableDefinition());
-		setPkFieldDefinition(metaData.getTableDefinition().getPrimaryKey());
+		setPkFieldDefinition(metaData.getTableDefinition().getPkFieldDefinition());
 		setFkFieldDefinitions(metaData.getTableDefinition().getFkFieldDefinitions());
 		fieldMap = new HashMap<>();
 		FuncUtil.forEach(metaData.getTableDefinition().getFields(), fieldDefinition -> {
@@ -204,7 +204,26 @@ public class EntityMetaData {
 	}
 
 	public <T extends EntityFieldDefinition> T[] getAllFields() {
-		return (T[]) getFieldMap().values().stream().filter(item -> item.getDataType().equals(FieldDataType.MDRELATION))
-				.collect(Collectors.toList()).toArray(new EntityFieldDefinition[] {});
+		return (T[]) getFieldMap().values().stream()
+				.filter(item -> !item.getDataType().equals(FieldDataType.MDRELATION)).collect(Collectors.toList())
+				.toArray(new EntityFieldDefinition[] {});
+	}
+
+	/**
+	 * 创建实体实例
+	 * 
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> T newEntityInstance() {
+		if (getEntityClass() == null) {
+			return null;
+		}
+		try {
+			return (T) getEntityClass().newInstance();
+		} catch (Exception e) {
+			AssertUtil.parameterInvalide(getEntityClass().getName(), "创建实体实例失败，" + e.getMessage());
+		}
+		return null;
 	}
 }

@@ -8,11 +8,6 @@ import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 
 public class SearchRelationFieldDefinition extends RelationFieldDefinition {
-	/**
-	 * 查找关系时：查找表主键定义
-	 */
-	private PKFieldDefinition pkFieldDefinition;
-	
 	public SearchRelationFieldDefinition(Field field) {
 		super(field);
 		setDataType(FieldDataType.SEARCHRELATION);
@@ -82,13 +77,4 @@ public class SearchRelationFieldDefinition extends RelationFieldDefinition {
 			}
 		}
 */		
-
-	public PKFieldDefinition getPkFieldDefinition() {
-		return pkFieldDefinition;
-	}
-
-	public void setPkFieldDefinition(PKFieldDefinition pkFieldDefinition) {
-		this.pkFieldDefinition = pkFieldDefinition;
-	}
-
 }

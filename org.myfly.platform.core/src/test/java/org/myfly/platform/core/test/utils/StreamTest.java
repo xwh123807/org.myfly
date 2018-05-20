@@ -3,8 +3,11 @@ package org.myfly.platform.core.test.utils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.Stack;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -121,9 +124,10 @@ public class StreamTest {
 	private class Person {
 		private int no;
 		private String name;
+		private int age;
 
-		public Person(int no, String name) {
-			this.setNo(no);
+		public Person(int age, String name) {
+			this.setAge(age);
 			this.setName(name);
 		}
 
@@ -142,6 +146,14 @@ public class StreamTest {
 		public void setName(String name) {
 			this.name = name;
 		}
+
+		public int getAge() {
+			return age;
+		}
+
+		public void setAge(int age) {
+			this.age = age;
+		}
 	}
 
 	@Test
@@ -152,5 +164,87 @@ public class StreamTest {
 		stream = Stream.of(1, 4, 2, 10);
 		list = stream.sorted((a, b) -> Integer.max(a, b)).collect(Collectors.toList());
 		Assert.assertArrayEquals(new Integer[] { 1, 4, 2, 10 }, list.toArray());
+	}
+
+	@Test
+	public void max() {
+		Stream<Integer> stream = Stream.of(1, 4, 2, 10);
+		Assert.assertEquals(1, stream.max((a, b) -> Integer.min(a, b)));
+	}
+
+	@Test
+	public void word() {
+		List<String> words = Stream.of("hello world hello").flatMap(line -> Stream.of(line.split(" ")))
+				.filter(word -> word.length() > 0).map(word -> word.toLowerCase()).distinct().sorted()
+				.peek(word -> System.out.println(word)).collect(Collectors.toList());
+		Assert.assertArrayEquals(new String[] { "hello", "world" }, words.toArray(new String[] {}));
+	}
+
+	@Test
+	public void match() {
+		List<Person> persons = new ArrayList<>();
+		persons.add(new Person(10, "name" + 1));
+		persons.add(new Person(21, "name" + 2));
+		persons.add(new Person(34, "name" + 3));
+		persons.add(new Person(6, "name" + 4));
+		persons.add(new Person(55, "name" + 5));
+		boolean isAllAdult = persons.stream().allMatch(p -> p.getAge() > 18);
+		Assert.assertFalse(isAllAdult);
+		boolean isThereAnyChild = persons.stream().anyMatch(p -> p.getAge() < 12);
+		Assert.assertTrue(isThereAnyChild);
+		boolean isNone = persons.stream().noneMatch(p -> p.getAge() > 60);
+		Assert.assertTrue(isNone);
+	}
+
+	@Test
+	public void random() {
+		Supplier<Integer> random = new Supplier<Integer>() {
+
+			@Override
+			public Integer get() {
+				return new Random().nextInt();
+			}
+		};
+		Stream.generate(random).limit(10).forEach(n -> System.out.println(n));
+		Stream.generate(() -> System.nanoTime()).limit(10).forEach(System.out::println);
+	}
+
+	private class PersonSupplier implements Supplier<Person> {
+		private int index = 0;
+
+		@Override
+		public Person get() {
+			return new Person(new Random().nextInt(), "StormTestUser" + index);
+		}
+
+	}
+
+	@Test
+	public void supplier() {
+		Stream.generate(new PersonSupplier()).limit(10).forEach(item -> {
+			System.out.println(item.getName() + "," + item.getAge());
+		});
+	}
+
+	@Test
+	public void iterate() {
+		Stream.iterate(0, n -> n + 3).limit(10).forEach(n -> System.out.println(n));
+	}
+
+	@Test
+	public void grouping() {
+		Map<Integer, List<Person>> personGroups = Stream.generate(new PersonSupplier()).limit(100)
+				.collect(Collectors.groupingBy(p -> p.getAge()));
+		personGroups.entrySet().stream().forEach(item -> {
+			System.out.println("Age " + item.getKey() + " = " + item.getValue().size());
+		});
+	}
+
+	@Test
+	public void groupAdult() {
+		Map<Boolean, List<Person>> groups = Stream.generate(new PersonSupplier()).limit(100)
+				.collect(Collectors.groupingBy(p -> p.getAge() > 0));
+		System.out.println("> 0: " + groups.get(true).size());
+		System.out.println("< 0: " + groups.get(false).size());
 	}
 }
