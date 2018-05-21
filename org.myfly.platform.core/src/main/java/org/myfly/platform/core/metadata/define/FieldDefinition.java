@@ -8,6 +8,8 @@ import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.utils.UUIDUtil;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class FieldDefinition extends BaseDenifition {
 	/**
 	 * 标签
@@ -76,25 +78,17 @@ public class FieldDefinition extends BaseDenifition {
 	/**
 	 * 值自动生成器,@GenericGenerator
 	 */
+	@JsonIgnore
 	private GenericGenerator generator;
 
-	public FieldDefinition() {
-		super(null);
-	}
-
-	public FieldDefinition(String title, String name, FieldDataType dataType) {
-		super(null);
-		setTitle(title);
-		setName(name);
-		setDataType(dataType);
-	}
-
 	public FieldDefinition(FieldView fieldView) {
-		super(null);
 		setTitle(fieldView.title());
 		setDescription(fieldView.description());
 		setDataType(fieldView.dataType());
 		setMinLength(fieldView.minLength());
+	}
+
+	public FieldDefinition() {
 	}
 
 	public String getFieldName() {

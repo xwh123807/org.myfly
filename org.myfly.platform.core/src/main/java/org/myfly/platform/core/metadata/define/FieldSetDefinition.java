@@ -5,18 +5,11 @@ import org.springframework.util.Assert;
 
 public class FieldSetDefinition extends BaseDenifition {
 	private String title;
-	private String[] fieldNames;
-	private FieldDefinition[] fields;
-
-	public FieldSetDefinition(String title) {
-		super(null);
-		setTitle(title);
-	}
+	private String[] fields;
 
 	public FieldSetDefinition(FieldSetView view) {
-		super(null);
 		setTitle(view.title());
-		setFieldNames(view.fields());
+		setFields(view.fields());
 	}
 
 	public String getTitle() {
@@ -27,28 +20,20 @@ public class FieldSetDefinition extends BaseDenifition {
 		this.title = title;
 	}
 
-	public FieldDefinition[] getFields() {
+	public String[] getFields() {
 		return fields;
 	}
 
-	public void setFields(FieldDefinition[] fields) {
+	public void setFields(String[] fields) {
 		this.fields = fields;
-	}
-
-	public String[] getFieldNames() {
-		return fieldNames;
 	}
 
 	@Override
 	public String toString() {
-		return "title: " + getTitle() + ", fields: " + getFieldNames();
+		return "title: " + getTitle() + ", fields: " + getFields();
 	}
 
 	public void validate() {
 		Assert.notEmpty(getFields());
-	}
-
-	public void setFieldNames(String[] fieldNames) {
-		this.fieldNames = fieldNames;
 	}
 }

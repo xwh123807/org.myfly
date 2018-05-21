@@ -1,29 +1,14 @@
 package org.myfly.platform.core.metadata.define;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.joda.time.field.DividedDateTimeField;
-import org.myfly.platform.core.domain.FieldDataType;
-import org.myfly.platform.core.metadata.annotation.CommonSubTableType;
 import org.myfly.platform.core.metadata.annotation.Div1View;
-import org.myfly.platform.core.metadata.annotation.Div2View;
-import org.myfly.platform.core.metadata.annotation.Div3View;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
-import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.FormView;
-import org.myfly.platform.core.metadata.annotation.SectionType;
 import org.myfly.platform.core.metadata.annotation.SectionView;
-import org.myfly.platform.core.metadata.annotation.SubTableView;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
-import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
-import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.FuncUtil;
 import org.myfly.platform.core.utils.FuncUtil.ConvertAction;
 import org.springframework.util.Assert;
@@ -35,7 +20,6 @@ import org.springframework.util.Assert;
  *
  */
 public class FormDefinition extends BaseDenifition {
-	private static Log log = LogFactory.getLog(FormDefinition.class);
 	/**
 	 * 布局定义
 	 */
@@ -49,17 +33,14 @@ public class FormDefinition extends BaseDenifition {
 	 */
 	private EntityAction[] actions;
 
-	public FormDefinition(EntityMetaData parent, String name) {
-		super(parent);
-		setName(name);
-	}
-
 	public FormDefinition(FormView view) {
-		super(null);
 		setName(view.name());
 		setDivs(view.divs());
 		setSections(view.sections());
 		setActions(view.actions());
+	}
+
+	public FormDefinition() {
 	}
 
 	public SectionDefinition[] getSections() {
@@ -104,44 +85,6 @@ public class FormDefinition extends BaseDenifition {
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public EntityMetaData getParent() {
-		return super.getParent();
-	}
-
-	/**
-	 * 获取Form定义中用到的字段
-	 * 
-	 * @return
-	 */
-	public FieldDefinition[] getFields() {
-		Map<String, FieldDefinition> fields = new LinkedHashMap<>();
-		if (ArrayUtils.isNotEmpty(getSections())) {
-			for (SectionDefinition sectionDefinition : getSections()) {
-				if (ArrayUtils.isNotEmpty(sectionDefinition.getFieldSets())) {
-					for (FieldSetDefinition fieldSetDefinition : sectionDefinition.getFieldSets()) {
-						if (ArrayUtils.isNotEmpty(fieldSetDefinition.getFields())) {
-							for (FieldDefinition fieldDefinition : fieldSetDefinition.getFields()) {
-								if (!fields.containsKey(fieldDefinition.getName())) {
-									fields.put(fieldDefinition.getName(), fieldDefinition);
-								} else {
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		// 自动添加键值字段
-		for (FieldDefinition field : getParent().getPKFieldDefinition().getIdFields()) {
-			if (!fields.containsKey(field.getName())) {
-				fields.put(field.getName(), field);
-			}
-		}
-		return fields.values().toArray(new FieldDefinition[] {});
-	}
-
 	@Override
 	public String toString() {
 		return "name: " + getName();
@@ -164,14 +107,7 @@ public class FormDefinition extends BaseDenifition {
 	}
 
 	public void setDivs(Div1View[] views) {
-		divs = FuncUtil.convert(views, new ConvertAction<Div1View, DivDefinition>() {
-
-			@Override
-			public DivDefinition execute(int index, Div1View item) {
-				return new DivDefinition(item);
-			}
-
-		}).toArray(new DivDefinition[] {});
+		setDivs(Stream.of(views).map(item -> new DivDefinition(item)).collect(Collectors.toList()).toArray(new DivDefinition[] {}));
 	}
 
 	/**
@@ -181,15 +117,15 @@ public class FormDefinition extends BaseDenifition {
 	 * @param formView
 	 * @return
 	 */
-	public static FormDefinition buildFormDefinition(EntityMetaData metaData, FormView formView) {
-		FormDefinition formDefinition = new FormDefinition(metaData, formView.name());
-		if (StringUtils.isBlank(formDefinition.getName())) {
-			formDefinition.setName(EntityMetaDataConstants.DEFAULT_NAME);
-		}
-		List<SectionDefinition> sections = new ArrayList<>();
-		// 布局定义
-		if (ArrayUtils.isNotEmpty(formView.divs())) {
-			formDefinition.setDivs(formView.divs());
+//	public static FormDefinition buildFormDefinition(EntityMetaData metaData, FormView formView) {
+//		FormDefinition formDefinition = new FormDefinition(metaData, formView.name());
+//		if (StringUtils.isBlank(formDefinition.getName())) {
+//			formDefinition.setName(EntityMetaDataConstants.DEFAULT_NAME);
+//		}
+//		List<SectionDefinition> sections = new ArrayList<>();
+//		// 布局定义
+//		if (ArrayUtils.isNotEmpty(formView.divs())) {
+//			formDefinition.setDivs(formView.divs());
 //			List<DivDefinition> divs = new ArrayList<>();
 //			for (Div1View divView : formView.divs()) {
 //				DivDefinition divDefinition = new DivDefinition(formDefinition);
@@ -224,93 +160,94 @@ public class FormDefinition extends BaseDenifition {
 //				divs.add(divDefinition);
 //			}
 //			formDefinition.setDivs(divs.toArray(new DivDefinition[] {}));
-		} else {
+//		} else {
 			// 没有定义布局时，生成默认布局
-			if (ArrayUtils.isNotEmpty(formView.sections())) {
-				int index = 0;
-				DivDefinition[] divs0 = new DivDefinition[2];
-				divs0[0] = new DivDefinition();
-				divs0[0].setWidth(8);
-				DivDefinition[] divs = new DivDefinition[formView.sections().length];
-				for (SectionView sectionView : formView.sections()) {
-					DivDefinition divDefinition = new DivDefinition();
-					if (StringUtils.isBlank(sectionView.name())) {
-						divDefinition.setName("div" + index);
-					} else {
-						divDefinition.setName(sectionView.name());
-					}
-					divs[index] = divDefinition;
-					index++;
-				}
-				divs0[0].setSubs(divs);
-
-				divs0[1] = new DivDefinition();
-				divs0[1].setWidth(4);
-				divs0[1].setName("div" + formView.sections().length);
-				SectionDefinition social = new SectionDefinition(formDefinition, "活动");
-				social.setName(divs0[1].getName());
-				social.setType(SectionType.SOCIAL);
-				sections.add(social);
-				formDefinition.setDivs(divs0);
-			}
-		}
-		// 显示内容定义
-		if (ArrayUtils.isNotEmpty(formView.sections())) {
-			int index = 0;
-			for (SectionView sectionView : formView.sections()) {
-				SectionDefinition sectionDefinition = new SectionDefinition(formDefinition, sectionView.title());
-				if (StringUtils.isBlank(sectionView.name())) {
-					sectionDefinition.setName("div" + index);
-				} else {
-					sectionDefinition.setName(sectionView.name());
-				}
-				sectionDefinition.setType(sectionView.type());
-				// 设置FieldSet
-				if (ArrayUtils.isNotEmpty(sectionView.fieldSets())) {
-					List<FieldSetDefinition> fieldSets = new ArrayList<>();
-					for (FieldSetView fieldSetView : sectionView.fieldSets()) {
-						FieldSetDefinition fieldSet = new FieldSetDefinition(fieldSetView.title());
-						fieldSet.setFields(metaData.getFields(metaData, fieldSetView.fields()));
-						fieldSets.add(fieldSet);
-					}
-					sectionDefinition.setFieldSets(fieldSets.toArray(new FieldSetDefinition[] {}));
-				}
-				List<SubTableDefinition> subTables = new ArrayList<>();
-				// 设置SubTable
-				if (ArrayUtils.isNotEmpty(sectionView.subTables())) {
-					for (SubTableView subTableView : sectionView.subTables()) {
-						AssertUtil.parameterEmpty(subTableView.tableAttr(),
-								"subTableView.tableAttr=" + subTableView.tableAttr());
-						SubTableDefinition subTable = SubTableDefinition.buildSubTable(metaData, subTableView);
-						subTable.setName(formDefinition.getName());
-						subTables.add(subTable);
-					}
-				}
-				// 设置公共子表
-				if (!SectionType.CUSTOM.equals(sectionView.type())) {
-					CommonSubTableType commonSubTableType = CommonSubTableType.valueOf(sectionView.type().name());
-					Assert.notNull(commonSubTableType,
-							"在公共子表定义[CommonSubTableType]中找不到名称为[" + sectionView.type().name() + "]的子表");
-					try {
-						FormDefinition.class.forName(commonSubTableType.getTableClass());
-						SubTableDefinition subTable = SubTableDefinition.buildSubTable(metaData,
-								metaData.getField(commonSubTableType.getAttrName()),
-								EntityMetaDataConstants.DEFAULT_NAME);
-						subTables.add(subTable);
-					} catch (ClassNotFoundException e) {
-						log.warn("找不到子表实现类[" + commonSubTableType.getTableClass() + "]，将忽略");
-					}
-				}
-				sectionDefinition.setSubTables(subTables.toArray(new SubTableDefinition[] {}));
-				sections.add(sectionDefinition);
-				index++;
-			}
-		} else {
-			formDefinition = buildDefaultFormViewDefinition(metaData, formDefinition.getName());
-		}
-		formDefinition.setSections(sections.toArray(new SectionDefinition[] {}));
-		return formDefinition;
-	}
+//
+//			if (ArrayUtils.isNotEmpty(formView.sections())) {
+//				int index = 0;
+//				DivDefinition[] divs0 = new DivDefinition[2];
+//				divs0[0] = new DivDefinition();
+//				divs0[0].setWidth(8);
+//				DivDefinition[] divs = new DivDefinition[formView.sections().length];
+//				for (SectionView sectionView : formView.sections()) {
+//					DivDefinition divDefinition = new DivDefinition();
+//					if (StringUtils.isBlank(sectionView.name())) {
+//						divDefinition.setName("div" + index);
+//					} else {
+//						divDefinition.setName(sectionView.name());
+//					}
+//					divs[index] = divDefinition;
+//					index++;
+//				}
+//				divs0[0].setSubs(divs);
+//
+//				divs0[1] = new DivDefinition();
+//				divs0[1].setWidth(4);
+//				divs0[1].setName("div" + formView.sections().length);
+//				SectionDefinition social = new SectionDefinition(formDefinition, "活动");
+//				social.setName(divs0[1].getName());
+//				social.setType(SectionType.SOCIAL);
+//				sections.add(social);
+//				formDefinition.setDivs(divs0);
+//			}
+//		}
+//		// 显示内容定义
+//		if (ArrayUtils.isNotEmpty(formView.sections())) {
+//			int index = 0;
+//			for (SectionView sectionView : formView.sections()) {
+//				SectionDefinition sectionDefinition = new SectionDefinition(formDefinition, sectionView.title());
+//				if (StringUtils.isBlank(sectionView.name())) {
+//					sectionDefinition.setName("div" + index);
+//				} else {
+//					sectionDefinition.setName(sectionView.name());
+//				}
+//				sectionDefinition.setType(sectionView.type());
+//				// 设置FieldSet
+//				if (ArrayUtils.isNotEmpty(sectionView.fieldSets())) {
+//					List<FieldSetDefinition> fieldSets = new ArrayList<>();
+//					for (FieldSetView fieldSetView : sectionView.fieldSets()) {
+//						FieldSetDefinition fieldSet = new FieldSetDefinition(fieldSetView.title());
+//						fieldSet.setFields(metaData.getFields(metaData, fieldSetView.fields()));
+//						fieldSets.add(fieldSet);
+//					}
+//					sectionDefinition.setFieldSets(fieldSets.toArray(new FieldSetDefinition[] {}));
+//				}
+//				List<SubTableDefinition> subTables = new ArrayList<>();
+//				// 设置SubTable
+//				if (ArrayUtils.isNotEmpty(sectionView.subTables())) {
+//					for (SubTableView subTableView : sectionView.subTables()) {
+//						AssertUtil.parameterEmpty(subTableView.tableAttr(),
+//								"subTableView.tableAttr=" + subTableView.tableAttr());
+//						SubTableDefinition subTable = SubTableDefinition.buildSubTable(metaData, subTableView);
+//						subTable.setName(formDefinition.getName());
+//						subTables.add(subTable);
+//					}
+//				}
+//				// 设置公共子表
+//				if (!SectionType.CUSTOM.equals(sectionView.type())) {
+//					CommonSubTableType commonSubTableType = CommonSubTableType.valueOf(sectionView.type().name());
+//					Assert.notNull(commonSubTableType,
+//							"在公共子表定义[CommonSubTableType]中找不到名称为[" + sectionView.type().name() + "]的子表");
+//					try {
+//						FormDefinition.class.forName(commonSubTableType.getTableClass());
+//						SubTableDefinition subTable = SubTableDefinition.buildSubTable(metaData,
+//								metaData.getField(commonSubTableType.getAttrName()),
+//								EntityMetaDataConstants.DEFAULT_NAME);
+//						subTables.add(subTable);
+//					} catch (ClassNotFoundException e) {
+//						log.warn("找不到子表实现类[" + commonSubTableType.getTableClass() + "]，将忽略");
+//					}
+//				}
+//				sectionDefinition.setSubTables(subTables.toArray(new SubTableDefinition[] {}));
+//				sections.add(sectionDefinition);
+//				index++;
+//			}
+//		} else {
+//			formDefinition = buildDefaultFormViewDefinition(metaData, formDefinition.getName());
+//		}
+//		formDefinition.setSections(sections.toArray(new SectionDefinition[] {}));
+//		return formDefinition;
+//	}
 
 	/**
 	 * 构建默认的formView。将用默认格式显示.默认显示时，所有主记录字段在一个FieldSet中显示，每个子表也独立显示
@@ -320,7 +257,8 @@ public class FormDefinition extends BaseDenifition {
 	 *            为formView的名称
 	 */
 	public static FormDefinition buildDefaultFormViewDefinition(EntityMetaData metaData, String name) {
-		FormDefinition formDefinition = new FormDefinition(metaData, name);
+		FormDefinition formDefinition = new FormDefinition();
+		/*
 		List<SectionDefinition> sections = new ArrayList<>();
 		// 主记录所有属性建立一个Section和二个FieldSet
 		SectionDefinition sectionDefinition = new SectionDefinition(formDefinition, "基本信息");
@@ -353,9 +291,7 @@ public class FormDefinition extends BaseDenifition {
 
 		// 没有定义布局时，生成默认布局
 		if (ArrayUtils.isNotEmpty(formDefinition.getSections())) {
-			/**
-			 * 默认布局： <div width=8> </div> <div width=4> <div name='' class='SOCIAL'> </div>
-			 */
+			// 默认布局： <div width=8> </div> <div width=4> <div name='' class='SOCIAL'> </div>
 			DivDefinition[] divs = new DivDefinition[2];
 			divs[0] = new DivDefinition();
 			divs[0].setWidth(8);
@@ -382,7 +318,7 @@ public class FormDefinition extends BaseDenifition {
 			formDefinition.setSections(ArrayUtils.add(formDefinition.getSections(), socialSection));
 			formDefinition.setDivs(divs);
 		}
-
+*/
 		return formDefinition;
 	}
 

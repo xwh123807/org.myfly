@@ -1,9 +1,10 @@
-package org.myfly.platform.core.metadata.entity;
+package org.myfly.platform.core.metadata.entity.handler;
 
 import java.util.Map;
 
 import org.myfly.platform.core.domain.FieldDataType;
-import org.myfly.platform.core.metadata.define.SetFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
+import org.myfly.platform.core.metadata.entity.SetFieldValueHandler;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.springframework.util.Base64Utils;

@@ -1,8 +1,9 @@
-package org.myfly.platform.core.metadata.entity;
+package org.myfly.platform.core.metadata.entity.handler;
 
 import java.util.Map;
 
-import org.myfly.platform.core.metadata.define.GetFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
+import org.myfly.platform.core.metadata.entity.GetFieldValueHandler;
 import org.myfly.platform.core.utils.AssertUtil;
 
 public class DefaultGetFieldValueHandler implements GetFieldValueHandler {

@@ -45,7 +45,7 @@ public class EntityMetaDataDefinition extends MetaDataDefinition {
 		});
 		getTableDefinition().setFields(fields.toArray(new FieldDefinition[] {}));
 		// 设置实体主键
-		PKFieldDefinition pkField = new PKFieldDefinition(this);
+		PKFieldDefinition pkField = new PKFieldDefinition();
 		List<EntityFieldDefinition> idFieldList = fields.stream().filter(item -> item.isIdField())
 				.collect(Collectors.toList());
 		pkField.setIdFields(idFieldList.toArray(new EntityFieldDefinition[] {}));

@@ -12,7 +12,8 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.GetFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.SetFieldValueHandler;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.springframework.util.Assert;
@@ -66,10 +67,6 @@ public class PKFieldDefinition extends BaseDenifition {
 		EMBED,
 		// 多@Id,指定@IdClass，复合主键
 		MULTIID
-	}
-
-	public PKFieldDefinition(Object owner) {
-		super(owner);
 	}
 
 	public GetFieldValueHandler getGetValueHandler() {
@@ -406,23 +403,23 @@ public class PKFieldDefinition extends BaseDenifition {
 	 * @param uid
 	 * @return
 	 */
-	public <T> T newEntity(String uid) {
-		T entity = ((EntityMetaData) getParent()).newEntityInstance();
-		setPKValue(entity, uid);
-		return entity;
-	}
-
-	/**
-	 * 创建新实体，并为主键赋值
-	 * 
-	 * @param uid
-	 * @return
-	 */
-	public <T> T newEntity(Serializable pkValue) {
-		T entity = ((EntityMetaData) getParent()).newEntityInstance();
-		setPKValue(entity, pkValue);
-		return entity;
-	}
+//	public <T> T newEntity(String uid) {
+//		T entity = ((EntityMetaData) getParent()).newEntityInstance();
+//		setPKValue(entity, uid);
+//		return entity;
+//	}
+//
+//	/**
+//	 * 创建新实体，并为主键赋值
+//	 * 
+//	 * @param uid
+//	 * @return
+//	 */
+//	public <T> T newEntity(Serializable pkValue) {
+//		T entity = ((EntityMetaData) getParent()).newEntityInstance();
+//		setPKValue(entity, pkValue);
+//		return entity;
+//	}
 
 	public String[] getIdFieldNames() {
 		String[] result = new String[getIdFields().length];

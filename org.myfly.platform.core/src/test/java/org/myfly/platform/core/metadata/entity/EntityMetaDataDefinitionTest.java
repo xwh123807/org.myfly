@@ -1,9 +1,11 @@
-package org.myfly.platform.core.metadata.define;
+package org.myfly.platform.core.metadata.entity;
 
 import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.myfly.platform.core.metadata.define.FKFieldDefinition;
+import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaDataDefinition;
 import org.myfly.platform.core.system.domain.ITenant;

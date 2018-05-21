@@ -26,9 +26,7 @@ public class TableDefinitionTest {
 
 	@Test
 	public void testView() {
-		TableDefinition define = new TableDefinition(null,
-				Master.class.getAnnotation(MetaDataView.class).tableView());
-		Assert.assertNull(define.getParent());
+		TableDefinition define = new TableDefinition(Master.class.getAnnotation(MetaDataView.class).tableView());
 		Assert.assertEquals("主表", define.getTitle());
 		Assert.assertEquals("主表信息", define.getDescription());
 		Assert.assertEquals("name", define.getLabelField());

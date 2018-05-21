@@ -1,4 +1,4 @@
-package org.myfly.platform.core.metadata.define;
+package org.myfly.platform.core.metadata.entity;
 
 import java.sql.Timestamp;
 import java.util.Set;

@@ -1,6 +1,6 @@
 package org.myfly.platform.core.metadata.define;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 
 /**
  * 元模型定义类基类
@@ -8,20 +8,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @author xiangwanhong
  *
  */
-public abstract class BaseDenifition {
-	/**
-	 * 父对象
-	 */
-	@JsonIgnore
-	private Object parent;
+public abstract class BaseDenifition implements Serializable{
 	/**
 	 * 名称，唯一，api标识
 	 */
 	private String name;
-
-	public BaseDenifition(Object owner) {
-		setParent(owner);
-	}
 
 	public String getName() {
 		return name;
@@ -30,15 +21,9 @@ public abstract class BaseDenifition {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	@SuppressWarnings("unchecked")
-	public <T> T getParent() {
-		return (T) parent;
+	
+	public BaseDenifition() {
 	}
-
-	public void setParent(Object parent) {
-		this.parent = parent;
-	};
 
 //	/**
 //	 * 根据字段属性名称构建字段定义

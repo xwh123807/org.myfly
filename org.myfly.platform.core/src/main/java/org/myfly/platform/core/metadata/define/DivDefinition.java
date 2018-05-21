@@ -1,12 +1,14 @@
 package org.myfly.platform.core.metadata.define;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.myfly.platform.core.metadata.annotation.Div1View;
 import org.myfly.platform.core.metadata.annotation.Div2View;
 import org.myfly.platform.core.metadata.annotation.Div3View;
 import org.myfly.platform.core.metadata.annotation.DivType;
 import org.myfly.platform.core.metadata.annotation.SectionView;
-import org.myfly.platform.core.utils.FuncUtil;
-import org.myfly.platform.core.utils.FuncUtil.ConvertAction;
+import org.springframework.util.Assert;
 
 public class DivDefinition extends BaseDenifition {
 	private DivType divType;
@@ -19,46 +21,27 @@ public class DivDefinition extends BaseDenifition {
 
 	private DivDefinition[] subs;
 
-	public DivDefinition() {
-		super(null);
-	}
-
 	public DivDefinition(Div1View view) {
-		super(null);
 		setName(view.name());
 		setDivType(view.divType());
 		setWidth(view.width());
 		setExtClass(view.extClass());
 		setSections(view.sections());
-		subs = FuncUtil.convert(view.subs(), new ConvertAction<Div2View, DivDefinition>() {
-
-			@Override
-			public DivDefinition execute(int index, Div2View item) {
-				return new DivDefinition(item);
-			}
-
-		}).toArray(new DivDefinition[] {});
+		setSubs(Stream.of(view.subs()).map(item -> new DivDefinition(item)).collect(Collectors.toList())
+				.toArray(new DivDefinition[] {}));
 	}
 
 	public DivDefinition(Div2View view) {
-		super(null);
 		setName(view.name());
 		setDivType(view.divType());
 		setWidth(view.width());
 		setExtClass(view.extClass());
 		setSections(view.sections());
-		setSubs(FuncUtil.convert(view.subs(), new ConvertAction<Div3View, DivDefinition>() {
-
-			@Override
-			public DivDefinition execute(int index, Div3View item) {
-				return new DivDefinition(item);
-			}
-
-		}).toArray(new DivDefinition[] {}));
+		setSubs(Stream.of(view.subs()).map(item -> new DivDefinition(item)).collect(Collectors.toList())
+				.toArray(new DivDefinition[] {}));
 	}
 
 	public DivDefinition(Div3View view) {
-		super(null);
 		setName(view.name());
 		setDivType(view.divType());
 		setWidth(view.width());
@@ -67,14 +50,8 @@ public class DivDefinition extends BaseDenifition {
 	}
 
 	public void setSections(SectionView[] sections) {
-		this.sections = FuncUtil.convert(sections, new ConvertAction<SectionView, SectionDefinition>() {
-
-			@Override
-			public SectionDefinition execute(int index, SectionView item) {
-				return new SectionDefinition(item);
-			}
-
-		}).toArray(new SectionDefinition[] {});
+		setSections(Stream.of(sections).map(view -> new SectionDefinition(view)).collect(Collectors.toList())
+				.toArray(new SectionDefinition[] {}));
 	}
 
 	public DivType getDivType() {
@@ -116,6 +93,7 @@ public class DivDefinition extends BaseDenifition {
 	}
 
 	public void validate() {
+		Assert.notNull(getDivType());
 	}
 
 	public SectionDefinition[] getSections() {

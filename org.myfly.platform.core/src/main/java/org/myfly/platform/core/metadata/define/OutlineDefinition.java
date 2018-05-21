@@ -1,10 +1,13 @@
 package org.myfly.platform.core.metadata.define;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.myfly.platform.core.metadata.annotation.Div1View;
 import org.myfly.platform.core.metadata.annotation.OutlineView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
-import org.myfly.platform.core.utils.FuncUtil;
-import org.myfly.platform.core.utils.FuncUtil.ConvertAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * 大纲视图定义
@@ -13,6 +16,10 @@ import org.myfly.platform.core.utils.FuncUtil.ConvertAction;
  *
  */
 public class OutlineDefinition extends BaseDenifition {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -837433089304931820L;
 	/**
 	 * 显示标题
 	 */
@@ -29,33 +36,23 @@ public class OutlineDefinition extends BaseDenifition {
 	 * @param view
 	 */
 	public OutlineDefinition(OutlineView view) {
-		super(null);
 		setName(view.name());
 		setTitle(view.title());
-		setSections(view.sections());
-		setDivs(view.divs());
+		setSectionsFromView(view.sections());
+		setDivsFromView(view.divs());
 	}
 
-	private void setDivs(Div1View[] views) {
-		divs = FuncUtil.convert(views, new ConvertAction<Div1View, DivDefinition>() {
-
-			@Override
-			public DivDefinition execute(int index, Div1View item) {
-				return new DivDefinition(item);
-			}
-
-		}).toArray(new DivDefinition[] {});
+	public OutlineDefinition() {
 	}
 
-	private void setSections(SectionView[] views) {
-		sections = FuncUtil.convert(views, new ConvertAction<SectionView, SectionDefinition>() {
+	private void setDivsFromView(Div1View[] views) {
+		setDivs(Stream.of(views).map(view -> new DivDefinition(view)).collect(Collectors.toList())
+				.toArray(new DivDefinition[] {}));
+	}
 
-			@Override
-			public SectionDefinition execute(int index, SectionView item) {
-				return new SectionDefinition(item);
-			}
-
-		}).toArray(new SectionDefinition[] {});
+	private void setSectionsFromView(SectionView[] views) {
+		setSections(Stream.of(views).map(view -> new SectionDefinition(view)).collect(Collectors.toList())
+				.toArray(new SectionDefinition[] {}));
 	}
 
 	public String getTitle() {

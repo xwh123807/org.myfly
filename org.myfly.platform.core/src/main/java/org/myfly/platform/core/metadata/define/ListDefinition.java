@@ -1,26 +1,16 @@
 package org.myfly.platform.core.metadata.define;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.core.domain.EntityActionInfo.EntityActionField;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.annotation.FilterView;
 import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.annotation.ListView;
-import org.myfly.platform.core.metadata.annotation.OrderType;
 import org.myfly.platform.core.metadata.annotation.OrderView;
-import org.myfly.platform.core.metadata.annotation.SQLOperator;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
-import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AssertUtil;
-import org.myfly.platform.core.utils.FuncUtil;
-import org.myfly.platform.core.utils.FuncUtil.ConvertAction;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.domain.Sort.Order;
 import org.springframework.util.Assert;
 
 /**
@@ -49,11 +39,7 @@ public class ListDefinition extends BaseDenifition {
 	/**
 	 * 字段列表
 	 */
-	private String[] fieldNames;
-	/**
-	 * 字段列表定义
-	 */
-	private FieldDefinition[] fields;
+	private String[] fields;
 	/**
 	 * 过滤条件定义
 	 */
@@ -91,26 +77,11 @@ public class ListDefinition extends BaseDenifition {
 	private String linkField;
 
 	private String linkUrl;
-
-	public ListDefinition(final Object parent, final String name, final String title) {
-		super(parent);
-		setName(name);
-		setTitle(title);
-	}
-
-	public ListDefinition(FieldDefinition[] fields, String entityName, String subTableAttr) {
-		super(null);
-		setFields(fields);
-		setEntityName(entityName);
-		setSubTableAttr(subTableAttr);
-	}
-
-	public ListDefinition(EntityMetaData metaData) {
-		super(metaData);
+	
+	public ListDefinition(){
 	}
 
 	public ListDefinition(ListView view) {
-		super(null);
 		setName(view.name());
 		setTitle(view.title());
 		setHeader(view.header());
@@ -120,31 +91,19 @@ public class ListDefinition extends BaseDenifition {
 		setServerSideMode(view.serverSideMode());
 		setListActions(view.listActions());
 		setItemActions(view.itemActions());
-		setFieldNames(view.fields());
-		setFilters(view.filters());
-		setOrders(view.orders());
+		setFields(view.fields());
+		setFiltersFromView(view.filters());
+		setOrdersFromView(view.orders());
 	}
 
-	private void setOrders(OrderView[] views) {
-		orders = FuncUtil.convert(views, new ConvertAction<OrderView, OrderDefinition>() {
-
-			@Override
-			public OrderDefinition execute(int index, OrderView orderView) {
-				return new OrderDefinition(orderView);
-			}
-
-		}).toArray(new OrderDefinition[] {});
+	private void setOrdersFromView(OrderView[] views) {
+		setOrders(Stream.of(views).map(view -> new OrderDefinition(view)).collect(Collectors.toList())
+				.toArray(new OrderDefinition[] {}));
 	}
 
-	public void setFilters(FilterView[] views) {
-		filters = FuncUtil.convert(views, new ConvertAction<FilterView, FilterDefinition>() {
-
-			@Override
-			public FilterDefinition execute(int index, FilterView view) {
-				return new FilterDefinition(view);
-			}
-
-		}).toArray(new FilterDefinition[] {});
+	private void setFiltersFromView(FilterView[] views) {
+		setFilters(Stream.of(views).map(view -> new FilterDefinition(view)).collect(Collectors.toList())
+				.toArray(new FilterDefinition[] {}));
 	}
 
 	public String getHeader() {
@@ -250,45 +209,12 @@ public class ListDefinition extends BaseDenifition {
 		}
 	}
 
-	/**
-	 * 根据排序定义，构建Sort
-	 * 
-	 * @return
-	 */
-	public Sort getSort() {
-		if (ArrayUtils.isNotEmpty(getOrders())) {
-			List<Order> orders = new ArrayList<>();
-			for (OrderDefinition orderDefinition : getOrders()) {
-				Direction direction = OrderType.ASC.equals(orderDefinition.getOrderType()) ? Direction.ASC
-						: Direction.DESC;
-				Order order = new Order(direction, orderDefinition.getName());
-				orders.add(order);
-			}
-			Sort sort = new Sort(orders);
-			return sort;
-		} else {
-			return null;
-		}
-	}
-
-	public FieldDefinition[] getFields() {
+	public String[] getFields() {
 		return fields;
 	}
 
-	public void setFields(FieldDefinition[] fields) {
+	public void setFields(String[] fields) {
 		this.fields = fields;
-	}
-
-	public FieldDefinition[] getFields(boolean printMode) {
-		if (printMode) {
-			return ArrayUtils.remove(fields, fields.length - 1);
-		} else {
-			return fields;
-		}
-	}
-
-	public String[] getFieldNames() {
-		return fieldNames;
 	}
 
 	public ListStyle getListStyle() {
@@ -307,162 +233,6 @@ public class ListDefinition extends BaseDenifition {
 		this.entityName = entityName;
 	}
 
-	@Override
-	public String toString() {
-		return "name: " + getName() + ", fields: [" + getFieldNames() + "]";
-	}
-
-	/**
-	 * 构建实体列表查询定义
-	 * 
-	 * @param metaData
-	 * @param listView
-	 * @return
-	 */
-	public static ListDefinition buildListDefinition(EntityMetaData metaData, ListView listView) {
-		ListDefinition listDefinition = new ListDefinition(metaData, listView.name(), listView.title());
-
-		if (StringUtils.isBlank(listDefinition.getName())) {
-			listDefinition.setName(EntityMetaDataConstants.DEFAULT_NAME);
-		}
-		if (StringUtils.isNotBlank(listView.title())) {
-			listDefinition.setTitle(listView.title());
-		} else {
-			listDefinition.setTitle(metaData.getTableDefinition().getTitle());
-		}
-		if (StringUtils.isNotBlank(listView.labelField())) {
-			listDefinition.setLabelField(listView.labelField());
-		} else {
-			listDefinition.setLabelField(metaData.getTableDefinition().getLabelField());
-		}
-		listDefinition.setHeader(listView.header());
-		listDefinition.setServerSideMode(listView.serverSideMode());
-		listDefinition.setEntityName(metaData.getEntityName());
-		listDefinition.setListStyle(listView.listStyle());
-		listDefinition.setListActions(listView.listActions());
-		listDefinition.setItemActions(listView.itemActions());
-
-		// 更新字段定义
-		FieldDefinition[] fields;
-		if (ArrayUtils.isNotEmpty(listView.fields())) {
-			// 有配置ListView注解的，按配置的字段显示
-			fields = metaData.getFields(metaData, listView.fields());
-			// 增加操作字段
-			if (ArrayUtils.isNotEmpty(listDefinition.getItemActions())) {
-				fields = ArrayUtils.add(fields, new EntityActionField(listDefinition.getItemActions()));
-			}
-		} else {
-			// 没有配置ListView注解时，取全部字段
-			fields = metaData.getAllFields();
-		}
-		listDefinition.setFields(fields);
-
-		// 设置过滤条件
-		updateMetaDataListViewFilterDefinitions(metaData, listView, listDefinition);
-		// 更新排序定义
-		updateMetaDataListViewOrderDefinitions(metaData, listView, listDefinition);
-		return listDefinition;
-	}
-
-	/**
-	 * 更新列表过滤器定义
-	 * 
-	 * @param metaData
-	 * @param listView
-	 * @param listDefinition
-	 */
-	private static void updateMetaDataListViewFilterDefinitions(final EntityMetaData metaData, final ListView listView,
-			final ListDefinition listDefinition) {
-		// 更新过滤条件定义
-		List<FilterDefinition> filters = new ArrayList<>();
-		if (ArrayUtils.isNotEmpty(listView.filters())) {
-			for (FilterView filterView : listView.filters()) {
-				FieldDefinition field = metaData.getField(filterView.field());
-				Assert.notNull(field);
-				FilterDefinition filter = new FilterDefinition(field, filterView.operator());
-				filter.setShow(filterView.show());
-				filter.setValue(filterView.value());
-				filters.add(filter);
-			}
-		}
-		listDefinition.setFilters(filters.toArray(new FilterDefinition[] {}));
-	}
-
-	/**
-	 * 更新列表排序定义
-	 * 
-	 * @param metaData
-	 * @param listView
-	 * @param listDefinition
-	 */
-	private static void updateMetaDataListViewOrderDefinitions(final EntityMetaData metaData, ListView listView,
-			ListDefinition listDefinition) {
-		List<OrderDefinition> orders = new ArrayList<>();
-		if (ArrayUtils.isNotEmpty(listView.orders())) {
-			for (OrderView orderView : listView.orders()) {
-				FieldDefinition field = metaData.getField(orderView.field());
-				Assert.notNull(field);
-				OrderDefinition orderDefinition = new OrderDefinition(listDefinition, orderView.field(),
-						orderView.orderType());
-				orders.add(orderDefinition);
-			}
-			listDefinition.setOrders(orders.toArray(new OrderDefinition[] {}));
-		} else {
-			updateBaseEntityDefaultOrder(listDefinition);
-		}
-	}
-
-	/**
-	 * 添加默认过滤器
-	 * 
-	 * @param listDefinition
-	 */
-	private static void updateBaseEntityDefaultOrder(ListDefinition listDefinition) {
-		// 增加排序字段,且实体为SBaseEntity，自定添加按最后修改时间降序排序
-		/*
-		 * if (((EntityMetaData) listDefinition.getParent()).newEntityInstance()
-		 * instanceof SBaseEntity) { listDefinition.addOrder(new
-		 * OrderDefinition(listDefinition, "updated", OrderType.DESC)); }
-		 */
-	}
-
-	/**
-	 * 构建默认包含全部字段的ListDefinition
-	 * 
-	 * @param metaData
-	 * @return
-	 */
-	public static ListDefinition buildDefaultListDefinition(final EntityMetaData metaData, final String name) {
-		ListDefinition listDefinition = new ListDefinition(metaData, name, metaData.getTableDefinition().getTitle());
-		listDefinition.setName(name);
-		listDefinition.setEntityName(metaData.getEntityName());
-		listDefinition.setLabelField(metaData.getTableDefinition().getLabelField());
-		listDefinition.setFields(metaData.getAllFields());
-		listDefinition.setServerSideMode(EntityMetaDataConstants.DEFAULT_SERVER_MODE);
-		listDefinition.setListStyle(EntityMetaDataConstants.DEFAULT_LIST_STYLE);
-		listDefinition.setListActions(EntityMetaDataConstants.DEFAULT_ENTITY_LIST_ACTIONS);
-		listDefinition.setItemActions(EntityMetaDataConstants.DEFAULT_ENTITY_ITEM_ACTIONS);
-		List<FilterDefinition> filters = new ArrayList<>();
-		for (FieldDefinition field : metaData.getAllFields()) {
-			FilterDefinition filter = new FilterDefinition(field, SQLOperator.EQUAL);
-			filters.add(filter);
-		}
-		listDefinition.setFilters(filters.toArray(new FilterDefinition[] {}));
-		updateBaseEntityDefaultOrder(listDefinition);
-		// 增加操作字段
-		if (ArrayUtils.isNotEmpty(listDefinition.getItemActions())) {
-			FieldDefinition[] fields = ArrayUtils.add(listDefinition.getFields(),
-					new EntityActionField(listDefinition.getItemActions()));
-			listDefinition.setFields(fields);
-		}
-		return listDefinition;
-	}
-
-	public void validate() {
-		Assert.hasLength(getEntityName());
-		Assert.notEmpty(getFields());
-	}
-
 	public String getLinkField() {
 		return linkField;
 	}
@@ -479,7 +249,13 @@ public class ListDefinition extends BaseDenifition {
 		this.linkUrl = linkUrl;
 	}
 
-	public void setFieldNames(String[] fieldNames) {
-		this.fieldNames = fieldNames;
+	@Override
+	public String toString() {
+		return "name: " + getName() + ", fields: [" + getFields() + "]";
+	}
+
+	public void validate() {
+		Assert.hasLength(getEntityName());
+		Assert.notEmpty(getFields());
 	}
 }

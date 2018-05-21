@@ -67,12 +67,7 @@ public class TableDefinition extends BaseDenifition {
 	 */
 	private Map<String, FKFieldDefinition> fkFieldDefinitions;
 
-	public TableDefinition(Object owner) {
-		super(owner);
-	}
-
-	public TableDefinition(Object owner, TableView view) {
-		super(owner);
+	public TableDefinition(TableView view) {
 		setName(view.name());
 		setTitle(view.title());
 		setDescription(view.description());
@@ -159,7 +154,6 @@ public class TableDefinition extends BaseDenifition {
 		Assert.hasLength(getTableName());
 		if (isCreateIndex())
 			Assert.hasLength(getIndexName());
-		Assert.notNull(getPkFieldDefinition());
 	}
 
 	public String getCatalog() {

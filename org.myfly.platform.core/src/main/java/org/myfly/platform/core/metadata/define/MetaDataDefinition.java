@@ -1,11 +1,12 @@
 package org.myfly.platform.core.metadata.define;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.myfly.platform.core.metadata.annotation.FormView;
 import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.OutlineView;
-import org.myfly.platform.core.utils.FuncUtil;
-import org.myfly.platform.core.utils.FuncUtil.ConvertAction;
 
 public class MetaDataDefinition extends BaseDenifition {
 	private TableDefinition tableDefinition;
@@ -17,44 +18,25 @@ public class MetaDataDefinition extends BaseDenifition {
 	private OutlineDefinition[] outlineDefinitions;
 
 	public MetaDataDefinition(MetaDataView view) {
-		super(null);
-		setTableDefinition(new TableDefinition(null, view.tableView()));
-		setListDefinitions(view.listViews());
-		setFormDefinitions(view.formViews());
-		setOutlineDefinitions(view.outlineViews());
+		setTableDefinition(new TableDefinition(view.tableView()));
+		setListDefinitionsFromView(view.listViews());
+		setFormDefinitionsFormView(view.formViews());
+		setOutlineDefinitionsFromView(view.outlineViews());
 	}
 
-	private void setOutlineDefinitions(OutlineView[] outlineViews) {
-		outlineDefinitions = FuncUtil.convert(outlineViews, new ConvertAction<OutlineView, OutlineDefinition>() {
-
-			@Override
-			public OutlineDefinition execute(int index, OutlineView item) {
-				return new OutlineDefinition(item);
-			}
-
-		}).toArray(new OutlineDefinition[] {});
+	private void setOutlineDefinitionsFromView(OutlineView[] outlineViews) {
+		setOutlineDefinitions(Stream.of(outlineViews).map(view -> new OutlineDefinition(view))
+				.collect(Collectors.toList()).toArray(new OutlineDefinition[] {}));
 	}
 
-	private void setFormDefinitions(FormView[] formViews) {
-		formDefinitions = FuncUtil.convert(formViews, new ConvertAction<FormView, FormDefinition>() {
-
-			@Override
-			public FormDefinition execute(int index, FormView item) {
-				return new FormDefinition(item);
-			}
-
-		}).toArray(new FormDefinition[] {});
+	private void setFormDefinitionsFormView(FormView[] formViews) {
+		setFormDefinitions(Stream.of(formViews).map(view -> new FormDefinition(view)).collect(Collectors.toList())
+				.toArray(new FormDefinition[] {}));
 	}
 
-	private void setListDefinitions(ListView[] listViews) {
-		listDefinitions = FuncUtil.convert(listViews, new ConvertAction<ListView, ListDefinition>() {
-
-			@Override
-			public ListDefinition execute(int index, ListView item) {
-				return new ListDefinition(item);
-			}
-
-		}).toArray(new ListDefinition[] {});
+	private void setListDefinitionsFromView(ListView[] listViews) {
+		setListDefinitions(Stream.of(listViews).map(view -> new ListDefinition(view)).collect(Collectors.toList())
+				.toArray(new ListDefinition[] {}));
 	}
 
 	public TableDefinition getTableDefinition() {

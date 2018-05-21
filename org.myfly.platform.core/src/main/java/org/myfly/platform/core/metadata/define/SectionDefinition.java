@@ -1,13 +1,14 @@
 package org.myfly.platform.core.metadata.define;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.hsqldb.lib.StringUtil;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.SectionType;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.SubTableView;
-import org.myfly.platform.core.utils.FuncUtil;
-import org.myfly.platform.core.utils.FuncUtil.ConvertAction;
 import org.springframework.util.Assert;
 
 /**
@@ -34,14 +35,7 @@ public class SectionDefinition extends BaseDenifition {
 	 */
 	private SubTableDefinition[] subTables;
 
-	public SectionDefinition(FormDefinition parent, String title) {
-		super(parent);
-		setTitle(title);
-		setType(SectionType.CUSTOM);
-	}
-
 	public SectionDefinition(SectionView view) {
-		super(null);
 		setName(view.name());
 		setTitle(view.title());
 		setType(view.type());
@@ -73,14 +67,8 @@ public class SectionDefinition extends BaseDenifition {
 	}
 
 	public void setFieldSets(FieldSetView[] views) {
-		fieldSets = FuncUtil.convert(views, new ConvertAction<FieldSetView, FieldSetDefinition>() {
-
-			@Override
-			public FieldSetDefinition execute(int index, FieldSetView item) {
-				return new FieldSetDefinition(item);
-			}
-
-		}).toArray(new FieldSetDefinition[] {});
+		setFieldSets(Stream.of(views).map(view -> new FieldSetDefinition(view)).collect(Collectors.toList())
+				.toArray(new FieldSetDefinition[] {}));
 	}
 
 	public SubTableDefinition[] getSubTables() {
@@ -92,14 +80,8 @@ public class SectionDefinition extends BaseDenifition {
 	}
 
 	public void setSubTables(SubTableView[] views) {
-		subTables = FuncUtil.convert(views, new ConvertAction<SubTableView, SubTableDefinition>() {
-
-			@Override
-			public SubTableDefinition execute(int index, SubTableView item) {
-				return new SubTableDefinition(getParent(), item);
-			}
-
-		}).toArray(new SubTableDefinition[] {});
+		setSubTables(Stream.of(views).map(view -> new SubTableDefinition(view)).collect(Collectors.toList())
+				.toArray(new SubTableDefinition[] {}));
 	}
 
 	/**

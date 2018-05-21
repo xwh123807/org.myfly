@@ -1,8 +1,9 @@
-package org.myfly.platform.core.metadata.define;
+package org.myfly.platform.core.metadata.entity.handler;
 
 import java.util.Map;
 
 import org.myfly.platform.core.metadata.entity.RelationFieldDefinition;
+import org.myfly.platform.core.metadata.entity.SetFieldValueHandler;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;

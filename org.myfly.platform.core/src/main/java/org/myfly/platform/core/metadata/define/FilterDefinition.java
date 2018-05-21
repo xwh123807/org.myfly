@@ -5,37 +5,15 @@ import org.myfly.platform.core.metadata.annotation.FilterView;
 import org.myfly.platform.core.metadata.annotation.SQLOperator;
 
 public class FilterDefinition extends BaseDenifition {
-	private FieldDefinition field;
+	private String field;
 	private Object value;
 	private SQLOperator operator;
 	private boolean show = true;
 
-	private String fieldName;
 	private Object[] multiValues;
 
-	public FilterDefinition(FieldDefinition field, SQLOperator operator) {
-		super(null);
-		setName(field.getName());
-		setField(field);
-		setOperator(operator);
-	}
-
-	public FilterDefinition(String fieldName, SQLOperator operator) {
-		super(null);
-		setFieldName(fieldName);
-		setOperator(operator);
-	}
-
-	public FilterDefinition(String fieldName, SQLOperator operator, Object... values) {
-		super(null);
-		setFieldName(fieldName);
-		setOperator(operator);
-		setMultiValues(values);
-	}
-
 	public FilterDefinition(FilterView view) {
-		super(null);
-		setFieldName(view.field());
+		setField(view.field());
 		setValue(view.value());
 		setShow(view.show());
 		setOperator(view.operator());
@@ -57,11 +35,11 @@ public class FilterDefinition extends BaseDenifition {
 		this.operator = operator;
 	}
 
-	public FieldDefinition getField() {
+	public String getField() {
 		return field;
 	}
 
-	public void setField(FieldDefinition field) {
+	public void setField(String field) {
 		this.field = field;
 	}
 
@@ -76,14 +54,6 @@ public class FilterDefinition extends BaseDenifition {
 		}
 	}
 
-	public String getFieldName() {
-		return fieldName;
-	}
-
-	public void setFieldName(String fieldName) {
-		this.fieldName = fieldName;
-	}
-
 	public boolean isShow() {
 		return show;
 	}
@@ -94,6 +64,6 @@ public class FilterDefinition extends BaseDenifition {
 
 	@Override
 	public String toString() {
-		return "field: " + field.getName() + ", operator: " + operator.getTitle();
+		return "field: " + field + ", operator: " + operator.getTitle();
 	}
 }

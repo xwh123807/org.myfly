@@ -43,11 +43,11 @@ public class MasterMetaDataTest {
 										if (index == 0) {
 											Assert.assertEquals("基本信息", fieldSet.getTitle());
 											Assert.assertArrayEquals(new String[] { "name", "description" },
-													fieldSet.getFieldNames());
+													fieldSet.getFields());
 										} else if (index == 1) {
 											Assert.assertEquals("审计", fieldSet.getTitle());
 											Assert.assertArrayEquals(new String[] { "active", "createdBy", "created",
-													"updatedBy", "updated" }, fieldSet.getFieldNames());
+													"updatedBy", "updated" }, fieldSet.getFields());
 										}
 									}
 
@@ -121,14 +121,14 @@ public class MasterMetaDataTest {
 			@Override
 			public void execute(int index, ListView item) {
 				ListDefinition listDefinition = new ListDefinition(item);
-				Assert.assertArrayEquals(item.fields(), listDefinition.getFieldNames());
+				Assert.assertArrayEquals(item.fields(), listDefinition.getFields());
 				if (index == 0) {
 					Assert.assertEquals("default", listDefinition.getName());
 					Assert.assertEquals(ListStyle.TABLE, listDefinition.getListStyle());
 				} else if (index == 1) {
 					Assert.assertEquals(ListStyle.CARDLIST, listDefinition.getListStyle());
 					FilterDefinition filter0 = listDefinition.getFilters()[0];
-					Assert.assertEquals("name", filter0.getFieldName());
+					Assert.assertEquals("name", filter0.getField());
 					Assert.assertEquals(SQLOperator.LIKE, filter0.getOperator());
 					OrderDefinition order0 = listDefinition.getOrders()[0];
 					Assert.assertEquals("name", order0.getName());
@@ -159,7 +159,7 @@ public class MasterMetaDataTest {
 								public void execute(int index, FieldSetDefinition item) {
 									if (index == 0) {
 										Assert.assertArrayEquals(new String[] { "name", "description" },
-												item.getFieldNames());
+												item.getFields());
 									}
 								}
 

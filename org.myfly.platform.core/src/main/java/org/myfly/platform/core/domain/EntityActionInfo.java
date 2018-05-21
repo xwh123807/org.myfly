@@ -3,8 +3,8 @@ package org.myfly.platform.core.domain;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
-import org.myfly.platform.core.metadata.define.GetFieldValueHandler;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
+import org.myfly.platform.core.metadata.entity.GetFieldValueHandler;
 import org.myfly.platform.core.utils.AssertUtil;
 
 /**

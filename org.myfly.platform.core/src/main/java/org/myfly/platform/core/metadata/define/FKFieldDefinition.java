@@ -28,7 +28,6 @@ public class FKFieldDefinition extends BaseDenifition {
 	private String[] relationFields;
 
 	public FKFieldDefinition(SearchRelationFieldDefinition field) {
-		super(null);
 		setName(field.getName());
 		setRelationClass(field.getRelationClass());
 		setRelationTable(field.getRelationTable());

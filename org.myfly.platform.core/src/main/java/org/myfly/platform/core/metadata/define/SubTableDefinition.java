@@ -1,14 +1,6 @@
 package org.myfly.platform.core.metadata.define;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.ArrayUtils;
-import org.myfly.platform.core.domain.EntityActionInfo.EntityActionField;
-import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.annotation.SubTableView;
-import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
-import org.myfly.platform.core.utils.AppUtil;
-import org.myfly.platform.core.utils.AssertUtil;
 import org.springframework.util.Assert;
 
 /**
@@ -23,23 +15,11 @@ public class SubTableDefinition extends ListDefinition {
 	 */
 	private String refName;
 
-	/**
-	 * 
-	 * @param parent
-	 *            父对象
-	 * @param title
-	 *            标题
-	 */
-	public SubTableDefinition(Object parent) {
-		super(parent, null, null);
-	}
-
-	public SubTableDefinition(Object parent, SubTableView view) {
-		super(parent, null, view.title());
+	public SubTableDefinition(SubTableView view) {
 		setSubTableAttr(view.tableAttr());
 		setRefName(view.refName());
 		setHeader(view.header());
-		setFieldNames(view.fields());
+		setFields(view.fields());
 		setLinkField(view.linkField());
 		setLinkUrl(view.linkUrl());
 		setEnableActions(view.enableActions());
@@ -58,39 +38,39 @@ public class SubTableDefinition extends ListDefinition {
 	 * @param refName
 	 * @return
 	 */
-	public static SubTableDefinition buildSubTable(EntityMetaData metaData, MDRelationFieldDefinition subTableField,
-			String refName) {
-		Assert.notNull(subTableField);
-		Assert.notNull(refName);
-		EntityMetaData subEntityMetaData = null;
-		if (subTableField.getRelationClass() != null
-				&& subTableField.getRelationClass().equals(metaData.getEntityClass().getName())) {
-			// 自关联时
-			subEntityMetaData = metaData;
-		} else {
-			if (!AppUtil.isSpringContext()) {
-				return null;
-			}
-			subEntityMetaData = metaData.getSubEntityMetaData(subTableField.getName());
-		}
-		// 从子表实体listviews定义中获取listview定义，并复制到当前子表定义中
-		ListDefinition listDefinition = subEntityMetaData.getListDefinition(refName);
-
-		SubTableDefinition subTable = new SubTableDefinition(metaData);
-		subTable.setRefName(refName);
-		subTable.setEntityName(metaData.getEntityName());
-		subTable.setSubTableAttr(subTableField.getName());
-		subTable.setLabelField(subEntityMetaData.getTableDefinition().getLabelField());
-		subTable.setTitle(listDefinition.getTitle());
-		subTable.setHeader(listDefinition.getHeader());
-		subTable.setServerSideMode(listDefinition.isServerSideMode());
-		subTable.setFields(listDefinition.getFields());
-		subTable.setFilters(listDefinition.getFilters());
-		subTable.setListStyle(listDefinition.getListStyle());
-		subTable.setListActions(listDefinition.getListActions());
-		subTable.setItemActions(listDefinition.getItemActions());
-		return subTable;
-	}
+//	public static SubTableDefinition buildSubTable(EntityMetaData metaData, MDRelationFieldDefinition subTableField,
+//			String refName) {
+//		Assert.notNull(subTableField);
+//		Assert.notNull(refName);
+//		EntityMetaData subEntityMetaData = null;
+//		if (subTableField.getRelationClass() != null
+//				&& subTableField.getRelationClass().equals(metaData.getEntityClass().getName())) {
+//			// 自关联时
+//			subEntityMetaData = metaData;
+//		} else {
+//			if (!AppUtil.isSpringContext()) {
+//				return null;
+//			}
+//			subEntityMetaData = metaData.getSubEntityMetaData(subTableField.getName());
+//		}
+//		// 从子表实体listviews定义中获取listview定义，并复制到当前子表定义中
+//		ListDefinition listDefinition = subEntityMetaData.getListDefinition(refName);
+//
+//		SubTableDefinition subTable = new SubTableDefinition(metaData);
+//		subTable.setRefName(refName);
+//		subTable.setEntityName(metaData.getEntityName());
+//		subTable.setSubTableAttr(subTableField.getName());
+//		subTable.setLabelField(subEntityMetaData.getTableDefinition().getLabelField());
+//		subTable.setTitle(listDefinition.getTitle());
+//		subTable.setHeader(listDefinition.getHeader());
+//		subTable.setServerSideMode(listDefinition.isServerSideMode());
+//		subTable.setFields(listDefinition.getFields());
+//		subTable.setFilters(listDefinition.getFilters());
+//		subTable.setListStyle(listDefinition.getListStyle());
+//		subTable.setListActions(listDefinition.getListActions());
+//		subTable.setItemActions(listDefinition.getItemActions());
+//		return subTable;
+//	}
 
 	/**
 	 * 实体子表引用子实体列表视图定义，再覆盖自定义内容
@@ -103,18 +83,18 @@ public class SubTableDefinition extends ListDefinition {
 	 *            视图名称
 	 * @return
 	 */
-	public static SubTableDefinition buildSubTable(EntityMetaData metaData, SubTableView subTableView) {
-		FieldDefinition subTableField = metaData.getField(subTableView.tableAttr());
-		Assert.notNull(subTableField, "实体[" + metaData.getEntityName() + "]不存在子表属性[" + subTableView.tableAttr() + "]");
-		SubTableDefinition subTable = buildSubTable(metaData, subTableField, subTableView.refName());
-
-		// 处理可由子表定义覆盖的部分
-		if (!ListStyle.NONE.equals(subTableView.listStyle())) {
-			subTable.setListStyle(subTableView.listStyle());
-		}
-
-		return subTable;
-	}
+//	public static SubTableDefinition buildSubTable(EntityMetaData metaData, SubTableView subTableView) {
+//		FieldDefinition subTableField = metaData.getField(subTableView.tableAttr());
+//		Assert.notNull(subTableField, "实体[" + metaData.getEntityName() + "]不存在子表属性[" + subTableView.tableAttr() + "]");
+//		SubTableDefinition subTable = buildSubTable(metaData, subTableField, subTableView.refName());
+//
+//		// 处理可由子表定义覆盖的部分
+//		if (!ListStyle.NONE.equals(subTableView.listStyle())) {
+//			subTable.setListStyle(subTableView.listStyle());
+//		}
+//
+//		return subTable;
+//	}
 
 	/**
 	 * 按SubTableView注解构建SubTableDefinition
@@ -123,67 +103,67 @@ public class SubTableDefinition extends ListDefinition {
 	 * @param subTableView
 	 * @return
 	 */
-	private static SubTableDefinition buildSubTable2(EntityMetaData metaData, SubTableView subTableView,
-			String viewName) {
-		AssertUtil.parameterNotEmpty(null, metaData, subTableView);
-		SubTableDefinition subTable = new SubTableDefinition(metaData);
-		subTable.setTitle(subTableView.title());
-		subTable.setEntityName(metaData.getEntityName());
-		subTable.setHeader(subTableView.header());
-		subTable.setServerSideMode(subTableView.serverSideMode());
-		subTable.setSubTableAttr(subTableView.tableAttr());
-		AssertUtil.parameterEmpty(subTable.getSubTableAttr(), "subTableView.tableAttr", "必须制定子表视图tableAttr属性");
-
-		subTable.setListStyle(subTableView.listStyle());
-		subTable.setListActions(subTableView.listActions());
-		subTable.setItemActions(subTableView.itemActions());
-
-		FieldDefinition subTableField = metaData.getField(subTableView.tableAttr());
-		AssertUtil.parameterEmpty(subTableField, "subTableField",
-				"实体[" + metaData.getEntityClass().getName() + "]不存在属性[" + subTableView.tableAttr() + "]");
-		if (StringUtils.isBlank(subTable.getTitle())) {
-			subTable.setTitle(subTableField.getTitle());
-		}
-		EntityMetaData subEntityMetaData = null;
-		if (subTableField.getRelationClass().equals(metaData.getEntityClass().getName())) {
-			subEntityMetaData = metaData;
-		} else {
-			subEntityMetaData = metaData.getSubEntityMetaData(subTableField.getName());
-		}
-		AssertUtil.parameterEmpty(subEntityMetaData, "subEntityMetaData");
-		if (StringUtils.isNotBlank(subTableView.labelField())) {
-			subTable.setLabelField(subTableView.labelField());
-		} else {
-			subTable.setLabelField(subEntityMetaData.getTableDefinition().getLabelField());
-		}
-
-		// 更新字段集
-		FieldDefinition[] subFields;
-		if (ArrayUtils.isNotEmpty(subTableView.fields())) {
-			// 指定子表显示字段
-			subFields = subEntityMetaData.getFields(subTableView.fields());
-			// 增加操作字段
-			if (ArrayUtils.isNotEmpty(subTable.getItemActions())) {
-				subFields = ArrayUtils.add(subFields, new EntityActionField(subTable.getItemActions()));
-			}
-		} else {
-			// 先判断子表是否有定义ListView
-			if (subEntityMetaData.getListDefinitions() != null
-					&& ArrayUtils.isNotEmpty(subEntityMetaData.getListDefinition(viewName).getFields())) {
-				// 如果有定义ListView，则取
-				subFields = subEntityMetaData.getListDefinition(viewName).getFields();
-			} else {
-				// 如果没有定义ListView，则取子表全部字段
-				subFields = subEntityMetaData.getAllFields();
-				// 增加操作字段
-				if (ArrayUtils.isNotEmpty(subTable.getItemActions())) {
-					subFields = ArrayUtils.add(subFields, new EntityActionField(subTable.getItemActions()));
-				}
-			}
-		}
-		subTable.setFields(subFields);
-		return subTable;
-	}
+//	private static SubTableDefinition buildSubTable2(EntityMetaData metaData, SubTableView subTableView,
+//			String viewName) {
+//		AssertUtil.parameterNotEmpty(null, metaData, subTableView);
+//		SubTableDefinition subTable = new SubTableDefinition(metaData);
+//		subTable.setTitle(subTableView.title());
+//		subTable.setEntityName(metaData.getEntityName());
+//		subTable.setHeader(subTableView.header());
+//		subTable.setServerSideMode(subTableView.serverSideMode());
+//		subTable.setSubTableAttr(subTableView.tableAttr());
+//		AssertUtil.parameterEmpty(subTable.getSubTableAttr(), "subTableView.tableAttr", "必须制定子表视图tableAttr属性");
+//
+//		subTable.setListStyle(subTableView.listStyle());
+//		subTable.setListActions(subTableView.listActions());
+//		subTable.setItemActions(subTableView.itemActions());
+//
+//		FieldDefinition subTableField = metaData.getField(subTableView.tableAttr());
+//		AssertUtil.parameterEmpty(subTableField, "subTableField",
+//				"实体[" + metaData.getEntityClass().getName() + "]不存在属性[" + subTableView.tableAttr() + "]");
+//		if (StringUtils.isBlank(subTable.getTitle())) {
+//			subTable.setTitle(subTableField.getTitle());
+//		}
+//		EntityMetaData subEntityMetaData = null;
+//		if (subTableField.getRelationClass().equals(metaData.getEntityClass().getName())) {
+//			subEntityMetaData = metaData;
+//		} else {
+//			subEntityMetaData = metaData.getSubEntityMetaData(subTableField.getName());
+//		}
+//		AssertUtil.parameterEmpty(subEntityMetaData, "subEntityMetaData");
+//		if (StringUtils.isNotBlank(subTableView.labelField())) {
+//			subTable.setLabelField(subTableView.labelField());
+//		} else {
+//			subTable.setLabelField(subEntityMetaData.getTableDefinition().getLabelField());
+//		}
+//
+//		// 更新字段集
+//		FieldDefinition[] subFields;
+//		if (ArrayUtils.isNotEmpty(subTableView.fields())) {
+//			// 指定子表显示字段
+//			subFields = subEntityMetaData.getFields(subTableView.fields());
+//			// 增加操作字段
+//			if (ArrayUtils.isNotEmpty(subTable.getItemActions())) {
+//				subFields = ArrayUtils.add(subFields, new EntityActionField(subTable.getItemActions()));
+//			}
+//		} else {
+//			// 先判断子表是否有定义ListView
+//			if (subEntityMetaData.getListDefinitions() != null
+//					&& ArrayUtils.isNotEmpty(subEntityMetaData.getListDefinition(viewName).getFields())) {
+//				// 如果有定义ListView，则取
+//				subFields = subEntityMetaData.getListDefinition(viewName).getFields();
+//			} else {
+//				// 如果没有定义ListView，则取子表全部字段
+//				subFields = subEntityMetaData.getAllFields();
+//				// 增加操作字段
+//				if (ArrayUtils.isNotEmpty(subTable.getItemActions())) {
+//					subFields = ArrayUtils.add(subFields, new EntityActionField(subTable.getItemActions()));
+//				}
+//			}
+//		}
+//		subTable.setFields(subFields);
+//		return subTable;
+//	}
 
 	public String getRefName() {
 		return refName;

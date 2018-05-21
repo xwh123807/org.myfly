@@ -1,10 +1,12 @@
-package org.myfly.platform.core.metadata.define;
+package org.myfly.platform.core.metadata.entity.handler;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.metadata.entity.GetFieldValueHandler;
 import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.ClassUtil;

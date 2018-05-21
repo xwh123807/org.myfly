@@ -12,18 +12,7 @@ import org.myfly.platform.core.metadata.annotation.OrderView;
 public class OrderDefinition extends BaseDenifition {
 	private OrderType orderType;
 
-	public OrderDefinition() {
-		super(null);
-	}
-
-	public OrderDefinition(Object owner, String name, OrderType orderType) {
-		super(owner);
-		setName(name);
-		setOrderType(orderType);
-	}
-
 	public OrderDefinition(OrderView view) {
-		super(null);
 		setName(view.field());
 		setOrderType(view.orderType());
 	}
