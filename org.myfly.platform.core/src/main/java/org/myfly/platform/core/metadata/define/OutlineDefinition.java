@@ -45,11 +45,13 @@ public class OutlineDefinition extends BaseDenifition {
 	public OutlineDefinition() {
 	}
 
+	@JsonIgnore
 	private void setDivsFromView(Div1View[] views) {
 		setDivs(Stream.of(views).map(view -> new DivDefinition(view)).collect(Collectors.toList())
 				.toArray(new DivDefinition[] {}));
 	}
 
+	@JsonIgnore
 	private void setSectionsFromView(SectionView[] views) {
 		setSections(Stream.of(views).map(view -> new SectionDefinition(view)).collect(Collectors.toList())
 				.toArray(new SectionDefinition[] {}));
@@ -77,5 +79,16 @@ public class OutlineDefinition extends BaseDenifition {
 
 	public void setDivs(DivDefinition[] divs) {
 		this.divs = divs;
+	}
+
+	@Override
+	public String toString() {
+		return "name: " + getName() + ", title: " + getTitle() + ", divs: " + getDivs().length + ", sections:"
+				+ getSections().length;
+	}
+
+	@Override
+	public void validate() {
+
 	}
 }

@@ -13,6 +13,8 @@ import org.myfly.platform.core.utils.FuncUtil;
 import org.myfly.platform.core.utils.FuncUtil.ConvertAction;
 import org.springframework.util.Assert;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 表单视图定义，用于单个对象查看、编辑、打印等
  * 
@@ -20,6 +22,10 @@ import org.springframework.util.Assert;
  *
  */
 public class FormDefinition extends BaseDenifition {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5280622311991235614L;
 	/**
 	 * 布局定义
 	 */
@@ -35,8 +41,8 @@ public class FormDefinition extends BaseDenifition {
 
 	public FormDefinition(FormView view) {
 		setName(view.name());
-		setDivs(view.divs());
-		setSections(view.sections());
+		setDivsFromView(view.divs());
+		setSectionsFromView(view.sections());
 		setActions(view.actions());
 	}
 
@@ -51,7 +57,8 @@ public class FormDefinition extends BaseDenifition {
 		this.sections = sections;
 	}
 
-	public void setSections(SectionView[] views) {
+	@JsonIgnore
+	public void setSectionsFromView(SectionView[] views) {
 		sections = FuncUtil.convert(views, new ConvertAction<SectionView, SectionDefinition>() {
 
 			@Override
@@ -62,32 +69,9 @@ public class FormDefinition extends BaseDenifition {
 		}).toArray(new SectionDefinition[] {});
 	}
 
-	/**
-	 * 获取子表定义信息
-	 * 
-	 * @param subTableAttr
-	 * @return
-	 */
-	public SubTableDefinition getSubTableDefinition(String subTableAttr) {
-		SubTableDefinition result = null;
-		if (ArrayUtils.isNotEmpty(getSections())) {
-			for (SectionDefinition section : getSections()) {
-				if (ArrayUtils.isNotEmpty(section.getSubTables())) {
-					for (SubTableDefinition subtable : section.getSubTables()) {
-						if (subtable.getSubTableAttr().equals(subTableAttr)) {
-							result = subtable;
-							break;
-						}
-					}
-				}
-			}
-		}
-		return result;
-	}
-
 	@Override
 	public String toString() {
-		return "name: " + getName();
+		return "name: " + getName() + ", actions: " + getActions();
 	}
 
 	public EntityAction[] getActions() {
@@ -106,7 +90,8 @@ public class FormDefinition extends BaseDenifition {
 		this.divs = divs;
 	}
 
-	public void setDivs(Div1View[] views) {
+	@JsonIgnore
+	public void setDivsFromView(Div1View[] views) {
 		setDivs(Stream.of(views).map(item -> new DivDefinition(item)).collect(Collectors.toList()).toArray(new DivDefinition[] {}));
 	}
 
@@ -321,10 +306,8 @@ public class FormDefinition extends BaseDenifition {
 */
 		return formDefinition;
 	}
-
+	
 	public void validate() {
-		Assert.notEmpty(getDivs());
-		Assert.notEmpty(getSections());
 		for (SectionDefinition section : getSections()) {
 			section.validate();
 		}

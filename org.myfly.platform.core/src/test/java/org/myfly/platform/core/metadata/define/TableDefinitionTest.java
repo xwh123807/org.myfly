@@ -9,7 +9,7 @@ import org.myfly.platform.core.testdata.Master;
 public class TableDefinitionTest {
 	@Test
 	public void test() {
-		TableDefinition define = new TableDefinition(null);
+		TableDefinition define = new TableDefinition();
 		define.setName("user");
 		define.setSchema("xt");
 		define.setCatalog("test");
@@ -22,6 +22,7 @@ public class TableDefinitionTest {
 		define.setPrimaryKeys(new String[] { "uid" });
 		define.setCommonSubTables(new CommonSubTableType[] { CommonSubTableType.ATTACHMENT });
 		define.validate();
+		Assert.assertNotNull(define.toString());
 	}
 
 	@Test
@@ -34,5 +35,6 @@ public class TableDefinitionTest {
 		Assert.assertArrayEquals(new String[] { "uid" }, define.getPrimaryKeys());
 		Assert.assertArrayEquals(new CommonSubTableType[] { CommonSubTableType.NOTE, CommonSubTableType.ATTACHMENT },
 				define.getCommonSubTables());
+		Assert.assertNotNull(define.toString());
 	}
 }

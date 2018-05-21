@@ -3,8 +3,13 @@ package org.myfly.platform.core.metadata.define;
 import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.metadata.annotation.FilterView;
 import org.myfly.platform.core.metadata.annotation.SQLOperator;
+import org.springframework.util.Assert;
 
 public class FilterDefinition extends BaseDenifition {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4657612373611784816L;
 	private String field;
 	private Object value;
 	private SQLOperator operator;
@@ -17,6 +22,9 @@ public class FilterDefinition extends BaseDenifition {
 		setValue(view.value());
 		setShow(view.show());
 		setOperator(view.operator());
+	}
+
+	public FilterDefinition() {
 	}
 
 	public Object getValue() {
@@ -65,5 +73,11 @@ public class FilterDefinition extends BaseDenifition {
 	@Override
 	public String toString() {
 		return "field: " + field + ", operator: " + operator.getTitle();
+	}
+
+	@Override
+	public void validate() {
+		Assert.notNull(getField());
+		Assert.notNull(getOperator());
 	}
 }

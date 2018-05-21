@@ -4,12 +4,19 @@ import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.springframework.util.Assert;
 
 public class FieldSetDefinition extends BaseDenifition {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7230349413792087843L;
 	private String title;
 	private String[] fields;
 
 	public FieldSetDefinition(FieldSetView view) {
 		setTitle(view.title());
 		setFields(view.fields());
+	}
+
+	public FieldSetDefinition() {
 	}
 
 	public String getTitle() {

@@ -11,6 +11,10 @@ import org.springframework.util.Assert;
  */
 public class FKFieldDefinition extends BaseDenifition {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1000914622787722590L;
+	/**
 	 * 外键关联表名
 	 */
 	private String relationTable;

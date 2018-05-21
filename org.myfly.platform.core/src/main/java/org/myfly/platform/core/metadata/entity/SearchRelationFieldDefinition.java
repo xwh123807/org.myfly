@@ -5,9 +5,13 @@ import java.lang.reflect.Field;
 import javax.persistence.ManyToOne;
 
 import org.myfly.platform.core.domain.FieldDataType;
-import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 
 public class SearchRelationFieldDefinition extends RelationFieldDefinition {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4919572441568871799L;
+
 	public SearchRelationFieldDefinition(Field field) {
 		super(field);
 		setDataType(FieldDataType.SEARCHRELATION);

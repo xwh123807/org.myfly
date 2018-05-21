@@ -11,6 +11,8 @@ import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.SubTableView;
 import org.springframework.util.Assert;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 区域定义
  * 
@@ -18,6 +20,10 @@ import org.springframework.util.Assert;
  *
  */
 public class SectionDefinition extends BaseDenifition {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 585523041536521196L;
 	/**
 	 * 标题
 	 */
@@ -39,8 +45,8 @@ public class SectionDefinition extends BaseDenifition {
 		setName(view.name());
 		setTitle(view.title());
 		setType(view.type());
-		setFieldSets(view.fieldSets());
-		setSubTables(view.subTables());
+		setFieldSetsFromView(view.fieldSets());
+		setSubTablesFromView(view.subTables());
 		if (StringUtil.isEmpty(getTitle())) {
 			if (getType() == SectionType.NOTE) {
 				setTitle(SectionType.NOTE.getTitle());
@@ -48,6 +54,9 @@ public class SectionDefinition extends BaseDenifition {
 				setTitle(SectionType.ATTACHMENT.getTitle());
 			}
 		}
+	}
+
+	public SectionDefinition() {
 	}
 
 	public String getTitle() {
@@ -66,7 +75,8 @@ public class SectionDefinition extends BaseDenifition {
 		this.fieldSets = fieldSets;
 	}
 
-	public void setFieldSets(FieldSetView[] views) {
+	@JsonIgnore
+	public void setFieldSetsFromView(FieldSetView[] views) {
 		setFieldSets(Stream.of(views).map(view -> new FieldSetDefinition(view)).collect(Collectors.toList())
 				.toArray(new FieldSetDefinition[] {}));
 	}
@@ -79,7 +89,8 @@ public class SectionDefinition extends BaseDenifition {
 		this.subTables = subTables;
 	}
 
-	public void setSubTables(SubTableView[] views) {
+	@JsonIgnore
+	public void setSubTablesFromView(SubTableView[] views) {
 		setSubTables(Stream.of(views).map(view -> new SubTableDefinition(view)).collect(Collectors.toList())
 				.toArray(new SubTableDefinition[] {}));
 	}
@@ -108,7 +119,8 @@ public class SectionDefinition extends BaseDenifition {
 
 	@Override
 	public String toString() {
-		return "name: " + getName() + ", type: " + getType();
+		return "name: " + getName() + ", type: " + getType() + ", title: " + getTitle() + ", fieldSets: "
+				+ getFieldSets().length + ", subTables: " + getSubTables().length;
 	}
 
 	public void validate() {

@@ -18,6 +18,10 @@ import org.myfly.platform.core.utils.EntityClassUtil;
 
 public class EntityMetaDataDefinition extends MetaDataDefinition {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6919139894188294982L;
+	/**
 	 * 实体类名
 	 */
 	private String entityClass;

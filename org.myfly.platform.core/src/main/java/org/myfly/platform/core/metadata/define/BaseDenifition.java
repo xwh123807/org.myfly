@@ -10,10 +10,17 @@ import java.io.Serializable;
  */
 public abstract class BaseDenifition implements Serializable{
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2747986584860122330L;
+	/**
 	 * 名称，唯一，api标识
 	 */
 	private String name;
 
+	public BaseDenifition() {
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -22,8 +29,12 @@ public abstract class BaseDenifition implements Serializable{
 		this.name = name;
 	}
 	
-	public BaseDenifition() {
+	@Override
+	public String toString() {
+		return "name: " + getName();
 	}
+	
+	public abstract void validate();
 
 //	/**
 //	 * 根据字段属性名称构建字段定义

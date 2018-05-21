@@ -21,6 +21,10 @@ import org.springframework.util.Assert;
 
 public class EntityFieldDefinition extends FieldDefinition {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6572731699308357577L;
+	/**
 	 * 值不为空时，取值由此函数确定
 	 */
 	private GetFieldValueHandler getValueHandler;

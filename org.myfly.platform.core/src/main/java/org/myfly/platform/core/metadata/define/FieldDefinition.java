@@ -12,6 +12,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class FieldDefinition extends BaseDenifition {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6387040692213679693L;
+
+	/**
 	 * 标签
 	 */
 	private String title;

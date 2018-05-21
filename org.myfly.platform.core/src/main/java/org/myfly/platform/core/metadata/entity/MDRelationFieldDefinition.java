@@ -18,6 +18,10 @@ import org.springframework.data.mapping.PersistentProperty;
  */
 public class MDRelationFieldDefinition extends RelationFieldDefinition {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4827191183459588619L;
+	/**
 	 * 为关联属性时，id转名称显示字段
 	 */
 	private String labelField;

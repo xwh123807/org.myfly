@@ -4,7 +4,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.annotation.FilterView;
 import org.myfly.platform.core.metadata.annotation.ListStyle;
@@ -13,6 +12,8 @@ import org.myfly.platform.core.metadata.annotation.OrderView;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.springframework.util.Assert;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 实体列表定义
  * 
@@ -20,6 +21,10 @@ import org.springframework.util.Assert;
  *
  */
 public class ListDefinition extends BaseDenifition {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1964209913066697957L;
 	/**
 	 * 标题，显示在Box header上
 	 */
@@ -32,10 +37,6 @@ public class ListDefinition extends BaseDenifition {
 	 * 列表数据源主实体名称
 	 */
 	private String entityName;
-	/**
-	 * 子表属性，子表场景才需要赋值
-	 */
-	private String subTableAttr;
 	/**
 	 * 字段列表
 	 */
@@ -96,11 +97,13 @@ public class ListDefinition extends BaseDenifition {
 		setOrdersFromView(view.orders());
 	}
 
+	@JsonIgnore
 	private void setOrdersFromView(OrderView[] views) {
 		setOrders(Stream.of(views).map(view -> new OrderDefinition(view)).collect(Collectors.toList())
 				.toArray(new OrderDefinition[] {}));
 	}
 
+	@JsonIgnore
 	private void setFiltersFromView(FilterView[] views) {
 		setFilters(Stream.of(views).map(view -> new FilterDefinition(view)).collect(Collectors.toList())
 				.toArray(new FilterDefinition[] {}));
@@ -136,23 +139,6 @@ public class ListDefinition extends BaseDenifition {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	/**
-	 * 判断当时是否为子表应用场景
-	 * 
-	 * @return
-	 */
-	public boolean isSubTableScene() {
-		return StringUtils.isNotBlank(getSubTableAttr());
-	}
-
-	public String getSubTableAttr() {
-		return subTableAttr;
-	}
-
-	public void setSubTableAttr(String subTableAttr) {
-		this.subTableAttr = subTableAttr;
 	}
 
 	public boolean isEnableActions() {
@@ -255,7 +241,5 @@ public class ListDefinition extends BaseDenifition {
 	}
 
 	public void validate() {
-		Assert.hasLength(getEntityName());
-		Assert.notEmpty(getFields());
 	}
 }

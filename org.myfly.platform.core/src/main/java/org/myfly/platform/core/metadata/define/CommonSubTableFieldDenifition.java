@@ -15,6 +15,11 @@ import org.springframework.util.Assert;
  *
  */
 public class CommonSubTableFieldDenifition extends RelationFieldDefinition {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7537493796092126909L;
+
 	public CommonSubTableFieldDenifition(CommonSubTableType commonSubTableType, String relationTable,
 			String relationClass) {
 		super(null);

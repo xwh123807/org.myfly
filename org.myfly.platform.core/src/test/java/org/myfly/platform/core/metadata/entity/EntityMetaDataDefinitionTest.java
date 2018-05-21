@@ -22,7 +22,8 @@ public class EntityMetaDataDefinitionTest {
 		Assert.assertEquals("TEST", metaData.getTableDefinition().getCatalog());
 		Assert.assertEquals("SAMPLE", metaData.getTableDefinition().getSchema());
 		FuncUtil.forEach(metaData.getTableDefinition().getFields(), field -> {
-
+			Assert.assertNotNull(field);
+			Assert.assertNotNull(field.toString());
 		});
 		PKFieldDefinition pkField = metaData.getTableDefinition().getPkFieldDefinition();
 		Assert.assertEquals(1, pkField.getIdFields().length);

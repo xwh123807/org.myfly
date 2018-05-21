@@ -23,6 +23,8 @@ public class MasterMetaDataTest {
 			@Override
 			public void execute(int index, FormView item) {
 				FormDefinition formDefinition = new FormDefinition(item);
+				formDefinition.validate();
+				Assert.assertNotNull(formDefinition.toString());
 				Assert.assertArrayEquals(item.actions(), formDefinition.getActions());
 				if (index == 0) {
 					// form default
@@ -32,6 +34,8 @@ public class MasterMetaDataTest {
 
 						@Override
 						public void execute(int index, SectionDefinition section) {
+							section.validate();
+							Assert.assertNotNull(section.toString());
 							if (index == 0) {
 								Assert.assertEquals("用户信息", section.getTitle());
 								Assert.assertEquals(SectionType.CUSTOM, section.getType());
@@ -40,6 +44,8 @@ public class MasterMetaDataTest {
 
 									@Override
 									public void execute(int index, FieldSetDefinition fieldSet) {
+										fieldSet.validate();
+										Assert.assertNotNull(fieldSet.toString());
 										if (index == 0) {
 											Assert.assertEquals("基本信息", fieldSet.getTitle());
 											Assert.assertArrayEquals(new String[] { "name", "description" },
@@ -65,6 +71,8 @@ public class MasterMetaDataTest {
 
 									@Override
 									public void execute(int index, SubTableDefinition subTable) {
+										subTable.validate();
+										Assert.assertNotNull(subTable.toString());
 										if (index == 0) {
 											Assert.assertEquals("明细记录", subTable.getTitle());
 											Assert.assertEquals("details", subTable.getSubTableAttr());
@@ -84,18 +92,24 @@ public class MasterMetaDataTest {
 					FuncUtil.forEach(formDefinition.getDivs(), new Action<DivDefinition>() {
 						@Override
 						public void execute(int index, DivDefinition item) {
+							item.validate();
+							Assert.assertNotNull(item.toString());
 							if (index == 0) {
 								// div1
 								FuncUtil.forEach(item.getSubs(), new Action<DivDefinition>() {
 
 									@Override
 									public void execute(int index, DivDefinition item) {
+										item.validate();
+										Assert.assertNotNull(item.toString());
 										// div 2
 										if (index == 0) {
 											FuncUtil.forEach(item.getSections(), new Action<SectionDefinition>() {
 
 												@Override
 												public void execute(int index, SectionDefinition item) {
+													item.validate();
+													Assert.assertNotNull(item.toString());
 													if (index == 0) {
 														Assert.assertEquals(SectionType.ATTACHMENT, item.getType());
 													}
@@ -121,6 +135,8 @@ public class MasterMetaDataTest {
 			@Override
 			public void execute(int index, ListView item) {
 				ListDefinition listDefinition = new ListDefinition(item);
+				listDefinition.validate();
+				Assert.assertNotNull(listDefinition.toString());
 				Assert.assertArrayEquals(item.fields(), listDefinition.getFields());
 				if (index == 0) {
 					Assert.assertEquals("default", listDefinition.getName());
@@ -130,8 +146,12 @@ public class MasterMetaDataTest {
 					FilterDefinition filter0 = listDefinition.getFilters()[0];
 					Assert.assertEquals("name", filter0.getField());
 					Assert.assertEquals(SQLOperator.LIKE, filter0.getOperator());
+					filter0.validate();
+					Assert.assertNotNull(filter0.toString());
 					OrderDefinition order0 = listDefinition.getOrders()[0];
 					Assert.assertEquals("name", order0.getName());
+					order0.validate();
+					Assert.assertNotNull(order0.toString());
 				}
 			}
 
@@ -143,6 +163,8 @@ public class MasterMetaDataTest {
 			@Override
 			public void execute(int index, OutlineView item) {
 				OutlineDefinition outlineDefinition = new OutlineDefinition(item);
+				outlineDefinition.validate();
+				Assert.assertNotNull(outlineDefinition.toString());
 				Assert.assertEquals("摘要信息", outlineDefinition.getTitle());
 				Assert.assertEquals(1, outlineDefinition.getSections().length);
 
@@ -150,6 +172,8 @@ public class MasterMetaDataTest {
 
 					@Override
 					public void execute(int index, SectionDefinition item) {
+						item.validate();
+						Assert.assertNotNull(item.toString());
 						if (index == 0) {
 							Assert.assertEquals("用户信息", item.getTitle());
 							Assert.assertEquals(2, item.getFieldSets().length);
@@ -157,6 +181,8 @@ public class MasterMetaDataTest {
 
 								@Override
 								public void execute(int index, FieldSetDefinition item) {
+									item.validate();
+									Assert.assertNotNull(item.toString());
 									if (index == 0) {
 										Assert.assertArrayEquals(new String[] { "name", "description" },
 												item.getFields());

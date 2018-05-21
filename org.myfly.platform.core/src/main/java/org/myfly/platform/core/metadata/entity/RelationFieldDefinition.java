@@ -7,6 +7,10 @@ import org.myfly.platform.core.utils.ClassUtil;
 
 public class RelationFieldDefinition extends EntityFieldDefinition {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7379087760927442571L;
+	/**
 	 * 如果是枚举类型，存放枚举类型名；如果是关联关系，存放关联类名
 	 */
 	private String relationClass;

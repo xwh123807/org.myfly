@@ -10,7 +10,14 @@ import org.myfly.platform.core.metadata.annotation.DivType;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.springframework.util.Assert;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class DivDefinition extends BaseDenifition {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 355433472145493897L;
+
 	private DivType divType;
 
 	private int width;
@@ -20,6 +27,9 @@ public class DivDefinition extends BaseDenifition {
 	private SectionDefinition[] sections;
 
 	private DivDefinition[] subs;
+
+	public DivDefinition() {
+	}
 
 	public DivDefinition(Div1View view) {
 		setName(view.name());
@@ -49,6 +59,7 @@ public class DivDefinition extends BaseDenifition {
 		setSections(view.sections());
 	}
 
+	@JsonIgnore
 	public void setSections(SectionView[] sections) {
 		setSections(Stream.of(sections).map(view -> new SectionDefinition(view)).collect(Collectors.toList())
 				.toArray(new SectionDefinition[] {}));

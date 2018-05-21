@@ -9,6 +9,11 @@ import org.springframework.util.Assert;
 
 public class FlyEnumFieldDefinition extends SearchRelationFieldDefinition {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6886492223532682142L;
+
 	public FlyEnumFieldDefinition(Field field) {
 		super(field);
 		setDataType(FieldDataType.FLYENUM);

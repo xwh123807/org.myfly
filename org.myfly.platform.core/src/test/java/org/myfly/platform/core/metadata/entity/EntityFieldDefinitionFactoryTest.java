@@ -23,6 +23,8 @@ public class EntityFieldDefinitionFactoryTest {
 			} else if ("details".equals(name)) {
 				Assert.assertTrue(field instanceof MDRelationFieldDefinition);
 			}
+			field.validate();
+			Assert.assertNotNull(field.toString());
 		});
 	}
 }

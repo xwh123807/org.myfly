@@ -28,6 +28,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 public class PKFieldDefinition extends BaseDenifition {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4642310478970731635L;
+	/**
 	 * 值不为空时，取值由此函数确定
 	 */
 	@JsonIgnore

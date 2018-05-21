@@ -14,6 +14,10 @@ import org.springframework.util.Assert;
  */
 public class TableDefinition extends BaseDenifition {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3888358019448837537L;
+	/**
 	 * 表标题，也就是简要名称
 	 */
 	private String title;
@@ -78,6 +82,9 @@ public class TableDefinition extends BaseDenifition {
 		setPrimaryKeys(view.primaryKeys());
 	}
 
+	public TableDefinition() {
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -121,7 +128,8 @@ public class TableDefinition extends BaseDenifition {
 	@Override
 	public String toString() {
 		return "tableName: " + getTableName() + ", title: " + getTitle() + ", schema: " + getSchema() + ", labelField: "
-				+ getLabelField() + ", createIndex: " + isCreateIndex() + ", indexName: " + getIndexName();
+				+ getLabelField() + ", createIndex: " + isCreateIndex() + ", indexName: " + getIndexName()+
+				", fields: " + getFields().length;
 	}
 
 	public CommonSubTableType[] getCommonSubTables() {
