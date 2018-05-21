@@ -1,4 +1,4 @@
-package org.myfly.platform.core.metadata.define;
+package org.myfly.platform.core.metadata.entity;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -11,9 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
-import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
-import org.myfly.platform.core.metadata.entity.GetFieldValueHandler;
-import org.myfly.platform.core.metadata.entity.SetFieldValueHandler;
+import org.myfly.platform.core.metadata.define.BaseDenifition;
+import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.springframework.util.Assert;

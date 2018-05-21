@@ -82,7 +82,6 @@ public class MasterMetaDataTest {
 								});
 							}
 						}
-
 					});
 				} else if (index == 1) {
 					// form2
@@ -142,16 +141,7 @@ public class MasterMetaDataTest {
 					Assert.assertEquals("default", listDefinition.getName());
 					Assert.assertEquals(ListStyle.TABLE, listDefinition.getListStyle());
 				} else if (index == 1) {
-					Assert.assertEquals(ListStyle.CARDLIST, listDefinition.getListStyle());
-					FilterDefinition filter0 = listDefinition.getFilters()[0];
-					Assert.assertEquals("name", filter0.getField());
-					Assert.assertEquals(SQLOperator.LIKE, filter0.getOperator());
-					filter0.validate();
-					Assert.assertNotNull(filter0.toString());
-					OrderDefinition order0 = listDefinition.getOrders()[0];
-					Assert.assertEquals("name", order0.getName());
-					order0.validate();
-					Assert.assertNotNull(order0.toString());
+					listView1(listDefinition);
 				}
 			}
 
@@ -199,4 +189,16 @@ public class MasterMetaDataTest {
 		});
 	}
 
+	private void listView1(ListDefinition listDefinition) {
+		Assert.assertEquals(ListStyle.CARDLIST, listDefinition.getListStyle());
+		FilterDefinition filter0 = listDefinition.getFilters()[0];
+		Assert.assertEquals("name", filter0.getField());
+		Assert.assertEquals(SQLOperator.LIKE, filter0.getOperator());
+		filter0.validate();
+		Assert.assertNotNull(filter0.toString());
+		OrderDefinition order0 = listDefinition.getOrders()[0];
+		Assert.assertEquals("name", order0.getName());
+		order0.validate();
+		Assert.assertNotNull(order0.toString());
+	}
 }

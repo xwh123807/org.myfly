@@ -5,13 +5,13 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.metadata.define.FKFieldDefinition;
-import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaDataDefinition;
 import org.myfly.platform.core.system.domain.ITenant;
 import org.myfly.platform.core.system.domain.IUser;
 import org.myfly.platform.core.testdata.Master;
 import org.myfly.platform.core.utils.FuncUtil;
+import org.myfly.platform.core.utils.JSONUtil;
 
 public class EntityMetaDataDefinitionTest {
 	@Test
@@ -25,7 +25,7 @@ public class EntityMetaDataDefinitionTest {
 			Assert.assertNotNull(field);
 			Assert.assertNotNull(field.toString());
 		});
-		PKFieldDefinition pkField = metaData.getTableDefinition().getPkFieldDefinition();
+		PKFieldDefinition pkField = metaData.getPkFieldDefinition();
 		Assert.assertEquals(1, pkField.getIdFields().length);
 		EntityFieldDefinition uidField = pkField.getIdFields()[0];
 		Assert.assertEquals("uid", uidField.getName());
@@ -43,5 +43,14 @@ public class EntityMetaDataDefinitionTest {
 		Assert.assertNotNull(updatedBy);
 		Assert.assertEquals(IUser.class.getName(), updatedBy.getRelationClass());
 		Assert.assertEquals("IUser", updatedBy.getRelationTable());
+	}
+
+	@Test
+	public void json() {
+		EntityMetaDataDefinition metaData = new EntityMetaDataDefinition(Master.class);
+		String json = JSONUtil.toJSON(metaData);
+		Assert.assertNotNull(json);
+		EntityMetaDataDefinition metaData2 = JSONUtil.fromJSON(json, EntityMetaDataDefinition.class);
+		Assert.assertNotNull(metaData2);
 	}
 }

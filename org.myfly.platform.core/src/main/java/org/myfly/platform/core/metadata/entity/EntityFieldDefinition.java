@@ -19,6 +19,8 @@ import org.myfly.platform.core.utils.EntityClassUtil.FieldInfo;
 import org.myfly.platform.core.utils.StringUtil;
 import org.springframework.util.Assert;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class EntityFieldDefinition extends FieldDefinition {
 	/**
 	 * 
@@ -27,19 +29,23 @@ public class EntityFieldDefinition extends FieldDefinition {
 	/**
 	 * 值不为空时，取值由此函数确定
 	 */
+	@JsonIgnore
 	private GetFieldValueHandler getValueHandler;
 	/**
 	 * 设置实体函数
 	 */
+	@JsonIgnore
 	private SetFieldValueHandler setValueHandler;
 	/**
 	 * get方法
 	 */
+	@JsonIgnore
 	private Method getter;
 
 	/**
 	 * set方法
 	 */
+	@JsonIgnore
 	private Method setter;
 
 	public EntityFieldDefinition(Field property) {

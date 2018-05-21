@@ -1,6 +1,8 @@
 package org.myfly.platform.core.metadata.define;
 
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.myfly.platform.core.metadata.annotation.CommonSubTableType;
 import org.myfly.platform.core.metadata.annotation.TableView;
@@ -63,10 +65,6 @@ public class TableDefinition extends BaseDenifition {
 	 */
 	private String[] primaryKeys;
 	/**
-	 * 主键字段
-	 */
-	private PKFieldDefinition pkFieldDefinition;
-	/**
 	 * 外键定义,查找关系
 	 */
 	private Map<String, FKFieldDefinition> fkFieldDefinitions;
@@ -80,6 +78,8 @@ public class TableDefinition extends BaseDenifition {
 		setCreateIndex(view.createIndex());
 		setIndexName(view.indexName());
 		setPrimaryKeys(view.primaryKeys());
+		setFields(Stream.of(view.fields()).map(item -> new FieldDefinition(item)).collect(Collectors.toList())
+				.toArray(new FieldDefinition[] {}));
 	}
 
 	public TableDefinition() {
@@ -125,13 +125,6 @@ public class TableDefinition extends BaseDenifition {
 		this.labelField = labelField;
 	}
 
-	@Override
-	public String toString() {
-		return "tableName: " + getTableName() + ", title: " + getTitle() + ", schema: " + getSchema() + ", labelField: "
-				+ getLabelField() + ", createIndex: " + isCreateIndex() + ", indexName: " + getIndexName()+
-				", fields: " + getFields().length;
-	}
-
 	public CommonSubTableType[] getCommonSubTables() {
 		return commonSubTables;
 	}
@@ -154,14 +147,6 @@ public class TableDefinition extends BaseDenifition {
 
 	public void setIndexName(String indexName) {
 		this.indexName = indexName;
-	}
-
-	public void validate() {
-		Assert.hasLength(getName());
-		Assert.hasLength(getTitle());
-		Assert.hasLength(getTableName());
-		if (isCreateIndex())
-			Assert.hasLength(getIndexName());
 	}
 
 	public String getCatalog() {
@@ -188,19 +173,25 @@ public class TableDefinition extends BaseDenifition {
 		this.fkFieldDefinitions = fkFieldDefinitions;
 	}
 
-	public PKFieldDefinition getPkFieldDefinition() {
-		return pkFieldDefinition;
-	}
-
-	public void setPkFieldDefinition(PKFieldDefinition pkFieldDefinition) {
-		this.pkFieldDefinition = pkFieldDefinition;
-	}
-
 	public String[] getPrimaryKeys() {
 		return primaryKeys;
 	}
 
 	public void setPrimaryKeys(String[] primaryKeys) {
 		this.primaryKeys = primaryKeys;
+	}
+
+	@Override
+	public String toString() {
+		return "tableName: " + getTableName() + ", title: " + getTitle() + ", schema: " + getSchema() + ", labelField: "
+				+ getLabelField() + ", createIndex: " + isCreateIndex() + ", indexName: " + getIndexName();
+	}
+
+	public void validate() {
+		Assert.hasLength(getName());
+		Assert.hasLength(getTitle());
+		Assert.hasLength(getTableName());
+		if (isCreateIndex())
+			Assert.hasLength(getIndexName());
 	}
 }

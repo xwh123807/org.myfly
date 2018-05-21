@@ -70,4 +70,11 @@ public @interface TableView {
 	 * @return
 	 */
 	String[] primaryKeys() default { "uid" };
+
+	/**
+	 * 字段列表
+	 * 
+	 * @return
+	 */
+	PropertyView[] fields() default {};
 }

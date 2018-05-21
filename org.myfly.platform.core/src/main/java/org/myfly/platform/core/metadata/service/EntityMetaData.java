@@ -9,10 +9,10 @@ import org.myfly.platform.core.metadata.define.FKFieldDefinition;
 import org.myfly.platform.core.metadata.define.FormDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.OutlineDefinition;
-import org.myfly.platform.core.metadata.define.PKFieldDefinition;
 import org.myfly.platform.core.metadata.define.TableDefinition;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaDataDefinition;
+import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.FuncUtil;
 
@@ -59,7 +59,7 @@ public class EntityMetaData {
 		setEntityClass(entityClass);
 		setEntityName(metaData.getName());
 		setTableDefinition(metaData.getTableDefinition());
-		setPkFieldDefinition(metaData.getTableDefinition().getPkFieldDefinition());
+		setPkFieldDefinition(metaData.getPkFieldDefinition());
 		setFkFieldDefinitions(metaData.getTableDefinition().getFkFieldDefinitions());
 		fieldMap = new HashMap<>();
 		FuncUtil.forEach(metaData.getTableDefinition().getFields(), fieldDefinition -> {

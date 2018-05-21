@@ -6,6 +6,7 @@ import org.apache.commons.lang.NotImplementedException;
 import org.hibernate.annotations.GenericGenerator;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.annotation.FieldView;
+import org.myfly.platform.core.metadata.annotation.PropertyView;
 import org.myfly.platform.core.utils.UUIDUtil;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -86,14 +87,27 @@ public class FieldDefinition extends BaseDenifition {
 	@JsonIgnore
 	private GenericGenerator generator;
 
+	public FieldDefinition() {
+	}
+	
 	public FieldDefinition(FieldView fieldView) {
 		setTitle(fieldView.title());
 		setDescription(fieldView.description());
 		setDataType(fieldView.dataType());
 		setMinLength(fieldView.minLength());
 	}
-
-	public FieldDefinition() {
+	
+	public FieldDefinition(PropertyView view) {
+		setName(view.name());
+		setTitle(view.title());
+		setDescription(view.description());
+		setFieldName(view.fieldName());
+		setDataType(view.dataType());
+		setMaxLength(view.maxLength());
+		setMinLength(view.minLength());
+		setRequired(view.required());
+		setPrecision(view.precision());
+		setScale(view.scale());
 	}
 
 	public String getFieldName() {

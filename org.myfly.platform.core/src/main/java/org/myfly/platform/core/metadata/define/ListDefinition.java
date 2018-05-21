@@ -10,7 +10,6 @@ import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.OrderView;
 import org.myfly.platform.core.utils.AssertUtil;
-import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
