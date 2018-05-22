@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Id;
 
 import org.apache.commons.lang3.StringUtils;
@@ -65,7 +66,7 @@ public class EntityFieldDefinition extends FieldDefinition {
 		if (StringUtils.isBlank(getFieldName())) {
 			setFieldName(StringUtil.getHibernateName(getName()));
 		}
-		setIdField(property.getAnnotation(Id.class) != null);
+		setIdField(property.getAnnotation(Id.class) != null || property.getAnnotation(EmbeddedId.class) != null);
 		FieldAttr fieldAttr = FieldDataType.fromJavaType(getType(), column);
 		if (FieldDataType.NONE.equals(getDataType())) {
 			setDataType(fieldAttr.getDataType());

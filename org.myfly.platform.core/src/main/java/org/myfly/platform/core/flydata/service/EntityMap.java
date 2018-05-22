@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.utils.AppUtil;
 import org.springframework.util.Assert;
@@ -51,7 +52,7 @@ public class EntityMap extends LinkedHashMap<String, String> {
 		for (Map.Entry<String, String[]> param : params.entrySet()) {
 			if (ArrayUtils.isNotEmpty(param.getValue())) {
 				map.put(param.getKey(), param.getValue()[0]);
-			}else{
+			} else {
 				map.put(param.getKey(), null);
 			}
 		}
@@ -78,14 +79,14 @@ public class EntityMap extends LinkedHashMap<String, String> {
 		Assert.notNull(metaData);
 		T entity = metaData.newEntityInstance();
 
-		for (FieldDefinition field : metaData.getAllFields()) {
+		for (EntityFieldDefinition field : metaData.getAllFields()) {
 			if (containsKey(field.getName())) {
 				field.getSetValueHandler().setFieldValue(entity, get(field.getName()));
 			}
 		}
 
 		if (StringUtils.isNotBlank(uid)) {
-			metaData.getPKFieldDefinition().setPKValue(entity, uid);
+			metaData.getPkFieldDefinition().getSetValueHandler().setFieldValue(entity, uid);
 		}
 
 		return entity;
@@ -109,7 +110,7 @@ public class EntityMap extends LinkedHashMap<String, String> {
 	 */
 	public <T> T newSubEntity(EntityMetaData metaData, String uid, String subTableAttr, String subUid) {
 		EntityMetaData subMetaData = metaData.getSubEntityMetaData(subTableAttr);
-		FieldDefinition subField = metaData.getField(subTableAttr).getRelationField();
+		EntityFieldDefinition subField = metaData.getField(subTableAttr).getRelationField();
 		T entity = newEntity(subMetaData, subUid);
 		subField.getSetValueHandler().setFieldValue(entity, uid);
 		return entity;
@@ -118,14 +119,15 @@ public class EntityMap extends LinkedHashMap<String, String> {
 	public <T> void mergeEntity(String entityName, T entity) {
 		mergeEntity(getEntityMetaData(entityName), entity);
 	}
-	
+
 	/**
 	 * 将值对合并到entity中
+	 * 
 	 * @param entityName
 	 * @param entity
 	 */
 	public <T> void mergeEntity(EntityMetaData metaData, T entity) {
-		for (FieldDefinition field : metaData.getAllFields()) {
+		for (EntityFieldDefinition field : metaData.getAllFields()) {
 			if (containsKey(field.getName())) {
 				field.getSetValueHandler().setFieldValue(entity, get(field.getName()));
 			}

@@ -200,6 +200,7 @@ public class EntityMetaData {
 		return getListDefinitions().get(listViewName);
 	}
 
+	@SuppressWarnings("unchecked")
 	public <T extends EntityFieldDefinition> T[] getAllFields() {
 		return (T[]) getFieldMap().values().stream()
 				.filter(item -> !item.getDataType().equals(FieldDataType.MDRELATION)).collect(Collectors.toList())

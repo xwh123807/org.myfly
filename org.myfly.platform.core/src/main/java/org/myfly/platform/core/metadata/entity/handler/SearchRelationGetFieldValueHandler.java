@@ -1,18 +1,19 @@
 package org.myfly.platform.core.metadata.entity.handler;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.IGetFieldValueHandler;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 
 /**
- * 关联字段取值，包括SearchRelation和AutoRelation
+ * 实体查找关系字段取值
+ * 1、
  * 
  * @author xiangwanhong
  *
@@ -32,7 +33,7 @@ public class SearchRelationGetFieldValueHandler implements IGetFieldValueHandler
 	@Override
 	public Object getFieldValue(Object obj) {
 		if (obj != null) {
-			FieldDefinition relField = fieldDefinition.getLabelFieldDefinition();
+			EntityFieldDefinition relField = fieldDefinition.getLabelFieldDefinition();
 			String value = "";
 			Object relEntity = null;
 			if (obj instanceof Map) {
@@ -53,7 +54,7 @@ public class SearchRelationGetFieldValueHandler implements IGetFieldValueHandler
 					relEntity = AppUtil.getJdbcFlyDataAccessService().findOne(fieldDefinition.getRelationTable(),
 							keyParams);
 					EntityMetaData relMetaData = relField.getParent();
-					value = relMetaData.getPKFieldDefinition().getPKValue(relEntity);
+					value = relMetaData.getPkFieldDefinition().getPKValue(relEntity);
 				} else {
 					// 单主键关联
 					Object tmp1 = entity.get(fieldDefinition.getFieldName());
@@ -86,7 +87,7 @@ public class SearchRelationGetFieldValueHandler implements IGetFieldValueHandler
 				}
 				if (relEntity != null) {
 					EntityMetaData relMetaData = relField.getParent();
-					String relUid = relMetaData.getPKFieldDefinition().getPKValue(relEntity);
+					String relUid = relMetaData.getPkFieldDefinition().getPKValue(relEntity);
 					Object tmp2 = relField.getGetValueHandler().getFieldValue(relEntity);
 					if (tmp2 != null && !(tmp2 instanceof String)) {
 						value = ClassUtil.convertValueToString(tmp2);

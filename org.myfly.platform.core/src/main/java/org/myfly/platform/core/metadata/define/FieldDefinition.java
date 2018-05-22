@@ -89,14 +89,16 @@ public class FieldDefinition extends BaseDenifition {
 
 	public FieldDefinition() {
 	}
-	
+
 	public FieldDefinition(FieldView fieldView) {
-		setTitle(fieldView.title());
-		setDescription(fieldView.description());
-		setDataType(fieldView.dataType());
-		setMinLength(fieldView.minLength());
+		if (fieldView != null) {
+			setTitle(fieldView.title());
+			setDescription(fieldView.description());
+			setDataType(fieldView.dataType());
+			setMinLength(fieldView.minLength());
+		}
 	}
-	
+
 	public FieldDefinition(PropertyView view) {
 		setName(view.name());
 		setTitle(view.title());

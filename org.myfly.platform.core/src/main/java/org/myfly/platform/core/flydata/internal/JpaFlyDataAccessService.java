@@ -100,7 +100,7 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 	private boolean hasFilter(FilterDefinition[] filterDefinitions, String paramName) {
 		if (ArrayUtils.isNotEmpty(filterDefinitions)) {
 			for (FilterDefinition filter : filterDefinitions) {
-				if (filter.getField().getName().equals(paramName)) {
+				if (filter.getField().equals(paramName)) {
 
 				}
 			}

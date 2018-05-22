@@ -1,8 +1,17 @@
 package org.myfly.platform.core.metadata.entity;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javax.persistence.Embeddable;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.metadata.define.BaseDenifition;
+import org.myfly.platform.core.metadata.entity.handler.PKGetFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.handler.PKSetFieldValueHandler;
 import org.springframework.util.Assert;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * 实体主键定义类 <br>
@@ -10,8 +19,11 @@ import org.springframework.util.Assert;
  * 2、实现获取主键值功能 <br>
  * 3、实现设置主键值功能 <br>
  * 
+ * 参考资料：<br>
+ * https://www.cnblogs.com/boywwj/p/8031106.html<br>
+ * 
  * @author xiangwanhong
- *
+ * 
  */
 public class PKFieldDefinition extends BaseDenifition {
 
@@ -23,39 +35,48 @@ public class PKFieldDefinition extends BaseDenifition {
 	/**
 	 * 主键字段
 	 */
-	private String[] fields;
+	private EntityFieldDefinition[] fields;
 	/**
 	 * 主键类型
 	 */
 	private KeyType keyType = KeyType.SINGLE;
+	/**
+	 * 主键类，当KeyType为复合主键时，需要指定主键类
+	 */
+	private Class<?> idClass;
 
 	private IGetFieldValueHandler getValueHandler;
 
 	private ISetFieldValueHandler setValueHandler;
-	
+
 	public PKFieldDefinition() {
 	}
 
-	public String[] getFields() {
+	public EntityFieldDefinition[] getFields() {
 		return fields;
 	}
 
-	public void setFields(String[] fields) {
-		this.fields = fields;
+	public void setFields(EntityFieldDefinition[] fields) {
+		this.fields = Stream.of(fields).sorted((a, b) -> a.getName().compareTo(b.getName()))
+				.collect(Collectors.toList()).toArray(new EntityFieldDefinition[] {});
 		if (ArrayUtils.isNotEmpty(fields)) {
 			if (fields.length == 1) {
-				setKeyType(KeyType.SINGLE);
-			} else {
+				if (fields[0].getType().getAnnotation(Embeddable.class) != null) {
+					setKeyType(KeyType.EMBED);
+					setIdClass(fields[0].getType());
+				} else {
+					setKeyType(KeyType.SINGLE);
+				}
+			}else {
 				setKeyType(KeyType.MULTIID);
 			}
 		}
 		initFieldValueHandler();
 	}
-	
+
 	private void initFieldValueHandler() {
-		if (KeyType.SINGLE == getKeyType()) {
-			
-		}
+		setSetValueHandler(new PKSetFieldValueHandler(this));
+		setGetValueHandler(new PKGetFieldValueHandler(this));
 	}
 
 	public KeyType getKeyType() {
@@ -82,6 +103,11 @@ public class PKFieldDefinition extends BaseDenifition {
 		this.setValueHandler = setValueHandler;
 	}
 
+	@JsonIgnore
+	public String[] getFieldNames() {
+		return Stream.of(getFields()).map(item -> item.getName()).collect(Collectors.toList()).toArray(new String[] {});
+	}
+
 	@Override
 	public String toString() {
 		return super.toString() + ", keyType: " + getKeyType() + ", fields: " + getFields();
@@ -91,5 +117,28 @@ public class PKFieldDefinition extends BaseDenifition {
 	public void validate() {
 		Assert.notNull(getKeyType());
 		Assert.notEmpty(getFields());
+		switch (getKeyType()) {
+		case SINGLE:
+			Assert.isTrue(getFields().length == 1);
+			break;
+		case EMBED:
+			Assert.isTrue(getFields().length == 1);
+			Assert.notNull(getIdClass());
+			break;
+		case MULTIID:
+			Assert.isTrue(getFields().length > 1);
+			Assert.notNull(getIdClass());
+			break;
+		}
+		Assert.notNull(getGetValueHandler());
+		Assert.notNull(getSetValueHandler());
+	}
+
+	public Class<?> getIdClass() {
+		return idClass;
+	}
+
+	public void setIdClass(Class<?> idClass) {
+		this.idClass = idClass;
 	}
 }

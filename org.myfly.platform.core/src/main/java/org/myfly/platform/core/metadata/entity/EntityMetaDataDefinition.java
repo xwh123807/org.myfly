@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import org.apache.commons.collections4.map.HashedMap;
@@ -69,8 +70,13 @@ public class EntityMetaDataDefinition extends MetaDataDefinition {
 		getTableDefinition().setFields(fields.toArray(new FieldDefinition[] {}));
 		// 设置实体主键
 		PKFieldDefinition pkField = new PKFieldDefinition();
-		pkField.setFields(fields.stream().filter(item -> item.isIdField()).map(item -> item.getName())
-				.collect(Collectors.toList()).toArray(new String[] {}));
+		IdClass idClass = entityClass.getAnnotation(IdClass.class);
+		if (idClass != null) {
+			pkField.setIdClass(entityClass);
+			pkField.setKeyType(KeyType.MULTIID);
+		}
+		pkField.setFields(fields.stream().filter(item -> item.isIdField()).collect(Collectors.toList())
+				.toArray(new EntityFieldDefinition[] {}));
 		setPkFieldDefinition(pkField);
 		// 设置实体外键
 		Map<String, FKFieldDefinition> fkFields = new HashedMap<>();

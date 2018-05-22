@@ -36,10 +36,16 @@ public class MetaDataDefinition extends BaseDenifition {
 	private OutlineDefinition[] outlineDefinitions;
 
 	public MetaDataDefinition(MetaDataView view) {
-		setTableDefinition(new TableDefinition(view.tableView()));
-		setListDefinitionsFromView(view.listViews());
-		setFormDefinitionsFormView(view.formViews());
-		setOutlineDefinitionsFromView(view.outlineViews());
+		if (view != null) {
+			if (view.tableView() != null) {
+				setTableDefinition(new TableDefinition(view.tableView()));
+			}
+			setListDefinitionsFromView(view.listViews());
+			setFormDefinitionsFormView(view.formViews());
+			setOutlineDefinitionsFromView(view.outlineViews());
+		}else {
+			setTableDefinition(new TableDefinition());
+		}
 	}
 
 	public MetaDataDefinition() {

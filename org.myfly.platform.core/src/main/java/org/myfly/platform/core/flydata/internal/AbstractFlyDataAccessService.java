@@ -543,7 +543,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 	public Map<String, String> convertToViewMap(String entityName, String uid, String subTableAttr, Object entity,
 			String pkValue) {
 		Map<String, String> result = new LinkedHashMap<>();
-		for (FieldDefinition fieldDefinition : getEntityMetaData(entityName).getAllFields()) {
+		for (EntityFieldDefinition fieldDefinition : getEntityMetaData(entityName).getAllFields()) {
 			// 先取出字段值，再转换为字符串
 			String value = null;
 			Object tmp = null;

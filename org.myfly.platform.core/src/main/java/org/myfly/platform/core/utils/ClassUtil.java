@@ -107,6 +107,8 @@ public class ClassUtil {
 	public static String convertValueToString(Object value) {
 		if (value == null) {
 			return "";
+		} else if (value instanceof String) {
+			return (String) value;
 		} else {
 			return convert(value, String.class);
 		}
@@ -334,6 +336,7 @@ public class ClassUtil {
 
 	/**
 	 * 获取属性值
+	 * 
 	 * @param field
 	 * @param obj
 	 * @return

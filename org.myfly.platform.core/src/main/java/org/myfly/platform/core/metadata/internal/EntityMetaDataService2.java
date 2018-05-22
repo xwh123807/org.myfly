@@ -37,8 +37,8 @@ import org.myfly.platform.core.metadata.define.TableDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
 import org.myfly.platform.core.metadata.entity.handler.AssociationSetFieldValueHandler;
-import org.myfly.platform.core.metadata.entity.handler.ComplexGetPKFieldValueHandler;
-import org.myfly.platform.core.metadata.entity.handler.ComplexSetPKFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.handler.PKGetFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.handler.PKSetFieldValueHandler;
 import org.myfly.platform.core.metadata.entity.handler.DefaultGetFieldValueHandler;
 import org.myfly.platform.core.metadata.entity.handler.DefaultSetFieldValueHandler;
 import org.myfly.platform.core.metadata.entity.handler.FlySearchRelationGetFieldValueHandler;
@@ -245,8 +245,8 @@ public class EntityMetaDataService2 implements IEntityMetaDataService {
 		pkFieldDefinition.setIdFields(pkFields.toArray(new FieldDefinition[] {}));
 		if (pkFieldDefinition.isComplexKey()) {
 			// 复合主键
-			pkFieldDefinition.setGetValueHandler(new ComplexGetPKFieldValueHandler(pkFieldDefinition));
-			pkFieldDefinition.setSetValueHandler(new ComplexSetPKFieldValueHandler(pkFieldDefinition));
+			pkFieldDefinition.setGetValueHandler(new PKGetFieldValueHandler(pkFieldDefinition));
+			pkFieldDefinition.setSetValueHandler(new PKSetFieldValueHandler(pkFieldDefinition));
 		} else {
 			// 单个主键
 			FieldDefinition pkField = pkFieldDefinition.getIdFields()[0];
