@@ -5,15 +5,14 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.metadata.define.FKFieldDefinition;
-import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
-import org.myfly.platform.core.metadata.entity.EntityMetaDataDefinition;
 import org.myfly.platform.core.system.domain.ITenant;
 import org.myfly.platform.core.system.domain.IUser;
 import org.myfly.platform.core.testdata.Master;
 import org.myfly.platform.core.utils.FuncUtil;
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core.utils.UUIDUtil;
 
-public class EntityMetaDataDefinitionTest {
+public class MasterEntityMetaDataDefinitionTest {
 	@Test
 	public void masterEntity() {
 		EntityMetaDataDefinition metaData = new EntityMetaDataDefinition(Master.class);
@@ -25,10 +24,15 @@ public class EntityMetaDataDefinitionTest {
 			Assert.assertNotNull(field);
 			Assert.assertNotNull(field.toString());
 		});
+		// 验证主键
 		PKFieldDefinition pkField = metaData.getPkFieldDefinition();
-		Assert.assertEquals(1, pkField.getIdFields().length);
-		EntityFieldDefinition uidField = pkField.getIdFields()[0];
-		Assert.assertEquals("uid", uidField.getName());
+		Assert.assertNotNull(pkField.getGetValueHandler());
+		Assert.assertNotNull(pkField.getSetValueHandler());
+		Assert.assertEquals(1, pkField.getFields().length);
+		Assert.assertEquals(KeyType.SINGLE, pkField.getKeyType());
+		String uidField = pkField.getFields()[0];
+		Assert.assertEquals("uid", uidField);
+
 		Map<String, FKFieldDefinition> fkFields = metaData.getTableDefinition().getFkFieldDefinitions();
 		Assert.assertEquals(3, fkFields.size());
 		FKFieldDefinition tenant = fkFields.get("tenant");
@@ -43,6 +47,12 @@ public class EntityMetaDataDefinitionTest {
 		Assert.assertNotNull(updatedBy);
 		Assert.assertEquals(IUser.class.getName(), updatedBy.getRelationClass());
 		Assert.assertEquals("IUser", updatedBy.getRelationTable());
+
+		Master master = new Master();
+		// 验证主键值设置和获取
+		String uid = UUIDUtil.newUUID();
+		pkField.getSetValueHandler().setFieldValue(master, uid);
+		Assert.assertEquals(uid, pkField.getGetValueHandler().getFieldValue(master));
 	}
 
 	@Test
@@ -50,7 +60,5 @@ public class EntityMetaDataDefinitionTest {
 		EntityMetaDataDefinition metaData = new EntityMetaDataDefinition(Master.class);
 		String json = JSONUtil.toJSON(metaData);
 		Assert.assertNotNull(json);
-		EntityMetaDataDefinition metaData2 = JSONUtil.fromJSON(json, EntityMetaDataDefinition.class);
-		Assert.assertNotNull(metaData2);
 	}
 }

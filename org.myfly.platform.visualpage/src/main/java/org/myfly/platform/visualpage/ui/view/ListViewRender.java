@@ -5,7 +5,7 @@ import org.myfly.platform.core.domain.ViewMode;
 import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.ListDefinition;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.EntityUrlUtil;

@@ -7,7 +7,7 @@ import org.myfly.platform.core.metadata.annotation.Div1View;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.annotation.FormView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.utils.FuncUtil;
 import org.myfly.platform.core.utils.FuncUtil.ConvertAction;
 

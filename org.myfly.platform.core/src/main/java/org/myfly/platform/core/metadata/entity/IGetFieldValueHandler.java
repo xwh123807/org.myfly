@@ -1,5 +1,5 @@
 package org.myfly.platform.core.metadata.entity;
 
-public interface GetFieldValueHandler {
+public interface IGetFieldValueHandler {
 	public Object getFieldValue(Object obj);
 }

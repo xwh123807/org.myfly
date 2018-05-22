@@ -4,7 +4,7 @@ import javax.persistence.EntityManagerFactory;
 
 import org.hibernate.SessionFactory;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.starter.ApplicationStarter;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;

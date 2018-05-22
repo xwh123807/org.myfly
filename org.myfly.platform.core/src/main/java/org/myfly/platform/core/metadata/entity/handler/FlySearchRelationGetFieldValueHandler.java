@@ -5,11 +5,11 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
-import org.myfly.platform.core.metadata.entity.GetFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.IGetFieldValueHandler;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AppUtil;
 
-public class FlySearchRelationGetFieldValueHandler implements GetFieldValueHandler {
+public class FlySearchRelationGetFieldValueHandler implements IGetFieldValueHandler {
 
 	private EntityFieldDefinition fieldDefinition;
 

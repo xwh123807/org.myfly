@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.myfly.platform.CoreApplication;
 import org.myfly.platform.core.flydata.internal.EntityUtil;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.test.MockMVCTestCase;
 import org.springframework.beans.factory.annotation.Autowired;

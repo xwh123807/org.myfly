@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.system.domain.IKeyEntity;
 import org.myfly.platform.core.utils.AssertUtil;

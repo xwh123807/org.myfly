@@ -11,6 +11,16 @@ import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * 元模型定义类<br>
+ * 1、用于解析元模型注解@MetaDataView <br>
+ * 2、能够直接序列化为json，也能从json反序列化为对象 <br>
+ * 3、可直接在非实体类上定义元模型，该类为空类；@TableView中的@PropertyView中定义实体属性 <br>
+ * 4、可以通过模型扩展插件从第三方系统构建元模型 <br>
+ * 
+ * @author xiangwanhong
+ *
+ */
 public class MetaDataDefinition extends BaseDenifition {
 	/**
 	 * 

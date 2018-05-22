@@ -1,9 +1,9 @@
 package org.myfly.platform.core.metadata.entity.handler;
 
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
-import org.myfly.platform.core.metadata.entity.SetFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.ISetFieldValueHandler;
 
-public class ComplexSetPKFieldValueHandler implements SetFieldValueHandler {
+public class ComplexSetPKFieldValueHandler implements ISetFieldValueHandler {
 
 	private PKFieldDefinition pkFieldDefinition;
 

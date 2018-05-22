@@ -1,4 +1,4 @@
-package org.myfly.platform.core.metadata.service;
+package org.myfly.platform.core.metadata.entity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,9 +10,6 @@ import org.myfly.platform.core.metadata.define.FormDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.OutlineDefinition;
 import org.myfly.platform.core.metadata.define.TableDefinition;
-import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
-import org.myfly.platform.core.metadata.entity.EntityMetaDataDefinition;
-import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.FuncUtil;
 

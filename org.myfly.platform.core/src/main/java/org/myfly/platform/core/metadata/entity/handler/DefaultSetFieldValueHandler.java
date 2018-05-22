@@ -4,12 +4,12 @@ import java.util.Map;
 
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
-import org.myfly.platform.core.metadata.entity.SetFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.ISetFieldValueHandler;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.springframework.util.Base64Utils;
 
-public class DefaultSetFieldValueHandler implements SetFieldValueHandler {
+public class DefaultSetFieldValueHandler implements ISetFieldValueHandler {
 	private EntityFieldDefinition field;
 
 	public DefaultSetFieldValueHandler(EntityFieldDefinition field) {

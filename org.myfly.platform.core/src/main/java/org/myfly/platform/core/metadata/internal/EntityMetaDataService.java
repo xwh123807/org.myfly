@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.metadata.service.JsonEntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;

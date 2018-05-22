@@ -34,6 +34,7 @@ import org.myfly.platform.core.metadata.define.FKFieldDefinition;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.MetaDataDefinition;
 import org.myfly.platform.core.metadata.define.TableDefinition;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
 import org.myfly.platform.core.metadata.entity.handler.AssociationSetFieldValueHandler;
 import org.myfly.platform.core.metadata.entity.handler.ComplexGetPKFieldValueHandler;
@@ -42,7 +43,6 @@ import org.myfly.platform.core.metadata.entity.handler.DefaultGetFieldValueHandl
 import org.myfly.platform.core.metadata.entity.handler.DefaultSetFieldValueHandler;
 import org.myfly.platform.core.metadata.entity.handler.FlySearchRelationGetFieldValueHandler;
 import org.myfly.platform.core.metadata.entity.handler.SearchRelationGetFieldValueHandler;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.metadata.service.IMetaDataRegister;

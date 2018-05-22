@@ -23,6 +23,7 @@ import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.MetaDataDefinition;
 import org.myfly.platform.core.metadata.define.OutlineDefinition;
 import org.myfly.platform.core.metadata.define.TableDefinition;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.EntityMetaDataDefinition;
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
 import org.myfly.platform.core.metadata.entity.handler.SearchRelationGetFieldValueHandler;

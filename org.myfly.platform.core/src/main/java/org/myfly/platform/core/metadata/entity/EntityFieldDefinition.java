@@ -30,12 +30,12 @@ public class EntityFieldDefinition extends FieldDefinition {
 	 * 值不为空时，取值由此函数确定
 	 */
 	@JsonIgnore
-	private GetFieldValueHandler getValueHandler;
+	private IGetFieldValueHandler getValueHandler;
 	/**
 	 * 设置实体函数
 	 */
 	@JsonIgnore
-	private SetFieldValueHandler setValueHandler;
+	private ISetFieldValueHandler setValueHandler;
 	/**
 	 * get方法
 	 */
@@ -97,19 +97,19 @@ public class EntityFieldDefinition extends FieldDefinition {
 		this.setter = setter;
 	}
 
-	public GetFieldValueHandler getGetValueHandler() {
+	public IGetFieldValueHandler getGetValueHandler() {
 		return getValueHandler;
 	}
 
-	public void setGetValueHandler(GetFieldValueHandler getValueHandler) {
+	public void setGetValueHandler(IGetFieldValueHandler getValueHandler) {
 		this.getValueHandler = getValueHandler;
 	}
 
-	public SetFieldValueHandler getSetValueHandler() {
+	public ISetFieldValueHandler getSetValueHandler() {
 		return setValueHandler;
 	}
 
-	public void setSetValueHandler(SetFieldValueHandler setValueHandler) {
+	public void setSetValueHandler(ISetFieldValueHandler setValueHandler) {
 		this.setValueHandler = setValueHandler;
 	}
 

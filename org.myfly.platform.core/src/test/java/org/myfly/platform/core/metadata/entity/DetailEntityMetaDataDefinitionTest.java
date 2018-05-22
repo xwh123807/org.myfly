@@ -9,7 +9,7 @@ import org.myfly.platform.core.testdata.Master;
 import org.myfly.platform.core.utils.EntityClassUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 
-public class DetailFieldDefinitionTest {
+public class DetailEntityMetaDataDefinitionTest {
 
 	@Test
 	public void detailEntity() {

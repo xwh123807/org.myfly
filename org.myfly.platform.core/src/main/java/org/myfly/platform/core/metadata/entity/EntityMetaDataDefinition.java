@@ -16,6 +16,15 @@ import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.MetaDataDefinition;
 import org.myfly.platform.core.utils.EntityClassUtil;
 
+/**
+ * 实体元模型定义类 <br>
+ * 1、实体元模型定义，从实体类中装载字段定义信息 <br>
+ * 2、增加对数据读写支持 <br>
+ * 3、供flydata数据访问使用 <br>
+ * 
+ * @author xiangwanhong
+ *
+ */
 public class EntityMetaDataDefinition extends MetaDataDefinition {
 	/**
 	 * 
@@ -29,7 +38,7 @@ public class EntityMetaDataDefinition extends MetaDataDefinition {
 	 * 主键字段
 	 */
 	private PKFieldDefinition pkFieldDefinition;
-	
+
 	public EntityMetaDataDefinition() {
 	}
 
@@ -60,8 +69,8 @@ public class EntityMetaDataDefinition extends MetaDataDefinition {
 		getTableDefinition().setFields(fields.toArray(new FieldDefinition[] {}));
 		// 设置实体主键
 		PKFieldDefinition pkField = new PKFieldDefinition();
-		pkField.setIdFields(fields.stream().filter(item -> item.isIdField()).collect(Collectors.toList())
-				.toArray(new EntityFieldDefinition[] {}));
+		pkField.setFields(fields.stream().filter(item -> item.isIdField()).map(item -> item.getName())
+				.collect(Collectors.toList()).toArray(new String[] {}));
 		setPkFieldDefinition(pkField);
 		// 设置实体外键
 		Map<String, FKFieldDefinition> fkFields = new HashedMap<>();

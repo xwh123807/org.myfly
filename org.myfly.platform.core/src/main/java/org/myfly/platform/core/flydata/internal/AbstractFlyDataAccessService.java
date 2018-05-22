@@ -33,10 +33,10 @@ import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
-import org.myfly.platform.core.metadata.entity.SetFieldValueHandler;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.ISetFieldValueHandler;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.search.service.IFullTextSearchService;
@@ -203,7 +203,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 			String uploadDir, String actionUrl) {
 		EntityMetaData entityMetaData = getEntityMetaDataService().getEntityMetaData(table);
 		MDRelationFieldDefinition subField = entityMetaData.getField(subTableAttr);
-		final SetFieldValueHandler setHandler = subField.getRelationField().getSetValueHandler();
+		final ISetFieldValueHandler setHandler = subField.getRelationField().getSetValueHandler();
 		return importExcel(subField.getRelationTable(), listViewName, uploadDir, actionUrl, new ImportActions() {
 			@Override
 			public void before(Object entity) {

@@ -11,7 +11,7 @@ import org.apache.commons.logging.LogFactory;
 import org.elasticsearch.action.search.SearchResponse;
 import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.search.service.ISearchService;

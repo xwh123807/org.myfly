@@ -15,7 +15,7 @@ import org.myfly.platform.core.domain.ViewMode;
 import org.myfly.platform.core.flydata.service.EntityQueryMap;
 import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.flydata.service.Pagination;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.HttpUtil;
 import org.myfly.platform.visualpage.domain.PageInfo;

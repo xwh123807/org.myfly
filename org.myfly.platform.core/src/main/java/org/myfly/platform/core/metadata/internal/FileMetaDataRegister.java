@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IMetaDataRegister;
 import org.myfly.platform.core.metadata.service.JsonEntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;

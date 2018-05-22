@@ -2,6 +2,8 @@ package org.myfly.platform.core.metadata.service;
 
 import java.util.List;
 
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
+
 /**
  * 实体元模型服务
  * 

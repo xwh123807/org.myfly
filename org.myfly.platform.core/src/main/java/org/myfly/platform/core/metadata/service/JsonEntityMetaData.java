@@ -21,6 +21,7 @@ import org.myfly.platform.core.metadata.define.FilterDefinition;
 import org.myfly.platform.core.metadata.define.FormDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.OrderDefinition;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition.KeyType;
 import org.myfly.platform.core.metadata.entity.handler.DefaultGetFieldValueHandler;

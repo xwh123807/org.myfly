@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
-import org.myfly.platform.core.metadata.entity.GetFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.IGetFieldValueHandler;
 import org.myfly.platform.core.utils.AssertUtil;
 
 /**
@@ -75,7 +75,7 @@ public class EntityActionInfo {
 			setTitle("操作");
 			setName("actions");
 			setDataType(FieldDataType.ACTIONS);
-			setGetValueHandler(new GetFieldValueHandler() {
+			setGetValueHandler(new IGetFieldValueHandler() {
 
 				@Override
 				public Object getFieldValue(Object obj) {

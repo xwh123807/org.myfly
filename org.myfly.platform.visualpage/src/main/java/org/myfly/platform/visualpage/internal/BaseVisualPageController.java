@@ -16,7 +16,7 @@ import org.myfly.platform.core.message.service.IMessageQueueService;
 import org.myfly.platform.core.message.service.MessageQueueConstants;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.DateUtil;

@@ -2,7 +2,7 @@ package org.myfly.platform.visualpage.ui.view;
 
 import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.define.ListDefinition;
-import org.myfly.platform.core.metadata.service.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.control.CardListRender;
 import org.myfly.platform.visualpage.ui.control.SearchBoxRender;
