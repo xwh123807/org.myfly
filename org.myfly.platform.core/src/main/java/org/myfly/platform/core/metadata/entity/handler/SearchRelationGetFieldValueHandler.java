@@ -12,17 +12,17 @@ import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 
 /**
- * 实体查找关系字段取值
- * 1、
+ * 实体查找关系字段取值 <br>
+ * 1、 <br>
  * 
  * @author xiangwanhong
  *
  */
 public class SearchRelationGetFieldValueHandler implements IGetFieldValueHandler {
 
-	private FieldDefinition fieldDefinition;
+	private EntityFieldDefinition fieldDefinition;
 
-	public SearchRelationGetFieldValueHandler(FieldDefinition field) {
+	public SearchRelationGetFieldValueHandler(EntityFieldDefinition field) {
 		this.fieldDefinition = field;
 	}
 
