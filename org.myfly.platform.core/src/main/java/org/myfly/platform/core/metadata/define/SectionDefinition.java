@@ -123,6 +123,17 @@ public class SectionDefinition extends BaseDenifition {
 				+ getFieldSets().length + ", subTables: " + getSubTables().length;
 	}
 
+	/**
+	 * 获取使用字段列表
+	 * 
+	 * @return
+	 */
+	@JsonIgnore
+	public String[] getFields() {
+		return Stream.of(getFieldSets()).flatMap(item -> Stream.of(item.getFields())).distinct()
+				.collect(Collectors.toList()).toArray(new String[] {});
+	}
+
 	public void validate() {
 		Assert.notNull(getType());
 		if (getType() == SectionType.CUSTOM) {

@@ -15,7 +15,7 @@ public class MasterEntityMetaDataDefinitionTest {
 	@Test
 	public void masterEntity() {
 		EntityMetaDataDefinition metaData = new EntityMetaDataDefinition(Master.class);
-		Assert.assertEquals(5, metaData.getTableDefinition().getFields().length);
+		Assert.assertEquals(7, metaData.getTableDefinition().getFields().length);
 		Assert.assertEquals("SM_MASTER", metaData.getTableDefinition().getTableName());
 		Assert.assertEquals("TEST", metaData.getTableDefinition().getCatalog());
 		Assert.assertEquals("SAMPLE", metaData.getTableDefinition().getSchema());

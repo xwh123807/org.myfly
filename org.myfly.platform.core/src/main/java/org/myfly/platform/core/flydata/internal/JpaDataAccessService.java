@@ -13,6 +13,7 @@ import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.system.domain.IKeyEntity;
+import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,11 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 		AssertUtil.parameterEmpty(uid, "uid");
 		return (T) getSimpleJpaRepository(entityClass).getOne(uid);
 	}
+	
+	@Override
+	public <T> T findOne(Class<T> entityClass, Map<String, Object> keyParams) {
+		return findOne(entityClass, AppUtil.getEntityMetaData(entityClass.getName()).getPkFieldDefinition().buildPK(keyParams) );
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -67,7 +73,6 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
 	public <T> void delOne(Class<T> entityClass, Serializable uid) {
 		AssertUtil.parameterEmpty(entityClass, "entityClass");
 		AssertUtil.parameterEmpty(uid, "uid");
@@ -81,7 +86,6 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 * Object)
 	 */
 	@Override
-	@Transactional
 	public <T> void delOne(T entity) {
 		AssertUtil.parameterEmpty(entity, "entity");
 		entityManager.remove(entity);
@@ -108,7 +112,6 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 * .platform.system.domain.IKeyEntity)
 	 */
 	@Override
-	@Transactional
 	public <T> T saveEntity(final T entity) {
 		AssertUtil.parameterEmpty(entity, "entity");
 		beforeInsertFlyEntity(entity);
@@ -124,7 +127,6 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 * .String, java.util.Map)
 	 */
 	@Override
-	@Transactional
 	public <T> T saveEntity(Class<T> entityClass, Map<String, Object> values) {
 		EntityMetaData metaData = entityMetaDataService.getEntityMetaData(entityClass.getName());
 		return internalSaveEntity(metaData.getEntityName(), values, metaData);
@@ -153,40 +155,16 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 		return entity;
 	}
 
-	/**
-	 * 修改实体保存
-	 * 
-	 * @param tableName
-	 * @param values
-	 * @param metaData
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	private <T> T internalUpdateEntity(final String tableName, final Serializable uid, final Map<String, Object> values,
-			EntityMetaData metaData) {
-		T entity = null;
-		try {
-			entity = findOne(tableName, uid);
-			AssertUtil.parameterEmpty(entity, "entity", "找不到[" + tableName + "." + uid.toString() + "]对应实体。");
-			EntityUtil.updateEntity(entity, metaData, values);
-			getSimpleJpaRepository(tableName).save(entity);
-		} catch (Exception e) {
-			throw new RuntimeException("保存实体[" + tableName + "]失败，错误信息：" + e.getMessage());
-		}
-		return entity;
-	}
-
 	@Override
-	@Transactional
 	public <T> T updateEntity(Class<T> entityClass, Serializable uid, Map<String, Object> values) {
 		AssertUtil.parameterEmpty(entityClass, "entityClass");
 		AssertUtil.parameterEmpty(uid, "uid");
-		EntityMetaData metaData = entityMetaDataService.getEntityMetaData(entityClass.getName());
-		return internalUpdateEntity(metaData.getEntityName(), uid, values, metaData);
+		T entity = findOne(entityClass, uid);
+		EntityUtil.updateEntity(entity, null, values);
+		return saveEntity(entity);
 	}
 
 	@Override
-	@Transactional
 	public <T> T updateEntity(T entity) {
 		AssertUtil.parameterEmpty(entity, "entity");
 		entityManager.merge(entity);
@@ -194,7 +172,6 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	}
 
 	@Override
-	@Transactional
 	public <T> T updateEntity(Serializable uid, T entity) {
 		EntityMetaData metaData = entityMetaDataService.getEntityMetaData(entity.getClass().getName());
 		metaData.getPkFieldDefinition().getValueHandler().setFieldValue(entity, uid);
@@ -270,7 +247,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 */
 	@Override
 	public <T> List<T> findAll(Class<T> entityClass, Map<String, Object> params) {
-		return findAll(entityClass, QuerySpecificationUtil.buildQuerySpecifications(params), null);
+		return findAll(entityClass, QuerySpecificationUtil.buildQuerySpecifications(params), (Sort) null);
 	}
 
 	/*
@@ -286,7 +263,6 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	}
 
 	@Override
-	@Transactional
 	public <T> void batchSaveEntity(List<T> batchList) {
 		getSimpleJpaRepository(batchList.get(0).getClass()).save(batchList);
 	}
@@ -304,7 +280,8 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 		AssertUtil.parameterEmpty(name, "name");
 		Map<String, Object> params = new HashMap<>();
 		params.put("name", name);
-		List<? extends IKeyEntity> items = findAll(tableName, params);
+		List<? extends IKeyEntity> items = null;
+		// findAll(tableName, params);
 		if (items.size() != 1) {
 			AssertUtil.parameterInvalide("name",
 					"实体[" + tableName + "]只能有一条记录Name=[" + name + "]，实际是[" + items.size() + "]条");

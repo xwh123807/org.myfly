@@ -76,7 +76,7 @@ public class MasterFieldDefinitionTest {
 				EntityFieldDefinition field = new EntityFieldDefinition(item);
 				Assert.assertEquals("active", field.getName());
 				Assert.assertEquals("active".toUpperCase(), field.getFieldName());
-				Assert.assertEquals("激活", field.getTitle());
+				Assert.assertEquals("是否激活", field.getTitle());
 				Assert.assertEquals(FieldDataType.CHECK, field.getDataType());
 				Assert.assertEquals(255, field.getMaxLength());
 				Assert.assertEquals(0, field.getMinLength());
@@ -93,7 +93,7 @@ public class MasterFieldDefinitionTest {
 				EntityFieldDefinition field = new EntityFieldDefinition(item);
 				Assert.assertEquals("created", field.getName());
 				Assert.assertEquals("created".toUpperCase(), field.getFieldName());
-				Assert.assertEquals("创建时间", field.getTitle());
+				Assert.assertEquals("新增时间", field.getTitle());
 				Assert.assertEquals(FieldDataType.DATETIME, field.getDataType());
 				Assert.assertEquals(255, field.getMaxLength());
 				Assert.assertEquals(0, field.getMinLength());

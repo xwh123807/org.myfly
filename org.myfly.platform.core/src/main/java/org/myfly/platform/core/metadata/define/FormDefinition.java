@@ -1,5 +1,7 @@
 package org.myfly.platform.core.metadata.define;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -312,5 +314,20 @@ public class FormDefinition extends BaseDenifition {
 		for (DivDefinition div : getDivs()) {
 			div.validate();
 		}
+	}
+
+	/**
+	 * 获取使用字段列表
+	 * @return
+	 */
+	@JsonIgnore
+	public String[] getFields() {
+		 return Stream.of(getSections()).flatMap(item -> Stream.of(item.getFields())).distinct()
+				 .collect(Collectors.toList()).toArray(new String[] {});
+	}
+
+	@JsonIgnore
+	public SubTableDefinition getSubTableDefinition(String subTableAttr) {
+		return null;
 	}
 }

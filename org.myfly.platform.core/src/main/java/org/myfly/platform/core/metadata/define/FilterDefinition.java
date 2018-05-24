@@ -16,6 +16,11 @@ public class FilterDefinition extends BaseDenifition {
 	private boolean show = true;
 
 	private Object[] multiValues;
+	
+	public FilterDefinition(String field, SQLOperator operator) {
+		this.field = field;
+		this.operator = operator;
+	}
 
 	public FilterDefinition(FilterView view) {
 		setField(view.field());

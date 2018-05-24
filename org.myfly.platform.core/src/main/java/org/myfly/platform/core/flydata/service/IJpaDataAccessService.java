@@ -29,7 +29,14 @@ public interface IJpaDataAccessService {
 	 * @return
 	 */
 	<T> T findOne(Class<T> entityClass, Serializable uid);
-
+	
+	/**
+	 * 按主键查找实体
+	 * @param entityClass
+	 * @param keyParams
+	 * @return
+	 */
+	<T> T findOne(Class<T> entityClass, Map<String, Object> keyParams);
 	/**
 	 * 查找指定表中所有的数据
 	 * 

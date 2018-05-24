@@ -87,6 +87,16 @@ public class OutlineDefinition extends BaseDenifition {
 				+ getSections().length;
 	}
 
+	/**
+	 * 获取使用字段列表
+	 * @return
+	 */
+	@JsonIgnore
+	public String[] getFields() {
+		 return Stream.of(getSections()).flatMap(item -> Stream.of(item.getFields())).distinct()
+				 .collect(Collectors.toList()).toArray(new String[] {});
+	}
+	
 	@Override
 	public void validate() {
 

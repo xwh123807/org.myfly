@@ -26,7 +26,7 @@ public class EntityUtil {
 	 */
 	public static <T> void updateEntityForRequest(T entity, EntityMetaData metaData, Map<String, String[]> values) {
 		if (metaData == null) {
-			metaData = AppUtil.getEntityMataDataService().getEntityMetaData(entity.getClass().getName());
+			metaData = AppUtil.getEntityMetaData(entity.getClass().getName());
 		}
 		for (EntityFieldDefinition field : metaData.getAllFields()) {
 			String[] items = values.get(field.getName());
@@ -46,7 +46,7 @@ public class EntityUtil {
 	 */
 	public static <T> void updateEntity(T entity, EntityMetaData metaData, Map<String, Object> values) {
 		if (metaData == null) {
-			metaData = AppUtil.getEntityMataDataService().getEntityMetaData(entity.getClass().getName());
+			metaData = AppUtil.getEntityMetaData(entity.getClass().getName());
 		}
 		for (EntityFieldDefinition field : metaData.getAllFields()) {
 			Object value = values.get(field.getName());
@@ -67,7 +67,7 @@ public class EntityUtil {
 	public static <T> T buildNewEntityForRequest(String tableName, EntityMetaData metaData,
 			Map<String, String[]> values) {
 		if (metaData == null) {
-			metaData = AppUtil.getEntityMataDataService().getEntityMetaData(tableName);
+			metaData = AppUtil.getEntityMetaData(tableName);
 		}
 		T entity = metaData.newEntityInstance();
 		updateEntityForRequest(entity, metaData, values);
@@ -84,7 +84,7 @@ public class EntityUtil {
 	 */
 	public static <T> T buildNewEntity(String tableName, EntityMetaData metaData, Map<String, Object> values) {
 		if (metaData == null) {
-			metaData = AppUtil.getEntityMataDataService().getEntityMetaData(tableName);
+			metaData = AppUtil.getEntityMetaData(tableName);
 		}
 		T entity = metaData.newEntityInstance();
 		updateEntity(entity, metaData, values);
@@ -124,7 +124,7 @@ public class EntityUtil {
 		Map<String, Object> values = new LinkedHashMap<>();
 		if (entity != null) {
 			Class<T> entityClass = (Class<T>) entity.getClass();
-			EntityMetaData metaData = AppUtil.getEntityMataDataService().getEntityMetaData(entityClass.getName());
+			EntityMetaData metaData = AppUtil.getEntityMetaData(entityClass.getName());
 			for (EntityFieldDefinition field : metaData.getAllFields()) {
 				Object value = null;
 				try {
@@ -151,7 +151,7 @@ public class EntityUtil {
 		Map<String, Object> values = new LinkedHashMap<>();
 		if (entity != null) {
 			Class<T> entityClass = (Class<T>) entity.getClass();
-			EntityMetaData metaData = AppUtil.getEntityMataDataService().getEntityMetaData(entityClass.getName());
+			EntityMetaData metaData = AppUtil.getEntityMetaData(entityClass.getName());
 			for (EntityFieldDefinition field : metaData.getAllFields()) {
 				Object value = null;
 				try {
@@ -259,9 +259,9 @@ public class EntityUtil {
 		if (entity == null) {
 			return "";
 		} else {
-			EntityMetaData metaData = AppUtil.getEntityMataDataService().getEntityMetaData(entity.getClass().getName());
+			EntityMetaData metaData = AppUtil.getEntityMetaData(entity.getClass().getName());
 			PKFieldDefinition pkField = metaData.getPkFieldDefinition();
-			return pkField.getPKValue(entity);
+			return (String) pkField.getValueHandler().getFieldValue(entity);
 		}
 	}
 
@@ -275,8 +275,8 @@ public class EntityUtil {
 		if (entity == null) {
 			return "";
 		} else {
-			EntityMetaData metaData = AppUtil.getEntityMataDataService().getEntityMetaData(entity.getClass().getName());
-			FieldDefinition labelField = metaData.getLabelField();
+			EntityMetaData metaData = AppUtil.getEntityMetaData(entity.getClass().getName());
+			EntityFieldDefinition labelField = metaData.getLableField();
 			Object value = labelField.getValueHandler().getFieldValue(entity);
 			return ClassUtil.convertValueToString(value);
 		}

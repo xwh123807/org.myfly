@@ -27,7 +27,9 @@ import org.springframework.data.domain.Pageable;
  */
 public interface IFlyDataAccessService {
 	/**
-	 * 按主键查询单个实体，返回实体。如果是jpa实现，则返回实现类；如果是jdbc实现，则返回为Map，并且key要转换为属性名称
+	 * 按主键查询单个实体，返回实体。<br>
+	 * 1、如果是jpa实现，则返回实现类；<br>
+	 * 2、如果是jdbc实现，则返回为Map，并且key要转换为属性名称<br>
 	 * 
 	 * @param entityName
 	 * @param uid
@@ -124,8 +126,8 @@ public interface IFlyDataAccessService {
 	 * @param params
 	 * @return
 	 */
-	List<FlyEntityMap> findAll(final String entityName, final String listViewName,
-			final EntityQueryMap params, final boolean printMode);
+	List<FlyEntityMap> findAll(final String entityName, final String listViewName, final EntityQueryMap params,
+			final boolean printMode);
 
 	/**
 	 * 实体查询,返回指定页的数据
@@ -134,11 +136,12 @@ public interface IFlyDataAccessService {
 	 * @param params
 	 * @return
 	 */
-	public List<FlyEntityMap> findAll(final String entityName, final String listViewName,
-			final EntityQueryMap params, final int page, final int size, final boolean printMode);
-	
+	public List<FlyEntityMap> findAll(final String entityName, final String listViewName, final EntityQueryMap params,
+			final int page, final int size, final boolean printMode);
+
 	/**
 	 * 实体查询，返回分页信息及分页数据
+	 * 
 	 * @param entityName
 	 * @param listViewName
 	 * @param params
@@ -147,8 +150,8 @@ public interface IFlyDataAccessService {
 	 * @param printMode
 	 * @return
 	 */
-	public Page<FlyEntityMap> findAllWithPage(String entityName, String listViewName, EntityQueryMap params, int page, int size,
-			boolean printMode);
+	public Page<FlyEntityMap> findAllWithPage(String entityName, String listViewName, EntityQueryMap params, int page,
+			int size, boolean printMode);
 
 	/**
 	 * 实体数据分页查询
@@ -158,8 +161,8 @@ public interface IFlyDataAccessService {
 	 * @param pageable
 	 * @return
 	 */
-	Page<FlyEntityMap> findAll(final String entityName, final String listViewName,
-			final EntityQueryMap params, final Pageable pageable, final boolean printMode);
+	Page<FlyEntityMap> findAll(final String entityName, final String listViewName, final EntityQueryMap params,
+			final Pageable pageable, final boolean printMode);
 
 	/**
 	 * 获取子表记录数
@@ -171,8 +174,7 @@ public interface IFlyDataAccessService {
 	 * @param params
 	 * @return
 	 */
-	long count(final String entityName, String uid, String subTableAttr, String formViewName,
-			EntityQueryMap params);
+	long count(final String entityName, String uid, String subTableAttr, String formViewName, EntityQueryMap params);
 
 	/**
 	 * 实体子表查询,不分页
@@ -183,11 +185,12 @@ public interface IFlyDataAccessService {
 	 * @param params
 	 * @return
 	 */
-	List<FlyEntityMap> findAllForSubEntity(String entityName, String uid, String subTableAttr,
-			String formViewName, EntityQueryMap params, boolean printMode);
-	
+	List<FlyEntityMap> findAllForSubEntity(String entityName, String uid, String subTableAttr, String formViewName,
+			EntityQueryMap params, boolean printMode);
+
 	/**
 	 * 实体子表查询，返回指定分页数据
+	 * 
 	 * @param entityName
 	 * @param uid
 	 * @param subTableAttr
@@ -198,8 +201,8 @@ public interface IFlyDataAccessService {
 	 * @param printMode
 	 * @return
 	 */
-	List<FlyEntityMap> findAllForSubEntity(String entityName, String uid, String subTableAttr,
-			String formViewName, EntityQueryMap params, int page, int size, boolean printMode);
+	List<FlyEntityMap> findAllForSubEntity(String entityName, String uid, String subTableAttr, String formViewName,
+			EntityQueryMap params, int page, int size, boolean printMode);
 
 	/**
 	 * 分页查询实体子表数据
@@ -213,7 +216,7 @@ public interface IFlyDataAccessService {
 	 */
 	Page<FlyEntityMap> findAllForSubEntityWithPage(String entityName, String uid, String subTableAttr,
 			String formViewName, EntityQueryMap params, Pageable pageable, boolean printMode);
-	
+
 	/**
 	 * 分页查询实体子表数据
 	 * 
@@ -246,8 +249,8 @@ public interface IFlyDataAccessService {
 	 * @param params
 	 * @return
 	 */
-	void exportToExcel(String entityName, String uid, String subTableAttr, String listViewName,
-			EntityQueryMap params, String excelFileName);
+	void exportToExcel(String entityName, String uid, String subTableAttr, String listViewName, EntityQueryMap params,
+			String excelFileName);
 
 	/**
 	 * 将uploadDir目录中所有的Excel数据导入数据库，返回错误数据文件
@@ -292,8 +295,8 @@ public interface IFlyDataAccessService {
 	 *            打印模式
 	 * @return
 	 */
-	DataTablesResponse findAllToDataTables(String entityName, String view, EntityQueryMap params, int page,
-			int size, boolean printMode);
+	DataTablesResponse findAllToDataTables(String entityName, String view, EntityQueryMap params, int page, int size,
+			boolean printMode);
 
 	/**
 	 * 实体子表数据分页查询，返回DataTable表格使用的分页数据
@@ -330,8 +333,7 @@ public interface IFlyDataAccessService {
 	 * @param size
 	 * @return
 	 */
-	Page<FlyEntityMap> findAllForSearch(String entityName, String listViewName, String searchText, int page,
-			int size);
+	Page<FlyEntityMap> findAllForSearch(String entityName, String listViewName, String searchText, int page, int size);
 
 	/**
 	 * 搜索数据，结果以DataTableReponse返回
@@ -353,15 +355,18 @@ public interface IFlyDataAccessService {
 	 * @param uid
 	 * @return
 	 */
-	int delOne(String entityName, String uid);
+	void delOne(String entityName, String uid);
 	
+	void del(String entityName);
+
 	/**
 	 * 删除子实体
+	 * 
 	 * @param entityName
 	 * @param uid
 	 * @return
 	 */
-	int delSubEntity(String entityName, String uid, String subTableAttr, String subUid);
+	void delSubEntity(String entityName, String uid, String subTableAttr, String subUid);
 
 	/**
 	 * 新增实体，传入实体类，返回实体主键UID
@@ -378,9 +383,10 @@ public interface IFlyDataAccessService {
 	 * @return
 	 */
 	<T> void saveEntity(List<T> entities);
-	
+
 	/**
 	 * 批量保存实体
+	 * 
 	 * @param entityName
 	 * @param entities
 	 */
@@ -419,10 +425,12 @@ public interface IFlyDataAccessService {
 
 	/**
 	 * 修改实体
+	 * 
 	 * @param entity
 	 * @return
 	 */
 	<T> void updateEntity(T entity);
+
 	/**
 	 * 修改实体
 	 * 
@@ -442,9 +450,10 @@ public interface IFlyDataAccessService {
 	 * @return
 	 */
 	void updateEntity(String entityName, String uid, String formViewName, EntityMap values);
-	
+
 	/**
 	 * 合并修改实体，只覆盖values部分属性
+	 * 
 	 * @param entityName
 	 * @param uid
 	 * @param formViewName
@@ -468,6 +477,7 @@ public interface IFlyDataAccessService {
 
 	/**
 	 * 合并修改子实体，只覆盖values部分属性
+	 * 
 	 * @param entityName
 	 * @param uid
 	 * @param subTableAttr

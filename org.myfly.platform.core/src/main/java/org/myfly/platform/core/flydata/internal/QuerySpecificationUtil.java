@@ -16,6 +16,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.annotation.SQLOperator;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.FilterDefinition;
+import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.springframework.data.jpa.domain.Specification;
@@ -37,12 +39,12 @@ public class QuerySpecificationUtil {
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	public static Specifications buildQuerySpecifications(final FilterDefinition[] filterDefinitions,
+	public static Specifications buildQuerySpecifications(EntityMetaData metaData, final FilterDefinition[] filterDefinitions,
 			final Map<String, String[]> params) {
 		if (params == null || params.size() == 0) {
 			return null;
 		}
-		FilterDefinition[] filters = buildFilterDefinition(filterDefinitions, params);
+		FilterDefinition[] filters = buildFilterDefinition(metaData, filterDefinitions, params);
 		return buildQuerySpecifications(filters);
 	}
 
@@ -74,7 +76,7 @@ public class QuerySpecificationUtil {
 	 * @param reurnArgs
 	 * @return
 	 */
-	public static String buildQueryWhereSql(final FilterDefinition[] filters, List<Object> paramValues) {
+	public static String buildQueryWhereSql(EntityMetaData metaData, final FilterDefinition[] filters, List<Object> paramValues) {
 		if (ArrayUtils.isEmpty(filters)) {
 			return "";
 		}
@@ -88,23 +90,24 @@ public class QuerySpecificationUtil {
 				where += " and ";
 			}
 			index++;
+			String fieldName = metaData.getField(filter.getField()).getFieldName();
 			switch (filter.getOperator()) {
 			case ISNULL:
-				where += filter.getFieldName() + " is null";
+				where += fieldName + " is null";
 				break;
 			case NOTNULL:
-				where += filter.getFieldName() + " is not null";
+				where += fieldName + " is not null";
 				break;
 			case EQUAL:
-				where += filter.getFieldName() + " = ?";
+				where += fieldName + " = ?";
 				paramValues.add(filter.getValue());
 				break;
 			case NOTEQUAL:
-				where += filter.getFieldName() + " != ?";
+				where += fieldName + " != ?";
 				paramValues.add(filter.getValue());
 				break;
 			case IN:
-				where += filter.getFieldName() + " in (";
+				where += fieldName + " in (";
 				for (int i = 0; i < filter.getMultiValues().length; i++) {
 					if (i > 0) {
 						where += ", ";
@@ -116,7 +119,7 @@ public class QuerySpecificationUtil {
 				break;
 			case LIKE:
 				if (filter.getValue() instanceof String) {
-					where += filter.getFieldName() + " like ?";
+					where += fieldName + " like ?";
 					String value = (String) filter.getValue();
 					if (value.indexOf("%") == -1) {
 						value = "%" + value + "%";
@@ -128,27 +131,27 @@ public class QuerySpecificationUtil {
 				break;
 			case NOTLIKE:
 				if (filter.getValue() instanceof String) {
-					where += filter.getFieldName() + " not like ?";
+					where += fieldName + " not like ?";
 					paramValues.add(filter.getValue());
 				} else {
 					AssertUtil.notSupport("NOTLIKE只支持字符，实际类型为" + filter.getValue().getClass());
 				}
 				break;
 			case GREATERTHAN:
-				where += filter.getFieldName() + " > ?";
+				where += fieldName + " > ?";
 				paramValues.add(filter.getValue());
 				break;
 			case LESSTHAN:
-				where += filter.getFieldName() + " < ?";
+				where += fieldName + " < ?";
 				paramValues.add(filter.getValue());
 				break;
 			case BETWEEN:
 				if (filter.getMultiValues()[0] instanceof Date) {
-					where += filter.getFieldName() + " between ? and ?";
+					where += fieldName + " between ? and ?";
 					paramValues.add(filter.getMultiValues()[0]);
 					paramValues.add(filter.getMultiValues()[1]);
 				} else if (filter.getMultiValues()[0] instanceof Number) {
-					where += filter.getFieldName() + " >= ? and " + filter.getFieldName() + " <= ?";
+					where += fieldName + " >= ? and " + fieldName + " <= ?";
 					paramValues.add(filter.getMultiValues()[0]);
 					paramValues.add(filter.getMultiValues()[1]);
 				} else {
@@ -156,11 +159,11 @@ public class QuerySpecificationUtil {
 				}
 				break;
 			case GREATERTHANOREQUALTO:
-				where += filter.getFieldName() + " >= ?";
+				where += fieldName + " >= ?";
 				paramValues.add(filter.getValue());
 				break;
 			case LESSTHANOREQUALTO:
-				where += filter.getFieldName() + " <= ?";
+				where += fieldName + " <= ?";
 				paramValues.add(filter.getValue());
 				break;
 			}
@@ -284,22 +287,22 @@ public class QuerySpecificationUtil {
 	 *            过滤参数值
 	 * @return
 	 */
-	public static FilterDefinition[] buildFilterDefinition(final FilterDefinition[] filterDefinitions,
+	public static FilterDefinition[] buildFilterDefinition(EntityMetaData metaData, final FilterDefinition[] filterDefinitions,
 			final Map<String, String[]> params) {
 		List<FilterDefinition> result = new ArrayList<>();
 		if (ArrayUtils.isNotEmpty(filterDefinitions)) {
 			// 遍历过滤器定义，处理有赋值的过滤器
 			for (FilterDefinition filterDefinition : filterDefinitions) {
-				String name = filterDefinition.getField().getName();
-				Class<?> type = filterDefinition.getField().getType();
+				EntityFieldDefinition field = metaData.getField(filterDefinition.getField());
+				String name = field.getName();
+				Class<?> type = field.getType();
 				// 先判断过滤器是否有赋值
 				if (params != null && params.containsKey(name)) {
 					String[] values = params.get(name);
 					// 再判断赋值是否有效
 					if (ArrayUtils.isNotEmpty(values) && StringUtils.isNotBlank(values[0])) {
 						FilterDefinition filter = new FilterDefinition(name, filterDefinition.getOperator());
-						filter.setName(filterDefinition.getField().getName());
-						filter.setFieldName(filterDefinition.getField().getFieldName());
+						filter.setName(filterDefinition.getField());
 						switch (filterDefinition.getOperator()) {
 						case BETWEEN:
 							String startValue = null;
@@ -351,7 +354,7 @@ public class QuerySpecificationUtil {
 			for (FieldDefinition fieldDefinition : fieldDefinitions) {
 				Object value = params.get(fieldDefinition.getName());
 				if (value != null) {
-					FilterDefinition filterDefinition = new FilterDefinition(fieldDefinition, SQLOperator.EQUAL);
+					FilterDefinition filterDefinition = new FilterDefinition(fieldDefinition.getName(), SQLOperator.EQUAL);
 					filterDefinition.setValue(value);
 					filters.add(filterDefinition);
 				}
@@ -374,7 +377,7 @@ public class QuerySpecificationUtil {
 			for (FieldDefinition fieldDefinition : fieldDefinitions) {
 				String value = params.get(fieldDefinition.getName());
 				if (StringUtils.isNotBlank(value)) {
-					FilterDefinition filterDefinition = new FilterDefinition(fieldDefinition, SQLOperator.EQUAL);
+					FilterDefinition filterDefinition = new FilterDefinition(fieldDefinition.getName(), SQLOperator.EQUAL);
 					filterDefinition.setValue(ClassUtil.convert(value, fieldDefinition.getType()));
 					filters.add(filterDefinition);
 				}

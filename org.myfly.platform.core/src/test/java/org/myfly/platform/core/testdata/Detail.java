@@ -1,5 +1,7 @@
 package org.myfly.platform.core.testdata;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,14 +26,11 @@ import org.myfly.platform.core.system.domain.KeyEntity;
 		//
 		tableView = @TableView(title = "角色", description = "角色信息"),
 		//
-		listViews = @ListView(fields = { "name", "description", "active", "createdBy",
-				"created" }, listStyle = ListStyle.TABLE),
+		listViews = @ListView(fields = { "title", "active", "created" }, listStyle = ListStyle.TABLE),
 		//
 		formViews = @FormView(sections = {
-				@SectionView(title = "用户信息", fieldSets = {
-						@FieldSetView(title = "基本信息", fields = { "name", "description" }),
-						@FieldSetView(title = "审计", fields = { "active", "createdBy", "created", "updatedBy",
-								"updated" }) }),
+				@SectionView(title = "用户信息", fieldSets = { @FieldSetView(title = "基本信息", fields = { "title" }),
+						@FieldSetView(title = "审计", fields = { "active", "created" }) }),
 				@SectionView(type = SectionType.NOTE), @SectionView(type = SectionType.ATTACHMENT) }))
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Detail extends KeyEntity {
@@ -46,9 +45,17 @@ public class Detail extends KeyEntity {
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	private Master master;
 
-	@Column(length=100)
+	@Column(length = 100)
 	@FieldView(title = "标识")
 	private String title;
+
+	@FieldView(title = "是否激活")
+	@Column
+	private boolean active;
+
+	@FieldView(title = "新增时间")
+	@Column
+	private Timestamp created;
 
 	public Master getMaster() {
 		return master;
@@ -64,5 +71,21 @@ public class Detail extends KeyEntity {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public Timestamp getCreated() {
+		return created;
+	}
+
+	public void setCreated(Timestamp created) {
+		this.created = created;
 	}
 }

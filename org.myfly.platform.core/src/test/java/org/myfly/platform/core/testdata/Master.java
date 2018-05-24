@@ -1,5 +1,6 @@
 package org.myfly.platform.core.testdata;
 
+import java.sql.Timestamp;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -37,15 +38,15 @@ import org.myfly.platform.core.system.domain.KeyEntity;
  *
  */
 @Entity
-@Table(name="SM_MASTER", catalog="TEST", schema="SAMPLE")
+@Table(name = "SM_MASTER", catalog = "TEST", schema = "SAMPLE")
 @MetaDataView(
 		//
 		tableView = @TableView(title = "主表", description = "主表信息"),
 		//
 		listViews = {
-				@ListView(name="default", fields = { "name", "description", "active", "createdBy",
+				@ListView(name = "default", fields = { "name", "description", "active",
 						"created" }, listStyle = ListStyle.TABLE),
-				@ListView(name="list2", fields = { "name", "description", "createdBy",
+				@ListView(name = "list2", fields = { "name", "description",
 						"created" }, listStyle = ListStyle.CARDLIST, filters = {
 								@FilterView(field = "name", operator = SQLOperator.LIKE) }, orders = @OrderView(field = "name")) },
 		//
@@ -54,8 +55,7 @@ import org.myfly.platform.core.system.domain.KeyEntity;
 				@FormView(sections = {
 						@SectionView(title = "用户信息", fieldSets = {
 								@FieldSetView(title = "基本信息", fields = { "name", "description" }),
-								@FieldSetView(title = "审计", fields = { "active", "createdBy", "created", "updatedBy",
-										"updated" }) }),
+								@FieldSetView(title = "审计", fields = { "active", "created" }) }),
 						@SectionView(type = SectionType.NOTE), @SectionView(type = SectionType.ATTACHMENT),
 						@SectionView(title = "子表区域", subTables = @SubTableView(title = "明细记录", tableAttr = "details")) }),
 				//
@@ -63,8 +63,7 @@ import org.myfly.platform.core.system.domain.KeyEntity;
 		//
 		outlineViews = { @OutlineView(title = "摘要信息", sections = @SectionView(title = "用户信息", fieldSets = {
 				@FieldSetView(title = "基本信息", fields = { "name", "description" }),
-				@FieldSetView(title = "审计", fields = { "active", "createdBy", "created", "updatedBy",
-						"updated" }) })) })
+				@FieldSetView(title = "审计", fields = { "active", "created" }) })) })
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Master extends KeyEntity {
 
@@ -72,9 +71,9 @@ public class Master extends KeyEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = 2217837879194985591L;
-	
-	@FieldView(title="名称")
-	@Column(nullable=false)
+
+	@FieldView(title = "名称")
+	@Column(nullable = false)
 	private String name;
 
 	/**
@@ -83,10 +82,18 @@ public class Master extends KeyEntity {
 	@FieldView(title = "简述")
 	@Column(length = 1000)
 	private String description;
-	
+
 	@FieldView(title = "数据类型")
 	@Column(length = 50)
 	private FieldDataType dataType;
+
+	@FieldView(title = "是否激活")
+	@Column
+	private boolean active;
+
+	@FieldView(title = "新增时间")
+	@Column
+	private Timestamp created;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "master")
 	@FieldView(title = "明细记录")
@@ -122,5 +129,21 @@ public class Master extends KeyEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public Timestamp getCreated() {
+		return created;
+	}
+
+	public void setCreated(Timestamp created) {
+		this.created = created;
 	}
 }

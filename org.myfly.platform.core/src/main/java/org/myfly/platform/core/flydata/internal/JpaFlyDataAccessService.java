@@ -31,6 +31,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
@@ -41,32 +42,32 @@ import org.springframework.util.Assert;
 public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 	@Override
 	public <T> T findOne(String entityName, String uid) {
+		AssertUtil.parameterEmpty(entityName, "entityName");
+		AssertUtil.parameterEmpty(uid, "uid");
 		EntityMetaData metaData = getEntityMetaData(entityName);
 		Serializable pkValue = metaData.getPkFieldDefinition().buildPK(uid);
-		return getJpaDataAccessService().findOne(entityName, pkValue);
+		return (T) getJpaDataAccessService().findOne(metaData.getEntityClass(), pkValue);
 	}
 
 	@Override
 	public <T> T findOne(String entityName, Map<String, Object> keyParams) {
-		List<T> list = getJpaDataAccessService().findAll(entityName, keyParams);
-		if (list == null || list.size() != 1) {
-			throw new IllegalArgumentException("查询结果只能为一条.");
-		}
-		T result = list.get(0);
-		return result;
+		AssertUtil.parameterEmpty(entityName, "entityName");
+		Assert.notEmpty(keyParams);
+		EntityMetaData metaData = getEntityMetaData(entityName);
+		Serializable pkValue =  metaData.getPkFieldDefinition().buildPK(keyParams);
+		return  (T) getJpaDataAccessService().findOne(metaData.getEntityClass(), pkValue);
 	}
 
 	@Override
 	public <T> List<T> findAll2(String entityName, Map<String, Object> params) {
-		return getJpaDataAccessService().findAll(entityName, params);
+		return getJpaDataAccessService().findAll(getEntityClass(entityName), params);
 	}
 
 	@Override
-	@Transactional
 	public FlyEntityMap findOne(String entityName, String uid, String formViewName, boolean printMode) {
 		EntityMetaData entityMetaData = getEntityMetaData(entityName);
 		Serializable pkValue = entityMetaData.getPkFieldDefinition().buildPK(uid);
-		Object result = getJpaDataAccessService().findOne(entityName, pkValue);
+		Object result = getJpaDataAccessService().findOne(entityMetaData.getEntityClass(), pkValue);
 		if (result != null) {
 			if (result instanceof IKeyEntity) {
 				try {
@@ -88,7 +89,7 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 	@Override
 	public long count(String entityName, String listViewName, EntityQueryMap params) {
 		Specifications specifications = getEntityQuerySpecifications(entityName, listViewName, params);
-		return getJpaDataAccessService().count(entityName, specifications);
+		return getJpaDataAccessService().count(getEntityClass(entityName), specifications);
 	}
 
 	@Override
@@ -118,19 +119,20 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 	@SuppressWarnings("rawtypes")
 	private Specifications getEntityQuerySpecifications(String entityName, String view, EntityQueryMap params) {
 		AssertUtil.parameterEmpty(entityName, "entityName");
-		FilterDefinition[] filterDefinitions = getEntityMetaData(entityName).getListDefinition(view).getFilters();
+		EntityMetaData metaData = getEntityMetaData(entityName);
+		FilterDefinition[] filterDefinitions = metaData.getListDefinition(view).getFilters();
 		// 添加没有在FilterDefinition中定义的过滤条件，缺省都为And，如果有多值缺省为In
 		if (MapUtils.isNotEmpty(params)) {
 			for (String paramName : params.keySet()) {
-				FieldDefinition field = getEntityMetaData(entityName).getField(paramName);
+				FieldDefinition field = metaData.getField(paramName);
 				if ((field != null) && !hasFilter(filterDefinitions, paramName)) {
 					SQLOperator sqlOperator = (params.get(paramName).length == 1) ? SQLOperator.EQUAL : SQLOperator.IN;
-					FilterDefinition filter = new FilterDefinition(field, sqlOperator);
+					FilterDefinition filter = new FilterDefinition(field.getName(), sqlOperator);
 					filterDefinitions = ArrayUtils.add(filterDefinitions, filter);
 				}
 			}
 		}
-		Specifications specifications = QuerySpecificationUtil.buildQuerySpecifications(filterDefinitions, params);
+		Specifications specifications = QuerySpecificationUtil.buildQuerySpecifications(metaData, filterDefinitions, params);
 		return specifications;
 	}
 
@@ -142,10 +144,10 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 		EntityMetaData metaData = getEntityMetaData(entityName);
 		ListDefinition listDefinition = metaData.getListDefinition(listViewName);
 		Specifications specifications = getEntityQuerySpecifications(entityName, listViewName, params);
-		Page<Object> pageData1 = getJpaDataAccessService().findAll(entityName, specifications, pageable);
+		Page<Object> pageData1 = (Page<Object>) getJpaDataAccessService().findAll(metaData.getEntityClass(), specifications, pageable);
 		List list = new ArrayList<>();
 		for (Object entity : pageData1.getContent()) {
-			String pkValue = metaData.getPkFieldDefinition().getPKValue(entity);
+			String pkValue = (String) metaData.getPkFieldDefinition().getValueHandler().getFieldValue(entity);
 			list.add(convertToViewMap(entityName, null, null, entity, listDefinition.getFields(),
 					listDefinition.getLabelField(), pkValue, listViewName, printMode));
 		}
@@ -215,7 +217,7 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 		if (FieldDataType.MDRELATION.equals(subField.getDataType())) {
 			try {
 				final Object entity = Class.forName(subField.getRelationClass()).newInstance();
-				entityMetaData.getPkFieldDefinition().setPKValue(entity, uid);
+				entityMetaData.getPkFieldDefinition().getValueHandler().setFieldValue(entity, uid);
 				Specification entityFilter = new Specification() {
 					@Override
 					public Predicate toPredicate(Root root, CriteriaQuery query, CriteriaBuilder cb) {
@@ -233,19 +235,19 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 		}
 		PKFieldDefinition pkFieldDefinition = subEntityMetaData.getPkFieldDefinition();
 		if (needPageable) {
-			Page pageData1 = getJpaDataAccessService().findAll(subentityName, specifications, pageable);
+			Page pageData1 = getJpaDataAccessService().findAll(getEntityClass(subentityName), specifications, pageable);
 			List<Map<String, String>> list = new ArrayList<>();
 			for (Object entity : pageData1.getContent()) {
-				String pkValue = pkFieldDefinition.getPKValue(entity);
+				String pkValue = (String) pkFieldDefinition.getValueHandler().getFieldValue(entity);
 				list.add(convertToViewMap(entityName, uid, subTableAttr, entity, subTable.getFields(),
 						subTable.getLabelField(), pkValue, view, printMode));
 			}
 			return (T) new PageImpl(list, pageable, pageData1.getTotalElements());
 		} else {
-			List result = getJpaDataAccessService().findAll(subentityName, specifications);
+			List result = (List) getJpaDataAccessService().findAll(getEntityClass(subentityName), specifications, (Sort)null);
 			List list = new ArrayList<>();
 			for (Object entity : result) {
-				String pkValue = pkFieldDefinition.getPKValue(entity);
+				String pkValue = (String) pkFieldDefinition.getValueHandler().getFieldValue(entity);
 				list.add(convertToViewMap(entityName, uid, subTableAttr, entity, subTable.getFields(),
 						subTable.getLabelField(), pkValue, view, printMode));
 			}
@@ -254,9 +256,13 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 	}
 
 	@Override
-	@Transactional
-	public int delOne(String entityName, String uid) {
-		return getJpaDataAccessService().delOne(entityName, uid);
+	public void delOne(String entityName, String uid) {
+		getJpaDataAccessService().delOne(getEntityClass(entityName), uid);
+	}
+	
+	@Override
+	public void del(String entityName) {
+		getJpaDataAccessService().delAll(getEntityClass(entityName));
 	}
 
 	@Override
@@ -268,11 +274,11 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 	}
 
 	@Override
-	@Transactional
 	public <T> String saveEntity(T entity) {
 		Assert.notNull(entity);
 		getJpaDataAccessService().saveEntity(entity);
-		return getEntityMetaData(entity.getClass().getName()).getPkFieldDefinition().getPKValue(entity);
+		return (String) getEntityMetaData(entity.getClass().getName()).getPkFieldDefinition().getValueHandler()
+				.getFieldValue(entity);
 	}
 
 	@Override
@@ -290,22 +296,17 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 	}
 
 	@Override
-	@Transactional
 	public <T> void saveEntity(List<T> entities) {
-		for (T entity : entities) {
-			saveEntity(entity);
-		}
+		getJpaDataAccessService().batchSaveEntity(entities);
 	}
 
 	@Override
-	@Transactional
 	public <T> void updateEntity(T entity) {
 		Assert.notNull(entity);
 		getJpaDataAccessService().updateEntity(entity);
 	}
 
 	@Override
-	@Transactional
 	public void updateEntity(String entityName, String uid, String subTableAttr, String subUid, String formViewName,
 			EntityMap values) {
 		Assert.notEmpty(values);
@@ -314,27 +315,23 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 	}
 
 	@Override
-	@Transactional
 	public void updateEntity(String entityName, String uid, String formViewName, EntityMap values) {
 		Object entity = values.newEntity(entityName, uid);
 		getJpaDataAccessService().updateEntity(uid, entity);
 	}
 
 	@Override
-	@Transactional
 	public void updateEntity(String entityName, String uid, Map<String, Object> values) {
-		getJpaDataAccessService().updateEntity(entityName, uid, values);
+		getJpaDataAccessService().updateEntity(getEntityClass(entityName), uid, values);
 	}
 
 	@Override
 	public long count(String entityName, Map<String, String> params) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public long count2(String entityName, Map<String, Object> params) {
-		// TODO Auto-generated method stub
-		return 0;
+		return getJpaDataAccessService().count(getEntityClass(entityName), QuerySpecificationUtil.buildQuerySpecifications(params));
 	}
 }

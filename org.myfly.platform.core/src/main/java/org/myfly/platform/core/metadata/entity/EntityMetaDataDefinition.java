@@ -102,4 +102,9 @@ public class EntityMetaDataDefinition extends MetaDataDefinition {
 	public void setPkFieldDefinition(PKFieldDefinition pkFieldDefinition) {
 		this.pkFieldDefinition = pkFieldDefinition;
 	}
+
+	@Override
+	public void validate() {
+		super.validate();
+	}
 }

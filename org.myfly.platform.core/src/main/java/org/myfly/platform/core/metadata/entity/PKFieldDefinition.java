@@ -1,5 +1,7 @@
 package org.myfly.platform.core.metadata.entity;
 
+import java.io.Serializable;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -9,6 +11,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.metadata.define.BaseDenifition;
 import org.myfly.platform.core.metadata.entity.handler.IFieldValueHandler;
 import org.myfly.platform.core.metadata.entity.handler.PKFieldValueHandler;
+import org.myfly.platform.core.utils.ClassUtil;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -131,5 +134,35 @@ public class PKFieldDefinition extends BaseDenifition {
 
 	public void setIdClass(Class<?> idClass) {
 		this.idClass = idClass;
+	}
+
+	/**
+	 * 构建实体主键
+	 * 
+	 * @param uid
+	 * @return
+	 */
+	public Serializable buildPK(String uid) {
+		if (KeyType.SINGLE.equals(getKeyType())) {
+			return (Serializable) ClassUtil.convert(uid, getFields()[0].getType());
+		} else {
+			// Object obj = getIdClass().newInstance();
+		}
+		return null;
+	}
+
+	/**
+	 * 构建实体主键
+	 * 
+	 * @param keyParams
+	 * @return
+	 */
+	public Serializable buildPK(Map<String, Object> keyParams) {
+		if (KeyType.SINGLE.equals(getKeyType())) {
+			return (Serializable) ClassUtil.convert(keyParams.get(getFields()[0].getName()), getFields()[0].getType());
+		} else {
+			// Object obj = getIdClass().newInstance();
+		}
+		return null;
 	}
 }

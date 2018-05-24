@@ -1,13 +1,16 @@
 package org.myfly.platform.core.metadata.entity;
 
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.persistence.Entity;
 
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.define.FKFieldDefinition;
+import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.FormDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.OutlineDefinition;
@@ -83,6 +86,7 @@ public class EntityMetaData {
 		FuncUtil.forEach(metaData.getOutlineDefinitions(), outlineDefinition -> {
 			addOutlineDefinition(outlineDefinition);
 		});
+		validate();
 	}
 
 	public String getEntityName() {
@@ -250,5 +254,43 @@ public class EntityMetaData {
 
 	public void setJpaEntity(boolean isJpaEntity) {
 		this.isJpaEntity = isJpaEntity;
+	}
+
+	/**
+	 * 获取字段定义
+	 * 
+	 * @param fields
+	 * @return
+	 */
+	public FieldDefinition[] getFields(String[] fields) {
+		return Stream.of(fields).map(name -> getField(name)).collect(Collectors.toList())
+				.toArray(new FieldDefinition[] {});
+	}
+
+	public void validate() {
+		getListDefinitions().values().forEach(item -> {
+			Stream.of(item.getFields()).forEach(name -> {
+				if (!getFieldMap().containsKey(name)) {
+					throw new RuntimeException(MessageFormat.format("实体[{0}]中名称为[{1}]列表视图中不存在[{2}]字段.",
+							new String[] { getEntityName(), item.getName(), name }));
+				}
+			});
+		});
+		getFormDefinitions().values().forEach(item -> {
+			Stream.of(item.getFields()).forEach(name -> {
+				if (!getFieldMap().containsKey(name)) {
+					throw new RuntimeException(MessageFormat.format("实体[{0}]中名称为[{1}]表单视图中不存在[{2}]字段.",
+							new String[] { getEntityName(), item.getName(), name }));
+				}
+			});
+		});
+		getOutlineDefinitions().values().forEach(item -> {
+			Stream.of(item.getFields()).forEach(name -> {
+				if (!getFieldMap().containsKey(name)) {
+					throw new RuntimeException(MessageFormat.format("实体[{0}]中名称为[{1}]摘要视图中不存在[{2}]字段.",
+							new String[] { getEntityName(), item.getName(), name }));
+				}
+			});
+		});
 	}
 }
