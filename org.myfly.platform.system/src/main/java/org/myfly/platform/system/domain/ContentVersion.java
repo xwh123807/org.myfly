@@ -1,7 +1,5 @@
 package org.myfly.platform.system.domain;
 
-import org.myfly.platform.core.system.domain.FlyEntity;
-
 /**
  * 内容版本
  * 

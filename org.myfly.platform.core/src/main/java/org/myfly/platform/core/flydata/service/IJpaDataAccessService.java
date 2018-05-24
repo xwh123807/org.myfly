@@ -8,19 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specifications;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
 public interface IJpaDataAccessService {
-	/**
-	 * 获取JpaRepository
-	 * 
-	 * @param entityName
-	 * @return
-	 */
-	@SuppressWarnings("rawtypes")
-	JpaRepository getSimpleJpaRepository(String entityName);
-
 	/**
 	 * 获取JpaRepository
 	 * 
@@ -29,15 +19,6 @@ public interface IJpaDataAccessService {
 	 */
 	@SuppressWarnings("rawtypes")
 	<T> SimpleJpaRepository getSimpleJpaRepository(Class<T> entityClass);
-
-	/**
-	 * 查找指定表中主键UID对应的记录
-	 * 
-	 * @param tableName
-	 * @param uid
-	 * @return
-	 */
-	<T> T findOne(String tableName, Serializable uid);
 
 	/**
 	 * 查找指定表中主键UID对应的记录
@@ -52,13 +33,6 @@ public interface IJpaDataAccessService {
 	/**
 	 * 查找指定表中所有的数据
 	 * 
-	 * @param tableName
-	 * @return
-	 */
-	<T> List<T> findAll(String tableName);
-	
-	/**
-	 * 查找指定表中所有的数据
 	 * @param entityClass
 	 * @return
 	 */
@@ -71,32 +45,15 @@ public interface IJpaDataAccessService {
 	 * @param pageable
 	 * @return
 	 */
-	<T> Page<T> findAll(String tableName, Pageable pageable);
-	
-	/**
-	 * 查找指定表中所有数据，分页返回
-	 * 
-	 * @param tableName
-	 * @param pageable
-	 * @return
-	 */
 	<T> Page<T> findAll(Class<T> entityClass, Pageable pageable);
 
 	/**
-	 * 使用语句删除实体，返回变更记录数
-	 * 
-	 * @param tableName
-	 * @param uid
-	 * @return
-	 */
-	int delOne(String tableName, Serializable uid);
-	
-	/**
 	 * 删除实体
+	 * 
 	 * @param entity
 	 */
 	<T> void delOne(T entity);
-	
+
 	/**
 	 * 
 	 * @param entityClass
@@ -105,14 +62,12 @@ public interface IJpaDataAccessService {
 	<T> void delOne(Class<T> entityClass, Serializable uid);
 
 	/**
-	 * 删除记录，返回删除的记录数
+	 * 删除所有实体
 	 * 
-	 * @param tableName
-	 * @param uid
-	 * @return
+	 * @param entityClass
 	 */
-	void delEntity(String tableName, Serializable uid);
-	
+	<T> void delAll(Class<T> entityClass);
+
 	/**
 	 * 保存实体
 	 * 
@@ -122,63 +77,76 @@ public interface IJpaDataAccessService {
 	<T> T saveEntity(T entity);
 
 	/**
-	 * 保存实体，返回保存后的实体
+	 * 保存实体，返回保存后的实体，values中已经设置好主键
 	 * 
 	 * @param tableName
 	 * @param values
 	 * @return
 	 */
-	<T> T saveEntity(String tableName, Map<String, Object> values);
-	
+	<T> T saveEntity(Class<T> entityClass, Map<String, Object> values);
+
 	/**
 	 * 修改实体
+	 * 
 	 * @param tableName
 	 * @param values
 	 * @return
 	 */
-	<T> T updateEntity(String tableName, Serializable uid, Map<String, Object> values);
-	
+	<T> T updateEntity(Class<T> entityClass, Serializable uid, Map<String, Object> values);
+
 	/**
 	 * 修改实体
+	 * 
 	 * @param uid
 	 * @param entity
 	 * @return
 	 */
 	<T> T updateEntity(Serializable uid, T entity);
-	
+
 	/**
 	 * 修改实体
+	 * 
 	 * @param entity
 	 * @return
 	 */
 	<T> T updateEntity(T entity);
 
 	/**
+	 * 批量保存实体
+	 * 
+	 * @param batchList
+	 */
+	<T> void batchSaveEntity(final List<T> batchList);
+
+	/**
+	 * 统计实体记录数
+	 * 
+	 * @param entityClass
+	 * @param specifications
+	 * @return
+	 */
+	long count(Class entityClass, Specifications specifications);
+
+	/**
 	 * 分页查询实体数据
 	 * 
-	 * @param tableName
+	 * @param entityClass
 	 *            主实体名
 	 * @param spec
 	 *            查询定义
 	 * @param pageable
 	 * @return
 	 */
-	<T> Page<T> findAll(String tableName, Specifications<T> spec, Pageable pageable);
-	
 	<T> Page<T> findAll(Class<T> entityClass, Specifications<?> spec, Pageable pageable);
 
 	/**
 	 * 实体数据查询，返回满足条件的所有记录
 	 * 
-	 * @param tableName
+	 * @param entityClass
 	 * @param spec
 	 * @return
 	 */
-	<T> List<T> findAll(String tableName, Specifications<T> spec);
-	
-	<T> List<T> findAll(Class<T> entityClass, Specifications<?> spec);
-	
-	<T> List<T> findAll(Class<T> entityClass, Sort sort);
+	<T> List<T> findAll(Class<T> entityClass, Specifications<?> spec, Sort sort);
 
 	/**
 	 * 实体数据查询
@@ -187,9 +155,8 @@ public interface IJpaDataAccessService {
 	 * @param params
 	 * @return
 	 */
-	<T> List<T> findAll(String tableName, Map<String, Object> params);
-
 	<T> List<T> findAll(Class<T> entityClass, Map<String, Object> params);
+
 	/**
 	 * 实体数据分页查询
 	 * 
@@ -198,23 +165,7 @@ public interface IJpaDataAccessService {
 	 * @param pageable
 	 * @return
 	 */
-	<T> Page<T> findAll(String tableName, Map<String, Object> params, Pageable pageable);
-	
 	<T> Page<T> findAll(Class<T> entityClass, Map<String, Object> params, Pageable pageable);
-
-	/**
-	 * 批量保存实体
-	 * 
-	 * @param tableName
-	 * @param batchList
-	 */
-	<T> void batchSaveEntity(final String tableName, final List<T> batchList);
-	
-	/**
-	 * 批量保存实体
-	 * @param batchList
-	 */
-	<T> void batchSaveEntity(final List<T> batchList);
 
 	/**
 	 * 根据名称获取对应实体的UID，实体Name字段必须唯一
@@ -233,9 +184,6 @@ public interface IJpaDataAccessService {
 	 * @return
 	 */
 	String transUIDToName(String tableName, String uid);
-
-	@SuppressWarnings("rawtypes")
-	long count(String tableName, Specifications specifications);
 
 	/**
 	 * 刷新数据，将事务提交

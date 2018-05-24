@@ -19,11 +19,11 @@ import org.myfly.apps.hr.domain.Skill;
 import org.myfly.apps.hr.domain.Special;
 import org.myfly.platform.core.context.UserContext;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
-import org.myfly.platform.core.system.domain.FlyEntity;
 import org.myfly.platform.core.system.domain.IUser;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
+import org.myfly.platform.system.domain.FlyEntity;
 import org.springframework.stereotype.Component;
 
 @Component

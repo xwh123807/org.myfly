@@ -9,7 +9,6 @@ import javax.persistence.Table;
 
 import org.myfly.platform.core.domain.SchemaConstants;
 import org.myfly.platform.core.metadata.annotation.FieldView;
-import org.myfly.platform.core.system.domain.FlyEntity;
 
 /**
  * 索引定义

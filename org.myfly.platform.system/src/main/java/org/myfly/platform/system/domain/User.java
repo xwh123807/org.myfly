@@ -29,7 +29,6 @@ import org.myfly.platform.core.metadata.annotation.SQLOperator;
 import org.myfly.platform.core.metadata.annotation.SectionType;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
-import org.myfly.platform.core.system.domain.FlyEntity;
 import org.myfly.platform.core.system.domain.IUser;
 
 /**

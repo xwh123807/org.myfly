@@ -1,7 +1,6 @@
-package org.myfly.platform.core.system.domain;
+package org.myfly.platform.system.domain;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.FetchType;
@@ -13,6 +12,10 @@ import javax.persistence.MappedSuperclass;
 
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.annotation.FieldView;
+import org.myfly.platform.core.system.domain.IFlyEntity;
+import org.myfly.platform.core.system.domain.ITenant;
+import org.myfly.platform.core.system.domain.IUser;
+import org.myfly.platform.core.system.domain.KeyEntity;
 
 /**
  * 基础实体类，实体类都需继承本类。
@@ -38,7 +41,7 @@ public class FlyEntity extends KeyEntity implements IFlyEntity{
 	@FieldView(title="租户")
 	@JoinColumn(updatable=false)
 	@ManyToOne(optional = true, fetch=FetchType.LAZY)
-	private ITenant tenant;
+	private Tenant tenant;
 	/**
 	 * 记录是否有效，默认有效
 	 */
@@ -58,7 +61,7 @@ public class FlyEntity extends KeyEntity implements IFlyEntity{
 	@FieldView(title="创建者")
 	@JoinColumn()
 	@ManyToOne(optional = true, fetch=FetchType.LAZY)
-	private IUser createdBy;
+	private User createdBy;
 	/**
 	 * 修改时间
 	 */
@@ -71,7 +74,7 @@ public class FlyEntity extends KeyEntity implements IFlyEntity{
 	@FieldView(title="修改人")
 	@JoinColumn()
 	@ManyToOne(optional = true, fetch=FetchType.LAZY)
-	private IUser updatedBy;
+	private User updatedBy;
 	
 	public FlyEntity() {
 	}
@@ -94,7 +97,7 @@ public class FlyEntity extends KeyEntity implements IFlyEntity{
 	}
 
 	public void setTenant(ITenant tenant) {
-		this.tenant = tenant;
+		this.tenant = (Tenant) tenant;
 	}
 
 	public IUser getCreatedBy() {
@@ -102,7 +105,7 @@ public class FlyEntity extends KeyEntity implements IFlyEntity{
 	}
 
 	public void setCreatedBy(IUser createdBy) {
-		this.createdBy = createdBy;
+		this.createdBy = (User) createdBy;
 	}
 
 	public IUser getUpdatedBy() {
@@ -110,7 +113,7 @@ public class FlyEntity extends KeyEntity implements IFlyEntity{
 	}
 
 	public void setUpdatedBy(IUser updatedBy) {
-		this.updatedBy = updatedBy;
+		this.updatedBy = (User) updatedBy;
 	}
 	public boolean isActive() {
 		return active;

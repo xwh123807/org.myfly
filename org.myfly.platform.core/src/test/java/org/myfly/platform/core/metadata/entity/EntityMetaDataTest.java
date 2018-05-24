@@ -10,13 +10,13 @@ public class EntityMetaDataTest {
 		EntityMetaData metaData = new EntityMetaData(Master.class);
 		Assert.assertEquals(Master.class, metaData.getEntityClass());
 		Assert.assertEquals("org.myfly.platform.core.testdata.Master", metaData.getEntityName());
-		Assert.assertEquals(11, metaData.getFieldMap().size());
+		Assert.assertEquals(5, metaData.getFieldMap().size());
 		Assert.assertEquals(2, metaData.getFormDefinitions().size());
 		Assert.assertEquals(2, metaData.getListDefinitions().size());
 		Assert.assertEquals(1, metaData.getOutlineDefinitions().size());
 		Assert.assertEquals(1, metaData.getPkFieldDefinition().getFields().length);
 
-		Assert.assertEquals(10, metaData.getAllFields().length);
+		Assert.assertEquals(4, metaData.getAllFields().length);
 		Assert.assertEquals(Master.class, metaData.newEntityInstance().getClass());
 	}
 }

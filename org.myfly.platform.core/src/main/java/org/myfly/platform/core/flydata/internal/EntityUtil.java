@@ -32,7 +32,7 @@ public class EntityUtil {
 			String[] items = values.get(field.getName());
 			if (ArrayUtils.isNotEmpty(items) && StringUtils.isNotEmpty(items[0])) {
 				// 只处理有赋值的属性
-				field.getSetValueHandler().setFieldValue(entity, items[0]);
+				field.getValueHandler().setFieldValue(entity, items[0]);
 			}
 		}
 	}
@@ -52,7 +52,7 @@ public class EntityUtil {
 			Object value = values.get(field.getName());
 			if (value != null) {
 				// 只处理有赋值的属性
-				field.getSetValueHandler().setFieldValue(entity, value);
+				field.getValueHandler().setFieldValue(entity, value);
 			}
 		}
 	}
@@ -277,7 +277,7 @@ public class EntityUtil {
 		} else {
 			EntityMetaData metaData = AppUtil.getEntityMataDataService().getEntityMetaData(entity.getClass().getName());
 			FieldDefinition labelField = metaData.getLabelField();
-			Object value = labelField.getGetValueHandler().getFieldValue(entity);
+			Object value = labelField.getValueHandler().getFieldValue(entity);
 			return ClassUtil.convertValueToString(value);
 		}
 	}

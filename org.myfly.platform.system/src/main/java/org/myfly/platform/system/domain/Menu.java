@@ -1,6 +1,7 @@
 package org.myfly.platform.system.domain;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,7 +24,6 @@ import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.TableView;
-import org.myfly.platform.core.system.domain.FlyEntity;
 import org.myfly.platform.core.system.domain.IMenu;
 
 /**
@@ -57,7 +57,7 @@ public class Menu extends FlyEntity implements IMenu{
 	@FieldView(title = "父菜单")
 	@ManyToOne
 	@JoinColumn
-	private IMenu parent;
+	private Menu parent;
 	/**
 	 * 下级菜单
 	 */
@@ -65,7 +65,7 @@ public class Menu extends FlyEntity implements IMenu{
 	@OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
 	@Fetch(FetchMode.SUBSELECT)
 	@OrderBy("orderNumber ASC")
-	private Set<IMenu> subMenus;
+	private Set<Menu> subMenus;
 
 	/**
 	 * 描述
@@ -97,15 +97,15 @@ public class Menu extends FlyEntity implements IMenu{
 	}
 
 	public void setParent(IMenu parent) {
-		this.parent = parent;
+		this.parent = (Menu) parent;
 	}
 
 	public Set<IMenu> getSubMenus() {
-		return subMenus;
+		return subMenus.stream().map(item -> (Menu)item).collect(Collectors.toSet());
 	}
 
 	public void setSubMenus(Set<IMenu> subMenus) {
-		this.subMenus = subMenus;
+		this.subMenus = subMenus.stream().map(item -> (Menu)item).collect(Collectors.toSet());
 	}
 
 	public String getDescription() {

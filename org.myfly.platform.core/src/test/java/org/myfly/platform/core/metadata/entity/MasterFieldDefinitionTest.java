@@ -33,11 +33,10 @@ public class MasterFieldDefinitionTest {
 				Assert.assertTrue(field.isRequired());
 				Assert.assertEquals("getUid", field.getGetter().getName());
 				Assert.assertEquals("setUid", field.getSetter().getName());
-				Assert.assertNotNull(field.getGetValueHandler());
-				Assert.assertNotNull(field.getSetValueHandler());
+				Assert.assertNotNull(field.getValueHandler());
 				String uid = UUIDUtil.newUUID();
-				field.getSetValueHandler().setFieldValue(master, uid);
-				Assert.assertEquals(uid, field.getGetValueHandler().getFieldValue(master));
+				field.getValueHandler().setFieldValue(master, uid);
+				Assert.assertEquals(uid, field.getValueHandler().getFieldValue(master));
 			} else if (item.getName().equals("name")) {
 				// String
 				EntityFieldDefinition field = new EntityFieldDefinition(item);
@@ -46,16 +45,15 @@ public class MasterFieldDefinitionTest {
 				Assert.assertEquals("名称", field.getTitle());
 				Assert.assertEquals(FieldDataType.VARCHAR, field.getDataType());
 				Assert.assertEquals(255, field.getMaxLength());
-				Assert.assertEquals(1, field.getMinLength());
+				Assert.assertEquals(0, field.getMinLength());
 				Assert.assertEquals(String.class, field.getType());
 				Assert.assertTrue(field.isRequired());
 				Assert.assertEquals("getName", field.getGetter().getName());
 				Assert.assertEquals("setName", field.getSetter().getName());
-				Assert.assertNotNull(field.getGetValueHandler());
-				Assert.assertNotNull(field.getSetValueHandler());
+				Assert.assertNotNull(field.getValueHandler());
 				String name = "xwh";
-				field.getSetValueHandler().setFieldValue(master, name);
-				Assert.assertEquals(name, field.getGetValueHandler().getFieldValue(master));
+				field.getValueHandler().setFieldValue(master, name);
+				Assert.assertEquals(name, field.getValueHandler().getFieldValue(master));
 			} else if ("description".equals(item.getName())) {
 				// Text
 				EntityFieldDefinition field = new EntityFieldDefinition(item);
@@ -69,11 +67,10 @@ public class MasterFieldDefinitionTest {
 				Assert.assertFalse(field.isRequired());
 				Assert.assertEquals("getDescription", field.getGetter().getName());
 				Assert.assertEquals("setDescription", field.getSetter().getName());
-				Assert.assertNotNull(field.getGetValueHandler());
-				Assert.assertNotNull(field.getSetValueHandler());
+				Assert.assertNotNull(field.getValueHandler());
 				String value = "description";
-				field.getSetValueHandler().setFieldValue(master, value);
-				Assert.assertEquals(value, field.getGetValueHandler().getFieldValue(master));
+				field.getValueHandler().setFieldValue(master, value);
+				Assert.assertEquals(value, field.getValueHandler().getFieldValue(master));
 			} else if ("active".equals(item.getName())) {
 				// Boolean
 				EntityFieldDefinition field = new EntityFieldDefinition(item);
@@ -87,11 +84,10 @@ public class MasterFieldDefinitionTest {
 				Assert.assertFalse(field.isRequired());
 				Assert.assertEquals("isActive", field.getGetter().getName());
 				Assert.assertEquals("setActive", field.getSetter().getName());
-				Assert.assertNotNull(field.getGetValueHandler());
-				Assert.assertNotNull(field.getSetValueHandler());
+				Assert.assertNotNull(field.getValueHandler());
 				boolean value = false;
-				field.getSetValueHandler().setFieldValue(master, value);
-				Assert.assertEquals(value, field.getGetValueHandler().getFieldValue(master));
+				field.getValueHandler().setFieldValue(master, value);
+				Assert.assertEquals(value, field.getValueHandler().getFieldValue(master));
 			} else if ("created".equals(item.getName())) {
 				// Timestamp
 				EntityFieldDefinition field = new EntityFieldDefinition(item);
@@ -105,11 +101,10 @@ public class MasterFieldDefinitionTest {
 				Assert.assertFalse(field.isRequired());
 				Assert.assertEquals("getCreated", field.getGetter().getName());
 				Assert.assertEquals("setCreated", field.getSetter().getName());
-				Assert.assertNotNull(field.getGetValueHandler());
-				Assert.assertNotNull(field.getSetValueHandler());
+				Assert.assertNotNull(field.getValueHandler());
 				Timestamp value = DateUtil.nowSqlTimestamp();
-				field.getSetValueHandler().setFieldValue(master, value);
-				Assert.assertEquals(value, field.getGetValueHandler().getFieldValue(master));
+				field.getValueHandler().setFieldValue(master, value);
+				Assert.assertEquals(value, field.getValueHandler().getFieldValue(master));
 			} else if ("details".equals(item.getName())) {
 				// MDRelation OneToMany
 				MDRelationFieldDefinition field = new MDRelationFieldDefinition(item);
@@ -120,8 +115,7 @@ public class MasterFieldDefinitionTest {
 				Assert.assertEquals(Set.class, field.getType());
 				Assert.assertEquals("getDetails", field.getGetter().getName());
 				Assert.assertEquals("setDetails", field.getSetter().getName());
-				Assert.assertNotNull(field.getGetValueHandler());
-				Assert.assertNotNull(field.getSetValueHandler());
+				Assert.assertNotNull(field.getValueHandler());
 				Assert.assertEquals(Detail.class.getName(), field.getRelationClass());
 				Assert.assertEquals("Detail", field.getRelationTable());
 			} else if ("tenant".equals(item.getName())) {
@@ -136,8 +130,7 @@ public class MasterFieldDefinitionTest {
 				Assert.assertEquals(ITenant.class.getName(), field.getRelationClass());
 				Assert.assertEquals("getTenant", field.getGetter().getName());
 				Assert.assertEquals("setTenant", field.getSetter().getName());
-				Assert.assertNotNull(field.getGetValueHandler());
-				Assert.assertNotNull(field.getSetValueHandler());
+				Assert.assertNotNull(field.getValueHandler());
 			} else if ("dataType".equals(item.getName())) {
 				// SysEnum 系统枚举类型，Java枚举类
 				EntityFieldDefinition field = new EntityFieldDefinition(item);
@@ -150,13 +143,12 @@ public class MasterFieldDefinitionTest {
 				Assert.assertEquals(FieldDataType.class, field.getType());
 				Assert.assertEquals("getDataType", field.getGetter().getName());
 				Assert.assertEquals("setDataType", field.getSetter().getName());
-				Assert.assertNotNull(field.getGetValueHandler());
-				Assert.assertNotNull(field.getSetValueHandler());
+				Assert.assertNotNull(field.getValueHandler());
 				FieldDataType value = FieldDataType.SYSENUM;
-				field.getSetValueHandler().setFieldValue(master, value);
-				Assert.assertEquals(value, field.getGetValueHandler().getFieldValue(master));
-				field.getSetValueHandler().setFieldValue(master, value.name());
-				Assert.assertEquals(value, field.getGetValueHandler().getFieldValue(master));
+				field.getValueHandler().setFieldValue(master, value);
+				Assert.assertEquals(value, field.getValueHandler().getFieldValue(master));
+				field.getValueHandler().setFieldValue(master, value.name());
+				Assert.assertEquals(value, field.getValueHandler().getFieldValue(master));
 			}
 		});
 	}

@@ -207,7 +207,7 @@ public class SearchService implements ISearchService {
 		// 先删除索引
 		deleteEntityIndex(entityName);
 		IFlyDataAccessService dataService = AppUtil.getFlyDataAccessService(entityName);
-		EntityMetaData metaData = AppUtil.getEntityMetadata(entityName);
+		EntityMetaData metaData = AppUtil.getEntityMetaData(entityName);
 		List<FlyEntityMap> lists = dataService.findAll(entityName, EntityMetaDataConstants.DEFAULT_ALL_NAME, null,
 				true);
 		if (log.isInfoEnabled()) {

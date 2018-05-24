@@ -13,8 +13,8 @@ import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.domain.FieldDataType.FieldAttr;
 import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
-import org.myfly.platform.core.metadata.entity.handler.DefaultGetFieldValueHandler;
-import org.myfly.platform.core.metadata.entity.handler.DefaultSetFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.handler.DefaultFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.handler.IFieldValueHandler;
 import org.myfly.platform.core.utils.EntityClassUtil;
 import org.myfly.platform.core.utils.EntityClassUtil.FieldInfo;
 import org.myfly.platform.core.utils.StringUtil;
@@ -22,6 +22,12 @@ import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * 实体属性定义，支持基本数据类型
+ * 
+ * @author xiangwanhong
+ *
+ */
 public class EntityFieldDefinition extends FieldDefinition {
 	/**
 	 * 
@@ -31,12 +37,7 @@ public class EntityFieldDefinition extends FieldDefinition {
 	 * 值不为空时，取值由此函数确定
 	 */
 	@JsonIgnore
-	private IGetFieldValueHandler getValueHandler;
-	/**
-	 * 设置实体函数
-	 */
-	@JsonIgnore
-	private ISetFieldValueHandler setValueHandler;
+	private IFieldValueHandler valueHandler;
 	/**
 	 * get方法
 	 */
@@ -68,7 +69,7 @@ public class EntityFieldDefinition extends FieldDefinition {
 		}
 		setIdField(property.getAnnotation(Id.class) != null || property.getAnnotation(EmbeddedId.class) != null);
 		FieldAttr fieldAttr = FieldDataType.fromJavaType(getType(), column);
-		if (FieldDataType.NONE.equals(getDataType())) {
+		if (getDataType() == null || FieldDataType.NONE.equals(getDataType())) {
 			setDataType(fieldAttr.getDataType());
 		}
 		try {
@@ -78,8 +79,7 @@ public class EntityFieldDefinition extends FieldDefinition {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		setGetValueHandler(new DefaultGetFieldValueHandler(this));
-		setSetValueHandler(new DefaultSetFieldValueHandler(this));
+		setValueHandler(new DefaultFieldValueHandler(this));
 	}
 
 	public Method getGetter() {
@@ -98,20 +98,12 @@ public class EntityFieldDefinition extends FieldDefinition {
 		this.setter = setter;
 	}
 
-	public IGetFieldValueHandler getGetValueHandler() {
-		return getValueHandler;
+	public IFieldValueHandler getValueHandler() {
+		return valueHandler;
 	}
 
-	public void setGetValueHandler(IGetFieldValueHandler getValueHandler) {
-		this.getValueHandler = getValueHandler;
-	}
-
-	public ISetFieldValueHandler getSetValueHandler() {
-		return setValueHandler;
-	}
-
-	public void setSetValueHandler(ISetFieldValueHandler setValueHandler) {
-		this.setValueHandler = setValueHandler;
+	public void setValueHandler(IFieldValueHandler valueHandler) {
+		this.valueHandler = valueHandler;
 	}
 
 	@Override
@@ -120,7 +112,6 @@ public class EntityFieldDefinition extends FieldDefinition {
 		Assert.hasLength(getName());
 		Assert.notNull(getGetter());
 		Assert.notNull(getSetter());
-		Assert.notNull(getGetValueHandler());
-		Assert.notNull(getSetValueHandler());
+		Assert.notNull(getValueHandler());
 	}
 }

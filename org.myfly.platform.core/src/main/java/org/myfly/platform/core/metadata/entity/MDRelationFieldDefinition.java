@@ -29,6 +29,10 @@ public class MDRelationFieldDefinition extends RelationFieldDefinition {
 	 * 主子表关系时：显示字段定义
 	 */
 	private FieldDefinition labelFieldDefinition;
+	/**
+	 * 如果是主子表关系，存放子表对应的字段<br>
+	 */
+	private EntityFieldDefinition relationField;
 
 	public MDRelationFieldDefinition(Field field) {
 		super(field);
@@ -40,10 +44,10 @@ public class MDRelationFieldDefinition extends RelationFieldDefinition {
 		// 获取子表字段
 		OneToMany oneToMany = property.getInverse().findAnnotation(OneToMany.class);
 		if (oneToMany != null && StringUtils.isNotBlank(oneToMany.mappedBy())) {
-			FieldDefinition tmp = new FieldDefinition();
+			EntityFieldDefinition tmp = new EntityFieldDefinition(this);
 			tmp.setTitle("临时，读取时更新");
 			tmp.setName(oneToMany.mappedBy());
-			setRelationField(tmp);
+			EntityFieldDefinition(tmp);
 		} else {
 			AssertUtil.parameterEmpty("OneToMany.mappedBy",
 					"主子表关系必须设置实体[getTableDefinition().getName()]子表属性[" + getName() + "]的OneToMany.mappedBy属性.");
@@ -64,5 +68,13 @@ public class MDRelationFieldDefinition extends RelationFieldDefinition {
 
 	public void setLabelFieldDefinition(FieldDefinition labelFieldDefinition) {
 		this.labelFieldDefinition = labelFieldDefinition;
+	}
+
+	public EntityFieldDefinition getRelationField() {
+		return relationField;
+	}
+
+	public void setRelationField(EntityFieldDefinition relationField) {
+		this.relationField = relationField;
 	}
 }

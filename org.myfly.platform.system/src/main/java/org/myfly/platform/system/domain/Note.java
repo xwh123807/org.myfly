@@ -18,7 +18,6 @@ import org.myfly.platform.core.metadata.annotation.OrderType;
 import org.myfly.platform.core.metadata.annotation.OrderView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
-import org.myfly.platform.core.system.domain.FlyEntity;
 
 /**
  * 备注

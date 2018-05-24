@@ -15,7 +15,7 @@ import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
-import org.myfly.platform.core.system.domain.FlyEntity;
+import org.myfly.platform.system.domain.FlyEntity;
 
 /**
  * 职位序列技能，管理某个职位序列下需要掌握的技能

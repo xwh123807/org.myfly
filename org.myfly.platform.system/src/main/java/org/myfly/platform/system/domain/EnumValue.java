@@ -18,7 +18,6 @@ import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.SectionType;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
-import org.myfly.platform.core.system.domain.FlyEntity;
 import org.myfly.platform.core.system.domain.IEnumType;
 
 /**
@@ -50,14 +49,14 @@ public class EnumValue extends FlyEntity {
 
 	@FieldView(title = "枚举类型")
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
-	private IEnumType enumType;
+	private EnumType enumType;
 
 	public IEnumType getEnumType() {
 		return enumType;
 	}
 
-	public void setEnumType(EnumType IEnumType) {
-		this.enumType = enumType;
+	public void setEnumType(IEnumType enumType) {
+		this.enumType = (EnumType) enumType;
 	}
 
 	public Boolean getIsDefault() {

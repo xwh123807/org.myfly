@@ -5,7 +5,13 @@ import java.lang.reflect.Field;
 import javax.persistence.ManyToOne;
 
 import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.metadata.entity.handler.SearchRelationFieldValueHandler;
 
+/**
+ * 查找关系属性定义<br>
+ * @author xiangwanhong
+ *
+ */
 public class SearchRelationFieldDefinition extends RelationFieldDefinition {
 	/**
 	 * 
@@ -17,6 +23,7 @@ public class SearchRelationFieldDefinition extends RelationFieldDefinition {
 		setDataType(FieldDataType.SEARCHRELATION);
 		ManyToOne manyToOne = field.getAnnotation(ManyToOne.class);
 		setRequired(!manyToOne.optional());
+		setValueHandler(new SearchRelationFieldValueHandler(this));
 	}
 
 /*		

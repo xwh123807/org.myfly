@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
@@ -40,28 +39,6 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	@Autowired
 	private IEntityMetaDataService entityMetaDataService;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.myfly.platform.system.service.IDataAccessService#
-	 * getSimpleJpaRepository(java.lang.String)
-	 */
-	@SuppressWarnings("rawtypes")
-	public JpaRepository getSimpleJpaRepository(final String entityName) {
-		AssertUtil.parameterEmpty(entityName, "entityName");
-		Class<?> domainClass = entityMetaDataService.getEntityMetaData(entityName).getEntityClass();
-		AssertUtil.parameterEmpty(domainClass, "domainClass", "找不到名称为[" + entityName + "]的实体类.");
-		return new SimpleJpaRepository<>(domainClass, entityManager);
-	}
-
-	@SuppressWarnings("rawtypes")
-	public JpaSpecificationExecutor getSimpleJpaSpecificationRepository(final String entityName) {
-		AssertUtil.parameterEmpty(entityName, "entityName");
-		Class<?> domainClass = entityMetaDataService.getEntityMetaData(entityName).getEntityClass();
-		AssertUtil.parameterEmpty(domainClass, "domainClass", "找不到名称为[" + entityName + "]的实体类.");
-		return new SimpleJpaRepository<>(domainClass, entityManager);
-	}
-
 	@SuppressWarnings("rawtypes")
 	public <T> SimpleJpaRepository getSimpleJpaRepository(final Class<T> entityClass) {
 		AssertUtil.parameterEmpty(entityClass, "entityClass");
@@ -71,61 +48,21 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.myfly.platform.system.service.IDataAccessService#findOne(java.lang.
-	 * String, java.lang.String)
-	 */
-	@SuppressWarnings("unchecked")
-	public <T> T findOne(final String tableName, final Serializable uid) {
-		AssertUtil.parameterEmpty(tableName, "tableName");
-		AssertUtil.parameterEmpty(uid, "uid");
-		try {
-			return (T) getSimpleJpaRepository(tableName).getOne(uid);
-		} catch (EntityNotFoundException e) {
-			return null;
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.myfly.platform.system.service.IDataAccessService#findOne(java.lang.
+	 * @see org.myfly.platform.system.service.IDataAccessService#findOne(java.lang.
 	 * Class, java.io.Serializable)
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public <T> T findOne(final Class<T> entityClass, final Serializable uid) {
 		AssertUtil.parameterEmpty(entityClass, "entityClass");
 		AssertUtil.parameterEmpty(uid, "uid");
-		try {
-			return (T) getSimpleJpaRepository(entityClass).getOne(uid);
-		} catch (EntityNotFoundException e) {
-			return null;
-		}
+		return (T) getSimpleJpaRepository(entityClass).getOne(uid);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.myfly.platform.system.service.IDataAccessService#delOne(java.lang.
-	 * String, java.lang.String)
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public int delOne(final String tableName, final Serializable uid) {
-		AssertUtil.parameterEmpty(tableName, "tableName");
-		AssertUtil.parameterEmpty(uid, "uid");
-		getSimpleJpaRepository(tableName).delete(uid);
-		return 1;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.myfly.platform.system.service.IDataAccessService#delOne(java.lang.
+	 * @see org.myfly.platform.system.service.IDataAccessService#delOne(java.lang.
 	 * Class, java.io.Serializable)
 	 */
 	@SuppressWarnings("unchecked")
@@ -140,8 +77,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.myfly.platform.system.service.IDataAccessService#delOne(java.lang.
+	 * @see org.myfly.platform.system.service.IDataAccessService#delOne(java.lang.
 	 * Object)
 	 */
 	@Override
@@ -155,16 +91,13 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.myfly.platform.system.service.IDataAccessService#delEntity(java.lang.
-	 * String, java.lang.String)
+	 * org.myfly.platform.core.flydata.service.IJpaDataAccessService#delAll(java.
+	 * lang.Class)
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
-	public void delEntity(final String tableName, final Serializable uid) {
-		AssertUtil.parameterEmpty(tableName, "tableName");
-		AssertUtil.parameterEmpty(uid, "uid");
-		getSimpleJpaRepository(tableName).delete(uid);
+	public <T> void delAll(Class<T> entityClass) {
+		AssertUtil.parameterEmpty(entityClass, "entityClass");
+		getSimpleJpaRepository(entityClass).deleteAllInBatch();
 	}
 
 	/*
@@ -192,9 +125,9 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 */
 	@Override
 	@Transactional
-	public <T> T saveEntity(String tableName, Map<String, Object> values) {
-		EntityMetaData metaData = entityMetaDataService.getEntityMetaData(tableName);
-		return internalSaveEntity(tableName, values, metaData);
+	public <T> T saveEntity(Class<T> entityClass, Map<String, Object> values) {
+		EntityMetaData metaData = entityMetaDataService.getEntityMetaData(entityClass.getName());
+		return internalSaveEntity(metaData.getEntityName(), values, metaData);
 	}
 
 	/**
@@ -220,19 +153,6 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 		return entity;
 	}
 
-	private <T> void internalSaveEntityOnly(final String tableName, final Map<String, Object> values,
-			EntityMetaData metaData) {
-		try {
-			// 新增模式
-			T entity = null;
-			entity = EntityUtil.buildNewEntity(tableName, metaData, values);
-			beforeInsertFlyEntity(entity);
-			saveEntity(entity);
-		} catch (Exception e) {
-			throw new RuntimeException("保存实体[" + tableName + "]失败，错误信息：" + e.getMessage());
-		}
-	}
-
 	/**
 	 * 修改实体保存
 	 * 
@@ -256,26 +176,13 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 		return entity;
 	}
 
-	private <T> void internalUpdateEntityOnly(final String tableName, final Serializable uid,
-			final Map<String, Object> values, EntityMetaData metaData) {
-		try {
-			T entity = null;
-			entity = findOne(tableName, uid);
-			AssertUtil.parameterEmpty(entity, "entity", "找不到[" + tableName + "." + uid.toString() + "]对应实体。");
-			EntityUtil.updateEntity(entity, metaData, values);
-			getSimpleJpaRepository(tableName).save(entity);
-		} catch (Exception e) {
-			throw new RuntimeException("保存实体[" + tableName + "]失败，错误信息：" + e.getMessage());
-		}
-	}
-
 	@Override
 	@Transactional
-	public <T> T updateEntity(String tableName, Serializable uid, Map<String, Object> values) {
-		AssertUtil.parameterEmpty(tableName, "tableName");
+	public <T> T updateEntity(Class<T> entityClass, Serializable uid, Map<String, Object> values) {
+		AssertUtil.parameterEmpty(entityClass, "entityClass");
 		AssertUtil.parameterEmpty(uid, "uid");
-		EntityMetaData metaData = entityMetaDataService.getEntityMetaData(tableName);
-		return internalUpdateEntity(tableName, uid, values, metaData);
+		EntityMetaData metaData = entityMetaDataService.getEntityMetaData(entityClass.getName());
+		return internalUpdateEntity(metaData.getEntityName(), uid, values, metaData);
 	}
 
 	@Override
@@ -290,7 +197,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	@Transactional
 	public <T> T updateEntity(Serializable uid, T entity) {
 		EntityMetaData metaData = entityMetaDataService.getEntityMetaData(entity.getClass().getName());
-		metaData.getPkFieldDefinition().setPKValue(entity, uid);
+		metaData.getPkFieldDefinition().getValueHandler().setFieldValue(entity, uid);
 		return updateEntity(entity);
 	}
 
@@ -298,20 +205,19 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.myfly.platform.system.service.IDataAccessService#findAll(java.lang.
-	 * String)
+	 * org.myfly.platform.core.flydata.service.IJpaDataAccessService#count(java.lang
+	 * .Class, org.springframework.data.jpa.domain.Specifications)
 	 */
-	@SuppressWarnings("unchecked")
-	public <T> List<T> findAll(final String tableName) {
-		AssertUtil.parameterEmpty(tableName, "tableName");
-		return getSimpleJpaRepository(tableName).findAll();
+	@Override
+	public long count(Class entityClass, Specifications specifications) {
+		AssertUtil.parameterEmpty(entityClass, "entityClass");
+		return getSimpleJpaRepository(entityClass).count(specifications);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.myfly.platform.system.service.IDataAccessService#findAll(java.lang.
+	 * @see org.myfly.platform.system.service.IDataAccessService#findAll(java.lang.
 	 * Class)
 	 */
 	@SuppressWarnings("unchecked")
@@ -321,30 +227,16 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 		return getSimpleJpaRepository(entityClass).findAll();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.myfly.platform.system.service.IDataAccessService#findAll(java.lang.
-	 * String, org.springframework.data.domain.Pageable)
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> Page<T> findAll(final String tableName, final Pageable pageable) {
-		return getSimpleJpaRepository(tableName).findAll(pageable);
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public <T> List<T> findAll(Class<T> entityClass, Sort sort) {
-		return getSimpleJpaRepository(entityClass).findAll(sort);
+	public <T> List<T> findAll(Class<T> entityClass, Specifications<?> spec, Sort sort) {
+		return getSimpleJpaRepository(entityClass).findAll(spec, sort);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.myfly.platform.system.service.IDataAccessService#findAll(java.lang.
+	 * @see org.myfly.platform.system.service.IDataAccessService#findAll(java.lang.
 	 * Class, org.springframework.data.domain.Pageable)
 	 */
 	@SuppressWarnings("unchecked")
@@ -358,43 +250,10 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.myfly.platform.system.service.IDataAccessService#findAll(java.lang.
-	 * String, org.springframework.data.jpa.domain.Specifications)
-	 */
-	@SuppressWarnings("unchecked")
-	public <T> List<T> findAll(final String tableName, final Specifications<T> spec) {
-		AssertUtil.parameterEmpty(tableName, "tableName");
-		return getSimpleJpaSpecificationRepository(tableName).findAll(spec);
-	}
-
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	public long count(String tableName, Specifications specifications) {
-		return getSimpleJpaSpecificationRepository(tableName).count(specifications);
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public <T> List<T> findAll(Class<T> entityClass, Specifications<?> spec) {
-		AssertUtil.parameterEmpty(entityClass, "entityClass");
-		return getSimpleJpaRepository(entityClass).findAll(spec);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.myfly.platform.system.service.IDataAccessService#findAll(java.lang.
-	 * String, org.springframework.data.jpa.domain.Specification,
+	 * org.myfly.platform.core.flydata.service.IJpaDataAccessService#findAll(java.
+	 * lang.Class, org.springframework.data.jpa.domain.Specifications,
 	 * org.springframework.data.domain.Pageable)
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public <T> Page<T> findAll(final String tableName, Specifications<T> spec, Pageable pageable) {
-		AssertUtil.parameterEmpty(tableName, "tableName");
-		return getSimpleJpaSpecificationRepository(tableName).findAll(spec, pageable);
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> Page<T> findAll(Class<T> entityClass, Specifications<?> spec, Pageable pageable) {
@@ -406,43 +265,24 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.myfly.platform.system.service.IDataAccessService#findAll(java.lang.
-	 * String, java.util.Map)
+	 * org.myfly.platform.core.flydata.service.IJpaDataAccessService#findAll(java.
+	 * lang.Class, java.util.Map)
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public <T> List<T> findAll(final String tableName, final Map<String, Object> params) {
-		return (List<T>) findAll(tableName, QuerySpecificationUtil.buildQuerySpecifications(params));
-	}
-
 	@Override
 	public <T> List<T> findAll(Class<T> entityClass, Map<String, Object> params) {
-		return findAll(entityClass, QuerySpecificationUtil.buildQuerySpecifications(params));
+		return findAll(entityClass, QuerySpecificationUtil.buildQuerySpecifications(params), null);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.myfly.platform.system.service.IDataAccessService#findAll(java.lang.
-	 * String, java.util.Map, org.springframework.data.domain.Pageable)
+	 * org.myfly.platform.core.flydata.service.IJpaDataAccessService#findAll(java.
+	 * lang.Class, java.util.Map, org.springframework.data.domain.Pageable)
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public <T> Page<T> findAll(final String tableName, final Map<String, Object> params, final Pageable pageable) {
-		return (Page<T>) findAll(tableName, QuerySpecificationUtil.buildQuerySpecifications(params), pageable);
-	}
-
 	@Override
 	public <T> Page<T> findAll(Class<T> entityClass, Map<String, Object> params, Pageable pageable) {
 		return findAll(entityClass, QuerySpecificationUtil.buildQuerySpecifications(params), pageable);
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public <T> void batchSaveEntity(final String tableName, final List<T> batchList) {
-		getSimpleJpaRepository(tableName).save(batchList);
 	}
 
 	@Override
@@ -481,13 +321,13 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 */
 	@Override
 	public String transUIDToName(final String tableName, final String uid) {
-		//TODO 
+		// TODO
 		return null;
-//		AssertUtil.parameterEmpty(tableName, "tableName");
-//		AssertUtil.parameterEmpty(uid, "uid");
-//		SBaseEntity entity = findOne(tableName, uid);
-//		AssertUtil.recordNotFound(entity, tableName, "uid", uid);
-//		return entity.getName();
+		// AssertUtil.parameterEmpty(tableName, "tableName");
+		// AssertUtil.parameterEmpty(uid, "uid");
+		// SBaseEntity entity = findOne(tableName, uid);
+		// AssertUtil.recordNotFound(entity, tableName, "uid", uid);
+		// return entity.getName();
 	}
 
 	@Override

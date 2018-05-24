@@ -65,7 +65,7 @@ public class AccessLog extends KeyEntity {
 	@FieldView(title = "访问人")
 	@JoinColumn(name = "createdId")
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	private IUser createdBy;
+	private User createdBy;
 	/**
 	 * 访问方式 GET|POST
 	 */
@@ -129,7 +129,7 @@ public class AccessLog extends KeyEntity {
 	}
 
 	public void setCreatedBy(IUser createdBy) {
-		this.createdBy = createdBy;
+		this.createdBy = (User) createdBy;
 	}
 
 	public String getUrl() {

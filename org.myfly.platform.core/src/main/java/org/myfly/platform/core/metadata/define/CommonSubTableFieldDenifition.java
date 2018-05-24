@@ -43,8 +43,7 @@ public class CommonSubTableFieldDenifition extends RelationFieldDefinition {
 		RelationFieldDefinition parentField = metaData.getField(commonSubTableType.getParentAttrName());
 		Assert.notNull(parentField,
 				"实体[" + commonSubTableType.getTableClass() + "]不存在属性[" + commonSubTableType.getParentAttrName() + "]");
-		fieldDefinition.setSetValueHandler(parentField.getSetValueHandler());
-		fieldDefinition.setGetValueHandler(parentField.getGetValueHandler());
+		fieldDefinition.setValueHandler(parentField.getValueHandler());
 		fieldDefinition.setGetter(parentField.getGetter());
 		fieldDefinition.setSetter(parentField.getSetter());
 

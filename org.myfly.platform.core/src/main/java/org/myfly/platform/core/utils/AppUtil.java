@@ -7,7 +7,6 @@ import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.starter.ApplicationStarter;
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.GenericConversionService;
@@ -72,7 +71,7 @@ public class AppUtil {
 			conversionService = (GenericConversionService) getApplicationConext().getBean("mvcConversionService");
 		} catch (Exception e) {
 		}
-		
+
 		if (conversionService == null) {
 			conversionService = new DefaultFormattingConversionService();
 			(new ApplicationStarter()).registerConverterFactory(conversionService);
@@ -93,18 +92,28 @@ public class AppUtil {
 	/**
 	 * 获取实体元模型
 	 * 
-	 * @param entityName
+	 * @param entityClassOrName
 	 * @return
 	 */
-	public static EntityMetaData getEntityMetadata(String entityName) {
-		Assert.hasLength(entityName);
+	public static EntityMetaData getEntityMetaData(String entityClassOrName) {
+		Assert.hasLength(entityClassOrName);
 		EntityMetaData metaData = null;
 		try {
-			metaData = getEntityMataDataService().getEntityMetaData(entityName);
+			IEntityMetaDataService emService = null;
+			try {
+				emService = getEntityMataDataService();
+			} catch (Exception e) {
+			}
+			if (emService == null) {
+				Class<?> entityClass = Class.forName(entityClassOrName);
+				metaData = new EntityMetaData(entityClass);
+			} else {
+				metaData = getEntityMataDataService().getEntityMetaData(entityClassOrName);
+			}
 		} catch (Exception e) {
-			throw new RuntimeException("查找元模型[" + entityName + "]失败，" + e.getMessage());
+			throw new RuntimeException("查找元模型[" + entityClassOrName + "]失败，" + e.getMessage());
 		}
-		Assert.notNull(metaData, "找不到名称为[" + entityName + "]的元模型");
+		Assert.notNull(metaData, "找不到名称为[" + entityClassOrName + "]的元模型");
 		return metaData;
 	}
 
@@ -147,7 +156,7 @@ public class AppUtil {
 	 * @return
 	 */
 	private static boolean isJpaEntity(String entityName) {
-		return getEntityMetadata(entityName).isJpaEntity();
+		return getEntityMetaData(entityName).isJpaEntity();
 	}
 
 	/**

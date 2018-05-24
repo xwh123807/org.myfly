@@ -1,6 +1,7 @@
 package org.myfly.platform.system.domain;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +24,6 @@ import org.myfly.platform.core.metadata.annotation.SectionType;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.SubTableView;
 import org.myfly.platform.core.metadata.annotation.TableView;
-import org.myfly.platform.core.system.domain.FlyEntity;
 import org.myfly.platform.core.system.domain.IEnumType;
 import org.myfly.platform.core.system.domain.IEnumValue;
 
@@ -34,8 +34,9 @@ import org.myfly.platform.core.system.domain.IEnumValue;
  *
  */
 @Entity
-@Table(schema = SchemaConstants.PB, indexes={@Index(name="idx_enumtype_entitynameattr",unique=true, columnList="entityName,attrName")})
-@MetaDataView(tableView = @TableView(title = "枚举类型") , listViews = {
+@Table(schema = SchemaConstants.PB, indexes = {
+		@Index(name = "idx_enumtype_entitynameattr", unique = true, columnList = "entityName,attrName") })
+@MetaDataView(tableView = @TableView(title = "枚举类型"), listViews = {
 		//
 		@ListView(name = "default", fields = { "name", "description", "entityName",
 				"attrName" }, listStyle = ListStyle.TABLE, filters = { @FilterView(field = "name"),
@@ -47,8 +48,8 @@ import org.myfly.platform.core.system.domain.IEnumValue;
 														@SubTableView(tableAttr = "enumValues") }),
 										@SectionView(type = SectionType.NOTE),
 										@SectionView(type = SectionType.ATTACHMENT) }) })
-@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class EnumType extends FlyEntity implements IEnumType{
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+public class EnumType extends FlyEntity implements IEnumType {
 	/**
 	 * 
 	 */
@@ -74,7 +75,7 @@ public class EnumType extends FlyEntity implements IEnumType{
 
 	@FieldView(title = "枚举值")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "enumType")
-	private Set<IEnumValue> enumValues;
+	private Set<EnumValue> enumValues;
 
 	public String getDescription() {
 		return description;
@@ -101,10 +102,10 @@ public class EnumType extends FlyEntity implements IEnumType{
 	}
 
 	public Set<IEnumValue> getEnumValues() {
-		return enumValues;
+		return enumValues.stream().map(item -> (IEnumValue) item).collect(Collectors.toSet());
 	}
 
 	public void setEnumValues(Set<IEnumValue> enumValues) {
-		this.enumValues = enumValues;
+		this.enumValues = enumValues.stream().map(item -> (EnumValue) item).collect(Collectors.toSet());
 	}
 }

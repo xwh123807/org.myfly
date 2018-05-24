@@ -470,7 +470,7 @@ public class EntityMetaData2 implements Serializable {
 	 * @return
 	 */
 	private FieldDefinition buildAutoRelationField(FieldDefinition field, String relAttr) {
-		String relLabel = AppUtil.getEntityMetadata(field.getRelationClass()).getField(relAttr).getTitle();
+		String relLabel = AppUtil.getEntityMetaData(field.getRelationClass()).getField(relAttr).getTitle();
 		FieldDefinition newField = new FieldDefinition(relLabel, field.getName() + "__" + relAttr,
 				FieldDataType.AUTORELATION);
 		newField.setFieldName(field.getFieldName());

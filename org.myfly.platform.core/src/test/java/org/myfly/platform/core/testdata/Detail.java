@@ -17,7 +17,7 @@ import org.myfly.platform.core.metadata.annotation.MetaDataView;
 import org.myfly.platform.core.metadata.annotation.SectionType;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.TableView;
-import org.myfly.platform.core.system.domain.FlyEntity;
+import org.myfly.platform.core.system.domain.KeyEntity;
 
 @Entity
 @MetaDataView(
@@ -34,7 +34,7 @@ import org.myfly.platform.core.system.domain.FlyEntity;
 								"updated" }) }),
 				@SectionView(type = SectionType.NOTE), @SectionView(type = SectionType.ATTACHMENT) }))
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Detail extends FlyEntity {
+public class Detail extends KeyEntity {
 
 	/**
 	 * 

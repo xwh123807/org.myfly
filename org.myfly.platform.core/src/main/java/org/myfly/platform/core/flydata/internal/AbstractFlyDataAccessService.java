@@ -36,7 +36,8 @@ import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
-import org.myfly.platform.core.metadata.entity.ISetFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.RelationFieldDefinition;
+import org.myfly.platform.core.metadata.entity.handler.IFieldValueHandler;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.search.service.IFullTextSearchService;
@@ -116,6 +117,17 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 	public EntityMetaData getEntityMetaData(String entityName) {
 		AssertUtil.parameterEmpty(entityName, "entityName");
 		return entityMetaDataService.getEntityMetaData(entityName);
+	}
+	
+	/**
+	 * 
+	 * @param entityName
+	 * @param relationAttr
+	 * @return
+	 */
+	public EntityMetaData getRelationEntityMetaData(String entityName, String relationAttr) {
+		RelationFieldDefinition field = getEntityMetaData(entityName).getField(relationAttr);
+		return field.getRelationEntityMetaData();
 	}
 
 	@Override
@@ -201,10 +213,10 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 	@Override
 	public String importExcel(String table, final String uid, String subTableAttr, String listViewName,
 			String uploadDir, String actionUrl) {
-		EntityMetaData entityMetaData = getEntityMetaDataService().getEntityMetaData(table);
-		MDRelationFieldDefinition subField = entityMetaData.getField(subTableAttr);
-		final ISetFieldValueHandler setHandler = subField.getRelationField().getSetValueHandler();
-		return importExcel(subField.getRelationTable(), listViewName, uploadDir, actionUrl, new ImportActions() {
+		EntityMetaData entityMetaData = getEntityMetaData(table);
+		MDRelationFieldDefinition mdField = entityMetaData.getField(subTableAttr);
+		final IFieldValueHandler setHandler = mdField.getRelationField().getValueHandler();
+		return importExcel(entityMetaData.getEntityName(), listViewName, uploadDir, actionUrl, new ImportActions() {
 			@Override
 			public void before(Object entity) {
 				setHandler.setFieldValue(entity, uid);
@@ -235,7 +247,8 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 				Object entity = entityMetaData.newEntityInstance();
 				int columnIndex = 0;
 				try {
-					for (FieldDefinition field : listDefinition.getFields()) {
+					for (String name : listDefinition.getFields()) {
+						EntityFieldDefinition field = entityMetaData.getField(name);
 						Object value = reader.get(columnIndex);
 						try {
 							if (StringUtils.isNotBlank((String) value)) {
@@ -245,14 +258,14 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 								} else {
 									if (FieldDataType.SEARCHRELATION.equals(field.getDataType())) {
 										// 名称向ID转换
-										value = transNameToIDCache.transNameToUID(field.getRelationTable(),
+										value = transNameToIDCache.transNameToUID(((RelationFieldDefinition)field).getRelationTable(),
 												field.getName(), (String) value);
 									} else if (FieldDataType.SYSENUM.equals(field.getDataType())) {
 										// 系统枚举类型，将label转换成name
 										value = ClassUtil.getEnumByTitle(field.getType(), (String) value);
 									}
 									value = getConversionService().convert(value, field.getType());
-									field.getSetValueHandler().setFieldValue(entity, value);
+									field.getValueHandler().setFieldValue(entity, value);
 								}
 							}
 						} catch (Exception e) {
@@ -293,11 +306,11 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 		AssertUtil.parameterEmpty(name, "name");
 		EntityMetaData metaData = getEntityMetaData(entityName);
 		Map<String, Object> keyParams = new LinkedHashMap<>();
-		FieldDefinition labelField = metaData.getLabelField();
+		FieldDefinition labelField = metaData.getLableField();
 		keyParams.put(labelField.getFieldName(), name);
 		Object entity = findOne(entityName, keyParams);
 		if (entity != null) {
-			return metaData.getPkFieldDefinition().getPKValue(entity);
+			return (String) metaData.getPkFieldDefinition().getValueHandler().getFieldValue(entity);
 		} else {
 			return null;
 		}
@@ -310,7 +323,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 		Object entity = findOne(entityName, uid);
 		if (entity != null) {
 			// 取出实体显示字段的值
-			Object value = getEntityMetaData(entityName).getLabelField().getGetValueHandler().getFieldValue(entity);
+			Object value = getEntityMetaData(entityName).getLableField().getValueHandler().getFieldValue(entity);
 			if (value != null && !(value instanceof String)) {
 				value = getConversionService().convert(value, String.class);
 			}
@@ -332,13 +345,13 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 		String[][] data = new String[page.size()][2];
 		EntityMetaData metaData = getEntityMetaDataService().getEntityMetaData(entityName);
 		PKFieldDefinition pkFieldDefinition = metaData.getPkFieldDefinition();
-		FieldDefinition labelFieldDefinition = metaData.getLabelField();
+		EntityFieldDefinition labelFieldDefinition = metaData.getLableField();
 		for (int row = 0; row < page.size(); row++) {
 			final Object entity = page.get(row);
-			String pkValue = pkFieldDefinition.getPKValue(entity);
+			String pkValue = (String) pkFieldDefinition.getValueHandler().getFieldValue(entity);
 			String labelValue = "";
 			if (labelFieldDefinition != null) {
-				Object value = labelFieldDefinition.getGetValueHandler().getFieldValue(entity);
+				Object value = labelFieldDefinition.getValueHandler().getFieldValue(entity);
 				if (value != null && !(value instanceof String)) {
 					labelValue = ClassUtil.convertValueToString(value);
 				} else {
@@ -362,7 +375,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 		AssertUtil.parameterEmpty(entityMetaData, "entityMetaData");
 		Page<?> pageData = getFullTextSearchService().search(entityName, searchText, page, size);
 		ListDefinition listDefinition = entityMetaData.getListDefinition(listViewName);
-		DataTablesResponse response = buildDataTableReponse(pageData, listDefinition.getFields(), true);
+		DataTablesResponse response = buildDataTableReponse(entityMetaData, pageData, listDefinition.getFields(), true);
 		response.setMetaData(new DataTableMetaData(listDefinition, false));
 		response.setPage(page);
 		response.setSize(size);
@@ -379,7 +392,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 		List<FlyEntityMap> list = new ArrayList<>();
 		ListDefinition listDefinition = entityMetaData.getListDefinition(listViewName);
 		for (Object entity : pageData.getContent()) {
-			String pkValue = entityMetaData.getPkFieldDefinition().getPKValue(entity);
+			String pkValue = (String) entityMetaData.getPkFieldDefinition().getValueHandler().getFieldValue(entity);
 			list.add(convertToViewMap(entityName, null, null, entity, listDefinition.getFields(),
 					listDefinition.getLabelField(), pkValue, listViewName, false));
 		}
@@ -436,7 +449,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	private DataTablesResponse buildDataTableReponse(Page<?> pageData, FieldDefinition[] fields, boolean resultIsMap) {
+	private DataTablesResponse buildDataTableReponse(EntityMetaData entityMetaData, Page<?> pageData, FieldDefinition[] fields, boolean resultIsMap) {
 		DataTablesResponse dataTablesResponse = new DataTablesResponse();
 		dataTablesResponse.setPage(pageData.getNumber());
 		dataTablesResponse.setSize(pageData.getSize());
@@ -550,7 +563,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 			if (entity instanceof Map) {
 				tmp = ((Map<?, ?>) entity).get(fieldDefinition.getFieldName());
 			} else if (!FieldDataType.ACTIONS.equals(fieldDefinition.getDataType())) {
-				tmp = fieldDefinition.getGetValueHandler().getFieldValue(entity);
+				tmp = fieldDefinition.getValueHandler().getFieldValue(entity);
 			}
 			if (tmp != null && !(tmp instanceof String)) {
 				value = getConversionService().convert(tmp, String.class);
@@ -590,7 +603,8 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 	 */
 	@SuppressWarnings("unchecked")
 	public FlyEntityMap convertToViewMap(String entityName, String uid, String subTableAttr, Object entity,
-			EntityFieldDefinition[] fields, String labelFieldName, String pkValue, String formViewName, boolean printMode) {
+			EntityFieldDefinition[] fields, String labelFieldName, String pkValue, String formViewName,
+			boolean printMode) {
 		FlyEntityMap result = new FlyEntityMap();
 		for (EntityFieldDefinition fieldDefinition : fields) {
 			// 先取出字段值，再转换为字符串
@@ -607,15 +621,15 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 				// 打印模式下，不输出操作字段
 				continue;
 			} else if (!FieldDataType.ACTIONS.equals(fieldDefinition.getDataType())) {
-				tmp = fieldDefinition.getGetValueHandler().getFieldValue(entity);
+				tmp = fieldDefinition.getValueHandler().getFieldValue(entity);
 			}
 			if (tmp != null) {
 				if (tmp instanceof byte[]) {
 
 				} else if (!(tmp instanceof String)) {
-					try{
+					try {
 						value = getConversionService().convert(tmp, String.class);
-					}catch(Exception e){
+					} catch (Exception e) {
 						value = "错误：" + e.getMessage();
 					}
 				} else {
@@ -659,7 +673,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 						actionInfo = new EntityActionInfo(entityName, uid, subTableAttr, pkValue, null, formViewName,
 								null);
 					}
-					value = (String) fieldDefinition.getGetValueHandler().getFieldValue(actionInfo);
+					value = (String) fieldDefinition.getValueHandler().getFieldValue(actionInfo);
 					break;
 				case SYSENUM:
 					// 增加两个字段，{name}字段表示数据库原始值；{name}__label字段表示显示值
@@ -668,7 +682,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 					break;
 				case AUTORELATION:
 					// 增加三个字段，{name}字段表示数据库原始值；{name}__label字段表示显示名称；{name}__link字段表示超链接显示
-					String[] values2 = (String[]) fieldDefinition.getGetValueHandler().getFieldValue(entity);
+					String[] values2 = (String[]) fieldDefinition.getValueHandler().getFieldValue(entity);
 					if (ArrayUtils.isNotEmpty(values2) && values2.length == 2) {
 						// 原始值
 						value = values2[1];
@@ -677,7 +691,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 				case FLYSEARCHRELATION:
 				case SEARCHRELATION:
 					// 增加三个字段，{name}字段表示数据库原始值；{name}__label字段表示显示名称；{name}__link字段表示超链接显示
-					String[] values = (String[]) fieldDefinition.getGetValueHandler().getFieldValue(entity);
+					String[] values = (String[]) fieldDefinition.getValueHandler().getFieldValue(entity);
 					if (ArrayUtils.isNotEmpty(values) && values.length == 2) {
 						// 原始值
 						value = values[0];
@@ -722,8 +736,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.myfly.platform.system.data.service.IFlyDataAccessService#findAll2(
+	 * @see org.myfly.platform.system.data.service.IFlyDataAccessService#findAll2(
 	 * java.lang.String, java.util.Map)
 	 */
 	@Override
@@ -743,8 +756,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 	@Override
 	public void mergeEntity(String entityName, String uid, String subTableAttr, String subUid, String formViewName,
 			EntityMap values) {
-		EntityMetaData subMetaData = getEntityMetaData(entityName).getSubEntityMetaData(subTableAttr);
-		Object entity = findOne(subMetaData.getEntityName(), subUid);
+		Object entity = findOne(getRelationEntityMetaData(entityName, subTableAttr).getEntityName(), subUid);
 		values.mergeEntity(entityName, entity);
 		updateEntity(entity);
 	}
@@ -772,8 +784,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 
 	@Override
 	public int delSubEntity(String entityName, String uid, String subTableAttr, String subUid) {
-		EntityMetaData metaData = getEntityMetaData(entityName).getSubEntityMetaData(subTableAttr);
-		return delOne(metaData.getEntityName(), subUid);
+		return delOne(getRelationEntityMetaData(entityName, subTableAttr).getEntityName(), subUid);
 	}
 
 	@Override

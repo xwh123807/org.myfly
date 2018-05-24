@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.persistence.Entity;
+
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.define.FKFieldDefinition;
 import org.myfly.platform.core.metadata.define.FormDefinition;
@@ -12,6 +14,8 @@ import org.myfly.platform.core.metadata.define.OutlineDefinition;
 import org.myfly.platform.core.metadata.define.TableDefinition;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.FuncUtil;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class EntityMetaData {
 	/**
@@ -22,6 +26,10 @@ public class EntityMetaData {
 	 * 实体类名，为空时表示没有对应实体类
 	 */
 	private Class<?> entityClass;
+	/**
+	 * 是否为Jpa实体类
+	 */
+	private boolean isJpaEntity;
 	/**
 	 * 字段列表
 	 */
@@ -54,6 +62,7 @@ public class EntityMetaData {
 	public EntityMetaData(Class<?> entityClass) {
 		EntityMetaDataDefinition metaData = new EntityMetaDataDefinition(entityClass);
 		setEntityClass(entityClass);
+		setJpaEntity(entityClass.getAnnotation(Entity.class) != null);
 		setEntityName(metaData.getName());
 		setTableDefinition(metaData.getTableDefinition());
 		setPkFieldDefinition(metaData.getPkFieldDefinition());
@@ -223,5 +232,23 @@ public class EntityMetaData {
 			AssertUtil.parameterInvalide(getEntityClass().getName(), "创建实体实例失败，" + e.getMessage());
 		}
 		return null;
+	}
+
+	/**
+	 * 获取标签字段定义
+	 * 
+	 * @return
+	 */
+	@JsonIgnore
+	public EntityFieldDefinition getLableField() {
+		return getField(getTableDefinition().getLabelField());
+	}
+
+	public boolean isJpaEntity() {
+		return isJpaEntity;
+	}
+
+	public void setJpaEntity(boolean isJpaEntity) {
+		this.isJpaEntity = isJpaEntity;
 	}
 }

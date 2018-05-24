@@ -9,7 +9,6 @@ import java.lang.reflect.Method;
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -19,13 +18,10 @@ import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-import javax.persistence.Column;
-
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.domain.BaseEnum;
-import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.system.domain.KeyEntity;
 
 public class ClassUtil {

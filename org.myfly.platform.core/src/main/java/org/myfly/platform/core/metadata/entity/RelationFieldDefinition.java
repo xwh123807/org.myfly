@@ -2,8 +2,10 @@ package org.myfly.platform.core.metadata.entity;
 
 import java.lang.reflect.Field;
 
-import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.ClassUtil;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class RelationFieldDefinition extends EntityFieldDefinition {
 	/**
@@ -18,10 +20,6 @@ public class RelationFieldDefinition extends EntityFieldDefinition {
 	 * 如果是查找关系、主子表关系时，存放关联表名
 	 */
 	private String relationTable;
-	/**
-	 * 如果是主子表关系，存放子表对应的字段<br>
-	 */
-	private FieldDefinition relationField;
 
 	public RelationFieldDefinition(Field field) {
 		super(field);
@@ -49,12 +47,18 @@ public class RelationFieldDefinition extends EntityFieldDefinition {
 		this.relationTable = relationTable;
 	}
 
-	public FieldDefinition getRelationField() {
-		return relationField;
+	/**
+	 * 获取关联实体元模型
+	 * 
+	 * @return
+	 */
+	@JsonIgnore
+	public EntityMetaData getRelationEntityMetaData() {
+		return AppUtil.getEntityMetaData(getRelationClass());
 	}
 
-	public void setRelationField(FieldDefinition relationField) {
-		this.relationField = relationField;
+	@JsonIgnore
+	public EntityFieldDefinition getRelationEntityLabelField() {
+		return getRelationEntityMetaData().getLableField();
 	}
-
 }

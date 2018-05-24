@@ -28,7 +28,7 @@ import org.myfly.platform.core.metadata.annotation.SectionType;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.annotation.SubTableView;
 import org.myfly.platform.core.metadata.annotation.TableView;
-import org.myfly.platform.core.system.domain.FlyEntity;
+import org.myfly.platform.core.system.domain.KeyEntity;
 
 /**
  * 角色
@@ -66,12 +66,16 @@ import org.myfly.platform.core.system.domain.FlyEntity;
 				@FieldSetView(title = "审计", fields = { "active", "createdBy", "created", "updatedBy",
 						"updated" }) })) })
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Master extends FlyEntity {
+public class Master extends KeyEntity {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2217837879194985591L;
+	
+	@FieldView(title="名称")
+	@Column(nullable=false)
+	private String name;
 
 	/**
 	 * 简述
@@ -110,5 +114,13 @@ public class Master extends FlyEntity {
 
 	public void setDataType(FieldDataType dataType) {
 		this.dataType = dataType;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

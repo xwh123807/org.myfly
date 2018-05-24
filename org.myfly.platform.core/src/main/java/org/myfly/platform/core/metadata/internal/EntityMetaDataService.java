@@ -11,10 +11,14 @@ import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.metadata.service.JsonEntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.data.jpa.mapping.JpaPersistentEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.util.ClassUtils;
 
+@Service
+@CacheConfig(cacheNames = "entity-metadata-service")
 public class EntityMetaDataService implements IEntityMetaDataService {
 	@Autowired
 	private JpaMetamodelMappingContext mappingContext;
@@ -71,7 +75,6 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 
 	@Override
 	public JsonEntityMetaData getJsonEntityMetaData(String entityNameOrClassName) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

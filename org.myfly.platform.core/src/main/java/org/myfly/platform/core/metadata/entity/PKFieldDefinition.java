@@ -7,8 +7,8 @@ import javax.persistence.Embeddable;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.metadata.define.BaseDenifition;
-import org.myfly.platform.core.metadata.entity.handler.PKGetFieldValueHandler;
-import org.myfly.platform.core.metadata.entity.handler.PKSetFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.handler.IFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.handler.PKFieldValueHandler;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -44,10 +44,11 @@ public class PKFieldDefinition extends BaseDenifition {
 	 * 主键类，当KeyType为复合主键时，需要指定主键类
 	 */
 	private Class<?> idClass;
-
-	private IGetFieldValueHandler getValueHandler;
-
-	private ISetFieldValueHandler setValueHandler;
+	/**
+	 * 主键值设置和获取
+	 */
+	@JsonIgnore
+	private IFieldValueHandler getValueHandler;
 
 	public PKFieldDefinition() {
 	}
@@ -67,7 +68,7 @@ public class PKFieldDefinition extends BaseDenifition {
 				} else {
 					setKeyType(KeyType.SINGLE);
 				}
-			}else {
+			} else {
 				setKeyType(KeyType.MULTIID);
 			}
 		}
@@ -75,8 +76,7 @@ public class PKFieldDefinition extends BaseDenifition {
 	}
 
 	private void initFieldValueHandler() {
-		setSetValueHandler(new PKSetFieldValueHandler(this));
-		setGetValueHandler(new PKGetFieldValueHandler(this));
+		setValueHandler(new PKFieldValueHandler(this));
 	}
 
 	public KeyType getKeyType() {
@@ -87,20 +87,12 @@ public class PKFieldDefinition extends BaseDenifition {
 		this.keyType = keyType;
 	}
 
-	public IGetFieldValueHandler getGetValueHandler() {
+	public IFieldValueHandler getValueHandler() {
 		return getValueHandler;
 	}
 
-	public void setGetValueHandler(IGetFieldValueHandler getValueHandler) {
+	public void setValueHandler(IFieldValueHandler getValueHandler) {
 		this.getValueHandler = getValueHandler;
-	}
-
-	public ISetFieldValueHandler getSetValueHandler() {
-		return setValueHandler;
-	}
-
-	public void setSetValueHandler(ISetFieldValueHandler setValueHandler) {
-		this.setValueHandler = setValueHandler;
 	}
 
 	@JsonIgnore
@@ -130,8 +122,7 @@ public class PKFieldDefinition extends BaseDenifition {
 			Assert.notNull(getIdClass());
 			break;
 		}
-		Assert.notNull(getGetValueHandler());
-		Assert.notNull(getSetValueHandler());
+		Assert.notNull(getValueHandler());
 	}
 
 	public Class<?> getIdClass() {
