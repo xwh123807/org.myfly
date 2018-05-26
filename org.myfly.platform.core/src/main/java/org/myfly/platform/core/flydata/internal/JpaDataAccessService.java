@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
@@ -21,8 +20,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specifications;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -115,7 +112,8 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	public <T> T saveEntity(final T entity) {
 		AssertUtil.parameterEmpty(entity, "entity");
 		beforeInsertFlyEntity(entity);
-		entityManager.persist(entity);
+		//entityManager.persist(entity);
+		getSimpleJpaRepository(entity.getClass()).save(entity);
 		return entity;
 	}
 

@@ -54,7 +54,7 @@ import org.myfly.platform.core.system.domain.KeyEntity;
 				//
 				@FormView(sections = {
 						@SectionView(title = "用户信息", fieldSets = {
-								@FieldSetView(title = "基本信息", fields = { "name", "description" }),
+								@FieldSetView(title = "基本信息", fields = { "name", "dataType", "description" }),
 								@FieldSetView(title = "审计", fields = { "active", "created" }) }),
 						@SectionView(type = SectionType.NOTE), @SectionView(type = SectionType.ATTACHMENT),
 						@SectionView(title = "子表区域", subTables = @SubTableView(title = "明细记录", tableAttr = "details")) }),
@@ -62,7 +62,7 @@ import org.myfly.platform.core.system.domain.KeyEntity;
 				@FormView(name = "form2", divs = @Div1View(subs = @Div2View(sections = @SectionView(type = SectionType.ATTACHMENT)))) },
 		//
 		outlineViews = { @OutlineView(title = "摘要信息", sections = @SectionView(title = "用户信息", fieldSets = {
-				@FieldSetView(title = "基本信息", fields = { "name", "description" }),
+				@FieldSetView(title = "基本信息", fields = { "name", "dataType", "description" }),
 				@FieldSetView(title = "审计", fields = { "active", "created" }) })) })
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Master extends KeyEntity {

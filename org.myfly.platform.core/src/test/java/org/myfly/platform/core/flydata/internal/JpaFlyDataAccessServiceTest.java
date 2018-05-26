@@ -1,8 +1,11 @@
 package org.myfly.platform.core.flydata.internal;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.IntStream;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
@@ -15,7 +18,9 @@ import org.myfly.platform.CoreApplication;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
+import org.myfly.platform.core.testdata.Detail;
 import org.myfly.platform.core.testdata.Master;
+import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -90,16 +95,42 @@ public class JpaFlyDataAccessServiceTest {
 		master.setUid(UUIDUtil.newUUID());
 		master.setName("name");
 		master.setDataType(FieldDataType.MONEY);
+		master.setActive(true);
+		Set items = new HashSet<>();
+		IntStream.range(1, 10).forEach(n -> {
+			Detail detail = new Detail();
+			detail.setMaster(master);
+			detail.setUid(UUIDUtil.newUUID());
+			detail.setTitle("title " + n);
+			detail.setActive(true);
+			detail.setCreated(DateUtil.nowSqlTimestamp());
+			items.add(detail);
+		});
+		master.setDetails(items);
 		String uid = flyDataService.saveEntity(master);
 		Assert.assertEquals(master.getUid(), uid);
 		return uid;
 	}
 
 	@Test
-	public void findEntity() {
+	public void findEntityForDefault() {
 		String entityName = Master.class.getName();
 		String uid = saveEntity();
 		FlyEntityMap fly = flyDataService.findOne(entityName, uid, "default", false);
 		Assert.assertNotNull(fly);
+		Assert.assertEquals(uid, fly.get("uid"));
+		Assert.assertEquals("name", fly.get("name"));
+		Assert.assertTrue(Boolean.valueOf(fly.get("active")));
+		Assert.assertEquals(FieldDataType.MONEY, fly.get("dataType"));
+	}
+	
+	@Test
+	public void detail() {
+		String entityName = Master.class.getName();
+		String uid = saveEntity();
+		Assert.assertNotNull(uid);
+		List<FlyEntityMap> list = flyDataService.findAllForSubEntity(entityName, uid, "details", "default", null, false);
+		Assert.assertNotNull(list);
+		Assert.assertTrue(list.size() == 10);
 	}
 }

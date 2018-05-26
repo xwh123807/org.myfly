@@ -1,12 +1,7 @@
 package org.myfly.platform.core.metadata.entity;
 
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.core.metadata.define.FKFieldDefinition;
-import org.myfly.platform.core.system.domain.ITenant;
-import org.myfly.platform.core.system.domain.IUser;
 import org.myfly.platform.core.testdata.Master;
 import org.myfly.platform.core.utils.FuncUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
@@ -15,6 +10,7 @@ public class MasterEntityMetaDataDefinitionTest {
 	@Test
 	public void masterEntity() {
 		EntityMetaDataDefinition metaData = new EntityMetaDataDefinition(Master.class);
+		
 		Assert.assertEquals(7, metaData.getTableDefinition().getFields().length);
 		Assert.assertEquals("SM_MASTER", metaData.getTableDefinition().getTableName());
 		Assert.assertEquals("TEST", metaData.getTableDefinition().getCatalog());

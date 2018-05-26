@@ -298,6 +298,7 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 	@Override
 	public <T> void saveEntity(List<T> entities) {
 		getJpaDataAccessService().batchSaveEntity(entities);
+		//entities.forEach(item -> getJpaDataAccessService().saveEntity(item));
 	}
 
 	@Override
