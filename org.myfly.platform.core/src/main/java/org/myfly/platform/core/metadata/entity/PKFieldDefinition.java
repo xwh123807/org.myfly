@@ -51,7 +51,7 @@ public class PKFieldDefinition extends BaseDenifition {
 	 * 主键值设置和获取
 	 */
 	@JsonIgnore
-	private IFieldValueHandler getValueHandler;
+	private IFieldValueHandler valueHandler;
 
 	public PKFieldDefinition() {
 	}
@@ -91,11 +91,11 @@ public class PKFieldDefinition extends BaseDenifition {
 	}
 
 	public IFieldValueHandler getValueHandler() {
-		return getValueHandler;
+		return valueHandler;
 	}
 
-	public void setValueHandler(IFieldValueHandler getValueHandler) {
-		this.getValueHandler = getValueHandler;
+	public void setValueHandler(IFieldValueHandler valueHandler) {
+		this.valueHandler = valueHandler;
 	}
 
 	@JsonIgnore

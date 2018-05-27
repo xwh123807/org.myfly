@@ -9,6 +9,7 @@ import org.myfly.platform.core.metadata.annotation.FilterView;
 import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.OrderView;
+import org.myfly.platform.core.metadata.builder.ListViewBuilder;
 import org.myfly.platform.core.utils.AssertUtil;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -94,6 +95,13 @@ public class ListDefinition extends BaseDenifition {
 		setFields(view.fields());
 		setFiltersFromView(view.filters());
 		setOrdersFromView(view.orders());
+	}
+	
+	public ListDefinition(ListViewBuilder builder) {
+		setName(builder.getName());
+		setTitle(builder.getTitle());
+		setListStyle(builder.getListStyle());
+		setFields(builder.getFields());
 	}
 
 	@JsonIgnore

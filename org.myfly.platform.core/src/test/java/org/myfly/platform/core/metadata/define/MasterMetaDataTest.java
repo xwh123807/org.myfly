@@ -48,12 +48,12 @@ public class MasterMetaDataTest {
 										Assert.assertNotNull(fieldSet.toString());
 										if (index == 0) {
 											Assert.assertEquals("基本信息", fieldSet.getTitle());
-											Assert.assertArrayEquals(new String[] { "name", "description" },
+											Assert.assertArrayEquals(new String[] { "name", "dataType", "description" },
 													fieldSet.getFields());
 										} else if (index == 1) {
 											Assert.assertEquals("审计", fieldSet.getTitle());
-											Assert.assertArrayEquals(new String[] { "active", "createdBy", "created",
-													"updatedBy", "updated" }, fieldSet.getFields());
+											Assert.assertArrayEquals(new String[] { "active", "created" },
+													fieldSet.getFields());
 										}
 									}
 
@@ -174,7 +174,7 @@ public class MasterMetaDataTest {
 									item.validate();
 									Assert.assertNotNull(item.toString());
 									if (index == 0) {
-										Assert.assertArrayEquals(new String[] { "name", "description" },
+										Assert.assertArrayEquals(new String[] { "name", "dataType", "description" },
 												item.getFields());
 									}
 								}

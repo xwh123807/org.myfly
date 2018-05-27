@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import javax.persistence.Entity;
 
 import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.metadata.builder.DefaultListViewBuilder;
 import org.myfly.platform.core.metadata.define.FKFieldDefinition;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.FormDefinition;
@@ -80,13 +81,18 @@ public class EntityMetaData {
 		});
 		listDefinitions = new HashMap<>();
 		FuncUtil.forEach(metaData.getListDefinitions(), listDefinition -> {
-			addListDenifition(listDefinition);
+			addListDefinition(listDefinition);
 		});
 		outlineDefinitions = new HashMap<>();
 		FuncUtil.forEach(metaData.getOutlineDefinitions(), outlineDefinition -> {
 			addOutlineDefinition(outlineDefinition);
 		});
+		addDefaultDefinition(this);
 		validate();
+	}
+
+	private void addDefaultDefinition(EntityMetaData entityMetaData) {
+		addListDefinition(new ListDefinition(new DefaultListViewBuilder(entityMetaData)));
 	}
 
 	public String getEntityName() {
@@ -190,7 +196,7 @@ public class EntityMetaData {
 	 * 
 	 * @param listDefinition
 	 */
-	private void addListDenifition(final ListDefinition listDefinition) {
+	private void addListDefinition(final ListDefinition listDefinition) {
 		AssertUtil.parameterEmpty(listDefinition, "listDefinition");
 		AssertUtil.parameterEmpty(listDefinition.getName(), "listDefinition.getName()");
 		if (getListDefinitions().containsKey(listDefinition.getName())) {
@@ -213,7 +219,13 @@ public class EntityMetaData {
 		return getListDefinitions().get(listViewName);
 	}
 
+	/**
+	 * 获取实体字段定义，不包含子表属性
+	 * 
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
+	@JsonIgnore
 	public <T extends EntityFieldDefinition> T[] getAllFields() {
 		return (T[]) getFieldMap().values().stream()
 				.filter(item -> !item.getDataType().equals(FieldDataType.MDRELATION)).collect(Collectors.toList())
@@ -267,28 +279,34 @@ public class EntityMetaData {
 				.toArray(new FieldDefinition[] {});
 	}
 
+	/**
+	 * 验证 <br>
+	 * 1、验证列表视图中字段是否都存在；<br>
+	 * 2、验证表单视图中字段是否都存在；<br>
+	 * 3、验证大纲视图中字段是否都存在<br>
+	 */
 	public void validate() {
 		getListDefinitions().values().forEach(item -> {
 			Stream.of(item.getFields()).forEach(name -> {
 				if (!getFieldMap().containsKey(name)) {
-					throw new RuntimeException(MessageFormat.format("实体[{0}]中名称为[{1}]列表视图中不存在[{2}]字段.",
-							new String[] { getEntityName(), item.getName(), name }));
+					throw new RuntimeException(MessageFormat.format("实体[{0}]中名称为[{1}]列表视图中不存在[{2}]字段.", getEntityName(),
+							item.getName(), name));
 				}
 			});
 		});
 		getFormDefinitions().values().forEach(item -> {
 			Stream.of(item.getFields()).forEach(name -> {
 				if (!getFieldMap().containsKey(name)) {
-					throw new RuntimeException(MessageFormat.format("实体[{0}]中名称为[{1}]表单视图中不存在[{2}]字段.",
-							new String[] { getEntityName(), item.getName(), name }));
+					throw new RuntimeException(MessageFormat.format("实体[{0}]中名称为[{1}]表单视图中不存在[{2}]字段.", getEntityName(),
+							item.getName(), name));
 				}
 			});
 		});
 		getOutlineDefinitions().values().forEach(item -> {
 			Stream.of(item.getFields()).forEach(name -> {
 				if (!getFieldMap().containsKey(name)) {
-					throw new RuntimeException(MessageFormat.format("实体[{0}]中名称为[{1}]摘要视图中不存在[{2}]字段.",
-							new String[] { getEntityName(), item.getName(), name }));
+					throw new RuntimeException(MessageFormat.format("实体[{0}]中名称为[{1}]摘要视图中不存在[{2}]字段.", getEntityName(),
+							item.getName(), name));
 				}
 			});
 		});
