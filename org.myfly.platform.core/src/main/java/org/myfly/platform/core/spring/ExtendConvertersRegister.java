@@ -18,10 +18,10 @@ public class ExtendConvertersRegister {
 		conversionService.addConverterFactory(new StringToCalendarConverterFactory());
 		conversionService.addConverterFactory(new StringToBooleanConverterFactory());
 		conversionService.addConverterFactory(new DateToStringConverterFactory());
-		conversionService.addConverterFactory(new BaseEnumToStringConverterFactory());
 		conversionService.addConverterFactory(new CalendarToStringConverterFactory());
-		conversionService.addConverterFactory(new StringToBaseEnumConverterFactory());
 		conversionService.addConverterFactory(new StringToKeyEntityConverterFactory());
+		//conversionService.addConverterFactory(new BaseEnumToStringConverterFactory());
+		//conversionService.addConverterFactory(new StringToBaseEnumConverterFactory());
 	}
 
 }

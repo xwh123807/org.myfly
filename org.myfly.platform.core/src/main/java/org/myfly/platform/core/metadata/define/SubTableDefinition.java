@@ -1,5 +1,6 @@
 package org.myfly.platform.core.metadata.define;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.myfly.platform.core.metadata.annotation.SubTableView;
 import org.springframework.util.Assert;
 
@@ -202,6 +203,10 @@ public class SubTableDefinition extends ListDefinition {
 	public void validate() {
 		super.validate();
 		Assert.hasLength(getSubTableAttr());
+		//设置了引用，则忽略fields设置
+		if (ArrayUtils.isEmpty(getFields())){
+			Assert.hasLength(getRefName());
+		}
 	}
 
 	public String getSubTableAttr() {

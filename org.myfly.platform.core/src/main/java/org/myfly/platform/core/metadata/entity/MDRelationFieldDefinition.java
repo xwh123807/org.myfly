@@ -6,10 +6,7 @@ import javax.persistence.OneToMany;
 
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
-import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.utils.AssertUtil;
-import org.springframework.data.mapping.Association;
-import org.springframework.data.mapping.PersistentProperty;
 
 /**
  * OneToMany类型，MDRelation
@@ -22,59 +19,28 @@ public class MDRelationFieldDefinition extends RelationFieldDefinition {
 	 */
 	private static final long serialVersionUID = -4827191183459588619L;
 	/**
-	 * 为关联属性时，id转名称显示字段
-	 */
-	private String labelField;
-	/**
-	 * 主子表关系时：显示字段定义
-	 */
-	private FieldDefinition labelFieldDefinition;
-	/**
 	 * 如果是主子表关系，存放子表对应的字段<br>
 	 */
-	private EntityFieldDefinition relationField;
+	private String relationField;
 
 	public MDRelationFieldDefinition(Field field) {
 		super(field);
 		setDataType(FieldDataType.MDRELATION);
-	}
-
-	public MDRelationFieldDefinition(Association<? extends PersistentProperty<?>> property) {
-		this(property.getInverse().getField());
-		// 获取子表字段
-		OneToMany oneToMany = property.getInverse().findAnnotation(OneToMany.class);
+		OneToMany oneToMany = field.getAnnotation(OneToMany.class);
 		if (oneToMany != null && StringUtils.isNotBlank(oneToMany.mappedBy())) {
-			EntityFieldDefinition tmp = new EntityFieldDefinition(this);
-			tmp.setTitle("临时，读取时更新");
-			tmp.setName(oneToMany.mappedBy());
-			EntityFieldDefinition(tmp);
+			setRelationField(oneToMany.mappedBy());
 		} else {
 			AssertUtil.parameterEmpty("OneToMany.mappedBy",
 					"主子表关系必须设置实体[getTableDefinition().getName()]子表属性[" + getName() + "]的OneToMany.mappedBy属性.");
 		}
 	}
 
-	public String getLabelField() {
-		return labelField;
-	}
-
-	public void setLabelField(String labelField) {
-		this.labelField = labelField;
-	}
-
-	public FieldDefinition getLabelFieldDefinition() {
-		return labelFieldDefinition;
-	}
-
-	public void setLabelFieldDefinition(FieldDefinition labelFieldDefinition) {
-		this.labelFieldDefinition = labelFieldDefinition;
-	}
-
-	public EntityFieldDefinition getRelationField() {
+	public String getRelationField() {
 		return relationField;
 	}
 
-	public void setRelationField(EntityFieldDefinition relationField) {
+	public void setRelationField(String relationField) {
 		this.relationField = relationField;
 	}
+
 }

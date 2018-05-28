@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.metadata.annotation.FormView;
@@ -26,10 +27,10 @@ import org.myfly.platform.core.system.domain.KeyEntity;
 		//
 		tableView = @TableView(title = "角色", description = "角色信息"),
 		//
-		listViews = @ListView(fields = { "title", "active", "created" }, listStyle = ListStyle.TABLE),
+		listViews = @ListView(fields = { "title", "dataType", "active", "created" }, listStyle = ListStyle.TABLE),
 		//
 		formViews = @FormView(sections = {
-				@SectionView(title = "用户信息", fieldSets = { @FieldSetView(title = "基本信息", fields = { "title" }),
+				@SectionView(title = "用户信息", fieldSets = { @FieldSetView(title = "基本信息", fields = { "title", "dataType" }),
 						@FieldSetView(title = "审计", fields = { "active", "created" }) }),
 				@SectionView(type = SectionType.NOTE), @SectionView(type = SectionType.ATTACHMENT) }))
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -48,6 +49,10 @@ public class Detail extends KeyEntity {
 	@Column(length = 100)
 	@FieldView(title = "标识")
 	private String title;
+	
+	@FieldView(title = "数据类型")
+	@Column(length = 50)
+	private FieldDataType dataType;
 
 	@FieldView(title = "是否激活")
 	@Column
@@ -87,5 +92,13 @@ public class Detail extends KeyEntity {
 
 	public void setCreated(Timestamp created) {
 		this.created = created;
+	}
+
+	public FieldDataType getDataType() {
+		return dataType;
+	}
+
+	public void setDataType(FieldDataType dataType) {
+		this.dataType = dataType;
 	}
 }

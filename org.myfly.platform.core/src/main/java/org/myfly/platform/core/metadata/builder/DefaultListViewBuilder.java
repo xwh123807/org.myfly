@@ -5,10 +5,11 @@ import java.util.stream.Stream;
 
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
+import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 
 public class DefaultListViewBuilder extends ListViewBuilder {
 	public DefaultListViewBuilder(EntityMetaData entityMetaData) {
-		setName("ALL");
+		setName(EntityMetaDataConstants.DEFAULT_ALL_NAME);
 		setFields(getAllFields(entityMetaData.getAllFields()));
 	}
 

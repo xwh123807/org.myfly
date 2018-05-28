@@ -38,6 +38,7 @@ import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
 import org.myfly.platform.core.metadata.entity.RelationFieldDefinition;
 import org.myfly.platform.core.metadata.entity.handler.IFieldValueHandler;
+import org.myfly.platform.core.metadata.entity.handler.SearchRelationEntity;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.search.service.IFullTextSearchService;
@@ -613,9 +614,12 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 	@SuppressWarnings("unchecked")
 	public FlyEntityMap convertToViewMap(String entityName, String uid, String subTableAttr, Object entity,
 			String[] fields, String labelFieldName, String pkValue, String formViewName, boolean printMode) {
+		EntityMetaData entityMetaData = StringUtils.isNotBlank(subTableAttr)
+				? getEntityMetaData(entityName).getSubEntityMetaData(subTableAttr)
+				: getEntityMetaData(entityName);
 		FlyEntityMap result = new FlyEntityMap();
 		for (String name : fields) {
-			EntityFieldDefinition fieldDefinition = getEntityMetaData(entityName).getField(name);
+			EntityFieldDefinition fieldDefinition = entityMetaData.getField(name);
 			// 先取出字段值，再转换为字符串
 			String value = null;
 			Object tmp = null;
@@ -700,22 +704,22 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 				case FLYSEARCHRELATION:
 				case SEARCHRELATION:
 					// 增加三个字段，{name}字段表示数据库原始值；{name}__label字段表示显示名称；{name}__link字段表示超链接显示
-					String[] values = (String[]) fieldDefinition.getValueHandler().getFieldValue(entity);
-					if (ArrayUtils.isNotEmpty(values) && values.length == 2) {
+					SearchRelationEntity values = (SearchRelationEntity) fieldDefinition.getValueHandler().getFieldValue(entity);
+					if (values != null) {
 						// 原始值
-						value = values[0];
+						value = values.getUid();
 						// Label字段
 						String labelField = fieldDefinition.getName() + "__label";
 						if (!result.containsKey(labelField)) {
-							result.put(labelField, values[1]);
+							result.put(labelField, values.getTitle());
 						}
 						if (!printMode && !FieldDataType.AUTORELATION.equals(fieldDefinition.getDataType())) {
 							// 为查找关系实体增加超链接
 							linkValue = EntityLinkUtil.getEntityActionLinkHtml(EntityAction.VIEW,
-									fieldDefinition.getType().getName(), values[0], values[1], formViewName, false,
+									fieldDefinition.getType().getName(), values.getUid(), values.getTitle(), formViewName, false,
 									false);
 						} else {
-							linkValue = values[1];
+							linkValue = values.getTitle();
 						}
 						if (!result.containsKey(linkField)) {
 							result.put(linkField, linkValue);

@@ -1,5 +1,7 @@
 package org.myfly.platform.core.metadata.define;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -7,6 +9,7 @@ import org.myfly.platform.core.metadata.annotation.Div1View;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.annotation.FormView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
+import org.myfly.platform.core.metadata.builder.FormViewBuilder;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.utils.FuncUtil;
 import org.myfly.platform.core.utils.FuncUtil.ConvertAction;
@@ -45,6 +48,11 @@ public class FormDefinition extends BaseDenifition {
 	}
 
 	public FormDefinition() {
+	}
+	
+	public FormDefinition(FormViewBuilder builder) {
+		setName(builder.getName());
+		setSections(builder.getSections());
 	}
 
 	public SectionDefinition[] getSections() {
@@ -323,9 +331,19 @@ public class FormDefinition extends BaseDenifition {
 		 return Stream.of(getSections()).flatMap(item -> Stream.of(item.getFields())).distinct()
 				 .collect(Collectors.toList()).toArray(new String[] {});
 	}
+	
+	/**
+	 * 获取当期表单下使用到的子表
+	 * @return
+	 */
+	private Map<String, SubTableDefinition> getAllSubTables(){
+		Map<String, SubTableDefinition> list = new HashMap<>();
+		Stream.of(getSections()).flatMap(item -> Stream.of(item.getSubTables())).forEach(s -> list.put(s.getSubTableAttr(), s));;
+		return list;
+	}
 
 	@JsonIgnore
 	public SubTableDefinition getSubTableDefinition(String subTableAttr) {
-		return null;
+		return getAllSubTables().get(subTableAttr);
 	}
 }

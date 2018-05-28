@@ -8,14 +8,18 @@ import java.util.stream.Stream;
 
 import javax.persistence.Entity;
 
+import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.metadata.builder.DefaultFormViewBuilder;
 import org.myfly.platform.core.metadata.builder.DefaultListViewBuilder;
 import org.myfly.platform.core.metadata.define.FKFieldDefinition;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.FormDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.OutlineDefinition;
+import org.myfly.platform.core.metadata.define.SubTableDefinition;
 import org.myfly.platform.core.metadata.define.TableDefinition;
+import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.FuncUtil;
 
@@ -93,6 +97,7 @@ public class EntityMetaData {
 
 	private void addDefaultDefinition(EntityMetaData entityMetaData) {
 		addListDefinition(new ListDefinition(new DefaultListViewBuilder(entityMetaData)));
+		addFormDefinition(new FormDefinition(new DefaultFormViewBuilder(entityMetaData)));
 	}
 
 	public String getEntityName() {
@@ -251,6 +256,18 @@ public class EntityMetaData {
 	}
 
 	/**
+	 * 创建实体实例，并设置主键值
+	 * 
+	 * @param uid
+	 * @return
+	 */
+	public <T> T newEntityInstance(String uid) {
+		Object entity = newEntityInstance();
+		getPkFieldDefinition().getValueHandler().setFieldValue(entity, uid);
+		return (T) entity;
+	}
+
+	/**
 	 * 获取标签字段定义
 	 * 
 	 * @return
@@ -269,14 +286,54 @@ public class EntityMetaData {
 	}
 
 	/**
+	 * 获取子表显示字段
+	 * 
+	 * @param fromViewName
+	 * @return
+	 */
+	@JsonIgnore
+	public String[] getSubTableFields(String formViewName, String subTableAttr) {
+		SubTableDefinition subTableDefinition = getFormDefinition(formViewName).getSubTableDefinition(subTableAttr);
+		if (StringUtils.isNotBlank(subTableDefinition.getRefName())) {
+			MDRelationFieldDefinition mdRelationField = getField(subTableAttr);
+			return AppUtil.getEntityMetaData(mdRelationField.getRelationClass()).getFieldNames();
+		} else {
+			return subTableDefinition.getFields();
+		}
+	}
+
+	/**
 	 * 获取字段定义
 	 * 
 	 * @param fields
 	 * @return
 	 */
+	@JsonIgnore
 	public FieldDefinition[] getFields(String[] fields) {
 		return Stream.of(fields).map(name -> getField(name)).collect(Collectors.toList())
 				.toArray(new FieldDefinition[] {});
+	}
+
+	/**
+	 * 获取属性名
+	 * 
+	 * @return
+	 */
+	@JsonIgnore
+	public String[] getFieldNames() {
+		EntityFieldDefinition[] fields = getAllFields();
+		return Stream.of(fields).map(item -> item.getName()).collect(Collectors.toList()).toArray(new String[] {});
+	}
+	
+	/**
+	 * 获取子表实体元模型
+	 * @param subTableAttr
+	 * @return
+	 */
+	@JsonIgnore
+	public EntityMetaData getSubEntityMetaData(String subTableAttr) {
+		MDRelationFieldDefinition mdRelation = getField(subTableAttr);
+		return AppUtil.getEntityMetaData(mdRelation.getRelationClass());
 	}
 
 	/**
@@ -287,6 +344,7 @@ public class EntityMetaData {
 	 */
 	public void validate() {
 		getListDefinitions().values().forEach(item -> {
+			item.validate();
 			Stream.of(item.getFields()).forEach(name -> {
 				if (!getFieldMap().containsKey(name)) {
 					throw new RuntimeException(MessageFormat.format("实体[{0}]中名称为[{1}]列表视图中不存在[{2}]字段.", getEntityName(),
@@ -295,6 +353,7 @@ public class EntityMetaData {
 			});
 		});
 		getFormDefinitions().values().forEach(item -> {
+			item.validate();
 			Stream.of(item.getFields()).forEach(name -> {
 				if (!getFieldMap().containsKey(name)) {
 					throw new RuntimeException(MessageFormat.format("实体[{0}]中名称为[{1}]表单视图中不存在[{2}]字段.", getEntityName(),
@@ -303,6 +362,7 @@ public class EntityMetaData {
 			});
 		});
 		getOutlineDefinitions().values().forEach(item -> {
+			item.validate();
 			Stream.of(item.getFields()).forEach(name -> {
 				if (!getFieldMap().containsKey(name)) {
 					throw new RuntimeException(MessageFormat.format("实体[{0}]中名称为[{1}]摘要视图中不存在[{2}]字段.", getEntityName(),
@@ -311,4 +371,5 @@ public class EntityMetaData {
 			});
 		});
 	}
+
 }

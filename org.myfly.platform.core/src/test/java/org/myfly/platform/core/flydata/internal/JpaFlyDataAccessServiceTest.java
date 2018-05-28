@@ -84,9 +84,26 @@ public class JpaFlyDataAccessServiceTest {
 			list.add(master);
 		}
 		flyDataService.del(entityName);
-		Assert.assertEquals(0, flyDataService.count(entityName, null));
+		Assert.assertEquals(0, flyDataService.count2(entityName, null));
 		flyDataService.saveEntity(list);
-		Assert.assertEquals(10, flyDataService.count(entityName, null));
+		Assert.assertEquals(10, flyDataService.count2(entityName, null));
+	}
+	
+	@Test
+	public void saveEntityWithMap() {
+		Map<String, Object> values = new HashedMap();
+		values.put("uid", UUIDUtil.newUUID());
+		values.put("name", "name");
+		values.put("dataType", FieldDataType.MONEY);
+		String uid = flyDataService.saveEntity(Master.class.getName(), values);
+		Assert.assertEquals(uid, values.get("uid"));
+		Map<String, Object> values2 = new HashedMap();
+		values2.put("name", "name changed");
+		values2.put("dataType", FieldDataType.DATE);
+		flyDataService.updateEntity(Master.class.getName(), uid, values2);
+		Master master = flyDataService.findOne(Master.class.getName(), uid);
+		Assert.assertEquals("name changed", master.getName());
+		Assert.assertEquals(FieldDataType.DATE, master.getDataType());
 	}
 
 	private String saveEntity() {
@@ -103,6 +120,7 @@ public class JpaFlyDataAccessServiceTest {
 			detail.setUid(UUIDUtil.newUUID());
 			detail.setTitle("title " + n);
 			detail.setActive(true);
+			detail.setDataType(FieldDataType.MONEY);
 			detail.setCreated(DateUtil.nowSqlTimestamp());
 			items.add(detail);
 		});
@@ -113,7 +131,7 @@ public class JpaFlyDataAccessServiceTest {
 	}
 
 	@Test
-	public void findEntityForDefault() {
+	public void findEntityForDefaultFormView() {
 		String entityName = Master.class.getName();
 		String uid = saveEntity();
 		FlyEntityMap fly = flyDataService.findOne(entityName, uid, "default", false);
@@ -121,16 +139,24 @@ public class JpaFlyDataAccessServiceTest {
 		Assert.assertEquals(uid, fly.get("uid"));
 		Assert.assertEquals("name", fly.get("name"));
 		Assert.assertTrue(Boolean.valueOf(fly.get("active")));
-		Assert.assertEquals(FieldDataType.MONEY, fly.get("dataType"));
+		Assert.assertEquals(FieldDataType.MONEY.name(), fly.get("dataType"));
+		Assert.assertEquals("币种", fly.get("dataType__label"));
 	}
 	
 	@Test
-	public void detail() {
+	public void findAllForSubEntity() {
 		String entityName = Master.class.getName();
 		String uid = saveEntity();
 		Assert.assertNotNull(uid);
 		List<FlyEntityMap> list = flyDataService.findAllForSubEntity(entityName, uid, "details", "default", null, false);
 		Assert.assertNotNull(list);
-		Assert.assertTrue(list.size() == 10);
+		Assert.assertTrue(list.size() == 9);
+		FlyEntityMap detail = list.get(0);
+		Assert.assertEquals(uid, detail.get("master"));
+		Assert.assertEquals("name", detail.get("master__label"));
+		Assert.assertEquals("true", detail.get("active"));
+		Assert.assertEquals(FieldDataType.MONEY.name(), detail.get("dataType"));
+		Assert.assertEquals(FieldDataType.MONEY.getTitle(), detail.get("dataType__label"));
+		Assert.assertNotNull(detail.get("created"));
 	}
 }

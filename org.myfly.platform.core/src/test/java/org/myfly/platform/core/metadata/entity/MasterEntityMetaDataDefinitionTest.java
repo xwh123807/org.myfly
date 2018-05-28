@@ -1,5 +1,8 @@
 package org.myfly.platform.core.metadata.entity;
 
+import java.util.Map;
+
+import org.apache.commons.collections.map.HashedMap;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.testdata.Master;
@@ -33,5 +36,12 @@ public class MasterEntityMetaDataDefinitionTest {
 		String uid = UUIDUtil.newUUID();
 		pkField.getValueHandler().setFieldValue(master, uid);
 		Assert.assertEquals(uid, pkField.getValueHandler().getFieldValue(master));
+		//build pk
+		String uid2 = (String) pkField.buildPK(uid);
+		Assert.assertEquals(uid, uid2);
+		Map<String, Object> keyParams = new HashedMap();
+		keyParams.put("uid", uid);
+		String uid3 = (String) pkField.buildPK(keyParams);
+		Assert.assertEquals(uid, uid3);
 	}
 }

@@ -188,10 +188,10 @@ public class TableDefinition extends BaseDenifition {
 	}
 
 	public void validate() {
-		Assert.hasLength(getName());
+		//Assert.hasLength(getName());
 		Assert.hasLength(getTitle());
 		Assert.hasLength(getTableName());
-		if (isCreateIndex())
-			Assert.hasLength(getIndexName());
+//		if (isCreateIndex())
+//			Assert.hasLength(getIndexName());
 	}
 }
