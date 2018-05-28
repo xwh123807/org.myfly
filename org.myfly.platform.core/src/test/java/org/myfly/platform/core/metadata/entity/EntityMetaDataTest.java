@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.myfly.platform.core.metadata.define.FormDefinition;
+import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.testdata.Detail;
 import org.myfly.platform.core.testdata.Master;
 import org.myfly.platform.core.utils.JSONUtil;
@@ -26,10 +29,24 @@ public class EntityMetaDataTest {
 		Assert.assertArrayEquals(new String[] { "uid", "created", "dataType", "active", "title", "master" },
 				metaData.getSubTableFields("default", "details"));
 
-		Assert.assertEquals(3, metaData.getFormDefinitions().size());
 		Assert.assertEquals(3, metaData.getListDefinitions().size());
-		Assert.assertEquals(2, metaData.getOutlineDefinitions().size());
+		checkAllListFormDefinition(metaData.getListDefinition(EntityMetaDataConstants.DEFAULT_ALL_NAME));
+		Assert.assertEquals(3, metaData.getFormDefinitions().size());
+		checkAllFormDefinition(metaData.getFormDefinition(EntityMetaDataConstants.DEFAULT_ALL_NAME));
+		Assert.assertEquals(1, metaData.getOutlineDefinitions().size());
 		Assert.assertEquals(1, metaData.getPkFieldDefinition().getFields().length);
+	}
+
+	private void checkAllFormDefinition(FormDefinition formDefinition) {
+		String[] fields = formDefinition.getFields();
+		Assert.assertArrayEquals(new String[] { "uid", "created", "dataType", "name", "description", "active" },
+				fields);
+	}
+
+	private void checkAllListFormDefinition(ListDefinition listDefinition) {
+		String[] fields = listDefinition.getFields();
+		Assert.assertArrayEquals(new String[] { "uid", "created", "dataType", "name", "description", "active" },
+				fields);
 	}
 
 	@Test

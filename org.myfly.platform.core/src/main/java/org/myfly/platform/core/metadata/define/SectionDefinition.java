@@ -130,8 +130,12 @@ public class SectionDefinition extends BaseDenifition {
 	 */
 	@JsonIgnore
 	public String[] getFields() {
-		return Stream.of(getFieldSets()).flatMap(item -> Stream.of(item.getFields())).distinct()
-				.collect(Collectors.toList()).toArray(new String[] {});
+		if (ArrayUtils.isNotEmpty(getFieldSets())) {
+			return Stream.of(getFieldSets()).flatMap(item -> Stream.of(item.getFields())).distinct()
+					.collect(Collectors.toList()).toArray(new String[] {});
+		} else {
+			return new String[] {};
+		}
 	}
 
 	public void validate() {
@@ -146,7 +150,7 @@ public class SectionDefinition extends BaseDenifition {
 		}
 		if (ArrayUtils.isNotEmpty(getSubTables())) {
 			for (SubTableDefinition subtable : getSubTables()) {
-				subtable.validate();
+				// subtable.validate();
 			}
 		}
 	}

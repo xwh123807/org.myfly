@@ -42,6 +42,7 @@ public class DefaultFormViewBuilder extends FormViewBuilder {
 					subTableDefinition.setTitle(field.getTitle());
 					subTableDefinition.setSubTableAttr(field.getName());
 					subTableDefinition.setListStyle(ListStyle.TABLE);
+					subTableDefinition.setRefName(EntityMetaDataConstants.DEFAULT_ALL_NAME);
 					//subTableDefinition.setFields(entityMetaData.getSubEntityMetaData(field.getName()).getFieldNames());
 					SectionDefinition sectionDefinition2 = new SectionDefinition();
 					sectionDefinition2.setTitle(field.getTitle());

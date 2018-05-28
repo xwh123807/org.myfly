@@ -19,6 +19,7 @@ import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.OutlineDefinition;
 import org.myfly.platform.core.metadata.define.SubTableDefinition;
 import org.myfly.platform.core.metadata.define.TableDefinition;
+import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.FuncUtil;
@@ -92,7 +93,7 @@ public class EntityMetaData {
 			addOutlineDefinition(outlineDefinition);
 		});
 		addDefaultDefinition(this);
-		validate();
+		// validate();
 	}
 
 	private void addDefaultDefinition(EntityMetaData entityMetaData) {
@@ -216,12 +217,55 @@ public class EntityMetaData {
 		return (T) getFieldMap().get(name);
 	}
 
+	/**
+	 * 获取指定表单视图
+	 * 
+	 * @param formViewName
+	 * @return
+	 */
+	@JsonIgnore
 	public FormDefinition getFormDefinition(String formViewName) {
-		return getFormDefinitions().get(formViewName);
+		return getDefinition(formViewName, getFormDefinitions());
 	}
 
+	/**
+	 * 获取指定列表视图
+	 * 
+	 * @param listViewName
+	 * @return
+	 */
+	@JsonIgnore
 	public ListDefinition getListDefinition(String listViewName) {
-		return getListDefinitions().get(listViewName);
+		return getDefinition(listViewName, getListDefinitions());
+	}
+
+	/**
+	 * 获取指定大纲视图
+	 * 
+	 * @param outlineViewName
+	 * @return
+	 */
+	@JsonIgnore
+	public OutlineDefinition getOutlineDefinition(String outlineViewName) {
+		return getDefinition(outlineViewName, getOutlineDefinitions());
+	}
+
+	/**
+	 * 获取指定视图单定义 <br>
+	 * 1、如果存在指定视图名，则直接返回 <br>
+	 * 2、如果formViewName为空，则返回default，如果还没有则返回all <br>
+	 * 
+	 * @param formViewName
+	 * @return
+	 */
+	private <T> T getDefinition(String viewName, Map<String, T> items) {
+		if (StringUtils.isNotBlank(viewName) && items.containsKey(viewName)) {
+			return items.get(viewName);
+		} else {
+			return items.containsKey(EntityMetaDataConstants.DEFAULT_NAME)
+					? items.get(EntityMetaDataConstants.DEFAULT_NAME)
+					: items.get(EntityMetaDataConstants.DEFAULT_ALL_NAME);
+		}
 	}
 
 	/**
@@ -324,9 +368,10 @@ public class EntityMetaData {
 		EntityFieldDefinition[] fields = getAllFields();
 		return Stream.of(fields).map(item -> item.getName()).collect(Collectors.toList()).toArray(new String[] {});
 	}
-	
+
 	/**
 	 * 获取子表实体元模型
+	 * 
 	 * @param subTableAttr
 	 * @return
 	 */
