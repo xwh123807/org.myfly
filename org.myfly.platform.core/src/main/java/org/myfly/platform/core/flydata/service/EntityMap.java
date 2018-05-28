@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.utils.AppUtil;
 import org.springframework.util.Assert;
 
@@ -66,7 +67,7 @@ public class EntityMap extends LinkedHashMap<String, String> {
 
 	private EntityMetaData getEntityMetaData(String entityName) {
 		Assert.hasLength(entityName);
-		return AppUtil.getEntityMataDataService().getEntityMetaData(entityName);
+		return AppUtil.getEntityMetaData(entityName);
 	}
 
 	/**
@@ -81,12 +82,12 @@ public class EntityMap extends LinkedHashMap<String, String> {
 
 		for (EntityFieldDefinition field : metaData.getAllFields()) {
 			if (containsKey(field.getName())) {
-				field.getSetValueHandler().setFieldValue(entity, get(field.getName()));
+				field.getValueHandler().setFieldValue(entity, get(field.getName()));
 			}
 		}
 
 		if (StringUtils.isNotBlank(uid)) {
-			metaData.getPkFieldDefinition().getSetValueHandler().setFieldValue(entity, uid);
+			metaData.getPkFieldDefinition().getValueHandler().setFieldValue(entity, uid);
 		}
 
 		return entity;
@@ -110,9 +111,10 @@ public class EntityMap extends LinkedHashMap<String, String> {
 	 */
 	public <T> T newSubEntity(EntityMetaData metaData, String uid, String subTableAttr, String subUid) {
 		EntityMetaData subMetaData = metaData.getSubEntityMetaData(subTableAttr);
-		EntityFieldDefinition subField = metaData.getField(subTableAttr).getRelationField();
+		MDRelationFieldDefinition subField = metaData.getField(subTableAttr);
 		T entity = newEntity(subMetaData, subUid);
-		subField.getSetValueHandler().setFieldValue(entity, uid);
+		T master = newEntity(metaData, uid);
+		subMetaData.getField(subField.getRelationField()).getValueHandler().setFieldValue(entity, master);
 		return entity;
 	}
 
@@ -129,7 +131,7 @@ public class EntityMap extends LinkedHashMap<String, String> {
 	public <T> void mergeEntity(EntityMetaData metaData, T entity) {
 		for (EntityFieldDefinition field : metaData.getAllFields()) {
 			if (containsKey(field.getName())) {
-				field.getSetValueHandler().setFieldValue(entity, get(field.getName()));
+				field.getValueHandler().setFieldValue(entity, get(field.getName()));
 			}
 		}
 	}

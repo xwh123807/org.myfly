@@ -16,8 +16,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.myfly.platform.CoreApplication;
 import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.flydata.service.EntityMap;
 import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
+import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.testdata.Detail;
 import org.myfly.platform.core.testdata.Master;
 import org.myfly.platform.core.utils.DateUtil;
@@ -25,6 +27,8 @@ import org.myfly.platform.core.utils.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -87,8 +91,13 @@ public class JpaFlyDataAccessServiceTest {
 		Assert.assertEquals(0, flyDataService.count2(entityName, null));
 		flyDataService.saveEntity(list);
 		Assert.assertEquals(10, flyDataService.count2(entityName, null));
+		Page<FlyEntityMap> page = flyDataService.findAll(entityName, EntityMetaDataConstants.DEFAULT_ALL_NAME, null,
+				new PageRequest(0, 5), false);
+		Assert.assertNotNull(page);
+		Assert.assertEquals(10, page.getTotalElements());
+		Assert.assertEquals(2, page.getTotalPages());
 	}
-	
+
 	@Test
 	public void saveEntityWithMap() {
 		Map<String, Object> values = new HashedMap();
@@ -142,13 +151,43 @@ public class JpaFlyDataAccessServiceTest {
 		Assert.assertEquals(FieldDataType.MONEY.name(), fly.get("dataType"));
 		Assert.assertEquals("币种", fly.get("dataType__label"));
 	}
-	
+
+	@Test
+	public void saveSubEntity() {
+		String entityName = Master.class.getName();
+		String uid = saveEntity();
+		Assert.assertNotNull(uid);
+		EntityMap values = new EntityMap();
+		values.put("uid", UUIDUtil.newUUID());
+		values.put("name", "detail name");
+		values.put("dataType", FieldDataType.DATE.name());
+		String uid2 = flyDataService.saveEntity(entityName, uid, "details", EntityMetaDataConstants.DEFAULT_ALL_NAME,
+				values);
+		FlyEntityMap detail = flyDataService.findOne(Detail.class.getName(), uid2,
+				EntityMetaDataConstants.DEFAULT_ALL_NAME, false);
+		Assert.assertNotNull(detail);
+		Assert.assertEquals(values.get("uid"), detail.get("uid"));
+
+		EntityMap values2 = new EntityMap();
+		values2.put("name", "detail name changed");
+		values2.put("dataType", FieldDataType.DATETIME.name());
+		flyDataService.updateEntity(entityName, uid, "details", uid2, EntityMetaDataConstants.DEFAULT_ALL_NAME,
+				values2);
+		detail = flyDataService.findOne(Detail.class.getName(), uid2, EntityMetaDataConstants.DEFAULT_ALL_NAME, false);
+		Assert.assertNotNull(detail);
+		Assert.assertEquals(uid2, detail.get("uid"));
+		Assert.assertEquals(uid, detail.get("master"));
+		Assert.assertEquals(values2.get("name"), detail.get("name"));
+		Assert.assertEquals(values2.get("dataType"), detail.get("dataType"));
+	}
+
 	@Test
 	public void findAllForSubEntity() {
 		String entityName = Master.class.getName();
 		String uid = saveEntity();
 		Assert.assertNotNull(uid);
-		List<FlyEntityMap> list = flyDataService.findAllForSubEntity(entityName, uid, "details", "default", null, false);
+		List<FlyEntityMap> list = flyDataService.findAllForSubEntity(entityName, uid, "details", "default", null,
+				false);
 		Assert.assertNotNull(list);
 		Assert.assertTrue(list.size() == 9);
 		FlyEntityMap detail = list.get(0);
@@ -158,5 +197,16 @@ public class JpaFlyDataAccessServiceTest {
 		Assert.assertEquals(FieldDataType.MONEY.name(), detail.get("dataType"));
 		Assert.assertEquals(FieldDataType.MONEY.getTitle(), detail.get("dataType__label"));
 		Assert.assertNotNull(detail.get("created"));
+
+		Page<FlyEntityMap> page = flyDataService.findAllForSubEntityWithPage(entityName, uid, "details", "default",
+				null, new PageRequest(0, 5), false);
+		Assert.assertNotNull(page);
+		Assert.assertEquals(9, page.getTotalElements());
+		Assert.assertEquals(2, page.getTotalPages());
+
+		List<FlyEntityMap> list2 = flyDataService.findAllForSubEntity(entityName, uid, "details", "default", null, 0, 5,
+				false);
+		Assert.assertNotNull(list2);
+		Assert.assertTrue(list2.size() == 9);
 	}
 }
