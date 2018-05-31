@@ -71,8 +71,8 @@ import org.springframework.util.ClassUtils;
  * @author xiangwanhong
  *
  */
-@Service
-@CacheConfig(cacheNames = "entity-metadata-service")
+//@Service
+//@CacheConfig(cacheNames = "entity-metadata-service")
 public class EntityMetaDataService2 implements IEntityMetaDataService {
 	private static Log log = LogFactory.getLog(EntityMetaDataService.class);
 	@Autowired

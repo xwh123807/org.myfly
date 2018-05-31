@@ -247,8 +247,8 @@ public class FlyDataAccessRestService {
 	 * @return
 	 */
 	@RequestMapping(value = "{entityName}/{uid}", method = RequestMethod.DELETE)
-	public int delOne(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid) {
-		return getFlyDataAccessService(entityName).delOne(entityName, uid);
+	public void delOne(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid) {
+		getFlyDataAccessService(entityName).delOne(entityName, uid);
 	}
 
 	/**
@@ -260,9 +260,9 @@ public class FlyDataAccessRestService {
 	 * @param subUid
 	 */
 	@RequestMapping(value = "{entityName}/{uid}/{subTableAttr}/{subUid}", method = RequestMethod.DELETE)
-	public int delSubEntity(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid,
+	public void delSubEntity(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid,
 			@PathVariable("subTableAttr") String subTableAttr, @PathVariable("subUid") String subUid) {
-		return getFlyDataAccessService(entityName).delSubEntity(entityName, uid, subTableAttr, subUid);
+		getFlyDataAccessService(entityName).delSubEntity(entityName, uid, subTableAttr, subUid);
 	}
 
 	/**

@@ -48,7 +48,7 @@ import org.myfly.platform.core.system.domain.IUser;
  *         由系统控制 IsSystemControlled 复选框 <br>
  */
 @Entity
-@Table(schema = SchemaConstants.PB, indexes = {
+@Table(name="suser", schema = SchemaConstants.PB, indexes = {
 		@Index(name = "idx_suser_name", unique = true, columnList = "tenant_uid, name"),
 		@Index(name = "idx_suser_email", unique = true, columnList = "email") })
 @MetaDataView(

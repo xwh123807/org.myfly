@@ -266,12 +266,8 @@ public class SubEntityVisualPageController extends BaseVisualPageController {
 
 		String subTableName = super.getSubTableName(table, subTableAttr);
 		AssertUtil.recordNotFound(subTableName, table, "fieldName", subTableAttr);
-		int count = getFlyDataAccessService(table).delOne(subTableName, subUid);
-		if (count != 1) {
-			setUserAlertInfo(new AlertInfo(AlertLevel.WARNING, "删除失败", "删除错误，应当删除一条，实际删除" + count + "条."));
-		} else {
-			setUserAlertInfo(new AlertInfo(AlertLevel.SUCCESS, "删除成功"));
-		}
+		getFlyDataAccessService(table).delOne(subTableName, subUid);
+		setUserAlertInfo(new AlertInfo(AlertLevel.SUCCESS, "删除成功"));
 		// 删除后，回到实体查看页面
 		return redirectTo(EntityUrlUtil.getEntityActionUrl(EntityAction.VIEW, table, uid, null));
 	}

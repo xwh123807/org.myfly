@@ -1,4 +1,4 @@
-package org.myfly.platform.core.test;
+package org.myfly.platform.visualpage.test;
 
 import java.io.Serializable;
 

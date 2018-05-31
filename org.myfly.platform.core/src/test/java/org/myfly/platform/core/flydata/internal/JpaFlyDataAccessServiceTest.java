@@ -159,7 +159,7 @@ public class JpaFlyDataAccessServiceTest {
 		Assert.assertNotNull(uid);
 		EntityMap values = new EntityMap();
 		values.put("uid", UUIDUtil.newUUID());
-		values.put("name", "detail name");
+		values.put("title", "title");
 		values.put("dataType", FieldDataType.DATE.name());
 		String uid2 = flyDataService.saveEntity(entityName, uid, "details", EntityMetaDataConstants.DEFAULT_ALL_NAME,
 				values);
@@ -169,7 +169,7 @@ public class JpaFlyDataAccessServiceTest {
 		Assert.assertEquals(values.get("uid"), detail.get("uid"));
 
 		EntityMap values2 = new EntityMap();
-		values2.put("name", "detail name changed");
+		values2.put("title", "detail title changed");
 		values2.put("dataType", FieldDataType.DATETIME.name());
 		flyDataService.updateEntity(entityName, uid, "details", uid2, EntityMetaDataConstants.DEFAULT_ALL_NAME,
 				values2);
@@ -177,7 +177,7 @@ public class JpaFlyDataAccessServiceTest {
 		Assert.assertNotNull(detail);
 		Assert.assertEquals(uid2, detail.get("uid"));
 		Assert.assertEquals(uid, detail.get("master"));
-		Assert.assertEquals(values2.get("name"), detail.get("name"));
+		Assert.assertEquals(values2.get("title"), detail.get("title"));
 		Assert.assertEquals(values2.get("dataType"), detail.get("dataType"));
 	}
 

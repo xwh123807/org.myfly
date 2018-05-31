@@ -44,7 +44,7 @@ public class MenuService implements IMenuService {
 	@Override
 	public List<IMenu> getAllMenus() {
 		List<IMenu> list = new ArrayList<>();
-		for (Menu item : dataAccessService.findAll(Menu.class, new Sort(Direction.ASC, "orderNumber"))){
+		for (Menu item : dataAccessService.findAll(Menu.class, null, new Sort(Direction.ASC, "orderNumber"))){
 			//只返回顶级菜单
 			if (item.getParent() == null){
 				list.add(item);

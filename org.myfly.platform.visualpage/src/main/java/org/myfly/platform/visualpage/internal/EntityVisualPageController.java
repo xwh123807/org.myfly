@@ -196,10 +196,7 @@ public class EntityVisualPageController extends BaseVisualPageController {
 		AssertUtil.parameterEmpty(table, "table");
 		AssertUtil.parameterEmpty(uid, "uid");
 		try {
-			int count = getFlyDataAccessService(table).delOne(table, uid);
-			if (count != 1) {
-				throw new EntityException("删除错误，应当删除一条，实际删除" + count + "条.");
-			}
+			getFlyDataAccessService(table).delOne(table, uid);
 			setUserAlertInfo(new AlertInfo(AlertLevel.SUCCESS, "删除成功"));
 		} catch (Exception e) {
 			setUserAlertInfo(new AlertInfo("删除失败", e));
@@ -229,7 +226,7 @@ public class EntityVisualPageController extends BaseVisualPageController {
 			// 保存实体
 			Map<String, String[]> values = request.getParameterMap();
 			EntityMetaData metaData = getEntityMetaDataService().getEntityMetaData(table);
-			Serializable pkValue = metaData.getPKFieldDefinition().buildPK(uid);
+			Serializable pkValue = metaData.getPkFieldDefinition().buildPK(uid);
 			Object updateEntity = EntityUtil.buildNewEntityForRequest(table, metaData, pkValue, values);
 			AssertUtil.parameterEmpty(updateEntity, "updateEntity");
 			getFlyDataAccessService(table).updateEntity(table, uid, formViewName, EntityMap.build(values));

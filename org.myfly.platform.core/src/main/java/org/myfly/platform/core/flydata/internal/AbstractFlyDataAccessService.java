@@ -220,11 +220,11 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 			String uploadDir, String actionUrl) {
 		EntityMetaData entityMetaData = getEntityMetaData(table);
 		MDRelationFieldDefinition mdField = entityMetaData.getField(subTableAttr);
-		final IFieldValueHandler setHandler = mdField.getRelationField().getValueHandler();
+		//final IFieldValueHandler setHandler = mdField.getRelationField().getValueHandler();
 		return importExcel(entityMetaData.getEntityName(), listViewName, uploadDir, actionUrl, new ImportActions() {
 			@Override
 			public void before(Object entity) {
-				setHandler.setFieldValue(entity, uid);
+				//setHandler.setFieldValue(entity, uid);
 			}
 
 		});
