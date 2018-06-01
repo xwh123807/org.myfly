@@ -73,7 +73,8 @@ import org.springframework.util.ClassUtils;
  */
 //@Service
 //@CacheConfig(cacheNames = "entity-metadata-service")
-public class EntityMetaDataService2 implements IEntityMetaDataService {
+public class EntityMetaDataService2 {
+	//implements IEntityMetaDataService {
 	private static Log log = LogFactory.getLog(EntityMetaDataService.class);
 	@Autowired
 	private JpaMetamodelMappingContext mappingContext;

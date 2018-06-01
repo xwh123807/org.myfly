@@ -19,9 +19,6 @@ public class EntityMetaDataTest {
 		Assert.assertEquals(Master.class, metaData.getEntityClass());
 		Assert.assertEquals("org.myfly.platform.core.testdata.Master", metaData.getEntityName());
 		Assert.assertEquals(Master.class, metaData.newEntityInstance().getClass());
-
-		Assert.assertEquals(7, metaData.getFieldMap().size());
-		Assert.assertEquals(6, metaData.getAllFields().length);
 		Assert.assertTrue(Arrays.equals(new String[] { "uid", "created", "dataType", "name", "description", "active" },
 				metaData.getFieldNames()));
 		Assert.assertArrayEquals(new String[] { "uid", "created", "dataType", "name", "description", "active" },

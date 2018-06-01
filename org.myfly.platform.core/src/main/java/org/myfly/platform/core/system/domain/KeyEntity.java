@@ -30,6 +30,13 @@ public class KeyEntity implements IKeyEntity{
 	//@GenericGenerator(name="system-uuid", strategy="uuid")
 	@FieldView(title="UID", dataType=FieldDataType.UUID)
 	private String uid;
+	
+	public KeyEntity() {
+	}
+	
+	public KeyEntity(String uid) {
+		setUid(uid);
+	}
 
 	@Override
 	public String getUid() {

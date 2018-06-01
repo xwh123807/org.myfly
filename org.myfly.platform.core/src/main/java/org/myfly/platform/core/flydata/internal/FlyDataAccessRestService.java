@@ -9,9 +9,11 @@ import org.myfly.platform.core.flydata.service.EntityMap;
 import org.myfly.platform.core.flydata.service.EntityQueryMap;
 import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
+import org.myfly.platform.core.system.domain.KeyEntity;
 import org.myfly.platform.core.utils.AppUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("flydata")
+@RequestMapping(path = "flydata")
 public class FlyDataAccessRestService {
 
 	@RequestMapping()
@@ -73,6 +75,8 @@ public class FlyDataAccessRestService {
 			@RequestParam() final EntityMap params) {
 		return getFlyDataAccessService(entityName).findAll(entityName, params);
 	}
+	
+	
 
 	/**
 	 * 获取指定实体数据
@@ -167,7 +171,7 @@ public class FlyDataAccessRestService {
 		return getFlyDataAccessService(entityName).findAllWithPage(entityName, listViewName,
 				convertToRequestParametersMap(params), page, size, printMode);
 	}
-
+	
 	/**
 	 * 获取实体子表全部数据
 	 * 
@@ -272,11 +276,12 @@ public class FlyDataAccessRestService {
 	 * @param formViewName
 	 * @param values
 	 */
-	@RequestMapping(value = "{entityName}", method = RequestMethod.POST)
-	public String saveEntity(@PathVariable("entityName") String entityName,
+	@RequestMapping(value = "{entityName}", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public KeyEntity saveEntity(@PathVariable("entityName") String entityName,
 			@RequestParam(name = "view", required = false, defaultValue = "default") String formViewName,
-			@RequestParam(name = "values", required = false) EntityMap values) {
-		return getFlyDataAccessService(entityName).saveEntity(entityName, formViewName, values);
+			@RequestBody EntityMap values) {
+		String uid = getFlyDataAccessService(entityName).saveEntity(entityName, formViewName, values);
+		return new KeyEntity(uid);
 	}
 
 	/**
@@ -289,11 +294,13 @@ public class FlyDataAccessRestService {
 	 * @param values
 	 */
 	@RequestMapping(value = "{entityName}/{uid}/{subTableAttr}", method = RequestMethod.POST)
-	public String saveSubEntity(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid,
+	public KeyEntity saveSubEntity(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid,
 			@PathVariable("subTableAttr") String subTableAttr,
 			@RequestParam(name = "view", required = false, defaultValue = "default") String formViewName,
-			@RequestParam(name = "values", required = false) EntityMap values) {
-		return getFlyDataAccessService(entityName).saveEntity(entityName, uid, subTableAttr, formViewName, values);
+			@RequestBody EntityMap values) {
+		String subUid = getFlyDataAccessService(entityName).saveEntity(entityName, uid, subTableAttr, formViewName,
+				values);
+		return new KeyEntity(subUid);
 	}
 
 	/**
@@ -307,7 +314,7 @@ public class FlyDataAccessRestService {
 	@RequestMapping(value = "{entityName}/{uid}", method = RequestMethod.PUT)
 	public void updateEntity(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid,
 			@RequestParam(name = "view", required = false, defaultValue = "default") String formViewName,
-			@RequestParam(name = "values", required = false) EntityMap values) {
+			@RequestBody EntityMap values) {
 		getFlyDataAccessService(entityName).updateEntity(entityName, uid, formViewName, values);
 	}
 
@@ -325,7 +332,7 @@ public class FlyDataAccessRestService {
 	public void updateSubEntity(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid,
 			@PathVariable("subTableAttr") String subTableAttr, @PathVariable("subUid") String subUid,
 			@RequestParam(name = "view", required = false, defaultValue = "default") String formViewName,
-			@RequestParam(name = "values", required = false) EntityMap values) {
+			@RequestBody EntityMap values) {
 		getFlyDataAccessService(entityName).updateEntity(entityName, uid, subTableAttr, subUid, formViewName, values);
 	}
 
