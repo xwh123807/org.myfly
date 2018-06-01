@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.metadata.annotation.CommonSubTableType;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
-import org.myfly.platform.core.testdata.Master;
+import org.myfly.platform.core.testmodel.Master;
 
 public class TableDefinitionTest {
 	@Test

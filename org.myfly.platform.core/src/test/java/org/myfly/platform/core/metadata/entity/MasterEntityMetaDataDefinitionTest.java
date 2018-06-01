@@ -5,7 +5,7 @@ import java.util.Map;
 import org.apache.commons.collections.map.HashedMap;
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.core.testdata.Master;
+import org.myfly.platform.core.testmodel.Master;
 import org.myfly.platform.core.utils.FuncUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 

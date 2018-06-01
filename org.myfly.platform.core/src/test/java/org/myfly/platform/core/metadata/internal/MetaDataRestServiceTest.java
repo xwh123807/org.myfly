@@ -1,13 +1,14 @@
 package org.myfly.platform.core.metadata.internal;
 
 import java.net.URI;
+import java.util.stream.Stream;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.myfly.platform.CoreApplication;
-import org.myfly.platform.core.testdata.Detail;
-import org.myfly.platform.core.testdata.Master;
+import org.myfly.platform.core.testmodel.Detail;
+import org.myfly.platform.core.testmodel.Master;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -27,8 +28,25 @@ public class MetaDataRestServiceTest {
 
 	@Test
 	public void help() {
-		ResponseEntity<String> result2 = service.getForEntity("/meta", String.class);
+		ResponseEntity<String> result2 = service.getForEntity("/meta/help", String.class);
 		Assert.assertEquals(200, result2.getStatusCodeValue());
+	}
+
+	@Test
+	public void list() {
+		ResponseEntity<String[]> result2 = service.getForEntity("/meta", String[].class);
+		Assert.assertNotNull(result2.getBody());
+		Assert.assertEquals(200, result2.getStatusCodeValue());
+	}
+
+	@Test
+	public void featchAllEntity() {
+		ResponseEntity<String[]> result2 = service.getForEntity("/meta", String[].class);
+		Assert.assertEquals(200, result2.getStatusCodeValue());
+		Stream.of(result2.getBody()).forEach(item -> {
+			ResponseEntity<String> result = service.getForEntity(getUri("{entity}", item), String.class);
+			Assert.assertEquals(200, result.getStatusCodeValue());
+		});
 	}
 
 	@Test

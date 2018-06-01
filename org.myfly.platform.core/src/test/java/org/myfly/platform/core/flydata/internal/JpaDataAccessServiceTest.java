@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 import org.myfly.platform.CoreApplication;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
-import org.myfly.platform.core.testdata.Master;
+import org.myfly.platform.core.testmodel.Master;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

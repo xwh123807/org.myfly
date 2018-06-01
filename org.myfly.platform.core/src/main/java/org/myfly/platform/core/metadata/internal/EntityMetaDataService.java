@@ -27,28 +27,34 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 	 * 缓存所有已经加载的元模型
 	 */
 	private static Map<String, EntityMetaData> cachedEntityMetaDatas = new ConcurrentHashMap<>();
+	/**
+	 * 缓存实体类
+	 */
+	private static List<Class<?>> entityClasses;
 
 	@Override
 	public List<Class<?>> getAllEntityClasses() {
-		List<Class<?>> list = new ArrayList<>();
-		for (JpaPersistentEntity<?> entity : mappingContext.getPersistentEntities()) {
-			list.add(entity.getType());
+		if (entityClasses == null) {
+			entityClasses = new ArrayList<>();
+			for (JpaPersistentEntity<?> entity : mappingContext.getPersistentEntities()) {
+				entityClasses.add(entity.getType());
+			}
 		}
-		return list;
+		return entityClasses;
 	}
 
 	@Override
 	public <T> T getEntityClass(String entityNameOrClassName) {
 		AssertUtil.parameterEmpty(entityNameOrClassName, "entityNameOrClassName");
 		Class<?> entityClass = null;
-		for (JpaPersistentEntity<?> entity : mappingContext.getPersistentEntities()) {
+		for (Class<?> entity : getAllEntityClasses()) {
 			if (entity.getName().equals(entityNameOrClassName)) {
-				entityClass = entity.getType();
+				entityClass = entity;
 				break;
 			} else {
 				String shortName = ClassUtils.getShortName(entity.getName());
 				if (shortName.equalsIgnoreCase(entityNameOrClassName)) {
-					entityClass = entity.getType();
+					entityClass = entity;
 					break;
 				}
 			}
@@ -61,9 +67,12 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 		AssertUtil.parameterEmpty(entityNameOrClassName, "entityNameOrClassName");
 		if (cachedEntityMetaDatas.containsKey(entityNameOrClassName)) {
 			return cachedEntityMetaDatas.get(entityNameOrClassName);
+		} else {
+			Class<?> entityClass = getEntityClass(entityNameOrClassName);
+			EntityMetaData meta = new EntityMetaData(entityClass);
+			cachedEntityMetaDatas.put(entityNameOrClassName, meta);
+			return meta;
 		}
-		Class<?> entityClass = getEntityClass(entityNameOrClassName);
-		return new EntityMetaData(entityClass);
 	}
 
 	@Override

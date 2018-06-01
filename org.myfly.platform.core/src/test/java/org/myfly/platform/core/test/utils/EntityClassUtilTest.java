@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.core.testdata.Master;
+import org.myfly.platform.core.testmodel.Master;
 import org.myfly.platform.core.utils.EntityClassUtil;
 import org.myfly.platform.core.utils.EntityClassUtil.FieldInfo;
 
@@ -21,11 +21,6 @@ public class EntityClassUtilTest {
 		Assert.assertNotNull(field);
 		Assert.assertEquals("getUid", field.getGetter().getName());
 		Assert.assertEquals("setUid", field.getSetter().getName());
-		
-		field = fieldInfos.get("tenant");
-		Assert.assertNotNull(field);
-		Assert.assertEquals("getTenant", field.getGetter().getName());
-		Assert.assertEquals("setTenant", field.getSetter().getName());
 		
 		field = fieldInfos.get("active");
 		Assert.assertNotNull(field);

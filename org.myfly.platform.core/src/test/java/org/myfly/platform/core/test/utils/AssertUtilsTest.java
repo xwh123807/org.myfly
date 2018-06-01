@@ -14,6 +14,7 @@ public class AssertUtilsTest {
 		AssertUtil.parameterEmpty(null, "uid");
 	}
 	
+	@Test
 	public void parameterEmptyForString(){
 		AssertUtil.parameterEmpty("sdfsdf", "uid");
 	}

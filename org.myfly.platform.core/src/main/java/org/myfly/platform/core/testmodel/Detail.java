@@ -1,4 +1,4 @@
-package org.myfly.platform.core.testdata;
+package org.myfly.platform.core.testmodel;
 
 import java.sql.Timestamp;
 

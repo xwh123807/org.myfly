@@ -3,8 +3,8 @@ package org.myfly.platform.core.metadata.define;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.metadata.annotation.MetaDataView;
-import org.myfly.platform.core.testdata.Detail;
-import org.myfly.platform.core.testdata.Master;
+import org.myfly.platform.core.testmodel.Detail;
+import org.myfly.platform.core.testmodel.Master;
 import org.myfly.platform.core.utils.JSONUtil;
 
 public class MetaDataDefinitionTest {

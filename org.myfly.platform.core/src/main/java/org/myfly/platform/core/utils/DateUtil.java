@@ -112,15 +112,11 @@ public class DateUtil {
 	 * @return
 	 */
 	public static Date dateStrToDate(String datestr) {
-		Date date = null;
 		try {
-			date = new SimpleDateFormat("yyyy-MM-dd").parse(datestr);
+			return new SimpleDateFormat("yyyy-MM-dd").parse(datestr);
 		} catch (ParseException e) {
-			if (log.isErrorEnabled()) {
-				log.error("时间转换错误，格式yyyy-MM-dd[" + datestr + "], 错误信息：" + e.getMessage());
-			}
+			throw new IllegalArgumentException("时间转换错误，格式yyyy-MM-dd[" + datestr + "], 错误信息：" + e.getMessage());
 		}
-		return date;
 	}
 
 	public static java.sql.Date dateStrToSqlDate(String value) {

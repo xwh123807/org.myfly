@@ -7,8 +7,8 @@ import org.junit.Test;
 import org.myfly.platform.core.metadata.define.FormDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
-import org.myfly.platform.core.testdata.Detail;
-import org.myfly.platform.core.testdata.Master;
+import org.myfly.platform.core.testmodel.Detail;
+import org.myfly.platform.core.testmodel.Master;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 
@@ -17,7 +17,7 @@ public class EntityMetaDataTest {
 	public void master() {
 		EntityMetaData metaData = new EntityMetaData(Master.class);
 		Assert.assertEquals(Master.class, metaData.getEntityClass());
-		Assert.assertEquals("org.myfly.platform.core.testdata.Master", metaData.getEntityName());
+		Assert.assertEquals(Master.class.getName(), metaData.getEntityName());
 		Assert.assertEquals(Master.class, metaData.newEntityInstance().getClass());
 		Assert.assertTrue(Arrays.equals(new String[] { "uid", "created", "dataType", "name", "description", "active" },
 				metaData.getFieldNames()));

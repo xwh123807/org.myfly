@@ -6,7 +6,7 @@ import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinitionFactory;
 import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.entity.SearchRelationFieldDefinition;
-import org.myfly.platform.core.testdata.Master;
+import org.myfly.platform.core.testmodel.Master;
 import org.myfly.platform.core.utils.EntityClassUtil;
 
 public class EntityFieldDefinitionFactoryTest {

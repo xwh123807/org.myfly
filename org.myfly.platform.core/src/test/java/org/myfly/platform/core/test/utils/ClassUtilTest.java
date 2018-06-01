@@ -9,8 +9,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.system.domain.ITenant;
-import org.myfly.platform.core.testdata.Detail;
-import org.myfly.platform.core.testdata.Master;
+import org.myfly.platform.core.testmodel.Detail;
+import org.myfly.platform.core.testmodel.Master;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.DateUtil;
 public class ClassUtilTest{
@@ -39,7 +39,7 @@ public class ClassUtilTest{
 	
 	@Test
 	public void getClasses(){
-		Set<Class<?>> list = ClassUtil.getClasses("org.myfly.platform.core.user.domain");
+		Set<Class<?>> list = ClassUtil.getClasses("org.myfly.platform.core.test");
 		Assert.assertTrue(list.size() > 0);
 	}
 	
@@ -151,13 +151,4 @@ public class ClassUtilTest{
 		Assert.assertEquals(DateUtil.dateToStr(now), value);
 	}
 	
-	@Test
-	public void getFieldType() throws Exception {
-		Class<?> cls = ClassUtil.getFieldType(Master.class.getDeclaredField("details"));
-		Assert.assertEquals(Detail.class, cls);
-		cls = ClassUtil.getFieldType(Master.class.getSuperclass().getDeclaredField("name"));
-		Assert.assertEquals(String.class, cls);
-		cls = ClassUtil.getFieldType(Master.class.getSuperclass().getDeclaredField("tenant"));
-		Assert.assertEquals(ITenant.class, cls);
-	}
 }
