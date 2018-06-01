@@ -4,6 +4,7 @@ import org.myfly.platform.core.domain.EntityActionInfo;
 import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.metadata.define.SubTableDefinition;
 import org.myfly.platform.visualpage.ui.WidgetBoxRender;
 
 /**
@@ -19,8 +20,11 @@ public class EntityTableWidgetBoxRender extends WidgetBoxRender {
 	public EntityTableWidgetBoxRender(final ListDefinition listDefinition, final ViewType viewType) {
 		super(listDefinition.getTitle(), viewType);
 		this.listDefinition = listDefinition;
-		actionInfo = new EntityActionInfo(listDefinition.getEntityName(), "$!{obj.uid}",
-				listDefinition.getSubTableAttr(), "$!{obj.subuid}", null, listDefinition.getName(), null);
+		String subTableAttr = listDefinition instanceof SubTableDefinition
+				? ((SubTableDefinition) listDefinition).getSubTableAttr()
+				: "";
+		actionInfo = new EntityActionInfo(listDefinition.getEntityName(), "$!{obj.uid}", subTableAttr, "$!{obj.subuid}",
+				null, listDefinition.getName(), null);
 	}
 
 	@Override
@@ -36,13 +40,13 @@ public class EntityTableWidgetBoxRender extends WidgetBoxRender {
 	@Override
 	public String getContent() {
 		if (ListStyle.TABLE.equals(listDefinition.getListStyle()) || ViewType.PRINT.equals(getViewType())) {
-			//表格显示模式
+			// 表格显示模式
 			EntityServerSideTableRender tableRender = EntityServerSideTableRender.getEntityTableRender(listDefinition,
 					getViewType());
 			tableRender.setHeader(listDefinition.getHeader());
 			return tableRender.html();
 		} else {
-			//卡片显示模式
+			// 卡片显示模式
 			CardListRender cardListRender = new CardListRender(listDefinition);
 			return cardListRender.html();
 		}

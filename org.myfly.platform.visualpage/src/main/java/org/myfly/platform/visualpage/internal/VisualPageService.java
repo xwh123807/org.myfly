@@ -52,7 +52,7 @@ public class VisualPageService implements IVisualPageService {
 	@Autowired
 	private IEntityMetaDataService entityMetaDataService;
 
-	@Autowired
+	@Autowired(required=false)
 	private IMenuService menuService;
 	
 	@Autowired

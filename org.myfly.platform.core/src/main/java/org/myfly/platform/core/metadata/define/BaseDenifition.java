@@ -2,6 +2,10 @@ package org.myfly.platform.core.metadata.define;
 
 import java.io.Serializable;
 
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 元模型定义类基类
  * 
@@ -17,6 +21,9 @@ public abstract class BaseDenifition implements Serializable{
 	 * 名称，唯一，api标识
 	 */
 	private String name;
+	
+	@JsonIgnore
+	private EntityMetaData parent;
 
 	public BaseDenifition() {
 	}
@@ -35,6 +42,14 @@ public abstract class BaseDenifition implements Serializable{
 	}
 	
 	public abstract void validate();
+
+	public EntityMetaData getParent() {
+		return parent;
+	}
+
+	public void setParent(EntityMetaData parent) {
+		this.parent = parent;
+	}
 
 //	/**
 //	 * 根据字段属性名称构建字段定义

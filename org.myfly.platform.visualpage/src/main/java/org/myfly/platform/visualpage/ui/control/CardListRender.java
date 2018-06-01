@@ -1,6 +1,8 @@
 package org.myfly.platform.visualpage.ui.control;
 
+import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.metadata.define.SubTableDefinition;
 import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.BaseRender;
 
@@ -22,10 +24,13 @@ public class CardListRender implements BaseRender {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("<ul" + HtmlUtils.addPropertys(new String[] { "class", "render" },
 				new String[] { "list-unstyled", getClass().getName() }) + ">");
-		if (listDefinition.isSubTableScene()) {
+		String subTableAttr = listDefinition instanceof SubTableDefinition
+				? ((SubTableDefinition) listDefinition).getSubTableAttr()
+				: "";
+		if (StringUtils.isNotEmpty(subTableAttr)) {
 			//子表场景下，在脚本中取数
 			buffer.append("#set ($tmp = $utils.getDataUtil().findAllForSubEntity(\"" + listDefinition.getEntityName()
-					+ "\", \"$uid\", \"" + listDefinition.getSubTableAttr() + "\", \""
+					+ "\", \"$uid\", \"" + subTableAttr + "\", \""
 					+ listDefinition.getName() + "\", null, false))");
 			buffer.append("#foreach($obj in $tmp)");
 		} else {

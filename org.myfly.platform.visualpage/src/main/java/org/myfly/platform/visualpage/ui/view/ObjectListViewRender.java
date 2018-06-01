@@ -30,7 +30,7 @@ public class ObjectListViewRender {
 		List<FieldDefinition> fields = new ArrayList<>();
 		String header = null;
 		for (PropertyView property : objectBean.fields()) {
-			FieldDefinition Field = new FieldDefinition(property.title(), property.name(), FieldDataType.TEXT);
+			FieldDefinition Field = new FieldDefinition();//(property.title(), property.name(), FieldDataType.TEXT);
 			fields.add(Field);
 		}
 		tableRender = new TableRender(fields.toArray(new FieldDefinition[] {}), header, null);

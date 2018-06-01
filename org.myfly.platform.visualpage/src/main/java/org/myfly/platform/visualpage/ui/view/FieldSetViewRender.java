@@ -30,7 +30,8 @@ public class FieldSetViewRender extends BaseRender {
 		String sizeClass = isFullSize() ? "" : "col-sm-6";
 		buffer.append("<fieldset class=\"form-horizontal " + sizeClass + "\""
 				+ HtmlUtils.addProperty("render", getClass().getName()) + ">");
-		for (FieldDefinition field : fieldSetDefinition.getFields()) {
+		for (String name : fieldSetDefinition.getFields()) {
+			FieldDefinition field = fieldSetDefinition.getParent().getField(name);
 			BaseFieldRender render = FieldRenderFactory.getRender(field);
 			render.setViewType(getViewType());
 			buffer.append(render.html());

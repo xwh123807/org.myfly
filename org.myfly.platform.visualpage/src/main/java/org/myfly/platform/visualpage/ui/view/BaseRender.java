@@ -22,7 +22,7 @@ public abstract class BaseRender {
 	 * @return
 	 */
 	public EntityMetaData getEntityMataData(final String entityName) {
-		return AppUtil.getEntityMataDataService().getEntityMetaData(entityName);
+		return AppUtil.getEntityMetaData(entityName);
 	}
 
 	public String html() {

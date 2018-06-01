@@ -95,6 +95,18 @@ public class FormDefinition extends BaseDenifition {
 				.toArray(new DivDefinition[] {}));
 	}
 
+	@Override
+	public void setParent(EntityMetaData parent) {
+		super.setParent(parent);
+		Stream.of(getSections()).forEach(item -> {
+			if (item.getFieldSets() != null)
+				Stream.of(item.getFieldSets()).forEach(fieldSet -> {
+					fieldSet.setParent(parent);
+				});
+			;
+		});
+	}
+
 	/**
 	 * 构建实体表单定义
 	 * 

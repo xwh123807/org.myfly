@@ -111,6 +111,7 @@ public class AppUtil {
 				metaData = getEntityMataDataService().getEntityMetaData(entityClassOrName);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new RuntimeException("查找元模型[" + entityClassOrName + "]失败，" + e.getMessage());
 		}
 		Assert.notNull(metaData, "找不到名称为[" + entityClassOrName + "]的元模型");

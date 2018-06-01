@@ -70,6 +70,7 @@ public class EntityMetaData {
 
 	public EntityMetaData(Class<?> entityClass) {
 		EntityMetaDataDefinition metaData = new EntityMetaDataDefinition(entityClass);
+		metaData.setParent(this);
 		setEntityClass(entityClass);
 		setJpaEntity(entityClass.getAnnotation(Entity.class) != null);
 		setEntityName(metaData.getName());
@@ -164,6 +165,7 @@ public class EntityMetaData {
 			AssertUtil.parameterInvalide("fieldDefinition",
 					"名称为[" + fieldDefinition.getName() + "]FieldDefinition已经存在，请检查实体[" + getEntityName() + "]元模型定义.");
 		}
+		fieldDefinition.setParent(this);
 		getFieldMap().put(fieldDefinition.getName(), fieldDefinition);
 	}
 
@@ -179,6 +181,7 @@ public class EntityMetaData {
 			AssertUtil.parameterInvalide("formDefinition",
 					"名称为[" + formDefinition.getName() + "]FormDefinition已经存在，请检查实体[" + getEntityName() + "]元模型定义.");
 		}
+		formDefinition.setParent(this);
 		getFormDefinitions().put(formDefinition.getName(), formDefinition);
 	}
 
@@ -194,6 +197,7 @@ public class EntityMetaData {
 			AssertUtil.parameterInvalide("outlineDefinition", "名称为[" + outlineDefinition.getName()
 					+ "]OutlineDefinition已经存在，请检查实体[" + getEntityName() + "]元模型定义.");
 		}
+		outlineDefinition.setParent(this);
 		getOutlineDefinitions().put(outlineDefinition.getName(), outlineDefinition);
 	}
 
@@ -209,6 +213,7 @@ public class EntityMetaData {
 			AssertUtil.parameterInvalide("listDefinition",
 					"名称为[" + listDefinition.getName() + "]ListDefinition已经存在，请检查实体[" + getEntityName() + "]元模型定义.");
 		}
+		listDefinition.setParent(this);
 		getListDefinitions().put(listDefinition.getName(), listDefinition);
 	}
 

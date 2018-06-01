@@ -15,8 +15,8 @@ import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.message.service.IMessageQueueService;
 import org.myfly.platform.core.message.service.MessageQueueConstants;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
-import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.DateUtil;
@@ -309,7 +309,7 @@ public abstract class BaseVisualPageController extends BaseController {
 	public String getSubTableName(String table, String subTableAttr) {
 		EntityMetaData metaData = getEntityMetaDataService().getEntityMetaData(table);
 		Assert.notNull(metaData, "不存在实体名称为[" + table + "]的元模型");
-		FieldDefinition field = metaData.getField(subTableAttr);
+		MDRelationFieldDefinition field = metaData.getField(subTableAttr);
 		Assert.notNull(field, "实体[" + table + "]不存在名称为[" + subTableAttr + "]的属性");
 		Assert.isTrue(
 				FieldDataType.MDRELATION.equals(field.getDataType())
