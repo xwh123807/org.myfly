@@ -25,6 +25,7 @@ public class CardRender implements BaseRender{
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("<div" + HtmlUtils.addProperty("render", getClass().getName()) + ">");
 		FieldSetDefinition fieldSetDefinition = new FieldSetDefinition();
+		fieldSetDefinition.setParent(listDefinition.getParent());
 		fieldSetDefinition.setTitle(listDefinition.getTitle());
 		fieldSetDefinition.setFields(listDefinition.getFields());
 		FieldSetViewRender fieldSetViewRender = new FieldSetViewRender(fieldSetDefinition , ViewType.VIEW);

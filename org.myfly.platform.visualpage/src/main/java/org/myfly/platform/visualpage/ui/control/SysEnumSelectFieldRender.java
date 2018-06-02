@@ -7,6 +7,7 @@ import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.domain.BaseEnum;
+import org.myfly.platform.core.metadata.entity.RelationFieldDefinition;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.visualpage.ui.InputType;
 
@@ -20,16 +21,17 @@ public class SysEnumSelectFieldRender extends SelectFieldRender {
 
 	@Override
 	public String getOptions() {
-		AssertUtil.parameterEmpty(getField().getRelationClass(), "getField().getRelationClass()");
+		RelationFieldDefinition field = (RelationFieldDefinition)getField();
+		AssertUtil.parameterEmpty(field.getRelationClass(), "getField().getRelationClass()");
 		try {
-			List<? extends BaseEnum> items = EnumUtils.getEnumList(ClassUtils.getClass(getField().getRelationClass()));
+			List<? extends BaseEnum> items = EnumUtils.getEnumList(ClassUtils.getClass(field.getRelationClass()));
 			StringBuffer buffer = new StringBuffer();
 			for (BaseEnum item : items) {
 				buffer.append("<option value='" + ((Enum) item).name() + "'>" + item.getTitle() + "</option>");
 			}
 			return buffer.toString();
 		} catch (ClassNotFoundException e) {
-			log.error("枚举类型[" + getField().getRelationClass() + "]创建失败，错误信息：" + e.getMessage());
+			log.error("枚举类型[" + field.getRelationClass() + "]创建失败，错误信息：" + e.getMessage());
 		}
 		return "";
 	}

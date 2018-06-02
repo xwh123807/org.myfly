@@ -23,6 +23,9 @@ public class SubTableDefinition extends ListDefinition {
 	 * 引用名称
 	 */
 	private String refName;
+	
+	public SubTableDefinition() {
+	}
 
 	public SubTableDefinition(SubTableView view) {
 		setSubTableAttr(view.tableAttr());
@@ -36,6 +39,38 @@ public class SubTableDefinition extends ListDefinition {
 		setListActions(view.listActions());
 		setItemActions(view.itemActions());
 		setFields(view.fields());
+	}
+	
+
+	public String getRefName() {
+		return refName;
+	}
+
+	public void setRefName(String refName) {
+		this.refName = refName;
+	}
+
+	@Override
+	public void validate() {
+		super.validate();
+		Assert.hasLength(getSubTableAttr());
+		//设置了引用，则忽略fields设置
+		if (ArrayUtils.isEmpty(getFields())){
+			Assert.hasLength(getRefName());
+		}
+	}
+
+	public String getSubTableAttr() {
+		return subTableAttr;
+	}
+
+	public void setSubTableAttr(String subTableAttr) {
+		this.subTableAttr = subTableAttr;
+	}
+
+	@Override
+	public String toString() {
+		return "subTableAttr: " + getSubTableAttr() + ", refName: " + getRefName() + ", " + super.toString();
 	}
 
 	/**
@@ -109,9 +144,6 @@ public class SubTableDefinition extends ListDefinition {
 	//
 	// return subTable;
 	// }
-
-	public SubTableDefinition() {
-	}
 
 	/**
 	 * 按SubTableView注解构建SubTableDefinition
@@ -191,34 +223,4 @@ public class SubTableDefinition extends ListDefinition {
 	// return subTable;
 	// }
 
-	public String getRefName() {
-		return refName;
-	}
-
-	public void setRefName(String refName) {
-		this.refName = refName;
-	}
-
-	@Override
-	public void validate() {
-		super.validate();
-		Assert.hasLength(getSubTableAttr());
-		//设置了引用，则忽略fields设置
-		if (ArrayUtils.isEmpty(getFields())){
-			Assert.hasLength(getRefName());
-		}
-	}
-
-	public String getSubTableAttr() {
-		return subTableAttr;
-	}
-
-	public void setSubTableAttr(String subTableAttr) {
-		this.subTableAttr = subTableAttr;
-	}
-
-	@Override
-	public String toString() {
-		return "subTableAttr: " + getSubTableAttr() + ", refName: " + getRefName() + ", " + super.toString();
-	}
 }

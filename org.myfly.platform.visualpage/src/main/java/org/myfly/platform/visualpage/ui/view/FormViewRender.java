@@ -1,5 +1,7 @@
 package org.myfly.platform.visualpage.ui.view;
 
+import java.util.stream.Stream;
+
 import org.myfly.platform.core.domain.ViewMode;
 import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
@@ -71,6 +73,9 @@ public class FormViewRender extends BaseViewRender {
 		for (int i = 0; i < sections.length; i++) {
 			sections[i] = new SectionViewRender(formDefinition.getSections()[i], getViewType());
 		}
+		Stream.of(sections).forEach(section -> {
+			buffer.append(section.html());
+		});
 		DivsRender divsRender = new DivsRender(formDefinition.getDivs(), sections);
 		buffer.append(divsRender.html());
 		buffer.append("</form>");

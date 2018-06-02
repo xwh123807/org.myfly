@@ -1,11 +1,9 @@
 package org.myfly.platform.core.starter;
 
-import java.io.File;
 import java.util.List;
 import java.util.function.Consumer;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.domain.AppStartLevel;
@@ -67,24 +65,7 @@ public class ApplicationStarter implements ApplicationRunner {
 		} catch (NoSuchBeanDefinitionException e) {
 		}
 
-		// 初始化元模型数据，随机2条
-		if (myFlyDataProperties.isClearWorkTemplatePath()) {
-			doClearVPWorkTemplatePath();
-		}
-
 		initMicroAppsData();
-	}
-
-	/**
-	 * 清除动态产生的页面模板工作目录。只有在临时目录下才清除，避免误操作
-	 */
-	public void doClearVPWorkTemplatePath() {
-		if (myFlyDataProperties.getWorkTemplatePath().contains(FileUtils.getTempDirectory().getAbsolutePath())) {
-			if (log.isInfoEnabled()) {
-				log.info("清除目录，" + myFlyDataProperties.getWorkTemplatePath());
-			}
-			FileUtils.deleteQuietly(new File(myFlyDataProperties.getWorkTemplatePath()));
-		}
 	}
 
 	public void registerConverterFactory(GenericConversionService conversionService) {

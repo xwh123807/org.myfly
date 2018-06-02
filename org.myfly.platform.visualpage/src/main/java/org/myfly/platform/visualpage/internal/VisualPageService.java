@@ -12,7 +12,6 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.myfly.platform.core.context.UserContext;
 import org.myfly.platform.core.domain.ViewMode;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.internal.EntityViewInfo;
@@ -77,7 +76,8 @@ public class VisualPageService implements IVisualPageService {
 	 * @return
 	 */
 	public String getCurrentLayout() {
-		return UserContext.getUserSession().getLayoutName();
+		return VisualPageConstants.LAYOUT_DEFAULT_NAME;
+		//return UserContext.getUserSession().getLayoutName();
 	}
 
 	/**
@@ -165,7 +165,7 @@ public class VisualPageService implements IVisualPageService {
 	public String getUserSideBarTemplteFile(String userTokenid, VisualPageType pageType) {
 		String viewName = "users/sidebar/" + userTokenid + ".vm";
 		String layout = checkTemplateExistsLayout(viewName);
-		if (layout == null) {
+		if (layout == null && menuService != null) {
 			layout = getCurrentLayout();
 			String templateFileName = getWorkTemplatePath() + layout + "/" + viewName;
 			SideBarRender render = new SideBarRender(menuService.getAllMenus().toArray(new IMenu[] {}));
@@ -257,16 +257,16 @@ public class VisualPageService implements IVisualPageService {
 		for (Class<?> item : entities) {
 			EntityMetaData metaData = entityMetaDataService.getEntityMetaData(item.getName());
 			EntityViewInfo view = new EntityViewInfo();
-			String table = metaData.getTableDefinition().getTableName();
+			String table = metaData.getEntityName();
 			view.setTableName(table);
 			view.setEntityClass(metaData.getEntityClass().getName());
-			String content = "<a href=\"/admin/meta/{0}/\" target=\"_blank\">元模型</a>";
+			String content = "<a href=\"/meta/{0}/\" target=\"_blank\">元模型</a>";
 			view.setMetaModel(MessageFormat.format(content, table));
-			content = "<a href=\"/vp/{0}/{1}/{2}\" target=\"_blank\">{3}</a>&nbsp;<a href=\"/admin/template/{1}/{3}\" target=\"_blank\">模板</a>";
+			content = "<a href=\"/vp/{0}/{1}/{2}\" target=\"_blank\">{3}</a>&nbsp;<a href=\"/vpmeta/template/{1}/{3}\" target=\"_blank\">模板</a>";
 			view.setListView(MessageFormat.format(content, "list", table, "", "LIST"));
 			view.setSearchView(MessageFormat.format(content, "search", table, "", "SEARCH"));
 			view.setPrintView(MessageFormat.format(content, "print", table, "", "PRINT"));
-			content = "<a href=\"/admin/template/{1}/{3}\" target=\"_blank\">模板</a>";
+			content = "<a href=\"/vpmeta/template/{1}/{3}\" target=\"_blank\">模板</a>";
 			view.setFormView(MessageFormat.format(content, "view", table, "{uid}", "VIEW"));
 			view.setFormEditView(MessageFormat.format(content, "edit", table, "{uid}", "EDIT"));
 			view.setFormNewView(MessageFormat.format(content, "new", table, "{uid}", "NEW"));

@@ -103,7 +103,10 @@ public class FormDefinition extends BaseDenifition {
 				Stream.of(item.getFieldSets()).forEach(fieldSet -> {
 					fieldSet.setParent(parent);
 				});
-			;
+			if (item.getSubTables() != null)
+				Stream.of(item.getSubTables()).forEach(subTable -> {
+					subTable.setParent(parent);
+				});
 		});
 	}
 

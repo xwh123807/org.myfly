@@ -10,6 +10,7 @@ import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.metadata.entity.RelationFieldDefinition;
 import org.myfly.platform.core.utils.EntityLinkUtil;
 import org.myfly.platform.core.utils.EntityUrlUtil;
 
@@ -26,21 +27,17 @@ public class VelocityTemplateTableRender extends EntityServerSideTableRender {
 		super(listDefinition, viewType);
 	}
 
-	public VelocityTemplateTableRender(FieldDefinition[] fields, String tableName, String subTableAttr) {
-		super(new ListDefinition(fields, tableName, subTableAttr), ViewType.VIEW);
-	}
-
 	@Override
 	public String getTableClass() {
 		return StyleConstants.TABLE_BASE_CLASS + " " + StyleConstants.TABLE_CLIENT_SIDE_CLASS;
 	}
-
+	
 	@Override
 	public String tbodyHtml() {
 		StringBuffer buffer = new StringBuffer();
-		if (getListDefinition().isSubTableScene()) {
+		if (StringUtils.isNotEmpty(getSubTableAttr())) {
 			buffer.append("#set ($tmp = $utils.getDataUtil().findAllForSubEntity(\""
-					+ getListDefinition().getEntityName() + "\", \"$uid\", \"" + getListDefinition().getSubTableAttr()
+					+ getListDefinition().getEntityName() + "\", \"$uid\", \"" + getSubTableAttr()
 					+ "\", \"" + getListDefinition().getName() + "\", null, false))");
 			buffer.append("#foreach($objitem in $tmp)");
 		} else {
@@ -59,7 +56,7 @@ public class VelocityTemplateTableRender extends EntityServerSideTableRender {
 	private String getBodyRowTemplate() {
 		HtmlRowRender row = new HtmlRowRender();
 		boolean isPrint = ViewType.PRINT.equals(getViewType());
-		for (FieldDefinition field : getListDefinition().getFields()) {
+		for (FieldDefinition field : getFieldDefinitions()) {
 			if (isPrint && FieldDataType.ACTIONS.equals(field.getDataType())) {
 			} else {
 				HtmlCellRender cell = new HtmlCellRender(getCellText(field));
@@ -81,25 +78,26 @@ public class VelocityTemplateTableRender extends EntityServerSideTableRender {
 	 */
 	private String viewForHtml(FieldDefinition field) {
 		EntityActionInfo actionInfo = new EntityActionInfo(getListDefinition().getEntityName(), "$!{objitem.uid}",
-				getListDefinition().getSubTableAttr(), "$!{objitem.uid}", "$!{objitem." + field.getName() + "}", null,
+				getSubTableAttr(), "$!{objitem.uid}", "$!{objitem." + field.getName() + "}", null,
 				getListDefinition().getName());
-		if (getListDefinition().isSubTableScene()) {
+		if (StringUtils.isNotEmpty(getSubTableAttr())) {
 			actionInfo.uid = "$!{obj.uid}";
 		}
 		String text = actionInfo.text;
 		if (field.getDataType() != null) {
 			if (field.getDataType().equals(FieldDataType.ACTIONS)) {
-				if (field.getGetValueHandler() != null) {
-					text = (String) field.getGetValueHandler().getFieldValue(actionInfo);
-				} else {
-					if (log.isWarnEnabled()) {
-						log.warn("ACTIONS字段没有设置GetValueHandler，取空值.");
-					}
-					text = "";
-				}
+//				if (field.getGetValueHandler() != null) {
+//					text = (String) field.getGetValueHandler().getFieldValue(actionInfo);
+//				} else {
+//					if (log.isWarnEnabled()) {
+//						log.warn("ACTIONS字段没有设置GetValueHandler，取空值.");
+//					}
+//					text = "";
+//				}
 			} else if (field.getDataType().equals(FieldDataType.SEARCHRELATION)) {
 				// 查找关系数据类型自动增加实体查看的超链接
-				text = EntityLinkUtil.getEntitySearchRelationLinkHtml(field.getRelationTable(), field.getName(),
+				RelationFieldDefinition relationField = (RelationFieldDefinition) field;
+				text = EntityLinkUtil.getEntitySearchRelationLinkHtml(relationField.getRelationTable(), field.getName(),
 						"$!{objitem." + field.getName() + ".uid}", "$!{objitem." + field.getName() + ".name}");
 			} else if (FieldDataType.SYSENUM.equals(field.getDataType())) {
 				text = "$!{objitem." + field.getName() + ".getTitle()}";
@@ -110,7 +108,7 @@ public class VelocityTemplateTableRender extends EntityServerSideTableRender {
 		} else if (field.getName().equals("name")) {
 			String url;
 			// 字段名称为Name，自动追加链接
-			if (!getListDefinition().isSubTableScene()) {
+			if (StringUtils.isEmpty(getSubTableAttr())) {
 				// 主实体
 				url = EntityUrlUtil.getEntityActionUrl(EntityAction.VIEW, actionInfo.tableName, actionInfo.uid,
 						actionInfo.view);

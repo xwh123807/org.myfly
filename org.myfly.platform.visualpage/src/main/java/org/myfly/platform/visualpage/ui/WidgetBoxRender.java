@@ -79,7 +79,7 @@ public class WidgetBoxRender extends BaseRender {
 		buffer.append("		</a>");
 		buffer.append("		<h4 class=\"widget-title\">" + title + "</h4>");
 		//工具条
-		buffer.append(getToolbarHtml());
+		//buffer.append(getToolbarHtml());
 		buffer.append("	</div>");
 		buffer.append("	<div class=\"widget-body\">");
 		buffer.append("		<div class=\"widget-main\" style=\"" + getTableStyle() + "\">");

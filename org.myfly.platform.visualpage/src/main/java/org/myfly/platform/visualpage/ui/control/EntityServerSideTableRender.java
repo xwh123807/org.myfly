@@ -2,6 +2,8 @@ package org.myfly.platform.visualpage.ui.control;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
@@ -9,6 +11,9 @@ import org.myfly.platform.core.domain.StyleConstants;
 import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.metadata.define.SubTableDefinition;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
+import org.myfly.platform.core.utils.StringUtil;
 
 /**
  * 服务端表格，只包含格式定义，不包含数据
@@ -34,9 +39,10 @@ public class EntityServerSideTableRender extends HtmlTableRender {
 		addExtAttr("entityName", listDefinition.getEntityName());
 		addExtAttr("view", listDefinition.getName());
 		addExtAttr("render", getClass().getName());
-		if (listDefinition.isSubTableScene()) {
+		String subTableAttr = getSubTableAttr();
+		if (StringUtil.isNotEmpty(subTableAttr)) {
 			// 子表应用场景时，在table上增加属性subTableAttr、uid
-			addExtAttr("subTableAttr", listDefinition.getSubTableAttr());
+			addExtAttr("subTableAttr", subTableAttr);
 			addExtAttr("uid", "$!{uid}");
 		}
 	}
@@ -44,6 +50,29 @@ public class EntityServerSideTableRender extends HtmlTableRender {
 	@Override
 	public String getTableClass() {
 		return StyleConstants.TABLE_BASE_CLASS + " " + StyleConstants.TABLE_SERVER_SIDE_CLASS;
+	}
+
+	public String getSubTableAttr() {
+		return getListDefinition() instanceof SubTableDefinition
+				? ((SubTableDefinition) getListDefinition()).getSubTableAttr()
+				: "";
+	}
+
+	public FieldDefinition[] getFieldDefinitions() {
+		if (StringUtils.isEmpty(getSubTableAttr())) {
+			// 列表
+			return Stream.of(getListDefinition().getFields())
+					.map(name -> getListDefinition().getParent().getField(name)).collect(Collectors.toList())
+					.toArray(new FieldDefinition[] {});
+		} else {
+			// 子表
+			EntityMetaData subEntityMetaData = getListDefinition().getParent().getSubEntityMetaData(getSubTableAttr());
+			return Stream
+					.of(subEntityMetaData.getListDefinition(((SubTableDefinition) getListDefinition()).getRefName())
+							.getFields())
+					.map(name -> subEntityMetaData.getField(name)).collect(Collectors.toList())
+					.toArray(new FieldDefinition[] {});
+		}
 	}
 
 	/**
@@ -54,7 +83,7 @@ public class EntityServerSideTableRender extends HtmlTableRender {
 	public String getRowHeader() {
 		HtmlRowRender row = new HtmlRowRender();
 		List<HtmlCellRender> cells = new ArrayList<>();
-		for (FieldDefinition field : getListDefinition().getFields()) {
+		for (FieldDefinition field : getFieldDefinitions()) {
 			if (ViewType.PRINT.equals(getViewType()) && FieldDataType.ACTIONS.equals(field.getDataType())) {
 				continue;
 			} else {

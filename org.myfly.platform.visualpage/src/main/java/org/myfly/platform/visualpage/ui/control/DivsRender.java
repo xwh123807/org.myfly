@@ -39,7 +39,9 @@ public class DivsRender implements BaseRender {
 		StringBuffer buffer = new StringBuffer();
 		// TODO 标记为row时，子节点折行了
 		buffer.append("<div" + HtmlUtils.addProperty("render", getClass().getName()) + ">");
-		buffer.append(divRenderHtml(divs));
+		if (ArrayUtils.isNotEmpty(divs)) {
+			buffer.append(divRenderHtml(divs));
+		}
 		buffer.append("</div>");
 		return buffer.toString();
 	}

@@ -30,8 +30,11 @@ public class ObjectListViewRender {
 		List<FieldDefinition> fields = new ArrayList<>();
 		String header = null;
 		for (PropertyView property : objectBean.fields()) {
-			FieldDefinition Field = new FieldDefinition();//(property.title(), property.name(), FieldDataType.TEXT);
-			fields.add(Field);
+			FieldDefinition field = new FieldDefinition();
+			field.setName(property.name());
+			field.setTitle(property.title());
+			field.setDataType(FieldDataType.TEXT);
+			fields.add(field);
 		}
 		tableRender = new TableRender(fields.toArray(new FieldDefinition[] {}), header, null);
 		tableRender.setLinkField(objectBean.linkField());

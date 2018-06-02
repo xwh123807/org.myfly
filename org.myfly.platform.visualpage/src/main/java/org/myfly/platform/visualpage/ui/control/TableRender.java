@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.metadata.entity.RelationFieldDefinition;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.StringUtil;
 
@@ -166,8 +167,9 @@ public class TableRender {
 			if (table != null && attrName.equalsIgnoreCase(table.linkField)) {
 				// 需要显示链接的字段
 				return "<td><a href=\"" + table.linkUrl + "\">$!{objitem." + attrName + "}</a></td>";
-			} else if (isLink && (field.getRelationTable() != null)) {
-				String id = field.getRelationTable() + "/$!{objitem." + attrName + ".uid}";
+			} else if (isLink) {
+				RelationFieldDefinition relationField = (RelationFieldDefinition) field;
+				String id = relationField.getRelationTable() + "/$!{objitem." + attrName + ".uid}";
 				String value = "$!{objitem." + attrName + ".name}";
 				String tpl = "<td><a href=\"/vp/{0}\" data-outline=\"/vp/outline/{0}\" title=\"/vp/outline/{0}\" "
 						+ " data-toggle=\"tooltip\" data-placement=\"bottom\" target=\"_blank\" >{1}</a></td>";
@@ -176,9 +178,9 @@ public class TableRender {
 			} else if (FieldDataType.SYSENUM.equals(field.getDataType())) {
 				// 枚举类型
 				return "<td>$!{objitem." + attrName + ".getName()}</td>";
-			} else if (field.getGetValueHandler() != null) {
-				// 有指定值
-				return "<td>" + field.getGetValueHandler().getFieldValue("${objitem.uid}") + "</td>";
+//			} else if (field.getGetValueHandler() != null) {
+//				// 有指定值
+//				return "<td>" + field.getGetValueHandler().getFieldValue("${objitem.uid}") + "</td>";
 			} else {
 				// 普通字段
 				return "<td>$!{objitem." + attrName + "}</td>";

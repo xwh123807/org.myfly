@@ -1,5 +1,6 @@
 package org.myfly.platform.visualpage.ui.control;
 
+import org.myfly.platform.core.metadata.entity.RelationFieldDefinition;
 import org.myfly.platform.visualpage.ui.InputType;
 
 public class SearchRelationSelectRender extends SelectFieldRender {
@@ -17,8 +18,9 @@ public class SearchRelationSelectRender extends SelectFieldRender {
 
 	@Override
 	public String controlForEdit() {
+		RelationFieldDefinition field = (RelationFieldDefinition)getField();
 		return "<select class=\"select2-entity\" style=\"width:100%\" name=\"" + getField().getName()
-				+ "\" data-entity=\"" + getField().getRelationTable() + "\" data-value=\"${obj." + getField().getName()
+				+ "\" data-entity=\"" + field.getRelationTable() + "\" data-value=\"${obj." + getField().getName()
 				+ "}\" data-text=\"$!{obj." + getField().getName() + "__label}\">" + getOptions() + "</select>";
 	}
 

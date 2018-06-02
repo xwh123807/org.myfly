@@ -75,6 +75,7 @@ public class AdminController extends BaseController {
 	private IMessageQueueService messageQueueService;
 
 	@RequestMapping(value = { "/", "help" })
+	@ResponseBody
 	public Map<String, String> help() {
 		Map<String, String> map = new LinkedHashMap<>();
 		map.put("/admin/beans", "Spring Beans");
@@ -86,6 +87,8 @@ public class AdminController extends BaseController {
 		map.put("/admin/env", "环境");
 		map.put("/admin/configprops", "参数");
 		map.put("/admin/redis", "Redis");
+		map.put("/admin/entityviews", "实体视图");
+		map.put("/admin/templatebuilders", "视图构造器");
 		return map;
 	}
 

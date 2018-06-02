@@ -42,6 +42,10 @@ public class UserContext {
 	public static UserSession getUserSession(String tokenid) {
 		AssertUtil.parameterEmpty(tokenid, "tokenid");
 		UserSession userSession = userSessions.get(tokenid);
+		if (userSession == null) {
+			userSession = new UserSession();
+			userSessions.put(getUserTokenid(), userSession);
+		}
 		AssertUtil.parameterEmpty(userSession, "userSession", "用户还未登录或tokenid不合法.");
 		return userSession;
 	}
