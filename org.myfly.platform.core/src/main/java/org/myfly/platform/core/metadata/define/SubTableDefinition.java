@@ -35,7 +35,7 @@ public class SubTableDefinition extends ListDefinition {
 		setLabelField(view.labelField());
 		setListStyle(view.listStyle());
 		setEnableActions(view.enableActions());
-		setServerSideMode(view.serverSideMode());
+		setFetchMode(view.fetchMode());
 		setListActions(view.listActions());
 		setItemActions(view.itemActions());
 		setFields(view.fields());

@@ -69,11 +69,11 @@ public @interface SubTableView {
 	boolean enableActions() default true;
 
 	/**
-	 * 服务端取数模式,表示在服务端分页；为false时表示一次取出所有数据，在客户端分页
+	 * 取数模式
 	 * 
 	 * @return
 	 */
-	boolean serverSideMode() default true;
+	FetchMode fetchMode() default FetchMode.SERVER_ALL;
 
 	/**
 	 * 实体列表操作集，默认值为：EntityMetaDataConstants.DEFAULT_ENTITY_LIST_ACTIONS

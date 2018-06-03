@@ -65,11 +65,11 @@ public @interface ListView {
 	FilterView[] filters() default {};
 
 	/**
-	 * 服务端取数模式,表示在服务端分页；为false时表示一次取出所有数据，在客户端分页
+	 * 取数模式
 	 * 
 	 * @return
 	 */
-	boolean serverSideMode() default true;
+	FetchMode fetchMode() default FetchMode.SERVER_ALL;
 
 	/**
 	 * 是否允许操作集，当属性为true，且没有配置actionsets将配置所有操作；如有配置actionsets将按配置；如果属性为false，

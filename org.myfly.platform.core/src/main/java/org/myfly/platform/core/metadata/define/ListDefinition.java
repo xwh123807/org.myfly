@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
+import org.myfly.platform.core.metadata.annotation.FetchMode;
 import org.myfly.platform.core.metadata.annotation.FilterView;
 import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.annotation.ListView;
@@ -51,9 +52,11 @@ public class ListDefinition extends BaseDenifition {
 	 */
 	private OrderDefinition[] orders;
 	/**
-	 * 表格取数是否异步Ajax处理，如果是，则由客户端再次发送请求获取数据，用于大数据量的分页；如果为否，页面直接输出全部数据
+	 * 取数模式
+	 * 
+	 * @return
 	 */
-	private boolean serverSideMode;
+	private FetchMode fetchMode;
 	/**
 	 * 
 	 */
@@ -90,7 +93,7 @@ public class ListDefinition extends BaseDenifition {
 		setLabelField(view.labelField());
 		setListStyle(view.listStyle());
 		setEnableActions(view.enableActions());
-		setServerSideMode(view.serverSideMode());
+		setFetchMode(view.fetchMode());
 		setListActions(view.listActions());
 		setItemActions(view.itemActions());
 		setFields(view.fields());
@@ -131,14 +134,6 @@ public class ListDefinition extends BaseDenifition {
 
 	public void setFilters(FilterDefinition[] filters) {
 		this.filters = filters;
-	}
-
-	public boolean isServerSideMode() {
-		return serverSideMode;
-	}
-
-	public void setServerSideMode(boolean serverSideMode) {
-		this.serverSideMode = serverSideMode;
 	}
 
 	public String getTitle() {
@@ -243,6 +238,14 @@ public class ListDefinition extends BaseDenifition {
 		this.linkUrl = linkUrl;
 	}
 
+	public FetchMode getFetchMode() {
+		return fetchMode;
+	}
+
+	public void setFetchMode(FetchMode fetchMode) {
+		this.fetchMode = fetchMode;
+	}
+
 	@Override
 	public String toString() {
 		return "name: " + getName() + ", fields: [" + getFields() + "]";
@@ -261,4 +264,5 @@ public class ListDefinition extends BaseDenifition {
 
 	public void validate() {
 	}
+
 }

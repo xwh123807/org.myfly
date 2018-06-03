@@ -10,6 +10,7 @@ import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
 import org.myfly.platform.core.system.domain.KeyEntity;
 import org.myfly.platform.core.utils.AppUtil;
@@ -206,10 +207,10 @@ public class EntityUtil {
 	 * @param values
 	 * @return
 	 */
-	public static <T> T buildNewEntityForRequest(String tableName, EntityMetaData metaData, Serializable pkValue,
+	public static <T> T buildNewEntityForRequest(String tableName, EntityMetaData metaData, String pkValue,
 			Map<String, String[]> values) {
 		T entity = buildNewEntityForRequest(tableName, metaData, values);
-		metaData.getPkFieldDefinition().setPKValue(entity, pkValue);
+		metaData.getPkFieldDefinition().getValueHandler().setFieldValue(entity, pkValue);
 		return entity;
 	}
 
@@ -225,13 +226,16 @@ public class EntityUtil {
 	 */
 	public static <T> T buildNewSubEntityForRequest(EntityMetaData masterMetaData, String masterUid,
 			String subTableAttr, String subUid, Map<String, String[]> values) {
-		EntityFieldDefinition field = masterMetaData.getField(subTableAttr).getRelationField();
-		EntityMetaData metaData = field.getParent();
-		T newEntity = EntityUtil.buildNewEntityForRequest(metaData.getEntityName(), metaData, values);
+		MDRelationFieldDefinition field = masterMetaData.getField(subTableAttr);
+		EntityMetaData subEntityMetaData = masterMetaData.getSubEntityMetaData(subTableAttr);
+		// 创建子表实体
+		T newEntity = EntityUtil.buildNewEntityForRequest(subEntityMetaData.getEntityName(), subEntityMetaData, values);
 		if (StringUtils.isNotBlank(subUid)) {
-			metaData.getPkFieldDefinition().setPKValue(newEntity, subUid);
+			//设置子表主键
+			subEntityMetaData.getPkFieldDefinition().getValueHandler().setFieldValue(newEntity, subUid);
 		}
-		field.getSetValueHandler().setFieldValue(newEntity, masterUid);
+		Object masterEntity = masterMetaData.newEntityInstance(masterUid);
+		subEntityMetaData.getField(field.getRelationField()).getValueHandler().setFieldValue(newEntity, masterEntity);
 		return newEntity;
 	}
 

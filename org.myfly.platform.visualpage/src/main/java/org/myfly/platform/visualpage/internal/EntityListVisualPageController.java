@@ -15,6 +15,7 @@ import org.myfly.platform.core.domain.ViewMode;
 import org.myfly.platform.core.flydata.service.EntityQueryMap;
 import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.flydata.service.Pagination;
+import org.myfly.platform.core.metadata.annotation.FetchMode;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.HttpUtil;
@@ -41,10 +42,10 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("vp")
 public class EntityListVisualPageController extends BaseVisualPageController {
 	private Log log = LogFactory.getLog(getClass());
-	
+
 	@RequestMapping()
 	@ResponseBody
-	public Map<String, Map<String, String>> help(){
+	public Map<String, Map<String, String>> help() {
 		Map<String, String> map = new LinkedHashMap<>();
 		map.put("/vp/list/{table}", "实体列表查询");
 		map.put("/vp/outline/{table}", "outline视图显示实体列表");
@@ -54,7 +55,7 @@ public class EntityListVisualPageController extends BaseVisualPageController {
 		map.put("/vp/excel/{table}", "将实体列表导出到Excel");
 		map.put("/vp/excelimport/{table}", "显示实体excel导入界面");
 		map.put("/vp/excelimport/{table}/{uploadDir}", "将目录下的excel导入到表中");
-		
+
 		Map<String, Map<String, String>> help = new LinkedHashMap<>();
 		help.put("实体列表", map);
 		help.put("单个实体", EntityVisualPageController.help());
@@ -97,7 +98,8 @@ public class EntityListVisualPageController extends BaseVisualPageController {
 			@RequestParam(name = "view", required = false) String listViewName,
 			@RequestParam(name = "viewmode", required = false) ViewMode viewMode, HttpServletRequest request) {
 		viewMode = updateViewMode(viewMode, request);
-		ModelAndView mv = processEntityListModelView(table, listViewName, request, VisualPageType.LISTOUTLINE, viewMode);
+		ModelAndView mv = processEntityListModelView(table, listViewName, request, VisualPageType.LISTOUTLINE,
+				viewMode);
 		return mv;
 	}
 
@@ -128,8 +130,8 @@ public class EntityListVisualPageController extends BaseVisualPageController {
 		mv.addObject("subTableAttr", subTableAttr);
 		mv.addObject("view", formViewName);
 		PageRequest pageable = buildPageRequestFromRequest(request);
-		Page<?> page = getFlyDataAccessService(table).findAllForSubEntityWithPage(table, uid, subTableAttr, formViewName, null,
-				pageable, false);
+		Page<?> page = getFlyDataAccessService(table).findAllForSubEntityWithPage(table, uid, subTableAttr,
+				formViewName, null, pageable, false);
 		mv.addObject("pager", new Pagination(page));
 		mv.addObject("objlist", page.getContent());
 		return mv;
@@ -203,21 +205,29 @@ public class EntityListVisualPageController extends BaseVisualPageController {
 		mv.addObject("obj", queryMap);
 
 		boolean printMode = VisualPageType.LISTPRINT.equals(pageType);
-		// 为打印视图时，一次取出全部数据
-		if (printMode || !entityMetaData.getListDefinition(view).isServerSideMode()) {
-			List<FlyEntityMap> list = getFlyDataAccessService(table).findAll(table, view,
-					new EntityQueryMap(params), false);
+		// 为打印视图或服务端全量取数模式时，一次取出全部数据
+		if (printMode || FetchMode.SERVER_ALL.equals(entityMetaData.getListDefinition(view).getFetchMode())) {
+			List<FlyEntityMap> list = getFlyDataAccessService(table).findAll(table, view, new EntityQueryMap(params),
+					false);
 			mv.addObject("objlist", list);
-		} else {
+		} else if (FetchMode.SERVER_PAGE.equals(entityMetaData.getListDefinition(view).getFetchMode())) {
+			//服务端分页模式，只取出指定页数据
 			PageRequest pageable = buildPageRequestFromRequest(request);
-			Page<FlyEntityMap> page = getFlyDataAccessService(table).findAll(table, view,
-					new EntityQueryMap(params), pageable, printMode);
+			Page<FlyEntityMap> page = getFlyDataAccessService(table).findAll(table, view, new EntityQueryMap(params),
+					pageable, printMode);
 			mv.addObject("pager", new Pagination(page));
 			mv.addObject("objlist", page.getContent());
 		}
 		return mv;
 	}
 
+	/**
+	 * 从请求中构建分页信息 <br>
+	 * 默认page=0，size=12 <br>
+	 * 
+	 * @param request
+	 * @return
+	 */
 	private PageRequest buildPageRequestFromRequest(HttpServletRequest request) {
 		int page = 0;
 		int size = 12;
@@ -268,7 +278,8 @@ public class EntityListVisualPageController extends BaseVisualPageController {
 			log.debug("exportToExcel, table=" + table);
 		}
 		AssertUtil.parameterEmpty(table, "table");
-		return processExportToExcel(table, view, request.getRequestURI(), new EntityQueryMap(request.getParameterMap()));
+		return processExportToExcel(table, view, request.getRequestURI(),
+				new EntityQueryMap(request.getParameterMap()));
 	}
 
 	/**
@@ -312,7 +323,7 @@ public class EntityListVisualPageController extends BaseVisualPageController {
 		mv.addObject("processUrl", HttpUtil.getUrl(request));
 		return mv;
 	}
-	
+
 	/**
 	 * 从Excel导入数据。如果有错误返回导入失败的数据,正确的数据将写入数据库
 	 * 

@@ -225,8 +225,7 @@ public class EntityVisualPageController extends BaseVisualPageController {
 			// 保存实体
 			Map<String, String[]> values = request.getParameterMap();
 			EntityMetaData metaData = getEntityMetaDataService().getEntityMetaData(table);
-			Serializable pkValue = metaData.getPkFieldDefinition().buildPK(uid);
-			Object updateEntity = EntityUtil.buildNewEntityForRequest(table, metaData, pkValue, values);
+			Object updateEntity = EntityUtil.buildNewEntityForRequest(table, metaData, uid, values);
 			AssertUtil.parameterEmpty(updateEntity, "updateEntity");
 			getFlyDataAccessService(table).updateEntity(table, uid, formViewName, EntityMap.build(values));
 			Object entity = getFlyDataAccessService(table).findOne(table, uid, formViewName, false);

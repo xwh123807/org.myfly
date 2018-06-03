@@ -9,6 +9,7 @@ import org.apache.commons.lang.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.domain.StyleConstants;
 import org.myfly.platform.core.domain.ViewType;
+import org.myfly.platform.core.metadata.annotation.FetchMode;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.SubTableDefinition;
@@ -115,7 +116,7 @@ public class EntityServerSideTableRender extends HtmlTableRender {
 	}
 
 	/**
-	 * 根据isServerSide获取表格
+	 * 根据FetchMode获取表格
 	 * 
 	 * @param viewType
 	 * 
@@ -129,10 +130,15 @@ public class EntityServerSideTableRender extends HtmlTableRender {
 	public static EntityServerSideTableRender getEntityTableRender(ListDefinition listDefinition, ViewType viewType) {
 		EntityServerSideTableRender render;
 		if (ViewType.PRINT.equals(viewType)) {
+			//打印模式
 			render = new PrintTableRender(listDefinition, viewType);
+		} else if (FetchMode.SERVER_ALL.equals(listDefinition.getFetchMode())
+				|| FetchMode.SERVER_PAGE.equals(listDefinition.getFetchMode())) {
+			//服务端取数模式
+			render = new VelocityTemplateTableRender(listDefinition, viewType);
 		} else {
-			render = !listDefinition.isServerSideMode() ? new VelocityTemplateTableRender(listDefinition, viewType)
-					: new EntityServerSideTableRender(listDefinition, viewType);
+			//客户端异步取数模式
+			render = new EntityServerSideTableRender(listDefinition, viewType);
 		}
 		return render;
 	}

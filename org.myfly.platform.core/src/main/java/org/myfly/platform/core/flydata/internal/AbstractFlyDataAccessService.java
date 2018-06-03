@@ -37,7 +37,6 @@ import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
 import org.myfly.platform.core.metadata.entity.RelationFieldDefinition;
-import org.myfly.platform.core.metadata.entity.handler.IFieldValueHandler;
 import org.myfly.platform.core.metadata.entity.handler.SearchRelationEntity;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;

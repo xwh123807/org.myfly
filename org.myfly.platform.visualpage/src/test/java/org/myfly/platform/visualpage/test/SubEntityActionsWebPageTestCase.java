@@ -1,18 +1,16 @@
 package org.myfly.platform.visualpage.test;
 
-import java.io.Serializable;
-
 import org.apache.commons.lang.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
-import org.myfly.platform.CoreApplication;
+import org.myfly.platform.VisualPageApplication;
 import org.myfly.platform.core.flydata.internal.EntityUtil;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.test.MockMVCTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * 实体子表Web页测试基类，测试实体
@@ -20,8 +18,8 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
  * @author xiangwanhong
  *
  */
-@SpringApplicationConfiguration(classes = CoreApplication.class)
-public abstract class SubEntityActionsWebPageTestCase<M, T, MP extends Serializable, TP extends Serializable>
+@SpringBootTest(classes = VisualPageApplication.class)
+public abstract class SubEntityActionsWebPageTestCase<M, T>
 		extends MockMVCTestCase {
 	@Autowired
 	private IEntityMetaDataService entityMetaDataService;
@@ -44,19 +42,15 @@ public abstract class SubEntityActionsWebPageTestCase<M, T, MP extends Serializa
 	 */
 	public abstract String getViewName();
 
-	/**
-	 * 获取实体主键
-	 * 
-	 * @return
-	 */
-	public abstract MP getEntityPk();
-
-	public abstract TP getSubEntityPk();
-
 	public abstract String getSubTableAttr();
 
 	/**
-	 * 获取新增实体属性值
+	 * 获取新增主实体
+	 * @return
+	 */
+	public abstract M getNewEntity();
+	/**
+	 * 获取新增子表实体
 	 * 
 	 * @return
 	 */
@@ -101,14 +95,14 @@ public abstract class SubEntityActionsWebPageTestCase<M, T, MP extends Serializa
 		return result;
 	}
 
-	public String convertEntityPkToString() {
+	public String getPrimaryKey(M entity) {
 		EntityMetaData metaData = entityMetaDataService.getEntityMetaData(getEntityName());
-		return metaData.getPKFieldDefinition().convertPKToString(getEntityPk());
+		return (String) metaData.getPkFieldDefinition().getValueHandler().getFieldValue(entity);
 	}
 
-	public String convertSubEntityPkToString() {
+	public String getSubEntityPrimaryKey(T entity) {
 		EntityMetaData metaData = entityMetaDataService.getEntityMetaData(getSubEntityName());
-		return metaData.getPKFieldDefinition().convertPKToString(getSubEntityPk());
+		return (String) metaData.getPkFieldDefinition().getValueHandler().getFieldValue(entity);
 	}
 
 	/**
@@ -118,7 +112,7 @@ public abstract class SubEntityActionsWebPageTestCase<M, T, MP extends Serializa
 	 */
 	@Test
 	public void exportToExcel() throws Exception {
-		mockMvc.perform(get("/vp/excel/" + getEntityName() + "/" + convertEntityPkToString() + "/" + getSubTableAttr()
+		mockMvc.perform(get("/vp/excel/" + getEntityName() + "/" + getPrimaryKey(getNewEntity()) + "/" + getSubTableAttr()
 				+ "?view=" + getViewName())).andExpect(status().isOk());
 	}
 
@@ -129,7 +123,7 @@ public abstract class SubEntityActionsWebPageTestCase<M, T, MP extends Serializa
 	 */
 	@Test
 	public void showListPrintView() throws Exception {
-		mockMvc.perform(get("/vp/listprint/" + getEntityName() + "/" + convertEntityPkToString() + "/"
+		mockMvc.perform(get("/vp/listprint/" + getEntityName() + "/" + getPrimaryKey(getNewEntity()) + "/"
 				+ getSubTableAttr() + "?view=" + getViewName())).andExpect(status().isOk());
 	}
 
@@ -140,8 +134,8 @@ public abstract class SubEntityActionsWebPageTestCase<M, T, MP extends Serializa
 	 */
 	@Test
 	public void showViewEntityView() throws Exception {
-		mockMvc.perform(get("/vp/" + getEntityName() + "/" + convertEntityPkToString() + "/" + getSubTableAttr() + "/"
-				+ convertSubEntityPkToString() + "?view=" + getViewName())).andExpect(status().isOk());
+		mockMvc.perform(get("/vp/" + getEntityName() + "/" + getPrimaryKey(getNewEntity()) + "/" + getSubTableAttr() + "/"
+				+ getSubEntityPrimaryKey(getNewSubEntity()) + "?view=" + getViewName())).andExpect(status().isOk());
 	}
 
 	/**
@@ -151,7 +145,7 @@ public abstract class SubEntityActionsWebPageTestCase<M, T, MP extends Serializa
 	 */
 	@Test
 	public void showNewEntityView() throws Exception {
-		mockMvc.perform(get("/vp/" + getEntityName() + "/" + convertEntityPkToString() + "/" + getSubTableAttr()
+		mockMvc.perform(get("/vp/" + getEntityName() + "/" + getPrimaryKey(getNewEntity()) + "/" + getSubTableAttr()
 				+ "?view=" + getViewName())).andExpect(status().isOk());
 	}
 
@@ -162,7 +156,7 @@ public abstract class SubEntityActionsWebPageTestCase<M, T, MP extends Serializa
 	 */
 	@Test
 	public void saveNewEntity() throws Exception {
-		mockMvc.perform(post("/vp/" + getEntityName() + "/" + convertEntityPkToString() + "/" + getSubTableAttr()
+		mockMvc.perform(post("/vp/" + getEntityName() + "/" + getPrimaryKey(getNewEntity()) + "/" + getSubTableAttr()
 				+ convertToParameters(getNewSubEntity()))).andExpect(containsAlertTitle("保存成功"))
 				.andExpect(status().isOk());
 	}
@@ -174,7 +168,7 @@ public abstract class SubEntityActionsWebPageTestCase<M, T, MP extends Serializa
 	 */
 	@Test
 	public void saveAndNewEntity() throws Exception {
-		mockMvc.perform(patch("/vp/" + getEntityName() + "/" + convertEntityPkToString() + "/" + getSubTableAttr()
+		mockMvc.perform(patch("/vp/" + getEntityName() + "/" + getPrimaryKey(getNewEntity()) + "/" + getSubTableAttr()
 				+ convertToParameters(getSaveAndNewSubEntity()))).andExpect(containsAlertTitle("保存成功"))
 				.andExpect(status().isOk());
 	}
@@ -186,8 +180,8 @@ public abstract class SubEntityActionsWebPageTestCase<M, T, MP extends Serializa
 	 */
 	@Test
 	public void updateEntity() throws Exception {
-		mockMvc.perform(put("/vp/" + getEntityName() + "/" + convertEntityPkToString() + "/" + getSubTableAttr() + "/"
-				+ convertSubEntityPkToString() + convertToParameters(getUpdateSubEntity()))).andExpect(status().isOk());
+		mockMvc.perform(put("/vp/" + getEntityName() + "/" + getPrimaryKey(getNewEntity()) + "/" + getSubTableAttr() + "/"
+				+ getSubEntityPrimaryKey(getNewSubEntity()) + convertToParameters(getUpdateSubEntity()))).andExpect(status().isOk());
 	}
 
 	/**
@@ -197,7 +191,7 @@ public abstract class SubEntityActionsWebPageTestCase<M, T, MP extends Serializa
 	 */
 	@Test
 	public void dataQuery() throws Exception {
-		mockMvc.perform(get("/query/" + getEntityName() + "/" + convertEntityPkToString() + "/" + getSubTableAttr()
+		mockMvc.perform(get("/query/" + getEntityName() + "/" + getPrimaryKey(getNewEntity()) + "/" + getSubTableAttr()
 				+ "/" + getViewName())).andExpect(status().isOk());
 	}
 
@@ -247,7 +241,7 @@ public abstract class SubEntityActionsWebPageTestCase<M, T, MP extends Serializa
 
 	@Test
 	public void restForFindAllForSubEntity() throws Exception {
-		mockMvc.perform(get("/flydata/" + getEntityName() + "/" + convertEntityPkToString() + "/" + getSubTableAttr()
+		mockMvc.perform(get("/flydata/" + getEntityName() + "/" + getPrimaryKey(getNewEntity()) + "/" + getSubTableAttr()
 				+ "?formViewName=" + getViewName())).andExpect(status().isOk()).andDo(print());
 	}
 

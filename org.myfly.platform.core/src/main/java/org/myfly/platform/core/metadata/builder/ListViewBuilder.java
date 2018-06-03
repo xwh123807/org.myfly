@@ -1,5 +1,6 @@
 package org.myfly.platform.core.metadata.builder;
 
+import org.myfly.platform.core.metadata.annotation.FetchMode;
 import org.myfly.platform.core.metadata.annotation.ListStyle;
 
 public class ListViewBuilder {
@@ -8,6 +9,7 @@ public class ListViewBuilder {
 	private ListStyle listStyle;
 	private String[] fields;
 	private String entityName;
+	private FetchMode fetchMode;
 
 	public String getName() {
 		return name;
@@ -47,5 +49,13 @@ public class ListViewBuilder {
 
 	public void setEntityName(String entityName) {
 		this.entityName = entityName;
+	}
+
+	public FetchMode getFetchMode() {
+		return fetchMode;
+	}
+
+	public void setFetchMode(FetchMode fetchMode) {
+		this.fetchMode = fetchMode;
 	}
 }

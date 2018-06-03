@@ -1,17 +1,15 @@
 package org.myfly.platform.visualpage.test;
 
-import java.io.Serializable;
-
 import org.apache.commons.lang.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
-import org.myfly.platform.CoreApplication;
+import org.myfly.platform.VisualPageApplication;
 import org.myfly.platform.core.flydata.internal.EntityUtil;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.test.MockMVCTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.ResultActions;
 
 /**
@@ -20,10 +18,12 @@ import org.springframework.test.web.servlet.ResultActions;
  * @author xiangwanhong
  *
  */
-@SpringApplicationConfiguration(classes = CoreApplication.class)
-public abstract class EntityActionsWebPageTestCase<T, P extends Serializable> extends MockMVCTestCase {
+@SpringBootTest(classes = VisualPageApplication.class)
+public abstract class EntityActionsWebPageTestCase<T> extends MockMVCTestCase {
 	@Autowired
 	private IEntityMetaDataService entityMetaDataService;
+	
+	private T testEntity;
 
 	/**
 	 * 获取实体类
@@ -40,19 +40,12 @@ public abstract class EntityActionsWebPageTestCase<T, P extends Serializable> ex
 	public abstract String getViewName();
 
 	/**
-	 * 获取实体主键
-	 * 
-	 * @return
-	 */
-	public abstract P getEntityPk();
-
-	/**
-	 * 获取新增实体属性值
+	 * 获取新增实体，用作测试新增，修改、删除
 	 * 
 	 * @return
 	 */
 	public abstract T getNewEntity();
-
+	
 	/**
 	 * 获取新增并保存实体属性值
 	 * 
@@ -69,6 +62,13 @@ public abstract class EntityActionsWebPageTestCase<T, P extends Serializable> ex
 
 	public String getEntityName() {
 		return ClassUtils.getShortClassName(getEntityClass()).toLowerCase();
+	}
+	
+	private T getTestEntity() {
+		if (testEntity == null) {
+			testEntity = getNewEntity();
+		}
+		return testEntity;
 	}
 
 	/**
@@ -88,9 +88,15 @@ public abstract class EntityActionsWebPageTestCase<T, P extends Serializable> ex
 		return result;
 	}
 
-	public String convertEntityPkToString() {
+	/**
+	 * 获取实体主键
+	 * 
+	 * @param entity
+	 * @return
+	 */
+	public String getPrimaryKey(T entity) {
 		EntityMetaData metaData = entityMetaDataService.getEntityMetaData(getEntityName());
-		return metaData.getPKFieldDefinition().convertPKToString(getEntityPk());
+		return (String) metaData.getPkFieldDefinition().getValueHandler().getFieldValue(entity);
 	}
 
 	/**
@@ -126,7 +132,7 @@ public abstract class EntityActionsWebPageTestCase<T, P extends Serializable> ex
 	@Test
 	public void showPrintView() throws Exception {
 		mockMvc.perform(
-				get("/vp/print/" + getEntityName() + "/" + convertEntityPkToString() + "?view=" + getViewName()))
+				get("/vp/print/" + getEntityName() + "/" + getPrimaryKey(getTestEntity()) + "?view=" + getViewName()))
 				.andExpect(status().isOk());
 	}
 
@@ -137,7 +143,7 @@ public abstract class EntityActionsWebPageTestCase<T, P extends Serializable> ex
 	 */
 	@Test
 	public void showViewEntityView() throws Exception {
-		mockMvc.perform(get("/vp/" + getEntityName() + "/" + convertEntityPkToString() + "?view=" + getViewName()))
+		mockMvc.perform(get("/vp/" + getEntityName() + "/" + getPrimaryKey(getTestEntity()) + "?view=" + getViewName()))
 				.andExpect(status().isOk());
 	}
 
@@ -158,7 +164,7 @@ public abstract class EntityActionsWebPageTestCase<T, P extends Serializable> ex
 	 */
 	@Test
 	public void saveNewEntity() throws Exception {
-		mockMvc.perform(post("/vp/" + getEntityName() + convertToParameters(getNewEntity())))
+		mockMvc.perform(post("/vp/" + getEntityName() + convertToParameters(getTestEntity())))
 				.andExpect(containsAlertTitle("保存成功")).andExpect(status().isOk());
 	}
 
@@ -180,9 +186,9 @@ public abstract class EntityActionsWebPageTestCase<T, P extends Serializable> ex
 	 */
 	@Test
 	public void updateEntity() throws Exception {
-		mockMvc.perform(put(
-				"/vp/" + getEntityName() + "/" + convertEntityPkToString() + convertToParameters(getUpdateEntity())))
-				.andExpect(containsAlertTitle("保存成功")).andExpect(status().isOk());
+		mockMvc.perform(put("/vp/" + getEntityName() + "/" + getPrimaryKey(getTestEntity())
+				+ convertToParameters(getUpdateEntity()))).andExpect(containsAlertTitle("保存成功"))
+				.andExpect(status().isOk());
 	}
 
 	/**
@@ -202,7 +208,8 @@ public abstract class EntityActionsWebPageTestCase<T, P extends Serializable> ex
 	 */
 	@Test
 	public void queryForEntityAndDefaultFormat() throws Exception {
-		mockMvc.perform(get("/query/" + getEntityName() + "/" + convertEntityPkToString() + "?view=" + getViewName()))
+		mockMvc.perform(
+				get("/query/" + getEntityName() + "/" + getPrimaryKey(getTestEntity()) + "?view=" + getViewName()))
 				.andExpect(status().isOk());
 	}
 
@@ -213,14 +220,14 @@ public abstract class EntityActionsWebPageTestCase<T, P extends Serializable> ex
 	 */
 	@Test
 	public void queryForEntityAndHtmlFormat() throws Exception {
-		mockMvc.perform(get(
-				"/query/" + getEntityName() + "/" + convertEntityPkToString() + "?format=html&view=" + getViewName()))
-				.andExpect(status().isOk());
+		mockMvc.perform(get("/query/" + getEntityName() + "/" + getPrimaryKey(getTestEntity()) + "?format=html&view="
+				+ getViewName())).andExpect(status().isOk());
 	}
 
 	@Test
 	public void queryForEntityAndJsonFormat() throws Exception {
-		mockMvc.perform(get("/query/" + getEntityName() + "/" + convertEntityPkToString() + "?view=" + getViewName()))
+		mockMvc.perform(
+				get("/query/" + getEntityName() + "/" + getPrimaryKey(getTestEntity()) + "?view=" + getViewName()))
 				.andExpect(status().isOk());
 	}
 
@@ -249,7 +256,7 @@ public abstract class EntityActionsWebPageTestCase<T, P extends Serializable> ex
 	 */
 	@Test
 	public void viewMetaData() throws Exception {
-		mockMvc.perform(get("/admin/meta/" + getEntityName())).andExpect(status().isOk());
+		mockMvc.perform(get("/meta/" + getEntityName())).andExpect(status().isOk());
 	}
 
 	public ResultActions fullTextSearch(final String searchText) throws Exception {
@@ -276,37 +283,39 @@ public abstract class EntityActionsWebPageTestCase<T, P extends Serializable> ex
 				.andDo(print());
 	}
 
-//	/**
-//	 * 保存备注
-//	 * 
-//	 * @throws Exception
-//	 */
-//	@Test
-//	public void saveCommonSubTableForNote() throws Exception {
-//		if ("note".equals(getEntityName())){
-//			return;
-//		}
-//		Note note = new Note();
-//		note.setName("hello");
-//		mockMvc.perform(post(
-//				"/vp/" + getEntityName() + "/" + convertEntityPkToString() + "/notes" + convertToParameters((T) note)))
-//				.andExpect(containsAlertTitle("保存成功")).andExpect(status().isOk());
-//	}
-	
-//	/**
-//	 * 保存附件
-//	 * 
-//	 * @throws Exception
-//	 */
-//	@Test
-//	public void saveCommonSubTableForAttachment() throws Exception {
-//		if ("attachment".equals(getEntityName())){
-//			return;
-//		}
-//		Attachment note = new Attachment();
-//		note.setName("hello");
-//		mockMvc.perform(post(
-//				"/vp/" + getEntityName() + "/" + convertEntityPkToString() + "/attachments" + convertToParameters((T) note)))
-//				.andExpect(containsAlertTitle("保存成功")).andExpect(status().isOk());
-//	}
+	// /**
+	// * 保存备注
+	// *
+	// * @throws Exception
+	// */
+	// @Test
+	// public void saveCommonSubTableForNote() throws Exception {
+	// if ("note".equals(getEntityName())){
+	// return;
+	// }
+	// Note note = new Note();
+	// note.setName("hello");
+	// mockMvc.perform(post(
+	// "/vp/" + getEntityName() + "/" + convertEntityPkToString() + "/notes" +
+	// convertToParameters((T) note)))
+	// .andExpect(containsAlertTitle("保存成功")).andExpect(status().isOk());
+	// }
+
+	// /**
+	// * 保存附件
+	// *
+	// * @throws Exception
+	// */
+	// @Test
+	// public void saveCommonSubTableForAttachment() throws Exception {
+	// if ("attachment".equals(getEntityName())){
+	// return;
+	// }
+	// Attachment note = new Attachment();
+	// note.setName("hello");
+	// mockMvc.perform(post(
+	// "/vp/" + getEntityName() + "/" + convertEntityPkToString() + "/attachments" +
+	// convertToParameters((T) note)))
+	// .andExpect(containsAlertTitle("保存成功")).andExpect(status().isOk());
+	// }
 }

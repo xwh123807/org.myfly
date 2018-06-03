@@ -3,6 +3,7 @@ package org.myfly.platform.core.metadata.builder;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.myfly.platform.core.metadata.annotation.FetchMode;
 import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
@@ -14,6 +15,7 @@ public class DefaultListViewBuilder extends ListViewBuilder {
 		setFields(getAllFields(entityMetaData.getAllFields()));
 		setListStyle(ListStyle.TABLE);
 		setEntityName(entityMetaData.getEntityName());
+		setFetchMode(FetchMode.SERVER_ALL);
 	}
 
 	private String[] getAllFields(EntityFieldDefinition[] allFields) {
