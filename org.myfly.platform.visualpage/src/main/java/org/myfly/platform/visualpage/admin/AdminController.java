@@ -18,13 +18,11 @@ import org.myfly.platform.core.message.service.IMessageQueueService;
 import org.myfly.platform.core.metadata.annotation.ObjectListView;
 import org.myfly.platform.core.metadata.annotation.PropertyView;
 import org.myfly.platform.core.metadata.internal.EntityViewInfo;
-import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
-import org.myfly.platform.core.metadata.service.JsonEntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.visualpage.domain.PageInfo;
 import org.myfly.platform.visualpage.domain.TemplateBuilderInfo;
-import org.myfly.platform.visualpage.service.BaseController;
+import org.myfly.platform.visualpage.service.BaseViewController;
 import org.myfly.platform.visualpage.service.VisualPageConstants;
 import org.myfly.platform.visualpage.service.VisualPageType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +39,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -54,7 +51,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("admin")
-public class AdminController extends BaseController {
+public class AdminController extends BaseViewController {
 	@Autowired
 	private ApplicationContext applicationContext;
 	@Autowired
@@ -74,7 +71,7 @@ public class AdminController extends BaseController {
 	@Autowired
 	private IMessageQueueService messageQueueService;
 
-	@RequestMapping(value = { "/", "help" })
+	@RequestMapping(value = { "help" })
 	@ResponseBody
 	public Map<String, String> help() {
 		Map<String, String> map = new LinkedHashMap<>();
@@ -142,7 +139,7 @@ public class AdminController extends BaseController {
 		PageInfo pageInfo = getAdminPageInfo("beans");
 		pageInfo.setTemplate(getVisualPageService().getObjectTemplateFile("spring.beans", getClass(), "beans",
 				ObjectListView.class, VisualPageType.OLIST));
-		ModelAndView mv = getBaseModelAndView(request);
+		ModelAndView mv = getBaseModelAndView(VisualPageType.OLIST, request);
 		mv.addObject("pageInfo", pageInfo);
 		List<BeanInfo> beans = new ArrayList<>();
 		ConfigurableApplicationContext context = (ConfigurableApplicationContext) applicationContext;
@@ -173,7 +170,7 @@ public class AdminController extends BaseController {
 		PageInfo pageInfo = getAdminPageInfo("资源");
 		pageInfo.setTemplate(getVisualPageService().getObjectTemplateFile("admin.mappings", getClass(), "mappings",
 				ObjectListView.class, VisualPageType.OLIST));
-		ModelAndView mv = getBaseModelAndView(request);
+		ModelAndView mv = getBaseModelAndView(VisualPageType.OLIST, request);
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("objlist", requestMappingEndpoint.invoke().entrySet());
 		return mv;
@@ -191,7 +188,7 @@ public class AdminController extends BaseController {
 	public ModelAndView autoconfig(HttpServletRequest request) {
 		PageInfo pageInfo = getAdminPageInfo("配置");
 		pageInfo.setTemplate(getVisualPageService().getTemplateFile(VisualPageConstants.ADMIN_TEMPLATE_AUTOCONFIG));
-		ModelAndView mv = getBaseModelAndView(request);
+		ModelAndView mv = getBaseModelAndView(VisualPageType.OLIST, request);
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("report", autoConfigurationReportEndpoint.invoke());
 		return mv;
@@ -213,7 +210,7 @@ public class AdminController extends BaseController {
 		PageInfo pageInfo = getAdminPageInfo("跟踪");
 		pageInfo.setTemplate(getVisualPageService().getObjectTemplateFile("admin.trace", getClass(), "trace",
 				ObjectListView.class, VisualPageType.OLIST));
-		ModelAndView mv = getBaseModelAndView(request);
+		ModelAndView mv = getBaseModelAndView(VisualPageType.OLIST, request);
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("objlist", traceRepository.findAll());
 		return mv;
@@ -242,7 +239,7 @@ public class AdminController extends BaseController {
 		PageInfo pageInfo = getAdminPageInfo("统计");
 		pageInfo.setTemplate(getVisualPageService().getObjectTemplateFile("admin.metrics", getClass(), "metrics",
 				ObjectListView.class, VisualPageType.OLIST));
-		ModelAndView mv = getBaseModelAndView(request);
+		ModelAndView mv = getBaseModelAndView(VisualPageType.OLIST, request);
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("objlist", metricsEndpoint.invoke().entrySet());
 		return mv;
@@ -277,7 +274,7 @@ public class AdminController extends BaseController {
 		PageInfo pageInfo = getAdminPageInfo("线程");
 		pageInfo.setTemplate(getVisualPageService().getObjectTemplateFile("admin.dump", getClass(), "dump",
 				ObjectListView.class, VisualPageType.OLIST));
-		ModelAndView mv = getBaseModelAndView(request);
+		ModelAndView mv = getBaseModelAndView(VisualPageType.OLIST, request);
 		mv.addObject("pageInfo", pageInfo);
 		List<ThreadInfo> list = Arrays.asList(ManagementFactory.getThreadMXBean().dumpAllThreads(true, true));
 		mv.addObject("objlist", list);
@@ -305,7 +302,7 @@ public class AdminController extends BaseController {
 	public ModelAndView env(HttpServletRequest request) {
 		PageInfo pageInfo = getAdminPageInfo("环境");
 		pageInfo.setTemplate(getVisualPageService().getTemplateFile(VisualPageConstants.ADMIN_TEMPLATE_ENV));
-		ModelAndView mv = getBaseModelAndView(request);
+		ModelAndView mv = getBaseModelAndView(VisualPageType.OLIST, request);
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("map", environmentEndpoint.invoke());
 		return mv;
@@ -326,7 +323,7 @@ public class AdminController extends BaseController {
 		PageInfo pageInfo = getAdminPageInfo("参数");
 		pageInfo.setTemplate(getVisualPageService().getObjectTemplateFile("admin.configprops", getClass(),
 				"configprops", ObjectListView.class, VisualPageType.OLIST));
-		ModelAndView mv = getBaseModelAndView(request);
+		ModelAndView mv = getBaseModelAndView(VisualPageType.OLIST, request);
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("objlist", configurationPropertiesReportEndpoint.invoke().entrySet());
 
@@ -365,7 +362,7 @@ public class AdminController extends BaseController {
 		PageInfo pageInfo = getAdminPageInfo("缓存");
 		pageInfo.setTemplate(getVisualPageService().getObjectTemplateFile("admin.cacheList", CacheInfo.class,
 				ObjectListView.class, VisualPageType.OLIST));
-		ModelAndView mv = getBaseModelAndView(request);
+		ModelAndView mv = getBaseModelAndView(VisualPageType.OLIST, request);
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("objlist", cacheService.getCachesInfo());
 		return mv;
@@ -379,7 +376,6 @@ public class AdminController extends BaseController {
 	@RequestMapping("cache/clear")
 	public ModelAndView cacheClear() {
 		cacheService.clearAll();
-		// TODO 重定向
 		return new ModelAndView("redirect:/admin/cache");
 	}
 
@@ -394,7 +390,7 @@ public class AdminController extends BaseController {
 		PageInfo pageInfo = getAdminPageInfo("缓存 - " + cacheName);
 		pageInfo.setTemplate(getVisualPageService().getObjectTemplateFile("admin.cacheItem", CacheObjectInfo.class,
 				ObjectListView.class, VisualPageType.OLIST));
-		ModelAndView mv = getBaseModelAndView(request);
+		ModelAndView mv = getBaseModelAndView(VisualPageType.OLIST, request);
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("objlist", cacheService.getCacheObjectsInfo(cacheName));
 		return mv;
@@ -423,7 +419,7 @@ public class AdminController extends BaseController {
 		PageInfo pageInfo = getAdminPageInfo("实体视图");
 		pageInfo.setTemplate(getVisualPageService().getObjectTemplateFile("admin.entityview", EntityViewInfo.class,
 				ObjectListView.class, VisualPageType.OLIST));
-		ModelAndView mv = getBaseModelAndView(request);
+		ModelAndView mv = getBaseModelAndView(VisualPageType.OLIST, request);
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("objlist", getVisualPageService().getAllEntitiesViewInfo());
 		return mv;
@@ -439,26 +435,10 @@ public class AdminController extends BaseController {
 		PageInfo pageInfo = getAdminPageInfo("模板构造器");
 		pageInfo.setTemplate(getVisualPageService().getObjectTemplateFile("admin.templatebuilder",
 				TemplateBuilderInfo.class, ObjectListView.class, VisualPageType.OLIST));
-		ModelAndView mv = getBaseModelAndView(request);
+		ModelAndView mv = getBaseModelAndView(VisualPageType.OLIST, request);
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("objlist", getVisualPageService().getAllTemplateBuilder());
 		return mv;
-	}
-
-	/**
-	 * 获取实体模板内容
-	 * 
-	 * @param table
-	 * @return
-	 */
-	@RequestMapping("template/{table}/{pageType}")
-	@ResponseBody
-	public String getTemplateContent(@PathVariable("table") String table,
-			@PathVariable("pageType") VisualPageType pageType,
-			@RequestParam(name = "view", required = false) String view, HttpServletRequest request) {
-		AssertUtil.parameterEmpty(table, "table");
-		AssertUtil.parameterEmpty(pageType, "pageType");
-		return getVisualPageService().getEntityTemplateContent(table, pageType, view);
 	}
 
 	/**
@@ -477,28 +457,12 @@ public class AdminController extends BaseController {
 		PageInfo pageInfo = getAdminPageInfo("消息统计");
 		pageInfo.setTemplate(getVisualPageService().getObjectTemplateFile("admin.jms", getClass(), "getMessageStatics",
 				ObjectListView.class, VisualPageType.OLIST));
-		ModelAndView mv = getBaseModelAndView(request);
+		ModelAndView mv = getBaseModelAndView(VisualPageType.OLIST, request);
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("objlist", messageQueueService.getStatistics());
 		return mv;
 	}
 
-	@Autowired
-	private IEntityMetaDataService entityMetaDataServer;
-
-	/**
-	 * 获取实体元模型数据
-	 * 
-	 * @param table
-	 * @return
-	 */
-	@RequestMapping("meta/{table}")
-	@ResponseBody
-	public JsonEntityMetaData getJsonEntityMetaData(@PathVariable("table") String table) {
-		JsonEntityMetaData metaData = entityMetaDataServer.getJsonEntityMetaData(table);
-		return metaData;
-	}
-	
 	@Autowired
 	private RedisServerInfo redis;
 	
@@ -509,7 +473,7 @@ public class AdminController extends BaseController {
 		PageInfo pageInfo = getAdminPageInfo("Redis");
 		pageInfo.setTemplate(getVisualPageService().getObjectTemplateFile("admin.redis", getClass(), "getRedisServerInfo",
 				ObjectListView.class, VisualPageType.OLIST));
-		ModelAndView mv = getBaseModelAndView(request);
+		ModelAndView mv = getBaseModelAndView(VisualPageType.OLIST, request);
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("objlist", redis.getRedisServerInfo().entrySet());
 		return mv;

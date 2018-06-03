@@ -8,6 +8,7 @@ import java.net.URL;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
@@ -51,9 +52,9 @@ public class VisualPageService implements IVisualPageService {
 	@Autowired
 	private IEntityMetaDataService entityMetaDataService;
 
-	@Autowired(required=false)
+	@Autowired(required = false)
 	private IMenuService menuService;
-	
+
 	@Autowired
 	private FlyVPProperties flyVpProperties;
 
@@ -77,7 +78,7 @@ public class VisualPageService implements IVisualPageService {
 	 */
 	public String getCurrentLayout() {
 		return VisualPageConstants.LAYOUT_DEFAULT_NAME;
-		//return UserContext.getUserSession().getLayoutName();
+		// return UserContext.getUserSession().getLayoutName();
 	}
 
 	/**
@@ -137,7 +138,7 @@ public class VisualPageService implements IVisualPageService {
 	 * @return
 	 */
 	@Override
-//	@Cacheable(key = "#table + '-' + #pageType + '-' + #view + '-' + #viewMode")
+	// @Cacheable(key = "#table + '-' + #pageType + '-' + #view + '-' + #viewMode")
 	public String getEntityTemplateFile(String table, VisualPageType pageType, String view, ViewMode viewMode) {
 		AssertUtil.parameterEmpty(table, "table");
 		String viewName = table.toLowerCase() + "/" + view + "/" + pageType.name().toLowerCase() + "/"
@@ -161,7 +162,7 @@ public class VisualPageService implements IVisualPageService {
 	 * 
 	 * @return
 	 */
-//	@Cacheable(key = "'sideBar-' + #userTokenid")
+	// @Cacheable(key = "'sideBar-' + #userTokenid")
 	public String getUserSideBarTemplteFile(String userTokenid, VisualPageType pageType) {
 		String viewName = "users/sidebar/" + userTokenid + ".vm";
 		String layout = checkTemplateExistsLayout(viewName);
@@ -188,7 +189,7 @@ public class VisualPageService implements IVisualPageService {
 	 * @param pageType
 	 * @return
 	 */
-//	@Cacheable(key = "#objectName + '-' + #pageType")
+	// @Cacheable(key = "#objectName + '-' + #pageType")
 	public <T extends Annotation> String getObjectTemplateFile(String objectName, T objectViewBean,
 			VisualPageType pageType) {
 		AssertUtil.parameterEmpty(objectName, "objectName");
@@ -262,18 +263,36 @@ public class VisualPageService implements IVisualPageService {
 			view.setEntityClass(metaData.getEntityClass().getName());
 			String content = "<a href=\"/meta/{0}/\" target=\"_blank\">元模型</a>";
 			view.setMetaModel(MessageFormat.format(content, table));
-			content = "<a href=\"/vp/{0}/{1}/{2}\" target=\"_blank\">{3}</a>&nbsp;<a href=\"/vpmeta/template/{1}/{3}\" target=\"_blank\">模板</a>";
-			view.setListView(MessageFormat.format(content, "list", table, "", "LIST"));
-			view.setSearchView(MessageFormat.format(content, "search", table, "", "SEARCH"));
-			view.setPrintView(MessageFormat.format(content, "print", table, "", "PRINT"));
-			content = "<a href=\"/vpmeta/template/{1}/{3}\" target=\"_blank\">模板</a>";
-			view.setFormView(MessageFormat.format(content, "view", table, "{uid}", "VIEW"));
-			view.setFormEditView(MessageFormat.format(content, "edit", table, "{uid}", "EDIT"));
-			view.setFormNewView(MessageFormat.format(content, "new", table, "{uid}", "NEW"));
-			view.setOutlineView(MessageFormat.format(content, "outline", table, "{uid}", "OUTLINE"));
+			String[] names = metaData.getListDefinitions().keySet().toArray(new String[] {});
+			view.setListView(getListEntityTemplateUrl(names, VisualPageType.LIST, table));
+			view.setSearchView(getListEntityTemplateUrl(names, VisualPageType.SEARCH, table));
+			view.setPrintView(getListEntityTemplateUrl(names, VisualPageType.PRINT, table));
+			names = metaData.getFormDefinitions().keySet().toArray(new String[] {});
+			view.setFormView(getEntityTemplateUrl(names, VisualPageType.VIEW, table));
+			view.setFormEditView(getEntityTemplateUrl(names, VisualPageType.EDIT, table));
+			view.setFormNewView(getEntityTemplateUrl(names, VisualPageType.NEW, table));
+			view.setOutlineView(getEntityTemplateUrl(names, VisualPageType.OUTLINE, table));
 			views.add(view);
 		}
 		return views;
+	}
+
+	private String getListEntityTemplateUrl(String[] names, VisualPageType pageType, String table) {
+		StringBuffer result = new StringBuffer();
+		String viewStr = "<li><a href=\"/vp/{0}/{1}/?view={2}\" target=\"_blank\">{3}</a>&nbsp;<a href=\"/vpmeta/template/{1}/{3}/?view={2}\" target=\"_blank\">{2}</a></li>";
+		Stream.of(names).forEach(name -> {
+			result.append(MessageFormat.format(viewStr, pageType.name().toLowerCase(), table, name, pageType.name()));
+		});
+		return result.toString();
+	}
+
+	private String getEntityTemplateUrl(String[] names, VisualPageType pageType, String table) {
+		StringBuffer result = new StringBuffer();
+		String viewStr = "<li><a href=\"/vpmeta/template/{0}/{1}/?view={2}\" target=\"_blank\">{2}</a></li>";
+		Stream.of(names).forEach(name -> {
+			result.append(MessageFormat.format(viewStr, table, pageType.name(), name));
+		});
+		return result.toString();
 	}
 
 	@Override

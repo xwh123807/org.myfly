@@ -39,6 +39,19 @@
 		<![endif]-->
 
 <!-- inline styles related to this page -->
+<link rel="stylesheet"
+	href="${pageInfo.contextPath}assets/css/select2/select2.css">
+<link rel="stylesheet"
+	href="${pageInfo.contextPath}assets/css/datepicker.css">
+<link rel="stylesheet"
+	href="${pageInfo.contextPath}assets/css/bootstrap-timepicker.css">
+<link rel="stylesheet"
+	href="${pageInfo.contextPath}assets/css/bootstrap-datetimepicker.css">
+
+<link rel="stylesheet"
+	href="${pageInfo.contextPath}assets/css/dataTable/dataTables.bootstrap.css">
+<link rel="stylesheet"
+	href="${pageInfo.contextPath}assets/css/dataTable/responsive.bootstrap.min.css">
 
 <!-- ace settings handler -->
 <script src="${pageInfo.contextPath}assets/js/jquery.min.js"></script>
@@ -90,18 +103,46 @@
 	</script>
 	<script src="${pageInfo.contextPath}assets/js/bootstrap.min.js"></script>
 	<!-- page specific plugin scripts -->
+	
+		<!-- INPUT控件 -->
+	<script src="${pageInfo.contextPath}assets/js/select2/select2.min.js"></script>
+	<script src="${pageInfo.contextPath}assets/js/date-time/moment.min.js"></script>
+	<script
+		src="${pageInfo.contextPath}assets/js/date-time/bootstrap-datepicker.min.js"></script>
+	<script
+		src="${pageInfo.contextPath}assets/js/date-time/daterangepicker.min.js"></script>
+	<script
+		src="${pageInfo.contextPath}assets/js/date-time/bootstrap-timepicker.min.js"></script>
+	<script
+		src="${pageInfo.contextPath}assets/js/date-time/bootstrap-datetimepicker.min.js"></script>
+	<script
+		src="${pageInfo.contextPath}assets/js/jquery.maskedinput.min.js"></script>
+	<script src="${pageInfo.contextPath}assets/js/jquery.validate.min.js"></script>
 
+	<!-- 表格控件 -->
+	<script
+		src="${pageInfo.contextPath}assets/js/dataTable/jquery.dataTables.min.js"></script>
+	<script
+		src="${pageInfo.contextPath}assets/js/dataTable/dataTables.bootstrap.min.js"></script>
+	<script
+		src="${pageInfo.contextPath}assets/js/dataTable/dataTables.responsive.js"></script>
+	<script
+		src="${pageInfo.contextPath}assets/js/dataTable/responsive.bootstrap.js"></script>
+
+<!--
 	<script src="${pageInfo.contextPath}assets/js/jquery.dataTables.min.js"></script>
 	<script
 		src="${pageInfo.contextPath}assets/js/jquery.dataTables.bootstrap.js"></script>
+-->
 
 	<!-- inline scripts related to this page -->
 	#foreach ($script in $pageInfo.scripts)
 	<script src="${pageInfo.contextPath}${script}"></script>
 	#end
-
-	<script type="text/javascript">
-		$(".dataTable").dataTable({});
+	<script src="${pageInfo.contextPath}js/myflyapp.js"></script>
+	<script src="${pageInfo.contextPath}js/myflybind.js"></script>
+	<script>
+		bindAll("#main-container");
 	</script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 package org.myfly.platform.core.cache.internal;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.logging.Log;

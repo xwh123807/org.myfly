@@ -7,6 +7,7 @@ public class ListViewBuilder {
 	private String title;
 	private ListStyle listStyle;
 	private String[] fields;
+	private String entityName;
 
 	public String getName() {
 		return name;
@@ -38,5 +39,13 @@ public class ListViewBuilder {
 
 	public void setFields(String[] fields) {
 		this.fields = fields;
+	}
+
+	public String getEntityName() {
+		return entityName;
+	}
+
+	public void setEntityName(String entityName) {
+		this.entityName = entityName;
 	}
 }

@@ -11,7 +11,7 @@ import org.myfly.platform.core.system.service.IMenuService;
  */
 public interface IAppConfigEvent {
 	/**
-	 * 获取App启动级别
+	 * 获取App启动级别，系统将先启动AppStartLevel值低的
 	 * @return
 	 */
 	AppStartLevel getAppStartLevel();

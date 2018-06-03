@@ -251,6 +251,7 @@ public class ListDefinition extends BaseDenifition {
 	@Override
 	public void setParent(EntityMetaData parent) {
 		super.setParent(parent);
+		setEntityName(parent.getEntityName());
 		if (ArrayUtils.isNotEmpty(getFilters())) {
 			Stream.of(getFilters()).forEach(item -> {
 				item.setParent(parent);

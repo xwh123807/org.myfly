@@ -4,7 +4,7 @@ import org.myfly.platform.core.metadata.annotation.ObjectListView;
 import org.myfly.platform.core.metadata.annotation.PropertyView;
 
 @ObjectListView(title = "实体视图", fields = { @PropertyView(name = "tableName", title = "表名"),
-		@PropertyView(name = "entityClass", title = "实体类"),
+		//@PropertyView(name = "entityClass", title = "实体类"),
 		@PropertyView(name = "metaModel", title = "元模型"),
 		@PropertyView(name = "listView", title = "列表视图"),
 		@PropertyView(name = "formView", title = "表单查看视图"),

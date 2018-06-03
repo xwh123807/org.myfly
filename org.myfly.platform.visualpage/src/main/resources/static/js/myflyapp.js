@@ -35,6 +35,7 @@ $(function() {
 			if (query.indexOf("_time=")==-1){
 				url = addTimestamp(url);
 			}
+			console.info("myflyapp.js fire hash changed. url: " + url);
 			location.hash = url;
 			return false;
 		}

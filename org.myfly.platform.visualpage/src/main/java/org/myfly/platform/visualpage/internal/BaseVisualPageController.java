@@ -25,13 +25,13 @@ import org.myfly.platform.core.utils.FileUtil;
 import org.myfly.platform.core.utils.PdfUtils;
 import org.myfly.platform.core.utils.StringUtil;
 import org.myfly.platform.visualpage.domain.PageInfo;
-import org.myfly.platform.visualpage.service.BaseController;
+import org.myfly.platform.visualpage.service.BaseViewController;
 import org.myfly.platform.visualpage.service.VisualPageType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.servlet.ModelAndView;
 
-public abstract class BaseVisualPageController extends BaseController {
+public abstract class BaseVisualPageController extends BaseViewController {
 	private Log log = LogFactory.getLog(getClass());
 	@Autowired
 	private IEntityMetaDataService entityMetaDataService;

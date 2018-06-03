@@ -1,12 +1,18 @@
-package org.myfly.platform.visualpage;
+package org.myfly.platform.visualpage.admin;
 
 import org.junit.Test;
-import org.myfly.platform.CoreApplication;
+import org.myfly.platform.VisualPageApplication;
 import org.myfly.platform.test.MockMVCTestCase;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
-@SpringApplicationConfiguration(classes = CoreApplication.class)
+@SpringBootTest(classes = VisualPageApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 public class AdminControllerWebTest extends MockMVCTestCase {
+	@Test
+	public void help() throws Exception {
+		mockMvc.perform(get("/admin/help")).andExpect(status().isOk());
+	}
+	
 	@Test
 	public void beans() throws Exception {
 		mockMvc.perform(get("/admin/beans")).andExpect(status().isOk());

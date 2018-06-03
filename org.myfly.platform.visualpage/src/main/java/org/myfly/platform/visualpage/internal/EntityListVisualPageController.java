@@ -120,7 +120,7 @@ public class EntityListVisualPageController extends BaseVisualPageController {
 		String subViewName = getVisualPageService().getEntityTemplateFile(subTableName, VisualPageType.LISTOUTLINE,
 				formViewName, viewMode);
 		PageInfo pageInfo = getBasePageInfo("查看子表数据", subTableName, subViewName);
-		ModelAndView mv = getBaseModelAndView();
+		ModelAndView mv = getBaseModelAndView(VisualPageType.LISTOUTLINE, request);
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("table", table);
 		mv.addObject("uid", uid);
@@ -307,7 +307,7 @@ public class EntityListVisualPageController extends BaseVisualPageController {
 		AssertUtil.parameterEmpty(table, "table");
 		PageInfo pageInfo = getBasePageInfo("导入数据", table, VisualPageConstants.COMMON_TEMPLATE_IMPORT);
 
-		ModelAndView mv = getBaseModelAndView();
+		ModelAndView mv = getBaseModelAndView(VisualPageType.VIEW);
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("processUrl", HttpUtil.getUrl(request));
 		return mv;

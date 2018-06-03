@@ -26,7 +26,7 @@ import org.myfly.platform.core.utils.FileUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.system.domain.Attachment;
 import org.myfly.platform.visualpage.domain.PageInfo;
-import org.myfly.platform.visualpage.service.BaseController;
+import org.myfly.platform.visualpage.service.BaseViewController;
 import org.myfly.platform.visualpage.service.VisualPageConstants;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,7 +47,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("/file")
-public class FileController extends BaseController {
+public class FileController extends BaseViewController {
 	private static final Log log = LogFactory.getLog(FileController.class);
 
 	@RequestMapping()

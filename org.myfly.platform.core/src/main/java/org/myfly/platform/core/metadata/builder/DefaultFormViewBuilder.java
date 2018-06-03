@@ -11,7 +11,6 @@ import org.myfly.platform.core.metadata.define.FieldSetDefinition;
 import org.myfly.platform.core.metadata.define.SectionDefinition;
 import org.myfly.platform.core.metadata.define.SubTableDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
-import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 
 public class DefaultFormViewBuilder extends FormViewBuilder {

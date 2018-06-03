@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.domain.AppStartLevel;
 import org.myfly.platform.core.flydata.config.FlyDataProperties;
 import org.myfly.platform.core.metadata.internal.FileMetaDataRegister;
@@ -23,11 +21,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.stereotype.Component;
 
+/**
+ * 系统启动类，在SpringBoot启动完成后执行，用于应用的初始化
+ * @author xiangwanhong
+ *
+ */
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class ApplicationStarter implements ApplicationRunner {
-	private static Log log = LogFactory.getLog(ApplicationStarter.class);
-
 	private ApplicationContext applicationContext;
 
 	@Autowired
@@ -65,7 +66,7 @@ public class ApplicationStarter implements ApplicationRunner {
 		} catch (NoSuchBeanDefinitionException e) {
 		}
 
-		initMicroAppsData();
+		initMicroApps();
 	}
 
 	public void registerConverterFactory(GenericConversionService conversionService) {
@@ -77,6 +78,10 @@ public class ApplicationStarter implements ApplicationRunner {
 		void execute(IAppConfigEvent appConfigEvent);
 	}
 
+	/**
+	 * 按顺序启动应用配置插件
+	 * @param executor
+	 */
 	private void processConfigEvent(IAppConfigEventExecutor executor) {
 		for (AppStartLevel startLevel : AppStartLevel.values()) {
 			for (IAppConfigEvent appConfigEvent : appConfigEvents) {
@@ -90,7 +95,7 @@ public class ApplicationStarter implements ApplicationRunner {
 	/**
 	 * 初始化数据
 	 */
-	private void initMicroAppsData() {
+	private void initMicroApps() {
 		if (CollectionUtils.isEmpty(appConfigEvents)) {
 			return;
 		}

@@ -378,7 +378,7 @@ public class SubEntityVisualPageController extends BaseVisualPageController {
 
 		PageInfo pageInfo = getBasePageInfo("导入数据", table, VisualPageConstants.COMMON_TEMPLATE_IMPORT);
 
-		ModelAndView mv = getBaseModelAndView();
+		ModelAndView mv = getBaseModelAndView(null);
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("processUrl", HttpUtil.getUrl(request));
 		return mv;

@@ -1,4 +1,4 @@
-package org.myfly.platform.visualpage;
+package org.myfly.platform.visualpage.internal;
 
 import org.junit.Assert;
 import org.junit.Test;

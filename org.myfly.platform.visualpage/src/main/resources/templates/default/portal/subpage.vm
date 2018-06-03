@@ -1,3 +1,4 @@
+<!--portal/subpage.vm-->
 #parse(${pageInfo.template})
 <!-- inline scripts related to this page -->
 #foreach ($script in $pageInfo.scripts)

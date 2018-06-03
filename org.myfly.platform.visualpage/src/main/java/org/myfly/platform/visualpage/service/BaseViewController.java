@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author xiangwanhong
  *
  */
-public abstract class BaseController {
+public abstract class BaseViewController {
 	private Log log = LogFactory.getLog(getClass());
 	
 	@Autowired
@@ -71,7 +71,7 @@ public abstract class BaseController {
 	}
 
 	/**
-	 * 根据页面类型，获取主视图名称
+	 * 根据页面类型，获取主模板名称
 	 * 
 	 * @param pageType
 	 * @return
@@ -84,13 +84,16 @@ public abstract class BaseController {
 			switch (pageType) {
 			case LISTPRINT:
 			case PRINT:
+				//打印模板，页面打印时使用
 				name = VisualPageConstants.PORTAL_PRINT_VIEW;
 				break;
 			case OUTLINE:
 				name = VisualPageConstants.PORTAL_OUTLINE_VIEW;
 				break;
 			default:
-				name = VisualPageConstants.PORTAL_SUBPAGE_VIEW;
+				name = VisualPageConstants.PORTAL_EMPTY_VIEW;
+				//子页面模板，用于嵌入其他页面
+				//VisualPageConstants.PORTAL_SUBPAGE_VIEW;
 				break;
 			}
 		}
@@ -122,18 +125,6 @@ public abstract class BaseController {
 		return getBaseModelAndView(pageType);
 	}
 
-	public ModelAndView getBaseModelAndView() {
-		return getBaseModelAndView(VisualPageType.VIEW);
-	}
-	
-	public ModelAndView getBaseModelAndView(HttpServletRequest request){
-		VisualPageType pageType = VisualPageType.VIEW;
-		if (request != null && StringUtils.isBlank(request.getHeader("Referer"))){
-			pageType = null;
-		}
-		return getBaseModelAndView(pageType);
-	}
-
 	/**
 	 * 获取MV
 	 * 
@@ -150,6 +141,7 @@ public abstract class BaseController {
 	
 	public ModelAndView getBaseModelAndView(VisualPageType pageType, PageInfo pageInfo, HttpServletRequest request) {
 		if (request != null && StringUtils.isBlank(request.getHeader("Referer"))){
+			//没有父页面，页面独立打开时
 			pageType = null;
 		}
 		ModelAndView mv = getBaseModelAndView(pageType);
@@ -169,7 +161,7 @@ public abstract class BaseController {
 	public ModelAndView getBaseModelAndView(String title, String subTitle, String subViewName, String... scripts) {
 		PageInfo pageInfo = getBasePageInfo(title, subTitle, subViewName);
 		pageInfo.setScripts(scripts);
-		ModelAndView mv = getBaseModelAndView();
+		ModelAndView mv = getBaseModelAndView(null);
 		mv.addObject("pageInfo", pageInfo);
 		return mv;
 	}
@@ -178,7 +170,7 @@ public abstract class BaseController {
 			String... scripts) {
 		PageInfo pageInfo = getBasePageInfo(title, subTitle, subViewName);
 		pageInfo.setScripts(scripts);
-		ModelAndView mv = getBaseModelAndView();
+		ModelAndView mv = getBaseModelAndView(null);
 		mv.addObject("pageInfo", pageInfo);
 		return mv;
 	}
