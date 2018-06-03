@@ -24,6 +24,7 @@ $(function() {
 	 * 拦截超链接点击事件，直接打开强制更改为设置location的hash，控制只刷新框架内容子页面
 	 */
 	$(document).on('click', 'a', function(event) {
+		return;
 		var href = event.currentTarget.href;
 		if (href && href.endsWith("nohash")){
 			return false;
