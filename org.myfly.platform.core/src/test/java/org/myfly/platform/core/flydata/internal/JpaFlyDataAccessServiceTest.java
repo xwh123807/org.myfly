@@ -87,6 +87,7 @@ public class JpaFlyDataAccessServiceTest {
 			master.setDescription(String.valueOf(i));
 			list.add(master);
 		}
+		flyDataService.del(Detail.class.getName());
 		flyDataService.del(entityName);
 		Assert.assertEquals(0, flyDataService.count2(entityName, null));
 		flyDataService.saveEntity(list);

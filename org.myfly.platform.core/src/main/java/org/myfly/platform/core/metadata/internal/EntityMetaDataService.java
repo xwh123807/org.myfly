@@ -48,7 +48,7 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 		AssertUtil.parameterEmpty(entityNameOrClassName, "entityNameOrClassName");
 		Class<?> entityClass = null;
 		for (Class<?> entity : getAllEntityClasses()) {
-			if (entity.getName().equals(entityNameOrClassName)) {
+			if (entity.getName().equalsIgnoreCase(entityNameOrClassName)) {
 				entityClass = entity;
 				break;
 			} else {

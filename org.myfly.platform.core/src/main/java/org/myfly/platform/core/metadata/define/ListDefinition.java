@@ -4,6 +4,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.annotation.FetchMode;
 import org.myfly.platform.core.metadata.annotation.FilterView;
@@ -11,8 +12,8 @@ import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.OrderView;
 import org.myfly.platform.core.metadata.builder.ListViewBuilder;
-import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;
+import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -35,10 +36,6 @@ public class ListDefinition extends BaseDenifition {
 	 * 表格表头，一般用于复杂表头
 	 */
 	private String header;
-	/**
-	 * 列表数据源主实体名称
-	 */
-	private String entityName;
 	/**
 	 * 字段列表
 	 */
@@ -88,7 +85,11 @@ public class ListDefinition extends BaseDenifition {
 
 	public ListDefinition(ListView view) {
 		setName(view.name());
-		setTitle(view.title());
+		if (StringUtils.isBlank(view.title())) {
+			setTitle(getName());
+		} else {
+			setTitle(view.title());
+		}
 		setHeader(view.header());
 		setLabelField(view.labelField());
 		setListStyle(view.listStyle());
@@ -106,6 +107,11 @@ public class ListDefinition extends BaseDenifition {
 		setTitle(builder.getTitle());
 		setListStyle(builder.getListStyle());
 		setFields(builder.getFields());
+		setFetchMode(builder.getFetchMode());
+		setEnableActions(builder.isEnableActions());
+		setListActions(builder.getListActions());
+		setItemActions(builder.getItemActions());
+		setLabelField(builder.getLabelField());
 	}
 
 	@JsonIgnore
@@ -214,14 +220,6 @@ public class ListDefinition extends BaseDenifition {
 		this.listStyle = listStyle;
 	}
 
-	public String getEntityName() {
-		return entityName;
-	}
-
-	public void setEntityName(String entityName) {
-		this.entityName = entityName;
-	}
-
 	public String getLinkField() {
 		return linkField;
 	}
@@ -251,18 +249,16 @@ public class ListDefinition extends BaseDenifition {
 		return "name: " + getName() + ", fields: [" + getFields() + "]";
 	}
 
-	@Override
-	public void setParent(EntityMetaData parent) {
-		super.setParent(parent);
-		setEntityName(parent.getEntityName());
-		if (ArrayUtils.isNotEmpty(getFilters())) {
-			Stream.of(getFilters()).forEach(item -> {
-				item.setParent(parent);
-			});
-		}
-	}
-
 	public void validate() {
+		Assert.hasLength(getName(), "属性[name]不能为空.");
+		Assert.hasLength(getTitle(), "属性[title]不能为空.");
+		Assert.notNull(getFetchMode(), "属性[fetchMode]不能为空.");
+		Assert.notNull(getListStyle(), "属性[listStyle]不能为空.");
+		Assert.notNull(getFields(), "属性[fields]不能为空.");
+		Assert.isTrue(getFields().length > 0, "属性[fields]至少要有一个字段.");
+		if (ArrayUtils.isNotEmpty(getFilters()))
+			Stream.of(getFilters()).forEach(item -> item.validate());
+		if (ArrayUtils.isNotEmpty(getOrders()))
+			Stream.of(getOrders()).forEach(item -> item.validate());
 	}
-
 }

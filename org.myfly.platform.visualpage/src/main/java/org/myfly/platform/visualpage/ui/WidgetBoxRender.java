@@ -24,12 +24,12 @@ public class WidgetBoxRender extends BaseRender {
 
 	public WidgetBoxRender(final String title, final ViewType viewType) {
 		super(viewType);
-		this.title = title;
+		this.setTitle(title);
 	}
 
 	public WidgetBoxRender(final String title, final ViewType viewType, final String sizeClass) {
 		super(viewType);
-		this.title = title;
+		this.setTitle(title);
 		this.sizeClass = sizeClass;
 	}
 
@@ -77,9 +77,9 @@ public class WidgetBoxRender extends BaseRender {
 		buffer.append("		<a href=\"#\" data-action=\"collapse\">");
 		buffer.append("			<i class=\"ace-icon fa fa-chevron-up\"></i>");
 		buffer.append("		</a>");
-		buffer.append("		<h4 class=\"widget-title\">" + title + "</h4>");
+		buffer.append("		<h4 class=\"widget-title\">" + getTitle() + "</h4>");
 		//工具条
-		//buffer.append(getToolbarHtml());
+		buffer.append(getToolbarHtml());
 		buffer.append("	</div>");
 		buffer.append("	<div class=\"widget-body\">");
 		buffer.append("		<div class=\"widget-main\" style=\"" + getTableStyle() + "\">");
@@ -94,5 +94,13 @@ public class WidgetBoxRender extends BaseRender {
 	@Override
 	public String htmlForPrint() {
 		return getContent();
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }

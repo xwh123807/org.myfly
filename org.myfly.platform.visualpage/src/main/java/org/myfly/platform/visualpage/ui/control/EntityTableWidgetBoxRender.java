@@ -5,6 +5,7 @@ import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.SubTableDefinition;
+import org.myfly.platform.core.metadata.entity.EntityListDefinition;
 import org.myfly.platform.visualpage.ui.WidgetBoxRender;
 
 /**
@@ -14,16 +15,16 @@ import org.myfly.platform.visualpage.ui.WidgetBoxRender;
  *
  */
 public class EntityTableWidgetBoxRender extends WidgetBoxRender {
-	private ListDefinition listDefinition;
+	private EntityListDefinition listDefinition;
 	private EntityActionInfo actionInfo;
 
-	public EntityTableWidgetBoxRender(final ListDefinition listDefinition, final ViewType viewType) {
+	public EntityTableWidgetBoxRender(final EntityListDefinition listDefinition, final ViewType viewType) {
 		super(listDefinition.getTitle(), viewType);
 		this.listDefinition = listDefinition;
 		String subTableAttr = listDefinition instanceof SubTableDefinition
 				? ((SubTableDefinition) listDefinition).getSubTableAttr()
 				: "";
-		actionInfo = new EntityActionInfo(listDefinition.getEntityName(), "$!{obj.uid}", subTableAttr, "$!{obj.subuid}",
+		actionInfo = new EntityActionInfo(listDefinition.getParent().getEntityName(), "$!{obj.uid}", subTableAttr, "$!{obj.subuid}",
 				null, listDefinition.getName(), null);
 	}
 

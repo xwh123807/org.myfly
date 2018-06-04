@@ -1,6 +1,6 @@
 package org.myfly.platform.core.metadata.define;
 
-import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.annotation.SubTableView;
 import org.springframework.util.Assert;
 
@@ -23,11 +23,12 @@ public class SubTableDefinition extends ListDefinition {
 	 * 引用名称
 	 */
 	private String refName;
-	
+
 	public SubTableDefinition() {
 	}
 
 	public SubTableDefinition(SubTableView view) {
+		setName(view.tableAttr());
 		setSubTableAttr(view.tableAttr());
 		setRefName(view.refName());
 		setTitle(view.title());
@@ -40,7 +41,6 @@ public class SubTableDefinition extends ListDefinition {
 		setItemActions(view.itemActions());
 		setFields(view.fields());
 	}
-	
 
 	public String getRefName() {
 		return refName;
@@ -52,11 +52,15 @@ public class SubTableDefinition extends ListDefinition {
 
 	@Override
 	public void validate() {
-		super.validate();
-		Assert.hasLength(getSubTableAttr());
-		//设置了引用，则忽略fields设置
-		if (ArrayUtils.isEmpty(getFields())){
-			Assert.hasLength(getRefName());
+		Assert.hasLength(getName(), "属性[name]不能为空.");
+		Assert.hasLength(getTitle(), "属性[title]不能为空.");
+		Assert.notNull(getFetchMode(), "属性[fetchMode]不能为空.");
+		Assert.notNull(getListStyle(), "属性[listStyle]不能为空.");
+		Assert.notNull(getFields(), "属性[fields]不能为空.");
+		Assert.hasLength(getSubTableAttr(),  "属性[subTableAttr]不能为空.");
+		// 如果没有设置引用，则fields必须设置
+		if (StringUtils.isBlank(getRefName())) {
+			Assert.isTrue(getFields().length > 0, "属性[fields]至少要有一个字段.");
 		}
 	}
 
@@ -81,7 +85,7 @@ public class SubTableDefinition extends ListDefinition {
 	 * @param refName
 	 * @return
 	 */
-// public static SubTableDefinition buildSubTable(EntityMetaData metaData,
+	// public static SubTableDefinition buildSubTable(EntityMetaData metaData,
 	// MDRelationFieldDefinition subTableField,
 	// String refName) {
 	// Assert.notNull(subTableField);

@@ -267,7 +267,7 @@ public abstract class BaseVisualPageController extends BaseViewController {
 			EntityMetaData entityMetaData = getEntityMetaDataService().getEntityMetaData(table);
 			AssertUtil.parameterEmpty(entityMetaData, "entityMetaData", "名称为[" + table + "]的元模型不存在.");
 
-			String templateFile = getVisualPageService().getEntityTemplateFile(table.toLowerCase(), pageType,
+			String templateFile = getVisualPageService().getEntityTemplateFile(table, pageType,
 					formViewName, viewMode);
 			PageInfo pageInfo = getBasePageInfo(entityMetaData.getTableDefinition().getTitle(), null, templateFile);
 			// 获取实体数据

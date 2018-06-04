@@ -49,6 +49,9 @@ public class EntityFieldDefinition extends FieldDefinition {
 	 */
 	@JsonIgnore
 	private Method setter;
+	
+	public EntityFieldDefinition() {
+	}
 
 	public EntityFieldDefinition(Field property) {
 		super(property.getAnnotation(FieldView.class));

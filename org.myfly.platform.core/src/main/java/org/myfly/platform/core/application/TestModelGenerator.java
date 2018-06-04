@@ -7,6 +7,8 @@ import java.util.stream.IntStream;
 
 import javax.transaction.Transactional;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.testmodel.Detail;
 import org.myfly.platform.core.testmodel.Master;
@@ -23,6 +25,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Transactional
 public class TestModelGenerator {
+	private Log log = LogFactory.getLog(TestModelGenerator.class);
 	/**
 	 * 是否已经初始化，如果已经初始化则退出
 	 */
@@ -53,6 +56,15 @@ public class TestModelGenerator {
 	 * 初始master-detail模型
 	 */
 	public void initMasterModel() {
+		//dataService.delAll(Master.class);
+		//如果已经存在记录数超过masterCount，则不添加
+		long count = dataService.count(Master.class, null);
+		if (count >= masterCount) {
+			if (log.isInfoEnabled()) {
+				log.info("数据库中TestModel[Master-Detail]数据已经有" + count +"行，不添加数据.");
+			}
+			return;
+		}
 		List<Master> masters = new ArrayList<>();
 		IntStream.range(0, masterCount).forEach(i -> {
 			Master master = new Master();

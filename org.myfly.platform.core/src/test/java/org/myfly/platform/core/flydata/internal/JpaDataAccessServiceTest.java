@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.myfly.platform.CoreApplication;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
+import org.myfly.platform.core.testmodel.Detail;
 import org.myfly.platform.core.testmodel.Master;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -131,6 +132,7 @@ public class JpaDataAccessServiceTest {
 			master.setDescription(String.valueOf(i));
 			list.add(master);
 		}
+		jpaDataAccessService.delAll(Detail.class);
 		jpaDataAccessService.delAll(Master.class);
 		Assert.assertEquals(0, jpaDataAccessService.count(Master.class, null));
 		jpaDataAccessService.batchSaveEntity(list);

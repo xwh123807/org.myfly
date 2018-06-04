@@ -1,11 +1,6 @@
 package org.myfly.platform.core.domain;
 
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.core.metadata.annotation.EntityAction;
-import org.myfly.platform.core.metadata.define.FieldDefinition;
-import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
-import org.myfly.platform.core.metadata.entity.IGetFieldValueHandler;
-import org.myfly.platform.core.utils.AssertUtil;
 
 /**
  * 实体操作信息结构
@@ -17,41 +12,41 @@ public class EntityActionInfo {
 	/**
 	 * 实体表名，子表场景下也是主表名
 	 */
-	public String tableName;
+	private String tableName;
 	/**
 	 * 主表UID
 	 */
-	public String uid;
+	private String uid;
 	/**
 	 * 用于子表场景， 子表属性名
 	 */
-	public String subTableAttr;
+	private String subTableAttr;
 	/**
 	 * 子表UID
 	 */
-	public String subUid;
+	private String subUid;
 	/**
 	 * 实体
 	 */
-	public Object entity;
+	private Object entity;
 	/**
 	 * 显示名称
 	 */
-	public String text;
+	private String text;
 	/**
 	 * 视图名称
 	 */
-	public String view;
+	private String view;
 
 	public EntityActionInfo(String tableName, String uid, String subTableAttr, String subUid, String text, String view,
 			Object entity) {
-		this.tableName = tableName;
-		this.uid = uid;
-		this.subTableAttr = subTableAttr;
-		this.subUid = subUid;
-		this.entity = entity;
-		this.text = text;
-		this.view = view;
+		this.setTableName(tableName);
+		this.setUid(uid);
+		this.setSubTableAttr(subTableAttr);
+		this.setSubUid(subUid);
+		this.setEntity(entity);
+		this.setText(text);
+		this.setView(view);
 	}
 
 	/**
@@ -60,40 +55,62 @@ public class EntityActionInfo {
 	 * @return
 	 */
 	public boolean isSubTableScene() {
-		return StringUtils.isNotBlank(subTableAttr);
+		return StringUtils.isNotBlank(getSubTableAttr());
 	}
 
-	/**
-	 * 实体操作工具字段
-	 * 
-	 * @author xiangwanhong
-	 *
-	 */
-	public static final class EntityActionField extends EntityFieldDefinition {
-		public EntityActionField(final EntityAction... actionDenifitions) {
-			super(null);
-			setTitle("操作");
-			setName("actions");
-			setDataType(FieldDataType.ACTIONS);
-			setGetValueHandler(new IGetFieldValueHandler() {
+	public String getView() {
+		return view;
+	}
 
-				@Override
-				public Object getFieldValue(Object obj) {
-					if (obj instanceof EntityActionInfo) {
-						EntityActionInfo entityActionInfo = (EntityActionInfo) obj;
-						// EntityActionsFieldRender render = new EntityActionsFieldRender(ViewType.VIEW,
-						// actionDenifitions,
-						// entityActionInfo);
-						// return render.html();
-					} else {
-						if (obj != null) {
-							AssertUtil.parameterInvalide("(EntityActionInfo) obj",
-									"参数必须是EntityActionInfo类型，实际是" + obj.getClass().getName());
-						}
-					}
-					return obj;
-				}
-			});
-		}
+	public void setView(String view) {
+		this.view = view;
+	}
+
+	public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+
+	public String getSubTableAttr() {
+		return subTableAttr;
+	}
+
+	public void setSubTableAttr(String subTableAttr) {
+		this.subTableAttr = subTableAttr;
+	}
+
+	public String getSubUid() {
+		return subUid;
+	}
+
+	public void setSubUid(String subUid) {
+		this.subUid = subUid;
+	}
+
+	public Object getEntity() {
+		return entity;
+	}
+
+	public void setEntity(Object entity) {
+		this.entity = entity;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 }

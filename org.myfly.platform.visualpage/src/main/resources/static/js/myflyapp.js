@@ -104,7 +104,8 @@ function openModal(url, modalMode){
 			// 打印模式
 			window.open(url);
 		}else{
-			location.hash = addTimestamp(url);
+			//location.hash = addTimestamp(url);
+			location.href = addTimestamp(url);
 		}
 	}
 }

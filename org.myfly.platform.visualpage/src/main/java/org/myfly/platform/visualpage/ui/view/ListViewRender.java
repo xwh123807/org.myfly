@@ -4,7 +4,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.domain.ViewMode;
 import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
-import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.metadata.entity.EntityListDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AssertUtil;
@@ -22,7 +22,7 @@ import org.myfly.platform.visualpage.ui.control.SelectListViewRender;
 public class ListViewRender extends BaseViewRender {
 	private EntityMetaData entityMetaData;
 	private String entityName;
-	private ListDefinition listDefinition;
+	private EntityListDefinition listDefinition;
 	private EntityTableWidgetBoxRender box;
 	private FilterSectionViewRender filters;
 	

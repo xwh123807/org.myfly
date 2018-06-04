@@ -10,6 +10,7 @@ import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.metadata.entity.EntityListDefinition;
 import org.myfly.platform.core.metadata.entity.RelationFieldDefinition;
 import org.myfly.platform.core.utils.EntityLinkUtil;
 import org.myfly.platform.core.utils.EntityUrlUtil;
@@ -23,7 +24,7 @@ import org.myfly.platform.core.utils.EntityUrlUtil;
 public class VelocityTemplateTableRender extends EntityServerSideTableRender {
 	private static Log log = LogFactory.getLog(VelocityTemplateTableRender.class);
 
-	public VelocityTemplateTableRender(ListDefinition listDefinition, ViewType viewType) {
+	public VelocityTemplateTableRender(EntityListDefinition listDefinition, ViewType viewType) {
 		super(listDefinition, viewType);
 	}
 
@@ -37,7 +38,7 @@ public class VelocityTemplateTableRender extends EntityServerSideTableRender {
 		StringBuffer buffer = new StringBuffer();
 		if (StringUtils.isNotEmpty(getSubTableAttr())) {
 			buffer.append("#set ($tmp = $utils.getDataUtil().findAllForSubEntity(\""
-					+ getListDefinition().getEntityName() + "\", \"$uid\", \"" + getSubTableAttr()
+					+ getListDefinition().getParent().getEntityName() + "\", \"$uid\", \"" + getSubTableAttr()
 					+ "\", \"" + getListDefinition().getName() + "\", null, false))");
 			buffer.append("#foreach($objitem in $tmp)");
 		} else {
@@ -77,13 +78,13 @@ public class VelocityTemplateTableRender extends EntityServerSideTableRender {
 	 * @return
 	 */
 	private String viewForHtml(FieldDefinition field) {
-		EntityActionInfo actionInfo = new EntityActionInfo(getListDefinition().getEntityName(), "$!{objitem.uid}",
+		EntityActionInfo actionInfo = new EntityActionInfo(getListDefinition().getParent().getEntityName(), "$!{objitem.uid}",
 				getSubTableAttr(), "$!{objitem.uid}", "$!{objitem." + field.getName() + "}", null,
 				getListDefinition().getName());
 		if (StringUtils.isNotEmpty(getSubTableAttr())) {
-			actionInfo.uid = "$!{obj.uid}";
+			actionInfo.setUid("$!{obj.uid}");
 		}
-		String text = actionInfo.text;
+		String text = actionInfo.getText();
 		if (field.getDataType() != null) {
 			if (field.getDataType().equals(FieldDataType.ACTIONS)) {
 //				if (field.getGetValueHandler() != null) {
@@ -110,12 +111,12 @@ public class VelocityTemplateTableRender extends EntityServerSideTableRender {
 			// 字段名称为Name，自动追加链接
 			if (StringUtils.isEmpty(getSubTableAttr())) {
 				// 主实体
-				url = EntityUrlUtil.getEntityActionUrl(EntityAction.VIEW, actionInfo.tableName, actionInfo.uid,
-						actionInfo.view);
+				url = EntityUrlUtil.getEntityActionUrl(EntityAction.VIEW, actionInfo.getTableName(), actionInfo.getUid(),
+						actionInfo.getView());
 			} else {
 				// 子实体
-				url = EntityUrlUtil.getSubEntityActionUrl(EntityAction.VIEW, actionInfo.tableName, actionInfo.uid,
-						actionInfo.subTableAttr, actionInfo.subUid, actionInfo.view);
+				url = EntityUrlUtil.getSubEntityActionUrl(EntityAction.VIEW, actionInfo.getTableName(), actionInfo.getUid(),
+						actionInfo.getSubTableAttr(), actionInfo.getSubUid(), actionInfo.getView());
 			}
 			text = "<a href=\"" + url + "\">" + text + "</a>";
 		}

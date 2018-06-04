@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.domain.FieldDataType;
+import org.myfly.platform.core.metadata.annotation.FetchMode;
 import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.annotation.SectionType;
 import org.myfly.platform.core.metadata.define.FieldSetDefinition;
@@ -39,11 +40,15 @@ public class DefaultFormViewBuilder extends FormViewBuilder {
 		entityMetaData.getFieldMap().values().stream()
 				.filter(item -> FieldDataType.MDRELATION.equals(item.getDataType())).forEach(field -> {
 					SubTableDefinition subTableDefinition = new SubTableDefinition();
+					subTableDefinition.setName(field.getName());
 					subTableDefinition.setTitle(field.getTitle());
-					subTableDefinition.setEntityName(entityMetaData.getEntityName());
 					subTableDefinition.setSubTableAttr(field.getName());
 					subTableDefinition.setListStyle(ListStyle.TABLE);
 					subTableDefinition.setRefName(EntityMetaDataConstants.DEFAULT_ALL_NAME);
+					subTableDefinition.setFetchMode(FetchMode.SERVER_ALL);
+					subTableDefinition.setEnableActions(true);
+					subTableDefinition.setListActions(EntityMetaDataConstants.DEFAULT_ENTITY_LIST_ACTIONS);
+					subTableDefinition.setItemActions(EntityMetaDataConstants.DEFAULT_ENTITY_ITEM_ACTIONS);
 					SectionDefinition sectionDefinition2 = new SectionDefinition();
 					sectionDefinition2.setTitle(field.getTitle());
 					sectionDefinition2.setType(SectionType.CUSTOM);

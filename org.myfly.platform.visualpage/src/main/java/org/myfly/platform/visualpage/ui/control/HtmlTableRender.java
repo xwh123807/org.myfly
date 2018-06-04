@@ -78,12 +78,14 @@ public class HtmlTableRender {
 
 	public String html() {
 		StringBuffer buffer = new StringBuffer();
+		buffer.append("<div " + getExtAttrs() + ">");
 		buffer.append("<table " + getExtAttrs() + HtmlUtils.addPropertys(new String[] { "class", "style" },
 				new String[] { getTableClass(), "width:100%" }) + " >");
 		buffer.append(headerHtml());
 		buffer.append(tbodyHtml());
 		buffer.append(footerHtml());
 		buffer.append("</table>");
+		buffer.append("</div>");
 		return buffer.toString();
 	}
 

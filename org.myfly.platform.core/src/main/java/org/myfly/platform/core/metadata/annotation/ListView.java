@@ -92,7 +92,7 @@ public @interface ListView {
 	 * 
 	 * @return
 	 */
-	EntityAction[] itemActions() default {EntityAction.VIEW, EntityAction.EDIT, EntityAction.DEL};
+	EntityAction[] itemActions() default { EntityAction.VIEW, EntityAction.EDIT, EntityAction.DEL };
 
 	/**
 	 * 为空时，默认取表上的labelField

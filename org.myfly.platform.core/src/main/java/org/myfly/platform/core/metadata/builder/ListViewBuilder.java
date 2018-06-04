@@ -1,5 +1,6 @@
 package org.myfly.platform.core.metadata.builder;
 
+import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.annotation.FetchMode;
 import org.myfly.platform.core.metadata.annotation.ListStyle;
 
@@ -10,7 +11,11 @@ public class ListViewBuilder {
 	private String[] fields;
 	private String entityName;
 	private FetchMode fetchMode;
-
+	private boolean enableActions;
+	private EntityAction[] listActions;
+	private EntityAction[] itemActions;
+	private String labelField;
+ 
 	public String getName() {
 		return name;
 	}
@@ -57,5 +62,37 @@ public class ListViewBuilder {
 
 	public void setFetchMode(FetchMode fetchMode) {
 		this.fetchMode = fetchMode;
+	}
+
+	public boolean isEnableActions() {
+		return enableActions;
+	}
+
+	public void setEnableActions(boolean enableActions) {
+		this.enableActions = enableActions;
+	}
+
+	public EntityAction[] getListActions() {
+		return listActions;
+	}
+
+	public void setListActions(EntityAction[] listActions) {
+		this.listActions = listActions;
+	}
+
+	public EntityAction[] getItemActions() {
+		return itemActions;
+	}
+
+	public void setItemActions(EntityAction[] itemActions) {
+		this.itemActions = itemActions;
+	}
+
+	public String getLabelField() {
+		return labelField;
+	}
+
+	public void setLabelField(String labelField) {
+		this.labelField = labelField;
 	}
 }

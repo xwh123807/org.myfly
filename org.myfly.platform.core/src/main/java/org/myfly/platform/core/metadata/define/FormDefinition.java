@@ -1,7 +1,5 @@
 package org.myfly.platform.core.metadata.define;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -12,6 +10,7 @@ import org.myfly.platform.core.metadata.annotation.FormView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
 import org.myfly.platform.core.metadata.builder.FormViewBuilder;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
+import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -93,21 +92,6 @@ public class FormDefinition extends BaseDenifition {
 	public void setDivsFromView(Div1View[] views) {
 		setDivs(Stream.of(views).map(item -> new DivDefinition(item)).collect(Collectors.toList())
 				.toArray(new DivDefinition[] {}));
-	}
-
-	@Override
-	public void setParent(EntityMetaData parent) {
-		super.setParent(parent);
-		Stream.of(getSections()).forEach(item -> {
-			if (item.getFieldSets() != null)
-				Stream.of(item.getFieldSets()).forEach(fieldSet -> {
-					fieldSet.setParent(parent);
-				});
-			if (item.getSubTables() != null)
-				Stream.of(item.getSubTables()).forEach(subTable -> {
-					subTable.setParent(parent);
-				});
-		});
 	}
 
 	/**
@@ -318,6 +302,7 @@ public class FormDefinition extends BaseDenifition {
 	}
 
 	public void validate() {
+		Assert.hasLength(getName(), "属性[name]不能为空.");
 		if (ArrayUtils.isNotEmpty(getSections())) {
 			Stream.of(getSections()).forEach(item -> {
 				item.validate();
@@ -328,33 +313,5 @@ public class FormDefinition extends BaseDenifition {
 				item.validate();
 			});
 		}
-	}
-
-	/**
-	 * 获取使用字段列表
-	 * 
-	 * @return
-	 */
-	@JsonIgnore
-	public String[] getFields() {
-		return Stream.of(getSections()).flatMap(item -> Stream.of(item.getFields())).distinct()
-				.collect(Collectors.toList()).toArray(new String[] {});
-	}
-
-	/**
-	 * 获取当期表单下使用到的子表
-	 * 
-	 * @return
-	 */
-	private Map<String, SubTableDefinition> getAllSubTables() {
-		Map<String, SubTableDefinition> list = new HashMap<>();
-		Stream.of(getSections()).flatMap(item -> Stream.of(item.getSubTables()))
-				.forEach(s -> list.put(s.getSubTableAttr(), s));
-		return list;
-	}
-
-	@JsonIgnore
-	public SubTableDefinition getSubTableDefinition(String subTableAttr) {
-		return getAllSubTables().get(subTableAttr);
 	}
 }

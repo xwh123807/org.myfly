@@ -188,10 +188,6 @@ public class TableDefinition extends BaseDenifition {
 	}
 
 	public void validate() {
-		//Assert.hasLength(getName());
-		Assert.hasLength(getTitle());
-		Assert.hasLength(getTableName());
-//		if (isCreateIndex())
-//			Assert.hasLength(getIndexName());
+		Assert.hasLength(getLabelField(), "属性[labelField]不能为空.");
 	}
 }

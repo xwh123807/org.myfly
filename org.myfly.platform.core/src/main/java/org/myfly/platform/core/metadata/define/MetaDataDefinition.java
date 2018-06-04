@@ -110,6 +110,10 @@ public class MetaDataDefinition extends BaseDenifition {
 	@Override
 	public void validate() {
 		Assert.notNull(getTableDefinition());
+		getTableDefinition().validate();
+		Stream.of(getListDefinitions()).forEach(item -> item.validate());
+		Stream.of(getFormDefinitions()).forEach(item -> item.validate());
+		Stream.of(getOutlineDefinitions()).forEach(item -> item.validate());
 	}
 
 }

@@ -19,6 +19,9 @@ public class EntityActionsTableRender extends EntityActionsFieldRender {
 		super(viewType, actionDenifitions, actionInfo);
 	}
 
+	/**
+	 * 获取实体操作工具条
+	 */
 	@Override
 	public String getEntityActionsBar() {
 		StringBuffer buffer = new StringBuffer();
@@ -26,16 +29,19 @@ public class EntityActionsTableRender extends EntityActionsFieldRender {
 				new String[] { "widget-toolbar", getClass().getName() }) + ">");
 		if (ArrayUtils.isNotEmpty(getActionDenifitions())) {
 			for (EntityAction acitonDenifition : getActionDenifitions()) {
-				String url = EntityUrlUtil.getEntityActionUrl(acitonDenifition, getActionInfo().tableName,
-						getActionInfo().uid, null);
+				String url = EntityUrlUtil.getEntityActionUrl(acitonDenifition, getActionInfo().getTableName(),
+						getActionInfo().getUid(), getActionInfo().getView());
 				buffer.append("<input type='button' value='" + acitonDenifition.getTitle()
-						+ "' onclick='javascript:openModal(\"" + url + "\", false)'/>");
+						+ "' onclick='javascript:openModal(\"" + url + "\", true)'/>");
 			}
 		}
 		buffer.append("</span>");
 		return buffer.toString();
 	}
 
+	/**
+	 * 获取实体子表操作工具条
+	 */
 	@Override
 	public String getSubEntityActionsBar() {
 		StringBuffer buffer = new StringBuffer();
@@ -43,8 +49,8 @@ public class EntityActionsTableRender extends EntityActionsFieldRender {
 				new String[] { "widget-toolbar", getClass().getName() }) + ">");
 		if (ArrayUtils.isNotEmpty(getActionDenifitions())) {
 			for (EntityAction acitonDenifition : getActionDenifitions()) {
-				String url = EntityUrlUtil.getSubEntityActionUrl(acitonDenifition, getActionInfo().tableName,
-						getActionInfo().uid, getActionInfo().subTableAttr, getActionInfo().subUid, null);
+				String url = EntityUrlUtil.getSubEntityActionUrl(acitonDenifition, getActionInfo().getTableName(),
+						getActionInfo().getUid(), getActionInfo().getSubTableAttr(), getActionInfo().getSubUid(), getActionInfo().getView());
 				buffer.append("<input type='button' value='" + acitonDenifition.getTitle()
 						+ "' onclick='javascript:openModal(\"" + url + "\", false)'/>");
 			}

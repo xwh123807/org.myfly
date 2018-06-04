@@ -106,6 +106,15 @@ public class VisualPageService implements IVisualPageService {
 					layout = null;
 				}
 			}
+		}else {
+			if (!flyVpProperties.isTemplateFileCache()) {
+				//文件已经存在，且禁用文件缓存
+				try {
+					FileUtils.forceDelete(file);
+					layout = null;
+				} catch (IOException e) {
+				}
+			}
 		}
 		return layout;
 	}
@@ -145,6 +154,15 @@ public class VisualPageService implements IVisualPageService {
 				+ viewMode.name().toLowerCase() + ".vm";
 		// 检查模板在代码中是否存在，不存在则创建到临时目录
 		String layout = checkTemplateExistsLayout(viewName);
+//		if (layout != null && !flyVpProperties.isTemplateFileCache()) {
+//			//文件已经存在，且禁用文件缓存
+//			String templateFileName = getWorkTemplatePath() + layout + "/" + viewName;
+//			try {
+//				FileUtils.forceDeleteOnExit(new File(templateFileName));
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
 		if (layout == null) {
 			layout = getCurrentLayout();
 			String templateFileName = getWorkTemplatePath() + layout + "/" + viewName;

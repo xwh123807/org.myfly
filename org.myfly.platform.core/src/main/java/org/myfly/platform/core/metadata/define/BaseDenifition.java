@@ -22,9 +22,6 @@ public abstract class BaseDenifition implements Serializable{
 	 */
 	private String name;
 	
-	@JsonIgnore
-	private EntityMetaData parent;
-
 	public BaseDenifition() {
 	}
 	
@@ -42,14 +39,6 @@ public abstract class BaseDenifition implements Serializable{
 	}
 	
 	public abstract void validate();
-
-	public EntityMetaData getParent() {
-		return parent;
-	}
-
-	public void setParent(EntityMetaData parent) {
-		this.parent = parent;
-	}
 
 //	/**
 //	 * 根据字段属性名称构建字段定义

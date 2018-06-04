@@ -16,6 +16,7 @@ import org.myfly.platform.core.metadata.define.FKFieldDefinition;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.MetaDataDefinition;
 import org.myfly.platform.core.utils.EntityClassUtil;
+import org.springframework.util.Assert;
 
 /**
  * 实体元模型定义类 <br>
@@ -104,12 +105,10 @@ public class EntityMetaDataDefinition extends MetaDataDefinition {
 	}
 	
 	@Override
-	public void setParent(EntityMetaData parent) {
-		super.setParent(parent);
-	}
-
-	@Override
 	public void validate() {
 		super.validate();
+		Assert.hasLength(getEntityClass(), "属性[entityClass]不能为空.");
+		Assert.notNull(getPkFieldDefinition(), "属性[pkFieldDefinition]不能为空.");
+		getPkFieldDefinition().validate();
 	}
 }

@@ -25,7 +25,7 @@ import org.myfly.platform.core.system.domain.KeyEntity;
 @Entity
 @MetaDataView(
 		//
-		tableView = @TableView(title = "角色", description = "角色信息"),
+		tableView = @TableView(title = "角色", description = "角色信息", labelField="title"),
 		//
 		listViews = @ListView(fields = { "title", "dataType", "active", "created" }, listStyle = ListStyle.TABLE),
 		//

@@ -13,6 +13,7 @@ import org.myfly.platform.core.metadata.annotation.FetchMode;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.SubTableDefinition;
+import org.myfly.platform.core.metadata.entity.EntityListDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.utils.StringUtil;
 
@@ -23,7 +24,7 @@ import org.myfly.platform.core.utils.StringUtil;
  *
  */
 public class EntityServerSideTableRender extends HtmlTableRender {
-	private ListDefinition listDefinition;
+	private EntityListDefinition listDefinition;
 
 	private ViewType viewType;
 
@@ -34,10 +35,10 @@ public class EntityServerSideTableRender extends HtmlTableRender {
 	 * @param tableName
 	 * @param subTableAttr
 	 */
-	public EntityServerSideTableRender(ListDefinition listDefinition, ViewType viewType) {
+	public EntityServerSideTableRender(EntityListDefinition listDefinition, ViewType viewType) {
 		this.setListDefinition(listDefinition);
 		setViewType(viewType);
-		addExtAttr("entityName", listDefinition.getEntityName());
+		addExtAttr("entityName", listDefinition.getParent().getEntityName());
 		addExtAttr("view", listDefinition.getName());
 		addExtAttr("render", getClass().getName());
 		String subTableAttr = getSubTableAttr();
@@ -127,27 +128,27 @@ public class EntityServerSideTableRender extends HtmlTableRender {
 	 * @param subTableAttr
 	 * @return
 	 */
-	public static EntityServerSideTableRender getEntityTableRender(ListDefinition listDefinition, ViewType viewType) {
+	public static EntityServerSideTableRender getEntityTableRender(EntityListDefinition listDefinition, ViewType viewType) {
 		EntityServerSideTableRender render;
 		if (ViewType.PRINT.equals(viewType)) {
-			//打印模式
+			// 打印模式
 			render = new PrintTableRender(listDefinition, viewType);
 		} else if (FetchMode.SERVER_ALL.equals(listDefinition.getFetchMode())
 				|| FetchMode.SERVER_PAGE.equals(listDefinition.getFetchMode())) {
-			//服务端取数模式
+			// 服务端取数模式
 			render = new VelocityTemplateTableRender(listDefinition, viewType);
 		} else {
-			//客户端异步取数模式
+			// 客户端异步取数模式
 			render = new EntityServerSideTableRender(listDefinition, viewType);
 		}
 		return render;
 	}
 
-	public ListDefinition getListDefinition() {
+	public EntityListDefinition getListDefinition() {
 		return listDefinition;
 	}
 
-	public void setListDefinition(ListDefinition listDefinition) {
+	public void setListDefinition(EntityListDefinition listDefinition) {
 		this.listDefinition = listDefinition;
 	}
 

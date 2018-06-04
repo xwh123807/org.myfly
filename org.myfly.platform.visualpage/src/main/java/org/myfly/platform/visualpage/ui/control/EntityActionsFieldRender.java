@@ -38,8 +38,8 @@ public class EntityActionsFieldRender extends BaseRender {
 		StringBuffer buffer = new StringBuffer();
 		if (ArrayUtils.isNotEmpty(getActionDenifitions())) {
 			for (EntityAction acitonDenifition : getActionDenifitions()) {
-				buffer.append(EntityLinkUtil.getEntityActionLinkHtml(acitonDenifition, getActionInfo().tableName,
-						getActionInfo().uid, null, getActionInfo().view, true, false));
+				buffer.append(EntityLinkUtil.getEntityActionLinkHtml(acitonDenifition, getActionInfo().getTableName(),
+						getActionInfo().getUid(), null, getActionInfo().getView(), true, false));
 			}
 		}
 		return buffer.toString();
@@ -54,9 +54,9 @@ public class EntityActionsFieldRender extends BaseRender {
 		StringBuffer buffer = new StringBuffer();
 		if (ArrayUtils.isNotEmpty(getActionDenifitions())) {
 			for (EntityAction acitonDenifition : getActionDenifitions()) {
-				buffer.append(EntityLinkUtil.getSubEntityActionLinkHtml(acitonDenifition, getActionInfo().tableName,
-						getActionInfo().uid, getActionInfo().subTableAttr, getActionInfo().subUid, null,
-						getActionInfo().view, true, false));
+				buffer.append(EntityLinkUtil.getSubEntityActionLinkHtml(acitonDenifition, getActionInfo().getTableName(),
+						getActionInfo().getUid(), getActionInfo().getSubTableAttr(), getActionInfo().getSubUid(), null,
+						getActionInfo().getView(), true, false));
 			}
 		}
 		return buffer.toString();

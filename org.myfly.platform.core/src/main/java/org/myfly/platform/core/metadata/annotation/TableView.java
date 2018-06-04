@@ -69,7 +69,7 @@ public @interface TableView {
 	 * 
 	 * @return
 	 */
-	String[] primaryKeys() default { "uid" };
+	String[] primaryKeys() default {};
 
 	/**
 	 * 字段列表

@@ -22,7 +22,7 @@ public class EntityUrlUtil {
 			String view) {
 		AssertUtil.parameterEmpty(action, "viewType");
 		AssertUtil.parameterEmpty(tableName, "tableName");
-		String entityName = tableName.toLowerCase();
+		String entityName = tableName;
 		String url = "/vp/";
 		switch (action) {
 		// get
@@ -33,7 +33,7 @@ public class EntityUrlUtil {
 		case SAVEANDNEW:
 			// delete
 		case DELALL:
-			url += entityName;
+			url += entityName + "/";
 			break;
 		// get
 		case VIEW:
@@ -56,7 +56,7 @@ public class EntityUrlUtil {
 			break;
 		// get
 		case SHOWEXCELIMPORT:
-			url += "excelimport/" + entityName;
+			url += "excelimport/" + entityName + "/";
 			break;
 		// get
 		case LIST:
@@ -67,9 +67,9 @@ public class EntityUrlUtil {
 		case PDF:
 			// get
 		case EXCEL:
-			url += action.name().toLowerCase() + "/" + entityName;
+			url += action.name().toLowerCase() + "/" + entityName + "/";
 			if (StringUtils.isNotBlank(uid)) {
-				url += "/" + uid;
+				url += uid;
 			}
 			break;
 		case UPLOAD:

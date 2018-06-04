@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import javax.persistence.Entity;
 
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.builder.DefaultFormViewBuilder;
@@ -23,6 +24,7 @@ import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.FuncUtil;
+import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -40,9 +42,15 @@ public class EntityMetaData {
 	 */
 	private boolean isJpaEntity;
 	/**
-	 * 字段列表
+	 * 实体定义的字段列表
 	 */
 	private Map<String, EntityFieldDefinition> fieldMap;
+	/**
+	 * 表单、或子表中用到的非本实体字段<br>
+	 * 第一个Map标识实体名称，实体的entityName值 <br>
+	 * 第二个Map标识属性名称 <br>
+	 */
+	private Map<String, Map<String, EntityFieldDefinition>> extFieldMap;
 	/**
 	 * 表基本信息
 	 */
@@ -50,7 +58,7 @@ public class EntityMetaData {
 	/**
 	 * 列表视图定义
 	 */
-	private Map<String, ListDefinition> listDefinitions;
+	private Map<String, EntityListDefinition> listDefinitions;
 	/**
 	 * 表单实体定义
 	 */
@@ -70,7 +78,6 @@ public class EntityMetaData {
 
 	public EntityMetaData(Class<?> entityClass) {
 		EntityMetaDataDefinition metaData = new EntityMetaDataDefinition(entityClass);
-		metaData.setParent(this);
 		setEntityClass(entityClass);
 		setJpaEntity(entityClass.getAnnotation(Entity.class) != null);
 		setEntityName(metaData.getName());
@@ -94,7 +101,7 @@ public class EntityMetaData {
 			addOutlineDefinition(outlineDefinition);
 		});
 		addDefaultDefinition(this);
-		// validate();
+		validate();
 	}
 
 	private void addDefaultDefinition(EntityMetaData entityMetaData) {
@@ -130,7 +137,7 @@ public class EntityMetaData {
 		this.tableDefinition = tableDefinition;
 	}
 
-	public Map<String, ListDefinition> getListDefinitions() {
+	public Map<String, EntityListDefinition> getListDefinitions() {
 		return listDefinitions;
 	}
 
@@ -165,7 +172,7 @@ public class EntityMetaData {
 			AssertUtil.parameterInvalide("fieldDefinition",
 					"名称为[" + fieldDefinition.getName() + "]FieldDefinition已经存在，请检查实体[" + getEntityName() + "]元模型定义.");
 		}
-		fieldDefinition.setParent(this);
+		// fieldDefinition.setParent(this);
 		getFieldMap().put(fieldDefinition.getName(), fieldDefinition);
 	}
 
@@ -181,7 +188,6 @@ public class EntityMetaData {
 			AssertUtil.parameterInvalide("formDefinition",
 					"名称为[" + formDefinition.getName() + "]FormDefinition已经存在，请检查实体[" + getEntityName() + "]元模型定义.");
 		}
-		formDefinition.setParent(this);
 		getFormDefinitions().put(formDefinition.getName(), formDefinition);
 	}
 
@@ -197,7 +203,6 @@ public class EntityMetaData {
 			AssertUtil.parameterInvalide("outlineDefinition", "名称为[" + outlineDefinition.getName()
 					+ "]OutlineDefinition已经存在，请检查实体[" + getEntityName() + "]元模型定义.");
 		}
-		outlineDefinition.setParent(this);
 		getOutlineDefinitions().put(outlineDefinition.getName(), outlineDefinition);
 	}
 
@@ -213,8 +218,9 @@ public class EntityMetaData {
 			AssertUtil.parameterInvalide("listDefinition",
 					"名称为[" + listDefinition.getName() + "]ListDefinition已经存在，请检查实体[" + getEntityName() + "]元模型定义.");
 		}
-		listDefinition.setParent(this);
-		getListDefinitions().put(listDefinition.getName(), listDefinition);
+		EntityListDefinition definition = new EntityListDefinition(listDefinition);
+		definition.setParent(this);
+		getListDefinitions().put(definition.getName(), definition);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -240,7 +246,7 @@ public class EntityMetaData {
 	 * @return
 	 */
 	@JsonIgnore
-	public ListDefinition getListDefinition(String listViewName) {
+	public EntityListDefinition getListDefinition(String listViewName) {
 		return getDefinition(listViewName, getListDefinitions());
 	}
 
@@ -386,6 +392,40 @@ public class EntityMetaData {
 		return AppUtil.getEntityMetaData(mdRelation.getRelationClass());
 	}
 
+	public Map<String, Map<String, EntityFieldDefinition>> getExtFieldMap() {
+		return extFieldMap;
+	}
+
+	public void setExtFieldMap(Map<String, Map<String, EntityFieldDefinition>> extFieldMap) {
+		this.extFieldMap = extFieldMap;
+	}
+
+	/**
+	 * 获取当前表单定义的扩展字段
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public EntityFieldDefinition getFormExtField(String name) {
+		return getExtFieldMap().get(getEntityName()).get(name);
+	}
+
+	/**
+	 * 获取子表定义的扩展字段，如果子表不存在或属性不存在都返回为空
+	 * 
+	 * @param subTableAttr
+	 * @param name
+	 * @return
+	 */
+	public EntityFieldDefinition getSubTableExtField(String subTableAttr, String name) {
+		Map<String, EntityFieldDefinition> fields = getExtFieldMap().get(subTableAttr);
+		if (MapUtils.isNotEmpty(fields)) {
+			return fields.get(name);
+		} else {
+			return null;
+		}
+	}
+
 	/**
 	 * 验证 <br>
 	 * 1、验证列表视图中字段是否都存在；<br>
@@ -393,6 +433,18 @@ public class EntityMetaData {
 	 * 3、验证大纲视图中字段是否都存在<br>
 	 */
 	public void validate() {
+		Assert.hasLength(getEntityName(), "属性[entityName]不能为空.");
+		Assert.hasLength(getEntityName(), "属性[entityClass]不能为空.");
+		Assert.notNull(getPkFieldDefinition(), "属性[pkFieldDefinition]不能为空.");
+		getPkFieldDefinition().validate();
+		Assert.isTrue(MapUtils.isNotEmpty(getFieldMap()), "属性[fieldMap]不能为空.");
+		Assert.isTrue(MapUtils.isNotEmpty(getListDefinitions()) && (getListDefinitions().size() > 0),
+				"属性[listDefinitions]不能为空，且长度至少为1.");
+		Assert.isTrue(MapUtils.isNotEmpty(getFormDefinitions()) && (getFormDefinitions().size() > 0),
+				"属性[formDefinitions]不能为空，且长度至少为1.");
+		Assert.isTrue(MapUtils.isNotEmpty(getOutlineDefinitions()) && (getOutlineDefinitions().size() > 0),
+				"属性[outlineDefinitions]不能为空，且长度至少为1.");
+
 		getListDefinitions().values().forEach(item -> {
 			item.validate();
 			Stream.of(item.getFields()).forEach(name -> {
@@ -421,5 +473,4 @@ public class EntityMetaData {
 			});
 		});
 	}
-
 }

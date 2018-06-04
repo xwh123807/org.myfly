@@ -32,7 +32,7 @@ public class TableDefinitionTest {
 		Assert.assertEquals("主表信息", define.getDescription());
 		Assert.assertEquals("name", define.getLabelField());
 		Assert.assertTrue(define.isCreateIndex());
-		Assert.assertArrayEquals(new String[] { "uid" }, define.getPrimaryKeys());
+		Assert.assertArrayEquals(new String[] { }, define.getPrimaryKeys());
 		Assert.assertArrayEquals(new CommonSubTableType[] { CommonSubTableType.NOTE, CommonSubTableType.ATTACHMENT },
 				define.getCommonSubTables());
 		Assert.assertNotNull(define.toString());
