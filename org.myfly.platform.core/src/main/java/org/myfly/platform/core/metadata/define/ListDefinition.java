@@ -11,7 +11,6 @@ import org.myfly.platform.core.metadata.annotation.FilterView;
 import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.annotation.ListView;
 import org.myfly.platform.core.metadata.annotation.OrderView;
-import org.myfly.platform.core.metadata.builder.ListViewBuilder;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.springframework.util.Assert;
 
@@ -102,7 +101,7 @@ public class ListDefinition extends BaseDenifition {
 		setOrdersFromView(view.orders());
 	}
 
-	public ListDefinition(ListViewBuilder builder) {
+	public ListDefinition(ListDefinition builder) {
 		setName(builder.getName());
 		setTitle(builder.getTitle());
 		setListStyle(builder.getListStyle());

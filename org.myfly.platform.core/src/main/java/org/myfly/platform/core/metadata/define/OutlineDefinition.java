@@ -44,6 +44,10 @@ public class OutlineDefinition extends BaseDenifition {
 
 	public OutlineDefinition() {
 	}
+	
+	public OutlineDefinition(OutlineDefinition builder) {
+		setName(builder.getName());
+	}
 
 	@JsonIgnore
 	private void setDivsFromView(Div1View[] views) {

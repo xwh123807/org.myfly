@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.metadata.define.FormDefinition;
 import org.myfly.platform.core.metadata.define.SubTableDefinition;
 
@@ -32,11 +34,40 @@ public class EntityFormDefinition extends FormDefinition {
 	 */
 	private Map<String, EntitySubTableDefinition> subTableDefinitions;
 
+	@JsonIgnore
+	private EntityMetaData parent;
+
 	public EntityFormDefinition(FormDefinition builder) {
 		setName(builder.getName());
 		setActions(builder.getActions());
 		setSections(builder.getSections());
 		setDivs(builder.getDivs());
+	}
+
+	/**
+	 * 生成表单视图实体子表定义
+	 * 
+	 * @param subTableDefinitions
+	 */
+	private void generateEntitySubTableDefinitions(Map<String, SubTableDefinition> map) {
+		if (MapUtils.isEmpty(map)) {
+			return;
+		}
+		this.subTableDefinitions = new HashMap<>();
+		map.values().forEach(item -> {
+			EntitySubTableDefinition subTableDefinition = new EntitySubTableDefinition(item);
+			subTableDefinition.setParent(getParent());
+			getSubTableDefinitions().put(item.getName(), subTableDefinition);
+		});
+	}
+	
+	private void generateEntityFieldDefinitions(String[] fields) {
+		if (ArrayUtils.isNotEmpty(fields)) {
+			this.fieldDefinitions = new HashMap<>();
+			Stream.of(fields).forEach(name -> {
+				getFieldDefinitions().put(name, getParent().getField(name));
+			});
+		}
 	}
 
 	/**
@@ -51,20 +82,22 @@ public class EntityFormDefinition extends FormDefinition {
 	}
 
 	/**
-	 * 获取当期表单下使用到的子表
+	 * 获取当前表单下使用到的子表
 	 * 
 	 * @return
 	 */
 	private Map<String, SubTableDefinition> getAllSubTables() {
-		Map<String, SubTableDefinition> list = new HashMap<>();
-		Stream.of(getSections()).flatMap(item -> Stream.of(item.getSubTables()))
-				.forEach(s -> list.put(s.getSubTableAttr(), s));
-		return list;
-	}
-
-	@JsonIgnore
-	public SubTableDefinition getSubTableDefinition(String subTableAttr) {
-		return getAllSubTables().get(subTableAttr);
+		Map<String, SubTableDefinition> map = new HashMap<>();
+		if (ArrayUtils.isNotEmpty(getSections())) {
+			Stream.of(getSections()).forEach(item -> {
+				if (ArrayUtils.isNotEmpty(item.getSubTables())) {
+					Stream.of(item.getSubTables()).forEach(subTable -> {
+						map.put(subTable.getName(), subTable);
+					});
+				}
+			});
+		}
+		return map;
 	}
 
 	public Map<String, EntityFieldDefinition> getFieldDefinitions() {
@@ -75,16 +108,32 @@ public class EntityFormDefinition extends FormDefinition {
 		this.fieldDefinitions = fieldDefinitions;
 	}
 
-	@Override
-	public void validate() {
-		super.validate();
-	}
-
 	public Map<String, EntitySubTableDefinition> getSubTableDefinitions() {
 		return subTableDefinitions;
 	}
 
 	public void setSubTableDefinitions(Map<String, EntitySubTableDefinition> subTableDefinitions) {
 		this.subTableDefinitions = subTableDefinitions;
+	}
+
+	public EntityMetaData getParent() {
+		return parent;
+	}
+
+	public void setParent(EntityMetaData parent) {
+		this.parent = parent;
+		generateEntitySubTableDefinitions(getAllSubTables());
+		generateEntityFieldDefinitions(getFields());
+	}
+	
+	@Override
+	public void validate() {
+		super.validate();
+		if (MapUtils.isNotEmpty(getFieldDefinitions())) {
+			getFieldDefinitions().values().forEach(item -> item.validate());
+		}
+		if (MapUtils.isNotEmpty(getSubTableDefinitions())) {
+			getSubTableDefinitions().values().forEach(item -> item.validate());
+		}
 	}
 }

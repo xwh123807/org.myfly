@@ -3,19 +3,28 @@ package org.myfly.platform.core.metadata.builder;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.annotation.FetchMode;
 import org.myfly.platform.core.metadata.annotation.ListStyle;
+import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 
-public class DefaultListViewBuilder extends ListViewBuilder {
+public class DefaultListViewBuilder extends ListDefinition {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5429755838265125601L;
+
 	public DefaultListViewBuilder(EntityMetaData entityMetaData) {
 		setName(EntityMetaDataConstants.DEFAULT_ALL_NAME);
 		setTitle(entityMetaData.getTableDefinition().getTitle());
+		if (StringUtils.isBlank(getTitle())) {
+			setTitle(entityMetaData.getEntityName());
+		}
 		setFields(getAllFields(entityMetaData.getAllFields()));
 		setListStyle(ListStyle.TABLE);
-		setEntityName(entityMetaData.getEntityName());
 		setFetchMode(FetchMode.SERVER_ALL);
 		setEnableActions(true);
 		setListActions(EntityMetaDataConstants.DEFAULT_ENTITY_LIST_ACTIONS);

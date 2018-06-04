@@ -8,7 +8,6 @@ import org.myfly.platform.core.metadata.annotation.Div1View;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.annotation.FormView;
 import org.myfly.platform.core.metadata.annotation.SectionView;
-import org.myfly.platform.core.metadata.builder.FormViewBuilder;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.springframework.util.Assert;
 
@@ -48,7 +47,7 @@ public class FormDefinition extends BaseDenifition {
 	public FormDefinition() {
 	}
 
-	public FormDefinition(FormViewBuilder builder) {
+	public FormDefinition(FormDefinition builder) {
 		setName(builder.getName());
 		setSections(builder.getSections());
 	}

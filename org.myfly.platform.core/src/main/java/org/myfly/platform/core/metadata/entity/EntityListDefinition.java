@@ -47,11 +47,11 @@ public class EntityListDefinition extends ListDefinition {
 	}
 
 	/**
-	 * 配置
+	 * 生成列表视图字段定义
 	 * 
 	 * @param fieldMap
 	 */
-	private void configFieldDefinitions(Map<String, EntityFieldDefinition> fieldMap) {
+	private void generateEntityFieldDefinitions(Map<String, EntityFieldDefinition> fieldMap) {
 		List<EntityFieldDefinition> list = Stream.of(getFields()).map(name -> {
 			EntityFieldDefinition field = fieldMap.get(name);
 			if (field != null) {
@@ -86,7 +86,7 @@ public class EntityListDefinition extends ListDefinition {
 
 	public void setParent(EntityMetaData parent) {
 		this.parent = parent;
-		configFieldDefinitions(parent.getFieldMap());
+		generateEntityFieldDefinitions(parent.getFieldMap());
 	}
 	
 	@Override

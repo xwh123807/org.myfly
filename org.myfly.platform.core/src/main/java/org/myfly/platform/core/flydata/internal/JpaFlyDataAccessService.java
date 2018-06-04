@@ -22,7 +22,10 @@ import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.FilterDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.SubTableDefinition;
+import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
+import org.myfly.platform.core.metadata.entity.EntityListDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.EntitySubTableDefinition;
 import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
 import org.myfly.platform.core.system.domain.IKeyEntity;
@@ -77,9 +80,10 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 					return null;
 				}
 			}
-			return convertToViewMap(entityName, null, null, result,
-					entityMetaData.getFormDefinition(formViewName).getFields(), formViewName, uid, formViewName,
-					printMode);
+			return convertToViewMap(
+					entityName, null, null, result, entityMetaData.getFormDefinition(formViewName).getFieldDefinitions()
+							.values().toArray(new EntityFieldDefinition[] {}),
+					formViewName, uid, formViewName, printMode);
 		} else {
 			return null;
 		}
@@ -143,14 +147,14 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 			boolean printMode) {
 		AssertUtil.parameterEmpty(entityName, "entityName");
 		EntityMetaData metaData = getEntityMetaData(entityName);
-		ListDefinition listDefinition = metaData.getListDefinition(listViewName);
+		EntityListDefinition listDefinition = metaData.getListDefinition(listViewName);
 		Specifications specifications = getEntityQuerySpecifications(entityName, listViewName, params);
 		Page<Object> pageData1 = (Page<Object>) getJpaDataAccessService().findAll(metaData.getEntityClass(),
 				specifications, pageable);
 		List list = new ArrayList<>();
 		for (Object entity : pageData1.getContent()) {
 			String pkValue = (String) metaData.getPkFieldDefinition().getValueHandler().getFieldValue(entity);
-			list.add(convertToViewMap(entityName, null, null, entity, listDefinition.getFields(),
+			list.add(convertToViewMap(entityName, null, null, entity, listDefinition.getFieldDefinitions(),
 					listDefinition.getLabelField(), pkValue, listViewName, printMode));
 		}
 		return new PageImpl<>(list, pageable, pageData1.getTotalElements());
@@ -200,7 +204,7 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 
 		EntityMetaData entityMetaData = getEntityMetaData(entityName);
 		AssertUtil.parameterEmpty(entityMetaData, "entityMetaData");
-		SubTableDefinition subTable = entityMetaData.getFormDefinition(view).getSubTableDefinition(subTableAttr);
+		EntitySubTableDefinition subTable = entityMetaData.getFormDefinition(view).getSubTableDefinitions().get(subTableAttr);
 		Assert.notNull(subTable, "实体[" + entityName + "]在视图[" + view + "]下没有显示定义子表[" + subTableAttr + "]");
 		MDRelationFieldDefinition subField = entityMetaData.getField(subTableAttr);
 		String subentityName = subField.getRelationClass();
@@ -241,8 +245,8 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 			for (Object entity : pageData1.getContent()) {
 				String pkValue = (String) pkFieldDefinition.getValueHandler().getFieldValue(entity);
 				list.add(convertToViewMap(entityName, uid, subTableAttr, entity,
-						entityMetaData.getSubTableFields(view, subTableAttr), subTable.getLabelField(), pkValue, view,
-						printMode));
+						entityMetaData.getSubTableFieldDefinitions(view, subTableAttr), subTable.getLabelField(),
+						pkValue, view, printMode));
 			}
 			return (T) new PageImpl(list, pageable, pageData1.getTotalElements());
 		} else {
@@ -252,8 +256,8 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 			for (Object entity : result) {
 				String pkValue = (String) pkFieldDefinition.getValueHandler().getFieldValue(entity);
 				list.add(convertToViewMap(entityName, uid, subTableAttr, entity,
-						entityMetaData.getSubTableFields(view, subTableAttr), subTable.getLabelField(), pkValue, view,
-						printMode));
+						entityMetaData.getSubTableFieldDefinitions(view, subTableAttr), subTable.getLabelField(),
+						pkValue, view, printMode));
 			}
 			return (T) list;
 		}

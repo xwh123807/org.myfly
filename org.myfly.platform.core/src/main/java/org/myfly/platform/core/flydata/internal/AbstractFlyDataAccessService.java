@@ -33,6 +33,7 @@ import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
+import org.myfly.platform.core.metadata.entity.EntityListDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
@@ -395,10 +396,10 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 		AssertUtil.parameterEmpty(entityMetaData, "entityMetaData");
 		Page<?> pageData = getFullTextSearchService().search(entityName, searchText, page, size);
 		List<FlyEntityMap> list = new ArrayList<>();
-		ListDefinition listDefinition = entityMetaData.getListDefinition(listViewName);
+		EntityListDefinition listDefinition = entityMetaData.getListDefinition(listViewName);
 		for (Object entity : pageData.getContent()) {
 			String pkValue = (String) entityMetaData.getPkFieldDefinition().getValueHandler().getFieldValue(entity);
-			list.add(convertToViewMap(entityName, null, null, entity, listDefinition.getFields(),
+			list.add(convertToViewMap(entityName, null, null, entity, listDefinition.getFieldDefinitions(),
 					listDefinition.getLabelField(), pkValue, listViewName, false));
 		}
 		PageRequest pageable = new PageRequest(page, size);
@@ -420,7 +421,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 		// 查询返回分页数据
 		Page<?> pageData = findAllForSubEntityWithPage(entityName, uid, subTableAttr, view, params, pageable,
 				printMode);
-		ListDefinition listDefinition = entityMetaData.getFormDefinition(view).getSubTableDefinition(subTableAttr);
+		ListDefinition listDefinition = entityMetaData.getFormDefinition(view).getSubTableDefinitions().get(subTableAttr);
 		DataTablesResponse dataTablesResponse = buildDataTableReponse(entityMetaData, pageData,
 				listDefinition.getFields(), false);
 		dataTablesResponse.setMetaData(new DataTableMetaData(listDefinition, printMode));
@@ -612,13 +613,9 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 	 */
 	@SuppressWarnings("unchecked")
 	public FlyEntityMap convertToViewMap(String entityName, String uid, String subTableAttr, Object entity,
-			String[] fields, String labelFieldName, String pkValue, String formViewName, boolean printMode) {
-		EntityMetaData entityMetaData = StringUtils.isNotBlank(subTableAttr)
-				? getEntityMetaData(entityName).getSubEntityMetaData(subTableAttr)
-				: getEntityMetaData(entityName);
+			EntityFieldDefinition[] fields, String labelFieldName, String pkValue, String formViewName, boolean printMode) {
 		FlyEntityMap result = new FlyEntityMap();
-		for (String name : fields) {
-			EntityFieldDefinition fieldDefinition = entityMetaData.getField(name);
+		for (EntityFieldDefinition fieldDefinition : fields) {
 			// 先取出字段值，再转换为字符串
 			String value = null;
 			Object tmp = null;

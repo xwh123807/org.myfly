@@ -13,12 +13,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.builder.DefaultFormViewBuilder;
 import org.myfly.platform.core.metadata.builder.DefaultListViewBuilder;
+import org.myfly.platform.core.metadata.builder.DefaultOutlineViewBuilder;
 import org.myfly.platform.core.metadata.define.FKFieldDefinition;
-import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.FormDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.OutlineDefinition;
-import org.myfly.platform.core.metadata.define.SubTableDefinition;
 import org.myfly.platform.core.metadata.define.TableDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AppUtil;
@@ -62,11 +61,11 @@ public class EntityMetaData {
 	/**
 	 * 表单实体定义
 	 */
-	private Map<String, FormDefinition> formDefinitions;
+	private Map<String, EntityFormDefinition> formDefinitions;
 	/**
 	 * 摘要视图定义
 	 */
-	private Map<String, OutlineDefinition> outlineDefinitions;
+	private Map<String, EntityOutlineDefinition> outlineDefinitions;
 	/**
 	 * 主键定义
 	 */
@@ -104,9 +103,14 @@ public class EntityMetaData {
 		validate();
 	}
 
+	/**
+	 * 构建缺省视图
+	 * @param entityMetaData
+	 */
 	private void addDefaultDefinition(EntityMetaData entityMetaData) {
 		addListDefinition(new ListDefinition(new DefaultListViewBuilder(entityMetaData)));
 		addFormDefinition(new FormDefinition(new DefaultFormViewBuilder(entityMetaData)));
+		addOutlineDefinition(new OutlineDefinition(new DefaultOutlineViewBuilder(entityMetaData)));
 	}
 
 	public String getEntityName() {
@@ -141,11 +145,11 @@ public class EntityMetaData {
 		return listDefinitions;
 	}
 
-	public Map<String, FormDefinition> getFormDefinitions() {
+	public Map<String, EntityFormDefinition> getFormDefinitions() {
 		return formDefinitions;
 	}
 
-	public Map<String, OutlineDefinition> getOutlineDefinitions() {
+	public Map<String, EntityOutlineDefinition> getOutlineDefinitions() {
 		return outlineDefinitions;
 	}
 
@@ -188,7 +192,9 @@ public class EntityMetaData {
 			AssertUtil.parameterInvalide("formDefinition",
 					"名称为[" + formDefinition.getName() + "]FormDefinition已经存在，请检查实体[" + getEntityName() + "]元模型定义.");
 		}
-		getFormDefinitions().put(formDefinition.getName(), formDefinition);
+		EntityFormDefinition definition = new EntityFormDefinition(formDefinition);
+		definition.setParent(this);
+		getFormDefinitions().put(definition.getName(), definition);
 	}
 
 	/**
@@ -203,7 +209,8 @@ public class EntityMetaData {
 			AssertUtil.parameterInvalide("outlineDefinition", "名称为[" + outlineDefinition.getName()
 					+ "]OutlineDefinition已经存在，请检查实体[" + getEntityName() + "]元模型定义.");
 		}
-		getOutlineDefinitions().put(outlineDefinition.getName(), outlineDefinition);
+		EntityOutlineDefinition definition = new EntityOutlineDefinition(outlineDefinition);
+		getOutlineDefinitions().put(outlineDefinition.getName(), definition);
 	}
 
 	/**
@@ -235,7 +242,7 @@ public class EntityMetaData {
 	 * @return
 	 */
 	@JsonIgnore
-	public FormDefinition getFormDefinition(String formViewName) {
+	public EntityFormDefinition getFormDefinition(String formViewName) {
 		return getDefinition(formViewName, getFormDefinitions());
 	}
 
@@ -341,32 +348,15 @@ public class EntityMetaData {
 	}
 
 	/**
-	 * 获取子表显示字段
-	 * 
-	 * @param fromViewName
-	 * @return
-	 */
-	@JsonIgnore
-	public String[] getSubTableFields(String formViewName, String subTableAttr) {
-		SubTableDefinition subTableDefinition = getFormDefinition(formViewName).getSubTableDefinition(subTableAttr);
-		if (StringUtils.isNotBlank(subTableDefinition.getRefName())) {
-			MDRelationFieldDefinition mdRelationField = getField(subTableAttr);
-			return AppUtil.getEntityMetaData(mdRelationField.getRelationClass()).getFieldNames();
-		} else {
-			return subTableDefinition.getFields();
-		}
-	}
-
-	/**
 	 * 获取字段定义
 	 * 
 	 * @param fields
 	 * @return
 	 */
 	@JsonIgnore
-	public FieldDefinition[] getFields(String[] fields) {
+	public EntityFieldDefinition[] getFields(String[] fields) {
 		return Stream.of(fields).map(name -> getField(name)).collect(Collectors.toList())
-				.toArray(new FieldDefinition[] {});
+				.toArray(new EntityFieldDefinition[] {});
 	}
 
 	/**
@@ -425,6 +415,16 @@ public class EntityMetaData {
 			return null;
 		}
 	}
+	
+	/**
+	 * 获取子表字段定义信息
+	 * @param formViewName
+	 * @param subTableAttr
+	 * @return
+	 */
+	public EntityFieldDefinition[] getSubTableFieldDefinitions(String formViewName, String subTableAttr) {
+		return getFormDefinition(formViewName).getSubTableDefinitions().get(subTableAttr).getFieldDefinitions();
+	}
 
 	/**
 	 * 验证 <br>
@@ -463,14 +463,14 @@ public class EntityMetaData {
 				}
 			});
 		});
-		getOutlineDefinitions().values().forEach(item -> {
-			item.validate();
-			Stream.of(item.getFields()).forEach(name -> {
-				if (!getFieldMap().containsKey(name)) {
-					throw new RuntimeException(MessageFormat.format("实体[{0}]中名称为[{1}]摘要视图中不存在[{2}]字段.", getEntityName(),
-							item.getName(), name));
-				}
-			});
-		});
+//		getOutlineDefinitions().values().forEach(item -> {
+//			item.validate();
+//			Stream.of(item.getFields()).forEach(name -> {
+//				if (!getFieldMap().containsKey(name)) {
+//					throw new RuntimeException(MessageFormat.format("实体[{0}]中名称为[{1}]摘要视图中不存在[{2}]字段.", getEntityName(),
+//							item.getName(), name));
+//				}
+//			});
+//		});
 	}
 }

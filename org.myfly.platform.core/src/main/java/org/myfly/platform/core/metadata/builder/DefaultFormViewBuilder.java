@@ -9,12 +9,18 @@ import org.myfly.platform.core.metadata.annotation.FetchMode;
 import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.annotation.SectionType;
 import org.myfly.platform.core.metadata.define.FieldSetDefinition;
+import org.myfly.platform.core.metadata.define.FormDefinition;
 import org.myfly.platform.core.metadata.define.SectionDefinition;
 import org.myfly.platform.core.metadata.define.SubTableDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 
-public class DefaultFormViewBuilder extends FormViewBuilder {
+public class DefaultFormViewBuilder extends FormDefinition {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2520007508887215702L;
+
 	public DefaultFormViewBuilder(EntityMetaData entityMetaData) {
 		setName(EntityMetaDataConstants.DEFAULT_ALL_NAME);
 		setSections(buildDefaultSectionDefinitions(entityMetaData).toArray(new SectionDefinition[] {}));

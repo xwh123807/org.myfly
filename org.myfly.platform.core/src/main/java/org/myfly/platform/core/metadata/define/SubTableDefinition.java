@@ -56,13 +56,12 @@ public class SubTableDefinition extends ListDefinition {
 		Assert.hasLength(getTitle(), "属性[title]不能为空.");
 		Assert.notNull(getFetchMode(), "属性[fetchMode]不能为空.");
 		Assert.notNull(getListStyle(), "属性[listStyle]不能为空.");
-		Assert.notNull(getFields(), "属性[fields]不能为空.");
 		Assert.hasLength(getSubTableAttr(),  "属性[subTableAttr]不能为空.");
 		// 如果没有设置引用，则fields必须设置
 		if (StringUtils.isBlank(getRefName())) {
 			Assert.isTrue(getFields().length > 0, "属性[fields]至少要有一个字段.");
 		}
-	}
+	} 
 
 	public String getSubTableAttr() {
 		return subTableAttr;
