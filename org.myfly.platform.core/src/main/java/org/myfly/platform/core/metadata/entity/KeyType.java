@@ -13,7 +13,7 @@ public enum KeyType implements BaseEnum{
 	// @Embeddable，复合主键
 	EMBED("复合主键"),
 	// 多@Id,指定@IdClass，复合主键
-	MULTIID("多主键");
+	IDCLASS("多主键");
 	
 	private String title;
 	

@@ -54,6 +54,11 @@ public class EntitySubTableDefinition extends EntityListDefinition {
 	 */
 	private void generateFieldDefinitions(EntityMetaData parentMetaData) {
 		EntityMetaData subEntityMetaData = parentMetaData.getSubEntityMetaData(getSubTableAttr());
+		if (StringUtils.isNotBlank(getLabelField())) {
+			Assert.notNull(subEntityMetaData.getField(getLabelField()));
+		}else {
+			setLabelField(subEntityMetaData.getLableField().getName());
+		}
 		if (StringUtils.isBlank(getRefName())) {
 			setFieldDefinitions(subEntityMetaData.getFields(getFields()));
 		} else {
@@ -69,7 +74,17 @@ public class EntitySubTableDefinition extends EntityListDefinition {
 
 	@Override
 	public void validate() {
+		Assert.hasLength(getName(), "属性[name]不能为空.");
+		Assert.hasLength(getTitle(), "属性[title]不能为空.");
+		Assert.notNull(getFetchMode(), "属性[fetchMode]不能为空.");
+		Assert.notNull(getListStyle(), "属性[listStyle]不能为空.");
+		Assert.hasLength(getSubTableAttr(),  "属性[subTableAttr]不能为空.");
+		// 如果没有设置引用，则fields必须设置
+		if (StringUtils.isBlank(getRefName())) {
+			Assert.isTrue(getFields().length > 0, "属性[fields]至少要有一个字段.");
+		}
 		Assert.notNull(getParent(), "属性[parent]不能为空.");
+		Assert.notNull(getLabelField(), "属性[labelField]不能为空.");
 		Assert.isTrue(getFields() != null && getFields().length > 0, "属性[fields]不能为空，且长度至少为1.");
 		Assert.isTrue(getFieldDefinitions() != null && getFieldDefinitions().length > 0,
 				"属性[fieldDefinitions]不能为空，且长度至少为1.");

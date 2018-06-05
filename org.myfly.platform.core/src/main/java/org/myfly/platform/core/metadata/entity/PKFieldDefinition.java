@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.persistence.Embeddable;
+import javax.persistence.IdClass;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.metadata.define.BaseDenifition;
@@ -53,7 +54,12 @@ public class PKFieldDefinition extends BaseDenifition {
 	@JsonIgnore
 	private IFieldValueHandler valueHandler;
 
-	public PKFieldDefinition() {
+	public PKFieldDefinition(Class<?> entityClass) {
+		IdClass idClass = entityClass.getAnnotation(IdClass.class);
+		if (idClass != null) {
+			setIdClass(idClass.getClass());
+			setKeyType(KeyType.IDCLASS);
+		}
 	}
 
 	public EntityFieldDefinition[] getFields() {
@@ -72,7 +78,7 @@ public class PKFieldDefinition extends BaseDenifition {
 					setKeyType(KeyType.SINGLE);
 				}
 			} else {
-				setKeyType(KeyType.MULTIID);
+				setKeyType(KeyType.IDCLASS);
 			}
 		}
 		initFieldValueHandler();
@@ -120,7 +126,7 @@ public class PKFieldDefinition extends BaseDenifition {
 			Assert.isTrue(getFields().length == 1);
 			Assert.notNull(getIdClass());
 			break;
-		case MULTIID:
+		case IDCLASS:
 			Assert.isTrue(getFields().length > 1);
 			Assert.notNull(getIdClass());
 			break;
@@ -164,5 +170,14 @@ public class PKFieldDefinition extends BaseDenifition {
 			// Object obj = getIdClass().newInstance();
 		}
 		return null;
+	}
+	
+	/**
+	 * 获取实体主键值
+	 * @param entity
+	 * @return
+	 */
+	public String getPKValue(Object entity) {
+		return (String) getValueHandler().getFieldValue(entity);
 	}
 }

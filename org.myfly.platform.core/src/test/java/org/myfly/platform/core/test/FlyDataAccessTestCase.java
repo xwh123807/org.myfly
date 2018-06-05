@@ -13,15 +13,16 @@ import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
 import org.myfly.platform.core.flydata.service.IJdbcDataAccessService;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.test.ServiceTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringApplicationConfiguration(classes = CoreApplication.class)
+@SpringBootTest(classes=CoreApplication.class)
 public abstract class FlyDataAccessTestCase extends ServiceTestCase {
 	@Autowired
 	private IJdbcDataAccessService jdbcDataAccessService;
@@ -144,7 +145,7 @@ public abstract class FlyDataAccessTestCase extends ServiceTestCase {
 			String dbValueStr = ClassUtil.convertValueToString(dbValue);
 			Assert.assertNotNull("字段" + dbFieldName, dbValueStr);
 			// 验证字段是否在元模型中有定义
-			FieldDefinition fieldDefinition = metaData.getFieldByFieldName(dbFieldName);
+			EntityFieldDefinition fieldDefinition = metaData.getFieldByFieldName(dbFieldName);
 			Assert.assertNotNull(fieldDefinition);
 		}
 	}
@@ -157,7 +158,7 @@ public abstract class FlyDataAccessTestCase extends ServiceTestCase {
 		EntityMetaData metaData = getEntityMetaData(getEntityName());
 
 		// 获取主键值
-		String uid = metaData.getPKFieldDefinition().getPKValue(dbEntity);
+		String uid = (String) metaData.getPkFieldDefinition().getValueHandler().getFieldValue(dbEntity);
 		Assert.assertNotNull(uid);
 		Map<String, String> flyEntity = getFlyDataAccessService().findOne(getEntityName(), uid, "all", false);
 		Assert.assertNotNull(flyEntity);
@@ -174,7 +175,7 @@ public abstract class FlyDataAccessTestCase extends ServiceTestCase {
 		Assert.assertNotNull(dbEntity);
 		EntityMetaData metaData = getEntityMetaData(getEntityName());
 		// 获取主键值
-		String pkValue = metaData.getPKFieldDefinition().getPKValue(dbEntity);
+		String pkValue = metaData.getPkFieldDefinition().getPKValue(dbEntity);
 		Assert.assertNotNull(pkValue);
 		// 获取使用模型扩展后的数据
 		Map<String, String> flyEntity = getFlyDataAccessService().findOne(getEntityName(), pkValue, "all", false);
@@ -269,7 +270,7 @@ public abstract class FlyDataAccessTestCase extends ServiceTestCase {
 		Assert.assertNotNull(list);
 		Assert.assertEquals(1, list.size());
 		Map<String, String> flyEntity = list.get(0);
-		String uid = entityMetaData.getPKFieldDefinition().getPKValue(flyEntity);
+		String uid = entityMetaData.getPkFieldDefinition().getPKValue(flyEntity);
 		Assert.assertNotNull(uid);
 		List<FlyEntityMap> flySubEntities = getFlyDataAccessService().findAllForSubEntity(getEntityName(), uid,
 				subTableAttr, null, null, false);

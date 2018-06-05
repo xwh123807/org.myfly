@@ -38,7 +38,7 @@ public class PKFieldValueHandler implements IFieldValueHandler {
 				if (KeyType.SINGLE.equals(pkFieldDefinition.getKeyType())) {
 					Object value = pkFieldDefinition.getFields()[0].getValueHandler().getFieldValue(entity);
 					return ClassUtil.convertValueToString(value);
-				} else if (KeyType.MULTIID.equals(pkFieldDefinition.getKeyType())) {
+				} else if (KeyType.IDCLASS.equals(pkFieldDefinition.getKeyType())) {
 					String result = "";
 					for (EntityFieldDefinition field : getPkFieldDefinition().getFields()) {
 						Object value = field.getValueHandler().getFieldValue(entity);
@@ -46,7 +46,7 @@ public class PKFieldValueHandler implements IFieldValueHandler {
 					}
 					return result.substring(1);
 				} else {
-					AssertUtil.notSupport(KeyType.MULTIID.getTitle() + "还未实现");
+					AssertUtil.notSupport(KeyType.EMBED.getTitle() + "还未实现");
 					return null;
 				}
 			} catch (Exception e) {
@@ -61,7 +61,7 @@ public class PKFieldValueHandler implements IFieldValueHandler {
 		try {
 			if (KeyType.SINGLE.equals(getPkFieldDefinition().getKeyType())) {
 				pkFieldDefinition.getFields()[0].getValueHandler().setFieldValue(entity, value);
-			} else if (KeyType.MULTIID.equals(getPkFieldDefinition().getKeyType())) {
+			} else if (KeyType.IDCLASS.equals(getPkFieldDefinition().getKeyType())) {
 				String[] values = ((String) value).split("_");
 				if (pkFieldDefinition.getFields().length != values.length) {
 					throw new IllegalArgumentException(
@@ -71,7 +71,7 @@ public class PKFieldValueHandler implements IFieldValueHandler {
 					pkFieldDefinition.getFields()[i].getValueHandler().setFieldValue(entity, values[i]);
 				}
 			} else {
-				AssertUtil.notSupport(KeyType.MULTIID.getTitle() + "还未实现");
+				AssertUtil.notSupport(KeyType.EMBED.getTitle() + "还未实现");
 			}
 		} catch (Exception e) {
 			throw new IllegalArgumentException("设置主键值失败，错误信息：" + e.getMessage());

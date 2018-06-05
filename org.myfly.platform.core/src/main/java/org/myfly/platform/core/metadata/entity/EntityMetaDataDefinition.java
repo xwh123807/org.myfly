@@ -70,12 +70,7 @@ public class EntityMetaDataDefinition extends MetaDataDefinition {
 		});
 		getTableDefinition().setFields(fields.toArray(new FieldDefinition[] {}));
 		// 设置实体主键
-		PKFieldDefinition pkField = new PKFieldDefinition();
-		IdClass idClass = entityClass.getAnnotation(IdClass.class);
-		if (idClass != null) {
-			pkField.setIdClass(entityClass);
-			pkField.setKeyType(KeyType.MULTIID);
-		}
+		PKFieldDefinition pkField = new PKFieldDefinition(entityClass);
 		pkField.setFields(fields.stream().filter(item -> item.isIdField()).collect(Collectors.toList())
 				.toArray(new EntityFieldDefinition[] {}));
 		setPkFieldDefinition(pkField);

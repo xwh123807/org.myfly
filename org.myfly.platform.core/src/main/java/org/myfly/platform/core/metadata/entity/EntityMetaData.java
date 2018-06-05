@@ -105,6 +105,7 @@ public class EntityMetaData {
 
 	/**
 	 * 构建缺省视图
+	 * 
 	 * @param entityMetaData
 	 */
 	private void addDefaultDefinition(EntityMetaData entityMetaData) {
@@ -415,15 +416,31 @@ public class EntityMetaData {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * 获取子表字段定义信息
+	 * 
 	 * @param formViewName
 	 * @param subTableAttr
 	 * @return
 	 */
 	public EntityFieldDefinition[] getSubTableFieldDefinitions(String formViewName, String subTableAttr) {
 		return getFormDefinition(formViewName).getSubTableDefinitions().get(subTableAttr).getFieldDefinitions();
+	}
+
+	/**
+	 * 根据字段数据库名称获取对应属性名称
+	 * 
+	 * @param dbFieldName
+	 * @return
+	 */
+	public EntityFieldDefinition getFieldByFieldName(String dbFieldName) {
+		for (EntityFieldDefinition field : getFieldMap().values()) {
+			if (field.getFieldName().equalsIgnoreCase(dbFieldName)) {
+				return field;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -463,14 +480,16 @@ public class EntityMetaData {
 				}
 			});
 		});
-//		getOutlineDefinitions().values().forEach(item -> {
-//			item.validate();
-//			Stream.of(item.getFields()).forEach(name -> {
-//				if (!getFieldMap().containsKey(name)) {
-//					throw new RuntimeException(MessageFormat.format("实体[{0}]中名称为[{1}]摘要视图中不存在[{2}]字段.", getEntityName(),
-//							item.getName(), name));
-//				}
-//			});
-//		});
+		// getOutlineDefinitions().values().forEach(item -> {
+		// item.validate();
+		// Stream.of(item.getFields()).forEach(name -> {
+		// if (!getFieldMap().containsKey(name)) {
+		// throw new
+		// RuntimeException(MessageFormat.format("实体[{0}]中名称为[{1}]摘要视图中不存在[{2}]字段.",
+		// getEntityName(),
+		// item.getName(), name));
+		// }
+		// });
+		// });
 	}
 }

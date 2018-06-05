@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Id;
 
 import org.myfly.platform.core.metadata.annotation.FieldView;
@@ -24,7 +25,7 @@ public class EntityClassUtil {
 		List<Field> list = new ArrayList<>();
 		FuncUtil.forEach(entityClass.getDeclaredFields(), field -> {
 			if (field.getAnnotation(Column.class) != null || field.getAnnotation(FieldView.class) != null
-					|| field.getAnnotation(Id.class) != null) {
+					|| field.getAnnotation(Id.class) != null || field.getAnnotation(EmbeddedId.class) != null) {
 				list.add(field);
 			}
 		});

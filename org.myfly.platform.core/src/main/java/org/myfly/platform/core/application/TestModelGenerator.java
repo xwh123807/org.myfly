@@ -56,7 +56,7 @@ public class TestModelGenerator {
 	 * 初始master-detail模型
 	 */
 	public void initMasterModel() {
-		//dataService.delAll(Master.class);
+		dataService.delAll(Master.class);
 		//如果已经存在记录数超过masterCount，则不添加
 		long count = dataService.count(Master.class, null);
 		if (count >= masterCount) {

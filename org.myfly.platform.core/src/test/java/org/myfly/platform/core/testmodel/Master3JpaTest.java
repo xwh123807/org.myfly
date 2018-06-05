@@ -3,8 +3,10 @@ package org.myfly.platform.core.testmodel;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.myfly.platform.CoreApplication;
@@ -23,8 +25,10 @@ public class Master3JpaTest {
 	@Test
 	public void base() {
 		Master3 entity = new Master3();
-		entity.setId1(1);
-		entity.setId2(1);
+		Master3Key key = new Master3Key();
+		key.setId1(1);
+		key.setId2(1);
+		entity.setKey(key);
 		entity.setName("name");
 		Set<Detail3> details = new HashSet<>();
 		Detail3 detail = new Detail3();
@@ -33,5 +37,18 @@ public class Master3JpaTest {
 		details.add(detail);
 		entity.setDetails(details);
 		service.saveEntity(entity);
+
+		Master3 entity2 = service.findOne(Master3.class, key);
+		Assert.assertNotNull(entity2);
+		Assert.assertEquals(key, entity2.getKey());
+		Assert.assertEquals("name", entity2.getName());
+
+		service.delOne(Master3.class, key);
+
+		try {
+			Master3 entity3 = service.findOne(Master3.class, key);
+		} catch (Exception e) {
+			Assert.assertEquals(EntityNotFoundException.class, e.getClass());
+		}
 	}
 }

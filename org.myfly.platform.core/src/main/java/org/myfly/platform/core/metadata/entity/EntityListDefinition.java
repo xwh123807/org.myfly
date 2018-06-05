@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.springframework.util.Assert;
@@ -75,6 +76,9 @@ public class EntityListDefinition extends ListDefinition {
 			list.add(field);
 		}
 		setFieldDefinitions(list.toArray(new EntityFieldDefinition[] {}));
+		if (StringUtils.isBlank(getLabelField())) {
+			setLabelField(list.get(0).getName());
+		}
 	}
 
 	public EntityFieldDefinition[] getFieldDefinitions() {
@@ -105,6 +109,7 @@ public class EntityListDefinition extends ListDefinition {
 	public void validate() {
 		super.validate();
 		Assert.notNull(getParent(), "属性[parent]不能为空.");
+		Assert.notNull(getLabelField(), "属性[labelField]不能为空.");
 		Assert.notNull(getFieldDefinitions(), "属性[fieldDefinitions]不能为空.");
 		Assert.isTrue(getFieldDefinitions().length >= getFields().length, "属性[fieldDefinitions]的长度["
 				+ getFieldDefinitions().length + "]必须大于属性[fields]的长度[" + getFields().length + "]");

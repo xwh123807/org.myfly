@@ -10,7 +10,7 @@ public class Master2EntityMetaDataTest {
 		EntityMetaData meta = new EntityMetaData(Master2.class);
 		PKFieldDefinition pkField = meta.getPkFieldDefinition();
 		pkField.validate();
-		Assert.assertEquals(KeyType.MULTIID, pkField.getKeyType());
+		Assert.assertEquals(KeyType.IDCLASS, pkField.getKeyType());
 		Assert.assertArrayEquals(new String[] { "id1", "id2" }, pkField.getFieldNames());
 		Assert.assertNotNull(pkField.getValueHandler());
 		Master2 master = new Master2();

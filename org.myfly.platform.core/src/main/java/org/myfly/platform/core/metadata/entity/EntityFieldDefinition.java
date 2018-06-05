@@ -57,6 +57,9 @@ public class EntityFieldDefinition extends FieldDefinition {
 		super(property.getAnnotation(FieldView.class));
 		setName(property.getName());
 		setType(property.getType());
+		if (StringUtils.isBlank(getTitle())) {
+			setTitle(getName());
+		}
 		Column column = property.getAnnotation(Column.class);
 		if (column != null) {
 			setMaxLength(column.length());

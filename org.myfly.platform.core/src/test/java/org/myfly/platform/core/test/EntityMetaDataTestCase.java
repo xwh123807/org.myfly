@@ -5,15 +5,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.myfly.platform.CoreApplication;
 import org.myfly.platform.core.metadata.define.FormDefinition;
-import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.TableDefinition;
+import org.myfly.platform.core.metadata.entity.EntityListDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.test.ServiceTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringApplicationConfiguration(classes = CoreApplication.class)
+@SpringBootTest(classes=CoreApplication.class)
 public abstract class EntityMetaDataTestCase<T> extends ServiceTestCase {
 	@Autowired
 	private IEntityMetaDataService entityMetaDataService;
@@ -47,7 +47,7 @@ public abstract class EntityMetaDataTestCase<T> extends ServiceTestCase {
 	
 	@Test
 	public void checkListDefenition(){
-		ListDefinition listDefinition = metaData.getListDefinition(getViewName());
+		EntityListDefinition listDefinition = metaData.getListDefinition(getViewName());
 		Assert.assertNotNull(listDefinition);
 		Assert.assertNotNull(listDefinition.getEntityName());
 	}

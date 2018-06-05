@@ -10,7 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Master3 extends Master3Key {
+public class Master3 {
 
 	/**
 	 * 
