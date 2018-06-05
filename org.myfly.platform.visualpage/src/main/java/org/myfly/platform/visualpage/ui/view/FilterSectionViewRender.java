@@ -3,6 +3,7 @@ package org.myfly.platform.visualpage.ui.view;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.define.FilterDefinition;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.BaseFieldRender;
 import org.myfly.platform.visualpage.ui.FieldRenderFactory;
@@ -15,12 +16,20 @@ import org.myfly.platform.visualpage.ui.WidgetBoxRender;
  *
  */
 public class FilterSectionViewRender extends BaseRender {
+	/**
+	 * 条件实体所在元模型
+	 */
+	private EntityMetaData entityMetaData;
+	/**
+	 * 条件定义
+	 */
 	private FilterDefinition[] filters;
 	//查询请求处理url
 	private String queryUrl;
 
-	public FilterSectionViewRender(final FilterDefinition[] filters, final ViewType viewType, final String queryUrl) {
+	public FilterSectionViewRender(EntityMetaData entityMetaData, final FilterDefinition[] filters, final ViewType viewType, final String queryUrl) {
 		super(viewType);
+		this.entityMetaData = entityMetaData;
 		this.filters = filters;
 		this.queryUrl = queryUrl;
 	}
@@ -37,7 +46,7 @@ public class FilterSectionViewRender extends BaseRender {
 			// 只显示允许显示的条件
 			if (filter.isShow()) {
 				buffer.append("<div class=\"col-md-4\">");
-				BaseFieldRender fieldRender = FieldRenderFactory.getRender(filter.getParent().getField(filter.getField()));
+				BaseFieldRender fieldRender = FieldRenderFactory.getRender(entityMetaData.getField(filter.getField()));
 				// 过滤器控件设置为编辑模式，允许输入
 				fieldRender.setViewType(ViewType.EDIT);
 				buffer.append(fieldRender.html());
@@ -63,7 +72,7 @@ public class FilterSectionViewRender extends BaseRender {
 				continue;
 			}
 			buffer.append("<div class=\"col-md-4\">");
-			BaseFieldRender fieldRender = FieldRenderFactory.getRender(filter.getParent().getField(filter.getField()));
+			BaseFieldRender fieldRender = FieldRenderFactory.getRender(entityMetaData.getField(filter.getField()));
 			fieldRender.setViewType(getViewType());
 			buffer.append(fieldRender.html());
 			buffer.append("</div>");

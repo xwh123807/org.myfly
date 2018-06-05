@@ -1,8 +1,12 @@
 package org.myfly.platform.visualpage.ui.view;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.define.SectionDefinition;
+import org.myfly.platform.core.metadata.entity.EntityFormDefinition;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.WidgetBoxRender;
@@ -18,23 +22,23 @@ public class SectionViewRender extends BaseRender {
 	private SubTableViewRender[] subTables;
 	private SectionDefinition sectionDefinition;
 
-	public SectionViewRender(final SectionDefinition sectionDefinition, final ViewType viewType) {
+	public SectionViewRender(EntityFormDefinition formDefinition, final SectionDefinition sectionDefinition,
+			final ViewType viewType) {
 		super(viewType);
 		this.sectionDefinition = sectionDefinition;
 		AssertUtil.parameterEmpty(sectionDefinition, "SectionRender.sectionDefinition");
 		if (ArrayUtils.isNotEmpty(sectionDefinition.getFieldSets())) {
-			fieldSets = new FieldSetViewRender[sectionDefinition.getFieldSets().length];
-			for (int i = 0; i < sectionDefinition.getFieldSets().length; i++) {
-				fieldSets[i] = new FieldSetViewRender(sectionDefinition.getFieldSets()[i], getViewType());
-			}
+			fieldSets = Stream.of(sectionDefinition.getFieldSets()).map(
+					item -> new FieldSetViewRender(item, formDefinition.getFields(item.getFields()), getViewType()))
+					.collect(Collectors.toList()).toArray(new FieldSetViewRender[] {});
 		}
 		if (ViewType.EDIT.equals(viewType) || ViewType.NEW.equals(viewType)) {
 			// 新增和编辑模式不显示子表
 		} else if (ArrayUtils.isNotEmpty(sectionDefinition.getSubTables())) {
-			subTables = new SubTableViewRender[sectionDefinition.getSubTables().length];
-			for (int i = 0; i < sectionDefinition.getSubTables().length; i++) {
-				subTables[i] = new SubTableViewRender(sectionDefinition.getSubTables()[i], getViewType());
-			}
+			subTables = Stream.of(sectionDefinition.getSubTables())
+					.map(item -> new SubTableViewRender(
+							formDefinition.getSubTableDefinitions().get(item.getSubTableAttr()), getViewType()))
+					.collect(Collectors.toList()).toArray(new SubTableViewRender[] {});
 		}
 	}
 
@@ -44,10 +48,8 @@ public class SectionViewRender extends BaseRender {
 
 	public String html() {
 		StringBuffer sectionHtml = new StringBuffer();
-		sectionHtml
-				.append("<div"
-						+ HtmlUtils.addPropertys(new String[] { "name", "class", "render" }, new String[] {
-								sectionDefinition.getName(), sectionDefinition.getType().name(), getClass().getName() })
+		sectionHtml.append("<div" + HtmlUtils.addPropertys(new String[] { "name", "class", "render" },
+				new String[] { sectionDefinition.getName(), sectionDefinition.getType().name(), getClass().getName() })
 				+ ">");
 		switch (sectionDefinition.getType()) {
 		case CUSTOM:

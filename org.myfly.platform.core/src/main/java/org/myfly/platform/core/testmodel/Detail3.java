@@ -11,43 +11,45 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Detail2 implements Serializable {
+public class Detail3 implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3600990053998339029L;
+	private static final long serialVersionUID = -379486704409415239L;
 
 	@Id
-	private int detailId;
-	@Column
-	private String title;
+	private int iid;
+
 	@JoinColumns({ @JoinColumn(name = "id1", referencedColumnName = "id1"),
 			@JoinColumn(name = "id2", referencedColumnName = "id2") })
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
-	private Master2 master;
+	private Master3 master;
 
-	public int getDetailId() {
-		return detailId;
+	@Column
+	private String name;
+
+	public int getIid() {
+		return iid;
 	}
 
-	public void setDetailId(int detailId) {
-		this.detailId = detailId;
+	public void setIid(int iid) {
+		this.iid = iid;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public Master2 getMaster() {
+	public Master3 getMaster() {
 		return master;
 	}
 
-	public void setMaster(Master2 master) {
+	public void setMaster(Master3 master) {
 		this.master = master;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

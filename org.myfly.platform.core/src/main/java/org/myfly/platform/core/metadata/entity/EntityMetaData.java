@@ -192,8 +192,8 @@ public class EntityMetaData {
 			AssertUtil.parameterInvalide("formDefinition",
 					"名称为[" + formDefinition.getName() + "]FormDefinition已经存在，请检查实体[" + getEntityName() + "]元模型定义.");
 		}
-		EntityFormDefinition definition = new EntityFormDefinition(formDefinition);
-		definition.setParent(this);
+		EntityFormDefinition definition = new EntityFormDefinition(this, formDefinition);
+		definition.config();
 		getFormDefinitions().put(definition.getName(), definition);
 	}
 
@@ -225,8 +225,8 @@ public class EntityMetaData {
 			AssertUtil.parameterInvalide("listDefinition",
 					"名称为[" + listDefinition.getName() + "]ListDefinition已经存在，请检查实体[" + getEntityName() + "]元模型定义.");
 		}
-		EntityListDefinition definition = new EntityListDefinition(listDefinition);
-		definition.setParent(this);
+		EntityListDefinition definition = new EntityListDefinition(this, listDefinition);
+		definition.config();
 		getListDefinitions().put(definition.getName(), definition);
 	}
 

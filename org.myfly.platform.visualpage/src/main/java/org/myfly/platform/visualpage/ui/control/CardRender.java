@@ -2,21 +2,22 @@ package org.myfly.platform.visualpage.ui.control;
 
 import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.define.FieldSetDefinition;
-import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.metadata.entity.EntityListDefinition;
 import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.BaseRender;
 import org.myfly.platform.visualpage.ui.view.FieldSetViewRender;
 
 /**
  * 卡片式
+ * 
  * @author xiangwanhong
  *
  */
-public class CardRender implements BaseRender{
+public class CardRender implements BaseRender {
 
-	private ListDefinition listDefinition;
+	private EntityListDefinition listDefinition;
 
-	public CardRender(ListDefinition listDefinition) {
+	public CardRender(EntityListDefinition listDefinition) {
 		this.listDefinition = listDefinition;
 	}
 
@@ -25,10 +26,10 @@ public class CardRender implements BaseRender{
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("<div" + HtmlUtils.addProperty("render", getClass().getName()) + ">");
 		FieldSetDefinition fieldSetDefinition = new FieldSetDefinition();
-		fieldSetDefinition.setParent(listDefinition.getParent());
 		fieldSetDefinition.setTitle(listDefinition.getTitle());
 		fieldSetDefinition.setFields(listDefinition.getFields());
-		FieldSetViewRender fieldSetViewRender = new FieldSetViewRender(fieldSetDefinition , ViewType.VIEW);
+		FieldSetViewRender fieldSetViewRender = new FieldSetViewRender(fieldSetDefinition,
+				listDefinition.getFieldDefinitions(), ViewType.VIEW);
 		fieldSetViewRender.setFullSize(true);
 		buffer.append(fieldSetViewRender.html());
 		buffer.append("</div>");

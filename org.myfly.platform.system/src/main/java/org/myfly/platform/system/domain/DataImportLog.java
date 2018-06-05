@@ -29,7 +29,7 @@ import org.myfly.platform.core.metadata.annotation.TableView;
 //
 listViews = @ListView(name = "default", title = "数据导入日志", fields = { "actionUrl", "created", "createdBy", "importFile",
 		"state", "totalCount", "usedtime", "successCount", "faultCount",
-		"message" }, enableActions = false, serverSideMode = false, filters = {
+		"message" }, enableActions = false,  filters = {
 				@FilterView(field = "actionUrl", operator = SQLOperator.LIKE),
 				@FilterView(field = "createdBy", operator = SQLOperator.EQUAL),
 				@FilterView(field = "groupUid", operator = SQLOperator.EQUAL, show = false) }) )

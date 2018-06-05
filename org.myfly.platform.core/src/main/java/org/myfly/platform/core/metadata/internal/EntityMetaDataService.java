@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.persistence.Entity;
+
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
@@ -37,7 +39,9 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 		if (entityClasses == null) {
 			entityClasses = new ArrayList<>();
 			for (JpaPersistentEntity<?> entity : mappingContext.getPersistentEntities()) {
-				entityClasses.add(entity.getType());
+				if (entity.findAnnotation(Entity.class) != null) {
+					entityClasses.add(entity.getType());
+				}
 			}
 		}
 		return entityClasses;

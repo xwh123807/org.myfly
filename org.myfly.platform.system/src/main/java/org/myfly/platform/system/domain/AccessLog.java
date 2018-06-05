@@ -39,7 +39,7 @@ listViews = @ListView(fields = { "host", "created", "method", "url", "status", "
 		"createdBy" }, filters = { @FilterView(field = "host", operator = SQLOperator.EQUAL),
 				@FilterView(field = "status", operator = SQLOperator.EQUAL),
 				@FilterView(field = "url", operator = SQLOperator.LIKE),
-				@FilterView(field = "usedtime", operator = SQLOperator.GREATERTHANOREQUALTO) }, enableActions=false, serverSideMode = true) ,
+				@FilterView(field = "usedtime", operator = SQLOperator.GREATERTHANOREQUALTO) }, enableActions=false) ,
 				//
 				formViews = @FormView(sections = { @SectionView(title = "访问日志", fieldSets = {
 						@FieldSetView(title = "访问日志", fields = { "host", "created", "method", "url", "status",

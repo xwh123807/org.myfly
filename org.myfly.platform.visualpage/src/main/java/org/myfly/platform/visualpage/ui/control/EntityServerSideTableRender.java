@@ -11,14 +11,13 @@ import org.myfly.platform.core.domain.StyleConstants;
 import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.annotation.FetchMode;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
-import org.myfly.platform.core.metadata.define.ListDefinition;
-import org.myfly.platform.core.metadata.define.SubTableDefinition;
 import org.myfly.platform.core.metadata.entity.EntityListDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.EntitySubTableDefinition;
 import org.myfly.platform.core.utils.StringUtil;
 
 /**
- * 服务端表格，只包含格式定义，不包含数据
+ * 服务端表格，只包含格式定义，不包含数据，由客户端Ajax异步完成取数
  * 
  * @author xiangwanhong
  *
@@ -55,8 +54,8 @@ public class EntityServerSideTableRender extends HtmlTableRender {
 	}
 
 	public String getSubTableAttr() {
-		return getListDefinition() instanceof SubTableDefinition
-				? ((SubTableDefinition) getListDefinition()).getSubTableAttr()
+		return getListDefinition() instanceof EntitySubTableDefinition
+				? ((EntitySubTableDefinition) getListDefinition()).getSubTableAttr()
 				: "";
 	}
 
@@ -70,7 +69,7 @@ public class EntityServerSideTableRender extends HtmlTableRender {
 			// 子表
 			EntityMetaData subEntityMetaData = getListDefinition().getParent().getSubEntityMetaData(getSubTableAttr());
 			return Stream
-					.of(subEntityMetaData.getListDefinition(((SubTableDefinition) getListDefinition()).getRefName())
+					.of(subEntityMetaData.getListDefinition(((EntitySubTableDefinition) getListDefinition()).getRefName())
 							.getFields())
 					.map(name -> subEntityMetaData.getField(name)).collect(Collectors.toList())
 					.toArray(new FieldDefinition[] {});

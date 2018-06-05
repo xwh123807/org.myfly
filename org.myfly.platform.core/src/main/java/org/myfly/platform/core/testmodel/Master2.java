@@ -1,11 +1,15 @@
 package org.myfly.platform.core.testmodel;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.OneToMany;
 
 @Entity
 @IdClass(Master2Key.class)
@@ -20,8 +24,8 @@ public class Master2 implements Serializable {
 	private int id2;
 	@Column
 	private String name;
-	@Column
-	private Detail2 detail;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "master")
+	private Set<Detail2> details;
 
 	public int getId1() {
 		return id1;
@@ -47,11 +51,12 @@ public class Master2 implements Serializable {
 		this.name = name;
 	}
 
-	public Detail2 getDetail() {
-		return detail;
+	public Set<Detail2> getDetails() {
+		return details;
 	}
 
-	public void setDetail(Detail2 detail) {
-		this.detail = detail;
+	public void setDetails(Set<Detail2> details) {
+		this.details = details;
 	}
+
 }

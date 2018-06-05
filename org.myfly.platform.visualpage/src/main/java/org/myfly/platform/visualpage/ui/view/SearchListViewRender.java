@@ -2,6 +2,7 @@ package org.myfly.platform.visualpage.ui.view;
 
 import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.metadata.entity.EntityListDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.control.CardListRender;
@@ -17,7 +18,7 @@ public class SearchListViewRender extends BaseRender {
 	private String name;
 	private String entityName;
 	private EntityMetaData entityMetaData;
-	private ListDefinition listDefinition;
+	private EntityListDefinition listDefinition;
 	private CardListRender cardListRender;
 
 	public SearchListViewRender(final String entityName, ViewType viewType, final String name) {

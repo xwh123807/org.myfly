@@ -16,6 +16,9 @@ import org.myfly.platform.visualpage.ui.control.UrlInputFieldRender;
 public class FieldRenderFactory {
 
 	public static BaseFieldRender getRender(FieldDefinition field) {
+		if (field == null) {
+			System.out.println("");
+		}
 		AssertUtil.parameterEmpty(field, "FieldRenderFactory.field");
 		BaseFieldRender render = null;
 		switch (field.getDataType()) {

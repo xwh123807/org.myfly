@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 import org.myfly.platform.core.domain.ViewMode;
 import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
-import org.myfly.platform.core.metadata.define.FormDefinition;
+import org.myfly.platform.core.metadata.entity.EntityFormDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.EntityUrlUtil;
@@ -24,7 +24,7 @@ import org.myfly.platform.visualpage.ui.control.SelectFormViewRender;
  */
 public class FormViewRender extends BaseViewRender {
 	private EntityMetaData entityMetaData;
-	private FormDefinition formDefinition;
+	private EntityFormDefinition formDefinition;
 	private String entityName;
 	private SectionViewRender[] sections;
 
@@ -71,7 +71,7 @@ public class FormViewRender extends BaseViewRender {
 
 		sections = new SectionViewRender[formDefinition.getSections().length];
 		for (int i = 0; i < sections.length; i++) {
-			sections[i] = new SectionViewRender(formDefinition.getSections()[i], getViewType());
+			sections[i] = new SectionViewRender(formDefinition, formDefinition.getSections()[i], getViewType());
 		}
 		Stream.of(sections).forEach(section -> {
 			buffer.append(section.html());

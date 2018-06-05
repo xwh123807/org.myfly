@@ -36,7 +36,7 @@ import org.myfly.platform.core.metadata.annotation.TableView;
 tableView = @TableView(title = "对象") ,
 //
 listViews = @ListView(fields = { "name", "description", "active", "createdBy", "created", "developState", "softApp",
-		"softAppVersion" }, serverSideMode = true, filters = { @FilterView(field = "name"),
+		"softAppVersion" }, filters = { @FilterView(field = "name"),
 				@FilterView(field = "tableName") }) ,
 				//
 				formViews = @FormView(sections = {

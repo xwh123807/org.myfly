@@ -4,53 +4,47 @@ import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.define.SubTableDefinition;
 import org.springframework.util.Assert;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 /**
  * 实体子表定义
  * 
  * @author xiangwanhong
  *
  */
-public class EntitySubTableDefinition extends SubTableDefinition {
-
+public class EntitySubTableDefinition extends EntityListDefinition {
+	/**
+	 * 子表属性名
+	 */
+	private String subTableAttr;
+	/**
+	 * 引用子表实体列表视图名
+	 */
+	private String refName;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6828261057348054913L;
-	/**
-	 * 子表中用到的实体字段定义
-	 */
-	private EntityFieldDefinition[] fieldDefinitions;
-	/**
-	 * 主实体的元模型
-	 */
-	@JsonIgnore
-	private EntityMetaData parent;
 
-	public EntitySubTableDefinition(SubTableDefinition builder) {
-		setName(builder.getName());
+	public EntitySubTableDefinition(EntityMetaData parent, SubTableDefinition builder) {
+		super(parent, builder);
 		setSubTableAttr(builder.getSubTableAttr());
 		setRefName(builder.getRefName());
-		setTitle(builder.getTitle());
-		setHeader(builder.getHeader());
-		setFields(builder.getFields());
-		setLabelField(builder.getLabelField());
-		setListStyle(builder.getListStyle());
-		setEnableActions(builder.isEnableActions());
-		setFetchMode(builder.getFetchMode());
-		setListActions(builder.getListActions());
-		setItemActions(builder.getItemActions());
-		setFields(builder.getFields());
+	}
+	
+
+	public String getSubTableAttr() {
+		return subTableAttr;
 	}
 
-	public EntityMetaData getParent() {
-		return parent;
+	public void setSubTableAttr(String subTableAttr) {
+		this.subTableAttr = subTableAttr;
 	}
 
-	public void setParent(EntityMetaData parent) {
-		this.parent = parent;
-		generateFieldDefinitions(parent);
+	public String getRefName() {
+		return refName;
+	}
+
+	public void setRefName(String refName) {
+		this.refName = refName;
 	}
 
 	/**
@@ -67,22 +61,17 @@ public class EntitySubTableDefinition extends SubTableDefinition {
 			setFieldDefinitions(subEntityMetaData.getListDefinition(getRefName()).getFieldDefinitions());
 		}
 	}
-
-	public EntityFieldDefinition[] getFieldDefinitions() {
-		return fieldDefinitions;
-	}
-
-	public void setFieldDefinitions(EntityFieldDefinition[] fieldDefinitions) {
-		this.fieldDefinitions = fieldDefinitions;
+	
+	@Override
+	public void config() {
+		generateFieldDefinitions(getParent());
 	}
 
 	@Override
 	public void validate() {
-		super.validate();
 		Assert.notNull(getParent(), "属性[parent]不能为空.");
 		Assert.isTrue(getFields() != null && getFields().length > 0, "属性[fields]不能为空，且长度至少为1.");
 		Assert.isTrue(getFieldDefinitions() != null && getFieldDefinitions().length > 0,
 				"属性[fieldDefinitions]不能为空，且长度至少为1.");
 	}
-
 }

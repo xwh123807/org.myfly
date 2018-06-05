@@ -32,7 +32,8 @@ public class EntityListDefinition extends ListDefinition {
 	@JsonIgnore
 	private EntityMetaData parent;
 
-	public EntityListDefinition(ListDefinition builder) {
+	public EntityListDefinition(EntityMetaData parent, ListDefinition builder) {
+		setParent(parent);
 		setName(builder.getName());
 		setTitle(builder.getTitle());
 		setEnableActions(builder.isEnableActions());
@@ -44,6 +45,10 @@ public class EntityListDefinition extends ListDefinition {
 		setItemActions(builder.getItemActions());
 		setFetchMode(builder.getFetchMode());
 		setLabelField(builder.getLabelField());
+	}
+	
+	public void config() {
+		generateEntityFieldDefinitions(parent.getFieldMap());
 	}
 
 	/**
@@ -83,10 +88,17 @@ public class EntityListDefinition extends ListDefinition {
 	public EntityMetaData getParent() {
 		return parent;
 	}
-
+	
 	public void setParent(EntityMetaData parent) {
 		this.parent = parent;
-		generateEntityFieldDefinitions(parent.getFieldMap());
+	}
+	
+	/**
+	 * 获取实体名称
+	 * @return
+	 */
+	public String getEntityName() {
+		return getParent().getEntityName();
 	}
 	
 	@Override

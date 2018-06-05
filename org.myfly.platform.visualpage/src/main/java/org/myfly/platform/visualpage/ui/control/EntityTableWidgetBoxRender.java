@@ -4,8 +4,9 @@ import org.myfly.platform.core.domain.EntityActionInfo;
 import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.annotation.ListStyle;
 import org.myfly.platform.core.metadata.define.ListDefinition;
-import org.myfly.platform.core.metadata.define.SubTableDefinition;
 import org.myfly.platform.core.metadata.entity.EntityListDefinition;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
+import org.myfly.platform.core.metadata.entity.EntitySubTableDefinition;
 import org.myfly.platform.visualpage.ui.WidgetBoxRender;
 
 /**
@@ -15,19 +16,32 @@ import org.myfly.platform.visualpage.ui.WidgetBoxRender;
  *
  */
 public class EntityTableWidgetBoxRender extends WidgetBoxRender {
+	/**
+	 * 列表定义
+	 */
 	private EntityListDefinition listDefinition;
-	private EntityActionInfo actionInfo;
 
+	/**
+	 * 
+	 * @param entityMetaData
+	 * @param listDefinition
+	 * @param viewType
+	 */
 	public EntityTableWidgetBoxRender(final EntityListDefinition listDefinition, final ViewType viewType) {
 		super(listDefinition.getTitle(), viewType);
 		this.listDefinition = listDefinition;
-		String subTableAttr = listDefinition instanceof SubTableDefinition
-				? ((SubTableDefinition) listDefinition).getSubTableAttr()
-				: "";
-		actionInfo = new EntityActionInfo(listDefinition.getParent().getEntityName(), "$!{obj.uid}", subTableAttr, "$!{obj.subuid}",
-				null, listDefinition.getName(), null);
 	}
-
+	
+	/**
+	 * 获取子表属性，如果是主表，则返回空
+	 * @return
+	 */
+	public String getSubTableAttr() {
+		return listDefinition instanceof EntitySubTableDefinition
+				? ((EntitySubTableDefinition) listDefinition).getSubTableAttr()
+				: "";
+	}
+	
 	@Override
 	public String getTableStyle() {
 		return "padding:0px";
@@ -35,6 +49,8 @@ public class EntityTableWidgetBoxRender extends WidgetBoxRender {
 
 	@Override
 	public String getToolbarHtml() {
+		EntityActionInfo actionInfo = new EntityActionInfo(listDefinition.getEntityName(), "$!{obj.uid}", getSubTableAttr() ,
+				"$!{obj.subuid}", null, listDefinition.getName(), null);
 		return new EntityActionsTableRender(getViewType(), listDefinition.getListActions(), actionInfo).html();
 	}
 

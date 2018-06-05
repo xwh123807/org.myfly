@@ -2,6 +2,7 @@ package org.myfly.platform.visualpage.ui.view;
 
 import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.metadata.entity.EntitySubTableDefinition;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.control.EntityTableWidgetBoxRender;
@@ -13,7 +14,7 @@ import org.myfly.platform.visualpage.ui.control.EntityTableWidgetBoxRender;
  *
  */
 public class SubTableViewRender extends BaseRender {
-	private ListDefinition subTableDefinition;
+	private EntitySubTableDefinition subTableDefinition;
 
 	/**
 	 * 当没有指定子表显示注解时，先取子表的ListView注解，如果也没有则显示全部字段
@@ -22,7 +23,7 @@ public class SubTableViewRender extends BaseRender {
 	 * @param subTableView
 	 * @param attrName
 	 */
-	public SubTableViewRender(final ListDefinition subTableDefinition, final ViewType viewType) {
+	public SubTableViewRender(final EntitySubTableDefinition subTableDefinition, final ViewType viewType) {
 		super(viewType);
 		AssertUtil.parameterEmpty(subTableDefinition, "SubTableViewRender.subTableDefinition");
 		this.subTableDefinition = subTableDefinition;

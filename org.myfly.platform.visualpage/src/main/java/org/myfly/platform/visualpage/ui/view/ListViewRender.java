@@ -21,11 +21,18 @@ import org.myfly.platform.visualpage.ui.control.SelectListViewRender;
  */
 public class ListViewRender extends BaseViewRender {
 	private EntityMetaData entityMetaData;
-	private String entityName;
+	/**
+	 * 实体列表定义
+	 */
 	private EntityListDefinition listDefinition;
-	private EntityTableWidgetBoxRender box;
+	/**
+	 * 查询条件显示区域
+	 */
 	private FilterSectionViewRender filters;
-	
+	/**
+	 * 查询结果显示区域
+	 */
+	private EntityTableWidgetBoxRender box;
 
 	/**
 	 * 当有指定列表显示注解时，按注解定义显示；如果没有则显示全部字段
@@ -37,7 +44,6 @@ public class ListViewRender extends BaseViewRender {
 	public ListViewRender(final String entityName, final ViewType viewType, final ViewMode viewMode,
 			final String listViewName) {
 		super(viewType, viewMode);
-		this.entityName = entityName;
 		AssertUtil.parameterEmpty(entityName, "ListViewRender.entityName");
 		this.entityMetaData = getEntityMataData(entityName);
 		listDefinition = entityMetaData.getListDefinition(listViewName);
@@ -50,18 +56,19 @@ public class ListViewRender extends BaseViewRender {
 	@Override
 	public String htmlForView() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(
-				"<div " + HtmlUtils.addIdProperty()
-						+ HtmlUtils.addPropertys(new String[] { "class", "entityName", "view", "render" },
-								new String[] { "col-xs-12", entityName, listDefinition.getName(), getClass().getName() })
+		buffer.append("<div " + HtmlUtils.addIdProperty()
+				+ HtmlUtils.addPropertys(new String[] { "class", "entityName", "view", "render" }, new String[] {
+						"col-xs-12", entityMetaData.getEntityName(), listDefinition.getName(), getClass().getName() })
 				+ ">");
-		//视图选择区域
-		SelectListViewRender selectViewRender = new SelectListViewRender(entityName, getViewType(), listDefinition.getName());
+		// 视图选择区域
+		SelectListViewRender selectViewRender = new SelectListViewRender(entityMetaData.getEntityName(), getViewType(),
+				listDefinition.getName());
 		buffer.append(selectViewRender.html());
 		// 查询区域
 		if (listDefinition != null && ArrayUtils.isNotEmpty(listDefinition.getFilters())) {
-			String url = EntityUrlUtil.getEntityActionUrl(EntityAction.LIST, entityName, null, listDefinition.getName());
-			filters = new FilterSectionViewRender(listDefinition.getFilters(), getViewType(), url);
+			String url = EntityUrlUtil.getEntityActionUrl(EntityAction.LIST, entityMetaData.getEntityName(), null,
+					listDefinition.getName());
+			filters = new FilterSectionViewRender(entityMetaData, listDefinition.getFilters(), getViewType(), url);
 			buffer.append(filters.html());
 		}
 		// 查询结果区域
@@ -70,7 +77,7 @@ public class ListViewRender extends BaseViewRender {
 		buffer.append("</div>");
 		return buffer.toString();
 	}
-	
+
 	@Override
 	public String htmlForPrint() {
 		box = new EntityTableWidgetBoxRender(listDefinition, getViewType());
@@ -79,9 +86,11 @@ public class ListViewRender extends BaseViewRender {
 
 	/**
 	 * 列表视图访问URL
+	 * 
 	 * @return
 	 */
-	public String getUrl(){
-		return EntityUrlUtil.getEntityActionUrl(EntityAction.LIST, entityName, null, listDefinition.getName());
+	public String getUrl() {
+		return EntityUrlUtil.getEntityActionUrl(EntityAction.LIST, entityMetaData.getEntityName(), null,
+				listDefinition.getName());
 	}
 }

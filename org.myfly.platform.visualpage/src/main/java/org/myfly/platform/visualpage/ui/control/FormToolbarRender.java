@@ -2,6 +2,7 @@ package org.myfly.platform.visualpage.ui.control;
 
 import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.FormDefinition;
+import org.myfly.platform.core.metadata.entity.EntityFormDefinition;
 import org.myfly.platform.core.utils.EntityUrlUtil;
 import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.visualpage.ui.BaseButtonRender;
@@ -18,10 +19,10 @@ import org.myfly.platform.visualpage.ui.ButtonRenderFactory;
  *
  */
 public class FormToolbarRender extends BaseFieldRender {
-	private FormDefinition formDefinition;
+	private EntityFormDefinition formDefinition;
 	private String formViewName;
 
-	public FormToolbarRender(final FormDefinition formDefinition, final String formViewName) {
+	public FormToolbarRender(final EntityFormDefinition formDefinition, final String formViewName) {
 		this.formDefinition = formDefinition;
 		this.formViewName = formViewName;
 	}

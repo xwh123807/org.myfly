@@ -2,7 +2,7 @@ package org.myfly.platform.visualpage.ui.view;
 
 import org.myfly.platform.core.domain.ViewMode;
 import org.myfly.platform.core.domain.ViewType;
-import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.metadata.entity.EntityListDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.visualpage.ui.control.EntityTableWidgetBoxRender;
 
@@ -22,7 +22,7 @@ public class ListOutlineViewRender extends BaseRender{
 	@Override
 	public String htmlForView() {
 		EntityMetaData entityMetaData = getEntityMataData(entityName);
-		ListDefinition listDefinition = entityMetaData.getListDefinition(formViewName);
+		EntityListDefinition listDefinition = entityMetaData.getListDefinition(formViewName);
 		EntityTableWidgetBoxRender box = new EntityTableWidgetBoxRender(listDefinition, getViewType());
 		return box.html();
 	}

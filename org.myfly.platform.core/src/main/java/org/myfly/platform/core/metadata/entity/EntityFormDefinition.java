@@ -37,11 +37,17 @@ public class EntityFormDefinition extends FormDefinition {
 	@JsonIgnore
 	private EntityMetaData parent;
 
-	public EntityFormDefinition(FormDefinition builder) {
+	public EntityFormDefinition(EntityMetaData parent, FormDefinition builder) {
+		setParent(parent);
 		setName(builder.getName());
 		setActions(builder.getActions());
 		setSections(builder.getSections());
 		setDivs(builder.getDivs());
+	}
+
+	public void config() {
+		generateEntitySubTableDefinitions(getAllSubTables());
+		generateEntityFieldDefinitions(getFields());
 	}
 
 	/**
@@ -53,17 +59,17 @@ public class EntityFormDefinition extends FormDefinition {
 		if (MapUtils.isEmpty(map)) {
 			return;
 		}
-		this.subTableDefinitions = new HashMap<>();
+		setSubTableDefinitions(new HashMap<>());
 		map.values().forEach(item -> {
-			EntitySubTableDefinition subTableDefinition = new EntitySubTableDefinition(item);
-			subTableDefinition.setParent(getParent());
+			EntitySubTableDefinition subTableDefinition = new EntitySubTableDefinition(getParent(), item);
+			subTableDefinition.config();
 			getSubTableDefinitions().put(item.getName(), subTableDefinition);
 		});
 	}
-	
+
 	private void generateEntityFieldDefinitions(String[] fields) {
 		if (ArrayUtils.isNotEmpty(fields)) {
-			this.fieldDefinitions = new HashMap<>();
+			setFieldDefinitions(new HashMap<>());
 			Stream.of(fields).forEach(name -> {
 				getFieldDefinitions().put(name, getParent().getField(name));
 			});
@@ -71,7 +77,7 @@ public class EntityFormDefinition extends FormDefinition {
 	}
 
 	/**
-	 * 获取使用字段列表
+	 * 获取表单使用字段列表
 	 * 
 	 * @return
 	 */
@@ -116,16 +122,6 @@ public class EntityFormDefinition extends FormDefinition {
 		this.subTableDefinitions = subTableDefinitions;
 	}
 
-	public EntityMetaData getParent() {
-		return parent;
-	}
-
-	public void setParent(EntityMetaData parent) {
-		this.parent = parent;
-		generateEntitySubTableDefinitions(getAllSubTables());
-		generateEntityFieldDefinitions(getFields());
-	}
-	
 	@Override
 	public void validate() {
 		super.validate();
@@ -135,5 +131,19 @@ public class EntityFormDefinition extends FormDefinition {
 		if (MapUtils.isNotEmpty(getSubTableDefinitions())) {
 			getSubTableDefinitions().values().forEach(item -> item.validate());
 		}
+	}
+
+	public EntityMetaData getParent() {
+		return parent;
+	}
+
+	public void setParent(EntityMetaData parent) {
+		this.parent = parent;
+	}
+
+	public EntityFieldDefinition[] getFields(String[] fields) {
+		return Stream.of(fields).filter(name -> getFieldDefinitions().containsKey(name))
+				.map(name -> getFieldDefinitions().get(name)).collect(Collectors.toList())
+				.toArray(new EntityFieldDefinition[] {});
 	}
 }

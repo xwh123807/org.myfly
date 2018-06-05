@@ -245,7 +245,7 @@ public class FileController extends BaseViewController {
 		}
 		PageInfo pageInfo = getBasePageInfo("上传附件", "attachment", VisualPageConstants.COMMON_TEMPLATE_IMPORT);
 
-		ModelAndView mv = getBaseModelAndView();
+		ModelAndView mv = getBaseModelAndView(null);
 		mv.addObject("pageInfo", pageInfo);
 		mv.addObject("processUrl", "/file/attachment/" + parentId + "/");
 		return mv;

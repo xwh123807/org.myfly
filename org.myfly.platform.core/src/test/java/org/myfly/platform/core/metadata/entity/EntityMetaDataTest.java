@@ -26,6 +26,8 @@ public class EntityMetaDataTest {
 	}
 
 	private void checkAllFormDefinition(EntityFormDefinition formDefinition) {
+		Assert.assertEquals(formDefinition.getFields().length,
+				formDefinition.getFields(formDefinition.getFields()).length);
 	}
 
 	private void checkAllListFormDefinition(ListDefinition listDefinition) {
