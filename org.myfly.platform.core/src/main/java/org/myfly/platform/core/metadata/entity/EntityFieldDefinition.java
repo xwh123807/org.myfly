@@ -50,9 +50,15 @@ public class EntityFieldDefinition extends FieldDefinition {
 	@JsonIgnore
 	private Method setter;
 	
+	private EntityMetaData parent;
+	
 	public EntityFieldDefinition() {
 	}
 
+	/**
+	 * 从实体类的实体属性Field中构建
+	 * @param property
+	 */
 	public EntityFieldDefinition(Field property) {
 		super(property.getAnnotation(FieldView.class));
 		setName(property.getName());
@@ -87,6 +93,25 @@ public class EntityFieldDefinition extends FieldDefinition {
 		}
 		setValueHandler(new DefaultFieldValueHandler(this));
 	}
+	
+	/**
+	 * 从FieldDefinition中构建
+	 * @param parent
+	 * @param builder
+	 */
+	public EntityFieldDefinition(EntityMetaData parent, FieldDefinition builder) {
+		setParent(parent);
+		setName(builder.getName());
+		setTitle(builder.getTitle());
+		setDescription(builder.getDescription());
+		setFieldName(builder.getFieldName());
+		setDataType(builder.getDataType());
+		setMaxLength(builder.getMaxLength());
+		setMinLength(builder.getMinLength());
+		setRequired(builder.isRequired());
+		setPrecision(builder.getPrecision());
+		setScale(builder.getScale());
+	}
 
 	public Method getGetter() {
 		return getter;
@@ -115,9 +140,18 @@ public class EntityFieldDefinition extends FieldDefinition {
 	@Override
 	public void validate() {
 		super.validate();
-		Assert.hasLength(getName());
-		Assert.notNull(getGetter());
-		Assert.notNull(getSetter());
-		Assert.notNull(getValueHandler());
+		Assert.hasLength(getName(), "属性[name]不能为空.");
+		Assert.notNull(getGetter(), "属性[getter]不能为空.");
+		Assert.notNull(getSetter(), "属性[setter]不能为空.");
+		Assert.notNull(getValueHandler(), "属性[valueHandler]不能为空.");
+		Assert.hasLength(getFieldName(), "属性[fieldName]不能为空.");
+	}
+
+	public EntityMetaData getParent() {
+		return parent;
+	}
+
+	public void setParent(EntityMetaData parent) {
+		this.parent = parent;
 	}
 }

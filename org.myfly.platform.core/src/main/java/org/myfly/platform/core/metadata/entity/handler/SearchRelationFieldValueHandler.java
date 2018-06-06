@@ -1,6 +1,5 @@
 package org.myfly.platform.core.metadata.entity.handler;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import org.myfly.platform.core.metadata.entity.SearchRelationFieldDefinition;
@@ -29,15 +28,18 @@ public class SearchRelationFieldValueHandler extends AbstractFieldValueHandler {
 
 	@Override
 	public Object getFieldValueFromEntity(Object entity) {
-		SearchRelationEntity srEntity = new SearchRelationEntity();
+		SearchRelationEntity srEntity = null;
 		// 取出关联实体
 		Object relEntity = null;
 		try {
 			relEntity = getFieldDefinition().getGetter().invoke(entity);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+			throw new IllegalArgumentException(
+					"实体属性[" + getFieldDefinition().getName() + "]值获取失败，错误信息：" + e.getMessage());
 		}
 		if (relEntity != null) {
+			srEntity = new SearchRelationEntity();
 			// 关联实体主键
 			srEntity.setUid((String) getSearchRelationFieldDefinition().getRelationEntityMetaData()
 					.getPkFieldDefinition().getValueHandler().getFieldValue(relEntity));

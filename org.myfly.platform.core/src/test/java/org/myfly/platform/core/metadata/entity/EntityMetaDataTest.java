@@ -14,7 +14,7 @@ public class EntityMetaDataTest {
 	public void master() {
 		EntityMetaData metaData = new EntityMetaData(Master.class);
 		Assert.assertEquals(Master.class, metaData.getEntityClass());
-		Assert.assertEquals(Master.class.getName(), metaData.getEntityName());
+		Assert.assertEquals(Master.class.getSimpleName(), metaData.getEntityName());
 		Assert.assertEquals(Master.class, metaData.newEntityInstance().getClass());
 
 		Assert.assertEquals(3, metaData.getListDefinitions().size());

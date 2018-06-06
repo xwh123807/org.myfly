@@ -47,7 +47,7 @@ public class EntityMetaDataDefinition extends MetaDataDefinition {
 	public EntityMetaDataDefinition(Class<?> entityClass) {
 		super(entityClass.getAnnotation(MetaDataView.class));
 		setEntityClass(entityClass.getName());
-		setName(entityClass.getName());
+		setName(entityClass.getSimpleName());
 		Table table = entityClass.getAnnotation(Table.class);
 		if (table != null) {
 			getTableDefinition().setTableName(table.name());
@@ -74,6 +74,7 @@ public class EntityMetaDataDefinition extends MetaDataDefinition {
 		pkField.setFields(fields.stream().filter(item -> item.isIdField()).collect(Collectors.toList())
 				.toArray(new EntityFieldDefinition[] {}));
 		setPkFieldDefinition(pkField);
+		getTableDefinition().setPrimaryKeys(pkField.getFieldNames());
 		// 设置实体外键
 		Map<String, FKFieldDefinition> fkFields = new HashedMap<>();
 		fields.stream().filter(item -> FieldDataType.SEARCHRELATION.equals(item.getDataType())).forEach(field -> {

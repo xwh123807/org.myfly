@@ -672,7 +672,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 			} else {
 				switch (fieldDefinition.getDataType()) {
 				case URL:
-					value = "<a href='" + value + "'>" + value + "</a>";
+					result.put(fieldDefinition.getName()+"__link", "<a href='" + value + "'>" + value + "</a>");
 					break;
 				case ACTIONS:
 					EntityActionInfo actionInfo = null;

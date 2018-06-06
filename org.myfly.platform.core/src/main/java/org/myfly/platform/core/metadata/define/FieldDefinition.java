@@ -3,7 +3,6 @@ package org.myfly.platform.core.metadata.define;
 import java.util.Map;
 
 import org.apache.commons.lang.NotImplementedException;
-import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.GenericGenerator;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.annotation.FieldView;

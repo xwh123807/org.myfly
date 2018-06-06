@@ -83,7 +83,7 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 			return convertToViewMap(
 					entityName, null, null, result, entityMetaData.getFormDefinition(formViewName).getFieldDefinitions()
 							.values().toArray(new EntityFieldDefinition[] {}),
-					formViewName, uid, formViewName, printMode);
+					entityMetaData.getTableDefinition().getLabelField(), uid, formViewName, printMode);
 		} else {
 			return null;
 		}

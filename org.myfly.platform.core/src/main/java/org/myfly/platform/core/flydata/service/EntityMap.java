@@ -5,15 +5,17 @@ import java.util.Map;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.utils.AppUtil;
+import org.myfly.platform.core.utils.ClassUtil;
+import org.myfly.platform.core.utils.EntityClassUtil;
 import org.springframework.util.Assert;
+import org.springframework.util.Base64Utils;
 
 /**
- * 用于实体新增，修改时传递属性值
+ * 用于实体新增，修改时传递属性值，而不是字段名称
  * 
  * @author xiangwanhong
  *
@@ -48,6 +50,12 @@ public class EntityMap extends LinkedHashMap<String, String> {
 		super(values);
 	}
 
+	/**
+	 * 从Form表单提交数据中构建实体EntityMap
+	 * 
+	 * @param params
+	 * @return
+	 */
 	public static EntityMap build(Map<String, String[]> params) {
 		EntityMap map = new EntityMap();
 		for (Map.Entry<String, String[]> param : params.entrySet()) {
@@ -57,6 +65,33 @@ public class EntityMap extends LinkedHashMap<String, String> {
 				map.put(param.getKey(), null);
 			}
 		}
+		return map;
+	}
+
+	/**
+	 * 从实体对象中构建实体EntityMap
+	 * 
+	 * @param entity
+	 * @return
+	 */
+	public static EntityMap build(Object entity) {
+		EntityMap map = new EntityMap();
+		EntityClassUtil.getEntityFieldInfo(entity.getClass()).values().forEach(field -> {
+			Object value = null;
+			try {
+				value = field.getGetter().invoke(entity);
+			} catch (Exception e) {
+			}
+			if (value != null) {
+				String toStr = null;
+				if (value instanceof byte[]) {
+					toStr = Base64Utils.encodeToString((byte[]) value);
+				} else {
+					toStr = ClassUtil.convertValueToString(value);
+				}
+				map.put(field.getField().getName(), toStr);
+			}
+		});
 		return map;
 	}
 

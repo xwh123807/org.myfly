@@ -80,7 +80,7 @@ public class MasterFieldDefinitionTest {
 				Assert.assertEquals(FieldDataType.CHECK, field.getDataType());
 				Assert.assertEquals(255, field.getMaxLength());
 				Assert.assertEquals(0, field.getMinLength());
-				Assert.assertEquals(boolean.class, field.getType());
+				Assert.assertEquals(Boolean.class, field.getType());
 				Assert.assertFalse(field.isRequired());
 				Assert.assertEquals("isActive", field.getGetter().getName());
 				Assert.assertEquals("setActive", field.getSetter().getName());

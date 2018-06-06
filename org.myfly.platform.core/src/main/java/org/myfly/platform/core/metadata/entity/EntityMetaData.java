@@ -18,7 +18,6 @@ import org.myfly.platform.core.metadata.define.FKFieldDefinition;
 import org.myfly.platform.core.metadata.define.FormDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.define.OutlineDefinition;
-import org.myfly.platform.core.metadata.define.TableDefinition;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
@@ -27,6 +26,16 @@ import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * 实体元模型<br>
+ * 实体元模型定义有以下三种方式：<br>
+ * 1、实体类，JPA实现，使用到@Entity注解; <br>
+ * 2、空类，JDBC实现，在类上增加注解@MeataDataView注解; TODO 还未实现<br>
+ * 3、JDBC实现，从代码构建、或从json反序列化构建MetaDataDefinition； TODO 还未实现<br>
+ * 
+ * @author xiangwanhong
+ *
+ */
 public class EntityMetaData {
 	/**
 	 * 实体名称，实体的唯一标示，不能重复，如果是实体类，entityName为类名称
@@ -53,7 +62,7 @@ public class EntityMetaData {
 	/**
 	 * 表基本信息
 	 */
-	private TableDefinition tableDefinition;
+	private EntityTableDefinition tableDefinition;
 	/**
 	 * 列表视图定义
 	 */
@@ -75,26 +84,36 @@ public class EntityMetaData {
 	 */
 	private Map<String, FKFieldDefinition> fkFieldDefinitions;
 
+	/**
+	 * 从类中构建实体元模型 <br>
+	 * 
+	 * @param entityClass
+	 */
 	public EntityMetaData(Class<?> entityClass) {
 		EntityMetaDataDefinition metaData = new EntityMetaDataDefinition(entityClass);
 		setEntityClass(entityClass);
 		setJpaEntity(entityClass.getAnnotation(Entity.class) != null);
 		setEntityName(metaData.getName());
-		setTableDefinition(metaData.getTableDefinition());
-		setPkFieldDefinition(metaData.getPkFieldDefinition());
-		setFkFieldDefinitions(metaData.getTableDefinition().getFkFieldDefinitions());
+		//字段
 		fieldMap = new HashMap<>();
 		FuncUtil.forEach(metaData.getTableDefinition().getFields(), fieldDefinition -> {
 			addFieldDefinition((EntityFieldDefinition) fieldDefinition);
 		});
+		//表
+		setTableDefinition(new EntityTableDefinition(this, metaData.getTableDefinition()));
+		setPkFieldDefinition(metaData.getPkFieldDefinition());
+		setFkFieldDefinitions(metaData.getTableDefinition().getFkFieldDefinitions());
+		//formDefinitions
 		formDefinitions = new HashMap<>();
 		FuncUtil.forEach(metaData.getFormDefinitions(), formDefinition -> {
 			addFormDefinition(formDefinition);
 		});
+		//listDefinitions
 		listDefinitions = new HashMap<>();
 		FuncUtil.forEach(metaData.getListDefinitions(), listDefinition -> {
 			addListDefinition(listDefinition);
 		});
+		//outlineDefinitions
 		outlineDefinitions = new HashMap<>();
 		FuncUtil.forEach(metaData.getOutlineDefinitions(), outlineDefinition -> {
 			addOutlineDefinition(outlineDefinition);
@@ -134,11 +153,11 @@ public class EntityMetaData {
 		return fieldMap;
 	}
 
-	public TableDefinition getTableDefinition() {
+	public EntityTableDefinition getTableDefinition() {
 		return tableDefinition;
 	}
 
-	public void setTableDefinition(TableDefinition tableDefinition) {
+	public void setTableDefinition(EntityTableDefinition tableDefinition) {
 		this.tableDefinition = tableDefinition;
 	}
 
@@ -452,6 +471,8 @@ public class EntityMetaData {
 	public void validate() {
 		Assert.hasLength(getEntityName(), "属性[entityName]不能为空.");
 		Assert.hasLength(getEntityName(), "属性[entityClass]不能为空.");
+		Assert.notNull(getTableDefinition(), "属性[tableDefinition]不能为空.");
+		getTableDefinition().validate();
 		Assert.notNull(getPkFieldDefinition(), "属性[pkFieldDefinition]不能为空.");
 		getPkFieldDefinition().validate();
 		Assert.isTrue(MapUtils.isNotEmpty(getFieldMap()), "属性[fieldMap]不能为空.");

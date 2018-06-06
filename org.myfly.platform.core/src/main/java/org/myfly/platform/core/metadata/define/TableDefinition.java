@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 
 import org.myfly.platform.core.metadata.annotation.CommonSubTableType;
 import org.myfly.platform.core.metadata.annotation.TableView;
-import org.springframework.util.Assert;
 
 /**
  * 数据库表信息定义，对应实体定义信息
@@ -188,6 +187,5 @@ public class TableDefinition extends BaseDenifition {
 	}
 
 	public void validate() {
-		Assert.hasLength(getLabelField(), "属性[labelField]不能为空.");
 	}
 }

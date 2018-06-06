@@ -1,6 +1,7 @@
 package org.myfly.platform.core.testmodel;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Set;
 
@@ -8,6 +9,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -83,70 +87,76 @@ public class Master extends KeyEntity {
 	@FieldView(title = "简述")
 	@Column(length = 1000)
 	private String description;
-	
-	@FieldView(title="URL", dataType=FieldDataType.URL)
+
+	@FieldView(title = "URL", dataType = FieldDataType.URL)
 	@Column
 	private String url;
-	
-	@FieldView(title="百分比", dataType=FieldDataType.PERCENT)
+
+	@FieldView(title = "百分比", dataType = FieldDataType.PERCENT)
 	@Column
-	private float percent;
-	
-	@FieldView(title="长文本", dataType=FieldDataType.TEXT)
+	private Float percent;
+
+	@FieldView(title = "长文本", dataType = FieldDataType.TEXT)
 	@Column
 	private String text;
-	
-	@FieldView(title="文件", dataType=FieldDataType.FILE)
+
+	@FieldView(title = "文件", dataType = FieldDataType.FILE)
 	@Column
-	private String file;
-	
-	@FieldView(title="位置", dataType=FieldDataType.LOCATION)
+	@Lob
+	private byte[] file;
+
+	@FieldView(title = "位置", dataType = FieldDataType.LOCATION)
 	@Column
 	private String location;
-	
-	@FieldView(title="电话", dataType=FieldDataType.TELPHONE)
+
+	@FieldView(title = "电话", dataType = FieldDataType.TELPHONE)
 	@Column
 	private String telphone;
-	
-	@FieldView(title="传真", dataType=FieldDataType.FAX)
+
+	@FieldView(title = "传真", dataType = FieldDataType.FAX)
 	@Column
 	private String fax;
-	
-	@FieldView(title="邮箱", dataType=FieldDataType.EMAIL)
+
+	@FieldView(title = "邮箱", dataType = FieldDataType.EMAIL)
 	@Column
 	private String email;
-	
-	@FieldView(title="富文本", dataType=FieldDataType.RICHTEXT)
+
+	@FieldView(title = "富文本", dataType = FieldDataType.RICHTEXT)
 	@Column
 	private String richText;
-	
-	@FieldView(title="加密文本", dataType=FieldDataType.ENCPYTTEXT)
+
+	@FieldView(title = "加密文本", dataType = FieldDataType.ENCPYTTEXT)
 	@Column
 	private String encpytText;
-	
-	@FieldView(title="日期", dataType=FieldDataType.DATE)
+
+	@FieldView(title = "日期", dataType = FieldDataType.DATE)
 	@Column
 	private Date date;
-	
-	@FieldView(title="时间", dataType=FieldDataType.DATETIME)
+
+	@FieldView(title = "时间", dataType = FieldDataType.DATETIME)
 	@Column
-	private Date dateTime;
-	
+	private Time time;
+
 	@FieldView(title = "数据类型")
 	@Column(length = 50)
 	private FieldDataType dataType;
 
 	@FieldView(title = "是否激活")
 	@Column
-	private boolean active;
+	private Boolean active;
 
-	@FieldView(title = "新增时间", dataType=FieldDataType.DATETIME)
+	@FieldView(title = "新增时间", dataType = FieldDataType.DATETIME)
 	@Column
 	private Timestamp created;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "master")
 	@FieldView(title = "明细记录")
 	private Set<Detail> details;
+	
+	@FieldView(title = "明细1")
+	@JoinColumn()
+	@ManyToOne(optional = true, fetch = FetchType.LAZY)
+	private Detail detail1;
 
 	public String getDescription() {
 		return description;
@@ -180,7 +190,7 @@ public class Master extends KeyEntity {
 		this.name = name;
 	}
 
-	public boolean isActive() {
+	public Boolean isActive() {
 		return active;
 	}
 
@@ -204,7 +214,7 @@ public class Master extends KeyEntity {
 		this.url = url;
 	}
 
-	public float getPercent() {
+	public Float getPercent() {
 		return percent;
 	}
 
@@ -212,11 +222,11 @@ public class Master extends KeyEntity {
 		this.percent = percent;
 	}
 
-	public String getFile() {
+	public byte[] getFile() {
 		return file;
 	}
 
-	public void setFile(String file) {
+	public void setFile(byte[] file) {
 		this.file = file;
 	}
 
@@ -276,19 +286,27 @@ public class Master extends KeyEntity {
 		this.date = date;
 	}
 
-	public Date getDateTime() {
-		return dateTime;
-	}
-
-	public void setDateTime(Date dateTime) {
-		this.dateTime = dateTime;
-	}
-
 	public String getText() {
 		return text;
 	}
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public Time getTime() {
+		return time;
+	}
+
+	public void setTime(Time time) {
+		this.time = time;
+	}
+
+	public Detail getDetail1() {
+		return detail1;
+	}
+
+	public void setDetail1(Detail detail1) {
+		this.detail1 = detail1;
 	}
 }
