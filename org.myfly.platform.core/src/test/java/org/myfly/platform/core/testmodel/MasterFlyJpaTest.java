@@ -68,4 +68,10 @@ public class MasterFlyJpaTest {
 		// del
 		service.delOne(masterEntityName, uid);
 	}
+	
+	@Test
+	public void josnEntity() {
+		TestModel model = new TestModel();
+		model.buildTestModelEntities();
+	}
 }

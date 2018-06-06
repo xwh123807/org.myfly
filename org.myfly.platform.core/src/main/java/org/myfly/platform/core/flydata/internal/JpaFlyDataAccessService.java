@@ -20,8 +20,6 @@ import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.metadata.annotation.SQLOperator;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.define.FilterDefinition;
-import org.myfly.platform.core.metadata.define.ListDefinition;
-import org.myfly.platform.core.metadata.define.SubTableDefinition;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityListDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
@@ -30,6 +28,7 @@ import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
 import org.myfly.platform.core.system.domain.IKeyEntity;
 import org.myfly.platform.core.utils.AssertUtil;
+import org.myfly.platform.core.utils.JSONUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -80,9 +79,9 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 					return null;
 				}
 			}
-			return convertToViewMap(
-					entityName, null, null, result, entityMetaData.getFormDefinition(formViewName).getFieldDefinitions()
-							.values().toArray(new EntityFieldDefinition[] {}),
+			return convertToViewMap(entityName, null, null, result,
+					entityMetaData.getFormDefinition(formViewName).getFieldDefinitions().values()
+							.toArray(new EntityFieldDefinition[] {}),
 					entityMetaData.getTableDefinition().getLabelField(), uid, formViewName, printMode);
 		} else {
 			return null;
@@ -204,7 +203,8 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 
 		EntityMetaData entityMetaData = getEntityMetaData(entityName);
 		AssertUtil.parameterEmpty(entityMetaData, "entityMetaData");
-		EntitySubTableDefinition subTable = entityMetaData.getFormDefinition(view).getSubTableDefinitions().get(subTableAttr);
+		EntitySubTableDefinition subTable = entityMetaData.getFormDefinition(view).getSubTableDefinitions()
+				.get(subTableAttr);
 		Assert.notNull(subTable, "实体[" + entityName + "]在视图[" + view + "]下没有显示定义子表[" + subTableAttr + "]");
 		MDRelationFieldDefinition subField = entityMetaData.getField(subTableAttr);
 		String subentityName = subField.getRelationClass();
@@ -343,5 +343,21 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 	public long count2(String entityName, Map<String, Object> params) {
 		return getJpaDataAccessService().count(getEntityClass(entityName),
 				QuerySpecificationUtil.buildQuerySpecifications(params));
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> T saveEntity(String entityName, String jsonEntity) {
+		Class<?> entityClass = getEntityMetaDataService().getEntityClass(entityName);
+		Object entity = JSONUtil.fromJSON(jsonEntity, entityClass);
+		return (T) getJpaDataAccessService().saveEntity(entity);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> T updateEntity(String entityName, String jsonEntity) {
+		Class<?> entityClass = getEntityMetaDataService().getEntityClass(entityName);
+		Object entity = JSONUtil.fromJSON(jsonEntity, entityClass);
+		return (T) getJpaDataAccessService().updateEntity(entity);
 	}
 }

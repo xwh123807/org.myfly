@@ -356,7 +356,7 @@ public interface IFlyDataAccessService {
 	 * @return
 	 */
 	void delOne(String entityName, String uid);
-	
+
 	void del(String entityName);
 
 	/**
@@ -487,4 +487,23 @@ public interface IFlyDataAccessService {
 	 */
 	void mergeEntity(String entityName, String uid, String subTableAttr, String subUid, String formViewName,
 			EntityMap values);
+
+	/**
+	 * 保存实体，返回实体类
+	 * 
+	 * @param entityName
+	 * @param jsonEntity
+	 *            实体类Json
+	 * @return 返回实体
+	 */
+	<T> T saveEntity(String entityName, String jsonEntity);
+
+	/**
+	 * 修改实体，返回实体类
+	 * 
+	 * @param entityName
+	 * @param jsonEntity
+	 *            实体类Json
+	 */
+	<T> T updateEntity(String entityName, String jsonEntity);
 }
