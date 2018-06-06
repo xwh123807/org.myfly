@@ -34,18 +34,27 @@ public class MasterJpaTest {
 		Master entity = new Master();
 		entity.setUid(key);
 		entity.setName("name");
+		//detail sub table
 		Set<Detail> details = new HashSet<>();
 		Detail detail = new Detail();
 		detail.setUid(UUIDUtil.newUUID());
 		detail.setMaster(entity);
 		details.add(detail);
 		entity.setDetails(details);
+		//detail onetoone
+		Detail detail1 = new Detail();
+		detail1.setUid(UUIDUtil.newUUID());
+		detail1.setTitle("title");
+		entity.setDetail1(detail1);
+		//save
 		service.saveEntity(entity);
 
 		Master entity2 = service.findOne(Master.class, key);
 		Assert.assertNotNull(entity2);
 		Assert.assertEquals(key, entity2.getUid());
 		Assert.assertEquals("name", entity2.getName());
+		Assert.assertNotNull(entity2.getDetail1());
+		Assert.assertEquals("title", entity2.getDetail1().getTitle());
 
 		service.delOne(Master.class, key);
 

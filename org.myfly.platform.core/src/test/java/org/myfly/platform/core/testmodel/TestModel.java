@@ -1,5 +1,7 @@
 package org.myfly.platform.core.testmodel;
 
+import java.text.MessageFormat;
+
 import org.junit.Assert;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.flydata.service.FlyEntityMap;
@@ -19,10 +21,12 @@ public class TestModel {
 	 * 测试新增后实体，数据库查询返回期望的结果
 	 */
 	private FlyEntityMap flyTestEntity;
+	private FlyEntityMap flyTestEntityWithActions;
 	/**
 	 * 测试修改后实体,数据库查询返回期望的结果
 	 */
 	private FlyEntityMap flyChangedEntity;
+	private FlyEntityMap flyChangedEntityWithActions;
 
 	public TestModel() {
 	}
@@ -36,7 +40,9 @@ public class TestModel {
 		setTestEntity(newTestEntity());
 		setChangedEntity(newChangedEntity());
 		setFlyTestEntity(newFlyEntity(getTestEntity()));
+		setFlyTestEntityWithActions(newFlyEntityWithActions(getTestEntity()));
 		setFlyChangedEntity(newFlyEntity(getChangedEntity()));
+		setFlyChangedEntityWithActions(newFlyEntityWithActions(getChangedEntity()));
 	}
 
 	private Master newTestEntity() {
@@ -68,6 +74,27 @@ public class TestModel {
 		entity.put("url__link", "<a href='" + from.getUrl() + "'>" + from.getUrl() + "</a>");
 		entity.put("name__link", "<a href=\"/vp/" + from.getClass().getName() + "/" + uid
 				+ "?view=all\" target=\"\" title=\"查看\"> " + from.getName() + "</a>");
+		return entity;
+	}
+
+	/**
+	 * <a href=
+	 * "/vp/org.myfly.platform.core.testmodel.Master/40289f6563d568df0163d568e43209f6?view=all"
+	 * target="" title="查看"> 查看</a><br>
+	 * <a href=
+	 * "/vp/org.myfly.platform.core.testmodel.Master/40289f6563d568df0163d568e43209f6?form?view=all"
+	 * target="" title="编辑"> 编辑</a><br>
+	 * <a href=
+	 * "/vp/org.myfly.platform.core.testmodel.Master/40289f6563d568df0163d568e43209f6?view=all"
+	 * target="" title="删除"> 删除</a><br>
+	 * 
+	 * @param from
+	 * @return
+	 */
+	private FlyEntityMap newFlyEntityWithActions(Master from) {
+		FlyEntityMap entity = newFlyEntity(from);
+		String url = "<a href=\"/vp/{0}/{1}?view=all\" target=\"\" title=\"{2}\"> {2}</a><a href=\"/vp/{0}/{1}?form?view=all\" target=\"\" title=\"{3}\"> {3}</a><a href=\"/vp/{0}/{1}?view=all\" target=\"\" title=\"{4}\"> {4}</a>";
+		entity.put("actions", MessageFormat.format(url, from.getClass().getName(), uid, "查看", "编辑", "删除"));
 		return entity;
 	}
 
@@ -110,16 +137,11 @@ public class TestModel {
 	 * @param actual
 	 *            实际值
 	 */
-	public void assertEntityAllFields(FlyEntityMap expected, FlyEntityMap actual, boolean hasActionsField) {
+	public void assertEntityAllFields(FlyEntityMap expected, FlyEntityMap actual) {
 		expected.keySet().forEach(name -> {
 			Assert.assertEquals("属性[" + name + "]不一致.", expected.get(name), actual.get(name));
 		});
-		if (hasActionsField) {
-			Assert.assertEquals(expected.size() + 1, actual.size());
-			// check actions field
-		} else {
-			Assert.assertEquals(expected.size(), actual.size());
-		}
+		Assert.assertEquals(expected.size(), actual.size());
 	}
 
 	public Master getTestEntity() {
@@ -152,5 +174,21 @@ public class TestModel {
 
 	public void setFlyChangedEntity(FlyEntityMap flyChangedEntity) {
 		this.flyChangedEntity = flyChangedEntity;
+	}
+
+	public FlyEntityMap getFlyTestEntityWithActions() {
+		return flyTestEntityWithActions;
+	}
+
+	public void setFlyTestEntityWithActions(FlyEntityMap flyTestEntityWithActions) {
+		this.flyTestEntityWithActions = flyTestEntityWithActions;
+	}
+
+	public FlyEntityMap getFlyChangedEntityWithActions() {
+		return flyChangedEntityWithActions;
+	}
+
+	public void setFlyChangedEntityWithActions(FlyEntityMap flyChangedEntityWithActions) {
+		this.flyChangedEntityWithActions = flyChangedEntityWithActions;
 	}
 }

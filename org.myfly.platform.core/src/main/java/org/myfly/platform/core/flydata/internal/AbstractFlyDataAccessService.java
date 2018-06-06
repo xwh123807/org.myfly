@@ -607,13 +607,13 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 	 *            表名
 	 * @param pkValue
 	 *            主键值
-	 * @param formViewName
+	 * @param viewName
 	 *            视图名
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	public FlyEntityMap convertToViewMap(String entityName, String uid, String subTableAttr, Object entity,
-			EntityFieldDefinition[] fields, String labelFieldName, String pkValue, String formViewName, boolean printMode) {
+			EntityFieldDefinition[] fields, String labelFieldName, String pkValue, String viewName, boolean printMode) {
 		FlyEntityMap result = new FlyEntityMap();
 		for (EntityFieldDefinition fieldDefinition : fields) {
 			// 先取出字段值，再转换为字符串
@@ -657,11 +657,11 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 					if (StringUtils.isBlank(subTableAttr)) {
 						// 非子表
 						linkValue = EntityLinkUtil.getEntityActionLinkHtml(EntityAction.VIEW, entityName, pkValue,
-								value, formViewName, false, false);
+								value, viewName, false, false);
 					} else {
 						// 子表
 						linkValue = EntityLinkUtil.getSubEntityActionLinkHtml(EntityAction.VIEW, entityName, uid,
-								subTableAttr, pkValue, value, formViewName, false, false);
+								subTableAttr, pkValue, value, viewName, false, false);
 					}
 				} else {
 					linkValue = value;
@@ -677,9 +677,9 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 				case ACTIONS:
 					EntityActionInfo actionInfo = null;
 					if (StringUtils.isBlank(subTableAttr)) {
-						actionInfo = new EntityActionInfo(entityName, pkValue, null, null, null, formViewName, null);
+						actionInfo = new EntityActionInfo(entityName, pkValue, null, null, null, viewName, null);
 					} else {
-						actionInfo = new EntityActionInfo(entityName, uid, subTableAttr, pkValue, null, formViewName,
+						actionInfo = new EntityActionInfo(entityName, uid, subTableAttr, pkValue, null, viewName,
 								null);
 					}
 					value = (String) fieldDefinition.getValueHandler().getFieldValue(actionInfo);
@@ -712,7 +712,7 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 						if (!printMode && !FieldDataType.AUTORELATION.equals(fieldDefinition.getDataType())) {
 							// 为查找关系实体增加超链接
 							linkValue = EntityLinkUtil.getEntityActionLinkHtml(EntityAction.VIEW,
-									fieldDefinition.getType().getName(), values.getUid(), values.getTitle(), formViewName, false,
+									fieldDefinition.getType().getName(), values.getUid(), values.getTitle(), viewName, false,
 									false);
 						} else {
 							linkValue = values.getTitle();

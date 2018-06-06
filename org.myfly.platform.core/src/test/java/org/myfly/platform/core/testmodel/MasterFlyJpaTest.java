@@ -45,26 +45,26 @@ public class MasterFlyJpaTest {
 		Assert.assertNotNull(uid);
 		// find
 		FlyEntityMap flyEntity = service.findOne(masterEntityName, uid, formViewName, false);
-		model.assertEntityAllFields(model.getFlyTestEntity(), flyEntity, false);
+		model.assertEntityAllFields(model.getFlyTestEntity(), flyEntity);
 		// find all
 		EntityQueryMap queryMap = new EntityQueryMap();
 		queryMap.put("uid", new String[] { uid });
 		List<FlyEntityMap> list = service.findAll(masterEntityName, formViewName, queryMap, false);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(1, list.size());
-		model.assertEntityAllFields(model.getFlyTestEntity(), list.get(0), true);
+		model.assertEntityAllFields(model.getFlyTestEntityWithActions(), list.get(0));
 		// update
 		service.updateEntity(masterEntityName, uid, formViewName, EntityMap.build(model.getChangedEntity()));
 		// find
 		FlyEntityMap flyEntity2 = service.findOne(masterEntityName, uid, formViewName, false);
-		model.assertEntityAllFields(model.getFlyChangedEntity(), flyEntity2, false);
+		model.assertEntityAllFields(model.getFlyChangedEntity(), flyEntity2);
 		// find page
 		EntityQueryMap queryMap2 = new EntityQueryMap();
 		queryMap2.put("uid", new String[] { uid });
 		Page<FlyEntityMap> list2 = service.findAllWithPage(masterEntityName, formViewName, queryMap2, 0, 5, false);
 		Assert.assertNotNull(list2);
 		Assert.assertEquals(1, list2.getTotalElements());
-		model.assertEntityAllFields(model.getFlyChangedEntity(), list2.getContent().get(0), false);
+		model.assertEntityAllFields(model.getFlyChangedEntityWithActions(), list2.getContent().get(0));
 		// del
 		service.delOne(masterEntityName, uid);
 	}

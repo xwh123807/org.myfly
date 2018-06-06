@@ -9,8 +9,10 @@ public class TestModelTest {
 	public void testModel() {
 		TestModel model = new TestModel();
 		model.buildTestModelEntities();
-		model.assertEntityAllFields(model.getFlyTestEntity(), model.getFlyTestEntity(), false);
-		model.assertEntityAllFields(model.getFlyChangedEntity(), model.getFlyChangedEntity(), false);
+		model.assertEntityAllFields(model.getFlyTestEntity(), model.getFlyTestEntity());
+		model.assertEntityAllFields(model.getFlyTestEntityWithActions(), model.getFlyTestEntityWithActions());
+		model.assertEntityAllFields(model.getFlyChangedEntity(), model.getFlyChangedEntity());
+		model.assertEntityAllFields(model.getFlyChangedEntityWithActions(), model.getFlyChangedEntityWithActions());
 		// test clob
 		Assert.assertEquals(Base64Utils.encodeToString(model.getTestEntity().getFile()),
 				model.getFlyTestEntity().get("file"));

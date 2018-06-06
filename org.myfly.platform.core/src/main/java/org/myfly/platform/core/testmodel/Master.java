@@ -11,8 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -155,7 +155,7 @@ public class Master extends KeyEntity {
 	
 	@FieldView(title = "明细1")
 	@JoinColumn()
-	@ManyToOne(optional = true, fetch = FetchType.LAZY)
+	@OneToOne(optional = true, fetch = FetchType.LAZY, cascade= {CascadeType.ALL})
 	private Detail detail1;
 
 	public String getDescription() {
