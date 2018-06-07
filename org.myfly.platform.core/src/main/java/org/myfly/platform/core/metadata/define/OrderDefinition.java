@@ -21,6 +21,11 @@ public class OrderDefinition extends BaseDenifition {
 		setName(view.field());
 		setOrderType(view.orderType());
 	}
+	
+	public OrderDefinition(String name, OrderType orderType) {
+		setName(name);
+		setOrderType(orderType);
+	}
 
 	public OrderDefinition() {
 	}

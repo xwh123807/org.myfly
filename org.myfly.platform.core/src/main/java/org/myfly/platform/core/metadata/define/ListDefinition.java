@@ -104,13 +104,16 @@ public class ListDefinition extends BaseDenifition {
 	public ListDefinition(ListDefinition builder) {
 		setName(builder.getName());
 		setTitle(builder.getTitle());
+		setHeader(builder.getHeader());
+		setLabelField(builder.getLabelField());
 		setListStyle(builder.getListStyle());
-		setFields(builder.getFields());
-		setFetchMode(builder.getFetchMode());
 		setEnableActions(builder.isEnableActions());
+		setFetchMode(builder.getFetchMode());
 		setListActions(builder.getListActions());
 		setItemActions(builder.getItemActions());
-		setLabelField(builder.getLabelField());
+		setFields(builder.getFields());
+		setFilters(builder.getFilters());
+		setOrders(builder.getOrders());
 	}
 
 	@JsonIgnore

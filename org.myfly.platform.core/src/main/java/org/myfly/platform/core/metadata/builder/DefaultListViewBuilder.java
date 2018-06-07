@@ -7,7 +7,11 @@ import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.annotation.FetchMode;
 import org.myfly.platform.core.metadata.annotation.ListStyle;
+import org.myfly.platform.core.metadata.annotation.OrderType;
+import org.myfly.platform.core.metadata.annotation.SQLOperator;
+import org.myfly.platform.core.metadata.define.FilterDefinition;
 import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.metadata.define.OrderDefinition;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
@@ -31,10 +35,34 @@ public class DefaultListViewBuilder extends ListDefinition {
 		setListActions(EntityMetaDataConstants.DEFAULT_ENTITY_LIST_ACTIONS);
 		setItemActions(EntityMetaDataConstants.DEFAULT_ENTITY_ITEM_ACTIONS);
 		setLabelField(entityMetaData.getTableDefinition().getLabelField());
+		setFilters(buildAllFilters().toArray(new FilterDefinition[] {}));
+		if (StringUtils.isNotBlank(getLabelField())) {
+			setOrders(builderDefaultOrders().toArray(new OrderDefinition[] {}));
+		}
 	}
 
 	private String[] getAllFields(EntityFieldDefinition[] allFields) {
 		List<String> list = Stream.of(allFields).map(item -> item.getName()).collect(Collectors.toList());
 		return list.toArray(new String[] {});
+	}
+
+	/**
+	 * 为每个属性生成查询条件定义
+	 * 
+	 * @return
+	 */
+	private List<FilterDefinition> buildAllFilters() {
+		return Stream.of(getFields()).map(name -> new FilterDefinition(name, SQLOperator.EQUAL))
+				.collect(Collectors.toList());
+	}
+
+	/**
+	 * 构建默认排序
+	 * 
+	 * @return
+	 */
+	private List<OrderDefinition> builderDefaultOrders() {
+		return Stream.of(new String[] { getLabelField() }).map(name -> new OrderDefinition(name, OrderType.ASC))
+				.collect(Collectors.toList());
 	}
 }
