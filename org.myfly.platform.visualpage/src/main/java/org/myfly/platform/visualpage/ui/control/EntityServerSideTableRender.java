@@ -2,8 +2,6 @@ package org.myfly.platform.visualpage.ui.control;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.apache.commons.lang.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
@@ -11,8 +9,8 @@ import org.myfly.platform.core.domain.StyleConstants;
 import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.annotation.FetchMode;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
+import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityListDefinition;
-import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.EntitySubTableDefinition;
 import org.myfly.platform.core.utils.StringUtil;
 
@@ -53,27 +51,30 @@ public class EntityServerSideTableRender extends HtmlTableRender {
 		return StyleConstants.TABLE_BASE_CLASS + " " + StyleConstants.TABLE_SERVER_SIDE_CLASS;
 	}
 
+	/**
+	 * 获取子表属性名称
+	 * 
+	 * @return
+	 */
 	public String getSubTableAttr() {
 		return getListDefinition() instanceof EntitySubTableDefinition
 				? ((EntitySubTableDefinition) getListDefinition()).getSubTableAttr()
 				: "";
 	}
 
-	public FieldDefinition[] getFieldDefinitions() {
-		if (StringUtils.isEmpty(getSubTableAttr())) {
-			// 列表
-			return Stream.of(getListDefinition().getFields())
-					.map(name -> getListDefinition().getParent().getField(name)).collect(Collectors.toList())
-					.toArray(new FieldDefinition[] {});
-		} else {
-			// 子表
-			EntityMetaData subEntityMetaData = getListDefinition().getParent().getSubEntityMetaData(getSubTableAttr());
-			return Stream
-					.of(subEntityMetaData.getListDefinition(((EntitySubTableDefinition) getListDefinition()).getRefName())
-							.getFields())
-					.map(name -> subEntityMetaData.getField(name)).collect(Collectors.toList())
-					.toArray(new FieldDefinition[] {});
-		}
+	/**
+	 * 获取视图名称
+	 * 
+	 * @return
+	 */
+	public String getViewName() {
+		return getListDefinition() instanceof EntitySubTableDefinition
+				? ((EntitySubTableDefinition) getListDefinition()).getFormViewName()
+				: getListDefinition().getName();
+	}
+
+	public EntityFieldDefinition[] getFieldDefinitions() {
+		return getListDefinition().getFieldDefinitions();
 	}
 
 	/**
@@ -127,7 +128,8 @@ public class EntityServerSideTableRender extends HtmlTableRender {
 	 * @param subTableAttr
 	 * @return
 	 */
-	public static EntityServerSideTableRender getEntityTableRender(EntityListDefinition listDefinition, ViewType viewType) {
+	public static EntityServerSideTableRender getEntityTableRender(EntityListDefinition listDefinition,
+			ViewType viewType) {
 		EntityServerSideTableRender render;
 		if (ViewType.PRINT.equals(viewType)) {
 			// 打印模式

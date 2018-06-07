@@ -28,6 +28,7 @@ public class EntityFormDefinition extends FormDefinition {
 	/**
 	 * 表单中用到的实体字段定义
 	 */
+	@JsonIgnore
 	private Map<String, EntityFieldDefinition> fieldDefinitions;
 	/**
 	 * 表单中用到的子表定义
@@ -51,7 +52,7 @@ public class EntityFormDefinition extends FormDefinition {
 	}
 
 	/**
-	 * 生成表单视图实体子表定义
+	 * 生成表单视图使用到的实体子表定义
 	 * 
 	 * @param subTableDefinitions
 	 */
@@ -62,6 +63,7 @@ public class EntityFormDefinition extends FormDefinition {
 		setSubTableDefinitions(new HashMap<>());
 		map.values().forEach(item -> {
 			EntitySubTableDefinition subTableDefinition = new EntitySubTableDefinition(getParent(), item);
+			subTableDefinition.setFormViewName(getName());
 			subTableDefinition.config();
 			getSubTableDefinitions().put(item.getName(), subTableDefinition);
 		});

@@ -2,6 +2,7 @@ package org.myfly.platform.core.metadata.entity;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.text.MessageFormat;
 import java.util.Map;
 
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.domain.FieldDataType.FieldAttr;
+import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
 import org.myfly.platform.core.metadata.entity.handler.DefaultFieldValueHandler;
@@ -49,14 +51,19 @@ public class EntityFieldDefinition extends FieldDefinition {
 	 */
 	@JsonIgnore
 	private Method setter;
-	
+	@JsonIgnore
 	private EntityMetaData parent;
-	
+	/**
+	 * 属性Label名称
+	 */
+	private String labelName;
+
 	public EntityFieldDefinition() {
 	}
 
 	/**
 	 * 从实体类的实体属性Field中构建
+	 * 
 	 * @param property
 	 */
 	public EntityFieldDefinition(Field property) {
@@ -92,10 +99,12 @@ public class EntityFieldDefinition extends FieldDefinition {
 			e.printStackTrace();
 		}
 		setValueHandler(new DefaultFieldValueHandler(this));
+		initLabelName();
 	}
-	
+
 	/**
 	 * 从FieldDefinition中构建
+	 * 
 	 * @param parent
 	 * @param builder
 	 */
@@ -111,6 +120,7 @@ public class EntityFieldDefinition extends FieldDefinition {
 		setRequired(builder.isRequired());
 		setPrecision(builder.getPrecision());
 		setScale(builder.getScale());
+		initLabelName();
 	}
 
 	public Method getGetter() {
@@ -137,21 +147,62 @@ public class EntityFieldDefinition extends FieldDefinition {
 		this.valueHandler = valueHandler;
 	}
 
-	@Override
-	public void validate() {
-		super.validate();
-		Assert.hasLength(getName(), "属性[name]不能为空.");
-		Assert.notNull(getGetter(), "属性[getter]不能为空.");
-		Assert.notNull(getSetter(), "属性[setter]不能为空.");
-		Assert.notNull(getValueHandler(), "属性[valueHandler]不能为空.");
-		Assert.hasLength(getFieldName(), "属性[fieldName]不能为空.");
-	}
-
 	public EntityMetaData getParent() {
 		return parent;
 	}
 
 	public void setParent(EntityMetaData parent) {
 		this.parent = parent;
+	}
+
+	public String getLabelName(ViewType viewType) {
+		if (ViewType.PRINT.equals(viewType) || StringUtils.isBlank(getLabelName())) {
+			return getName();
+		} else {
+			return getLabelName();
+		}
+	}
+
+	public String getLabelName() {
+		return labelName;
+	}
+
+	public void setLabelName(String labelName) {
+		this.labelName = labelName;
+	}
+
+	public void initLabelName() {
+		String label;
+		switch (getDataType()) {
+		case SYSENUM:
+			label = getName() + "__label";
+			break;
+		case URL:
+			label = getName() + "__link";
+		default:
+			label = getName();
+		}
+		setLabelName(label);
+	}
+
+	private String getCheckInfo(String param) {
+		return MessageFormat.format("实体[{0}]字段[{1}]的属性[{2}]不能为空.",
+				getParent() != null ? getParent().getEntityName() : null, getName(), param);
+	}
+
+	@Override
+	public void validate() {
+		super.validate();
+		Assert.hasLength(getName(), getCheckInfo("name"));
+		switch (getDataType()) {
+		case ACTIONS:
+			break;
+		default:
+			Assert.hasLength(getFieldName(), getCheckInfo("fieldName"));
+			Assert.notNull(getGetter(), getCheckInfo("getter"));
+			Assert.notNull(getSetter(), getCheckInfo("setter"));
+		}
+		Assert.notNull(getValueHandler(), getCheckInfo("valueHandler"));
+		Assert.hasLength(getLabelName(), getCheckInfo("labelName"));
 	}
 }

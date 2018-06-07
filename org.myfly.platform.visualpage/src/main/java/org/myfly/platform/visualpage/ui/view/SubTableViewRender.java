@@ -1,7 +1,6 @@
 package org.myfly.platform.visualpage.ui.view;
 
 import org.myfly.platform.core.domain.ViewType;
-import org.myfly.platform.core.metadata.define.ListDefinition;
 import org.myfly.platform.core.metadata.entity.EntitySubTableDefinition;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.HtmlUtils;
@@ -31,7 +30,11 @@ public class SubTableViewRender extends BaseRender {
 
 	public String html() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append("<div" + HtmlUtils.addProperty("render", getClass().getName()) + ">");
+		buffer.append(
+				"<div" + HtmlUtils.addPropertys(new String[] { "render", "subTableAttr", "labelField", "refName" },
+						new String[] { getClass().getName(), subTableDefinition.getSubTableAttr(),
+								subTableDefinition.getLabelField(), subTableDefinition.getRefName() })
+						+ ">");
 		EntityTableWidgetBoxRender box = new EntityTableWidgetBoxRender(subTableDefinition, getViewType());
 		buffer.append(box.html());
 		buffer.append("</div>");

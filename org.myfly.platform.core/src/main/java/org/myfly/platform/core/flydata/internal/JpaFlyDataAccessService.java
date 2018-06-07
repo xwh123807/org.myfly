@@ -177,11 +177,11 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 
 	@Override
 	public Page<FlyEntityMap> findAllForSubEntityWithPage(String entityName, String uid, String subTableAttr,
-			String formViewName, EntityQueryMap params, Pageable pageable, boolean printMode) {
+			String viewName, EntityQueryMap params, Pageable pageable, boolean printMode) {
 		AssertUtil.parameterEmpty(entityName, "entityName");
 		AssertUtil.parameterEmpty(uid, "uid");
 		AssertUtil.parameterEmpty(subTableAttr, "subTableAttr");
-		return internalFindAllForSubEntity(entityName, uid, subTableAttr, formViewName, params, pageable, true,
+		return internalFindAllForSubEntity(entityName, uid, subTableAttr, viewName, params, pageable, true,
 				printMode);
 	}
 
@@ -197,14 +197,13 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 	 * @return
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private <T> T internalFindAllForSubEntity(String entityName, String uid, String subTableAttr, String view,
+	private <T> T internalFindAllForSubEntity(String entityName, String uid, String subTableAttr, String formViewName,
 			EntityQueryMap params, Pageable pageable, boolean needPageable, boolean printMode) {
-
 		EntityMetaData entityMetaData = getEntityMetaData(entityName);
 		AssertUtil.parameterEmpty(entityMetaData, "entityMetaData");
-		EntitySubTableDefinition subTable = entityMetaData.getFormDefinition(view).getSubTableDefinitions()
+		EntitySubTableDefinition subTable = entityMetaData.getFormDefinition(formViewName).getSubTableDefinitions()
 				.get(subTableAttr);
-		Assert.notNull(subTable, "实体[" + entityName + "]在视图[" + view + "]下没有显示定义子表[" + subTableAttr + "]");
+		Assert.notNull(subTable, "实体[" + entityName + "]在视图[" + formViewName + "]下没有显示定义子表[" + subTableAttr + "]");
 		MDRelationFieldDefinition subField = entityMetaData.getField(subTableAttr);
 		String subentityName = subField.getRelationClass();
 		AssertUtil.parameterEmpty(subField, "subField", "实体[" + entityName + "]不存在属性[" + subTableAttr + "]");
@@ -218,7 +217,7 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 		if (FieldDataType.FLYMDRELATION.equals(subField.getDataType())) {
 			params.put(subField.getRelationField(), new String[] { uid });
 		}
-		Specifications specifications = getEntityQuerySpecifications(subentityName, view, params);
+		Specifications specifications = getEntityQuerySpecifications(subentityName, formViewName, params);
 		if (FieldDataType.MDRELATION.equals(subField.getDataType())) {
 			try {
 				final Object entity = entityMetaData.newEntityInstance(uid);
@@ -244,8 +243,8 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 			for (Object entity : pageData1.getContent()) {
 				String pkValue = (String) pkFieldDefinition.getValueHandler().getFieldValue(entity);
 				list.add(convertToViewMap(entityName, uid, subTableAttr, entity,
-						entityMetaData.getSubTableFieldDefinitions(view, subTableAttr), subTable.getLabelField(),
-						pkValue, view, printMode));
+						entityMetaData.getSubTableFieldDefinitions(formViewName, subTableAttr), subTable.getLabelField(),
+						pkValue, formViewName, printMode));
 			}
 			return (T) new PageImpl(list, pageable, pageData1.getTotalElements());
 		} else {
@@ -255,8 +254,8 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 			for (Object entity : result) {
 				String pkValue = (String) pkFieldDefinition.getValueHandler().getFieldValue(entity);
 				list.add(convertToViewMap(entityName, uid, subTableAttr, entity,
-						entityMetaData.getSubTableFieldDefinitions(view, subTableAttr), subTable.getLabelField(),
-						pkValue, view, printMode));
+						entityMetaData.getSubTableFieldDefinitions(formViewName, subTableAttr), subTable.getLabelField(),
+						pkValue, formViewName, printMode));
 			}
 			return (T) list;
 		}

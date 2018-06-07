@@ -483,6 +483,7 @@ public class EntityMetaData {
 		Assert.isTrue(MapUtils.isNotEmpty(getOutlineDefinitions()) && (getOutlineDefinitions().size() > 0),
 				"属性[outlineDefinitions]不能为空，且长度至少为1.");
 
+		getFieldMap().values().forEach(item -> item.validate());
 		getListDefinitions().values().forEach(item -> {
 			item.validate();
 			Stream.of(item.getFields()).forEach(name -> {

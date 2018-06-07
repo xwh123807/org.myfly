@@ -15,6 +15,12 @@ import org.myfly.platform.core.metadata.define.SubTableDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 
+/**
+ * 表单视图构造器：带全部字段
+ * 
+ * @author xiangwanhong
+ *
+ */
 public class DefaultFormViewBuilder extends FormDefinition {
 	/**
 	 * 

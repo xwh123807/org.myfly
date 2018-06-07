@@ -31,6 +31,7 @@ public class EntityActionsFieldDefinition extends EntityFieldDefinition {
 		setDataType(FieldDataType.ACTIONS);
 		setActions(actions);
 		setValueHandler(new EntityActionsFieldValueHandler(this));
+		initLabelName();
 	}
 
 	public EntityAction[] getActions() {

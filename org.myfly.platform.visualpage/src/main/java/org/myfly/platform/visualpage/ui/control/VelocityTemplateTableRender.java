@@ -9,7 +9,7 @@ import org.myfly.platform.core.domain.StyleConstants;
 import org.myfly.platform.core.domain.ViewType;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.define.FieldDefinition;
-import org.myfly.platform.core.metadata.define.ListDefinition;
+import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityListDefinition;
 import org.myfly.platform.core.metadata.entity.RelationFieldDefinition;
 import org.myfly.platform.core.utils.EntityLinkUtil;
@@ -32,14 +32,14 @@ public class VelocityTemplateTableRender extends EntityServerSideTableRender {
 	public String getTableClass() {
 		return StyleConstants.TABLE_BASE_CLASS + " " + StyleConstants.TABLE_CLIENT_SIDE_CLASS;
 	}
-	
+
 	@Override
 	public String tbodyHtml() {
 		StringBuffer buffer = new StringBuffer();
 		if (StringUtils.isNotEmpty(getSubTableAttr())) {
 			buffer.append("#set ($tmp = $utils.getDataUtil().findAllForSubEntity(\""
 					+ getListDefinition().getParent().getEntityName() + "\", \"$uid\", \"" + getSubTableAttr()
-					+ "\", \"" + getListDefinition().getName() + "\", null, false))");
+					+ "\", \"" + getViewName() + "\", null, false))");
 			buffer.append("#foreach($objitem in $tmp)");
 		} else {
 			buffer.append("#foreach($objitem in $objlist)");
@@ -57,7 +57,7 @@ public class VelocityTemplateTableRender extends EntityServerSideTableRender {
 	private String getBodyRowTemplate() {
 		HtmlRowRender row = new HtmlRowRender();
 		boolean isPrint = ViewType.PRINT.equals(getViewType());
-		for (FieldDefinition field : getFieldDefinitions()) {
+		for (EntityFieldDefinition field : getFieldDefinitions()) {
 			if (isPrint && FieldDataType.ACTIONS.equals(field.getDataType())) {
 			} else {
 				HtmlCellRender cell = new HtmlCellRender(getCellText(field));
@@ -67,8 +67,16 @@ public class VelocityTemplateTableRender extends EntityServerSideTableRender {
 		return row.html();
 	}
 
-	private String getCellText(FieldDefinition field) {
+	private String getCellText(EntityFieldDefinition field) {
 		return ViewType.VIEW.equals(getViewType()) ? viewForHtml(field) : printForHtml(field);
+	}
+
+	private String viewForHtml(EntityFieldDefinition field) {
+		if (field.getName().equals(getListDefinition().getLabelField())) {
+			return "$!{objitem." + field.getName() + "__link}";
+		} else {
+			return "$!{objitem." + field.getLabelName(getViewType()) + "}";
+		}
 	}
 
 	/**
@@ -77,9 +85,9 @@ public class VelocityTemplateTableRender extends EntityServerSideTableRender {
 	 * @param field
 	 * @return
 	 */
-	private String viewForHtml(FieldDefinition field) {
-		EntityActionInfo actionInfo = new EntityActionInfo(getListDefinition().getParent().getEntityName(), "$!{objitem.uid}",
-				getSubTableAttr(), "$!{objitem.uid}", "$!{objitem." + field.getName() + "}", null,
+	private String viewForHtml2(FieldDefinition field) {
+		EntityActionInfo actionInfo = new EntityActionInfo(getListDefinition().getParent().getEntityName(),
+				"$!{objitem.uid}", getSubTableAttr(), "$!{objitem.uid}", "$!{objitem." + field.getName() + "}", null,
 				getListDefinition().getName());
 		if (StringUtils.isNotEmpty(getSubTableAttr())) {
 			actionInfo.setUid("$!{obj.uid}");
@@ -87,14 +95,14 @@ public class VelocityTemplateTableRender extends EntityServerSideTableRender {
 		String text = actionInfo.getText();
 		if (field.getDataType() != null) {
 			if (field.getDataType().equals(FieldDataType.ACTIONS)) {
-//				if (field.getGetValueHandler() != null) {
-//					text = (String) field.getGetValueHandler().getFieldValue(actionInfo);
-//				} else {
-//					if (log.isWarnEnabled()) {
-//						log.warn("ACTIONS字段没有设置GetValueHandler，取空值.");
-//					}
-//					text = "";
-//				}
+				// if (field.getGetValueHandler() != null) {
+				// text = (String) field.getGetValueHandler().getFieldValue(actionInfo);
+				// } else {
+				// if (log.isWarnEnabled()) {
+				// log.warn("ACTIONS字段没有设置GetValueHandler，取空值.");
+				// }
+				// text = "";
+				// }
 			} else if (field.getDataType().equals(FieldDataType.SEARCHRELATION)) {
 				// 查找关系数据类型自动增加实体查看的超链接
 				RelationFieldDefinition relationField = (RelationFieldDefinition) field;
@@ -106,17 +114,18 @@ public class VelocityTemplateTableRender extends EntityServerSideTableRender {
 		}
 		if (StringUtils.isNotBlank(field.getLinkUrl())) {
 			text = "<a href=\"" + field.getLinkUrl() + "\">" + text + "</a>";
-		} else if (field.getName().equals("name")) {
+		} else if (field.getName().equals(getListDefinition().getLabelField())) {
 			String url;
 			// 字段名称为Name，自动追加链接
 			if (StringUtils.isEmpty(getSubTableAttr())) {
 				// 主实体
-				url = EntityUrlUtil.getEntityActionUrl(EntityAction.VIEW, actionInfo.getTableName(), actionInfo.getUid(),
-						actionInfo.getView());
+				url = EntityUrlUtil.getEntityActionUrl(EntityAction.VIEW, actionInfo.getTableName(),
+						actionInfo.getUid(), actionInfo.getView());
 			} else {
 				// 子实体
-				url = EntityUrlUtil.getSubEntityActionUrl(EntityAction.VIEW, actionInfo.getTableName(), actionInfo.getUid(),
-						actionInfo.getSubTableAttr(), actionInfo.getSubUid(), actionInfo.getView());
+				url = EntityUrlUtil.getSubEntityActionUrl(EntityAction.VIEW, actionInfo.getTableName(),
+						actionInfo.getUid(), actionInfo.getSubTableAttr(), actionInfo.getSubUid(),
+						actionInfo.getView());
 			}
 			text = "<a href=\"" + url + "\">" + text + "</a>";
 		}
@@ -129,11 +138,11 @@ public class VelocityTemplateTableRender extends EntityServerSideTableRender {
 	 * @param field
 	 * @return
 	 */
-	private String printForHtml(FieldDefinition field) {
-		String text = "$!{objitem." + field.getName() + "}";
-		if (field.getDataType() != null && field.getDataType().equals(FieldDataType.SEARCHRELATION)) {
-			text = "$!{objitem." + field.getName() + ".name}";
-		}
-		return text;
+	private String printForHtml(EntityFieldDefinition field) {
+//		String text = "$!{objitem." + field.getName() + "}";
+//		if (field.getDataType() != null && field.getDataType().equals(FieldDataType.SEARCHRELATION)) {
+//			text = "$!{objitem." + field.getName() + ".name}";
+//		}
+		return "$!{objitem." + field.getLabelName(ViewType.PRINT) + "}";
 	}
 }

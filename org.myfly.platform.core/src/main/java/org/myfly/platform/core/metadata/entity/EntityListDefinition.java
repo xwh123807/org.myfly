@@ -26,7 +26,7 @@ public class EntityListDefinition extends ListDefinition {
 	/**
 	 * 列表中用到的实体字段定义
 	 */
-	@JsonIgnore
+	//@JsonIgnore
 	private EntityFieldDefinition[] fieldDefinitions;
 	/**
 	 * EntityMetaData
@@ -114,5 +114,6 @@ public class EntityListDefinition extends ListDefinition {
 		Assert.notNull(getFieldDefinitions(), "属性[fieldDefinitions]不能为空.");
 		Assert.isTrue(getFieldDefinitions().length >= getFields().length, "属性[fieldDefinitions]的长度["
 				+ getFieldDefinitions().length + "]必须大于属性[fields]的长度[" + getFields().length + "]");
+		Stream.of(getFieldDefinitions()).forEach(item -> item.validate());
 	}
 }

@@ -20,6 +20,10 @@ public class EntitySubTableDefinition extends EntityListDefinition {
 	 */
 	private String refName;
 	/**
+	 * 所在表单视图名称
+	 */
+	private String formViewName;
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6828261057348054913L;
@@ -45,6 +49,15 @@ public class EntitySubTableDefinition extends EntityListDefinition {
 
 	public void setRefName(String refName) {
 		this.refName = refName;
+	}
+	
+	public String getFormViewName() {
+		return formViewName;
+	}
+
+
+	public void setFormViewName(String formViewName) {
+		this.formViewName = formViewName;
 	}
 
 	/**
@@ -79,6 +92,7 @@ public class EntitySubTableDefinition extends EntityListDefinition {
 		Assert.notNull(getFetchMode(), "属性[fetchMode]不能为空.");
 		Assert.notNull(getListStyle(), "属性[listStyle]不能为空.");
 		Assert.hasLength(getSubTableAttr(),  "属性[subTableAttr]不能为空.");
+		Assert.hasLength(getFormViewName(),  "属性[formViewName]不能为空.");
 		// 如果没有设置引用，则fields必须设置
 		if (StringUtils.isBlank(getRefName())) {
 			Assert.isTrue(getFields().length > 0, "属性[fields]至少要有一个字段.");
