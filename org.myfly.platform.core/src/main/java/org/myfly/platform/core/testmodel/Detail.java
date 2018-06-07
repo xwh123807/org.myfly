@@ -43,7 +43,7 @@ public class Detail extends KeyEntity {
 
 	@FieldView(title = "主记录")
 	@JoinColumn()
-	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	private Master master;
 
 	@Column(length = 100)

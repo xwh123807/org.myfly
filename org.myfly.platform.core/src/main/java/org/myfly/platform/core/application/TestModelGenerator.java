@@ -97,6 +97,13 @@ public class TestModelGenerator {
 				detail.setActive(true);
 				master.getDetails().add(detail);
 			});
+			Detail detail1 = new Detail();
+			detail1.setUid(UUIDUtil.newUUID());
+			detail1.setTitle("detail1 title");
+			detail1.setDataType(FieldDataType.DATETIME);
+			detail1.setCreated(DateUtil.nowSqlTimestamp());
+			detail1.setActive(true);
+			master.setDetail1(detail1);
 			masters.add(master);
 		});
 		dataService.batchSaveEntity(masters);
