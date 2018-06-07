@@ -50,7 +50,7 @@ public class EntityMetaData {
 	 */
 	private boolean isJpaEntity;
 	/**
-	 * 实体定义的字段列表
+	 * 本实体定义的字段列表
 	 */
 	private Map<String, EntityFieldDefinition> fieldMap;
 	/**

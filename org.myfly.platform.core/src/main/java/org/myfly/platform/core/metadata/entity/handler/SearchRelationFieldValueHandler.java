@@ -22,7 +22,6 @@ public class SearchRelationFieldValueHandler extends AbstractFieldValueHandler {
 
 	@Override
 	public Object getFieldValueFromMap(Map entity) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -52,8 +51,6 @@ public class SearchRelationFieldValueHandler extends AbstractFieldValueHandler {
 
 	@Override
 	public void setFieldValueForMap(Map entity, Object value) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

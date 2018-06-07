@@ -38,11 +38,6 @@ public class FormToolbarRender extends BaseFieldRender {
 			String url = EntityUrlUtil.getEntityActionUrl(action, tableName, "$!{uid}", formViewName);
 			String subUrl = EntityUrlUtil.getSubEntityActionUrl(action, tableName, "$!{uid}", "$!{subTableAttr}",
 					"$!{subUid}", formViewName);
-			// TODO
-			// 子表的URL没有处理，解决思路是将subuid、subattr写入velocity上下文环境，在url中判断subattr是否为空
-//			BaseButtonRender button = ButtonRenderFactory.getRender(action, "#if ($subTableAttr==\"\") #set ($url=\""
-//					+ url + "\") else #set ($url=\"" + subUrl + "\") #end $!{url}");
-			
 			BaseButtonRender button = ButtonRenderFactory.getRender(action, url);
 			buffer.append(button.html());
 		}

@@ -97,7 +97,6 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 
 	@Override
 	public long count(String entityName, String uid, String subTableAttr, String formViewName, EntityQueryMap params) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

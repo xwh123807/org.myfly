@@ -26,6 +26,7 @@ public class EntityListDefinition extends ListDefinition {
 	/**
 	 * 列表中用到的实体字段定义
 	 */
+	@JsonIgnore
 	private EntityFieldDefinition[] fieldDefinitions;
 	/**
 	 * EntityMetaData
@@ -50,6 +51,9 @@ public class EntityListDefinition extends ListDefinition {
 	
 	public void config() {
 		generateEntityFieldDefinitions(parent.getFieldMap());
+		if (StringUtils.isBlank(getLabelField())) {
+			setLabelField(getFieldDefinitions()[0].getName());
+		}
 	}
 
 	/**
@@ -76,9 +80,6 @@ public class EntityListDefinition extends ListDefinition {
 			list.add(field);
 		}
 		setFieldDefinitions(list.toArray(new EntityFieldDefinition[] {}));
-		if (StringUtils.isBlank(getLabelField())) {
-			setLabelField(list.get(0).getName());
-		}
 	}
 
 	public EntityFieldDefinition[] getFieldDefinitions() {

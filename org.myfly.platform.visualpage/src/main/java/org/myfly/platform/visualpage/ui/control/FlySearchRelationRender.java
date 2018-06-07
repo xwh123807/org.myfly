@@ -6,13 +6,11 @@ public class FlySearchRelationRender extends SelectFieldRender{
 
 	@Override
 	public String getOptions() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public InputType getInputType() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

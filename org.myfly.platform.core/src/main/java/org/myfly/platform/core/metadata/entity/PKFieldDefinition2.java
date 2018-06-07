@@ -147,9 +147,6 @@ public class PKFieldDefinition2 extends BaseDenifition {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			// TODO 代码覆盖测试报错
-			// throw new IllegalArgumentException("获取主键类方法失败，错误信息：" +
-			// e.getMessage());
 		}
 	}
 
@@ -221,7 +218,6 @@ public class PKFieldDefinition2 extends BaseDenifition {
 	}
 
 	/**
-	 * TODO
 	 * 
 	 * @param keyParams
 	 * @return

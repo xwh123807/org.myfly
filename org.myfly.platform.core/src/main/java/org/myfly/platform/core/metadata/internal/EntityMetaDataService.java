@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
-import org.myfly.platform.core.metadata.service.JsonEntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
@@ -85,10 +84,4 @@ public class EntityMetaDataService implements IEntityMetaDataService {
 		String subTable = field.getRelationTable();
 		return getEntityMetaData(subTable);
 	}
-
-	@Override
-	public JsonEntityMetaData getJsonEntityMetaData(String entityNameOrClassName) {
-		return null;
-	}
-
 }

@@ -28,6 +28,10 @@ public class EntityMetaDataConstants {
 	 * 实体SGlobal_Name的表名
 	 */
 	public static String TABLENAME_SGLOBAL_NAME = "PB.SGlobal_Name";
+	/**
+	 * Actions操作集字段名称
+	 */
+	public static String ACTIONS_FIELD_NAME = "actions";
 
 	/**
 	 * 实体列表、实体子表列表全部操作集，包含变更数据的操作

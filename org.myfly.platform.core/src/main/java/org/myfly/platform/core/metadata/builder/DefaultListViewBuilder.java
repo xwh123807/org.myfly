@@ -1,5 +1,6 @@
 package org.myfly.platform.core.metadata.builder;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -33,6 +34,7 @@ public class DefaultListViewBuilder extends ListDefinition {
 	}
 
 	private String[] getAllFields(EntityFieldDefinition[] allFields) {
-		return Stream.of(allFields).map(item -> item.getName()).collect(Collectors.toList()).toArray(new String[] {});
+		List<String> list = Stream.of(allFields).map(item -> item.getName()).collect(Collectors.toList());
+		return list.toArray(new String[] {});
 	}
 }

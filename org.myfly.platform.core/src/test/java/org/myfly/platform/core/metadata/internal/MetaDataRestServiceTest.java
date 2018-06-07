@@ -7,8 +7,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.myfly.platform.CoreApplication;
-import org.myfly.platform.core.testmodel.Detail;
-import org.myfly.platform.core.testmodel.Master;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -44,28 +42,24 @@ public class MetaDataRestServiceTest {
 		ResponseEntity<String[]> result2 = service.getForEntity("/meta", String[].class);
 		Assert.assertEquals(200, result2.getStatusCodeValue());
 		Stream.of(result2.getBody()).forEach(item -> {
+			//获取实体元模型数据
 			ResponseEntity<String> result = service.getForEntity(getUri("{entity}", item), String.class);
 			Assert.assertEquals(200, result.getStatusCodeValue());
+			//获取实体主键
+			result = service.getForEntity(getUri("{entity}/pk", item), String.class);
+			Assert.assertEquals(200, result.getStatusCodeValue());
+			//获取实体字段
+			result = service.getForEntity(getUri("{entity}/fields", item), String.class);
+			Assert.assertEquals(200, result.getStatusCodeValue());
+			//获取实体列表视图
+			result = service.getForEntity(getUri("{entity}/listviews", item), String.class);
+			Assert.assertEquals(200, result.getStatusCodeValue());
+			//获取实体表单视图
+			result = service.getForEntity(getUri("{entity}/formviews", item), String.class);
+			Assert.assertEquals(200, result.getStatusCodeValue());
+			//获取实体大纲视图
+			result = service.getForEntity(getUri("{entity}/outlineviews", item), String.class);
+			Assert.assertEquals(200, result.getStatusCodeValue());
 		});
-	}
-
-	@Test
-	public void getMaster() {
-		// by class name
-		ResponseEntity<String> result = service.getForEntity(getUri("{entity}", Master.class.getName()), String.class);
-		Assert.assertEquals(200, result.getStatusCodeValue());
-		// by short name
-		ResponseEntity<String> result2 = service.getForEntity(getUri("{entity}", "master"), String.class);
-		Assert.assertEquals(200, result2.getStatusCodeValue());
-	}
-
-	@Test
-	public void getDetail() {
-		// by class name
-		ResponseEntity<String> result = service.getForEntity(getUri("{entity}", Detail.class.getName()), String.class);
-		Assert.assertEquals(200, result.getStatusCodeValue());
-		// by short name
-		ResponseEntity<String> result2 = service.getForEntity(getUri("{entity}", "detail"), String.class);
-		Assert.assertEquals(200, result2.getStatusCodeValue());
 	}
 }

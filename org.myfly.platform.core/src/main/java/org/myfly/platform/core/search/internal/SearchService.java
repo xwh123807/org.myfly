@@ -44,25 +44,21 @@ public class SearchService implements ISearchService {
 
 	@Override
 	public void indexAttachments(String path) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public Page<Map<String, String>> searchAttachments(String queryString, int page, int size) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void cleanAttachmentsIndex() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void rebuildAttachmentsIndex() {
-		// TODO Auto-generated method stub
 
 	}
 

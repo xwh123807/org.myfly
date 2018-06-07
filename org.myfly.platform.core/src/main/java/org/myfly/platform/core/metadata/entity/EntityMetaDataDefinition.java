@@ -57,9 +57,15 @@ public class EntityMetaDataDefinition extends MetaDataDefinition {
 		Entity entity = entityClass.getAnnotation(Entity.class);
 		if (entity != null) {
 			buildEntityFieldDefinitions(entityClass);
+		}else {
+			//TODO 非实体类，完全从@MetaDataView中构建
 		}
 	}
 
+	/**
+	 * 从实体类属性定义中构建字段定义
+	 * @param entityClass
+	 */
 	private void buildEntityFieldDefinitions(Class<?> entityClass) {
 		// 设置实体字段列表
 		List<EntityFieldDefinition> fields = new ArrayList<>();

@@ -18,7 +18,6 @@ public class HrDataInitConfigEvent implements IAppConfigEvent {
 
 	@Override
 	public void initSysData() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -42,7 +41,6 @@ public class HrDataInitConfigEvent implements IAppConfigEvent {
 
 	@Override
 	public void registerExternalMetaData(IMetaDataRegister metaDataRegister) {
-		// TODO Auto-generated method stub
 		
 	}
 }

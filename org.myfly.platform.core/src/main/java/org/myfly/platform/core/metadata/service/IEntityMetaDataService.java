@@ -42,13 +42,4 @@ public interface IEntityMetaDataService {
 	 * @return
 	 */
 	EntityMetaData getSubEntityMetaData(String table, String subTableAttr);
-
-	/**
-	 * 返回可序列化和反序列化的元模型
-	 * 
-	 * @param entityNameOrClassName
-	 * @return
-	 */
-	JsonEntityMetaData getJsonEntityMetaData(String entityNameOrClassName);
-
 }
