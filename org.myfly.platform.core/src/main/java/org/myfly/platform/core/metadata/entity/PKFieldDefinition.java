@@ -1,6 +1,7 @@
 package org.myfly.platform.core.metadata.entity;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -13,6 +14,8 @@ import org.myfly.platform.core.metadata.define.BaseDenifition;
 import org.myfly.platform.core.metadata.entity.handler.IFieldValueHandler;
 import org.myfly.platform.core.metadata.entity.handler.PKFieldValueHandler;
 import org.myfly.platform.core.utils.ClassUtil;
+import org.myfly.platform.core.utils.EntityClassUtil;
+import org.myfly.platform.core.utils.EntityClassUtil.FieldInfo;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -49,6 +52,10 @@ public class PKFieldDefinition extends BaseDenifition {
 	 */
 	private Class<?> idClass;
 	/**
+	 * 主键类属性信息，有顺序的，使用LinkedHashMap存储
+	 */
+	private Map<String, FieldInfo> idClassFieldInfo;
+	/**
 	 * 主键值设置和获取
 	 */
 	@JsonIgnore
@@ -57,7 +64,7 @@ public class PKFieldDefinition extends BaseDenifition {
 	public PKFieldDefinition(Class<?> entityClass) {
 		IdClass idClass = entityClass.getAnnotation(IdClass.class);
 		if (idClass != null) {
-			setIdClass(idClass.getClass());
+			setIdClass(idClass.value());
 			setKeyType(KeyType.IDCLASS);
 		}
 	}
@@ -81,11 +88,10 @@ public class PKFieldDefinition extends BaseDenifition {
 				setKeyType(KeyType.IDCLASS);
 			}
 		}
-		initFieldValueHandler();
-	}
-
-	private void initFieldValueHandler() {
 		setValueHandler(new PKFieldValueHandler(this));
+		if (getIdClass() != null) {
+			setIdClassFieldInfo(EntityClassUtil.getIdClassFieldInfo(getIdClass()));
+		}
 	}
 
 	public KeyType getKeyType() {
@@ -132,6 +138,11 @@ public class PKFieldDefinition extends BaseDenifition {
 			break;
 		}
 		Assert.notNull(getValueHandler());
+		if (getIdClass() != null) {
+			Assert.isTrue(getIdClass() instanceof Serializable);
+			Assert.notNull(getIdClassFieldInfo());
+			Assert.isTrue(getIdClassFieldInfo().size() > 0);
+		}
 	}
 
 	public Class<?> getIdClass() {
@@ -149,35 +160,80 @@ public class PKFieldDefinition extends BaseDenifition {
 	 * @return
 	 */
 	public Serializable buildPK(String uid) {
+		Assert.hasLength(uid, "参数[uid]不能为空.");
 		if (KeyType.SINGLE.equals(getKeyType())) {
 			return (Serializable) ClassUtil.convert(uid, getFields()[0].getType());
 		} else {
-			// Object obj = getIdClass().newInstance();
+			try {
+				Object idObject = getIdClass().newInstance();
+				String[] ids = uid.split("_");
+				int i = 0;
+				for (FieldInfo field : getIdClassFieldInfo().values()) {
+					Object value = ClassUtil.convert(ids[i], field.getField().getType());
+					field.getSetter().invoke(idObject, value);
+					i ++;
+				}
+				return (Serializable) idObject;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}
 
 	/**
-	 * 构建实体主键
+	 * 构建实体主键，用于查询时访问JPA使用
 	 * 
 	 * @param keyParams
 	 * @return
 	 */
 	public Serializable buildPK(Map<String, Object> keyParams) {
+		Assert.notEmpty(keyParams, "参数[keyParams]不能为空，且至少要有1个.");
 		if (KeyType.SINGLE.equals(getKeyType())) {
 			return (Serializable) ClassUtil.convert(keyParams.get(getFields()[0].getName()), getFields()[0].getType());
 		} else {
-			// Object obj = getIdClass().newInstance();
+			try {
+				Object idObject = getIdClass().newInstance();
+				keyParams.keySet().forEach(paramName -> {
+					try {
+						getIdClassFieldInfo().get(paramName).getSetter().invoke(idObject, keyParams.get(paramName));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				});
+				return (Serializable) idObject;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}
-	
+
+	/**
+	 * 设置实体主键值，用于查询时访问JPA使用
+	 * 
+	 * @param entity
+	 * @param uid
+	 */
+	public void setPKValue(Object entity, String uid) {
+		getValueHandler().setFieldValue(entity, uid);
+	}
+
 	/**
 	 * 获取实体主键值
+	 * 
 	 * @param entity
 	 * @return
 	 */
 	public String getPKValue(Object entity) {
 		return (String) getValueHandler().getFieldValue(entity);
+	}
+
+	public Map<String, FieldInfo> getIdClassFieldInfo() {
+		return idClassFieldInfo;
+	}
+
+	public void setIdClassFieldInfo(Map<String, FieldInfo> idClassFieldInfo) {
+		this.idClassFieldInfo = idClassFieldInfo;
 	}
 }

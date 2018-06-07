@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +37,23 @@ public class EntityClassUtil {
 	}
 
 	/**
+	 * 获取实体类所有属性
+	 * 
+	 * @param entityClass
+	 * @return
+	 */
+	public static List<Field> getAllFields(Class<?> entityClass) {
+		List<Field> list = new ArrayList<>();
+		FuncUtil.forEach(entityClass.getDeclaredFields(), field -> {
+			list.add(field);
+		});
+		if (entityClass.getSuperclass() != null) {
+			list.addAll(getAllFields(entityClass.getSuperclass()));
+		}
+		return list;
+	}
+
+	/**
 	 * 获取类所有方法，包含基类
 	 * 
 	 * @param cls
@@ -53,7 +71,7 @@ public class EntityClassUtil {
 	}
 
 	/**
-	 * 获取实体类信息
+	 * 获取实体类属性信息
 	 * 
 	 * @param entityClass
 	 * @return
@@ -61,7 +79,7 @@ public class EntityClassUtil {
 	public static Map<String, FieldInfo> getEntityFieldInfo(Class<?> entityClass) {
 		List<Field> fields = getAllEntityFields(entityClass);
 		Map<String, Method> methods = getAllMethods(entityClass);
-		Map<String, FieldInfo> fieldInfos = new HashMap<>();
+		Map<String, FieldInfo> fieldInfos = new LinkedHashMap<>();
 		fields.forEach(field -> {
 			FieldInfo fieldInfo = new FieldInfo();
 			String name = field.getName();
@@ -73,7 +91,38 @@ public class EntityClassUtil {
 				fieldInfo.setGetter(methods.get("get" + methodName));
 			}
 			fieldInfo.setSetter(methods.get("set" + methodName));
-			fieldInfos.put(name, fieldInfo);
+			if (fieldInfo.getGetter() != null && fieldInfo.getSetter() != null) {
+				fieldInfos.put(name, fieldInfo);
+			}
+		});
+		return fieldInfos;
+	}
+
+	/**
+	 * 获取IDClass类属性信息
+	 * 
+	 * @param idClass
+	 * @return
+	 */
+	public static Map<String, FieldInfo> getIdClassFieldInfo(Class<?> idClass) {
+		List<Field> fields = getAllFields(idClass);
+		fields.sort((a, b) -> a.getName().compareTo(b.getName()));
+		Map<String, Method> methods = getAllMethods(idClass);
+		Map<String, FieldInfo> fieldInfos = new LinkedHashMap<>();
+		fields.forEach(field -> {
+			FieldInfo fieldInfo = new FieldInfo();
+			String name = field.getName();
+			String methodName = name.substring(0, 1).toUpperCase() + name.substring(1);
+			fieldInfo.setField(field);
+			if (Boolean.class.equals(field.getType()) || boolean.class.equals(field.getType())) {
+				fieldInfo.setGetter(methods.get("is" + methodName));
+			} else {
+				fieldInfo.setGetter(methods.get("get" + methodName));
+			}
+			fieldInfo.setSetter(methods.get("set" + methodName));
+			if (fieldInfo.getGetter() != null && fieldInfo.getSetter() != null) {
+				fieldInfos.put(name, fieldInfo);
+			}
 		});
 		return fieldInfos;
 	}
