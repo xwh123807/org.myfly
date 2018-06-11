@@ -1,19 +1,21 @@
 package org.myfly.platform.core.testmodel;
 
 import java.text.MessageFormat;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.myfly.platform.core.domain.FieldDataType;
-import org.myfly.platform.core.flydata.service.FlyEntityMap;
+import org.myfly.platform.core.flydata.service.FlyEntityResult;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 
 /**
- * 单实体，不支持级联
+ * 支持级联
  * @author xiangwanhong
  *
  */
-public class TestModel {
+public class FlyEntityTestModel {
 	/**
 	 * 用于测试新增的实体，预先构造好数据
 	 */
@@ -25,19 +27,21 @@ public class TestModel {
 	/**
 	 * 测试新增后实体，数据库查询返回期望的结果
 	 */
-	private FlyEntityMap flyTestEntity;
-	private FlyEntityMap flyTestEntityWithActions;
+	private FlyEntityResult flyTestEntity;
+	private FlyEntityResult flyTestEntityWithActions;
 	/**
 	 * 测试修改后实体,数据库查询返回期望的结果
 	 */
-	private FlyEntityMap flyChangedEntity;
-	private FlyEntityMap flyChangedEntityWithActions;
+	private FlyEntityResult flyChangedEntity;
+	private FlyEntityResult flyChangedEntityWithActions;
 
-	public TestModel() {
+	public FlyEntityTestModel() {
 	}
 
 	private String uid = UUIDUtil.newUUID();
-
+	
+	private String subUid = UUIDUtil.newUUID();
+	
 	/**
 	 * 构建测试实体，以及查询返回的增强实体
 	 */
@@ -69,11 +73,26 @@ public class TestModel {
 		entity.setDataType(FieldDataType.MONEY);
 		entity.setActive(false);
 		entity.setCreated(DateUtil.nowSqlTimestamp());
+		Set<Detail> details = new HashSet<>();
+		Detail detail = new Detail();
+		detail.setUid(subUid);
+		detail.setMaster(entity);
+		detail.setCreated(DateUtil.nowSqlTimestamp());
+		detail.setDataType(FieldDataType.DATETIME);
+		detail.setTitle("title");
+		details.add(detail);
+		entity.setDetails(details);
+		Detail detail1 = new Detail();
+		detail1.setUid(uid);
+		detail1.setCreated(DateUtil.nowSqlTimestamp());
+		detail1.setDataType(FieldDataType.SEARCHRELATION);
+		detail1.setTitle("detail title");
+		entity.setDetail1(detail1);
 		return entity;
 	}
 
-	private FlyEntityMap newFlyEntity(Master from) {
-		FlyEntityMap entity = new FlyEntityMap(from);
+	private FlyEntityResult newFlyEntity(Master from) {
+		FlyEntityResult entity = new FlyEntityResult(from);
 		// 处理增强字段
 		entity.put("dataType__label", from.getDataType().getTitle());
 		entity.put("url__link", "<a href='" + from.getUrl() + "'>" + from.getUrl() + "</a>");
@@ -96,8 +115,8 @@ public class TestModel {
 	 * @param from
 	 * @return
 	 */
-	private FlyEntityMap newFlyEntityWithActions(Master from) {
-		FlyEntityMap entity = newFlyEntity(from);
+	private FlyEntityResult newFlyEntityWithActions(Master from) {
+		FlyEntityResult entity = newFlyEntity(from);
 		String url = "<a href=\"/vp/{0}/{1}?view=all\" target=\"\" title=\"{2}\"> {2}</a><a href=\"/vp/{0}/{1}?form?view=all\" target=\"\" title=\"{3}\"> {3}</a><a href=\"/vp/{0}/{1}?view=all\" target=\"\" title=\"{4}\"> {4}</a>";
 		entity.put("actions", MessageFormat.format(url, from.getClass().getName(), uid, "查看", "编辑", "删除"));
 		return entity;
@@ -142,7 +161,7 @@ public class TestModel {
 	 * @param actual
 	 *            实际值
 	 */
-	public void assertEntityAllFields(FlyEntityMap expected, FlyEntityMap actual) {
+	public void assertEntityAllFields(FlyEntityResult expected, FlyEntityResult actual) {
 		expected.keySet().forEach(name -> {
 			Assert.assertEquals("属性[" + name + "]不一致.", expected.get(name), actual.get(name));
 		});
@@ -165,35 +184,35 @@ public class TestModel {
 		this.changedEntity = changedEntity;
 	}
 
-	public FlyEntityMap getFlyTestEntity() {
+	public FlyEntityResult getFlyTestEntity() {
 		return flyTestEntity;
 	}
 
-	public void setFlyTestEntity(FlyEntityMap flyTestEntity) {
+	public void setFlyTestEntity(FlyEntityResult flyTestEntity) {
 		this.flyTestEntity = flyTestEntity;
 	}
 
-	public FlyEntityMap getFlyChangedEntity() {
+	public FlyEntityResult getFlyChangedEntity() {
 		return flyChangedEntity;
 	}
 
-	public void setFlyChangedEntity(FlyEntityMap flyChangedEntity) {
+	public void setFlyChangedEntity(FlyEntityResult flyChangedEntity) {
 		this.flyChangedEntity = flyChangedEntity;
 	}
 
-	public FlyEntityMap getFlyTestEntityWithActions() {
+	public FlyEntityResult getFlyTestEntityWithActions() {
 		return flyTestEntityWithActions;
 	}
 
-	public void setFlyTestEntityWithActions(FlyEntityMap flyTestEntityWithActions) {
+	public void setFlyTestEntityWithActions(FlyEntityResult flyTestEntityWithActions) {
 		this.flyTestEntityWithActions = flyTestEntityWithActions;
 	}
 
-	public FlyEntityMap getFlyChangedEntityWithActions() {
+	public FlyEntityResult getFlyChangedEntityWithActions() {
 		return flyChangedEntityWithActions;
 	}
 
-	public void setFlyChangedEntityWithActions(FlyEntityMap flyChangedEntityWithActions) {
+	public void setFlyChangedEntityWithActions(FlyEntityResult flyChangedEntityWithActions) {
 		this.flyChangedEntityWithActions = flyChangedEntityWithActions;
 	}
 }

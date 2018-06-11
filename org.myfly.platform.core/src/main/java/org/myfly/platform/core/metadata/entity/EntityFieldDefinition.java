@@ -194,6 +194,7 @@ public class EntityFieldDefinition extends FieldDefinition {
 	public void validate() {
 		super.validate();
 		Assert.hasLength(getName(), getCheckInfo("name"));
+		//Assert.notNull(getParent());
 		switch (getDataType()) {
 		case ACTIONS:
 			break;

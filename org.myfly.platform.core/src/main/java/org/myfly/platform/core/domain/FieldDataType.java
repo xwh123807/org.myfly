@@ -71,6 +71,10 @@ public enum FieldDataType implements BaseEnum {
 	 */
 	MDRELATION("主从关系", List.class),
 	/**
+	 * 一对一关系，记录由主记录管理
+	 */
+	OORELATION("一对一关系", String.class),
+	/**
 	 * 扩展主从关系，用于动态添加子表，如附件、备注
 	 */
 	FLYMDRELATION("扩展主从关系", List.class),

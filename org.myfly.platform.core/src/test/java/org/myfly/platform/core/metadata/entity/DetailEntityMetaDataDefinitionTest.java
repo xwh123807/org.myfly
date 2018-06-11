@@ -19,7 +19,7 @@ public class DetailEntityMetaDataDefinitionTest {
 		Assert.assertEquals("master".toUpperCase(), field.getFieldName());
 		Assert.assertEquals("主记录", field.getTitle());
 		Assert.assertEquals(FieldDataType.SEARCHRELATION, field.getDataType());
-		Assert.assertTrue(field.isRequired());
+		Assert.assertTrue(!field.isRequired());
 		Assert.assertEquals(Master.class, field.getType());
 		Assert.assertEquals(Master.class.getName(), field.getRelationClass());
 		Assert.assertEquals("getMaster", field.getGetter().getName());

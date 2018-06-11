@@ -196,7 +196,7 @@ public class EntityMetaData {
 			AssertUtil.parameterInvalide("fieldDefinition",
 					"名称为[" + fieldDefinition.getName() + "]FieldDefinition已经存在，请检查实体[" + getEntityName() + "]元模型定义.");
 		}
-		// fieldDefinition.setParent(this);
+		fieldDefinition.setParent(this);
 		getFieldMap().put(fieldDefinition.getName(), fieldDefinition);
 	}
 

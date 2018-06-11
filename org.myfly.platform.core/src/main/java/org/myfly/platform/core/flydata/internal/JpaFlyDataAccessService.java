@@ -28,7 +28,6 @@ import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
 import org.myfly.platform.core.system.domain.IKeyEntity;
 import org.myfly.platform.core.utils.AssertUtil;
-import org.myfly.platform.core.utils.JSONUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -341,21 +340,5 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 	public long count2(String entityName, Map<String, Object> params) {
 		return getJpaDataAccessService().count(getEntityClass(entityName),
 				QuerySpecificationUtil.buildQuerySpecifications(params));
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public <T> T saveEntity(String entityName, String jsonEntity) {
-		Class<?> entityClass = getEntityMetaDataService().getEntityClass(entityName);
-		Object entity = JSONUtil.fromJSON(jsonEntity, entityClass);
-		return (T) getJpaDataAccessService().saveEntity(entity);
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public <T> T updateEntity(String entityName, String jsonEntity) {
-		Class<?> entityClass = getEntityMetaDataService().getEntityClass(entityName);
-		Object entity = JSONUtil.fromJSON(jsonEntity, entityClass);
-		return (T) getJpaDataAccessService().updateEntity(entity);
 	}
 }
