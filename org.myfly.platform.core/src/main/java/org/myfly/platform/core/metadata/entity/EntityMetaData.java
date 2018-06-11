@@ -514,4 +514,9 @@ public class EntityMetaData {
 		// });
 		// });
 	}
+	
+	@Override
+	public String toString() {
+		return "entityName: " + getEntityName();
+	}
 }

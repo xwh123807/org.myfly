@@ -17,11 +17,13 @@ public class FlyEntityTestModelTest {
 		Master master = model.getTestEntity();
 		FlyEntityResult result = FlyEntityResult.fromEntity(metaData, master);
 		Assert.assertNotNull(result);
+		
+		Assert.assertEquals(FlyEntityResult.class, result.get("detail1").getClass());
+		Assert.assertNotNull(result.get("details"));
+		
 		String json = result.toJson();
 		Assert.assertNotNull(json);
 		System.out.println(json);
 		
-		Assert.assertEquals(FlyEntityResult.class, result.get("detail1").getClass());
-		Assert.assertNotNull(result.get("details"));
 	}
 }

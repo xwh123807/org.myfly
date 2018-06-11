@@ -2,6 +2,7 @@ package org.myfly.platform.core.metadata.entity.handler;
 
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.domain.EntityActionInfo;
+import org.myfly.platform.core.flydata.service.FlyEntityResult;
 import org.myfly.platform.core.metadata.annotation.EntityAction;
 import org.myfly.platform.core.metadata.entity.EntityActionsFieldDefinition;
 import org.myfly.platform.core.utils.EntityLinkUtil;
@@ -56,6 +57,11 @@ public class EntityActionsFieldValueHandler implements IFieldValueHandler {
 	@Override
 	public void setFieldValue(Object entity, Object value) {
 		throw new RuntimeException("Actinos属性不支持setFieldValue方法.");
+	}
+
+	@Override
+	public FlyEntityResult getFlyFieldValue(Object entity) {
+		return null;
 	}
 
 }

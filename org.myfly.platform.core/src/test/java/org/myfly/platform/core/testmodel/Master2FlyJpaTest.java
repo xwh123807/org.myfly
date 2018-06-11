@@ -25,7 +25,7 @@ public class Master2FlyJpaTest {
 	@Qualifier("jpaFlyDataAccessService")
 	private IFlyDataAccessService service;
 
-	private String masterEntityName = Master.class.getName();
+	private String masterEntityName = Master2.class.getName();
 
 	private String formViewName = EntityMetaDataConstants.DEFAULT_ALL_NAME;
 

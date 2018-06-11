@@ -210,8 +210,7 @@ public class FieldDefinition extends BaseDenifition {
 
 	@Override
 	public String toString() {
-		return "title: " + getTitle() + "; name: " + getName() + "; dataType: " + getDataType() + "; fieldName: "
-				+ getName();
+		return "name: " + getName() + "; dataType: " + getDataType() + "; fieldName: " + getName();
 	}
 
 	public boolean isIdField() {

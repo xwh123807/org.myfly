@@ -1,5 +1,6 @@
 package org.myfly.platform.core.metadata.entity.handler;
 
+import org.myfly.platform.core.flydata.service.FlyEntityResult;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.KeyType;
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
@@ -76,5 +77,10 @@ public class PKFieldValueHandler implements IFieldValueHandler {
 		} catch (Exception e) {
 			throw new IllegalArgumentException("设置主键值失败，错误信息：" + e.getMessage());
 		}
+	}
+
+	@Override
+	public FlyEntityResult getFlyFieldValue(Object entity) {
+		return null;
 	}
 }

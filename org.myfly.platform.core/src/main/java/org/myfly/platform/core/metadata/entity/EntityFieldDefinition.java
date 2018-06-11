@@ -51,6 +51,7 @@ public class EntityFieldDefinition extends FieldDefinition {
 	 */
 	@JsonIgnore
 	private Method setter;
+	
 	@JsonIgnore
 	private EntityMetaData parent;
 	/**

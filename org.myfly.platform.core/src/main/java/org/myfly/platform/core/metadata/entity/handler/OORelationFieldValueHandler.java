@@ -1,12 +1,10 @@
 package org.myfly.platform.core.metadata.entity.handler;
 
-import java.util.Map;
-
 import org.myfly.platform.core.flydata.service.FlyEntityResult;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.OORelationFieldDefinition;
 
-public class OORelationFieldValueHandler extends AbstractFieldValueHandler{
+public class OORelationFieldValueHandler extends DefaultFieldValueHandler{
 	private OORelationFieldDefinition getField() {
 		return (OORelationFieldDefinition) getFieldDefinition();
 	}
@@ -16,26 +14,8 @@ public class OORelationFieldValueHandler extends AbstractFieldValueHandler{
 	}
 
 	@Override
-	public Object getFieldValueFromMap(Map entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Object getFieldValueFromEntity(Object entity) {
-		return FlyEntityResult.fromEntity(getField().getRelationEntityMetaData(), entity);
+		Object obj = super.getFieldValueFromEntity(entity);
+		return FlyEntityResult.fromEntity(getField().getRelationEntityMetaData(), obj);
 	}
-
-	@Override
-	public void setFieldValueForMap(Map entity, Object value) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setFieldValueForEntity(Object entity, Object value) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
