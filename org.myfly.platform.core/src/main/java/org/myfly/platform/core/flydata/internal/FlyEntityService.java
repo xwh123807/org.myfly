@@ -26,7 +26,8 @@ public class FlyEntityService implements IFlyEntityService {
 	@Override
 	public String saveEntity(String entityName, String viewName, String jsonEntity) {
 		EntityMetaData metaData = metaService.getEntityMetaData(entityName);
-		return jpaService.saveEntity(FlyEntityResult.toEntity(metaData, jsonEntity));
+		Object entity = jpaService.saveEntity(FlyEntityResult.toEntity(metaData, jsonEntity));
+		return metaData.getPkFieldDefinition().getPKValue(entity);
 	}
 
 	@Override
@@ -43,6 +44,13 @@ public class FlyEntityService implements IFlyEntityService {
 		EntityMetaData metaData = metaService.getEntityMetaData(entityName);
 		Serializable pkValue = metaData.getPkFieldDefinition().buildPK(uid);
 		jpaService.updateEntity(pkValue, FlyEntityResult.toEntity(metaData, jsonEntity));
+	}
+	
+	@Override
+	public void del(String entityName, String uid) {
+		EntityMetaData metaData = metaService.getEntityMetaData(entityName);
+		Serializable pkValue = metaData.getPkFieldDefinition().buildPK(uid);
+		jpaService.delOne(metaData.getEntityClass(), pkValue);
 	}
 
 	@Override

@@ -25,6 +25,7 @@ public class TestModelTest {
 		model.buildTestModelEntities();
 
 		String jsonTestEntity = JSONUtil.toJSON(model.getTestEntity());
+		System.out.println(jsonTestEntity);
 		Master entity = JSONUtil.fromJSON(jsonTestEntity, Master.class);
 	}
 

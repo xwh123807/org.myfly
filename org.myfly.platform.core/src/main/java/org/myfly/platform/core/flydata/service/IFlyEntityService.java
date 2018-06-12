@@ -2,6 +2,11 @@ package org.myfly.platform.core.flydata.service;
 
 import java.util.List;
 
+/**
+ * 实体增强数据访问服务
+ * @author xiangwanhong
+ *
+ */
 public interface IFlyEntityService {
 	/**
 	 * 新增实体，返回实体UID<br>
@@ -48,6 +53,13 @@ public interface IFlyEntityService {
 	 *            实体类Json
 	 */
 	void updateEntity(String entityName, String uid, String viewName, String jsonEntity);
+	
+	/**
+	 * 删除实体
+	 * @param entityName
+	 * @param uid
+	 */
+	void del(String entityName, String uid);
 	
 	/**
 	 * 查询实体

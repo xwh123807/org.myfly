@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
+import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.JSONUtil;
 
 /**
@@ -18,11 +19,14 @@ import org.myfly.platform.core.utils.JSONUtil;
  */
 public class FlyEntityResult extends HashMap<String, Object> {
 
-	public <T> FlyEntityResult(T from) {
+	/**
+	 * @param from
+	 */
+	public FlyEntityResult(HashMap<String, Object> from) {
+		putAll(from);
 	}
 
 	public FlyEntityResult() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -39,10 +43,6 @@ public class FlyEntityResult extends HashMap<String, Object> {
 		return JSONUtil.toJSON(this);
 	}
 
-	public Object toEntity() {
-		return null;
-	}
-
 	/**
 	 * 将实体json反序列化为实体对象
 	 * 
@@ -51,7 +51,17 @@ public class FlyEntityResult extends HashMap<String, Object> {
 	 * @return
 	 */
 	public static <T> T toEntity(EntityMetaData metaData, String jsonEntity) {
-		return (T) JSONUtil.fromJSON(jsonEntity, metaData.getEntityClass());
+		T entity = metaData.newEntityInstance();
+		FlyEntityResult result = JSONUtil.fromJSON(jsonEntity, FlyEntityResult.class);
+		metaData.getFieldMap().values().forEach(field -> {
+			if (result.containsKey(field.getName())) {
+				Object value = result.get(field.getName());
+				if (value != null) {
+					field.getValueHandler().setFieldValue(entity, value);
+				}
+			}
+		});
+		return entity;
 	}
 
 	/**
@@ -67,6 +77,20 @@ public class FlyEntityResult extends HashMap<String, Object> {
 			result.put(field.getName(), field.getValueHandler().getFieldValue(entityObj));
 		}
 		return result;
+	}
+
+	/**
+	 * 将实体类转换为FlyEntityResult
+	 * 
+	 * @param entityObj
+	 * @return
+	 */
+	public static FlyEntityResult fromEntity(Object entityObj) {
+		return fromEntity(AppUtil.getEntityMetaData(entityObj.getClass().getName()), entityObj);
+	}
+
+	public void printJson() {
+		System.out.println(toJson());
 	}
 
 }

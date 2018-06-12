@@ -1,17 +1,24 @@
 package org.myfly.platform.core.testmodel;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.text.MessageFormat;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Set;
 
 import org.junit.Assert;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.flydata.service.FlyEntityResult;
+import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 
 /**
- * 支持级联
+ * 支持级联的Master-Detail测试模型
+ * 
  * @author xiangwanhong
  *
  */
@@ -21,31 +28,46 @@ public class FlyEntityTestModel {
 	 */
 	private Master testEntity;
 	/**
-	 * 用于测试修改的实体
+	 * 用于测试修改的实体，预先构造好数据
 	 */
 	private Master changedEntity;
 	/**
 	 * 测试新增后实体，数据库查询返回期望的结果
 	 */
 	private FlyEntityResult flyTestEntity;
+	/**
+	 * 测试新增后实体，包含操作集
+	 */
 	private FlyEntityResult flyTestEntityWithActions;
 	/**
 	 * 测试修改后实体,数据库查询返回期望的结果
 	 */
 	private FlyEntityResult flyChangedEntity;
+	/**
+	 * 测试修改后实体,包含操作集
+	 */
 	private FlyEntityResult flyChangedEntityWithActions;
 
+	/**
+	 * 构造函数，并预先准备测试数据
+	 */
 	public FlyEntityTestModel() {
+		buildTestModelEntities();
 	}
 
+	/**
+	 * 主记录uid
+	 */
 	private String uid = UUIDUtil.newUUID();
-	
+	/**
+	 * details子表记录id
+	 */
 	private String subUid = UUIDUtil.newUUID();
-	
+
 	/**
 	 * 构建测试实体，以及查询返回的增强实体
 	 */
-	public void buildTestModelEntities() {
+	private void buildTestModelEntities() {
 		setTestEntity(newTestEntity());
 		setChangedEntity(newChangedEntity());
 		setFlyTestEntity(newFlyEntity(getTestEntity()));
@@ -54,7 +76,13 @@ public class FlyEntityTestModel {
 		setFlyChangedEntityWithActions(newFlyEntityWithActions(getChangedEntity()));
 	}
 
+	/**
+	 * 构建测试实体
+	 * 
+	 * @return
+	 */
 	private Master newTestEntity() {
+		// 主记录，覆盖所有支持的数据类型
 		Master entity = new Master();
 		entity.setUid(uid);
 		entity.setName("name");
@@ -73,6 +101,7 @@ public class FlyEntityTestModel {
 		entity.setDataType(FieldDataType.MONEY);
 		entity.setActive(false);
 		entity.setCreated(DateUtil.nowSqlTimestamp());
+		// 子表，MDRelation
 		Set<Detail> details = new HashSet<>();
 		Detail detail = new Detail();
 		detail.setUid(subUid);
@@ -82,6 +111,7 @@ public class FlyEntityTestModel {
 		detail.setTitle("title");
 		details.add(detail);
 		entity.setDetails(details);
+		// 关联，OORelation
 		Detail detail1 = new Detail();
 		detail1.setUid(uid);
 		detail1.setCreated(DateUtil.nowSqlTimestamp());
@@ -91,13 +121,14 @@ public class FlyEntityTestModel {
 		return entity;
 	}
 
+	/**
+	 * 构建增强实体
+	 * 
+	 * @param from
+	 * @return
+	 */
 	private FlyEntityResult newFlyEntity(Master from) {
-		FlyEntityResult entity = new FlyEntityResult(from);
-		// 处理增强字段
-		entity.put("dataType__label", from.getDataType().getTitle());
-		entity.put("url__link", "<a href='" + from.getUrl() + "'>" + from.getUrl() + "</a>");
-		entity.put("name__link", "<a href=\"/vp/" + from.getClass().getName() + "/" + uid
-				+ "?view=all\" target=\"\" title=\"查看\"> " + from.getName() + "</a>");
+		FlyEntityResult entity = FlyEntityResult.fromEntity(from);
 		return entity;
 	}
 
@@ -163,7 +194,30 @@ public class FlyEntityTestModel {
 	 */
 	public void assertEntityAllFields(FlyEntityResult expected, FlyEntityResult actual) {
 		expected.keySet().forEach(name -> {
-			Assert.assertEquals("属性[" + name + "]不一致.", expected.get(name), actual.get(name));
+			if (actual.get(name) instanceof Date) {
+				// sql date
+				Assert.assertEquals("属性[" + name + "]不一致.", DateUtil.sqldateToStr((Date) expected.get(name)),
+						DateUtil.sqldateToStr((Date) actual.get(name)));
+			} else if ((actual.get(name) instanceof Time)) {
+				// sql time
+				Assert.assertEquals("属性[" + name + "]不一致.", DateUtil.sqltimeToStr((Time) expected.get(name)),
+						DateUtil.sqltimeToStr((Time) actual.get(name)));
+			} else if (actual.get(name) instanceof LinkedHashMap) {
+				// 关联
+				assertEntityAllFields((FlyEntityResult) expected.get(name), (FlyEntityResult) actual.get(name));
+			} else if (actual.get(name) instanceof Collection && expected.get(name) instanceof Collection) {
+				// 子表,集合属性
+				Collection expectedItems = (Collection) actual.get(name);
+				Collection actualItems = ((Collection) actual.get(name));
+				Assert.assertEquals(expectedItems.size(), actualItems.size());
+				Iterator expectedIt = expectedItems.iterator();
+				Iterator actualIt = actualItems.iterator();
+				while (actualIt.hasNext() && expectedIt.hasNext()) {
+					assertEntityAllFields((FlyEntityResult) expectedIt.next(), (FlyEntityResult) actualIt.next());
+				}
+			} else {
+				Assert.assertEquals("属性[" + name + "]不一致.", expected.get(name), actual.get(name));
+			}
 		});
 		Assert.assertEquals(expected.size(), actual.size());
 	}
@@ -214,5 +268,17 @@ public class FlyEntityTestModel {
 
 	public void setFlyChangedEntityWithActions(FlyEntityResult flyChangedEntityWithActions) {
 		this.flyChangedEntityWithActions = flyChangedEntityWithActions;
+	}
+
+	/**
+	 * 获取实体Json格式
+	 * 
+	 * @param entity
+	 * @return
+	 */
+	public String getJSONEntity(Master entity) {
+		FlyEntityResult result = FlyEntityResult.fromEntity(AppUtil.getEntityMetaData(entity.getClass().getName()),
+				entity);
+		return result.toJson();
 	}
 }

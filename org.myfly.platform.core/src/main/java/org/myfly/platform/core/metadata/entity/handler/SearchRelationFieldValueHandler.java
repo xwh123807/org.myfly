@@ -1,5 +1,8 @@
 package org.myfly.platform.core.metadata.entity.handler;
 
+import java.util.LinkedHashMap;
+
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.SearchRelationFieldDefinition;
 
 /**
@@ -35,4 +38,20 @@ public class SearchRelationFieldValueHandler extends DefaultFieldValueHandler {
 		return srEntity;
 	}
 
+	@Override
+	public void setFieldValueForEntity(Object entity, Object value) {
+		if (value instanceof LinkedHashMap) {
+			EntityMetaData relationMetaData = getField().getRelationEntityMetaData();
+			Object ooEntity = relationMetaData.newEntityInstance();
+			relationMetaData.getFieldMap().values().forEach(field -> {
+				Object val = ((LinkedHashMap)value).get(field.getName());
+				if (val != null) {
+					field.getValueHandler().setFieldValue(ooEntity, val);
+				}
+			});
+			super.setFieldValueForEntity(entity, ooEntity);
+		} else {
+			super.setFieldValueForEntity(entity, value);
+		}
+	}
 }

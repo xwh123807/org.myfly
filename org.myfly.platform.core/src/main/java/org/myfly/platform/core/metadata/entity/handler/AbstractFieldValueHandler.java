@@ -35,7 +35,11 @@ public abstract class AbstractFieldValueHandler implements IFieldValueHandler {
 
 	public Object getFieldValueFromEntity(Object entity) {
 		try {
-			return getFieldDefinition().getGetter().invoke(entity);
+			Object value = getFieldDefinition().getGetter().invoke(entity);
+			if (FieldDataType.FILE.equals(getFieldDefinition().getDataType())) {
+				value = Base64Utils.encodeToString((byte[]) value);
+			}
+			return value;
 		} catch (Exception e) {
 			AssertUtil.parameterEmpty(getFieldDefinition().getGetter(), "field.getGetter()",
 					"属性[" + getFieldDefinition().getName() + "]没有定义Get方法");

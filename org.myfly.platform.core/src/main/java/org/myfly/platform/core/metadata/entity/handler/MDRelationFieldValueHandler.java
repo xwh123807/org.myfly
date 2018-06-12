@@ -2,11 +2,15 @@ package org.myfly.platform.core.metadata.entity.handler;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.myfly.platform.core.flydata.service.FlyEntityResult;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
+import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 
 public class MDRelationFieldValueHandler extends DefaultFieldValueHandler {
@@ -32,6 +36,28 @@ public class MDRelationFieldValueHandler extends DefaultFieldValueHandler {
 			return list;
 		} else {
 			return null;
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void setFieldValueForEntity(Object entity, Object value) {
+		if (value instanceof Collection) {
+			EntityMetaData relationMetaData = getField().getRelationEntityMetaData();
+			Set details = new HashSet<>();
+			((Collection)value).forEach(subEntity -> {
+				Object ooEntity = relationMetaData.newEntityInstance();
+				relationMetaData.getFieldMap().values().forEach(field -> {
+					Object val = ((LinkedHashMap<String, Object>)subEntity).get(field.getName());
+					if (val != null) {
+						field.getValueHandler().setFieldValue(ooEntity, val);
+					}
+				});
+				details.add(ooEntity);
+			});
+			super.setFieldValueForEntity(entity, details);
+		} else {
+			super.setFieldValueForEntity(entity, value);
 		}
 	}
 }

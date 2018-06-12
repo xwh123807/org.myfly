@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.myfly.platform.CoreApplication;
+import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class MasterJpaTest {
 	@Autowired
 	private IJpaDataAccessService service;
 
+	/**
+	 * 验证级联保存
+	 */
 	@Test
 	public void base() {
 		String key = UUIDUtil.newUUID();
@@ -55,6 +59,8 @@ public class MasterJpaTest {
 		Assert.assertEquals("name", entity2.getName());
 		Assert.assertNotNull(entity2.getDetail1());
 		Assert.assertEquals("title", entity2.getDetail1().getTitle());
+		Assert.assertNotNull(entity2.getDetails());
+		Assert.assertEquals(1, entity2.getDetails().size());
 
 		service.delOne(Master.class, key);
 
@@ -63,5 +69,40 @@ public class MasterJpaTest {
 		} catch (Exception e) {
 			Assert.assertEquals(EntityNotFoundException.class, e.getClass());
 		}
+	}
+	
+	@Test
+	public void cascade() {
+		String key = UUIDUtil.newUUID();
+		Master entity = new Master();
+		entity.setUid(key);
+		entity.setName("name");
+		//save
+		service.saveEntity(entity);
+		//find
+		Master master2 = service.findOne(Master.class, key);
+		Assert.assertNull(master2.getDetail1());
+		Assert.assertNull(master2.getDetails());
+		//update set detail1
+		entity.setName("name changed");
+		Detail detail1 = new Detail();
+		detail1.setUid(UUIDUtil.newUUID());
+		detail1.setTitle("title");
+		entity.setDetail1(detail1);
+		service.saveEntity(entity);
+		//find
+		Master master3 = service.findOne(Master.class, key);
+		Assert.assertNotNull(master3.getDetail1());
+		Assert.assertNull(master3.getDetails());
+		//update datatype
+		Master master4 = new Master();
+		master4.setUid(key);
+		master4.setDataType(FieldDataType.ACTIONS);
+		service.saveEntity(master4);
+		Master master5 = service.findOne(Master.class, key);
+		Assert.assertNull(master5.getName());
+		Assert.assertEquals(FieldDataType.ACTIONS, master5.getDataType());
+		Assert.assertNull(master5.getDetail1());
+		Assert.assertNull(master5.getDetails());
 	}
 }

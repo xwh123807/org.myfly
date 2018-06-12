@@ -165,8 +165,9 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	@Override
 	public <T> T updateEntity(T entity) {
 		AssertUtil.parameterEmpty(entity, "entity");
-		entityManager.merge(entity);
-		return entity;
+		//entityManager.merge(entity);
+		//return entity;
+		return (T) getSimpleJpaRepository(entity.getClass()).save(entity);
 	}
 
 	@Override

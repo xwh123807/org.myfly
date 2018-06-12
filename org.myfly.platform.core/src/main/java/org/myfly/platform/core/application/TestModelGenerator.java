@@ -86,6 +86,7 @@ public class TestModelGenerator {
 			master.setPercent((float) 45.23);
 			master.setRichText("hello");
 			master.setText("this is text");
+			master.setFile("this is a file".getBytes());
 			master.setDetails(new HashSet<>());
 			IntStream.range(0, detailCount).forEach(j -> {
 				Detail detail = new Detail();

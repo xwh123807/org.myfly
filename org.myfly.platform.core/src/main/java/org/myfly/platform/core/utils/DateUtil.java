@@ -68,6 +68,10 @@ public class DateUtil {
 	public static String sqldateToStr(java.sql.Date value) {
 		return dateToStr(value);
 	}
+	
+	public static String sqltimeToStr(java.sql.Time value) {
+		return timeToStr(value);
+	}
 
 	public static String timestampToStr(Timestamp value) {
 		return datetimeToStr(value);

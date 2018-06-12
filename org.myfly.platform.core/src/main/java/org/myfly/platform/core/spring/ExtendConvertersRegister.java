@@ -15,11 +15,15 @@ public class ExtendConvertersRegister {
 	 */
 	public static void registerExtendConverters(GenericConversionService conversionService) {
 		conversionService.addConverterFactory(new StringToDateConverterFactory());
+		conversionService.addConverterFactory(new StringToSqlDateConverterFactory());
+		conversionService.addConverterFactory(new StringToTimestampConverterFactory());
 		conversionService.addConverterFactory(new StringToCalendarConverterFactory());
 		conversionService.addConverterFactory(new StringToBooleanConverterFactory());
 		conversionService.addConverterFactory(new DateToStringConverterFactory());
 		conversionService.addConverterFactory(new CalendarToStringConverterFactory());
+		conversionService.addConverterFactory(new TimestampToStringConverterFactory());
 		conversionService.addConverterFactory(new StringToKeyEntityConverterFactory());
+		conversionService.addConverterFactory(new LongToTimestampConverterFactory());
 		//conversionService.addConverterFactory(new BaseEnumToStringConverterFactory());
 		//conversionService.addConverterFactory(new StringToBaseEnumConverterFactory());
 	}
