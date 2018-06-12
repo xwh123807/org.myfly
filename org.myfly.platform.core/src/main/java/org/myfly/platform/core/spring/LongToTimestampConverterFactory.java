@@ -13,10 +13,7 @@ public class LongToTimestampConverterFactory implements ConverterFactory<Long, T
 	}
 
 	private static final class LongToTimeStamp<T extends Timestamp> implements Converter<Long, T> {
-		private final Class<T> targetType;
-
 		public LongToTimeStamp(Class<T> targetType) {
-			this.targetType = targetType;
 		}
 
 		@SuppressWarnings("unchecked")

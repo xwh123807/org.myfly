@@ -184,7 +184,7 @@ public class DateUtil {
 		date.setTime(dateStrToDate(value));
 		return date;
 	}
-
+	
 	public static Timestamp datetimeStrToTimestamp(String value) {
 		return new Timestamp(datetimeStrToDate(value).getTime());
 	}

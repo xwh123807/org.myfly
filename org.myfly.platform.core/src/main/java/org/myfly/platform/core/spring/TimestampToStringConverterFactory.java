@@ -6,6 +6,11 @@ import org.myfly.platform.core.utils.DateUtil;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
 
+/**
+ * TODO 序列化时，timestamp没有转换成字符，没有调用到TimestampToStringConverterFactory，但单元测试切正常。  "created" : 1528813258722.
+ * @author xiangwanhong
+ *
+ */
 public class TimestampToStringConverterFactory implements ConverterFactory<Timestamp, String>{
 
 	@Override
@@ -14,11 +19,7 @@ public class TimestampToStringConverterFactory implements ConverterFactory<Times
 	}
 
 	private static final class DateToString<T extends Timestamp> implements Converter<T, String>{
-
-		private Class<T> targetType;
-
 		public DateToString(Class<T> targetType) {
-			this.targetType = targetType;
 		}
 
 		@Override
