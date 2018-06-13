@@ -1,7 +1,8 @@
 package org.myfly.platform.core.metadata.entity.handler;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
+import org.myfly.platform.core.flydata.service.FlyEntityResult;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.SearchRelationFieldDefinition;
 
@@ -25,30 +26,18 @@ public class SearchRelationFieldValueHandler extends DefaultFieldValueHandler {
 	public Object getFieldValueFromEntity(Object entity) {
 		// 取出关联实体
 		Object relEntity = super.getFieldValueFromEntity(entity);
-		SearchRelationEntity srEntity = null;
 		if (relEntity != null) {
-			srEntity = new SearchRelationEntity();
-			// 关联实体主键
-			srEntity.setUid((String) getField().getRelationEntityMetaData().getPkFieldDefinition().getValueHandler()
-					.getFieldValue(relEntity));
-			// 关联实体标签
-			srEntity.setTitle(
-					(String) getField().getRelationEntityLabelField().getValueHandler().getFieldValue(relEntity));
+			return FlyEntityResult.formSearchRelationEntity(getField(), relEntity);
+		} else {
+			return null;
 		}
-		return srEntity;
 	}
 
 	@Override
 	public void setFieldValueForEntity(Object entity, Object value) {
-		if (value instanceof LinkedHashMap) {
+		if (value instanceof Map) {
 			EntityMetaData relationMetaData = getField().getRelationEntityMetaData();
-			Object ooEntity = relationMetaData.newEntityInstance();
-			relationMetaData.getFieldMap().values().forEach(field -> {
-				Object val = ((LinkedHashMap)value).get(field.getName());
-				if (val != null) {
-					field.getValueHandler().setFieldValue(ooEntity, val);
-				}
-			});
+			Object ooEntity = FlyEntityResult.toSearchRelationEntity(relationMetaData, (Map<String, Object>) value);
 			super.setFieldValueForEntity(entity, ooEntity);
 		} else {
 			super.setFieldValueForEntity(entity, value);

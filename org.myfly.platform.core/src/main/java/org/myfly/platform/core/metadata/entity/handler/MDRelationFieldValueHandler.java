@@ -3,8 +3,8 @@ package org.myfly.platform.core.metadata.entity.handler;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -46,13 +46,7 @@ public class MDRelationFieldValueHandler extends DefaultFieldValueHandler {
 			EntityMetaData relationMetaData = getField().getRelationEntityMetaData();
 			Set details = new HashSet<>();
 			((Collection)value).forEach(subEntity -> {
-				Object ooEntity = relationMetaData.newEntityInstance();
-				relationMetaData.getFieldMap().values().forEach(field -> {
-					Object val = ((LinkedHashMap<String, Object>)subEntity).get(field.getName());
-					if (val != null) {
-						field.getValueHandler().setFieldValue(ooEntity, val);
-					}
-				});
+				Object ooEntity = FlyEntityResult.toEntity(relationMetaData, (Map<String, Object>)subEntity, false);
 				details.add(ooEntity);
 			});
 			super.setFieldValueForEntity(entity, details);

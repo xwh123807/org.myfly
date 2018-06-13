@@ -1,6 +1,6 @@
 package org.myfly.platform.core.metadata.entity.handler;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.myfly.platform.core.flydata.service.FlyEntityResult;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
@@ -34,15 +34,9 @@ public class OORelationFieldValueHandler extends DefaultFieldValueHandler {
 
 	@Override
 	public void setFieldValueForEntity(Object entity, Object value) {
-		if (value instanceof LinkedHashMap) {
+		if (value instanceof Map) {
 			EntityMetaData relationMetaData = getField().getRelationEntityMetaData();
-			Object ooEntity = relationMetaData.newEntityInstance();
-			relationMetaData.getFieldMap().values().forEach(field -> {
-				Object val = ((LinkedHashMap) value).get(field.getName());
-				if (val != null) {
-					field.getValueHandler().setFieldValue(ooEntity, val);
-				}
-			});
+			Object ooEntity = FlyEntityResult.toEntity(relationMetaData, (Map<String, Object>)value, false);
 			super.setFieldValueForEntity(entity, ooEntity);
 		} else {
 			super.setFieldValueForEntity(entity, value);

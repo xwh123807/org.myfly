@@ -72,7 +72,7 @@ public class MasterJpaTest {
 	}
 	
 	@Test
-	public void cascade() {
+	public void cascadeBaseField() {
 		String key = UUIDUtil.newUUID();
 		Master entity = new Master();
 		entity.setUid(key);
@@ -89,7 +89,7 @@ public class MasterJpaTest {
 		detail1.setUid(UUIDUtil.newUUID());
 		detail1.setTitle("title");
 		entity.setDetail1(detail1);
-		service.saveEntity(entity);
+		service.updateEntity(entity);
 		//find
 		Master master3 = service.findOne(Master.class, key);
 		Assert.assertNotNull(master3.getDetail1());
@@ -98,11 +98,69 @@ public class MasterJpaTest {
 		Master master4 = new Master();
 		master4.setUid(key);
 		master4.setDataType(FieldDataType.ACTIONS);
-		service.saveEntity(master4);
+		service.updateEntity(master4);
 		Master master5 = service.findOne(Master.class, key);
 		Assert.assertNull(master5.getName());
 		Assert.assertEquals(FieldDataType.ACTIONS, master5.getDataType());
 		Assert.assertNull(master5.getDetail1());
 		Assert.assertNull(master5.getDetails());
+	}
+	
+	@Test
+	public void updateSubTable() {
+		String key = UUIDUtil.newUUID();
+		Master master = new Master();
+		master.setUid(key);
+		master.setName("name");
+		service.saveEntity(master);
+		//增加子表记录
+		Set<Detail> details = new HashSet<>();
+		Detail detail = new Detail();
+		detail.setUid(UUIDUtil.newUUID());
+		detail.setMaster(master);
+		details.add(detail);
+		master.setDetails(details);
+		service.updateEntity(master);
+		//验证
+		Master master1 = service.findOne(Master.class, key);
+		Assert.assertNotNull(master1.getDetails());
+		Assert.assertEquals(1, master1.getDetails().size());
+		master1.getDetails().forEach(item -> {
+			Assert.assertNotNull(item.getUid());
+			Assert.assertEquals(master.getUid(), item.getMaster().getUid());
+		});
+		//再增加一条子表记录
+		Detail detail2 = new Detail();
+		detail2.setUid(UUIDUtil.newUUID());
+		detail2.setMaster(master1);
+		master1.getDetails().add(detail2);
+		service.updateEntity(master1);
+		//验证
+		Master master2 = service.findOne(Master.class, key);
+		Assert.assertNotNull(master2.getDetails());
+		Assert.assertEquals(2, master2.getDetails().size());
+		master1.getDetails().forEach(item -> {
+			Assert.assertNotNull(item.getUid());
+			Assert.assertEquals(master2.getUid(), item.getMaster().getUid());
+		});
+		//删除子表二，修改子表一
+		Detail[] details2 = master2.getDetails().toArray(new Detail[] {});
+		for (int index = 0; index < details2.length; index ++) {
+			Detail item = details2[index];
+			if (index == 0) {
+				master2.getDetails().remove(item);
+			}else if (index == 1) {
+				item.setTitle("title");
+			}
+		}
+		service.updateEntity(master2);
+		//验证
+		Master master3 = service.findOne(Master.class, key);
+		Assert.assertNotNull(master3.getDetails());
+		Assert.assertEquals(1, master3.getDetails().size());
+		master1.getDetails().forEach(item -> {
+			Assert.assertNotNull(item.getUid());
+			Assert.assertEquals(master2.getUid(), item.getMaster().getUid());
+		});
 	}
 }

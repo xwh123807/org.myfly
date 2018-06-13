@@ -24,6 +24,7 @@ import org.myfly.platform.core.domain.ImportInfo;
 import org.myfly.platform.core.flydata.service.EntityMap;
 import org.myfly.platform.core.flydata.service.EntityQueryMap;
 import org.myfly.platform.core.flydata.service.FlyEntityMap;
+import org.myfly.platform.core.flydata.service.FlyEntityResult;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.flydata.service.Search;
@@ -38,7 +39,6 @@ import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.entity.MDRelationFieldDefinition;
 import org.myfly.platform.core.metadata.entity.PKFieldDefinition;
 import org.myfly.platform.core.metadata.entity.RelationFieldDefinition;
-import org.myfly.platform.core.metadata.entity.handler.SearchRelationEntity;
 import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.search.service.IFullTextSearchService;
@@ -700,22 +700,22 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 				case FLYSEARCHRELATION:
 				case SEARCHRELATION:
 					// 增加三个字段，{name}字段表示数据库原始值；{name}__label字段表示显示名称；{name}__link字段表示超链接显示
-					SearchRelationEntity values = (SearchRelationEntity) fieldDefinition.getValueHandler().getFieldValue(entity);
+					FlyEntityResult values = (FlyEntityResult) fieldDefinition.getValueHandler().getFieldValue(entity);
 					if (values != null) {
 						// 原始值
-						value = values.getUid();
+						value = (String) values.get("uid");
 						// Label字段
 						String labelField = fieldDefinition.getName() + "__label";
 						if (!result.containsKey(labelField)) {
-							result.put(labelField, values.getTitle());
+							result.put(labelField, (String) values.get("title"));
 						}
 						if (!printMode && !FieldDataType.AUTORELATION.equals(fieldDefinition.getDataType())) {
 							// 为查找关系实体增加超链接
 							linkValue = EntityLinkUtil.getEntityActionLinkHtml(EntityAction.VIEW,
-									fieldDefinition.getType().getName(), values.getUid(), values.getTitle(), viewName, false,
+									fieldDefinition.getType().getName(), (String)(values.get("uid")), (String)(values.get("title")), viewName, false,
 									false);
 						} else {
-							linkValue = values.getTitle();
+							linkValue = (String) values.get("title");
 						}
 						if (!result.containsKey(linkField)) {
 							result.put(linkField, linkValue);
@@ -724,9 +724,6 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 					break;
 				case MDRELATION:
 					// 子表，取出子表数据
-					break;
-				case FILE:
-					value = Base64Utils.encodeToString((byte[]) tmp);
 					break;
 				default:
 					break;

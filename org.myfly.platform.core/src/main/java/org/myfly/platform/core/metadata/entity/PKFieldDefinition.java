@@ -218,6 +218,15 @@ public class PKFieldDefinition extends BaseDenifition {
 	public void setPKValue(Object entity, String uid) {
 		getValueHandler().setFieldValue(entity, uid);
 	}
+	
+	/**
+	 * 设置实体主键值
+	 * @param entity
+	 * @param keyParams
+	 */
+	public void setPKValue(Object entity, Map keyParams) {
+		getValueHandler().setFieldValue(entity, keyParams);
+	}
 
 	/**
 	 * 获取实体主键值

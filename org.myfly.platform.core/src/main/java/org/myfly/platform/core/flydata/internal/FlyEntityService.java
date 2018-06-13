@@ -24,10 +24,16 @@ public class FlyEntityService implements IFlyEntityService {
 	private IEntityMetaDataService metaService;
 
 	@Override
-	public String saveEntity(String entityName, String viewName, String jsonEntity) {
+	public String saveEntity(String entityName, String formViewName, FlyEntityResult flyEntity) {
 		EntityMetaData metaData = metaService.getEntityMetaData(entityName);
-		Object entity = jpaService.saveEntity(FlyEntityResult.toEntity(metaData, jsonEntity));
+		Object entity = jpaService.saveEntity(FlyEntityResult.toEntity(metaData, flyEntity));
 		return metaData.getPkFieldDefinition().getPKValue(entity);
+	}
+
+	@Override
+	public FlyEntityResult saveEntityAndReturn(String entityName, String formViewName, FlyEntityResult flyEntity) {
+		String uid = saveEntity(entityName, formViewName, flyEntity);
+		return find(entityName, uid, formViewName, true, null);
 	}
 
 	@Override
@@ -40,12 +46,17 @@ public class FlyEntityService implements IFlyEntityService {
 	}
 
 	@Override
-	public void updateEntity(String entityName, String uid, String viewName, String jsonEntity) {
+	public void updateEntity(String entityName, String uid, String viewName, FlyEntityResult flyEntity) {
 		EntityMetaData metaData = metaService.getEntityMetaData(entityName);
 		Serializable pkValue = metaData.getPkFieldDefinition().buildPK(uid);
-		jpaService.updateEntity(pkValue, FlyEntityResult.toEntity(metaData, jsonEntity));
+		jpaService.updateEntity(pkValue, FlyEntityResult.toEntity(metaData, flyEntity));
 	}
 	
+	@Override
+	public void mergeEntity(String entityName, String uid, String viewName, FlyEntityResult flyEntity) {
+		
+	}
+
 	@Override
 	public void del(String entityName, String uid) {
 		EntityMetaData metaData = metaService.getEntityMetaData(entityName);

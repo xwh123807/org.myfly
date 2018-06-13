@@ -28,7 +28,12 @@ public class FlyEntityTestModelTest {
 		Assert.assertNotNull(master1);
 		Assert.assertEquals(Detail.class, master1.getDetail1().getClass());
 		Assert.assertEquals(1, master1.getDetails().size());
-		Assert.assertEquals(Detail.class, master1.getDetails().toArray(new Detail[] {})[0].getClass());
+		Detail subDetail = master1.getDetails().toArray(new Detail[] {})[0];
+		Assert.assertNotNull(subDetail);
+		Assert.assertEquals(Detail.class, subDetail.getClass());
+		Assert.assertNotNull(subDetail.getMaster());
+		Assert.assertEquals(master1.getUid(), subDetail.getMaster().getUid());
+		Assert.assertEquals(master1, subDetail.getMaster());
 		
 		FlyEntityResult result2 = FlyEntityResult.fromEntity(metaData, master1);
 		Assert.assertNotNull(result2);
@@ -47,5 +52,11 @@ public class FlyEntityTestModelTest {
 		Assert.assertTrue(result3.containsKey("details"));
 		Assert.assertNull(result3.get("detail1"));
 		Assert.assertNull(result3.get("details"));
+	}
+	
+	@Test
+	public void entitySample() {
+		FlyEntityTestModel model = new FlyEntityTestModel();
+		Assert.assertEquals(model.getTestEntity(), model.getTestEntity());
 	}
 }

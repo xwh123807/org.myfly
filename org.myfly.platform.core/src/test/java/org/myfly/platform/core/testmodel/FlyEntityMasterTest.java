@@ -31,7 +31,7 @@ public class FlyEntityMasterTest {
 	public void cudq() {
 		FlyEntityTestModel model = new FlyEntityTestModel();
 		// create
-		String uid = entityService.saveEntity(masterEntityName, null, model.getJSONEntity(model.getTestEntity()));
+		String uid = entityService.saveEntity(masterEntityName, null, model.getFlyTestEntity());
 		Assert.assertNotNull(uid);
 		// find
 		FlyEntityResult flyEntity = entityService.find(masterEntityName, uid, null, true, null);
@@ -43,7 +43,8 @@ public class FlyEntityMasterTest {
 		// 验证查询返回的是否和存储的完全一致
 		model.assertEntityAllFields(model.getFlyTestEntity(), flyEntity);
 		// update
-		entityService.updateEntity(masterEntityName, uid, null, model.getJSONEntity(model.getChangedEntity()));
+		model.getFlyChangedEntity().printJson();
+		entityService.updateEntity(masterEntityName, uid, null, model.getFlyChangedEntity());
 		// 查询修改后的实体
 		FlyEntityResult flyEntity2 = entityService.find(masterEntityName, uid, null, true, null);
 		Assert.assertNotNull(flyEntity2);

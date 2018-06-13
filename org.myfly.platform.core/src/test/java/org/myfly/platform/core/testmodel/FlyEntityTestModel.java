@@ -2,6 +2,7 @@ package org.myfly.platform.core.testmodel;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.HashSet;
@@ -10,6 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.Set;
 
 import org.junit.Assert;
+import org.myfly.platform.core.domain.BaseEnum;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.flydata.service.FlyEntityResult;
 import org.myfly.platform.core.utils.AppUtil;
@@ -202,6 +204,14 @@ public class FlyEntityTestModel {
 				// sql time
 				Assert.assertEquals("属性[" + name + "]不一致.", DateUtil.sqltimeToStr((Time) expected.get(name)),
 						DateUtil.sqltimeToStr((Time) actual.get(name)));
+			} else if (actual.get(name) instanceof String && expected.get(name) instanceof Date) {
+				Assert.assertEquals("属性[" + name + "]不一致.", DateUtil.sqldateToStr((Date) expected.get(name)),
+						actual.get(name));
+			} else if (actual.get(name) instanceof Long && expected.get(name) instanceof Timestamp) {
+				Assert.assertEquals("属性[" + name + "]不一致.", DateUtil.timestampToStr((Timestamp) expected.get(name)),
+						DateUtil.timestampToStr(new Timestamp((long) actual.get(name))));
+			} else if (actual.get(name) instanceof String && expected.get(name) instanceof BaseEnum) {
+				Assert.assertEquals((BaseEnum)(expected.get(name)), actual.get(name));
 			} else if (actual.get(name) instanceof LinkedHashMap) {
 				// 关联
 				assertEntityAllFields((FlyEntityResult) expected.get(name), (FlyEntityResult) actual.get(name));

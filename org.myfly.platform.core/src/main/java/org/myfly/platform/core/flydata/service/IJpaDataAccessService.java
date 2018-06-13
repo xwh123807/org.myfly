@@ -93,7 +93,7 @@ public interface IJpaDataAccessService {
 	<T> T saveEntity(Class<T> entityClass, Map<String, Object> values);
 
 	/**
-	 * 修改实体
+	 * 修改实体，只覆盖部分属性
 	 * 
 	 * @param tableName
 	 * @param values
@@ -102,7 +102,7 @@ public interface IJpaDataAccessService {
 	<T> T updateEntity(Class<T> entityClass, Serializable uid, Map<String, Object> values);
 
 	/**
-	 * 修改实体
+	 * 修改实体，用新实体替换原有实体
 	 * 
 	 * @param uid
 	 * @param entity
@@ -111,7 +111,7 @@ public interface IJpaDataAccessService {
 	<T> T updateEntity(Serializable uid, T entity);
 
 	/**
-	 * 修改实体
+	 * 修改实体，用新实体替换原有实体
 	 * 
 	 * @param entity
 	 * @return

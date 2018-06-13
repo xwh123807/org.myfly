@@ -1,5 +1,8 @@
 package org.myfly.platform.core.metadata.entity.handler;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.myfly.platform.core.flydata.service.FlyEntityResult;
 import org.myfly.platform.core.metadata.entity.EntityFieldDefinition;
 import org.myfly.platform.core.metadata.entity.KeyType;
@@ -30,6 +33,9 @@ public class PKFieldValueHandler implements IFieldValueHandler {
 		this.pkFieldDefinition = pkFieldDefinition;
 	}
 
+	/**
+	 * 返回实体主键值
+	 */
 	@Override
 	public Object getFieldValue(Object entity) {
 		if (entity == null) {
@@ -56,23 +62,35 @@ public class PKFieldValueHandler implements IFieldValueHandler {
 		}
 	}
 
+	/**
+	 * 设置实体主键值
+	 */
 	@Override
 	public void setFieldValue(Object entity, Object value) {
 		AssertUtil.parameterNotEmpty(null, entity, value);
 		try {
-			if (KeyType.SINGLE.equals(getPkFieldDefinition().getKeyType())) {
-				pkFieldDefinition.getFields()[0].getValueHandler().setFieldValue(entity, value);
-			} else if (KeyType.IDCLASS.equals(getPkFieldDefinition().getKeyType())) {
-				String[] values = ((String) value).split("_");
-				if (pkFieldDefinition.getFields().length != values.length) {
-					throw new IllegalArgumentException(
-							values + "与主键字段个数" + pkFieldDefinition.getFields().length + "不相同.");
+			if (value instanceof String) {
+				// uid模式
+				if (KeyType.SINGLE.equals(getPkFieldDefinition().getKeyType())) {
+					pkFieldDefinition.getFields()[0].getValueHandler().setFieldValue(entity, value);
+				} else if (KeyType.IDCLASS.equals(getPkFieldDefinition().getKeyType())) {
+					String[] values = ((String) value).split("_");
+					if (pkFieldDefinition.getFields().length != values.length) {
+						throw new IllegalArgumentException(
+								values + "与主键字段个数" + pkFieldDefinition.getFields().length + "不相同.");
+					}
+					for (int i = 0; i < pkFieldDefinition.getFields().length; i++) {
+						pkFieldDefinition.getFields()[i].getValueHandler().setFieldValue(entity, values[i]);
+					}
+				} else {
+					AssertUtil.notSupport(KeyType.EMBED.getTitle() + "还未实现");
 				}
-				for (int i = 0; i < pkFieldDefinition.getFields().length; i++) {
-					pkFieldDefinition.getFields()[i].getValueHandler().setFieldValue(entity, values[i]);
+			} else if (value instanceof Map) {
+				// 主键为Map模式
+				if (KeyType.SINGLE.equals(getPkFieldDefinition().getKeyType())) {
+					pkFieldDefinition.getFields()[0].getValueHandler().setFieldValue(entity,
+							((Map) value).get(pkFieldDefinition.getFields()[0].getName()));
 				}
-			} else {
-				AssertUtil.notSupport(KeyType.EMBED.getTitle() + "还未实现");
 			}
 		} catch (Exception e) {
 			throw new IllegalArgumentException("设置主键值失败，错误信息：" + e.getMessage());

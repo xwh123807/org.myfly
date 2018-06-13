@@ -112,9 +112,9 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	public <T> T saveEntity(final T entity) {
 		AssertUtil.parameterEmpty(entity, "entity");
 		beforeInsertFlyEntity(entity);
-		//entityManager.persist(entity);
-		getSimpleJpaRepository(entity.getClass()).save(entity);
+		entityManager.persist(entity);
 		return entity;
+		//return (T) getSimpleJpaRepository(entity.getClass()).save(entity);
 	}
 
 	/*
@@ -165,9 +165,8 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	@Override
 	public <T> T updateEntity(T entity) {
 		AssertUtil.parameterEmpty(entity, "entity");
-		//entityManager.merge(entity);
-		//return entity;
-		return (T) getSimpleJpaRepository(entity.getClass()).save(entity);
+		return entityManager.merge(entity);
+		//return (T) getSimpleJpaRepository(entity.getClass()).save(entity);
 	}
 
 	@Override

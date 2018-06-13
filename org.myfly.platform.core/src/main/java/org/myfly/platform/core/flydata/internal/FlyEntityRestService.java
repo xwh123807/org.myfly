@@ -48,8 +48,8 @@ public class FlyEntityRestService {
 	@RequestMapping(value = "{entityName}", method = RequestMethod.POST)
 	public String saveEntity(@PathVariable("entityName") String entityName,
 			@RequestParam(name = "view", required = false, defaultValue = "all") String formViewName,
-			@RequestBody String jsonEntity) {
-		return flyEntityService.saveEntity(entityName, formViewName, jsonEntity);
+			@RequestBody FlyEntityResult flyEntity) {
+		return flyEntityService.saveEntity(entityName, formViewName, flyEntity);
 	}
 
 	/**

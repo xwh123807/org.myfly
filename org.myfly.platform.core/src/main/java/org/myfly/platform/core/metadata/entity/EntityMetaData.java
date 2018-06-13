@@ -348,6 +348,18 @@ public class EntityMetaData {
 		getPkFieldDefinition().getValueHandler().setFieldValue(entity, uid);
 		return (T) entity;
 	}
+	
+
+	/**
+	 * 创建实体实例，并设置主键值
+	 * @param flyEntity
+	 * @return
+	 */
+	public <T> T newEntityInstance(Map<String, Object> flyEntity) {
+		Object entity = newEntityInstance();
+		getPkFieldDefinition().setPKValue(entity, flyEntity);
+		return (T) entity;
+	}
 
 	/**
 	 * 获取标签字段定义
@@ -519,4 +531,5 @@ public class EntityMetaData {
 	public String toString() {
 		return "entityName: " + getEntityName();
 	}
+
 }
