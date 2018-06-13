@@ -8,8 +8,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang3.EnumUtils;
 import org.junit.Assert;
 import org.myfly.platform.core.domain.BaseEnum;
 import org.myfly.platform.core.domain.FieldDataType;
@@ -174,6 +176,8 @@ public class FlyEntityTestModel {
 		entity.setDataType(FieldDataType.TEXT);
 		entity.setActive(true);
 		entity.setCreated(DateUtil.nowSqlTimestamp());
+		entity.setEncpytText("encpy text");
+		entity.setDetails(null);
 		return entity;
 	}
 
@@ -194,7 +198,8 @@ public class FlyEntityTestModel {
 	 * @param actual
 	 *            实际值
 	 */
-	public void assertEntityAllFields(FlyEntityResult expected, FlyEntityResult actual) {
+	@SuppressWarnings("unchecked")
+	public void assertFlyEntityAllFields(Map expected, Map actual) {
 		expected.keySet().forEach(name -> {
 			if (actual.get(name) instanceof Date) {
 				// sql date
@@ -210,11 +215,17 @@ public class FlyEntityTestModel {
 			} else if (actual.get(name) instanceof Long && expected.get(name) instanceof Timestamp) {
 				Assert.assertEquals("属性[" + name + "]不一致.", DateUtil.timestampToStr((Timestamp) expected.get(name)),
 						DateUtil.timestampToStr(new Timestamp((long) actual.get(name))));
-			} else if (actual.get(name) instanceof String && expected.get(name) instanceof BaseEnum) {
-				Assert.assertEquals((BaseEnum)(expected.get(name)), actual.get(name));
-			} else if (actual.get(name) instanceof LinkedHashMap) {
+			} else if (actual.get(name) instanceof String && expected.get(name) instanceof Time) {
+				Assert.assertEquals("属性[" + name + "]不一致.", DateUtil.sqltimeToStr((Time) expected.get(name)),
+						DateUtil.sqltimeToStr(DateUtil.timeStrToSqlTime((String) actual.get(name))));
+			} else if (actual.get(name) instanceof String && expected.get(name).getClass().isEnum()) {
+				Assert.assertEquals("属性[" + name + "]不一致.", ((Enum) expected.get(name)).name(), actual.get(name));
+			} else if (actual.get(name) instanceof Double && expected.get(name) instanceof Float) {
+				Assert.assertEquals("属性[" + name + "]不一致.", ((Float) (expected.get(name))).toString(),
+						actual.get(name).toString());
+			} else if (actual.get(name) instanceof Map) {
 				// 关联
-				assertEntityAllFields((FlyEntityResult) expected.get(name), (FlyEntityResult) actual.get(name));
+				assertFlyEntityAllFields((Map) expected.get(name), (Map) actual.get(name));
 			} else if (actual.get(name) instanceof Collection && expected.get(name) instanceof Collection) {
 				// 子表,集合属性
 				Collection expectedItems = (Collection) actual.get(name);
@@ -223,7 +234,7 @@ public class FlyEntityTestModel {
 				Iterator expectedIt = expectedItems.iterator();
 				Iterator actualIt = actualItems.iterator();
 				while (actualIt.hasNext() && expectedIt.hasNext()) {
-					assertEntityAllFields((FlyEntityResult) expectedIt.next(), (FlyEntityResult) actualIt.next());
+					assertFlyEntityAllFields((Map) expectedIt.next(), (Map) actualIt.next());
 				}
 			} else {
 				Assert.assertEquals("属性[" + name + "]不一致.", expected.get(name), actual.get(name));

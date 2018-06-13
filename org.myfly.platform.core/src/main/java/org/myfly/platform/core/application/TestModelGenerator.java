@@ -35,11 +35,11 @@ public class TestModelGenerator {
 	/**
 	 * master主记录数
 	 */
-	private int masterCount = 50;
+	private int masterCount = 15;
 	/**
 	 * 每个主记录的明细记录数
 	 */
-	private int detailCount = 50;
+	private int detailCount = 15;
 	@Autowired
 	private IJpaDataAccessService dataService;
 

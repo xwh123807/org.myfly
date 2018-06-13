@@ -41,7 +41,7 @@ public class FlyEntityMasterTest {
 		Assert.assertNotNull(flyEntity.get("details"));
 		Assert.assertEquals(1, ((Collection) flyEntity.get("details")).size());
 		// 验证查询返回的是否和存储的完全一致
-		model.assertEntityAllFields(model.getFlyTestEntity(), flyEntity);
+		model.assertFlyEntityAllFields(model.getFlyTestEntity(), flyEntity);
 		// update
 		model.getFlyChangedEntity().printJson();
 		entityService.updateEntity(masterEntityName, uid, null, model.getFlyChangedEntity());

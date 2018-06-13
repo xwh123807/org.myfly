@@ -53,6 +53,36 @@ public class FlyEntityRestService {
 	}
 
 	/**
+	 * 修改实体
+	 * 
+	 * @param entityName
+	 * @param uid
+	 * @param formViewName
+	 * @param flyEntity
+	 */
+	@RequestMapping(value = "{entityName}/{uid}", method = RequestMethod.PUT)
+	public void updateEntity(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid,
+			@RequestParam(name = "view", required = false, defaultValue = "all") String formViewName,
+			@RequestBody FlyEntityResult flyEntity) {
+		flyEntityService.updateEntity(entityName, uid, formViewName, flyEntity);
+	}
+
+	/**
+	 * 覆盖实体，只覆盖部分属性
+	 * 
+	 * @param entityName
+	 * @param uid
+	 * @param formViewName
+	 * @param flyEntity
+	 */
+	@RequestMapping(value = "{entityName}/{uid}", method = RequestMethod.PATCH)
+	public void patchEntity(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid,
+			@RequestParam(name = "view", required = false, defaultValue = "all") String formViewName,
+			@RequestBody FlyEntityResult flyEntity) {
+		flyEntityService.mergeEntity(entityName, uid, formViewName, flyEntity);
+	}
+
+	/**
 	 * 查找实体
 	 * 
 	 * @param entityName

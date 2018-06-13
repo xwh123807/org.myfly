@@ -41,7 +41,7 @@ public class FlyEntityTestModelTest {
 		Assert.assertNotNull(json2);
 		System.out.println(json2);
 		
-		model.assertEntityAllFields(result, result2);
+		model.assertFlyEntityAllFields(result, result2);
 		
 		Master master3 = model.getChangedEntity();
 		Assert.assertNotNull(master3);

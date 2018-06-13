@@ -44,16 +44,17 @@ public class FlyEntityResult extends HashMap<String, Object> {
 	public String toJson() {
 		return JSONUtil.toJSON(this);
 	}
-	
+
 	/**
 	 * 打印json
 	 */
 	public void printJson() {
 		System.out.println(toJson());
 	}
-	
+
 	/**
 	 * 将FlyEntity转换为实体类
+	 * 
 	 * @param entityName
 	 * @return
 	 */
@@ -73,30 +74,34 @@ public class FlyEntityResult extends HashMap<String, Object> {
 		FlyEntityResult result = JSONUtil.fromJSON(jsonEntity, FlyEntityResult.class);
 		return toEntity(metaData, result);
 	}
-	
+
 	/**
 	 * 将FlyEntity转化为实体类对象
+	 * 
 	 * @param metaData
 	 * @param flyEntity
 	 * @return
 	 */
 	public static <T> T toEntity(EntityMetaData metaData, FlyEntityResult flyEntity) {
-		return toEntity(metaData, (Map<String, Object>)flyEntity, true);
+		return toEntity(metaData, (Map<String, Object>) flyEntity, true);
 	}
-	
+
+	@SuppressWarnings("rawtypes")
 	private static ThreadLocal<Map> localEntityCache = new ThreadLocal<Map>() {
 		protected Map initialValue() {
 			return new HashMap<>();
 		};
 	};
-	
+
 	/**
 	 * 将Map转换为实体类对象
+	 * 
 	 * @param metaData
 	 * @param flyEntity
 	 * @param isNewThread
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T> T toEntity(EntityMetaData metaData, Map<String, Object> flyEntity, boolean isNewThread) {
 		T entity = metaData.newEntityInstance(flyEntity);
 		String uid = metaData.getPkFieldDefinition().getPKValue(entity);
@@ -106,36 +111,55 @@ public class FlyEntityResult extends HashMap<String, Object> {
 		}
 		if (localEntityCache.get().containsKey(key)) {
 			return (T) localEntityCache.get().get(key);
-		}else {
+		} else {
 			localEntityCache.get().put(key, entity);
 		}
 		metaData.getFieldMap().values().forEach(field -> {
-			//主键字段已经在对象构建时设置了值，此处跳过不重复设置
+			// 主键字段已经在对象构建时设置了值，此处跳过不重复设置
 			if (!field.isIdField() && flyEntity.containsKey(field.getName())) {
 				Object value = flyEntity.get(field.getName());
-				if (value != null) {
-					field.getValueHandler().setFieldValue(entity, value);
-				}
+				field.getValueHandler().setFieldValue(entity, value);
 			}
 		});
 		return entity;
 	}
-	
+
 	/**
 	 * 只处理健值，其他属性忽略
+	 * 
 	 * @param metaData
 	 * @param flyEntity
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T> T toSearchRelationEntity(EntityMetaData metaData, Map<String, Object> flyEntity) {
 		T entity = metaData.newEntityInstance(flyEntity);
 		String uid = metaData.getPkFieldDefinition().getPKValue(entity);
-		String key = metaData.getEntityName() +"_" + uid;
+		String key = metaData.getEntityName() + "_" + uid;
 		if (localEntityCache.get().containsKey(key)) {
 			return (T) localEntityCache.get().get(key);
-		}else {
+		} else {
 			localEntityCache.get().put(key, entity);
 		}
+		return entity;
+	}
+
+	/**
+	 * 合并实体
+	 * 
+	 * @param metaData
+	 * @param entity
+	 * @param flyEntity
+	 * @return
+	 */
+	public static Object mergeEntity(EntityMetaData metaData, Object entity, FlyEntityResult flyEntity) {
+		metaData.getFieldMap().values().forEach(field -> {
+			// 主键字段已经在对象构建时设置了值，此处跳过不重复设置
+			if (!field.isIdField() && flyEntity.containsKey(field.getName())) {
+				Object value = flyEntity.get(field.getName());
+				field.getValueHandler().setFieldValue(entity, value);
+			}
+		});
 		return entity;
 	}
 
@@ -163,9 +187,10 @@ public class FlyEntityResult extends HashMap<String, Object> {
 	public static FlyEntityResult fromEntity(Object entityObj) {
 		return fromEntity(AppUtil.getEntityMetaData(entityObj.getClass().getName()), entityObj);
 	}
-	
+
 	/**
 	 * 将SearchRelation关联实体转换为FlyEntityResult
+	 * 
 	 * @param field
 	 * @param relEntity
 	 * @return

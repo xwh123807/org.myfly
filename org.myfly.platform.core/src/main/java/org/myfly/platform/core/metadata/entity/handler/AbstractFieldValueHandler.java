@@ -69,7 +69,7 @@ public abstract class AbstractFieldValueHandler implements IFieldValueHandler {
 					getFieldDefinition().getSetter().invoke(entity, newValue);
 				}
 			} else {
-				getFieldDefinition().getSetter().invoke(entity, null);
+				getFieldDefinition().getSetter().invoke(entity, value);
 			}
 		} catch (Exception e) {
 			AssertUtil.parameterEmpty(getFieldDefinition().getSetter(), "field.getSetter()",
@@ -84,6 +84,7 @@ public abstract class AbstractFieldValueHandler implements IFieldValueHandler {
 		return null;
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getFieldValue(Object entity) {
 		if (entity == null) {

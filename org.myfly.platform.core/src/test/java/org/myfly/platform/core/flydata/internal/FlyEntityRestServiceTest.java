@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -44,6 +45,7 @@ public class FlyEntityRestServiceTest {
 	@Test
 	public void baseAddUpdateDelete() {
 		FlyEntityTestModel model = new FlyEntityTestModel();
+		// create
 		FlyEntityResult entity = FlyEntityResult.fromEntity(model.getTestEntity());
 		HttpEntity<FlyEntityResult> httpEntity = new HttpEntity<FlyEntityResult>(entity);
 		ResponseEntity<String> result = service.postForEntity(getUri("{entityName}", Master.class.getName()),
@@ -51,14 +53,25 @@ public class FlyEntityRestServiceTest {
 		Assert.assertEquals(200, result.getStatusCodeValue());
 		String uid = result.getBody();
 		Assert.assertNotNull(uid);
-
+		// find
 		ResponseEntity<FlyEntityResult> result2 = service
 				.getForEntity(getUri("{entityName}/{uid}", Master.class.getName(), uid), FlyEntityResult.class);
 		Assert.assertEquals(200, result2.getStatusCodeValue());
-		
 		FlyEntityResult expectedFlyEntity = model.getFlyTestEntity();
-		model.assertEntityAllFields(expectedFlyEntity, result2.getBody());
-		
+		model.assertFlyEntityAllFields(expectedFlyEntity, result2.getBody());
+		// patch
+		HttpEntity<FlyEntityResult> requestEntity = new HttpEntity<FlyEntityResult>(model.getFlyChangedEntity());
+		ResponseEntity<String> result3 = service.exchange(getUri("{entityName}/{uid}", Master.class.getName(), uid),
+				HttpMethod.PATCH, requestEntity, String.class);
+		Assert.assertEquals(200, result3.getStatusCodeValue());
+		// find patch
+		ResponseEntity<FlyEntityResult> result4 = service
+				.getForEntity(getUri("{entityName}/{uid}", Master.class.getName(), uid), FlyEntityResult.class);
+		Assert.assertEquals(200, result4.getStatusCodeValue());
+		model.assertFlyEntityAllFields(model.getFlyChangedEntity(), result4.getBody());
+		Assert.assertNull(result4.getBody().get("detail1"));
+		Assert.assertNull(result4.getBody().get("details"));
+		// del
 		service.delete(getUri("{entityName}/{uid}", Master.class.getName(), uid));
 	}
 }

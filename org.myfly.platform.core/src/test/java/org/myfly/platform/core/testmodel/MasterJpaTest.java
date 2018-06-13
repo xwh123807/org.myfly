@@ -162,5 +162,11 @@ public class MasterJpaTest {
 			Assert.assertNotNull(item.getUid());
 			Assert.assertEquals(master2.getUid(), item.getMaster().getUid());
 		});
+		//清空子表
+		master3.setDetails(null);
+		service.updateEntity(master3);
+		//find
+		Master master4 = service.findOne(Master.class, key);
+		Assert.assertNull(master4.getDetails());
 	}
 }

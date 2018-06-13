@@ -54,7 +54,11 @@ public class FlyEntityService implements IFlyEntityService {
 	
 	@Override
 	public void mergeEntity(String entityName, String uid, String viewName, FlyEntityResult flyEntity) {
-		
+		EntityMetaData metaData = metaService.getEntityMetaData(entityName);
+		Serializable pkValue = metaData.getPkFieldDefinition().buildPK(uid);
+		Object obj = jpaService.findOne(metaData.getEntityClass(), pkValue);
+		Object mergedObj = FlyEntityResult.mergeEntity(metaData, obj, flyEntity);
+		jpaService.updateEntity(mergedObj);
 	}
 
 	@Override
