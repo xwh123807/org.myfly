@@ -247,7 +247,7 @@ public class FlyEntityTestModel {
 				assertFlyEntityAllFields((Map) expected.get(name), (Map) actual.get(name));
 			} else if (actual.get(name) instanceof Collection && expected.get(name) instanceof Collection) {
 				// 子表,集合属性
-				Collection expectedItems = (Collection) actual.get(name);
+				Collection expectedItems = (Collection) expected.get(name);
 				Collection actualItems = ((Collection) actual.get(name));
 				Assert.assertEquals(expectedItems.size(), actualItems.size());
 				Iterator expectedIt = expectedItems.iterator();

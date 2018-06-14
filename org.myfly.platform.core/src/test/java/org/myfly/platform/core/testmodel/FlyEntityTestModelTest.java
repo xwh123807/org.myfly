@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.ComparisonFailure;
 import org.junit.Test;
 import org.myfly.platform.core.flydata.service.FlyEntityResult;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
@@ -70,19 +71,19 @@ public class FlyEntityTestModelTest {
 		Assert.assertEquals(model.getTestEntity(), model.getTestEntity());
 	}
 	
-	@Test
+	@Test(expected=ComparisonFailure.class)
 	public void detail1() {
 		FlyEntityResult entitya = model.getFlyTestEntity();
-		FlyEntityResult entityb = (FlyEntityResult) entitya.clone();
+		FlyEntityResult entityb = entitya.copy();
 		Map detail1 = (Map) entityb.get("detail1");
 		detail1.put("title", "test");
 		model.assertFlyEntityAllFields(entitya, entityb);
 	}
 	
-	@Test
+	@Test(expected=AssertionError.class)
 	public void details() {
 		FlyEntityResult entitya = model.getFlyTestEntity();
-		FlyEntityResult entityb = new FlyEntityResult(entitya);
+		FlyEntityResult entityb = entitya.copy();
 		Collection details = (Collection) entityb.get("details");
 		FlyEntityResult detail = new FlyEntityResult();
 		detail.put("uid", UUIDUtil.newUUID());

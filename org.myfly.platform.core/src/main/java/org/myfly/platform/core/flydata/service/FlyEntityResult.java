@@ -27,7 +27,7 @@ public class FlyEntityResult extends HashMap<String, Object> {
 	public FlyEntityResult(HashMap<String, Object> from) {
 		putAll(from);
 	}
-
+	
 	public FlyEntityResult() {
 	}
 
@@ -43,6 +43,14 @@ public class FlyEntityResult extends HashMap<String, Object> {
 	 */
 	public String toJson() {
 		return JSONUtil.toJSON(this);
+	}
+	
+	/**
+	 * 同clone
+	 * @return
+	 */
+	public FlyEntityResult copy() {
+		return JSONUtil.fromJSON(toJson(), FlyEntityResult.class);
 	}
 
 	/**
