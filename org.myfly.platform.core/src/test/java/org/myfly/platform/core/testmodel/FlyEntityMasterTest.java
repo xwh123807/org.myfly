@@ -257,14 +257,44 @@ public class FlyEntityMasterTest {
 		Assert.assertNull(flyEntityb.get("details"));
 		model.assertFlyEntityAllFields(flyEntityc, flyEntityb);
 	}
+	
+	@Test
+	public void mergeDetailSubTableForUpdate() {
+		FlyEntityResult flyEntitya = model.getFlyTestEntity();
+		Collection<Map> details = (Collection<Map>) flyEntitya.get("details");
+		details.forEach(detail -> {
+			detail.put("title", "detail title merged");
+		});
+		entityService.mergeEntity(masterEntityName, uid, null, flyEntitya);
+		
+		FlyEntityResult flyEntityb = entityService.find(masterEntityName, uid, null, true, null);
+		FlyEntityResult flyEntityc = flyEntitya;
+		Assert.assertNotNull(flyEntityb.get("details"));
+		details = (Collection) flyEntityb.get("details");
+		Assert.assertEquals(1, details.size());
+		model.assertFlyEntityAllFields(flyEntityc, flyEntityb);
+	}
 
 	@Test
 	public void mergeDetailSubTableForAddSubDetail() {
-
+		FlyEntityResult flyEntitya = model.getFlyTestEntity();
+		Collection details = (Collection) flyEntitya.get("details");
+		FlyEntityResult detail = new FlyEntityResult();
+		detail.put("uid", UUIDUtil.newUUID());
+		detail.put("master", uid);
+		details.add(detail);
+		entityService.mergeEntity(masterEntityName, uid, null, flyEntitya);
+		
+		FlyEntityResult flyEntityb = entityService.find(masterEntityName, uid, null, true, null);
+		FlyEntityResult flyEntityc = flyEntitya;
+		Assert.assertNotNull(flyEntityb.get("details"));
+		details = (Collection) flyEntityb.get("details");
+		Assert.assertEquals(2, details.size());
+		model.assertFlyEntityAllFields(flyEntityc, flyEntityb);
 	}
 
 	@Test
 	public void mergeDetailSubTableForMergeSubDetail() {
-
+		
 	}
 }
