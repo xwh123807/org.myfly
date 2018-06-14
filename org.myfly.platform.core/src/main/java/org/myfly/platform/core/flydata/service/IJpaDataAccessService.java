@@ -31,6 +31,12 @@ public interface IJpaDataAccessService {
 	<T> T findOne(Class<T> entityClass, Serializable uid);
 	
 	/**
+	 * 刷新实体
+	 * @param entity
+	 */
+	<T> void refresh(T entity);
+	
+	/**
 	 * 按主键查找实体
 	 * @param entityClass
 	 * @param keyParams

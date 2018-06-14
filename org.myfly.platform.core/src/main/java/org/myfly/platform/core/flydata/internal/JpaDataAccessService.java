@@ -57,6 +57,15 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 		return (T) getSimpleJpaRepository(entityClass).getOne(uid);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see org.myfly.platform.core.flydata.service.IJpaDataAccessService#refresh(java.lang.Object)
+	 */
+	@Override
+	public <T> void refresh(T entity) {
+		entityManager.refresh(entity);
+	}
+	
 	@Override
 	public <T> T findOne(Class<T> entityClass, Map<String, Object> keyParams) {
 		return findOne(entityClass, AppUtil.getEntityMetaData(entityClass.getName()).getPkFieldDefinition().buildPK(keyParams) );

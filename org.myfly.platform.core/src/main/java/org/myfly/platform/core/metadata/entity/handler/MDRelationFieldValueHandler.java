@@ -38,18 +38,28 @@ public class MDRelationFieldValueHandler extends DefaultFieldValueHandler {
 			return null;
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void setFieldValueForEntity(Object entity, Object value) {
-		if (value instanceof Collection) {
-			EntityMetaData relationMetaData = getField().getRelationEntityMetaData();
+		if (value == null || value instanceof Collection) {
+			Collection values = (Collection) value;
 			Set details = new HashSet<>();
-			((Collection)value).forEach(subEntity -> {
-				Object ooEntity = FlyEntityResult.toEntity(relationMetaData, (Map<String, Object>)subEntity, false);
-				details.add(ooEntity);
-			});
-			super.setFieldValueForEntity(entity, details);
+			Collection originalEntitys = (Collection) getOriginalValue(entity);
+			if (CollectionUtils.isNotEmpty(values)) {
+				EntityMetaData relationMetaData = getField().getRelationEntityMetaData();
+				((Collection) value).forEach(subEntity -> {
+					Object ooEntity = FlyEntityResult.toEntity(relationMetaData, (Map<String, Object>) subEntity,
+							false);
+					details.add(ooEntity);
+				});
+				super.setFieldValueForEntity(entity, details);
+			}else {
+				//设置空置时
+				originalEntitys.forEach(item -> {
+					originalEntitys.remove(item);
+				});
+			}
 		} else {
 			super.setFieldValueForEntity(entity, value);
 		}

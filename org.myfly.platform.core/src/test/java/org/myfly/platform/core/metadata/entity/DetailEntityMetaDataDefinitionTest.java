@@ -3,7 +3,7 @@ package org.myfly.platform.core.metadata.entity;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.domain.FieldDataType;
-import org.myfly.platform.core.metadata.entity.handler.SearchRelationEntity;
+import org.myfly.platform.core.flydata.service.FlyEntityResult;
 import org.myfly.platform.core.testmodel.Detail;
 import org.myfly.platform.core.testmodel.Master;
 
@@ -30,9 +30,9 @@ public class DetailEntityMetaDataDefinitionTest {
 		master.setUid("1");
 		master.setName("name 1");
 		field.getValueHandler().setFieldValue(detail, master);
-		SearchRelationEntity srEntity = (SearchRelationEntity) field.getValueHandler().getFieldValue(detail);
+		FlyEntityResult srEntity = (FlyEntityResult) field.getValueHandler().getFieldValue(detail);
 		Assert.assertNotNull(srEntity);
-		Assert.assertEquals(master.getUid(), srEntity.getUid());
-		Assert.assertEquals(master.getName(), srEntity.getTitle());
+		Assert.assertEquals(master.getUid(), srEntity.get("uid"));
+		Assert.assertEquals(master.getName(), srEntity.get("title"));
 	}
 }

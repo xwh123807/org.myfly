@@ -8,7 +8,7 @@ public class BaseEnumToStringConverterFactoryTest {
 	@Test
 	public void convert() {
 		BaseEnumToStringConverterFactory factory = new BaseEnumToStringConverterFactory();
-		String value = factory.getConverter(String.class).convert(AlertLevel.INFO);
+		String value = (String) factory.getConverter(String.class).convert(AlertLevel.INFO);
 		Assert.assertEquals(AlertLevel.INFO.getTitle(), value);
 		Assert.assertNull(factory.getConverter(String.class).convert(null));
 	}

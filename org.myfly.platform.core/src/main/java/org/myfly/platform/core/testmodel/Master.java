@@ -194,7 +194,7 @@ public class Master extends KeyEntity {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(Boolean active) {
 		this.active = active;
 	}
 
@@ -218,7 +218,7 @@ public class Master extends KeyEntity {
 		return percent;
 	}
 
-	public void setPercent(float percent) {
+	public void setPercent(Float percent) {
 		this.percent = percent;
 	}
 

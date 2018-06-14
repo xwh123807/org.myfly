@@ -28,12 +28,14 @@ public abstract class AbstractFieldValueHandler implements IFieldValueHandler {
 	public void setFieldDefinition(EntityFieldDefinition fieldDefinition) {
 		this.fieldDefinition = fieldDefinition;
 	}
-
-	public Object getFieldValueFromMap(Map entity) {
-		return entity.get(getFieldDefinition().getName());
-	}
-
-	public Object getFieldValueFromEntity(Object entity) {
+	
+	
+	/**
+	 * 获取原始值
+	 * @param entity
+	 * @return
+	 */
+	public Object getOriginalValue(Object entity) {
 		try {
 			Object value = getFieldDefinition().getGetter().invoke(entity);
 			if (FieldDataType.FILE.equals(getFieldDefinition().getDataType())) {
@@ -47,6 +49,14 @@ public abstract class AbstractFieldValueHandler implements IFieldValueHandler {
 			throw new IllegalArgumentException(
 					"实体属性[" + getFieldDefinition().getName() + "]值获取失败，错误信息：" + e.getMessage());
 		}
+	}
+
+	public Object getFieldValueFromMap(Map entity) {
+		return entity.get(getFieldDefinition().getName());
+	}
+
+	public Object getFieldValueFromEntity(Object entity) {
+		return getOriginalValue(entity);
 	}
 
 	public void setFieldValueForMap(Map entity, Object value) {

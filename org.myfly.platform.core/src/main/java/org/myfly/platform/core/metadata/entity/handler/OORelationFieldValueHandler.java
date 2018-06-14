@@ -36,7 +36,15 @@ public class OORelationFieldValueHandler extends DefaultFieldValueHandler {
 	public void setFieldValueForEntity(Object entity, Object value) {
 		if (value instanceof Map) {
 			EntityMetaData relationMetaData = getField().getRelationEntityMetaData();
-			Object ooEntity = FlyEntityResult.toEntity(relationMetaData, (Map<String, Object>)value, false);
+			Object originalEntity = getOriginalValue(entity);
+			Object ooEntity;
+			if (originalEntity == null) {
+				//新增
+				ooEntity = FlyEntityResult.toEntity(relationMetaData, (Map<String, Object>)value, true);
+			}else {
+				//修改
+				ooEntity = FlyEntityResult.mergeEntity(relationMetaData, originalEntity, (Map) value, false);
+			}
 			super.setFieldValueForEntity(entity, ooEntity);
 		} else {
 			super.setFieldValueForEntity(entity, value);

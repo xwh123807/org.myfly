@@ -92,33 +92,94 @@ public class FlyEntityResult extends HashMap<String, Object> {
 			return new HashMap<>();
 		};
 	};
+	
+	/**
+	 * 清除所有线程缓存实体
+	 */
+	private static void clearCachedEntity() {
+		localEntityCache.get().clear();
+	}
+
+	/**
+	 * 从缓存中获取实体，key为entityName-uid
+	 * 
+	 * @param metaData
+	 * @param entity
+	 * @param isNew
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	private static <T> T getCachedEntity(EntityMetaData metaData, T entity, boolean isNew) {
+		String uid = metaData.getPkFieldDefinition().getPKValue(entity);
+		String key = metaData.getEntityName() + "_" + uid;
+		if (isNew || !localEntityCache.get().containsKey(key)) {
+			//新增模式或缓存中不存在
+			localEntityCache.get().put(key, entity);
+			return null;
+		} else {
+			return (T) localEntityCache.get().get(key);
+		}
+	}
+
+	/**
+	 * 更新缓存，修改和合并实体时，需要刷新缓存
+	 * @param metaData
+	 * @param entity
+	 */
+	@SuppressWarnings("unchecked")
+	private static <T> void mergeCachedEntity(EntityMetaData metaData, T entity) {
+		String uid = metaData.getPkFieldDefinition().getPKValue(entity);
+		String key = metaData.getEntityName() + "_" + uid;
+		localEntityCache.get().put(key, entity);
+	}
 
 	/**
 	 * 将Map转换为实体类对象
 	 * 
 	 * @param metaData
 	 * @param flyEntity
-	 * @param isNewThread
+	 * @param isNew	是新增模式调用，还是修改模式调用
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
-	public static <T> T toEntity(EntityMetaData metaData, Map<String, Object> flyEntity, boolean isNewThread) {
+	public static <T> T toEntity(EntityMetaData metaData, Map<String, Object> flyEntity, boolean isNew) {
 		T entity = metaData.newEntityInstance(flyEntity);
-		String uid = metaData.getPkFieldDefinition().getPKValue(entity);
-		String key = metaData.getEntityName() + "_" + uid;
-		if (isNewThread) {
-			localEntityCache.get().clear();
-		}
-		if (localEntityCache.get().containsKey(key)) {
-			return (T) localEntityCache.get().get(key);
-		} else {
-			localEntityCache.get().put(key, entity);
+		T cacheEntity = getCachedEntity(metaData, entity, isNew);
+		if (cacheEntity != null) {
+			return cacheEntity;
 		}
 		metaData.getFieldMap().values().forEach(field -> {
 			// 主键字段已经在对象构建时设置了值，此处跳过不重复设置
 			if (!field.isIdField() && flyEntity.containsKey(field.getName())) {
 				Object value = flyEntity.get(field.getName());
 				field.getValueHandler().setFieldValue(entity, value);
+			}
+		});
+		return entity;
+	}
+
+	/**
+	 * 合并实体，用于实体修改场景构造修改实体
+	 * 
+	 * @param metaData
+	 * @param entity
+	 *            原实体
+	 * @param flyEntity
+	 *            需合并覆盖的属性
+	 * @param isAllMerge
+	 *            是否全覆盖，没有的属性设为null
+	 * @return
+	 */
+	public static <T> T mergeEntity(EntityMetaData metaData, T entity, Map flyEntity, boolean isAllMerge) {
+		mergeCachedEntity(metaData, entity);
+		metaData.getFieldMap().values().forEach(field -> {
+			// 主键字段已经在对象构建时设置了值，此处跳过不重复设置
+			if (!field.isIdField()) {
+				if (isAllMerge || flyEntity.containsKey(field.getName())) {
+					// 全覆盖或属性有修改
+					Object value = flyEntity.get(field.getName());
+					// Object oldValue = field.getValueHandler().getFieldValue(entity);
+					field.getValueHandler().setFieldValue(entity, value);
+				}
 			}
 		});
 		return entity;
@@ -141,25 +202,6 @@ public class FlyEntityResult extends HashMap<String, Object> {
 		} else {
 			localEntityCache.get().put(key, entity);
 		}
-		return entity;
-	}
-
-	/**
-	 * 合并实体
-	 * 
-	 * @param metaData
-	 * @param entity
-	 * @param flyEntity
-	 * @return
-	 */
-	public static Object mergeEntity(EntityMetaData metaData, Object entity, FlyEntityResult flyEntity) {
-		metaData.getFieldMap().values().forEach(field -> {
-			// 主键字段已经在对象构建时设置了值，此处跳过不重复设置
-			if (!field.isIdField() && flyEntity.containsKey(field.getName())) {
-				Object value = flyEntity.get(field.getName());
-				field.getValueHandler().setFieldValue(entity, value);
-			}
-		});
 		return entity;
 	}
 
@@ -199,6 +241,19 @@ public class FlyEntityResult extends HashMap<String, Object> {
 		FlyEntityResult result = new FlyEntityResult();
 		result.put("uid", field.getRelationEntityMetaData().getPkFieldDefinition().getPKValue(relEntity));
 		result.put("title", field.getRelationEntityLabelField().getValueHandler().getFieldValue(relEntity));
+		return result;
+	}
+
+	/**
+	 * 合并
+	 * 
+	 * @param entity1
+	 * @param entity2
+	 * @return
+	 */
+	public static FlyEntityResult merge(FlyEntityResult entity1, FlyEntityResult entity2) {
+		FlyEntityResult result = new FlyEntityResult(entity1);
+		result.putAll(entity2);
 		return result;
 	}
 }
