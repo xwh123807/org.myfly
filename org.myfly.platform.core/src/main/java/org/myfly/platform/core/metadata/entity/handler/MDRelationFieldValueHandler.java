@@ -48,7 +48,7 @@ public class MDRelationFieldValueHandler extends DefaultFieldValueHandler {
 			Collection originalEntitys = (Collection) getOriginalValue(entity);
 			if (CollectionUtils.isNotEmpty(values)) {
 				EntityMetaData relationMetaData = getField().getRelationEntityMetaData();
-				((Collection) value).forEach(subEntity -> {
+				values.forEach(subEntity -> {
 					Object ooEntity = FlyEntityResult.toEntity(relationMetaData, (Map<String, Object>) subEntity,
 							false);
 					details.add(ooEntity);
