@@ -1,5 +1,6 @@
 package org.myfly.platform.core.flydata.service;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -263,5 +264,27 @@ public class FlyEntityResult extends HashMap<String, Object> {
 		FlyEntityResult result = new FlyEntityResult(entity1);
 		result.putAll(entity2);
 		return result;
+	}
+	
+	/**
+	 * 合并
+	 * @param entityb
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public FlyEntityResult merge(Map entityb) {
+		entityb.keySet().forEach(name -> {
+			if (entityb.get(name) instanceof Collection) {
+				//集合属性
+				if (this.containsKey(name)) {
+					((Collection)this.get(name)).addAll((Collection) entityb.get(name));
+				}else {
+					this.put((String) name, entityb.get(name));
+				}
+			}else {
+				this.put((String) name, entityb.get(name));
+			}
+		});
+		return this;
 	}
 }

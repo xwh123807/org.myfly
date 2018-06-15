@@ -49,12 +49,12 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 * @see org.myfly.platform.system.service.IDataAccessService#findOne(java.lang.
 	 * Class, java.io.Serializable)
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T findOne(final Class<T> entityClass, final Serializable uid) {
 		AssertUtil.parameterEmpty(entityClass, "entityClass");
 		AssertUtil.parameterEmpty(uid, "uid");
-		return (T) getSimpleJpaRepository(entityClass).getOne(uid);
+		return entityManager.find(entityClass, uid);
+		//return (T) getSimpleJpaRepository(entityClass).getOne(uid);
 	}
 	
 	/*

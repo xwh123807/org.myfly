@@ -39,6 +39,12 @@ public class MDRelationFieldValueHandler extends DefaultFieldValueHandler {
 		}
 	}
 
+	/**
+	 * 设置子表值. <br>
+	 * TODO 修改和合并模式下都有问题： <br>
+	 * 1、设置值无效 <br>
+	 * 2、删除无效 <br>
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void setFieldValueForEntity(Object entity, Object value) {
@@ -54,11 +60,11 @@ public class MDRelationFieldValueHandler extends DefaultFieldValueHandler {
 					details.add(ooEntity);
 				});
 				super.setFieldValueForEntity(entity, details);
-			}else {
-				//设置空置时
-				originalEntitys.forEach(item -> {
-					originalEntitys.remove(item);
-				});
+			} else {
+				// 设置空置时
+				if (CollectionUtils.isNotEmpty(originalEntitys)) {
+					originalEntitys.clear();
+				}
 			}
 		} else {
 			super.setFieldValueForEntity(entity, value);

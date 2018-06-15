@@ -60,6 +60,17 @@ public class MasterJpaTest2 {
 		Assert.assertNull(entityb.getDetails());
 		model.assertFlyEntityAllFields(model.newFlyEntity(entitya), model.newFlyEntity(entityb));
 	}
+	
+	@Test
+	public void updateNameForFirstSelect() {
+		Master entitya = entityService.findOne(Master.class, master.getUid());
+		entitya.setName("name changed");
+		entityService.updateEntity(entitya);
+		Master entityb = entityService.findOne(Master.class, master.getUid());
+		Assert.assertNotNull(entityb.getDetail1());
+		Assert.assertNotNull(entityb.getDetails());
+		model.assertFlyEntityAllFields(model.newFlyEntity(entitya), model.newFlyEntity(entityb));
+	}
 
 	@Test
 	public void updateDetail1ToNull() {

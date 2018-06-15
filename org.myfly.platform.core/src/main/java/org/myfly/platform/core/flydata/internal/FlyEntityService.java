@@ -49,10 +49,12 @@ public class FlyEntityService implements IFlyEntityService {
 	public void updateEntity(String entityName, String uid, String viewName, FlyEntityResult flyEntity) {
 		EntityMetaData metaData = metaService.getEntityMetaData(entityName);
 		Serializable pkValue = metaData.getPkFieldDefinition().buildPK(uid);
-		Object obj = jpaService.findOne(metaData.getEntityClass(), pkValue);
-		//合并实体，全覆盖，没有赋值的设为null
-		Object mergedObj = FlyEntityResult.mergeEntity(metaData, obj, flyEntity, true);
-		jpaService.updateEntity(mergedObj);
+		Object entity = FlyEntityResult.toEntity(metaData, flyEntity);
+		jpaService.updateEntity(pkValue, entity);
+//		Object obj = jpaService.findOne(metaData.getEntityClass(), pkValue);
+//		//合并实体，全覆盖，没有赋值的设为null
+//		Object mergedObj = FlyEntityResult.mergeEntity(metaData, obj, flyEntity, true);
+//		jpaService.updateEntity(mergedObj);
 	}
 	
 	@Override

@@ -149,13 +149,13 @@ public class Master extends KeyEntity {
 	@Column
 	private Timestamp created;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "master")
+	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, mappedBy = "master")
 	@FieldView(title = "明细记录")
 	private Set<Detail> details;
-	
+
 	@FieldView(title = "明细1")
 	@JoinColumn()
-	@OneToOne(optional = true, fetch = FetchType.LAZY, cascade= {CascadeType.ALL})
+	@OneToOne(optional = true, fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval=true)
 	private Detail detail1;
 
 	public String getDescription() {

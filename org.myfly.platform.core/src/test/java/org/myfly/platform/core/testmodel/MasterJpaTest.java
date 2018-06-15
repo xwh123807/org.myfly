@@ -113,6 +113,7 @@ public class MasterJpaTest {
 		master.setUid(key);
 		master.setName("name");
 		service.saveEntity(master);
+		service.flush();
 		//增加子表记录
 		Set<Detail> details = new HashSet<>();
 		Detail detail = new Detail();
@@ -121,6 +122,7 @@ public class MasterJpaTest {
 		details.add(detail);
 		master.setDetails(details);
 		service.updateEntity(master);
+		service.flush();
 		//验证
 		Master master1 = service.findOne(Master.class, key);
 		Assert.assertNotNull(master1.getDetails());
@@ -135,6 +137,7 @@ public class MasterJpaTest {
 		detail2.setMaster(master1);
 		master1.getDetails().add(detail2);
 		service.updateEntity(master1);
+		service.flush();
 		//验证
 		Master master2 = service.findOne(Master.class, key);
 		Assert.assertNotNull(master2.getDetails());
@@ -154,6 +157,7 @@ public class MasterJpaTest {
 			}
 		}
 		service.updateEntity(master2);
+		service.flush();
 		//验证
 		Master master3 = service.findOne(Master.class, key);
 		Assert.assertNotNull(master3.getDetails());
@@ -165,8 +169,13 @@ public class MasterJpaTest {
 		//清空子表
 		master3.setDetails(null);
 		service.updateEntity(master3);
+		service.flush();
 		//find
 		Master master4 = service.findOne(Master.class, key);
 		Assert.assertNull(master4.getDetails());
+		//删除
+		service.delOne(master4);
+		service.flush();
+		Master master5 = service.findOne(Master.class, key);
 	}
 }
