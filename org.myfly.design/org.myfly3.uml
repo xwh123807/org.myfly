@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_xsiiQHPBEei8fL2NKOUI8Q" name="myfly3.0">
+  <packagedElement xmi:type="uml:Package" xmi:id="_3Zp2EHPBEei8fL2NKOUI8Q" name="metadata">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_D6Ge4HPCEei8fL2NKOUI8Q" client="_3Zp2EHPBEei8fL2NKOUI8Q" supplier="_8ValcHPBEei8fL2NKOUI8Q"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_FhZz4HPCEei8fL2NKOUI8Q" client="_3Zp2EHPBEei8fL2NKOUI8Q" supplier="__ggBYHPBEei8fL2NKOUI8Q"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tejpcHPCEei8fL2NKOUI8Q" name="FlyTableDefinition" visibility="public">
+      <interfaceRealization xmi:id="_k-qn0HPJEei8fL2NKOUI8Q" client="_tejpcHPCEei8fL2NKOUI8Q" supplier="_aBvnQHPJEei8fL2NKOUI8Q" contract="_aBvnQHPJEei8fL2NKOUI8Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_vwVe0HPCEei8fL2NKOUI8Q" name="FlyFieldDefinition" visibility="public">
+      <interfaceRealization xmi:id="_lw6kIHPJEei8fL2NKOUI8Q" client="_vwVe0HPCEei8fL2NKOUI8Q" supplier="_aBvnQHPJEei8fL2NKOUI8Q" contract="_aBvnQHPJEei8fL2NKOUI8Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_y2fXcHPCEei8fL2NKOUI8Q" name="flyTableDefinitionsToFlyFieldDefinitions" memberEnd="_y2fXcXPCEei8fL2NKOUI8Q _y2fXdHPCEei8fL2NKOUI8Q" navigableOwnedEnd="_y2fXdHPCEei8fL2NKOUI8Q">
+      <ownedEnd xmi:id="_y2fXcXPCEei8fL2NKOUI8Q" name="flyTableDefinitions" type="_tejpcHPCEei8fL2NKOUI8Q" association="_y2fXcHPCEei8fL2NKOUI8Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y2fXcnPCEei8fL2NKOUI8Q"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_y2fXc3PCEei8fL2NKOUI8Q" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_y2fXdHPCEei8fL2NKOUI8Q" name="flyFieldDefinitions" type="_vwVe0HPCEei8fL2NKOUI8Q" aggregation="shared" association="_y2fXcHPCEei8fL2NKOUI8Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y2fXdXPCEei8fL2NKOUI8Q"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_y2fXdnPCEei8fL2NKOUI8Q" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_-MV1YHPCEei8fL2NKOUI8Q" name="EntityFlyTableBuilder" visibility="public">
+      <generalization xmi:id="_E1PcAHPDEei8fL2NKOUI8Q" general="_tejpcHPCEei8fL2NKOUI8Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_DfLOsHPIEei8fL2NKOUI8Q" name="EntityFlyFieldBuilder" visibility="public">
+      <generalization xmi:id="_FZj3wHPIEei8fL2NKOUI8Q" general="_vwVe0HPCEei8fL2NKOUI8Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_KUL-sHPIEei8fL2NKOUI8Q" client="_-MV1YHPCEei8fL2NKOUI8Q" supplier="_DfLOsHPIEei8fL2NKOUI8Q"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_aBvnQHPJEei8fL2NKOUI8Q" name="IDefinition" visibility="public">
+      <ownedOperation xmi:id="_dywawHPJEei8fL2NKOUI8Q" name="validate"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_QyfsoHPNEei8fL2NKOUI8Q" name="IValueHandler" visibility="public">
+      <ownedOperation xmi:id="_VKx7gHPNEei8fL2NKOUI8Q" name="getValue"/>
+      <ownedOperation xmi:id="_YmzWcHPNEei8fL2NKOUI8Q" name="setValue"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_cpH8YHPNEei8fL2NKOUI8Q" name="ValueHandlerFactory" visibility="public"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_i4FZAHPNEei8fL2NKOUI8Q" client="_cpH8YHPNEei8fL2NKOUI8Q" supplier="_QyfsoHPNEei8fL2NKOUI8Q"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_kNlMUHPNEei8fL2NKOUI8Q" memberEnd="_kNlMUXPNEei8fL2NKOUI8Q _kNlMVHPNEei8fL2NKOUI8Q" navigableOwnedEnd="_kNlMVHPNEei8fL2NKOUI8Q">
+      <ownedEnd xmi:id="_kNlMUXPNEei8fL2NKOUI8Q" name="flyFieldDefinitions" type="_vwVe0HPCEei8fL2NKOUI8Q" association="_kNlMUHPNEei8fL2NKOUI8Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kNlMUnPNEei8fL2NKOUI8Q"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kNlMU3PNEei8fL2NKOUI8Q" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_kNlMVHPNEei8fL2NKOUI8Q" name="iValueHandlers" type="_QyfsoHPNEei8fL2NKOUI8Q" association="_kNlMUHPNEei8fL2NKOUI8Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kNlMVXPNEei8fL2NKOUI8Q"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kNlMVnPNEei8fL2NKOUI8Q" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_SjbCQHPOEei8fL2NKOUI8Q" name="DefaultValueHandler" visibility="public">
+      <interfaceRealization xmi:id="_VX4G4HPOEei8fL2NKOUI8Q" client="_SjbCQHPOEei8fL2NKOUI8Q" supplier="_QyfsoHPNEei8fL2NKOUI8Q" contract="_QyfsoHPNEei8fL2NKOUI8Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_XxnlcHPOEei8fL2NKOUI8Q" client="_cpH8YHPNEei8fL2NKOUI8Q" supplier="_SjbCQHPOEei8fL2NKOUI8Q"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-9IkHPOEei8fL2NKOUI8Q" name="ListValueHandler" visibility="public">
+      <generalization xmi:id="_fZnRkHPOEei8fL2NKOUI8Q" general="_SjbCQHPOEei8fL2NKOUI8Q"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_8ValcHPBEei8fL2NKOUI8Q" name="annotation">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_DMUy4HPCEei8fL2NKOUI8Q" client="_8ValcHPBEei8fL2NKOUI8Q" supplier="__ggBYHPBEei8fL2NKOUI8Q"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_Zb9d0HPCEei8fL2NKOUI8Q" name="FlyTable" visibility="public"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_jrcwoHPCEei8fL2NKOUI8Q" name="FlyField" visibility="public"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="__ggBYHPBEei8fL2NKOUI8Q" name="domain">
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_TMgR8HPCEei8fL2NKOUI8Q" name="FlyDataType" visibility="public"/>
+  </packagedElement>
+</uml:Model>
