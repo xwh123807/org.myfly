@@ -6,6 +6,9 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import org.myfly.platform.core3.domain.AccessLevel;
+import org.myfly.platform.core3.domain.EntityType;
+
 /**
  * 实体类表注解<br>
  * AD_Table<br>
@@ -16,5 +19,29 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RUNTIME)
 public @interface FlyTable {
+	String name() default "";
+	
+	EntityType entityType() default EntityType.D;
 
+	String description() default "";
+
+	String help() default "";
+
+	AccessLevel accessLevel() default AccessLevel.ALL;
+	
+	boolean isHighVolume() default false;
+	
+	boolean isChangeLog() default false;
+	
+	boolean isIgnoreMigration() default false;
+	
+	boolean isDocument() default false;
+	
+	boolean isSecurityEnabled() default false;
+	
+	boolean isDeleteable() default true;
+	
+	boolean isView() default false;
+	
+	boolean isCentrallyMaintained() default false;
 }

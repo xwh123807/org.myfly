@@ -8,5 +8,11 @@ package org.myfly.platform.core3.domain;
  *
  */
 public enum FlyDataType implements IRefList {
+	NONE, String, Text, YesNo, Button, DateTime, Date, Time, Amount, List, Table;
 
+	@Override
+	public String getName() {
+		return null;
+	}
+	
 }

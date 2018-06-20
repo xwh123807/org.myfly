@@ -7,5 +7,5 @@ package org.myfly.platform.core3.domain;
  *
  */
 public interface IRefList {
-
+	public String getName();
 }
