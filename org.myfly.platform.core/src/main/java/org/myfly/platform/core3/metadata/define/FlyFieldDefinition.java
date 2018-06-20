@@ -66,12 +66,6 @@ public class FlyFieldDefinition extends AbstractDefinition {
 
 	private String vFormat;
 
-	/**
-	 * 字段值读取类，增强数据类型一般都需要实现特殊读取类 <br>
-	 */
-	@JsonIgnore
-	private IValueHandler valueHandler;
-
 	public FlyFieldDefinition() {
 
 	}
@@ -284,14 +278,6 @@ public class FlyFieldDefinition extends AbstractDefinition {
 		this.vFormat = vFormat;
 	}
 
-	public IValueHandler getValueHandler() {
-		return valueHandler;
-	}
-
-	public void setValueHandler(IValueHandler valueHandler) {
-		this.valueHandler = valueHandler;
-	}
-
 	public Integer getFieldLength() {
 		return fieldLength;
 	}
@@ -303,6 +289,15 @@ public class FlyFieldDefinition extends AbstractDefinition {
 	@Override
 	public String toString() {
 		return "apiName: " + getApiName();
+	}
+	
+	/**
+	 * 获取字段值读取类
+	 * @return
+	 */
+	@JsonIgnore
+	public IValueHandler getValueHandler() {
+		return ValueHandlerFactory.getValueHandler(getDataType());
 	}
 
 	@Override

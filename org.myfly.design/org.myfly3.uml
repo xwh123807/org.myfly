@@ -60,6 +60,13 @@
       </ownedAttribute>
       <interfaceRealization xmi:id="_V65-MHRMEeit1uM82HaLpg" client="_R9KWQHRMEeit1uM82HaLpg" supplier="_aBvnQHPJEei8fL2NKOUI8Q" contract="_aBvnQHPJEei8fL2NKOUI8Q"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_2iDpAHRsEeit1uM82HaLpg" name="PTFlyEntityBuilder" visibility="public">
+      <generalization xmi:id="_9zAuIHRsEeit1uM82HaLpg" general="_tejpcHPCEei8fL2NKOUI8Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_VjQ3QHRtEeit1uM82HaLpg" name="PTFlyFieldBuilder" visibility="public">
+      <generalization xmi:id="_YCvKYHRtEeit1uM82HaLpg" general="_vwVe0HPCEei8fL2NKOUI8Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_mntPsHRtEeit1uM82HaLpg" client="_2iDpAHRsEeit1uM82HaLpg" supplier="_VjQ3QHRtEeit1uM82HaLpg"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_8ValcHPBEei8fL2NKOUI8Q" name="annotation">
     <packagedElement xmi:type="uml:Dependency" xmi:id="_DMUy4HPCEei8fL2NKOUI8Q" client="_8ValcHPBEei8fL2NKOUI8Q" supplier="__ggBYHPBEei8fL2NKOUI8Q"/>

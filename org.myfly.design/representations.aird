@@ -15287,6 +15287,24 @@
           <styles xmi:type="notation:ShapeStyle" xmi:id="_T_I1EXRMEeit1uM82HaLpg" fontName=".AppleSystemUIFont" bold="true"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_T_I1EnRMEeit1uM82HaLpg" x="252" y="-12" width="120" height="100"/>
         </children>
+        <children xmi:type="notation:Node" xmi:id="_7CaOwHRsEeit1uM82HaLpg" type="2003" element="_6_CxsHRsEeit1uM82HaLpg">
+          <children xmi:type="notation:Node" xmi:id="_7CcD8HRsEeit1uM82HaLpg" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_7CcrAHRsEeit1uM82HaLpg" type="7004">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_7CcrAXRsEeit1uM82HaLpg"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_7CcrAnRsEeit1uM82HaLpg"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_7CaOwXRsEeit1uM82HaLpg" fontName=".AppleSystemUIFont" bold="true"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7CaOwnRsEeit1uM82HaLpg" x="88" y="444" width="120" height="100"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_XKq58HRtEeit1uM82HaLpg" type="2003" element="_XIrV4HRtEeit1uM82HaLpg">
+          <children xmi:type="notation:Node" xmi:id="_XKq583RtEeit1uM82HaLpg" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_XKq59HRtEeit1uM82HaLpg" type="7004">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_XKq59XRtEeit1uM82HaLpg"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_XKq59nRtEeit1uM82HaLpg"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_XKq58XRtEeit1uM82HaLpg" fontName=".AppleSystemUIFont" bold="true"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XKq58nRtEeit1uM82HaLpg" x="340" y="444" width="120" height="100"/>
+        </children>
         <styles xmi:type="notation:DiagramStyle" xmi:id="_N3vMsnPCEei8fL2NKOUI8Q"/>
         <edges xmi:type="notation:Edge" xmi:id="_y3dn0HPCEei8fL2NKOUI8Q" type="4001" element="_y2hzsHPCEei8fL2NKOUI8Q" source="_utNN4HPCEei8fL2NKOUI8Q" target="_w2PW8HPCEei8fL2NKOUI8Q">
           <children xmi:type="notation:Node" xmi:id="_y3dn1HPCEei8fL2NKOUI8Q" type="6001">
@@ -15480,9 +15498,57 @@
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_du434HRMEeit1uM82HaLpg" id="(0.4067796610169492,0.0)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_du434XRMEeit1uM82HaLpg" id="(0.5,0.5)"/>
         </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_90ZOMHRsEeit1uM82HaLpg" type="4001" element="_9zE_kHRsEeit1uM82HaLpg" source="_7CaOwHRsEeit1uM82HaLpg" target="_utNN4HPCEei8fL2NKOUI8Q">
+          <children xmi:type="notation:Node" xmi:id="_90ZONHRsEeit1uM82HaLpg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_90ZONXRsEeit1uM82HaLpg" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_90ZONnRsEeit1uM82HaLpg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_90ZON3RsEeit1uM82HaLpg" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_90ZOOHRsEeit1uM82HaLpg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_90ZOOXRsEeit1uM82HaLpg" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_90ZOMXRsEeit1uM82HaLpg" routing="Tree"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_90ZOMnRsEeit1uM82HaLpg" fontName=".AppleSystemUIFont" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_90ZOM3RsEeit1uM82HaLpg" points="[0, 0, 0, 206]$[0, -206, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_90ZOOnRsEeit1uM82HaLpg" id="(0.6779661016949152,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_90ZOO3RsEeit1uM82HaLpg" id="(0.5,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_YEJfoHRtEeit1uM82HaLpg" type="4001" element="_YCyNsHRtEeit1uM82HaLpg" source="_XKq58HRtEeit1uM82HaLpg" target="_w2PW8HPCEei8fL2NKOUI8Q">
+          <children xmi:type="notation:Node" xmi:id="_YEJfpHRtEeit1uM82HaLpg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YEJfpXRtEeit1uM82HaLpg" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_YEKGsHRtEeit1uM82HaLpg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YEKGsXRtEeit1uM82HaLpg" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_YEKGsnRtEeit1uM82HaLpg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YEKGs3RtEeit1uM82HaLpg" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_YEJfoXRtEeit1uM82HaLpg" routing="Tree"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_YEJfonRtEeit1uM82HaLpg" fontName=".AppleSystemUIFont" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_YEJfo3RtEeit1uM82HaLpg" points="[0, 0, 0, 206]$[0, -206, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YEKGtHRtEeit1uM82HaLpg" id="(0.5677966101694916,0.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YEKGtXRtEeit1uM82HaLpg" id="(0.0,0.5)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_mpA3QHRtEeit1uM82HaLpg" type="4001" element="_mnvr8HRtEeit1uM82HaLpg" source="_7CaOwHRsEeit1uM82HaLpg" target="_XKq58HRtEeit1uM82HaLpg">
+          <children xmi:type="notation:Node" xmi:id="_mpA3RHRtEeit1uM82HaLpg" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mpA3RXRtEeit1uM82HaLpg" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_mpA3RnRtEeit1uM82HaLpg" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mpA3R3RtEeit1uM82HaLpg" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_mpBeUHRtEeit1uM82HaLpg" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mpBeUXRtEeit1uM82HaLpg" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_mpA3QXRtEeit1uM82HaLpg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_mpA3QnRtEeit1uM82HaLpg" fontName=".AppleSystemUIFont" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mpA3Q3RtEeit1uM82HaLpg" points="[0, 0, -134, 0]$[134, 0, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_mpBeUnRtEeit1uM82HaLpg" id="(1.0,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_mpBeU3RtEeit1uM82HaLpg" id="(0.0,0.5)"/>
+        </edges>
       </data>
     </ownedAnnotationEntries>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_usSA0HPCEei8fL2NKOUI8Q" name="FlyTableDefinition" tooltipText="myfly3.0::metadata::FlyTableDefinition" outgoingEdges="_y2hzsHPCEei8fL2NKOUI8Q _c8TkYHRMEeit1uM82HaLpg" incomingEdges="_E1RRMHPDEei8fL2NKOUI8Q" width="12" height="10">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_usSA0HPCEei8fL2NKOUI8Q" name="FlyTableDefinition" tooltipText="myfly3.0::metadata::FlyTableDefinition" outgoingEdges="_y2hzsHPCEei8fL2NKOUI8Q _c8TkYHRMEeit1uM82HaLpg" incomingEdges="_E1RRMHPDEei8fL2NKOUI8Q _9zE_kHRsEeit1uM82HaLpg" width="12" height="10">
       <target xmi:type="uml:Class" href="org.myfly3.uml#_tejpcHPCEei8fL2NKOUI8Q"/>
       <semanticElements xmi:type="uml:Class" href="org.myfly3.uml#_tejpcHPCEei8fL2NKOUI8Q"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -15494,7 +15560,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_Class']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_w1XNMHPCEei8fL2NKOUI8Q" name="FlyFieldDefinition" tooltipText="myfly3.0::metadata::FlyFieldDefinition" outgoingEdges="_kNnokHPNEei8fL2NKOUI8Q _dtbfUHRMEeit1uM82HaLpg" incomingEdges="_y2hzsHPCEei8fL2NKOUI8Q _FZke0HPIEei8fL2NKOUI8Q" width="12" height="10">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_w1XNMHPCEei8fL2NKOUI8Q" name="FlyFieldDefinition" tooltipText="myfly3.0::metadata::FlyFieldDefinition" outgoingEdges="_kNnokHPNEei8fL2NKOUI8Q _dtbfUHRMEeit1uM82HaLpg" incomingEdges="_y2hzsHPCEei8fL2NKOUI8Q _FZke0HPIEei8fL2NKOUI8Q _YCyNsHRtEeit1uM82HaLpg" width="12" height="10">
       <target xmi:type="uml:Class" href="org.myfly3.uml#_vwVe0HPCEei8fL2NKOUI8Q"/>
       <semanticElements xmi:type="uml:Class" href="org.myfly3.uml#_vwVe0HPCEei8fL2NKOUI8Q"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -15741,6 +15807,54 @@
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_dtcGYXRMEeit1uM82HaLpg" showIcon="false"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@edgeMappings[name='CD_Generalization']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_6_CxsHRsEeit1uM82HaLpg" name="PTFlyEntityBuilder" tooltipText="myfly3.0::metadata::PTFlyEntityBuilder" outgoingEdges="_9zE_kHRsEeit1uM82HaLpg _mnvr8HRtEeit1uM82HaLpg" width="12" height="10">
+      <target xmi:type="uml:Class" href="org.myfly3.uml#_2iDpAHRsEeit1uM82HaLpg"/>
+      <semanticElements xmi:type="uml:Class" href="org.myfly3.uml#_2iDpAHRsEeit1uM82HaLpg"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_6_F1AHRsEeit1uM82HaLpg" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" foregroundColor="232,239,247">
+        <labelFormat>bold</labelFormat>
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_Class']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_Class']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_9zE_kHRsEeit1uM82HaLpg" sourceNode="_6_CxsHRsEeit1uM82HaLpg" targetNode="_usSA0HPCEei8fL2NKOUI8Q">
+      <target xmi:type="uml:Generalization" href="org.myfly3.uml#_9zAuIHRsEeit1uM82HaLpg"/>
+      <semanticElements xmi:type="uml:Generalization" href="org.myfly3.uml#_9zAuIHRsEeit1uM82HaLpg"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_9zFmoHRsEeit1uM82HaLpg" targetArrow="InputClosedArrow" routingStyle="tree">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@edgeMappings[name='CD_Generalization']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_9zFmoXRsEeit1uM82HaLpg" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@edgeMappings[name='CD_Generalization']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_XIrV4HRtEeit1uM82HaLpg" name="PTFlyFieldBuilder" tooltipText="myfly3.0::metadata::PTFlyFieldBuilder" outgoingEdges="_YCyNsHRtEeit1uM82HaLpg" incomingEdges="_mnvr8HRtEeit1uM82HaLpg" width="12" height="10">
+      <target xmi:type="uml:Class" href="org.myfly3.uml#_VjQ3QHRtEeit1uM82HaLpg"/>
+      <semanticElements xmi:type="uml:Class" href="org.myfly3.uml#_VjQ3QHRtEeit1uM82HaLpg"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_XIrV4XRtEeit1uM82HaLpg" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" foregroundColor="232,239,247">
+        <labelFormat>bold</labelFormat>
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_Class']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_Class']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_YCyNsHRtEeit1uM82HaLpg" sourceNode="_XIrV4HRtEeit1uM82HaLpg" targetNode="_w1XNMHPCEei8fL2NKOUI8Q">
+      <target xmi:type="uml:Generalization" href="org.myfly3.uml#_YCvKYHRtEeit1uM82HaLpg"/>
+      <semanticElements xmi:type="uml:Generalization" href="org.myfly3.uml#_YCvKYHRtEeit1uM82HaLpg"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_YCy0wHRtEeit1uM82HaLpg" targetArrow="InputClosedArrow" routingStyle="tree">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@edgeMappings[name='CD_Generalization']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_YCy0wXRtEeit1uM82HaLpg" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@edgeMappings[name='CD_Generalization']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_mnvr8HRtEeit1uM82HaLpg" sourceNode="_6_CxsHRsEeit1uM82HaLpg" targetNode="_XIrV4HRtEeit1uM82HaLpg">
+      <target xmi:type="uml:Dependency" href="org.myfly3.uml#_mntPsHRtEeit1uM82HaLpg"/>
+      <semanticElements xmi:type="uml:Dependency" href="org.myfly3.uml#_mntPsHRtEeit1uM82HaLpg"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_mnwTAHRtEeit1uM82HaLpg" lineStyle="dash">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@edgeMappings[name='CD_Dependency']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_mnwTAXRtEeit1uM82HaLpg" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@edgeMappings[name='CD_Dependency']"/>
     </ownedDiagramElements>
     <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_N3tXhnPCEei8fL2NKOUI8Q"/>
