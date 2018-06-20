@@ -30,7 +30,6 @@ public class EntityFlyFieldBuilder extends FlyFieldDefinition {
 		FlyField view = field.getField().getAnnotation(FlyField.class);
 		if (view != null) {
 			setName(view.name());
-			setHighVolume(view.isHighVolume());
 			setEntityType(view.entityType());
 			setDescription(view.description());
 			setHelp(view.help());

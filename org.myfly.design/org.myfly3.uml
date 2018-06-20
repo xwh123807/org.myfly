@@ -133,4 +133,25 @@
       </ownedEnd>
     </packagedElement>
   </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_TT7pMHR-Eei8fL2NKOUI8Q" name="use cases">
+    <packagedElement xmi:type="uml:Actor" xmi:id="_Y97XkHR-Eei8fL2NKOUI8Q" name="Actor1">
+      <eAnnotations xmi:id="_Y97-oHR-Eei8fL2NKOUI8Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details xmi:id="_Y97-oXR-Eei8fL2NKOUI8Q" key="Human"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_axXEEHR-Eei8fL2NKOUI8Q" name="获取实体数据模型">
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_a9uR0HSOEei8fL2NKOUI8Q" name="获取实体数据模型 activity" node="_hf4-UHSOEei8fL2NKOUI8Q">
+        <node xmi:type="uml:InitialNode" xmi:id="_hf4-UHSOEei8fL2NKOUI8Q" name="Initial1"/>
+      </ownedBehavior>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_cYD8IHR-Eei8fL2NKOUI8Q" memberEnd="_cYD8IXR-Eei8fL2NKOUI8Q _cYD8InR-Eei8fL2NKOUI8Q">
+      <ownedEnd xmi:id="_cYD8IXR-Eei8fL2NKOUI8Q" type="_Y97XkHR-Eei8fL2NKOUI8Q" association="_cYD8IHR-Eei8fL2NKOUI8Q"/>
+      <ownedEnd xmi:id="_cYD8InR-Eei8fL2NKOUI8Q" type="_axXEEHR-Eei8fL2NKOUI8Q" association="_cYD8IHR-Eei8fL2NKOUI8Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_gZ9rUHR-Eei8fL2NKOUI8Q" name="获取实体显示模型"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_kGQ98HR-Eei8fL2NKOUI8Q" memberEnd="_kGQ98XR-Eei8fL2NKOUI8Q _kGQ98nR-Eei8fL2NKOUI8Q">
+      <ownedEnd xmi:id="_kGQ98XR-Eei8fL2NKOUI8Q" type="_Y97XkHR-Eei8fL2NKOUI8Q" association="_kGQ98HR-Eei8fL2NKOUI8Q"/>
+      <ownedEnd xmi:id="_kGQ98nR-Eei8fL2NKOUI8Q" type="_gZ9rUHR-Eei8fL2NKOUI8Q" association="_kGQ98HR-Eei8fL2NKOUI8Q"/>
+    </packagedElement>
+  </packagedElement>
 </uml:Model>

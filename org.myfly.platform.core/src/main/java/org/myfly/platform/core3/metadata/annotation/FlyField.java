@@ -21,8 +21,6 @@ import org.myfly.platform.core3.domain.FlyDataType;
 public @interface FlyField {
 	String name() default "";
 
-	boolean isHighVolume() default false;
-
 	EntityType entityType() default EntityType.D;
 
 	String description() default "";

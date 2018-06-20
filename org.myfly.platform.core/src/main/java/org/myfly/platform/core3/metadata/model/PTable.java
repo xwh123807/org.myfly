@@ -6,7 +6,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,11 +26,14 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 @Entity
 @Table(name = "PT_TABLE")
 public class PTable extends Auditable {
+	@FlyField(name = "API Name")
+	@Column(length = 50, name = "ApiName")
+	private String apiName;
 	@FlyField(name = "Name", description = "Alphanumeric identifier of the entity", help = "The name of an entity (record) is used as an default search option in addition to the search key. The name is up to 60 characters in length.", entityType = EntityType.D)
 	@Column(length = 60)
 	private String name;
 	@FlyField(name = "DB Table Name", description = "Name of the table in the database", help = "The DB Table Name indicates the name of the table in database.")
-	@Column(length = 40, name="TableName")
+	@Column(length = 40, name = "TableName")
 	private String tableName;
 	@FlyField(description = "Use Search instead of Pick list", help = "The High Volume Checkbox indicates if a search screen will display as opposed to a pick list for selecting records from this table.")
 	@Column(name = "IsHighVolume")
@@ -62,7 +64,7 @@ public class PTable extends Auditable {
 	@Column(name = "ACTriggerLength")
 	private Integer aCTriggerLength;
 	@FlyField(name = "Ignore Migration", description = "Ignore this record in log migration")
-	@Column(name = "Ignore Migration")
+	@Column(name = "IgnoreMigration")
 	private Boolean isIgnoreMigration;
 	@FlyField(name = "Is Document", description = "This flag determinate if the record is a document", help = "This flag is used to mark those tables that behave like documents and allow create automatically columns like: C_DocType_ID, DocumentNo, DateDoc, DocAction, DocStatus, Processed, IsApproved, Description")
 	@Column(name = "IsDocument")
@@ -85,8 +87,7 @@ public class PTable extends Auditable {
 	@FlyField(name = "Centrally maintained", defaultValue = "Y", description = "Information maintained in System Element table", help = "The Centrally Maintained checkbox indicates if the Name, Description and Help maintained in 'System Element' table  or 'Window' table.")
 	@Column(name = "IsCentrallyMaintained")
 	private Boolean isCentrallyMaintained;
-	@JoinColumn()
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="table", cascade = { CascadeType.ALL })
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "table", cascade = { CascadeType.ALL })
 	private Set<PColumn> columns;
 
 	public String getName() {
@@ -225,19 +226,27 @@ public class PTable extends Auditable {
 		this.copyColumnsFromTable = copyColumnsFromTable;
 	}
 
-	public Boolean getIsCentrallyMaintained() {
-		return isCentrallyMaintained;
-	}
-
-	public void setIsCentrallyMaintained(Boolean isCentrallyMaintained) {
-		this.isCentrallyMaintained = isCentrallyMaintained;
-	}
-
 	public Set<PColumn> getColumns() {
 		return columns;
 	}
 
 	public void setColumns(Set<PColumn> columns) {
 		this.columns = columns;
+	}
+
+	public String getApiName() {
+		return apiName;
+	}
+
+	public void setApiName(String apiName) {
+		this.apiName = apiName;
+	}
+
+	public Boolean getIsCentrallyMaintained() {
+		return isCentrallyMaintained;
+	}
+
+	public void setIsCentrallyMaintained(Boolean isCentrallyMaintained) {
+		this.isCentrallyMaintained = isCentrallyMaintained;
 	}
 }

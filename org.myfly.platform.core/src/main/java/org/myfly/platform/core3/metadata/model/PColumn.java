@@ -3,7 +3,6 @@ package org.myfly.platform.core3.metadata.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -23,6 +22,9 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 @Table(name = "PT_Column")
 @FlyTable(name = "Column", description = "Column in the table")
 public class PColumn extends Auditable {
+	@FlyField(name = "API Name")
+	@Column(length = 50, name = "ApiName")
+	private String apiName;
 	@FlyField(description = "Alphanumeric identifier of the entity", help = "The name of an entity (record) is used as an default search option in addition to the search key. The name is up to 60 characters in length.", entityType = EntityType.D)
 	@Column(length = 60)
 	private String name;
@@ -43,6 +45,9 @@ public class PColumn extends Auditable {
 	@FlyField(name = "DB Column Name", description = "Name of the column in the database", help = "The Column Name indicates the name of a column on a table as defined in the database.")
 	@Column(length = 30, name = "ColumnName")
 	private String columnName;
+	@FlyField(name = "Data Type")
+	@Column(name = "DataType")
+	private FlyDataType dataType;
 	@FlyField(name = "Column SQL", dataType = FlyDataType.Text, description = "Virtual Column (r/o)", help = "You can define virtual columns (not stored in the database). If defined, the Column name is the synonym of the SQL expression defined here. The SQL expression must be valid.<br>\n"
 			+ "Example: \"Updated-Created\" would list the age of the entry in days")
 	@Column(length = 2000, name = "ColumnSQL")
@@ -136,7 +141,6 @@ public class PColumn extends Auditable {
 			+ "9	Digits 0..9 or space\n" + "\n" + "Example of format \"(000)_000-0000\"")
 	@Column(length = 60, name = "VFormat")
 	private String vFormat;
-	@JoinColumn()
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	private PTable table;
 
@@ -402,5 +406,21 @@ public class PColumn extends Auditable {
 
 	public void setTable(PTable table) {
 		this.table = table;
+	}
+
+	public String getApiName() {
+		return apiName;
+	}
+
+	public void setApiName(String apiName) {
+		this.apiName = apiName;
+	}
+
+	public FlyDataType getDataType() {
+		return dataType;
+	}
+
+	public void setDataType(FlyDataType dataType) {
+		this.dataType = dataType;
 	}
 }

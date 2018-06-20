@@ -22,8 +22,6 @@ public class FlyFieldDefinition extends AbstractDefinition {
 
 	private String name;
 
-	private boolean isHighVolume;
-
 	private EntityType entityType;
 
 	private String description;
@@ -78,7 +76,6 @@ public class FlyFieldDefinition extends AbstractDefinition {
 	public FlyFieldDefinition(FlyFieldDefinition builder) {
 		setApiName(builder.getApiName());
 		setName(builder.getName());
-		setHighVolume(builder.isHighVolume());
 		setEntityType(builder.getEntityType());
 		setDescription(builder.getDescription());
 		setHelp(builder.getHelp());
@@ -108,14 +105,6 @@ public class FlyFieldDefinition extends AbstractDefinition {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public boolean isHighVolume() {
-		return isHighVolume;
-	}
-
-	public void setHighVolume(boolean isHighVolume) {
-		this.isHighVolume = isHighVolume;
 	}
 
 	public EntityType getEntityType() {
