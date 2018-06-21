@@ -7,6 +7,6 @@ import org.myfly.platform.core3.metadata.define.IValueHandler;
  * @author xiangwanhong
  *
  */
-public class ListValueHandler implements IValueHandler{
+public class ListValueHandler extends DefaultValueHandler implements IValueHandler{
 
 }

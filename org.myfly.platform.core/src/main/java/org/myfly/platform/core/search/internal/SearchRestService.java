@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author xiangwanhong
  *
  */
-@RestController
-@RequestMapping("search2")
+//@RestController
+//@RequestMapping("search2")
 public class SearchRestService {
 	@Autowired
 	private ISearchService searchService;

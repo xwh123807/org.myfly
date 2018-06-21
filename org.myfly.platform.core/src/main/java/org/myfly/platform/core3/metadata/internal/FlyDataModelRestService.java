@@ -2,8 +2,8 @@ package org.myfly.platform.core3.metadata.internal;
 
 import java.util.List;
 
-import org.myfly.platform.core3.metadata.define.FlyTableDefinition;
-import org.myfly.platform.core3.metadata.service.IMetaDataService;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
-@RequestMapping("/meta3")
-public class MetaDataRestV3Service {
+@RequestMapping("/datamodel")
+public class FlyDataModelRestService {
 	@Autowired
-	private IMetaDataService metaService;
+	private IFlyDataModelService metaService;
 	
 	@RequestMapping("list")
 	public List<Class<?>> getAllEntityClasses(){
@@ -33,7 +33,7 @@ public class MetaDataRestV3Service {
 	 * @return
 	 */
 	@RequestMapping("{table}")
-	public FlyTableDefinition getFlyTableDefinition(@PathVariable("table") String table) {
-		return metaService.getFlyTableDefinition(table);
+	public FlyDataModel getFlyTableDefinition(@PathVariable("table") String table) {
+		return metaService.getFlyDataModel(table);
 	}
 }

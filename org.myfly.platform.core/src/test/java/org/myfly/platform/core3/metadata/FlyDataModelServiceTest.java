@@ -6,34 +6,34 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.myfly.platform.CoreApplication;
-import org.myfly.platform.core3.metadata.define.FlyTableDefinition;
-import org.myfly.platform.core3.metadata.service.IMetaDataService;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = CoreApplication.class)
-public class MetaDataServiceTest {
+public class FlyDataModelServiceTest {
 	@Autowired
-	private IMetaDataService service;
+	private IFlyDataModelService service;
 
 	@Test
-	public void getFlyTableDefinitionFromEntityClass() {
+	public void getFlyDataModelFromEntityClass() {
 		List<Class<?>> list = service.getAllEntityClasses();
 		Assert.assertNotNull(list);
 		list.forEach(entityClass -> {
-			FlyTableDefinition flyTable = service.getFlyTableDefinitionFromEntityClass(entityClass);
+			FlyDataModel flyTable = service.getFlyDataModelFromEntityClass(entityClass);
 			Assert.assertNotNull(flyTable);
 		});
 	}
 
 	@Test
-	public void getFlyTableDefinition() {
+	public void getFlyDataModel() {
 		List<Class<?>> list = service.getAllEntityClasses();
 		Assert.assertNotNull(list);
 		list.forEach(entityClass -> {
-			FlyTableDefinition flyTable = service.getFlyTableDefinition(entityClass.getName());
+			FlyDataModel flyTable = service.getFlyDataModel(entityClass.getName());
 			Assert.assertNotNull(flyTable);
 		});
 	}

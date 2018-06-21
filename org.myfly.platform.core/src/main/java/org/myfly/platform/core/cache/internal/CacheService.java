@@ -2,6 +2,7 @@ package org.myfly.platform.core.cache.internal;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -12,6 +13,7 @@ import org.myfly.platform.core.utils.AssertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.cache.ehcache.EhCacheCache;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,11 @@ public class CacheService implements ICacheService {
 	private Log log = LogFactory.getLog(getClass());
 	@Autowired
 	private CacheManager cacheManager;
+	
+	@Override
+	public String getCacheImplementor() {
+		return cacheManager.getClass().getName();
+	}
 
 	/**
 	 * 获取系统当前缓存类型列表
@@ -37,18 +44,31 @@ public class CacheService implements ICacheService {
 		for (String cacheName : cacheManager.getCacheNames()) {
 			CacheInfo cacheInfo = new CacheInfo();
 			cacheInfo.setCacheName(cacheName);
-			//updateCacheInfo(cacheInfo);
+			updateCacheInfo(cacheInfo);
 			list.add(cacheInfo);
 		}
 		return list;
 	}
 
-//	private void updateCacheInfo(CacheInfo cacheInfo) {
-//		Cache cache = cacheManager.getCache(cacheInfo.getCacheName());
-//		if (cache instanceof EhCacheCache) {
-//			updateCacheInfoFormECache((EhCacheCache) cache, cacheInfo);
-//		}
-//	}
+	private void updateCacheInfo(CacheInfo cacheInfo) {
+		Cache cache = cacheManager.getCache(cacheInfo.getCacheName());
+		if (cache instanceof EhCacheCache) {
+			//updateCacheInfoFormECache((EhCacheCache) cache, cacheInfo);
+		}else if (cache instanceof ConcurrentMapCache) {
+			ConcurrentMap<Object, Object> store = (ConcurrentMap<Object, Object>) cache.getNativeCache();
+			cacheInfo.setSize(store.size());
+		}
+	}
+	
+	public Object listCacheObject(String cacheName) {
+		Cache cache = cacheManager.getCache(cacheName);
+		if (cache instanceof EhCacheCache) {
+		}else if (cache instanceof ConcurrentMapCache) {
+			ConcurrentMap<Object, Object> store = (ConcurrentMap<Object, Object>) cache.getNativeCache();
+			return store;
+		}
+		return null;
+	}
 
 //	private void updateCacheInfoFormECache(EhCacheCache cache, CacheInfo cacheInfo) {
 //		net.sf.ehcache.Cache ecache = (net.sf.ehcache.Cache) cache.getNativeCache();

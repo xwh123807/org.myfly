@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.cache.CacheManager;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.convert.support.GenericConversionService;
@@ -42,6 +43,9 @@ public class ApplicationStarter implements ApplicationRunner {
 
 	@Autowired(required=false)
 	private IMenuService menuService;
+	
+	@Autowired(required=false)
+	private CacheManager cacheManager;
 
 	@Autowired
 	public void setApplicationContext(ApplicationContext applicationContext) {
@@ -66,12 +70,19 @@ public class ApplicationStarter implements ApplicationRunner {
 		} catch (NoSuchBeanDefinitionException e) {
 		}
 
+		showCacheInfo();
 		initMicroApps();
 	}
 
 	public void registerConverterFactory(GenericConversionService conversionService) {
 		AssertUtil.parameterEmpty(conversionService, "conversionService");
 		ExtendConvertersRegister.registerExtendConverters(conversionService);
+	}
+	
+	private void showCacheInfo() {
+		if (cacheManager != null) {
+			System.out.println("cache implements: " + cacheManager.getClass().getName());
+		}
 	}
 
 	public interface IAppConfigEventExecutor {

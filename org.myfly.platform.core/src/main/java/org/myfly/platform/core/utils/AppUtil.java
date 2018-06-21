@@ -7,6 +7,9 @@ import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.starter.ApplicationStarter;
+import org.myfly.platform.core3.metadata.builder.EntityFlyTableBuilder;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.GenericConversionService;
@@ -171,5 +174,33 @@ public class AppUtil {
 			throw new NullPointerException("factory is not a hibernate factory");
 		}
 		return factory.unwrap(SessionFactory.class);
+	}
+
+	/**
+	 * 获取实体的数据模型
+	 * @param entityName
+	 * @return
+	 */
+	public static FlyDataModel getFlyDataModel(String entityName) {
+		Assert.hasLength(entityName);
+		FlyDataModel metaData = null;
+		try {
+			IFlyDataModelService emService = null;
+			try {
+				emService = getService(IFlyDataModelService.class);
+			} catch (Exception e) {
+			}
+			if (emService == null) {
+				Class<?> entityClass = Class.forName(entityName);
+				metaData = new FlyDataModel(new EntityFlyTableBuilder(entityClass));
+			} else {
+				metaData = emService.getFlyDataModel(entityName);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("查找数据模型[" + entityName + "]失败，" + e.getMessage());
+		}
+		Assert.notNull(metaData, "找不到名称为[" + entityName + "]的数据模型");
+		return metaData;
 	}
 }

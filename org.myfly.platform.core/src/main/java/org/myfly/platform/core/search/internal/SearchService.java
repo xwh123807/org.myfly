@@ -30,7 +30,7 @@ import org.springframework.data.elasticsearch.core.query.UpdateQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-@Service
+//@Service
 // @CacheConfig(cacheNames = "search-service")
 public class SearchService implements ISearchService {
 

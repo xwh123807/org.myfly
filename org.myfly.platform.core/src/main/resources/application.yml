@@ -40,9 +40,11 @@ spring:
       #create|create-drop|update|validate
       ddlAuto: create
       formatSql: true
-#  cache:
-#    ehcache:
-#      config: ehcache.xml
+  cache:
+    #type: ehcache
+    cacheNames: 
+    ehcache:
+      config: ehcache.xml
   datasource:
     url: jdbc:derby:memory:myfly;create=true
     username: sa

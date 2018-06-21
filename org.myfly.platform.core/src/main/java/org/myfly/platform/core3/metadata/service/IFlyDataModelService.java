@@ -2,15 +2,15 @@ package org.myfly.platform.core3.metadata.service;
 
 import java.util.List;
 
-import org.myfly.platform.core3.metadata.define.FlyTableDefinition;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
 
 /**
- * 元数据服务 <br>
+ * 数据模型服务 <br>
  * 
  * @author xiangwanhong
  *
  */
-public interface IMetaDataService {
+public interface IFlyDataModelService {
 	/**
 	 * 获取系统中所有的实体
 	 * 
@@ -18,12 +18,18 @@ public interface IMetaDataService {
 	 */
 	List<Class<?>> getAllEntityClasses();
 	/**
+	 * 获取实体类
+	 * @param entityName
+	 * @return
+	 */
+	 <T> T  getEntityClass(String entityName);
+	/**
 	 * 获取表的数据模型
 	 * 
 	 * @param entityName
 	 * @return
 	 */
-	public FlyTableDefinition getFlyTableDefinition(String entityName);
+	public FlyDataModel getFlyDataModel(String entityName);
 
 	/**
 	 * 获取表的数据模型
@@ -31,7 +37,7 @@ public interface IMetaDataService {
 	 * @param entityClass
 	 * @return
 	 */
-	public FlyTableDefinition getFlyTableDefinitionFromEntityClass(Class<?> entityClass);
+	public FlyDataModel getFlyDataModelFromEntityClass(Class<?> entityClass);
 	
 	/**
 	 * 从实体类中导入数据模型到数据库中

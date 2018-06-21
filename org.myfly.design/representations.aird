@@ -148,6 +148,9 @@
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Activity%20Diagram']"/>
         <target xmi:type="uml:Activity" href="org.myfly3.uml#_a9uR0HSOEei8fL2NKOUI8Q"/>
       </ownedRepresentationDescriptors>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_Vq5zEHTrEeit1uM82HaLpg" name="use cases Activity Diagram" repPath="#_Vq5MAHTrEeit1uM82HaLpg">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Activity%20Diagram']"/>
+      </ownedRepresentationDescriptors>
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="__WN6EEUIEeiaMpImppUXPQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Review']"/>
@@ -16435,5 +16438,33 @@
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_a-wzpXSOEei8fL2NKOUI8Q"/>
     <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Activity%20Diagram']/@defaultLayer"/>
     <target xmi:type="uml:Activity" href="org.myfly3.uml#_a9uR0HSOEei8fL2NKOUI8Q"/>
+  </diagram:DSemanticDiagram>
+  <diagram:DSemanticDiagram xmi:id="_Vq5MAHTrEeit1uM82HaLpg" name="use cases Activity Diagram">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_Vq5MAXTrEeit1uM82HaLpg" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_Vq5MAnTrEeit1uM82HaLpg"/>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_VrBu4HTrEeit1uM82HaLpg" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_VrBu4XTrEeit1uM82HaLpg" type="Sirius" element="_Vq5MAHTrEeit1uM82HaLpg" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_VrCV8HTrEeit1uM82HaLpg" type="2002" element="_Vq5MBHTrEeit1uM82HaLpg">
+          <children xmi:type="notation:Node" xmi:id="_VrC9AHTrEeit1uM82HaLpg" type="5006"/>
+          <children xmi:type="notation:Node" xmi:id="_VrDkEHTrEeit1uM82HaLpg" type="7001">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_VrDkEXTrEeit1uM82HaLpg"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_VrDkEnTrEeit1uM82HaLpg"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_VrCV8XTrEeit1uM82HaLpg" fontName=".AppleSystemUIFont"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VrCV8nTrEeit1uM82HaLpg"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_VrBu4nTrEeit1uM82HaLpg"/>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_Vq5MBHTrEeit1uM82HaLpg" name="use cases">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_Vq5MBXTrEeit1uM82HaLpg" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="114,73,110" backgroundStyle="Liquid" foregroundColor="245,239,244">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Activity%20Diagram']/@defaultLayer/@containerMappings[name='AD_Activity']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Activity%20Diagram']/@defaultLayer/@containerMappings[name='AD_Activity']"/>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Activity%20Diagram']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_Vq5MBnTrEeit1uM82HaLpg"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Activity%20Diagram']/@defaultLayer"/>
   </diagram:DSemanticDiagram>
 </xmi:XMI>

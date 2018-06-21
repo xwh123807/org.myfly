@@ -9,4 +9,14 @@ import org.myfly.platform.core3.metadata.define.IValueHandler;
  */
 public class DefaultValueHandler implements IValueHandler{
 
+	@Override
+	public Object getFieldValue(Object entityObj) {
+		return null;
+	}
+
+	@Override
+	public void setFieldValue(Object entity, Object value) {
+		
+	}
+
 }

@@ -2,57 +2,50 @@ package org.myfly.platform.core3.metadata.internal;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import javax.persistence.Entity;
 import javax.transaction.Transactional;
 
 import org.myfly.platform.core3.metadata.builder.EntityFlyTableBuilder;
 import org.myfly.platform.core3.metadata.builder.PTTableFlyTableBuilder;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.core3.metadata.define.FlyTableDefinition;
 import org.myfly.platform.core3.metadata.model.PTable;
 import org.myfly.platform.core3.metadata.repository.IPTableRepository;
-import org.myfly.platform.core3.metadata.service.IMetaDataService;
+import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.data.jpa.mapping.JpaPersistentEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ClassUtils;
 
 @Service
-public class MetaDataService implements IMetaDataService {
+@CacheConfig(cacheNames = "datamodel")
+public class FlyDataModelService implements IFlyDataModelService {
 	@Autowired
 	private JpaMetamodelMappingContext mappingContext;
 
 	@Autowired
 	private IPTableRepository tableRepos;
 
-	/**
-	 * 缓存实体类
-	 */
-	private static List<Class<?>> entityClasses;
-
-	/**
-	 * 缓存所有已经加载的元模型
-	 */
-	private static Map<String, FlyTableDefinition> cachedEntityMetaDatas = new ConcurrentHashMap<>();
-
 	@Override
+	@Cacheable
 	public List<Class<?>> getAllEntityClasses() {
-		if (entityClasses == null) {
-			entityClasses = new ArrayList<>();
-			for (JpaPersistentEntity<?> entity : mappingContext.getPersistentEntities()) {
-				if (entity.findAnnotation(Entity.class) != null) {
-					entityClasses.add(entity.getType());
-				}
+		List<Class<?>> entityClasses = new ArrayList<>();
+		for (JpaPersistentEntity<?> entity : mappingContext.getPersistentEntities()) {
+			if (entity.findAnnotation(Entity.class) != null) {
+				entityClasses.add(entity.getType());
 			}
 		}
 		return entityClasses;
 	}
 
 	@SuppressWarnings("unchecked")
-	private <T> T getEntityClass(String entityNameOrClassName) {
+	@Cacheable
+	@Override
+	public <T> T getEntityClass(String entityNameOrClassName) {
 		Class<?> entityClass = null;
 		for (Class<?> entity : getAllEntityClasses()) {
 			if (entity.getName().equalsIgnoreCase(entityNameOrClassName)) {
@@ -70,25 +63,21 @@ public class MetaDataService implements IMetaDataService {
 	}
 
 	@Override
-	public FlyTableDefinition getFlyTableDefinition(String entityNameOrClassName) {
-		if (cachedEntityMetaDatas.containsKey(entityNameOrClassName)) {
-			return cachedEntityMetaDatas.get(entityNameOrClassName);
-		} else {
-			FlyTableDefinition flyTable = getFlyTableDefinitionFromDB(entityNameOrClassName);
-			if (flyTable == null) {
-				Class<?> entityClass = getEntityClass(entityNameOrClassName);
-				flyTable = getFlyTableDefinitionFromEntityClass(entityClass);
-			}
-			cachedEntityMetaDatas.put(entityNameOrClassName, flyTable);
-			return flyTable;
+	@Cacheable
+	public FlyDataModel getFlyDataModel(String entityNameOrClassName) {
+		FlyDataModel flyTable = getFlyDataModelFromDB(entityNameOrClassName);
+		if (flyTable == null) {
+			Class<?> entityClass = getEntityClass(entityNameOrClassName);
+			flyTable = getFlyDataModelFromEntityClass(entityClass);
 		}
+		return flyTable;
 	}
 
 	@Transactional
-	private FlyTableDefinition getFlyTableDefinitionFromDB(String entityName) {
+	private FlyDataModel getFlyDataModelFromDB(String entityName) {
 		PTable table = tableRepos.findByApiName(entityName);
 		if (table != null) {
-			FlyTableDefinition flyTable = new FlyTableDefinition(new PTTableFlyTableBuilder(table));
+			FlyDataModel flyTable = new FlyDataModel(new PTTableFlyTableBuilder(table));
 			return flyTable;
 		} else {
 			return null;
@@ -96,8 +85,9 @@ public class MetaDataService implements IMetaDataService {
 	}
 
 	@Override
-	public FlyTableDefinition getFlyTableDefinitionFromEntityClass(Class<?> entityClass) {
-		FlyTableDefinition flyTable = new FlyTableDefinition(new EntityFlyTableBuilder(entityClass));
+	@Cacheable(key = "#entityClass.getName()")
+	public FlyDataModel getFlyDataModelFromEntityClass(Class<?> entityClass) {
+		FlyDataModel flyTable = new FlyDataModel(new EntityFlyTableBuilder(entityClass));
 		return flyTable;
 	}
 
@@ -106,7 +96,7 @@ public class MetaDataService implements IMetaDataService {
 	public List<String> importDataModelFromAllEntityClass() {
 		List<String> logs = new ArrayList<>();
 		getAllEntityClasses().forEach(entityClass -> {
-			FlyTableDefinition flyTable = getFlyTableDefinitionFromEntityClass(entityClass);
+			FlyTableDefinition flyTable = getFlyDataModelFromEntityClass(entityClass);
 			PTable table = PTTableFlyTableBuilder.toPTable(flyTable);
 			tableRepos.save(table);
 			logs.add("import data model for " + flyTable.getApiName());
