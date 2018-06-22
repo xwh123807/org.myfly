@@ -1,7 +1,8 @@
 package org.myfly.platform.core3.metadata.handler;
 
+import java.util.Map;
+
 import org.myfly.platform.core.utils.AssertUtil;
-import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.metadata.define.FlyFieldDefinition;
 import org.myfly.platform.core3.metadata.define.IValueHandler;
 
@@ -29,23 +30,35 @@ public class DefaultValueHandler implements IValueHandler {
 	@Override
 	public Object getFieldValue(Object entity) {
 		if (entity != null) {
-			if (entity instanceof IFlyEntity) {
-				return getFieldValueForFlyEntity((IFlyEntity) entity);
+			if (entity instanceof Map) {
+				return getFieldValueForMap((Map) entity);
+			} else {
+				return getFieldValueForEntity(entity);
 			}
 		}
 		return null;
 	}
 
+	private Object getFieldValueForMap(Map entity) {
+		return entity.get(getField().getApiName());
+	}
+
 	@Override
 	public void setFieldValue(Object entity, Object value) {
 		if (entity != null) {
-			if (entity instanceof IFlyEntity) {
-				setFieldValueForFlyEntity((IFlyEntity) entity, value);
+			if (entity instanceof Map) {
+				setFieldValueForMap((Map) entity, value);
+			} else {
+				setFieldValueForEntity(entity, value);
 			}
 		}
 	}
 
-	public Object getFieldValueForFlyEntity(IFlyEntity entity) {
+	private void setFieldValueForMap(Map entity, Object value) {
+		entity.put(getField().getApiName(), value);
+	}
+
+	public Object getFieldValueForEntity(Object entity) {
 		if (entity != null) {
 			Object value = null;
 			try {
@@ -61,7 +74,7 @@ public class DefaultValueHandler implements IValueHandler {
 		return null;
 	}
 
-	public void setFieldValueForFlyEntity(IFlyEntity entity, Object value) {
+	public void setFieldValueForEntity(Object entity, Object value) {
 		if (entity != null) {
 			try {
 				getField().getSetter().invoke(entity, value);
