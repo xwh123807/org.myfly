@@ -343,4 +343,18 @@ public class ClassUtil {
 			throws IllegalArgumentException, IllegalAccessException {
 		return field.get(obj);
 	}
+
+	/**
+	 * 根据类名获取类
+	 * 
+	 * @param className
+	 * @return
+	 */
+	public static Class<?> getClass(String className) {
+		try {
+			return Class.forName(className);
+		} catch (ClassNotFoundException e) {
+			throw new IllegalArgumentException("[" + className + "]类找不到, " + e.getMessage());
+		}
+	}
 }

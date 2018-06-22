@@ -1,8 +1,7 @@
 package org.myfly.platform.core3.metadata.define;
 
-import java.util.Map;
-
-import org.myfly.platform.core3.domain.IAuditable;
+import org.myfly.platform.core.utils.AssertUtil;
+import org.myfly.platform.core3.domain.IFlyEntity;
 
 public class FlyDataModel extends FlyTableDefinition {
 	public FlyDataModel() {
@@ -17,8 +16,17 @@ public class FlyDataModel extends FlyTableDefinition {
 	 */
 	private static final long serialVersionUID = 2763660520511209664L;
 
-	public <T extends IAuditable> T newEntityInstance(Map<String, Object> flyEntity) {
+	/**
+	 * 创建实体实例
+	 * @return
+	 */
+	@SuppressWarnings({ "unchecked", "static-access" })
+	public <T extends IFlyEntity> T newEntityInstance() {
+		try {
+			return (T) getClass().forName(getApiName()).newInstance();
+		} catch (Exception e) {
+			AssertUtil.parameterInvalide(getApiName(), "创建实体实例失败，" + e.getMessage());
+		}
 		return null;
 	}
-
 }

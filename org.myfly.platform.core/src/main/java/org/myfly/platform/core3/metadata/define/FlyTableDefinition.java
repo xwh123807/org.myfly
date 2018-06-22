@@ -35,17 +35,17 @@ public class FlyTableDefinition extends AbstractDefinition {
 	private boolean isHighVolume;
 
 	private boolean isChangeLog;
-	
+
 	private boolean isIgnoreMigration;
-	
+
 	private boolean isDocument;
-	
+
 	private boolean isSecurityEnabled;
-	
+
 	private boolean isDeleteable;
-	
+
 	private boolean isView;
-	
+
 	private boolean isCentrallyMaintained;
 	/**
 	 * 表属性map，Key为属性名称
@@ -207,9 +207,9 @@ public class FlyTableDefinition extends AbstractDefinition {
 	@Override
 	public void validate() {
 		Assert.hasLength(getApiName(), "属性[apiName]不能为空");
-		Assert.hasLength(getName(), "属性[name]不能为空");
-		Assert.hasLength(getTableName(), "属性[tableName]不能为空");
-		Assert.notEmpty(getFlyFields(), "属性[fields]不能为空，且长度不能小于1");
+		Assert.hasLength(getName(), "实体[" + getApiName() + "]属性[name]不能为空");
+		Assert.hasLength(getTableName(), "实体[" + getApiName() + "]属性[tableName]不能为空");
+		Assert.notEmpty(getFlyFields(), "实体[" + getApiName() + "]属性[fields]不能为空，且长度不能小于1");
 		getFlyFields().values().forEach(field -> field.validate());
 	}
 }

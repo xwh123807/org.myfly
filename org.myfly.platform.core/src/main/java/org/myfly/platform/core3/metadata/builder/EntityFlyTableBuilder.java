@@ -85,5 +85,8 @@ public class EntityFlyTableBuilder extends FlyTableDefinition {
 		if (StringUtils.isBlank(getName())) {
 			setName(entityClass.getSimpleName());
 		}
+		if (StringUtils.isBlank(getTableName())) {
+			setTableName(getName());
+		}
 	}
 }

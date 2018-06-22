@@ -14,7 +14,6 @@ import org.myfly.platform.core3.metadata.model.PTable;
 import org.myfly.platform.core3.metadata.repository.IPTableRepository;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.data.jpa.mapping.JpaPersistentEntity;
@@ -22,7 +21,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ClassUtils;
 
 @Service
-@CacheConfig(cacheNames = "datamodel")
 public class FlyDataModelService implements IFlyDataModelService {
 	@Autowired
 	private JpaMetamodelMappingContext mappingContext;
@@ -31,7 +29,6 @@ public class FlyDataModelService implements IFlyDataModelService {
 	private IPTableRepository tableRepos;
 
 	@Override
-	@Cacheable
 	public List<Class<?>> getAllEntityClasses() {
 		List<Class<?>> entityClasses = new ArrayList<>();
 		for (JpaPersistentEntity<?> entity : mappingContext.getPersistentEntities()) {
@@ -43,7 +40,7 @@ public class FlyDataModelService implements IFlyDataModelService {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Cacheable
+	@Cacheable(cacheNames="entity-class")
 	@Override
 	public <T> T getEntityClass(String entityNameOrClassName) {
 		Class<?> entityClass = null;
@@ -63,7 +60,8 @@ public class FlyDataModelService implements IFlyDataModelService {
 	}
 
 	@Override
-	@Cacheable
+	@Cacheable(cacheNames="datamodel")
+	@Transactional
 	public FlyDataModel getFlyDataModel(String entityNameOrClassName) {
 		FlyDataModel flyTable = getFlyDataModelFromDB(entityNameOrClassName);
 		if (flyTable == null) {
@@ -78,6 +76,7 @@ public class FlyDataModelService implements IFlyDataModelService {
 		PTable table = tableRepos.findByApiName(entityName);
 		if (table != null) {
 			FlyDataModel flyTable = new FlyDataModel(new PTTableFlyTableBuilder(table));
+			flyTable.validate();
 			return flyTable;
 		} else {
 			return null;
@@ -85,9 +84,10 @@ public class FlyDataModelService implements IFlyDataModelService {
 	}
 
 	@Override
-	@Cacheable(key = "#entityClass.getName()")
+	@Cacheable(cacheNames="datamodel", key = "#entityClass.getName()")
 	public FlyDataModel getFlyDataModelFromEntityClass(Class<?> entityClass) {
 		FlyDataModel flyTable = new FlyDataModel(new EntityFlyTableBuilder(entityClass));
+		flyTable.validate();
 		return flyTable;
 	}
 

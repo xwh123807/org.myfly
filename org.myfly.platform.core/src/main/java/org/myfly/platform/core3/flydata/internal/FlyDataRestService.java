@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.myfly.platform.core3.flydata.service.FlyEntityResult3;
+import org.myfly.platform.core3.flydata.service.FlyEntityMap;
 import org.myfly.platform.core3.flydata.service.IFlyDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class FlyDataRestService {
 	@Autowired
 	private IFlyDataService flyDataService;
-	
-	@RequestMapping("help")
+
+	@RequestMapping(value = { "", "help" })
 	public Map<String, String> help() {
 		Map<String, String> map = new HashMap<>();
 		map.put("{entityName} [POST]", "保存实体");
@@ -39,8 +39,7 @@ public class FlyDataRestService {
 	 * @param flyEntity
 	 */
 	@RequestMapping(value = "{entityName}", method = RequestMethod.POST)
-	public String saveEntity(@PathVariable("entityName") String entityName,
-			@RequestBody FlyEntityResult3 flyEntity) {
+	public String saveEntity(@PathVariable("entityName") String entityName, @RequestBody FlyEntityMap flyEntity) {
 		return flyDataService.saveEntity(entityName, flyEntity);
 	}
 
@@ -53,7 +52,7 @@ public class FlyDataRestService {
 	 */
 	@RequestMapping(value = "{entityName}/{uid}", method = RequestMethod.PUT)
 	public void updateEntity(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid,
-			@RequestBody FlyEntityResult3 flyEntity) {
+			@RequestBody FlyEntityMap flyEntity) {
 		flyDataService.updateEntity(entityName, uid, flyEntity);
 	}
 
@@ -66,7 +65,7 @@ public class FlyDataRestService {
 	 */
 	@RequestMapping(value = "{entityName}/{uid}", method = RequestMethod.PATCH)
 	public void patchEntity(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid,
-			@RequestBody FlyEntityResult3 flyEntity) {
+			@RequestBody FlyEntityMap flyEntity) {
 		flyDataService.mergeEntity(entityName, uid, flyEntity);
 	}
 
@@ -80,7 +79,7 @@ public class FlyDataRestService {
 	 * @return
 	 */
 	@RequestMapping(value = "{entityName}/{uid}", method = RequestMethod.GET)
-	public FlyEntityResult3 find(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid,
+	public FlyEntityMap find(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid,
 			@RequestParam(name = "hasSubTable", required = false, defaultValue = "true") boolean hasSubTable,
 			@RequestParam(name = "subTableAttrs", required = false, defaultValue = "null") String[] subTableAttrs) {
 		return flyDataService.find(entityName, uid, hasSubTable, subTableAttrs);
@@ -95,7 +94,7 @@ public class FlyDataRestService {
 	 * @return
 	 */
 	@RequestMapping(value = "{entityName}", method = RequestMethod.GET)
-	public List<FlyEntityResult3> findAll(@PathVariable("entityName") String entityName) {
+	public List<FlyEntityMap> findAll(@PathVariable("entityName") String entityName) {
 		return flyDataService.findAll(entityName);
 	}
 

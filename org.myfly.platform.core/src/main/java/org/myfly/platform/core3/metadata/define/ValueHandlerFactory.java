@@ -1,6 +1,5 @@
 package org.myfly.platform.core3.metadata.define;
 
-import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.metadata.handler.DefaultValueHandler;
 
 /**
@@ -16,7 +15,7 @@ public class ValueHandlerFactory {
 	 * @param dataType
 	 * @return
 	 */
-	public static IValueHandler getValueHandler(FlyDataType dataType) {
-		return new DefaultValueHandler();
+	public static IValueHandler getValueHandler(FlyFieldDefinition field) {
+		return new DefaultValueHandler(field);
 	}
 }

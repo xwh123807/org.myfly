@@ -8,6 +8,7 @@ import javax.persistence.Table;
 
 import org.myfly.platform.core3.domain.EntityType;
 import org.myfly.platform.core3.domain.FlyDataType;
+import org.myfly.platform.core3.domain.FlyEntity;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
@@ -21,7 +22,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 @Entity
 @Table(name = "PT_Column")
 @FlyTable(name = "Column", description = "Column in the table")
-public class PColumn extends Auditable {
+public class PColumn extends FlyEntity {
 	@FlyField(name = "API Name")
 	@Column(length = 50, name = "ApiName")
 	private String apiName;

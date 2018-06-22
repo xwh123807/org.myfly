@@ -1,5 +1,7 @@
 package org.myfly.platform.core3.metadata.define;
 
+import java.lang.reflect.Method;
+
 import org.myfly.platform.core3.domain.EntityType;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.springframework.util.Assert;
@@ -64,6 +66,12 @@ public class FlyFieldDefinition extends AbstractDefinition {
 
 	private String vFormat;
 
+	@JsonIgnore
+	private Method getter;
+
+	@JsonIgnore
+	private Method setter;
+
 	public FlyFieldDefinition() {
 
 	}
@@ -97,6 +105,8 @@ public class FlyFieldDefinition extends AbstractDefinition {
 		setValueMin(builder.getValueMin());
 		setValueMax(builder.getValueMax());
 		setvFormat(builder.getvFormat());
+		setGetter(builder.getGetter());
+		setSetter(builder.getSetter());
 	}
 
 	public String getName() {
@@ -275,18 +285,35 @@ public class FlyFieldDefinition extends AbstractDefinition {
 		this.fieldLength = fieldLength;
 	}
 
+	public Method getGetter() {
+		return getter;
+	}
+
+	public void setGetter(Method getter) {
+		this.getter = getter;
+	}
+
+	public Method getSetter() {
+		return setter;
+	}
+
+	public void setSetter(Method setter) {
+		this.setter = setter;
+	}
+
 	@Override
 	public String toString() {
 		return "apiName: " + getApiName();
 	}
-	
+
 	/**
 	 * 获取字段值读取类
+	 * 
 	 * @return
 	 */
 	@JsonIgnore
 	public IValueHandler getValueHandler() {
-		return ValueHandlerFactory.getValueHandler(getDataType());
+		return ValueHandlerFactory.getValueHandler(this);
 	}
 
 	@Override
@@ -296,5 +323,7 @@ public class FlyFieldDefinition extends AbstractDefinition {
 		Assert.hasLength(getColumnName(), "属性[columnName]不能为空");
 		Assert.notNull(getEntityType(), "属性[entityType]不能为空");
 		Assert.notNull(getDataType(), "属性[dataType]不能为空");
+		Assert.notNull(getGetter(), "属性[getter]不能为空");
+		Assert.notNull(getSetter(), "属性[setter]不能为空");
 	}
 }

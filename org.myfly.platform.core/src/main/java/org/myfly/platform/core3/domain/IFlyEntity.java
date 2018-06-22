@@ -2,7 +2,21 @@ package org.myfly.platform.core3.domain;
 
 import java.sql.Timestamp;
 
-public interface IAuditable {
+/**
+ * 
+ * @author xiangwanhong
+ *
+ */
+public interface IFlyEntity {
+	public final String UID = "uid";
+	public final String CREATED = "created";
+	public final String UPDATED = "updated";
+	public final String ACTIVE = "active";
+
+	/**
+	 * 
+	 * @return
+	 */
 	public String getUid();
 
 	public void setUid(String uid);

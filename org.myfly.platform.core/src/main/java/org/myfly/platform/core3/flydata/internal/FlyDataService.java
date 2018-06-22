@@ -7,8 +7,9 @@ import javax.transaction.Transactional;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
-import org.myfly.platform.core3.domain.IAuditable;
-import org.myfly.platform.core3.flydata.service.FlyEntityResult3;
+import org.myfly.platform.core3.domain.IFlyEntity;
+import org.myfly.platform.core3.flydata.service.FlyEntityMap;
+import org.myfly.platform.core3.flydata.service.FlyEntityUtils;
 import org.myfly.platform.core3.flydata.service.IFlyDataService;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
@@ -23,69 +24,139 @@ public class FlyDataService implements IFlyDataService {
 	@Autowired
 	private IFlyDataModelService dataModelService;
 
+	/**
+	 * 获取实体类
+	 * 
+	 * @param entityName
+	 * @return
+	 */
 	private Class<?> getEntityClass(String entityName) {
 		return dataModelService.getEntityClass(entityName);
 	}
 
+	/**
+	 * 获取实体数据模型
+	 * 
+	 * @param entityName
+	 * @return
+	 */
 	private FlyDataModel getFlyDataModel(String entityName) {
 		return dataModelService.getFlyDataModel(entityName);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.flydata.service.IFlyDataService#findOne(java.lang.
+	 * String, java.lang.String)
+	 */
 	@Override
-	public FlyEntityResult3 findOne(String entityName, String uid) {
-		IAuditable entity = (IAuditable) jpaService.findOne(getEntityClass(entityName), uid);
-		return FlyEntityResult3.fromEntity(getFlyDataModel(entityName), entity);
+	public FlyEntityMap findOne(String entityName, String uid) {
+		IFlyEntity entity = (IFlyEntity) jpaService.findOne(getEntityClass(entityName), uid);
+		return FlyEntityUtils.fromEntity(getFlyDataModel(entityName), entity);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.flydata.service.IFlyDataService#delOne(java.lang.
+	 * String, java.lang.String)
+	 */
 	@Override
 	public void delOne(String entityName, String uid) {
 		jpaService.delOne(getEntityClass(entityName), uid);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.flydata.service.IFlyDataService#saveEntity(java.lang
+	 * .String, org.myfly.platform.core3.flydata.service.FlyEntityResult3)
+	 */
 	@Override
-	public String saveEntity(String entityName, FlyEntityResult3 flyEntity) {
-		IAuditable entity = jpaService.saveEntity(FlyEntityResult3.toEntity(getFlyDataModel(entityName), flyEntity));
+	public String saveEntity(String entityName, FlyEntityMap flyEntity) {
+		IFlyEntity entity = jpaService.saveEntity(FlyEntityUtils.toEntity(getFlyDataModel(entityName), flyEntity));
 		return entity.getUid();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.flydata.service.IFlyDataService#saveEntityAndReturn(
+	 * java.lang.String, org.myfly.platform.core3.flydata.service.FlyEntityResult3)
+	 */
 	@Override
-	public FlyEntityResult3 saveEntityAndReturn(String entityName, FlyEntityResult3 flyEntity) {
+	public FlyEntityMap saveEntityAndReturn(String entityName, FlyEntityMap flyEntity) {
 		String uid = saveEntity(entityName, flyEntity);
 		return find(entityName, uid, true, null);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.flydata.service.IFlyDataService#updateEntity(java.
+	 * lang.String, java.lang.String,
+	 * org.myfly.platform.core3.flydata.service.FlyEntityResult3)
+	 */
 	@Override
-	public void updateEntity(String entityName, String uid, FlyEntityResult3 flyEntity) {
-		IAuditable entity = FlyEntityResult3.toEntity(getFlyDataModel(entityName), flyEntity);
+	public void updateEntity(String entityName, String uid, FlyEntityMap flyEntity) {
+		IFlyEntity entity = FlyEntityUtils.toEntity(getFlyDataModel(entityName), flyEntity);
 		jpaService.updateEntity(uid, entity);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.flydata.service.IFlyDataService#mergeEntity(java.
+	 * lang.String, java.lang.String,
+	 * org.myfly.platform.core3.flydata.service.FlyEntityResult3)
+	 */
 	@Override
-	public void mergeEntity(String entityName, String uid, FlyEntityResult3 flyEntity) {
+	public void mergeEntity(String entityName, String uid, FlyEntityMap flyEntity) {
 		Object obj = jpaService.findOne(getEntityClass(entityName), uid);
 		// 合并实体，只覆盖部分属性
-		Object mergedObj = FlyEntityResult3.mergeEntity(getFlyDataModel(entityName), (IAuditable)obj, flyEntity, false);
+		Object mergedObj = FlyEntityUtils.mergeEntity(getFlyDataModel(entityName), (IFlyEntity) obj, flyEntity,
+				false);
 		jpaService.updateEntity(mergedObj);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.flydata.service.IFlyDataService#findAll(java.lang.
+	 * String)
+	 */
 	@Override
-	public List<FlyEntityResult3> findAll(String entityName) {
+	public List<FlyEntityMap> findAll(String entityName) {
 		FlyDataModel dataModel = getFlyDataModel(entityName);
 		List<?> list = jpaService.findAll(getEntityClass(entityName));
 		if (CollectionUtils.isNotEmpty(list)) {
-			List<FlyEntityResult3> results = new ArrayList<>();
+			List<FlyEntityMap> results = new ArrayList<>();
 			list.forEach(item -> {
-				results.add(FlyEntityResult3.fromEntity(dataModel, item));
+				results.add(FlyEntityUtils.fromEntity(dataModel, item));
 			});
 			return results;
 		}
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.flydata.service.IFlyDataService#find(java.lang.
+	 * String, java.lang.String, boolean, java.lang.String[])
+	 */
 	@Override
-	public FlyEntityResult3 find(String entityName, String uid, boolean hasSubTable, String[] subTableAttrs) {
+	public FlyEntityMap find(String entityName, String uid, boolean hasSubTable, String[] subTableAttrs) {
 		Object obj = jpaService.findOne(getEntityClass(entityName), uid);
-		return FlyEntityResult3.fromEntity(getFlyDataModel(entityName), obj);
+		return FlyEntityUtils.fromEntity(getFlyDataModel(entityName), obj);
 	}
 
 }

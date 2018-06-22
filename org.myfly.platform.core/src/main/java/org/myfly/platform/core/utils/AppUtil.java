@@ -193,6 +193,7 @@ public class AppUtil {
 			if (emService == null) {
 				Class<?> entityClass = Class.forName(entityName);
 				metaData = new FlyDataModel(new EntityFlyTableBuilder(entityClass));
+				metaData.validate();
 			} else {
 				metaData = emService.getFlyDataModel(entityName);
 			}

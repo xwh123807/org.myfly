@@ -5,6 +5,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.myfly.platform.core.utils.ClassUtil;
+import org.myfly.platform.core.utils.EntityClassUtil;
+import org.myfly.platform.core.utils.EntityClassUtil.FieldInfo;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.metadata.define.FlyFieldDefinition;
 import org.myfly.platform.core3.metadata.define.FlyTableDefinition;
@@ -41,6 +44,17 @@ public class PTTableFlyTableBuilder extends FlyTableDefinition {
 		Map<String, FlyFieldDefinition> fields = new LinkedHashMap<>();
 		columns.stream().map(item -> new PTColumnFlyFieldBuilder(item)).forEach(builder -> {
 			fields.put(builder.getApiName(), new FlyFieldDefinition(builder));
+		});
+		// 设置属性的getter和setter
+		Map<String, FieldInfo> fieldInfos = EntityClassUtil.getEntityFieldInfo(ClassUtil.getClass(getApiName()));
+		fields.values().forEach(field -> {
+			FieldInfo fieldInfo = fieldInfos.get(field.getApiName());
+			if (fieldInfo != null) {
+				field.setGetter(fieldInfo.getGetter());
+				field.setSetter(fieldInfo.getSetter());
+			} else {
+				throw new IllegalArgumentException("属性[" + field.getApiName() + "]在类[" + getApiName() + "]中没有定义");
+			}
 		});
 		setFlyFields(fields);
 	}

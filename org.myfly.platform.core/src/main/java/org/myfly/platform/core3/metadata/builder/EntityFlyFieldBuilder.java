@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.utils.EntityClassUtil.FieldInfo;
 import org.myfly.platform.core.utils.StringUtil;
+import org.myfly.platform.core3.domain.EntityType;
+import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.define.FlyFieldDefinition;
 
@@ -27,6 +29,8 @@ public class EntityFlyFieldBuilder extends FlyFieldDefinition {
 	 */
 	public EntityFlyFieldBuilder(FieldInfo field) {
 		setApiName(field.getField().getName());
+		setGetter(field.getGetter());
+		setSetter(field.getSetter());
 		FlyField view = field.getField().getAnnotation(FlyField.class);
 		if (view != null) {
 			setName(view.name());
@@ -49,6 +53,12 @@ public class EntityFlyFieldBuilder extends FlyFieldDefinition {
 			setValueMin(view.valueMin());
 			setValueMax(view.valueMax());
 			setvFormat(view.vFormat());
+		} else {
+			// 设置默认值
+			setEntityType(EntityType.D);
+			setDataType(FlyDataType.NONE);
+			setAllowCopy(true);
+			setTranslated(true);
 		}
 		Column column = field.getField().getAnnotation(Column.class);
 		if (column != null) {

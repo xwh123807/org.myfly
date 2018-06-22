@@ -1,5 +1,6 @@
 package org.myfly.platform.core3.metadata.handler;
 
+import org.myfly.platform.core3.metadata.define.FlyFieldDefinition;
 import org.myfly.platform.core3.metadata.define.IValueHandler;
 
 /**
@@ -8,5 +9,9 @@ import org.myfly.platform.core3.metadata.define.IValueHandler;
  *
  */
 public class ListValueHandler extends DefaultValueHandler implements IValueHandler{
+
+	public ListValueHandler(FlyFieldDefinition field) {
+		super(field);
+	}
 
 }
