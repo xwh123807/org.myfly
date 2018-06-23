@@ -111,7 +111,7 @@ public class TestModel {
 	private PTMaster newTestEntity() {
 		PTMaster entity = new PTMaster();
 		entity.setUid(getUid());
-		entity.setActive(true);
+		entity.setIsActive(true);
 		entity.setCreated(DateUtil.nowSqlTimestamp());
 		return entity;
 	}

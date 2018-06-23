@@ -27,7 +27,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 @Table(name = "PT_TABLE")
 public class PTable extends FlyEntity {
 	@FlyField(name = "API Name")
-	@Column(length = 50, name = "ApiName", unique = true)
+	@Column(length = 255, name = "ApiName", unique = true)
 	private String apiName;
 
 	@FlyField(name = "Name", description = "Alphanumeric identifier of the entity", help = "The name of an entity (record) is used as an default search option in addition to the search key. The name is up to 60 characters in length.", entityType = EntityType.D)

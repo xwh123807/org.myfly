@@ -3,6 +3,7 @@ package org.myfly.platform.core3.domain;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -33,7 +34,7 @@ public class FlyEntity implements IFlyEntity {
 	private Timestamp created;
 
 	@FlyField(name = "Created By", dataType = FlyDataType.TableDirect, defaultValue = "@#PT_User_ID@")
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	private PUser createdBy;
 
 	@FlyField(name = "Updated", description = "Date this record was updated", help = "The Updated field indicates the date that this record was updated.")
@@ -41,7 +42,7 @@ public class FlyEntity implements IFlyEntity {
 	private Timestamp updated;
 
 	@FlyField(name = "Updated By", dataType = FlyDataType.TableDirect, defaultValue = "@#PT_User_ID@")
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	private PUser updatedBy;
 
 	@FlyField(name = "Active", defaultValue = "Y", description = "The record is active in the system", help = "There are two methods of making records unavailable in the system: One is to delete the record, the other is to de-activate the record. A de-activated record is not available for selection, but available for reports.\n"
@@ -52,11 +53,11 @@ public class FlyEntity implements IFlyEntity {
 	private Boolean isActive;
 
 	@FlyField(name = "Client", dataType = FlyDataType.TableDirect, defaultValue = "@#PT_Client_ID@")
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	private PClient client;
 
 	@FlyField(name = "Organization", dataType = FlyDataType.TableDirect, defaultValue = "@#PT_Org_ID@")
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	private POrg org;
 
 	public String getUid() {

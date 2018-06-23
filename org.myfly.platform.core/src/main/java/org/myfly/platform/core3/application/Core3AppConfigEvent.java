@@ -4,6 +4,7 @@ import org.myfly.platform.core.domain.AppStartLevel;
 import org.myfly.platform.core.metadata.service.IMetaDataRegister;
 import org.myfly.platform.core.starter.IAppConfigEvent;
 import org.myfly.platform.core.system.service.IMenuService;
+import org.myfly.platform.core3.dbinit.Core3SystemData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,9 +13,14 @@ public class Core3AppConfigEvent implements IAppConfigEvent {
 	@Autowired
 	private Core3SystemData systemData;
 
+	/**
+	 * 是否初始化数据库
+	 */
+	private boolean initDB = true;
+
 	@Override
 	public AppStartLevel getAppStartLevel() {
-		return AppStartLevel.LEVEL_1;
+		return AppStartLevel.LEVEL_0;
 	}
 
 	@Override
@@ -24,7 +30,9 @@ public class Core3AppConfigEvent implements IAppConfigEvent {
 
 	@Override
 	public void initSysData() {
-		systemData.initCore3SystemData();
+		if (initDB) {
+			systemData.initDB();
+		}
 	}
 
 	@Override

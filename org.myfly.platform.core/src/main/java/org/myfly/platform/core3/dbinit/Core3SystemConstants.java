@@ -1,4 +1,4 @@
-package org.myfly.platform.core3.application;
+package org.myfly.platform.core3.dbinit;
 
 /**
  * 

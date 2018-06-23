@@ -1,4 +1,4 @@
-package org.myfly.platform.core3.application;
+package org.myfly.platform.core3.dbinit;
 
 import javax.transaction.Transactional;
 
@@ -8,17 +8,27 @@ import org.myfly.platform.core3.model.security.PClient;
 import org.myfly.platform.core3.model.security.POrg;
 import org.myfly.platform.core3.model.security.PUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * 初始化系统记录，不可删除
+ * 
  * @author xiangwanhong
  *
  */
-@Component
+@Service
 public class Core3SystemData {
 	@Autowired
 	private IJpaDataAccessService dataService;
+
+	@Autowired
+	private SysDataModel sysDataModel;
+
+	@Transactional
+	public void initDB() {
+		initCore3SystemData();
+		sysDataModel.initSysDataModel();
+	}
 
 	@Transactional
 	public void initCore3SystemData() {
