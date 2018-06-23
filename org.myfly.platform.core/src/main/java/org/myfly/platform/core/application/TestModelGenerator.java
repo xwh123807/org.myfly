@@ -35,7 +35,7 @@ public class TestModelGenerator {
 	/**
 	 * master主记录数
 	 */
-	private int masterCount = 15;
+	private int masterCount = 2;
 	/**
 	 * 每个主记录的明细记录数
 	 */

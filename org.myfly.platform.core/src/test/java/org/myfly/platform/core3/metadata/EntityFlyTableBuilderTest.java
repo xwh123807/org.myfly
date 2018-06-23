@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.metadata.builder.EntityFlyTableBuilder;
-import org.myfly.platform.core3.metadata.model.PTable;
+import org.myfly.platform.core3.model.data.PTable;
 
 public class EntityFlyTableBuilderTest {
 	@Test

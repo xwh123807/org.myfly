@@ -33,7 +33,7 @@ public class FlyDataModelRestService {
 	 * @return
 	 */
 	@RequestMapping("{table}")
-	public FlyDataModel getFlyTableDefinition(@PathVariable("table") String table) {
+	public FlyDataModel getFlyDataModel(@PathVariable("table") String table) {
 		return metaService.getFlyDataModel(table);
 	}
 }

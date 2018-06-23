@@ -10,14 +10,15 @@ import org.myfly.platform.core3.metadata.builder.EntityFlyTableBuilder;
 import org.myfly.platform.core3.metadata.builder.PTTableFlyTableBuilder;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.core3.metadata.define.FlyTableDefinition;
-import org.myfly.platform.core3.metadata.model.PTable;
 import org.myfly.platform.core3.metadata.repository.IPTableRepository;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
+import org.myfly.platform.core3.model.data.PTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.data.jpa.mapping.JpaPersistentEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 @Service
@@ -40,7 +41,7 @@ public class FlyDataModelService implements IFlyDataModelService {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Cacheable(cacheNames="entity-class")
+	@Cacheable(cacheNames = "entity-class")
 	@Override
 	public <T> T getEntityClass(String entityNameOrClassName) {
 		Class<?> entityClass = null;
@@ -60,13 +61,17 @@ public class FlyDataModelService implements IFlyDataModelService {
 	}
 
 	@Override
-	@Cacheable(cacheNames="datamodel")
+	@Cacheable(cacheNames = "datamodel")
 	@Transactional
 	public FlyDataModel getFlyDataModel(String entityNameOrClassName) {
 		FlyDataModel flyTable = getFlyDataModelFromDB(entityNameOrClassName);
 		if (flyTable == null) {
 			Class<?> entityClass = getEntityClass(entityNameOrClassName);
-			flyTable = getFlyDataModelFromEntityClass(entityClass);
+			if (entityClass != null) {
+				flyTable = getFlyDataModelFromEntityClass(entityClass);
+			} else {
+				throw new IllegalArgumentException("找不到名称为[" + entityNameOrClassName + "]的数据模型");
+			}
 		}
 		return flyTable;
 	}
@@ -84,8 +89,9 @@ public class FlyDataModelService implements IFlyDataModelService {
 	}
 
 	@Override
-	@Cacheable(cacheNames="datamodel", key = "#entityClass.getName()")
+	@Cacheable(cacheNames = "datamodel", key = "#entityClass.getName()")
 	public FlyDataModel getFlyDataModelFromEntityClass(Class<?> entityClass) {
+		Assert.notNull(entityClass, "参数[entityClass]不能为空");
 		FlyDataModel flyTable = new FlyDataModel(new EntityFlyTableBuilder(entityClass));
 		flyTable.validate();
 		return flyTable;

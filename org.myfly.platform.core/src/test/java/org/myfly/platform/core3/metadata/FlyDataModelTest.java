@@ -9,7 +9,7 @@ import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.metadata.builder.EntityFlyTableBuilder;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.core3.metadata.define.FlyTableDefinition;
-import org.myfly.platform.core3.metadata.model.PTable;
+import org.myfly.platform.core3.model.data.PTable;
 
 public class FlyDataModelTest {
 	@Test

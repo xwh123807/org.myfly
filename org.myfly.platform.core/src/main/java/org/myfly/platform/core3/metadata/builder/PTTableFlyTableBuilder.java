@@ -11,8 +11,8 @@ import org.myfly.platform.core.utils.EntityClassUtil.FieldInfo;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.metadata.define.FlyFieldDefinition;
 import org.myfly.platform.core3.metadata.define.FlyTableDefinition;
-import org.myfly.platform.core3.metadata.model.PColumn;
-import org.myfly.platform.core3.metadata.model.PTable;
+import org.myfly.platform.core3.model.data.PColumn;
+import org.myfly.platform.core3.model.data.PTable;
 
 public class PTTableFlyTableBuilder extends FlyTableDefinition {
 
@@ -82,7 +82,7 @@ public class PTTableFlyTableBuilder extends FlyTableDefinition {
 			PColumn column = PTColumnFlyFieldBuilder.toPColumn(flyField);
 			column.setUid(UUIDUtil.newUUID());
 			column.setTable(table);
-			column.setActive(true);
+			column.setIsActive(true);
 			table.getColumns().add(column);
 		});
 		return table;

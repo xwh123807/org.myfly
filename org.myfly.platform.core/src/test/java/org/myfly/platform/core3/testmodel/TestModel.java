@@ -4,6 +4,7 @@ import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
 import org.myfly.platform.core3.flydata.service.FlyEntityUtils;
+import org.myfly.platform.core3.model.test.PTMaster;
 
 public class TestModel {
 	/**
@@ -97,7 +98,7 @@ public class TestModel {
 	}
 
 	private FlyEntityMap newFlyEntity(PTMaster from) {
-		FlyEntityMap entity = FlyEntityUtils.fromEntity(from);
+		FlyEntityMap entity = FlyEntityUtils.fromEntity(from).copy();
 		return entity;
 	}
 

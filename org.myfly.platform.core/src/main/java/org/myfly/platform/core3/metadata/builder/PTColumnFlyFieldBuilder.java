@@ -1,7 +1,7 @@
 package org.myfly.platform.core3.metadata.builder;
 
 import org.myfly.platform.core3.metadata.define.FlyFieldDefinition;
-import org.myfly.platform.core3.metadata.model.PColumn;
+import org.myfly.platform.core3.model.data.PColumn;
 
 public class PTColumnFlyFieldBuilder extends FlyFieldDefinition {
 	/**
@@ -25,6 +25,7 @@ public class PTColumnFlyFieldBuilder extends FlyFieldDefinition {
 		setAlwaysUpdateable(builder.getIsAlwaysUpdateable());
 		setAutocomplete(builder.getIsAutocomplete());
 		setEncrypted(builder.getIsEncrypted());
+		setMandatory(builder.getIsMandatory());
 		setParent(builder.getIsParent());
 		setRange(builder.getIsRange());
 		setSelectionColumn(builder.getIsSelectionColumn());
@@ -52,6 +53,7 @@ public class PTColumnFlyFieldBuilder extends FlyFieldDefinition {
 		column.setIsAlwaysUpdateable(builder.isAlwaysUpdateable());
 		column.setIsAutocomplete(builder.isAutocomplete());
 		column.setIsEncrypted(builder.isEncrypted());
+		column.setIsMandatory(builder.isMandatory());
 		column.setIsParent(builder.isParent());
 		column.setIsRange(builder.isRange());
 		column.setIsSelectionColumn(builder.isSelectionColumn());

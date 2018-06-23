@@ -6,8 +6,8 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import org.myfly.platform.core3.domain.AccessLevel;
 import org.myfly.platform.core3.domain.EntityType;
+import org.myfly.platform.core3.model.data.AccessLevel;
 
 /**
  * 实体类表注解<br>

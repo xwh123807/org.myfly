@@ -29,7 +29,7 @@ public interface IFlyEntity {
 
 	public void setUpdated(Timestamp updated);
 
-	public Boolean getActive();
+	public Boolean getIsActive();
 
-	public void setActive(Boolean active);
+	public void setIsActive(Boolean active);
 }

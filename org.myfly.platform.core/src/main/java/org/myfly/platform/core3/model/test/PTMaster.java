@@ -1,4 +1,4 @@
-package org.myfly.platform.core3.testmodel;
+package org.myfly.platform.core3.model.test;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

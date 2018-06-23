@@ -9,18 +9,25 @@ import org.myfly.platform.core3.metadata.annotation.FlyField;
  *
  */
 public enum EntityType implements IRefList {
-	@FlyField(description = "", help = "")
-	D("Dictionary"), C("Flyme"), U("User maintained"), A("Applications"), EXT("Extensions"),
-	XX("Other Extensions"), CUST("Other Customizations");
-
-	private String name;
-
-	private EntityType(String name) {
-		this.name = name;
-	}
-
-	@Override
-	public String getName() {
-		return name;
-	}
+	//
+	@FlyField(name = "Dictionary")
+	D(),
+	//
+	@FlyField(name = "Flyme")
+	C,
+	//
+	@FlyField(name = "User maintained")
+	U,
+	//
+	@FlyField(name = "Applications")
+	A(),
+	//
+	@FlyField(name = "Extensions")
+	EXT(),
+	//
+	@FlyField(name = "Other Extensions")
+	XX(),
+	//
+	@FlyField(name = "Other Customizations")
+	CUST();
 }

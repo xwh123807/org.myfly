@@ -3,6 +3,7 @@ package org.myfly.platform.core3.metadata.handler;
 import java.util.Map;
 
 import org.myfly.platform.core.utils.AssertUtil;
+import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core3.metadata.define.FlyFieldDefinition;
 import org.myfly.platform.core3.metadata.define.IValueHandler;
 
@@ -77,7 +78,13 @@ public class DefaultValueHandler implements IValueHandler {
 	public void setFieldValueForEntity(Object entity, Object value) {
 		if (entity != null) {
 			try {
-				getField().getSetter().invoke(entity, value);
+				Object newValue = value;
+				if (value != null && value.getClass() != getField().getGetter().getReturnType()) {
+					// 类型不同，需要进行转换
+					newValue = (value != null) ? ClassUtil.convert(value, getField().getGetter().getReturnType())
+							: null;
+				}
+				getField().getSetter().invoke(entity, newValue);
 			} catch (Exception e) {
 				AssertUtil.parameterEmpty(getField().getSetter(), "getSetter()",
 						"属性[" + getField().getName() + "]没有定义Set方法");

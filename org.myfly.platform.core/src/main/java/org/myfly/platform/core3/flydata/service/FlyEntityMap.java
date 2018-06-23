@@ -128,12 +128,12 @@ public class FlyEntityMap extends HashMap<String, Object> implements IFlyEntity 
 	}
 
 	@Override
-	public Boolean getActive() {
+	public Boolean getIsActive() {
 		return ClassUtil.convert(get(IFlyEntity.ACTIVE), Boolean.class);
 	}
 
 	@Override
-	public void setActive(Boolean active) {
+	public void setIsActive(Boolean active) {
 		put(IFlyEntity.ACTIVE, active);
 	}
 }

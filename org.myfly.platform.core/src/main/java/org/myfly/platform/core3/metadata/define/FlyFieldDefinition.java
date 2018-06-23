@@ -51,6 +51,10 @@ public class FlyFieldDefinition extends AbstractDefinition {
 	private boolean isEncrypted;
 
 	private boolean isParent;
+	/**
+	 * 是否必填
+	 */
+	private boolean isMandatory;
 
 	private boolean isRange;
 
@@ -98,6 +102,7 @@ public class FlyFieldDefinition extends AbstractDefinition {
 		setAutocomplete(builder.isAutocomplete());
 		setEncrypted(builder.isEncrypted());
 		setParent(builder.isParent());
+		setMandatory(builder.isMandatory());
 		setRange(builder.isRange());
 		setSelectionColumn(builder.isSelectionColumn());
 		setSyncDatabase(builder.isSyncDatabase());
@@ -306,6 +311,14 @@ public class FlyFieldDefinition extends AbstractDefinition {
 		return "apiName: " + getApiName();
 	}
 
+	public boolean isMandatory() {
+		return isMandatory;
+	}
+
+	public void setMandatory(boolean isMandatory) {
+		this.isMandatory = isMandatory;
+	}
+
 	/**
 	 * 获取字段值读取类
 	 * 
@@ -319,11 +332,12 @@ public class FlyFieldDefinition extends AbstractDefinition {
 	@Override
 	public void validate() {
 		Assert.hasLength(getApiName(), "属性[apiName]不能为空");
-		Assert.hasLength(getName(), "属性[name]不能为空");
-		Assert.hasLength(getColumnName(), "属性[columnName]不能为空");
-		Assert.notNull(getEntityType(), "属性[entityType]不能为空");
-		Assert.notNull(getDataType(), "属性[dataType]不能为空");
-		Assert.notNull(getGetter(), "属性[getter]不能为空");
-		Assert.notNull(getSetter(), "属性[setter]不能为空");
+		Assert.hasLength(getName(), "字段[" + getApiName() + "]属性[name]不能为空");
+		Assert.hasLength(getColumnName(), "字段[" + getApiName() + "]属性[columnName]不能为空");
+		Assert.notNull(getEntityType(), "字段[" + getApiName() + "]属性[entityType]不能为空");
+		Assert.notNull(getDataType(), "字段[" + getApiName() + "]属性[dataType]不能为空");
+		Assert.isTrue(!FlyDataType.NONE.equals(getDataType()), "字段[" + getApiName() + "]属性[dataType]必须指定");
+		Assert.notNull(getGetter(), "字段[" + getApiName() + "]属性[getter]不能为空");
+		Assert.notNull(getSetter(), "字段[" + getApiName() + "]属性[setter]不能为空");
 	}
 }

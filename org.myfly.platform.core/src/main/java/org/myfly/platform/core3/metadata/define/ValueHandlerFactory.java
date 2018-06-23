@@ -1,6 +1,7 @@
 package org.myfly.platform.core3.metadata.define;
 
 import org.myfly.platform.core3.metadata.handler.DefaultValueHandler;
+import org.myfly.platform.core3.metadata.handler.ListValueHandler;
 
 /**
  * 字段值读取类工厂
@@ -16,6 +17,13 @@ public class ValueHandlerFactory {
 	 * @return
 	 */
 	public static IValueHandler getValueHandler(FlyFieldDefinition field) {
-		return new DefaultValueHandler(field);
+		switch (field.getDataType()) {
+		case List:
+		case Table:
+		case TableDirect:
+			return new ListValueHandler(field);
+		default:
+			return new DefaultValueHandler(field);
+		}
 	}
 }

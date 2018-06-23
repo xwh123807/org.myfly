@@ -14,4 +14,8 @@ public class ListValueHandler extends DefaultValueHandler implements IValueHandl
 		super(field);
 	}
 
+	@Override
+	public Object getFieldValue(Object entity) {
+		return null;
+	}
 }

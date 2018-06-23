@@ -6,7 +6,8 @@ import org.junit.Test;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
 import org.myfly.platform.core3.flydata.service.FlyEntityUtils;
-import org.myfly.platform.core3.testmodel.PTMaster;
+import org.myfly.platform.core3.model.test.PTMaster;
+import org.myfly.platform.core3.testmodel.AssertEntity;
 import org.myfly.platform.core3.testmodel.TestModel;
 
 public class FlyEntityUtilsTest {
@@ -22,6 +23,9 @@ public class FlyEntityUtilsTest {
 		PTMaster master = (PTMaster) FlyEntityUtils.toEntity(AppUtil.getFlyDataModel(PTMaster.class.getName()),
 				model.getFlyTestEntity());
 		Assert.assertNotNull(master);
+		FlyEntityMap flyEntity = FlyEntityUtils.fromEntity(master);
+		Assert.assertNotNull(flyEntity);
+		AssertEntity.assertFlyEntityAllFields(model.getFlyTestEntity(), flyEntity);
 	}
 
 	@Test

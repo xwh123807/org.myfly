@@ -11,8 +11,12 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.myfly.platform.core.metadata.annotation.FieldView;
+import org.myfly.platform.core3.metadata.annotation.FlyField;
 
 public class EntityClassUtil {
 
@@ -26,7 +30,9 @@ public class EntityClassUtil {
 		List<Field> list = new ArrayList<>();
 		FuncUtil.forEach(entityClass.getDeclaredFields(), field -> {
 			if (field.getAnnotation(Column.class) != null || field.getAnnotation(FieldView.class) != null
-					|| field.getAnnotation(Id.class) != null || field.getAnnotation(EmbeddedId.class) != null) {
+					|| field.getAnnotation(FlyField.class) != null || field.getAnnotation(Id.class) != null
+					|| field.getAnnotation(OneToMany.class) != null || field.getAnnotation(ManyToOne.class) != null
+					|| field.getAnnotation(OneToOne.class) != null || field.getAnnotation(EmbeddedId.class) != null) {
 				list.add(field);
 			}
 		});
@@ -88,6 +94,9 @@ public class EntityClassUtil {
 			if (Boolean.class.equals(field.getType()) || boolean.class.equals(field.getType())) {
 				fieldInfo.setGetter(methods.get("is" + methodName));
 			} else {
+				fieldInfo.setGetter(methods.get("get" + methodName));
+			}
+			if (fieldInfo.getGetter() == null) {
 				fieldInfo.setGetter(methods.get("get" + methodName));
 			}
 			fieldInfo.setSetter(methods.get("set" + methodName));
