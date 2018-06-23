@@ -24,10 +24,14 @@ public class Core3SystemData {
 	@Autowired
 	private SysDataModel sysDataModel;
 
+	@Autowired
+	private SysViewModel sysViewModel;
+
 	@Transactional
 	public void initDB() {
 		initCore3SystemData();
 		sysDataModel.initSysDataModel();
+		sysViewModel.initSysViewModel();
 	}
 
 	@Transactional

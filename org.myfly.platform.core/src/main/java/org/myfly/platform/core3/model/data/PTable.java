@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -14,6 +15,7 @@ import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.FlyEntity;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
+import org.myfly.platform.core3.model.view.PWindow;
 
 /**
  * 表定义 <br>
@@ -105,6 +107,9 @@ public class PTable extends FlyEntity {
 	@FlyField(name = "Centrally maintained", defaultValue = "Y", description = "Information maintained in System Element table", help = "The Centrally Maintained checkbox indicates if the Name, Description and Help maintained in 'System Element' table  or 'Window' table.")
 	@Column(name = "IsCentrallyMaintained")
 	private Boolean isCentrallyMaintained;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private PWindow window;
 
 	@FlyField(dataType = FlyDataType.SubTable)
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "table", cascade = { CascadeType.ALL })
@@ -268,5 +273,13 @@ public class PTable extends FlyEntity {
 
 	public void setIsCentrallyMaintained(Boolean isCentrallyMaintained) {
 		this.isCentrallyMaintained = isCentrallyMaintained;
+	}
+
+	public PWindow getWindow() {
+		return window;
+	}
+
+	public void setWindow(PWindow window) {
+		this.window = window;
 	}
 }

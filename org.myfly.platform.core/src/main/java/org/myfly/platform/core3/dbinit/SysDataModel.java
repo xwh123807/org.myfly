@@ -41,7 +41,7 @@ public class SysDataModel {
 	public void initSysDataModel() {
 		dataModelService.getAllEntityClasses().forEach(entityClass -> {
 			if (log.isInfoEnabled()) {
-				log.info("import data model for " + entityClass.getName());
+				log.info("导入实体[" + entityClass.getName() + "]数据模型...");
 			}
 			FlyDataModel dataModel = new FlyDataModel(new EntityFlyTableBuilder(entityClass));
 			dataModel.validate();

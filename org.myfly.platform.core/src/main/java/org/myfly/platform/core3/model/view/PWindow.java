@@ -2,8 +2,10 @@ package org.myfly.platform.core3.model.view;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -51,7 +53,7 @@ public class PWindow extends FlyEntity {
 
 	@FlyField(name = "Process Now")
 	@Column
-	private String processing;
+	private Boolean processing;
 
 	@FlyField(name = "WindowType", description = "Type or classification of a Window", help = "The Window Type indicates the type of window being defined (Maintain, Transaction or Query)")
 	@Column(name = "WindowType")
@@ -65,13 +67,13 @@ public class PWindow extends FlyEntity {
 	@Column(name = "WinWidth")
 	private Integer winWidth;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private PImage image;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private PColor color;
 
-	@OneToMany(mappedBy = "window")
+	@OneToMany(mappedBy = "window", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	private Set<PTab> tabs;
 
 	public Boolean getIsSOTrx() {
@@ -130,11 +132,11 @@ public class PWindow extends FlyEntity {
 		this.isDefault = isDefault;
 	}
 
-	public String getProcessing() {
+	public Boolean getProcessing() {
 		return processing;
 	}
 
-	public void setProcessing(String processing) {
+	public void setProcessing(Boolean processing) {
 		this.processing = processing;
 	}
 

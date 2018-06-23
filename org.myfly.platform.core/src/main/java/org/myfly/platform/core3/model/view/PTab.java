@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,16 +23,16 @@ import org.myfly.platform.core3.model.dict.PImage;
 @FlyTable(name = "Tab", description = "Tab within a Window")
 public class PTab extends FlyEntity {
 	@FlyField(name = "Window", description = "Data entry or display window", help = "The Window field identifies a unique Window in the system.")
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	private PWindow window;
 
 	@FlyField(name = "Table", description = "Database Table information", help = "The Database Table provides the information of the table definition")
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	private PTable table;
 
 	@FlyField(name = "Image", description = "Image or Icon", help = "Images and Icon can be used to display supported graphic formats (gif, jpg, png).\n"
 			+ "You can either load the image (in the database) or point to a graphic via a URI (i.e. it can point to a resource, http address)")
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	private PImage image;
 
 	@FlyField(name = "Commit Warning", dataType = FlyDataType.Text, description = "Warning displayed when saving", help = "Warning or information displayed when committing the record")
@@ -71,7 +72,7 @@ public class PTab extends FlyEntity {
 	private String importFields;
 
 	@FlyField(name = "Included Tab", description = "Included Tab in this Tab (Master Detail)", help = "You can include a Tab in a Tab. If displayed in single row record, the included tab is displayed as multi-row table.")
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	private PTab includedTab;
 
 	@FlyField(name = "Advanced Tab", description = "This Tab contains advanced Functionality", help = "The tab with advanced functionality is only displayed, if enabled in Tools>Preference.")
@@ -111,7 +112,7 @@ public class PTab extends FlyEntity {
 	private String orderByClause;
 
 	@FlyField(name = "Parent Column", description = "The link column on the parent tab.", help = "")
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private PColumn parentColumn;
 
 	@FlyField(name = "Process Now", description = "", help = "")
@@ -127,7 +128,7 @@ public class PTab extends FlyEntity {
 			+ "@AD_Table_ID@=14 | @Language@!GERGER <br>\n" + "@PriceLimit@>10 | @PriceList@>@PriceActual@<br>\n"
 			+ "@Name@>J<br>\n" + "Strings may be in single quotes (optional)")
 	@Column(name = "ReadOnlyLogic", length = 2000)
-	private String ReadOnlyLogic;
+	private String readOnlyLogic;
 
 	@FlyField(name = "Sequence", description = "Method of ordering records; lowest number comes first", help = "The Sequence indicates the order of records")
 	@Column(name = "SeqNo")
@@ -141,6 +142,222 @@ public class PTab extends FlyEntity {
 	@Column(name = "WhereClause")
 	private String whereClause;
 
-	@OneToMany(mappedBy="tab")
+	@OneToMany(mappedBy = "tab", fetch = FetchType.LAZY)
 	private Set<PField> fields;
+
+	public PWindow getWindow() {
+		return window;
+	}
+
+	public void setWindow(PWindow window) {
+		this.window = window;
+	}
+
+	public PTable getTable() {
+		return table;
+	}
+
+	public void setTable(PTable table) {
+		this.table = table;
+	}
+
+	public PImage getImage() {
+		return image;
+	}
+
+	public void setImage(PImage image) {
+		this.image = image;
+	}
+
+	public String getCommitWarning() {
+		return commitWarning;
+	}
+
+	public void setCommitWarning(String commitWarning) {
+		this.commitWarning = commitWarning;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getDisplayLogic() {
+		return displayLogic;
+	}
+
+	public void setDisplayLogic(String displayLogic) {
+		this.displayLogic = displayLogic;
+	}
+
+	public EntityType getEntityType() {
+		return entityType;
+	}
+
+	public void setEntityType(EntityType entityType) {
+		this.entityType = entityType;
+	}
+
+	public Boolean getHasTree() {
+		return hasTree;
+	}
+
+	public void setHasTree(Boolean hasTree) {
+		this.hasTree = hasTree;
+	}
+
+	public String getHelp() {
+		return help;
+	}
+
+	public void setHelp(String help) {
+		this.help = help;
+	}
+
+	public String getImportFields() {
+		return importFields;
+	}
+
+	public void setImportFields(String importFields) {
+		this.importFields = importFields;
+	}
+
+	public PTab getIncludedTab() {
+		return includedTab;
+	}
+
+	public void setIncludedTab(PTab includedTab) {
+		this.includedTab = includedTab;
+	}
+
+	public Boolean getIsAdvancedTab() {
+		return isAdvancedTab;
+	}
+
+	public void setIsAdvancedTab(Boolean isAdvancedTab) {
+		this.isAdvancedTab = isAdvancedTab;
+	}
+
+	public Boolean getIsInfoTab() {
+		return isInfoTab;
+	}
+
+	public void setIsInfoTab(Boolean isInfoTab) {
+		this.isInfoTab = isInfoTab;
+	}
+
+	public Boolean getIsInsertRecord() {
+		return isInsertRecord;
+	}
+
+	public void setIsInsertRecord(Boolean isInsertRecord) {
+		this.isInsertRecord = isInsertRecord;
+	}
+
+	public Boolean getIsReadOnly() {
+		return isReadOnly;
+	}
+
+	public void setIsReadOnly(Boolean isReadOnly) {
+		this.isReadOnly = isReadOnly;
+	}
+
+	public Boolean getIsSingleRow() {
+		return isSingleRow;
+	}
+
+	public void setIsSingleRow(Boolean isSingleRow) {
+		this.isSingleRow = isSingleRow;
+	}
+
+	public Boolean getIsSortTab() {
+		return isSortTab;
+	}
+
+	public void setIsSortTab(Boolean isSortTab) {
+		this.isSortTab = isSortTab;
+	}
+
+	public Boolean getIsTranslationTab() {
+		return isTranslationTab;
+	}
+
+	public void setIsTranslationTab(Boolean isTranslationTab) {
+		this.isTranslationTab = isTranslationTab;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getOrderByClause() {
+		return orderByClause;
+	}
+
+	public void setOrderByClause(String orderByClause) {
+		this.orderByClause = orderByClause;
+	}
+
+	public PColumn getParentColumn() {
+		return parentColumn;
+	}
+
+	public void setParentColumn(PColumn parentColumn) {
+		this.parentColumn = parentColumn;
+	}
+
+	public Boolean getProcessing() {
+		return processing;
+	}
+
+	public void setProcessing(Boolean processing) {
+		this.processing = processing;
+	}
+
+	public String getReadOnlyLogic() {
+		return readOnlyLogic;
+	}
+
+	public void setReadOnlyLogic(String readOnlyLogic) {
+		this.readOnlyLogic = readOnlyLogic;
+	}
+
+	public Integer getSeqNo() {
+		return seqNo;
+	}
+
+	public void setSeqNo(Integer seqNo) {
+		this.seqNo = seqNo;
+	}
+
+	public Integer getTabLevel() {
+		return tabLevel;
+	}
+
+	public void setTabLevel(Integer tabLevel) {
+		this.tabLevel = tabLevel;
+	}
+
+	public String getWhereClause() {
+		return whereClause;
+	}
+
+	public void setWhereClause(String whereClause) {
+		this.whereClause = whereClause;
+	}
+
+	public Set<PField> getFields() {
+		return fields;
+	}
+
+	public void setFields(Set<PField> fields) {
+		this.fields = fields;
+	}
 }
