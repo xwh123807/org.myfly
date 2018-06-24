@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.myfly.platform.core.utils.AppUtil;
+import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.core3.metadata.define.FlyFieldDefinition;
@@ -57,7 +59,7 @@ public class FlyEntityUtils {
 	 */
 	@SuppressWarnings("unchecked")
 	private static IFlyEntity getCachedEntity(FlyDataModel metaData, IFlyEntity entity, boolean isNew) {
-		String uid = ((IFlyEntity)entity).getUid();
+		String uid = ((IFlyEntity) entity).getUid();
 		String key = metaData.getApiName() + "_" + uid;
 		if (isNew || !localEntityCache.get().containsKey(key)) {
 			// 新增模式或缓存中不存在
@@ -76,7 +78,7 @@ public class FlyEntityUtils {
 	 */
 	@SuppressWarnings("unchecked")
 	private static void mergeCachedEntity(FlyDataModel metaData, IFlyEntity entity) {
-		String uid = ((IFlyEntity)entity).getUid();
+		String uid = ((IFlyEntity) entity).getUid();
 		String key = metaData.getApiName() + "_" + uid;
 		localEntityCache.get().put(key, entity);
 	}
@@ -100,21 +102,20 @@ public class FlyEntityUtils {
 			}
 		});
 		return entity;
-		
-		
-//		IFlyEntity entity = metaData.newEntityInstance(flyEntity);
-//		IFlyEntity cacheEntity = getCachedEntity(metaData, entity, isNew);
-//		if (cacheEntity != null) {
-//			return cacheEntity;
-//		}
-//		metaData.getFlyFields().values().forEach(field -> {
-//			// 主键字段已经在对象构建时设置了值，此处跳过不重复设置
-//			if (flyEntity.containsKey(field.getApiName())) {
-//				Object value = flyEntity.get(field.getApiName());
-//				field.getValueHandler().setFieldValue(entity, value);
-//			}
-//		});
-//		return entity;
+
+		// IFlyEntity entity = metaData.newEntityInstance(flyEntity);
+		// IFlyEntity cacheEntity = getCachedEntity(metaData, entity, isNew);
+		// if (cacheEntity != null) {
+		// return cacheEntity;
+		// }
+		// metaData.getFlyFields().values().forEach(field -> {
+		// // 主键字段已经在对象构建时设置了值，此处跳过不重复设置
+		// if (flyEntity.containsKey(field.getApiName())) {
+		// Object value = flyEntity.get(field.getApiName());
+		// field.getValueHandler().setFieldValue(entity, value);
+		// }
+		// });
+		// return entity;
 	}
 
 	/**
@@ -181,4 +182,37 @@ public class FlyEntityUtils {
 		return result;
 	}
 
+	/**
+	 * 创建实体类
+	 * @param entityClass
+	 * @return
+	 */
+	public static <T extends IFlyEntity> T newInstance(Class<T> entityClass) {
+		try {
+			return (T) entityClass.newInstance();
+		} catch (Exception e) {
+			throw new IllegalArgumentException(
+					"创建实体类[" + entityClass.getClass().getName() + "]失败，错误信息: " + e.getMessage());
+		}
+	}
+
+	/**
+	 * 创建新实体，从from中复制基本属性
+	 * 
+	 * @param entityClass
+	 * @param from
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T extends IFlyEntity> T newFlyEntity(Class<T> entityClass, IFlyEntity from) {
+		IFlyEntity entity = newInstance(entityClass);
+		entity.setUid(UUIDUtil.newUUID());
+		entity.setClient(from.getClient());
+		entity.setOrg(from.getOrg());
+		entity.setCreated(DateUtil.nowSqlTimestamp());
+		entity.setCreatedBy(from.getCreatedBy());
+		entity.setUpdated(DateUtil.nowSqlTimestamp());
+		entity.setUpdatedBy(from.getUpdatedBy());
+		entity.setIsActive(true);
+		return (T) entity;
+	}
 }

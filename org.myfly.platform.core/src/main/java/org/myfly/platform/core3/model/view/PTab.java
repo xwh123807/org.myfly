@@ -2,6 +2,7 @@ package org.myfly.platform.core3.model.view;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -142,7 +143,7 @@ public class PTab extends FlyEntity {
 	@Column(name = "WhereClause")
 	private String whereClause;
 
-	@OneToMany(mappedBy = "tab", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "tab", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	private Set<PField> fields;
 
 	public PWindow getWindow() {

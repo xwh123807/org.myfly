@@ -23,6 +23,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.domain.BaseEnum;
 import org.myfly.platform.core.system.domain.KeyEntity;
+import org.myfly.platform.core3.domain.IFlyEntity;
 
 public class ClassUtil {
 	private static final Log log = LogFactory.getLog(ClassUtil.class);

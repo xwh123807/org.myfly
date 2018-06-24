@@ -10,6 +10,9 @@ import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.model.security.PClient;
+import org.myfly.platform.core3.model.security.POrg;
+import org.myfly.platform.core3.model.security.PUser;
 
 /**
  * 数据查询结果集<br>
@@ -135,5 +138,45 @@ public class FlyEntityMap extends HashMap<String, Object> implements IFlyEntity 
 	@Override
 	public void setIsActive(Boolean active) {
 		put(IFlyEntity.ACTIVE, active);
+	}
+
+	@Override
+	public PUser getCreatedBy() {
+		return (PUser) get(IFlyEntity.CREATED_BY);
+	}
+
+	@Override
+	public void setCreatedBy(PUser createdBy) {
+		put(IFlyEntity.CREATED_BY, createdBy);
+	}
+
+	@Override
+	public PUser getUpdatedBy() {
+		return (PUser) get(IFlyEntity.UPDATED_BY);
+	}
+
+	@Override
+	public void setUpdatedBy(PUser updatedBy) {
+		put(IFlyEntity.UPDATED_BY, updatedBy);
+	}
+
+	@Override
+	public PClient getClient() {
+		return (PClient) get(IFlyEntity.CLIENT);
+	}
+
+	@Override
+	public void setClient(PClient client) {
+		put(IFlyEntity.CLIENT, client);
+	}
+
+	@Override
+	public POrg getOrg() {
+		return (POrg) get(IFlyEntity.ORG);
+	}
+
+	@Override
+	public void setOrg(POrg org) {
+		put(IFlyEntity.ORG, org);
 	}
 }
