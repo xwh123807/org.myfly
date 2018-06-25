@@ -11,7 +11,7 @@ import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
 import org.myfly.platform.core3.flydata.service.FlyEntityUtils;
 import org.myfly.platform.core3.flydata.service.IFlyDataService;
-import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,7 +40,7 @@ public class FlyDataService implements IFlyDataService {
 	 * @param entityName
 	 * @return
 	 */
-	private FlyDataModel getFlyDataModel(String entityName) {
+	private IFlyDataModel getFlyDataModel(String entityName) {
 		return dataModelService.getFlyDataModel(entityName);
 	}
 
@@ -135,7 +135,7 @@ public class FlyDataService implements IFlyDataService {
 	 */
 	@Override
 	public List<FlyEntityMap> findAll(String entityName) {
-		FlyDataModel dataModel = getFlyDataModel(entityName);
+		IFlyDataModel dataModel = getFlyDataModel(entityName);
 		List<?> list = jpaService.findAll(getEntityClass(entityName));
 		if (CollectionUtils.isNotEmpty(list)) {
 			List<FlyEntityMap> results = new ArrayList<>();

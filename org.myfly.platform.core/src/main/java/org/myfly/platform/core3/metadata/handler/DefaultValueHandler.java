@@ -1,11 +1,12 @@
 package org.myfly.platform.core3.metadata.handler;
 
+import java.lang.reflect.Method;
 import java.util.Map;
 
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.ClassUtil;
-import org.myfly.platform.core3.metadata.define.FlyFieldDefinition;
 import org.myfly.platform.core3.metadata.define.IValueHandler;
+import org.myfly.platform.core3.metadata.service.IFlyColumn;
 
 /**
  * 基本数据类型字段值读取类
@@ -14,18 +15,41 @@ import org.myfly.platform.core3.metadata.define.IValueHandler;
  *
  */
 public class DefaultValueHandler implements IValueHandler {
-	private FlyFieldDefinition field;
+	private IFlyColumn field;
+	private Method getter;
+	private Method setter;
 
-	public DefaultValueHandler(FlyFieldDefinition field) {
+	public DefaultValueHandler(IFlyColumn field) {
 		this.setField(field);
 	}
 
-	public FlyFieldDefinition getField() {
+	public DefaultValueHandler(Method getter, Method setter) {
+		setGetter(getter);
+		setSetter(setter);
+	}
+
+	public IFlyColumn getField() {
 		return field;
 	}
 
-	public void setField(FlyFieldDefinition field) {
+	public void setField(IFlyColumn field) {
 		this.field = field;
+	}
+
+	public Method getGetter() {
+		return getter;
+	}
+
+	public void setGetter(Method getter) {
+		this.getter = getter;
+	}
+
+	public Method getSetter() {
+		return setter;
+	}
+
+	public void setSetter(Method setter) {
+		this.setter = setter;
 	}
 
 	@Override
@@ -63,10 +87,9 @@ public class DefaultValueHandler implements IValueHandler {
 		if (entity != null) {
 			Object value = null;
 			try {
-				value = getField().getGetter().invoke(entity);
+				value = getGetter().invoke(entity);
 			} catch (Exception e) {
-				AssertUtil.parameterEmpty(getField().getGetter(), "getGetter()",
-						"属性[" + getField().getName() + "]没有定义Get方法");
+				AssertUtil.parameterEmpty(getGetter(), "getGetter()", "属性[" + getField().getName() + "]没有定义Get方法");
 				e.printStackTrace();
 				throw new IllegalArgumentException("实体属性[" + getField().getName() + "]值获取失败，错误信息：" + e.getMessage());
 			}
@@ -79,15 +102,13 @@ public class DefaultValueHandler implements IValueHandler {
 		if (entity != null) {
 			try {
 				Object newValue = value;
-				if (value != null && value.getClass() != getField().getGetter().getReturnType()) {
+				if (value != null && value.getClass() != getGetter().getReturnType()) {
 					// 类型不同，需要进行转换
-					newValue = (value != null) ? ClassUtil.convert(value, getField().getGetter().getReturnType())
-							: null;
+					newValue = (value != null) ? ClassUtil.convert(value, getGetter().getReturnType()) : null;
 				}
-				getField().getSetter().invoke(entity, newValue);
+				getSetter().invoke(entity, newValue);
 			} catch (Exception e) {
-				AssertUtil.parameterEmpty(getField().getSetter(), "getSetter()",
-						"属性[" + getField().getName() + "]没有定义Set方法");
+				AssertUtil.parameterEmpty(getSetter(), "getSetter()", "属性[" + getField().getName() + "]没有定义Set方法");
 				throw new IllegalArgumentException(
 						"属性[" + getField().getName() + "]值[" + value + "]设置失败，错误信息：" + e.getMessage());
 			}

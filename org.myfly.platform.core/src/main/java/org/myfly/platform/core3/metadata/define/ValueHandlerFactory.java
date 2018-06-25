@@ -4,6 +4,7 @@ import org.myfly.platform.core3.metadata.handler.DefaultValueHandler;
 import org.myfly.platform.core3.metadata.handler.ListValueHandler;
 import org.myfly.platform.core3.metadata.handler.SubTableValueHandler;
 import org.myfly.platform.core3.metadata.handler.TableDirectValueHandler;
+import org.myfly.platform.core3.metadata.service.IFlyColumn;
 
 /**
  * 字段值读取类工厂
@@ -18,17 +19,19 @@ public class ValueHandlerFactory {
 	 * @param dataType
 	 * @return
 	 */
-	public static IValueHandler getValueHandler(FlyFieldDefinition field) {
+	public static IValueHandler getValueHandler(IFlyColumn field) {
+		IValueHandler result = null;
 		switch (field.getDataType()) {
 		case List:
 		case Table:
-			return new ListValueHandler(field);
+			result = new ListValueHandler(field);
 		case TableDirect:
-			return new TableDirectValueHandler(field);
+			result = new TableDirectValueHandler(field);
 		case SubTable:
-			return new SubTableValueHandler(field);
+			result = new SubTableValueHandler(field);
 		default:
-			return new DefaultValueHandler(field);
+			result = new DefaultValueHandler(field);
 		}
+		return result;
 	}
 }

@@ -2,11 +2,11 @@ package org.myfly.platform.core3.metadata.handler;
 
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
-import org.myfly.platform.core3.metadata.define.FlyFieldDefinition;
+import org.myfly.platform.core3.metadata.service.IFlyColumn;
 
 public class TableDirectValueHandler extends DefaultValueHandler {
 
-	public TableDirectValueHandler(FlyFieldDefinition field) {
+	public TableDirectValueHandler(IFlyColumn field) {
 		super(field);
 	}
 

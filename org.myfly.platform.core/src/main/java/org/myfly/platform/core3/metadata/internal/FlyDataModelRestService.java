@@ -2,7 +2,7 @@ package org.myfly.platform.core3.metadata.internal;
 
 import java.util.List;
 
-import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +33,7 @@ public class FlyDataModelRestService {
 	 * @return
 	 */
 	@RequestMapping("{table}")
-	public FlyDataModel getFlyDataModel(@PathVariable("table") String table) {
+	public IFlyDataModel getFlyDataModel(@PathVariable("table") String table) {
 		return metaService.getFlyDataModel(table);
 	}
 }

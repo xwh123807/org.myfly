@@ -6,7 +6,7 @@ import java.util.Set;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.domain.EntityType;
 import org.myfly.platform.core3.flydata.service.FlyEntityUtils;
-import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyViewField;
 import org.myfly.platform.core3.metadata.service.IFlyViewTab;
 import org.myfly.platform.core3.model.data.PTable;
@@ -22,7 +22,7 @@ import org.myfly.platform.core3.model.view.WindowType;
  *
  */
 public class BuildInFlyViewModelBuilder extends PWindow {
-	public BuildInFlyViewModelBuilder(FlyDataModel builder) {
+	public BuildInFlyViewModelBuilder(IFlyDataModel builder) {
 		setUid(UUIDUtil.newUUID());
 		setName(builder.getName());
 		setDescription(builder.getDescription());

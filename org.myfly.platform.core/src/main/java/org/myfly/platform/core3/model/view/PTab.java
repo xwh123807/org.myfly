@@ -15,6 +15,8 @@ import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.FlyEntity;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
+import org.myfly.platform.core3.metadata.service.IFlyColumn;
+import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyViewField;
 import org.myfly.platform.core3.metadata.service.IFlyViewModel;
 import org.myfly.platform.core3.metadata.service.IFlyViewTab;
@@ -31,8 +33,8 @@ public class PTab extends FlyEntity implements IFlyViewTab {
 	private IFlyViewModel window;
 
 	@FlyField(name = "Table", description = "Database Table information", help = "The Database Table provides the information of the table definition")
-	@ManyToOne(fetch = FetchType.LAZY)
-	private PTable table;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = PTable.class)
+	private IFlyDataModel table;
 
 	@FlyField(name = "Image", description = "Image or Icon", help = "Images and Icon can be used to display supported graphic formats (gif, jpg, png).\n"
 			+ "You can either load the image (in the database) or point to a graphic via a URI (i.e. it can point to a resource, http address)")
@@ -116,8 +118,8 @@ public class PTab extends FlyEntity implements IFlyViewTab {
 	private String orderByClause;
 
 	@FlyField(name = "Parent Column", description = "The link column on the parent tab.", help = "")
-	@ManyToOne(fetch = FetchType.LAZY)
-	private PColumn parentColumn;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = PColumn.class)
+	private IFlyColumn parentColumn;
 
 	@FlyField(name = "Process Now", description = "", help = "")
 	@Column(name = "Processing")
@@ -177,7 +179,7 @@ public class PTab extends FlyEntity implements IFlyViewTab {
 	 * @see org.myfly.platform.core3.model.view.ITab#getTable()
 	 */
 	@Override
-	public PTable getTable() {
+	public IFlyDataModel getTable() {
 		return table;
 	}
 
@@ -189,7 +191,7 @@ public class PTab extends FlyEntity implements IFlyViewTab {
 	 * model.data.PTable)
 	 */
 	@Override
-	public void setTable(PTable table) {
+	public void setTable(IFlyDataModel table) {
 		this.table = table;
 	}
 
@@ -575,7 +577,7 @@ public class PTab extends FlyEntity implements IFlyViewTab {
 	 * @see org.myfly.platform.core3.model.view.ITab#getParentColumn()
 	 */
 	@Override
-	public PColumn getParentColumn() {
+	public IFlyColumn getParentColumn() {
 		return parentColumn;
 	}
 
@@ -587,7 +589,7 @@ public class PTab extends FlyEntity implements IFlyViewTab {
 	 * core3.model.data.PColumn)
 	 */
 	@Override
-	public void setParentColumn(PColumn parentColumn) {
+	public void setParentColumn(IFlyColumn parentColumn) {
 		this.parentColumn = parentColumn;
 	}
 

@@ -1,16 +1,15 @@
 package org.myfly.platform.core3.metadata.service;
 
 import org.myfly.platform.core3.domain.EntityType;
-import org.myfly.platform.core3.model.data.PColumn;
 import org.myfly.platform.core3.model.data.PRefList;
 import org.myfly.platform.core3.model.data.PReference;
 import org.myfly.platform.core3.model.view.PFieldGroup;
 
 public interface IFlyViewField {
 
-	PColumn getColumn();
+	IFlyColumn getColumn();
 
-	void setColumn(PColumn column);
+	void setColumn(IFlyColumn column);
 
 	PFieldGroup getFieldGroup();
 

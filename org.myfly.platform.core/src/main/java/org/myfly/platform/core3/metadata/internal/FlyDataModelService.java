@@ -6,11 +6,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.transaction.Transactional;
 
-import org.myfly.platform.core3.metadata.builder.EntityFlyTableBuilder;
-import org.myfly.platform.core3.metadata.builder.PTTableFlyTableBuilder;
-import org.myfly.platform.core3.metadata.define.FlyDataModel;
-import org.myfly.platform.core3.metadata.define.FlyTableDefinition;
 import org.myfly.platform.core3.metadata.repository.IPTableRepository;
+import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.myfly.platform.core3.model.data.PTable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,8 +60,8 @@ public class FlyDataModelService implements IFlyDataModelService {
 	@Override
 	@Cacheable(cacheNames = "datamodel")
 	@Transactional
-	public FlyDataModel getFlyDataModel(String entityNameOrClassName) {
-		FlyDataModel flyTable = getFlyDataModelFromDB(entityNameOrClassName);
+	public IFlyDataModel getFlyDataModel(String entityNameOrClassName) {
+		IFlyDataModel flyTable = tableRepos.findByApiName(entityNameOrClassName);
 		if (flyTable == null) {
 			Class<?> entityClass = getEntityClass(entityNameOrClassName);
 			if (entityClass != null) {
@@ -76,25 +73,11 @@ public class FlyDataModelService implements IFlyDataModelService {
 		return flyTable;
 	}
 
-	@Transactional
-	private FlyDataModel getFlyDataModelFromDB(String entityName) {
-		PTable table = tableRepos.findByApiName(entityName);
-		if (table != null) {
-			FlyDataModel flyTable = new FlyDataModel(new PTTableFlyTableBuilder(table));
-			flyTable.validate();
-			return flyTable;
-		} else {
-			return null;
-		}
-	}
-
 	@Override
 	@Cacheable(cacheNames = "datamodel", key = "#entityClass.getName()")
-	public FlyDataModel getFlyDataModelFromEntityClass(Class<?> entityClass) {
+	public IFlyDataModel getFlyDataModelFromEntityClass(Class<?> entityClass) {
 		Assert.notNull(entityClass, "参数[entityClass]不能为空");
-		FlyDataModel flyTable = new FlyDataModel(new EntityFlyTableBuilder(entityClass));
-		flyTable.validate();
-		return flyTable;
+		return FlyMetaDataUtils.newFlyDataModelFromEntityClass(entityClass);
 	}
 
 	@Transactional
@@ -102,10 +85,9 @@ public class FlyDataModelService implements IFlyDataModelService {
 	public List<String> importDataModelFromAllEntityClass() {
 		List<String> logs = new ArrayList<>();
 		getAllEntityClasses().forEach(entityClass -> {
-			FlyTableDefinition flyTable = getFlyDataModelFromEntityClass(entityClass);
-			PTable table = PTTableFlyTableBuilder.toPTable(flyTable);
-			tableRepos.save(table);
-			logs.add("import data model for " + flyTable.getApiName());
+			logs.add("导入数据模型：" + entityClass.getName());
+			IFlyDataModel dataModel = getFlyDataModelFromEntityClass(entityClass);
+			tableRepos.save((PTable) dataModel);
 		});
 		return logs;
 	}

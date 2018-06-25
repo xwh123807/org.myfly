@@ -4,8 +4,6 @@ import java.util.Set;
 
 import org.myfly.platform.core3.domain.EntityType;
 import org.myfly.platform.core3.domain.IFlyEntity;
-import org.myfly.platform.core3.model.data.PColumn;
-import org.myfly.platform.core3.model.data.PTable;
 import org.myfly.platform.core3.model.dict.PImage;
 
 public interface IFlyViewTab extends IFlyEntity{
@@ -14,9 +12,9 @@ public interface IFlyViewTab extends IFlyEntity{
 
 	void setWindow(IFlyViewModel window);
 
-	PTable getTable();
+	IFlyDataModel getTable();
 
-	void setTable(PTable table);
+	void setTable(IFlyDataModel table);
 
 	PImage getImage();
 
@@ -90,9 +88,9 @@ public interface IFlyViewTab extends IFlyEntity{
 
 	void setOrderByClause(String orderByClause);
 
-	PColumn getParentColumn();
+	IFlyColumn getParentColumn();
 
-	void setParentColumn(PColumn parentColumn);
+	void setParentColumn(IFlyColumn parentColumn);
 
 	Boolean getProcessing();
 

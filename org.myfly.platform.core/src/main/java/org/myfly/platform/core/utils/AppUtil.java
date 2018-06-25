@@ -9,6 +9,7 @@ import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.starter.ApplicationStarter;
 import org.myfly.platform.core3.metadata.builder.EntityFlyTableBuilder;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.convert.ConversionService;
@@ -181,9 +182,9 @@ public class AppUtil {
 	 * @param entityName
 	 * @return
 	 */
-	public static FlyDataModel getFlyDataModel(String entityName) {
+	public static IFlyDataModel getFlyDataModel(String entityName) {
 		Assert.hasLength(entityName);
-		FlyDataModel metaData = null;
+		IFlyDataModel metaData = null;
 		try {
 			IFlyDataModelService emService = null;
 			try {

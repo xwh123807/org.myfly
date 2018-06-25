@@ -128,7 +128,7 @@
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']"/>
         <target xmi:type="uml:Package" href="adempiere.uml#_9RN_EHMAEei8fL2NKOUI8Q"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_N3uloHPCEei8fL2NKOUI8Q" name="datamodel Class Diagram" repPath="#_N3tXgHPCEei8fL2NKOUI8Q">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_N3uloHPCEei8fL2NKOUI8Q" name="data model Class Diagram" repPath="#_N3tXgHPCEei8fL2NKOUI8Q">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']"/>
         <target xmi:type="uml:Package" href="org.myfly3.uml#_3Zp2EHPBEei8fL2NKOUI8Q"/>
       </ownedRepresentationDescriptors>
@@ -15235,7 +15235,7 @@
     <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Capture']/@ownedRepresentations[name='Package%20Hierarchy']/@defaultLayer"/>
     <target xmi:type="uml:Model" href="org.myfly3.uml#_xsiiQHPBEei8fL2NKOUI8Q"/>
   </diagram:DSemanticDiagram>
-  <diagram:DSemanticDiagram xmi:id="_N3tXgHPCEei8fL2NKOUI8Q" name="datamodel Class Diagram">
+  <diagram:DSemanticDiagram xmi:id="_N3tXgHPCEei8fL2NKOUI8Q" name="data model Class Diagram">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_N3tXgXPCEei8fL2NKOUI8Q" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_N3tXgnPCEei8fL2NKOUI8Q">
         <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_y2iawHPCEei8fL2NKOUI8Q" sourceArrow="Diamond">

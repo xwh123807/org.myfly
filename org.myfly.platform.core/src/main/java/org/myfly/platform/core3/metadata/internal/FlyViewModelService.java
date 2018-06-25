@@ -2,7 +2,7 @@ package org.myfly.platform.core3.metadata.internal;
 
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core3.metadata.builder.BuildInFlyViewModelBuilder;
-import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.myfly.platform.core3.metadata.service.IFlyViewModel;
 import org.myfly.platform.core3.metadata.service.IFlyViewModelService;
@@ -36,7 +36,7 @@ public class FlyViewModelService implements IFlyViewModelService {
 	 */
 	@Override
 	public IFlyViewModel getFlyViewModelFromBuildIn(String entityName) {
-		FlyDataModel dataModel = dataModelService.getFlyDataModel(entityName);
+		IFlyDataModel dataModel = dataModelService.getFlyDataModel(entityName);
 		IFlyViewModel viewModel = new BuildInFlyViewModelBuilder(dataModel);
 		return viewModel;
 	}

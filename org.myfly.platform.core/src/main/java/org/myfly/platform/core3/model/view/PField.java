@@ -11,6 +11,7 @@ import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.FlyEntity;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
+import org.myfly.platform.core3.metadata.service.IFlyColumn;
 import org.myfly.platform.core3.metadata.service.IFlyViewField;
 import org.myfly.platform.core3.metadata.service.IFlyViewTab;
 import org.myfly.platform.core3.model.data.PColumn;
@@ -22,8 +23,8 @@ import org.myfly.platform.core3.model.data.PReference;
 @FlyTable(name = "Field", description = "Field on a database table")
 public class PField extends FlyEntity implements IFlyViewField {
 	@FlyField(name = "Column", description = "Column in the table", help = "Link to the database column of the table")
-	@ManyToOne
-	private PColumn column;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = PColumn.class)
+	private IFlyColumn column;
 
 	@FlyField(name = "Field Group", description = "Logical grouping of fields", help = "The Field Group indicates the logical group that this field belongs to (History, Amounts, Quantities)")
 	@ManyToOne
@@ -157,7 +158,7 @@ public class PField extends FlyEntity implements IFlyViewField {
 	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getColumn()
 	 */
 	@Override
-	public PColumn getColumn() {
+	public IFlyColumn getColumn() {
 		return column;
 	}
 
@@ -168,7 +169,7 @@ public class PField extends FlyEntity implements IFlyViewField {
 	 * platform.core3.model.data.PColumn)
 	 */
 	@Override
-	public void setColumn(PColumn column) {
+	public void setColumn(IFlyColumn column) {
 		this.column = column;
 	}
 

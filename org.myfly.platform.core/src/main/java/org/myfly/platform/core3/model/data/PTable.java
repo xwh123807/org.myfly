@@ -15,6 +15,8 @@ import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.FlyEntity;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
+import org.myfly.platform.core3.metadata.service.IFlyColumn;
+import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyViewModel;
 import org.myfly.platform.core3.model.view.PWindow;
 
@@ -28,7 +30,7 @@ import org.myfly.platform.core3.model.view.PWindow;
 @FlyTable(name = "Table", description = "Table for the Fields", isHighVolume = true)
 @Entity
 @Table(name = "PT_TABLE")
-public class PTable extends FlyEntity {
+public class PTable extends FlyEntity implements IFlyDataModel {
 	@FlyField(name = "API Name")
 	@Column(length = 255, name = "ApiName", unique = true)
 	private String apiName;
@@ -113,173 +115,463 @@ public class PTable extends FlyEntity {
 	private IFlyViewModel window;
 
 	@FlyField(dataType = FlyDataType.SubTable)
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "table", cascade = { CascadeType.ALL })
-	private Set<PColumn> columns;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "table", targetEntity = PColumn.class, cascade = { CascadeType.ALL })
+	private Set<IFlyColumn> columns;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getName()
+	 */
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setName(java.lang.String)
+	 */
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getTableName()
+	 */
+	@Override
 	public String getTableName() {
 		return tableName;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setTableName(java.lang.
+	 * String)
+	 */
+	@Override
 	public void setTableName(String tableName) {
 		this.tableName = tableName;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getIsHighVolume()
+	 */
+	@Override
 	public Boolean getIsHighVolume() {
 		return isHighVolume;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setIsHighVolume(java.lang.
+	 * Boolean)
+	 */
+	@Override
 	public void setIsHighVolume(Boolean isHighVolume) {
 		this.isHighVolume = isHighVolume;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getEntityType()
+	 */
+	@Override
 	public EntityType getEntityType() {
 		return entityType;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setEntityType(org.myfly.
+	 * platform.core3.domain.EntityType)
+	 */
+	@Override
 	public void setEntityType(EntityType entityType) {
 		this.entityType = entityType;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getDescription()
+	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setDescription(java.lang.
+	 * String)
+	 */
+	@Override
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getAccessLevel()
+	 */
+	@Override
 	public AccessLevel getAccessLevel() {
 		return accessLevel;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setAccessLevel(org.myfly.
+	 * platform.core3.model.data.AccessLevel)
+	 */
+	@Override
 	public void setAccessLevel(AccessLevel accessLevel) {
 		this.accessLevel = accessLevel;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getHelp()
+	 */
+	@Override
 	public String getHelp() {
 		return help;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setHelp(java.lang.String)
+	 */
+	@Override
 	public void setHelp(String help) {
 		this.help = help;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getReplicationType()
+	 */
+	@Override
 	public String getReplicationType() {
 		return replicationType;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setReplicationType(java.
+	 * lang.String)
+	 */
+	@Override
 	public void setReplicationType(String replicationType) {
 		this.replicationType = replicationType;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getIsChangeLog()
+	 */
+	@Override
 	public Boolean getIsChangeLog() {
 		return isChangeLog;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setIsChangeLog(java.lang.
+	 * Boolean)
+	 */
+	@Override
 	public void setIsChangeLog(Boolean isChangeLog) {
 		this.isChangeLog = isChangeLog;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getaCTriggerLength()
+	 */
+	@Override
 	public Integer getaCTriggerLength() {
 		return aCTriggerLength;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setaCTriggerLength(java.
+	 * lang.Integer)
+	 */
+	@Override
 	public void setaCTriggerLength(Integer aCTriggerLength) {
 		this.aCTriggerLength = aCTriggerLength;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getIsIgnoreMigration()
+	 */
+	@Override
 	public Boolean getIsIgnoreMigration() {
 		return isIgnoreMigration;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setIsIgnoreMigration(java.
+	 * lang.Boolean)
+	 */
+	@Override
 	public void setIsIgnoreMigration(Boolean isIgnoreMigration) {
 		this.isIgnoreMigration = isIgnoreMigration;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getIsDocument()
+	 */
+	@Override
 	public Boolean getIsDocument() {
 		return isDocument;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setIsDocument(java.lang.
+	 * Boolean)
+	 */
+	@Override
 	public void setIsDocument(Boolean isDocument) {
 		this.isDocument = isDocument;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getImportTable()
+	 */
+	@Override
 	public String getImportTable() {
 		return importTable;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setImportTable(java.lang.
+	 * String)
+	 */
+	@Override
 	public void setImportTable(String importTable) {
 		this.importTable = importTable;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getIsSecurityEnabled()
+	 */
+	@Override
 	public Boolean getIsSecurityEnabled() {
 		return isSecurityEnabled;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setIsSecurityEnabled(java.
+	 * lang.Boolean)
+	 */
+	@Override
 	public void setIsSecurityEnabled(Boolean isSecurityEnabled) {
 		this.isSecurityEnabled = isSecurityEnabled;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getIsDeleteable()
+	 */
+	@Override
 	public Boolean getIsDeleteable() {
 		return isDeleteable;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setIsDeleteable(java.lang.
+	 * Boolean)
+	 */
+	@Override
 	public void setIsDeleteable(Boolean isDeleteable) {
 		this.isDeleteable = isDeleteable;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getIsView()
+	 */
+	@Override
 	public Boolean getIsView() {
 		return isView;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#setIsView(java.lang.
+	 * Boolean)
+	 */
+	@Override
 	public void setIsView(Boolean isView) {
 		this.isView = isView;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#getCopyColumnsFromTable()
+	 */
+	@Override
 	public String getCopyColumnsFromTable() {
 		return copyColumnsFromTable;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setCopyColumnsFromTable(
+	 * java.lang.String)
+	 */
+	@Override
 	public void setCopyColumnsFromTable(String copyColumnsFromTable) {
 		this.copyColumnsFromTable = copyColumnsFromTable;
 	}
 
-	public Set<PColumn> getColumns() {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getColumns()
+	 */
+	@Override
+	public Set<IFlyColumn> getColumns() {
 		return columns;
 	}
 
-	public void setColumns(Set<PColumn> columns) {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setColumns(java.util.Set)
+	 */
+	@Override
+	public void setColumns(Set<IFlyColumn> columns) {
 		this.columns = columns;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getApiName()
+	 */
+	@Override
 	public String getApiName() {
 		return apiName;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#setApiName(java.lang.
+	 * String)
+	 */
+	@Override
 	public void setApiName(String apiName) {
 		this.apiName = apiName;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#getIsCentrallyMaintained()
+	 */
+	@Override
 	public Boolean getIsCentrallyMaintained() {
 		return isCentrallyMaintained;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.data.IFlyDataModel#setIsCentrallyMaintained(
+	 * java.lang.Boolean)
+	 */
+	@Override
 	public void setIsCentrallyMaintained(Boolean isCentrallyMaintained) {
 		this.isCentrallyMaintained = isCentrallyMaintained;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#getWindow()
+	 */
+	@Override
 	public IFlyViewModel getWindow() {
 		return window;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.data.IFlyDataModel#setWindow(org.myfly.
+	 * platform.core3.metadata.service.IFlyViewModel)
+	 */
+	@Override
 	public void setWindow(IFlyViewModel window) {
 		this.window = window;
 	}
