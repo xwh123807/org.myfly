@@ -117,7 +117,9 @@ public class FlyDataModelBuilder {
 	private void buildFields(Class<?> entityClass) {
 		Set<IFlyColumn> columns = new HashSet<>();
 		EntityClassUtil.getEntityFieldInfo(entityClass).values().forEach(fieldInfo -> {
-			columns.add(buildField(fieldInfo.getField()));
+			IFlyColumn column = buildField(fieldInfo.getField());
+			column.setTable(dataModel);
+			columns.add(column);
 		});
 		dataModel.setColumns(columns);
 	}

@@ -58,5 +58,5 @@ public interface IFlyDataModelService {
 	 * 
 	 * @return
 	 */
-	public List<String> importDataModelFromAllEntityClass();
+	public List<String> importDataModelFromAllEntityClasses();
 }

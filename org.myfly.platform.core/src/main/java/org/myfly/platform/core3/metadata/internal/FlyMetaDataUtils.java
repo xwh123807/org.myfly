@@ -2,9 +2,11 @@ package org.myfly.platform.core3.metadata.internal;
 
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.metadata.builder.FlyDataModelBuilder;
+import org.myfly.platform.core3.metadata.builder.FlyViewModelBuilder;
 import org.myfly.platform.core3.metadata.service.IFlyColumn;
 import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
+import org.myfly.platform.core3.metadata.service.IFlyViewField;
 import org.myfly.platform.core3.metadata.service.IFlyViewModel;
 import org.myfly.platform.core3.metadata.service.IFlyViewModelService;
 import org.myfly.platform.core3.metadata.service.IFlyViewTab;
@@ -57,7 +59,21 @@ public class FlyMetaDataUtils {
 	}
 
 	/**
+	 * 从实体数据模型构建实体显示模型
+	 * 
+	 * @param dataModel
+	 * @return
+	 */
+	public static IFlyViewModel newFlyViewModelFromDataModel(IFlyDataModel dataModel) {
+		FlyViewModelBuilder builder = new FlyViewModelBuilder(dataModel);
+		builder.build();
+		builder.validate();
+		return builder.getFlyViewModel();
+	}
+
+	/**
 	 * 创建IFlyViewModel实例
+	 * 
 	 * @return
 	 */
 	public static IFlyViewModel newFlyViewModelInstance() {
@@ -66,9 +82,20 @@ public class FlyMetaDataUtils {
 
 	/**
 	 * 创建IFlyViewTab实例
+	 * 
 	 * @return
 	 */
 	public static IFlyViewTab newFlyViewTabInstance() {
 		return newFlyEntityInstance(IFlyViewModelService.IMPLCLASS_FLY_VIEW_TAB);
 	}
+
+	/**
+	 * 创建IFlyViewField实例
+	 * 
+	 * @return
+	 */
+	public static IFlyViewField newFlyViewFieldInstance() {
+		return newFlyEntityInstance(IFlyViewModelService.IMPLCLASS_FLY_VIEW_FIELD);
+	}
+
 }

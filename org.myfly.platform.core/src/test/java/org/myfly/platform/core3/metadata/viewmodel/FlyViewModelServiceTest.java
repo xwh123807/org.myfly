@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.myfly.platform.CoreApplication;
-import org.myfly.platform.core3.metadata.define.FlyViewModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
+import org.myfly.platform.core3.metadata.service.IFlyViewModel;
 import org.myfly.platform.core3.metadata.service.IFlyViewModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,7 +23,7 @@ public class FlyViewModelServiceTest {
 	public void allViewModelForBuildIn() {
 		dataModelService.getAllEntityClasses().forEach(entityClass -> {
 			String entityName = entityClass.getName();
-			FlyViewModel viewModel = viewModelService.getFlyViewModelFromBuildIn(entityName);
+			IFlyViewModel viewModel = viewModelService.getFlyViewModelFromBuildIn(entityName);
 			Assert.assertNotNull(viewModel);
 		});
 	}

@@ -9,6 +9,7 @@ import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.domain.IFlyEntity;
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.core3.model.security.PClient;
 import org.myfly.platform.core3.model.security.POrg;

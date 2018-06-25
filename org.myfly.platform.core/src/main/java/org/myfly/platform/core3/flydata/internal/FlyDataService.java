@@ -9,7 +9,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
-import org.myfly.platform.core3.flydata.service.FlyEntityUtils;
 import org.myfly.platform.core3.flydata.service.IFlyDataService;
 import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;

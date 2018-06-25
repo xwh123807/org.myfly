@@ -2,8 +2,8 @@ package org.myfly.platform.core3.testmodel;
 
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
-import org.myfly.platform.core3.flydata.service.FlyEntityUtils;
 import org.myfly.platform.core3.model.test.PTMaster;
 
 public class TestModel {

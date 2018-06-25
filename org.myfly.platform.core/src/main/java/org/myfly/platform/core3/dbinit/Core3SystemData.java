@@ -4,6 +4,9 @@ import javax.transaction.Transactional;
 
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.utils.DateUtil;
+import org.myfly.platform.core3.metadata.internal.FlySystemResource;
+import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
+import org.myfly.platform.core3.metadata.service.IFlyViewModelService;
 import org.myfly.platform.core3.model.security.PClient;
 import org.myfly.platform.core3.model.security.POrg;
 import org.myfly.platform.core3.model.security.PUser;
@@ -22,26 +25,26 @@ public class Core3SystemData {
 	private IJpaDataAccessService dataService;
 
 	@Autowired
-	private SysDataModel sysDataModel;
+	private IFlyDataModelService dataModelService;
 
 	@Autowired
-	private SysViewModel sysViewModel;
-
+	private IFlyViewModelService viewModelService;
+	
 	@Transactional
 	public void initDB() {
 		initCore3SystemData();
-		sysDataModel.initSysDataModel();
-		sysViewModel.initSysViewModel();
+		dataModelService.importDataModelFromAllEntityClasses();
+		viewModelService.importBuildInViewModelFromAllDataModels();
 	}
 
 	@Transactional
 	public void initCore3SystemData() {
 		// 创建系统Client
-		PClient client = dataService.findOne(PClient.class, Core3SystemConstants.UID_SYSTEM_CLIENT);
+		PClient client = dataService.findOne(PClient.class, FlySystemResource.UID_SYSTEM_CLIENT);
 		if (client == null) {
 			client = new PClient();
-			client.setUid(Core3SystemConstants.UID_SYSTEM_CLIENT);
-			client.setName(Core3SystemConstants.NAME_SYSTEM_CLIENT);
+			client.setUid(FlySystemResource.UID_SYSTEM_CLIENT);
+			client.setName(FlySystemResource.NAME_SYSTEM_CLIENT);
 			client.setValue("SYSTEM");
 			client.setDescription("System Client");
 			client.setCreated(DateUtil.nowSqlTimestamp());
@@ -49,11 +52,11 @@ public class Core3SystemData {
 			dataService.saveEntity(client);
 		}
 		// 创建系统Organization
-		POrg org = dataService.findOne(POrg.class, Core3SystemConstants.UID_ALL_ORG);
+		POrg org = dataService.findOne(POrg.class, FlySystemResource.UID_ALL_ORG);
 		if (org == null) {
 			org = new POrg();
-			org.setUid(Core3SystemConstants.UID_ALL_ORG);
-			org.setName(Core3SystemConstants.NAME_ALL_ORG);
+			org.setUid(FlySystemResource.UID_ALL_ORG);
+			org.setName(FlySystemResource.NAME_ALL_ORG);
 			org.setValue("0");
 			org.setDescription("All Organizations");
 			org.setIsActive(true);
@@ -62,11 +65,11 @@ public class Core3SystemData {
 			dataService.saveEntity(org);
 		}
 		// 创建System用户
-		PUser system = dataService.findOne(PUser.class, Core3SystemConstants.UID_SYSTEM_USER);
+		PUser system = dataService.findOne(PUser.class, FlySystemResource.UID_SYSTEM_USER);
 		if (system == null) {
 			system = new PUser();
-			system.setUid(Core3SystemConstants.UID_SYSTEM_USER);
-			system.setName(Core3SystemConstants.NAME_SYSTEM_USER);
+			system.setUid(FlySystemResource.UID_SYSTEM_USER);
+			system.setName(FlySystemResource.NAME_SYSTEM_USER);
 			system.setValue(system.getName());
 			system.setDescription("** Do not change **");
 			system.setIsActive(true);
@@ -76,11 +79,11 @@ public class Core3SystemData {
 			dataService.saveEntity(system);
 		}
 		// 创建SuperUser用户
-		PUser superUser = dataService.findOne(PUser.class, Core3SystemConstants.UID_SUPER_USER);
+		PUser superUser = dataService.findOne(PUser.class, FlySystemResource.UID_SUPER_USER);
 		if (superUser == null) {
 			superUser = new PUser();
-			superUser.setUid(Core3SystemConstants.UID_SUPER_USER);
-			superUser.setName(Core3SystemConstants.NAME_SUPER_USER);
+			superUser.setUid(FlySystemResource.UID_SUPER_USER);
+			superUser.setName(FlySystemResource.NAME_SUPER_USER);
 			superUser.setValue(superUser.getName());
 			superUser.setDescription("Super User with Access to all levels");
 			superUser.setIsActive(true);

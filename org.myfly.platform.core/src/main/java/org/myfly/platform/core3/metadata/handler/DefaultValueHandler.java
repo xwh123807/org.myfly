@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.ClassUtil;
+import org.myfly.platform.core3.metadata.define.ColumnDefinition;
 import org.myfly.platform.core3.metadata.define.IValueHandler;
-import org.myfly.platform.core3.metadata.service.IFlyColumn;
 
 /**
  * 基本数据类型字段值读取类
@@ -15,41 +15,30 @@ import org.myfly.platform.core3.metadata.service.IFlyColumn;
  *
  */
 public class DefaultValueHandler implements IValueHandler {
-	private IFlyColumn field;
-	private Method getter;
-	private Method setter;
+	private ColumnDefinition columnDefinition;
 
-	public DefaultValueHandler(IFlyColumn field) {
-		this.setField(field);
+	public DefaultValueHandler(ColumnDefinition columnDefinition) {
+		this.setColumnDefinition(columnDefinition);
 	}
 
-	public DefaultValueHandler(Method getter, Method setter) {
-		setGetter(getter);
-		setSetter(setter);
+	public ColumnDefinition getColumnDefinition() {
+		return columnDefinition;
 	}
 
-	public IFlyColumn getField() {
-		return field;
+	public void setColumnDefinition(ColumnDefinition columnDefinition) {
+		this.columnDefinition = columnDefinition;
 	}
 
-	public void setField(IFlyColumn field) {
-		this.field = field;
+	private String getApiName() {
+		return getColumnDefinition().getColumn().getApiName();
 	}
 
-	public Method getGetter() {
-		return getter;
+	private Method getGetter() {
+		return getColumnDefinition().getFieldInfo().getGetter();
 	}
 
-	public void setGetter(Method getter) {
-		this.getter = getter;
-	}
-
-	public Method getSetter() {
-		return setter;
-	}
-
-	public void setSetter(Method setter) {
-		this.setter = setter;
+	private Method getSetter() {
+		return getColumnDefinition().getFieldInfo().getSetter();
 	}
 
 	@Override
@@ -65,7 +54,7 @@ public class DefaultValueHandler implements IValueHandler {
 	}
 
 	private Object getFieldValueForMap(Map entity) {
-		return entity.get(getField().getApiName());
+		return entity.get(getApiName());
 	}
 
 	@Override
@@ -80,7 +69,7 @@ public class DefaultValueHandler implements IValueHandler {
 	}
 
 	private void setFieldValueForMap(Map entity, Object value) {
-		entity.put(getField().getApiName(), value);
+		entity.put(getApiName(), value);
 	}
 
 	public Object getFieldValueForEntity(Object entity) {
@@ -89,9 +78,9 @@ public class DefaultValueHandler implements IValueHandler {
 			try {
 				value = getGetter().invoke(entity);
 			} catch (Exception e) {
-				AssertUtil.parameterEmpty(getGetter(), "getGetter()", "属性[" + getField().getName() + "]没有定义Get方法");
+				AssertUtil.parameterEmpty(getGetter(), "getGetter()", "属性[" + getApiName() + "]没有定义Get方法");
 				e.printStackTrace();
-				throw new IllegalArgumentException("实体属性[" + getField().getName() + "]值获取失败，错误信息：" + e.getMessage());
+				throw new IllegalArgumentException("实体属性[" + getApiName() + "]值获取失败，错误信息：" + e.getMessage());
 			}
 			return value;
 		}
@@ -108,9 +97,9 @@ public class DefaultValueHandler implements IValueHandler {
 				}
 				getSetter().invoke(entity, newValue);
 			} catch (Exception e) {
-				AssertUtil.parameterEmpty(getSetter(), "getSetter()", "属性[" + getField().getName() + "]没有定义Set方法");
+				AssertUtil.parameterEmpty(getSetter(), "getSetter()", "属性[" + getApiName() + "]没有定义Set方法");
 				throw new IllegalArgumentException(
-						"属性[" + getField().getName() + "]值[" + value + "]设置失败，错误信息：" + e.getMessage());
+						"属性[" + getApiName() + "]值[" + value + "]设置失败，错误信息：" + e.getMessage());
 			}
 		}
 	}

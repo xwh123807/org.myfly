@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.myfly.platform.CoreApplication;
-import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.model.data.PTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -17,29 +17,29 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = CoreApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
-public class FlyDataModelRestServiceTest {
+public class FlyMetaDataRestServiceTest {
 	@Autowired
 	private TestRestTemplate service;
 
 	private URI getUri(String path, Object... urlVariables) {
-		return service.getRestTemplate().getUriTemplateHandler().expand("/datamodel/" + path + "/", urlVariables);
+		return service.getRestTemplate().getUriTemplateHandler().expand("/metadata/" + path + "/", urlVariables);
 	}
 
-	private void assertEntityModel(String className) {
-		ResponseEntity<FlyDataModel> result = service.getForEntity(getUri("{className}", className),
-				FlyDataModel.class);
+	private void assertEntityModel(String entityName) {
+		ResponseEntity<PTable> result = service.getForEntity(getUri("data/name/{entityName}", entityName),
+				PTable.class);
 		Assert.assertEquals(200, result.getStatusCodeValue());
 		Assert.assertNotNull(result.getBody());
 	}
 
 	@Test
-	public void list() {
+	public void allEntity() {
 		ResponseEntity<String[]> result2 = service.getForEntity(getUri("list"), String[].class);
 		Assert.assertNotNull(result2.getBody());
 		Assert.assertEquals(200, result2.getStatusCodeValue());
 		Assert.assertTrue(result2.getBody().length > 0);
-		Stream.of(result2.getBody()).forEach(className -> {
-			assertEntityModel(className);
+		Stream.of(result2.getBody()).forEach(entityName -> {
+			assertEntityModel(entityName);
 		});
 	}
 }

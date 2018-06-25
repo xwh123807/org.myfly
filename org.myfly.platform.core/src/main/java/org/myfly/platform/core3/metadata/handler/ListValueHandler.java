@@ -1,7 +1,7 @@
 package org.myfly.platform.core3.metadata.handler;
 
+import org.myfly.platform.core3.metadata.define.ColumnDefinition;
 import org.myfly.platform.core3.metadata.define.IValueHandler;
-import org.myfly.platform.core3.metadata.service.IFlyColumn;
 
 /**
  * 列表(一般为枚举)数据类型字段值读取类
@@ -11,8 +11,8 @@ import org.myfly.platform.core3.metadata.service.IFlyColumn;
  */
 public class ListValueHandler extends DefaultValueHandler implements IValueHandler {
 
-	public ListValueHandler(IFlyColumn field) {
-		super(field);
+	public ListValueHandler(ColumnDefinition columnDefinition) {
+		super(columnDefinition);
 	}
 
 	@Override

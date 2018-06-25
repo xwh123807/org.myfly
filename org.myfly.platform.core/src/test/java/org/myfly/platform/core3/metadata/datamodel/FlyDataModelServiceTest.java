@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.myfly.platform.CoreApplication;
-import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,7 +23,7 @@ public class FlyDataModelServiceTest {
 		List<Class<?>> list = service.getAllEntityClasses();
 		Assert.assertNotNull(list);
 		list.forEach(entityClass -> {
-			FlyDataModel flyTable = service.getFlyDataModelFromEntityClass(entityClass);
+			IFlyDataModel flyTable = service.getFlyDataModelFromEntityClass(entityClass);
 			Assert.assertNotNull(flyTable);
 		});
 	}
@@ -33,14 +33,8 @@ public class FlyDataModelServiceTest {
 		List<Class<?>> list = service.getAllEntityClasses();
 		Assert.assertNotNull(list);
 		list.forEach(entityClass -> {
-			FlyDataModel flyTable = service.getFlyDataModel(entityClass.getName());
+			IFlyDataModel flyTable = service.getFlyDataModel(entityClass.getName());
 			Assert.assertNotNull(flyTable);
 		});
-	}
-
-	@Test
-	public void importDataModelFromAllEntityClass() {
-		List<String> result = service.importDataModelFromAllEntityClass();
-		result.forEach(log -> System.out.println(log));
 	}
 }

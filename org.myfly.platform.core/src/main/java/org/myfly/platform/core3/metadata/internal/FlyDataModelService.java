@@ -6,6 +6,11 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.transaction.Transactional;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.myfly.platform.core.utils.DateUtil;
+import org.myfly.platform.core.utils.UUIDUtil;
+import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.metadata.repository.IPTableRepository;
 import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
@@ -20,11 +25,15 @@ import org.springframework.util.ClassUtils;
 
 @Service
 public class FlyDataModelService implements IFlyDataModelService {
+	private static Log log = LogFactory.getLog(FlyDataModelService.class);
 	@Autowired
 	private JpaMetamodelMappingContext mappingContext;
 
 	@Autowired
 	private IPTableRepository tableRepos;
+
+	@Autowired
+	private FlySystemResource systemResource;
 
 	@Override
 	public List<Class<?>> getAllEntityClasses() {
@@ -82,13 +91,32 @@ public class FlyDataModelService implements IFlyDataModelService {
 
 	@Transactional
 	@Override
-	public List<String> importDataModelFromAllEntityClass() {
-		List<String> logs = new ArrayList<>();
+	public List<String> importDataModelFromAllEntityClasses() {
+		List<String> list = new ArrayList<>();
 		getAllEntityClasses().forEach(entityClass -> {
-			logs.add("导入数据模型：" + entityClass.getName());
+			String info = "导入数据模型：" + entityClass.getName();
+			if (log.isInfoEnabled()) {
+				log.info(info);
+			}
+			list.add(info);
 			IFlyDataModel dataModel = getFlyDataModelFromEntityClass(entityClass);
+			updateFlyEntity(dataModel);
+			dataModel.getColumns().forEach(column -> {
+				updateFlyEntity(column);
+			});
 			tableRepos.save((PTable) dataModel);
 		});
-		return logs;
+		return list;
+	}
+
+	private void updateFlyEntity(IFlyEntity flyEntity) {
+		flyEntity.setUid(UUIDUtil.newUUID());
+		flyEntity.setIsActive(true);
+		flyEntity.setCreated(DateUtil.nowSqlTimestamp());
+		flyEntity.setCreatedBy(systemResource.getSystemUser());
+		flyEntity.setUpdated(DateUtil.nowSqlTimestamp());
+		flyEntity.setUpdatedBy(systemResource.getSystemUser());
+		flyEntity.setClient(systemResource.getSystemClient());
+		flyEntity.setOrg(systemResource.getAllOrg());
 	}
 }

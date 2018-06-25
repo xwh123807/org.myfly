@@ -1,4 +1,4 @@
-package org.myfly.platform.core3.flydata.service;
+package org.myfly.platform.core3.flydata.internal;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +8,7 @@ import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.domain.IFlyEntity;
+import org.myfly.platform.core3.flydata.service.FlyEntityMap;
 import org.myfly.platform.core3.metadata.define.ValueHandlerFactory;
 import org.myfly.platform.core3.metadata.service.IFlyColumn;
 import org.myfly.platform.core3.metadata.service.IFlyDataModel;
@@ -99,7 +100,7 @@ public class FlyEntityUtils {
 			// 主键字段已经在对象构建时设置了值，此处跳过不重复设置
 			if (flyEntity.containsKey(field.getApiName())) {
 				Object value = flyEntity.get(field.getApiName());
-				ValueHandlerFactory.getValueHandler(field).setFieldValue(entity, value);
+				AppUtil.getColumnValueHandler(field).setFieldValue(entity, value);
 			}
 		});
 		return entity;
@@ -139,7 +140,7 @@ public class FlyEntityUtils {
 				// 全覆盖或属性有修改
 				Object value = flyEntity.get(field.getApiName());
 				// Object oldValue = field.getValueHandler().getFieldValue(entity);
-				ValueHandlerFactory.getValueHandler(field).setFieldValue(entity, value);
+				AppUtil.getColumnValueHandler(field).setFieldValue(entity, value);
 			}
 		});
 		return entity;
@@ -155,7 +156,7 @@ public class FlyEntityUtils {
 	public static FlyEntityMap fromEntity(IFlyDataModel dataModel, Object entityObj) {
 		FlyEntityMap result = new FlyEntityMap();
 		for (IFlyColumn field : dataModel.getColumns()) {
-			result.put(field.getApiName(), ValueHandlerFactory.getValueHandler(field).getFieldValue(entityObj));
+			result.put(field.getApiName(), AppUtil.getColumnValueHandler(field).getFieldValue(entityObj));
 		}
 		return result;
 	}

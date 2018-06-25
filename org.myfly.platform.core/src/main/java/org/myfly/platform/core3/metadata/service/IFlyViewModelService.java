@@ -1,5 +1,7 @@
 package org.myfly.platform.core3.metadata.service;
 
+import java.util.List;
+
 import org.myfly.platform.core3.model.view.PField;
 import org.myfly.platform.core3.model.view.PTab;
 import org.myfly.platform.core3.model.view.PWindow;
@@ -48,4 +50,9 @@ public interface IFlyViewModelService {
 	 * @return
 	 */
 	public IFlyViewModel getFlyViewModelFromBuildIn(String entityName);
+
+	/**
+	 * 从实体数据模型构建实体显示模型，并导入到数据库中
+	 */
+	public List<String> importBuildInViewModelFromAllDataModels();
 }

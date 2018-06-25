@@ -107,6 +107,14 @@ public class EntityClassUtil {
 		return fieldInfos;
 	}
 
+	public static Map<String, FieldInfo> getEntityFieldInfo(String entityName) {
+		try {
+			return getEntityFieldInfo(Class.forName(entityName));
+		} catch (ClassNotFoundException e) {
+			throw new IllegalArgumentException("获取实体[" + entityName + "]字段信息失败： " + e.getMessage());
+		}
+	}
+
 	/**
 	 * 获取IDClass类属性信息
 	 * 

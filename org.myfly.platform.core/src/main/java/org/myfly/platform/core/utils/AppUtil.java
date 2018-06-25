@@ -7,8 +7,10 @@ import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.starter.ApplicationStarter;
-import org.myfly.platform.core3.metadata.builder.EntityFlyTableBuilder;
-import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.metadata.define.IValueHandler;
+import org.myfly.platform.core3.metadata.define.ValueHandlerFactory;
+import org.myfly.platform.core3.metadata.internal.FlyMetaDataUtils;
+import org.myfly.platform.core3.metadata.service.IFlyColumn;
 import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.springframework.context.ApplicationContext;
@@ -179,6 +181,7 @@ public class AppUtil {
 
 	/**
 	 * 获取实体的数据模型
+	 * 
 	 * @param entityName
 	 * @return
 	 */
@@ -193,8 +196,7 @@ public class AppUtil {
 			}
 			if (emService == null) {
 				Class<?> entityClass = Class.forName(entityName);
-				metaData = new FlyDataModel(new EntityFlyTableBuilder(entityClass));
-				metaData.validate();
+				metaData = FlyMetaDataUtils.newFlyDataModelFromEntityClass(entityClass);
 			} else {
 				metaData = emService.getFlyDataModel(entityName);
 			}
@@ -204,5 +206,23 @@ public class AppUtil {
 		}
 		Assert.notNull(metaData, "找不到名称为[" + entityName + "]的数据模型");
 		return metaData;
+	}
+
+	/**
+	 * 获取
+	 * 
+	 * @param column
+	 * @return
+	 */
+	public static IValueHandler getColumnValueHandler(IFlyColumn column) {
+		ValueHandlerFactory factory = null;
+		try {
+			factory = getApplicationConext().getBean(ValueHandlerFactory.class);
+		} catch (Exception e) {
+		}
+		if (factory == null) {
+			factory = new ValueHandlerFactory();
+		}
+		return factory.getValueHandler(column);
 	}
 }

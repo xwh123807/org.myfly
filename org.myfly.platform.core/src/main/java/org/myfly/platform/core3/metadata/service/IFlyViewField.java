@@ -1,11 +1,12 @@
 package org.myfly.platform.core3.metadata.service;
 
 import org.myfly.platform.core3.domain.EntityType;
+import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.model.data.PRefList;
 import org.myfly.platform.core3.model.data.PReference;
 import org.myfly.platform.core3.model.view.PFieldGroup;
 
-public interface IFlyViewField {
+public interface IFlyViewField extends IFlyEntity{
 
 	IFlyColumn getColumn();
 
