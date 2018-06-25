@@ -15,6 +15,9 @@ import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.FlyEntity;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
+import org.myfly.platform.core3.metadata.service.IFlyViewField;
+import org.myfly.platform.core3.metadata.service.IFlyViewModel;
+import org.myfly.platform.core3.metadata.service.IFlyViewTab;
 import org.myfly.platform.core3.model.data.PColumn;
 import org.myfly.platform.core3.model.data.PTable;
 import org.myfly.platform.core3.model.dict.PImage;
@@ -22,10 +25,10 @@ import org.myfly.platform.core3.model.dict.PImage;
 @Entity
 @Table
 @FlyTable(name = "Tab", description = "Tab within a Window")
-public class PTab extends FlyEntity {
+public class PTab extends FlyEntity implements IFlyViewTab {
 	@FlyField(name = "Window", description = "Data entry or display window", help = "The Window field identifies a unique Window in the system.")
-	@ManyToOne(fetch = FetchType.LAZY)
-	private PWindow window;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = PWindow.class)
+	private IFlyViewModel window;
 
 	@FlyField(name = "Table", description = "Database Table information", help = "The Database Table provides the information of the table definition")
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -73,8 +76,8 @@ public class PTab extends FlyEntity {
 	private String importFields;
 
 	@FlyField(name = "Included Tab", description = "Included Tab in this Tab (Master Detail)", help = "You can include a Tab in a Tab. If displayed in single row record, the included tab is displayed as multi-row table.")
-	@ManyToOne(fetch = FetchType.LAZY)
-	private PTab includedTab;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = PTab.class)
+	private IFlyViewTab includedTab;
 
 	@FlyField(name = "Advanced Tab", description = "This Tab contains advanced Functionality", help = "The tab with advanced functionality is only displayed, if enabled in Tools>Preference.")
 	@Column(name = "IsAdvancedTab")
@@ -143,222 +146,571 @@ public class PTab extends FlyEntity {
 	@Column(name = "WhereClause")
 	private String whereClause;
 
-	@OneToMany(mappedBy = "tab", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-	private Set<PField> fields;
+	@OneToMany(mappedBy = "tab", fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, targetEntity = PField.class)
+	private Set<IFlyViewField> fields;
 
-	public PWindow getWindow() {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getWindow()
+	 */
+	@Override
+	public IFlyViewModel getWindow() {
 		return window;
 	}
 
-	public void setWindow(PWindow window) {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setWindow(org.myfly.platform.core3.
+	 * model.view.PWindow)
+	 */
+	@Override
+	public void setWindow(IFlyViewModel window) {
 		this.window = window;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getTable()
+	 */
+	@Override
 	public PTable getTable() {
 		return table;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setTable(org.myfly.platform.core3.
+	 * model.data.PTable)
+	 */
+	@Override
 	public void setTable(PTable table) {
 		this.table = table;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getImage()
+	 */
+	@Override
 	public PImage getImage() {
 		return image;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setImage(org.myfly.platform.core3.
+	 * model.dict.PImage)
+	 */
+	@Override
 	public void setImage(PImage image) {
 		this.image = image;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getCommitWarning()
+	 */
+	@Override
 	public String getCommitWarning() {
 		return commitWarning;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setCommitWarning(java.lang.String)
+	 */
+	@Override
 	public void setCommitWarning(String commitWarning) {
 		this.commitWarning = commitWarning;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getDescription()
+	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setDescription(java.lang.String)
+	 */
+	@Override
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getDisplayLogic()
+	 */
+	@Override
 	public String getDisplayLogic() {
 		return displayLogic;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setDisplayLogic(java.lang.String)
+	 */
+	@Override
 	public void setDisplayLogic(String displayLogic) {
 		this.displayLogic = displayLogic;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getEntityType()
+	 */
+	@Override
 	public EntityType getEntityType() {
 		return entityType;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setEntityType(org.myfly.platform.
+	 * core3.domain.EntityType)
+	 */
+	@Override
 	public void setEntityType(EntityType entityType) {
 		this.entityType = entityType;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getHasTree()
+	 */
+	@Override
 	public Boolean getHasTree() {
 		return hasTree;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#setHasTree(java.lang.Boolean)
+	 */
+	@Override
 	public void setHasTree(Boolean hasTree) {
 		this.hasTree = hasTree;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getHelp()
+	 */
+	@Override
 	public String getHelp() {
 		return help;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#setHelp(java.lang.String)
+	 */
+	@Override
 	public void setHelp(String help) {
 		this.help = help;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getImportFields()
+	 */
+	@Override
 	public String getImportFields() {
 		return importFields;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setImportFields(java.lang.String)
+	 */
+	@Override
 	public void setImportFields(String importFields) {
 		this.importFields = importFields;
 	}
 
-	public PTab getIncludedTab() {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getIncludedTab()
+	 */
+	@Override
+	public IFlyViewTab getIncludedTab() {
 		return includedTab;
 	}
 
-	public void setIncludedTab(PTab includedTab) {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setIncludedTab(org.myfly.platform.
+	 * core3.model.view.ITab)
+	 */
+	@Override
+	public void setIncludedTab(IFlyViewTab includedTab) {
 		this.includedTab = includedTab;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getIsAdvancedTab()
+	 */
+	@Override
 	public Boolean getIsAdvancedTab() {
 		return isAdvancedTab;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setIsAdvancedTab(java.lang.Boolean)
+	 */
+	@Override
 	public void setIsAdvancedTab(Boolean isAdvancedTab) {
 		this.isAdvancedTab = isAdvancedTab;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getIsInfoTab()
+	 */
+	@Override
 	public Boolean getIsInfoTab() {
 		return isInfoTab;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#setIsInfoTab(java.lang.Boolean)
+	 */
+	@Override
 	public void setIsInfoTab(Boolean isInfoTab) {
 		this.isInfoTab = isInfoTab;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getIsInsertRecord()
+	 */
+	@Override
 	public Boolean getIsInsertRecord() {
 		return isInsertRecord;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setIsInsertRecord(java.lang.Boolean)
+	 */
+	@Override
 	public void setIsInsertRecord(Boolean isInsertRecord) {
 		this.isInsertRecord = isInsertRecord;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getIsReadOnly()
+	 */
+	@Override
 	public Boolean getIsReadOnly() {
 		return isReadOnly;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setIsReadOnly(java.lang.Boolean)
+	 */
+	@Override
 	public void setIsReadOnly(Boolean isReadOnly) {
 		this.isReadOnly = isReadOnly;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getIsSingleRow()
+	 */
+	@Override
 	public Boolean getIsSingleRow() {
 		return isSingleRow;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setIsSingleRow(java.lang.Boolean)
+	 */
+	@Override
 	public void setIsSingleRow(Boolean isSingleRow) {
 		this.isSingleRow = isSingleRow;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getIsSortTab()
+	 */
+	@Override
 	public Boolean getIsSortTab() {
 		return isSortTab;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#setIsSortTab(java.lang.Boolean)
+	 */
+	@Override
 	public void setIsSortTab(Boolean isSortTab) {
 		this.isSortTab = isSortTab;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getIsTranslationTab()
+	 */
+	@Override
 	public Boolean getIsTranslationTab() {
 		return isTranslationTab;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#setIsTranslationTab(java.lang.
+	 * Boolean)
+	 */
+	@Override
 	public void setIsTranslationTab(Boolean isTranslationTab) {
 		this.isTranslationTab = isTranslationTab;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getName()
+	 */
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#setName(java.lang.String)
+	 */
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getOrderByClause()
+	 */
+	@Override
 	public String getOrderByClause() {
 		return orderByClause;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setOrderByClause(java.lang.String)
+	 */
+	@Override
 	public void setOrderByClause(String orderByClause) {
 		this.orderByClause = orderByClause;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getParentColumn()
+	 */
+	@Override
 	public PColumn getParentColumn() {
 		return parentColumn;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setParentColumn(org.myfly.platform.
+	 * core3.model.data.PColumn)
+	 */
+	@Override
 	public void setParentColumn(PColumn parentColumn) {
 		this.parentColumn = parentColumn;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getProcessing()
+	 */
+	@Override
 	public Boolean getProcessing() {
 		return processing;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setProcessing(java.lang.Boolean)
+	 */
+	@Override
 	public void setProcessing(Boolean processing) {
 		this.processing = processing;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getReadOnlyLogic()
+	 */
+	@Override
 	public String getReadOnlyLogic() {
 		return readOnlyLogic;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setReadOnlyLogic(java.lang.String)
+	 */
+	@Override
 	public void setReadOnlyLogic(String readOnlyLogic) {
 		this.readOnlyLogic = readOnlyLogic;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getSeqNo()
+	 */
+	@Override
 	public Integer getSeqNo() {
 		return seqNo;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#setSeqNo(java.lang.Integer)
+	 */
+	@Override
 	public void setSeqNo(Integer seqNo) {
 		this.seqNo = seqNo;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getTabLevel()
+	 */
+	@Override
 	public Integer getTabLevel() {
 		return tabLevel;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#setTabLevel(java.lang.Integer)
+	 */
+	@Override
 	public void setTabLevel(Integer tabLevel) {
 		this.tabLevel = tabLevel;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getWhereClause()
+	 */
+	@Override
 	public String getWhereClause() {
 		return whereClause;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.ITab#setWhereClause(java.lang.String)
+	 */
+	@Override
 	public void setWhereClause(String whereClause) {
 		this.whereClause = whereClause;
 	}
 
-	public Set<PField> getFields() {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#getFields()
+	 */
+	@Override
+	public Set<IFlyViewField> getFields() {
 		return fields;
 	}
 
-	public void setFields(Set<PField> fields) {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.ITab#setFields(java.util.Set)
+	 */
+	@Override
+	public void setFields(Set<IFlyViewField> fields) {
 		this.fields = fields;
 	}
 }

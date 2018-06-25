@@ -15,6 +15,7 @@ import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.FlyEntity;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
+import org.myfly.platform.core3.metadata.service.IFlyViewModel;
 import org.myfly.platform.core3.model.view.PWindow;
 
 /**
@@ -108,8 +109,8 @@ public class PTable extends FlyEntity {
 	@Column(name = "IsCentrallyMaintained")
 	private Boolean isCentrallyMaintained;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	private PWindow window;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = PWindow.class)
+	private IFlyViewModel window;
 
 	@FlyField(dataType = FlyDataType.SubTable)
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "table", cascade = { CascadeType.ALL })
@@ -275,11 +276,11 @@ public class PTable extends FlyEntity {
 		this.isCentrallyMaintained = isCentrallyMaintained;
 	}
 
-	public PWindow getWindow() {
+	public IFlyViewModel getWindow() {
 		return window;
 	}
 
-	public void setWindow(PWindow window) {
+	public void setWindow(IFlyViewModel window) {
 		this.window = window;
 	}
 }

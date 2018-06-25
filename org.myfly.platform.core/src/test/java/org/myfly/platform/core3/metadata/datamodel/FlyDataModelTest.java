@@ -1,4 +1,4 @@
-package org.myfly.platform.core3.metadata;
+package org.myfly.platform.core3.metadata.datamodel;
 
 import javax.persistence.Entity;
 

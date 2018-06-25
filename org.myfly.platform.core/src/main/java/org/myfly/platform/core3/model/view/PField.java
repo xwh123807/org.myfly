@@ -2,6 +2,7 @@ package org.myfly.platform.core3.model.view;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -10,6 +11,8 @@ import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.FlyEntity;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
+import org.myfly.platform.core3.metadata.service.IFlyViewField;
+import org.myfly.platform.core3.metadata.service.IFlyViewTab;
 import org.myfly.platform.core3.model.data.PColumn;
 import org.myfly.platform.core3.model.data.PRefList;
 import org.myfly.platform.core3.model.data.PReference;
@@ -17,7 +20,7 @@ import org.myfly.platform.core3.model.data.PReference;
 @Entity
 @Table(name = "PT_Field")
 @FlyTable(name = "Field", description = "Field on a database table")
-public class PField extends FlyEntity {
+public class PField extends FlyEntity implements IFlyViewField {
 	@FlyField(name = "Column", description = "Column in the table", help = "Link to the database column of the table")
 	@ManyToOne
 	private PColumn column;
@@ -35,8 +38,8 @@ public class PField extends FlyEntity {
 	private PRefList refList;
 
 	@FlyField(name = "Tab", description = "Tab within a Window", help = "The Tab indicates a tab that displays within a window.")
-	@ManyToOne
-	private PTab tab;
+	@ManyToOne(targetEntity = PTab.class)
+	private IFlyViewTab tab;
 
 	@FlyField(name = "Default Logic", description = "Default value hierarchy, separated by ;", help = "The defaults are evaluated in the order of definition, the first not null value becomes the default value of the column. The values are separated by comma or semicolon. a) Literals:. 'Text' or 123 b) Variables - in format @Variable@ - Login e.g. #Date, #AD_Org_ID, #AD_Client_ID - Accounting Schema: e.g. $C_AcctSchema_ID, $C_Calendar_ID - Global defaults: e.g. DateFormat - Window values (all Picks, CheckBoxes, RadioButtons, and DateDoc/DateAcct) c) SQL code with the tag: @SQL=SELECT something AS DefaultValue FROM ... The SQL statement can contain variables.  There can be no other value other than the SQL statement. The default is only evaluated, if no user preference is defined.  Default definitions are ignored for record columns as Key, Parent, Client as well as Buttons.")
 	@Column(name = "DefaultValue", length = 2000)
@@ -71,8 +74,8 @@ public class PField extends FlyEntity {
 	private String help;
 
 	@FlyField(name = "Included Tab", description = "Included Tab in this Tab (Master Detail)", help = "You can include a Tab in a Tab. If displayed in single row record, the included tab is displayed as multi-row table.")
-	@ManyToOne()
-	private PTab includedTab;
+	@ManyToOne(targetEntity = PTab.class, fetch = FetchType.LAZY)
+	private IFlyViewTab includedTab;
 
 	@FlyField(name = "Info Factory Class", description = "Fully qualified class name that implements the InfoFactory interface", help = "Fully qualified class name that implements the InfoFactory interface. This can be use to provide custom Info class for column.")
 	@Column(name = "InfoFactoryClass")
@@ -148,242 +151,657 @@ public class PField extends FlyEntity {
 	@Column(name = "SortNo")
 	private Integer SortNo;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getColumn()
+	 */
+	@Override
 	public PColumn getColumn() {
 		return column;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#setColumn(org.myfly.
+	 * platform.core3.model.data.PColumn)
+	 */
+	@Override
 	public void setColumn(PColumn column) {
 		this.column = column;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getFieldGroup()
+	 */
+	@Override
 	public PFieldGroup getFieldGroup() {
 		return fieldGroup;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setFieldGroup(org.myfly.
+	 * platform.core3.model.view.PFieldGroup)
+	 */
+	@Override
 	public void setFieldGroup(PFieldGroup fieldGroup) {
 		this.fieldGroup = fieldGroup;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getReference()
+	 */
+	@Override
 	public PReference getReference() {
 		return reference;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setReference(org.myfly.
+	 * platform.core3.model.data.PReference)
+	 */
+	@Override
 	public void setReference(PReference reference) {
 		this.reference = reference;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getRefList()
+	 */
+	@Override
 	public PRefList getRefList() {
 		return refList;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#setRefList(org.myfly.
+	 * platform.core3.model.data.PRefList)
+	 */
+	@Override
 	public void setRefList(PRefList refList) {
 		this.refList = refList;
 	}
 
-	public PTab getTab() {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getTab()
+	 */
+	@Override
+	public IFlyViewTab getTab() {
 		return tab;
 	}
 
-	public void setTab(PTab tab) {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setTab(org.myfly.platform.
+	 * core3.model.view.IFlyViewTab)
+	 */
+	@Override
+	public void setTab(IFlyViewTab tab) {
 		this.tab = tab;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getDefaultValue()
+	 */
+	@Override
 	public String getDefaultValue() {
 		return defaultValue;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setDefaultValue(java.lang.
+	 * String)
+	 */
+	@Override
 	public void setDefaultValue(String defaultValue) {
 		this.defaultValue = defaultValue;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getDescription()
+	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setDescription(java.lang.
+	 * String)
+	 */
+	@Override
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getEntityType()
+	 */
+	@Override
 	public EntityType getEntityType() {
 		return entityType;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setEntityType(org.myfly.
+	 * platform.core3.domain.EntityType)
+	 */
+	@Override
 	public void setEntityType(EntityType entityType) {
 		this.entityType = entityType;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getHelp()
+	 */
+	@Override
 	public String getHelp() {
 		return help;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setHelp(java.lang.String)
+	 */
+	@Override
 	public void setHelp(String help) {
 		this.help = help;
 	}
 
-	public PTab getIncludedTab() {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getIncludedTab()
+	 */
+	@Override
+	public IFlyViewTab getIncludedTab() {
 		return includedTab;
 	}
 
-	public void setIncludedTab(PTab includedTab) {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setIncludedTab(org.myfly.
+	 * platform.core3.model.view.IFlyViewTab)
+	 */
+	@Override
+	public void setIncludedTab(IFlyViewTab includedTab) {
 		this.includedTab = includedTab;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getInfoFactoryClass()
+	 */
+	@Override
 	public String getInfoFactoryClass() {
 		return infoFactoryClass;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setInfoFactoryClass(java.
+	 * lang.String)
+	 */
+	@Override
 	public void setInfoFactoryClass(String infoFactoryClass) {
 		this.infoFactoryClass = infoFactoryClass;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getIsAllowCopy()
+	 */
+	@Override
 	public Boolean getIsAllowCopy() {
 		return isAllowCopy;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setIsAllowCopy(java.lang.
+	 * Boolean)
+	 */
+	@Override
 	public void setIsAllowCopy(Boolean isAllowCopy) {
 		this.isAllowCopy = isAllowCopy;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#getIsCentrallyMaintained()
+	 */
+	@Override
 	public Boolean getIsCentrallyMaintained() {
 		return isCentrallyMaintained;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setIsCentrallyMaintained(
+	 * java.lang.Boolean)
+	 */
+	@Override
 	public void setIsCentrallyMaintained(Boolean isCentrallyMaintained) {
 		this.isCentrallyMaintained = isCentrallyMaintained;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getIsDisplayed()
+	 */
+	@Override
 	public Boolean getIsDisplayed() {
 		return isDisplayed;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setIsDisplayed(java.lang.
+	 * Boolean)
+	 */
+	@Override
 	public void setIsDisplayed(Boolean isDisplayed) {
 		this.isDisplayed = isDisplayed;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getIsDisplayedGrid()
+	 */
+	@Override
 	public Boolean getIsDisplayedGrid() {
 		return isDisplayedGrid;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setIsDisplayedGrid(java.
+	 * lang.Boolean)
+	 */
+	@Override
 	public void setIsDisplayedGrid(Boolean isDisplayedGrid) {
 		this.isDisplayedGrid = isDisplayedGrid;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getIsEmbedded()
+	 */
+	@Override
 	public Boolean getIsEmbedded() {
 		return isEmbedded;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setIsEmbedded(java.lang.
+	 * Boolean)
+	 */
+	@Override
 	public void setIsEmbedded(Boolean isEmbedded) {
 		this.isEmbedded = isEmbedded;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getIsEncrypted()
+	 */
+	@Override
 	public Boolean getIsEncrypted() {
 		return isEncrypted;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setIsEncrypted(java.lang.
+	 * Boolean)
+	 */
+	@Override
 	public void setIsEncrypted(Boolean isEncrypted) {
 		this.isEncrypted = isEncrypted;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getIsFieldOnly()
+	 */
+	@Override
 	public Boolean getIsFieldOnly() {
 		return isFieldOnly;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setIsFieldOnly(java.lang.
+	 * Boolean)
+	 */
+	@Override
 	public void setIsFieldOnly(Boolean isFieldOnly) {
 		this.isFieldOnly = isFieldOnly;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getIsHeading()
+	 */
+	@Override
 	public Boolean getIsHeading() {
 		return IsHeading;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setIsHeading(java.lang.
+	 * Boolean)
+	 */
+	@Override
 	public void setIsHeading(Boolean isHeading) {
 		IsHeading = isHeading;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getIsMandatory()
+	 */
+	@Override
 	public Boolean getIsMandatory() {
 		return isMandatory;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setIsMandatory(java.lang.
+	 * Boolean)
+	 */
+	@Override
 	public void setIsMandatory(Boolean isMandatory) {
 		this.isMandatory = isMandatory;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getIsReadOnly()
+	 */
+	@Override
 	public Boolean getIsReadOnly() {
 		return isReadOnly;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setIsReadOnly(java.lang.
+	 * Boolean)
+	 */
+	@Override
 	public void setIsReadOnly(Boolean isReadOnly) {
 		this.isReadOnly = isReadOnly;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getIsSameLine()
+	 */
+	@Override
 	public Boolean getIsSameLine() {
 		return isSameLine;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setIsSameLine(java.lang.
+	 * Boolean)
+	 */
+	@Override
 	public void setIsSameLine(Boolean isSameLine) {
 		this.isSameLine = isSameLine;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getName()
+	 */
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setName(java.lang.String)
+	 */
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getPreferredWidth()
+	 */
+	@Override
 	public Boolean getPreferredWidth() {
 		return PreferredWidth;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setPreferredWidth(java.lang
+	 * .Boolean)
+	 */
+	@Override
 	public void setPreferredWidth(Boolean preferredWidth) {
 		PreferredWidth = preferredWidth;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getSeqNo()
+	 */
+	@Override
 	public Integer getSeqNo() {
 		return seqNo;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setSeqNo(java.lang.Integer)
+	 */
+	@Override
 	public void setSeqNo(Integer seqNo) {
 		this.seqNo = seqNo;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getSeqNoGrid()
+	 */
+	@Override
 	public Integer getSeqNoGrid() {
 		return seqNoGrid;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setSeqNoGrid(java.lang.
+	 * Integer)
+	 */
+	@Override
 	public void setSeqNoGrid(Integer seqNoGrid) {
 		this.seqNoGrid = seqNoGrid;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getSortNo()
+	 */
+	@Override
 	public Integer getSortNo() {
 		return SortNo;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#setSortNo(java.lang.
+	 * Integer)
+	 */
+	@Override
 	public void setSortNo(Integer sortNo) {
 		SortNo = sortNo;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getDisplayLength()
+	 */
+	@Override
 	public Integer getDisplayLength() {
 		return displayLength;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setDisplayLength(java.lang.
+	 * Integer)
+	 */
+	@Override
 	public void setDisplayLength(Integer displayLength) {
 		this.displayLength = displayLength;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getDisplayLogic()
+	 */
+	@Override
 	public String getDisplayLogic() {
 		return displayLogic;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setDisplayLogic(java.lang.
+	 * String)
+	 */
+	@Override
 	public void setDisplayLogic(String displayLogic) {
 		this.displayLogic = displayLogic;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.myfly.platform.core3.model.view.IFlyViewField#getObscureType()
+	 */
+	@Override
 	public String getObscureType() {
 		return obscureType;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.model.view.IFlyViewField#setObscureType(java.lang.
+	 * String)
+	 */
+	@Override
 	public void setObscureType(String obscureType) {
 		this.obscureType = obscureType;
 	}

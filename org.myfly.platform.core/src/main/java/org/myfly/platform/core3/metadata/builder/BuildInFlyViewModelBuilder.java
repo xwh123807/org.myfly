@@ -3,15 +3,43 @@ package org.myfly.platform.core3.metadata.builder;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.domain.EntityType;
 import org.myfly.platform.core3.flydata.service.FlyEntityUtils;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.metadata.service.IFlyViewField;
+import org.myfly.platform.core3.metadata.service.IFlyViewTab;
 import org.myfly.platform.core3.model.data.PTable;
 import org.myfly.platform.core3.model.view.PField;
 import org.myfly.platform.core3.model.view.PTab;
 import org.myfly.platform.core3.model.view.PWindow;
 import org.myfly.platform.core3.model.view.WindowType;
 
-public class FlyViewModelBuilder {
+/**
+ * 内建实体显示模型构造器
+ * 
+ * @author xiangwanhong
+ *
+ */
+public class BuildInFlyViewModelBuilder extends PWindow {
+	public BuildInFlyViewModelBuilder(FlyDataModel builder) {
+		setUid(UUIDUtil.newUUID());
+		setName(builder.getName());
+		setDescription(builder.getDescription());
+		setHelp(builder.getHelp());
+		setWindowType(WindowType.M);
+		setIsSOTrx(true);
+		setEntityType(EntityType.D);
+		setIsDefault(true);
+		
+		//主表Tab
+		IFlyViewTab tab = new PTab();
+		tab.setWindow(this);
+		tab.setName(builder.getName());
+		tab.setDescription(builder.getDescription());
+		tab.setHelp(builder.getHelp());
+		tab.setEntityType(EntityType.D);
+	}
 
 	public static PWindow buildWindow(PTable table) {
 		PWindow window = FlyEntityUtils.newFlyEntity(PWindow.class, table);
@@ -63,10 +91,11 @@ public class FlyViewModelBuilder {
 
 	/**
 	 * 构建tab的fields
+	 * 
 	 * @param tab
 	 */
 	private static void buildField(PTab tab) {
-		Set<PField> fields = new HashSet<>();
+		Set<IFlyViewField> fields = new HashSet<>();
 		tab.getTable().getColumns().forEach(column -> {
 			PField field = FlyEntityUtils.newFlyEntity(PField.class, tab);
 
