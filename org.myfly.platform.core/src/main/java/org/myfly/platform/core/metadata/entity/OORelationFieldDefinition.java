@@ -2,6 +2,8 @@ package org.myfly.platform.core.metadata.entity;
 
 import java.lang.reflect.Field;
 
+import javax.persistence.OneToOne;
+
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.entity.handler.OORelationFieldValueHandler;
 
@@ -21,6 +23,10 @@ public class OORelationFieldDefinition extends RelationFieldDefinition {
 	public OORelationFieldDefinition(Field field) {
 		super(field);
 		setDataType(FieldDataType.OORELATION);
+		OneToOne oneToOne = field.getAnnotation(OneToOne.class);
+		if (oneToOne != null && oneToOne.targetEntity() != void.class) {
+			setRelationClass(oneToOne.targetEntity().getName());
+		}
 		setValueHandler(new OORelationFieldValueHandler(this));
 	}
 

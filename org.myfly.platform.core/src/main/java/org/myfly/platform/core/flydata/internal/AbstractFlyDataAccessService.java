@@ -47,6 +47,7 @@ import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.EntityLinkUtil;
 import org.myfly.platform.core.utils.ExcelUtils;
+import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core.utils.csv.CsvReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -220,11 +221,12 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 			String uploadDir, String actionUrl) {
 		EntityMetaData entityMetaData = getEntityMetaData(table);
 		MDRelationFieldDefinition mdField = entityMetaData.getField(subTableAttr);
-		//final IFieldValueHandler setHandler = mdField.getRelationField().getValueHandler();
+		// final IFieldValueHandler setHandler =
+		// mdField.getRelationField().getValueHandler();
 		return importExcel(entityMetaData.getEntityName(), listViewName, uploadDir, actionUrl, new ImportActions() {
 			@Override
 			public void before(Object entity) {
-				//setHandler.setFieldValue(entity, uid);
+				// setHandler.setFieldValue(entity, uid);
 			}
 
 		});
@@ -421,7 +423,8 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 		// 查询返回分页数据
 		Page<?> pageData = findAllForSubEntityWithPage(entityName, uid, subTableAttr, view, params, pageable,
 				printMode);
-		ListDefinition listDefinition = entityMetaData.getFormDefinition(view).getSubTableDefinitions().get(subTableAttr);
+		ListDefinition listDefinition = entityMetaData.getFormDefinition(view).getSubTableDefinitions()
+				.get(subTableAttr);
 		DataTablesResponse dataTablesResponse = buildDataTableReponse(entityMetaData, pageData,
 				listDefinition.getFields(), false);
 		dataTablesResponse.setMetaData(new DataTableMetaData(listDefinition, printMode));
@@ -672,15 +675,14 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 			} else {
 				switch (fieldDefinition.getDataType()) {
 				case URL:
-					result.put(fieldDefinition.getName()+"__link", "<a href='" + value + "'>" + value + "</a>");
+					result.put(fieldDefinition.getName() + "__link", "<a href='" + value + "'>" + value + "</a>");
 					break;
 				case ACTIONS:
 					EntityActionInfo actionInfo = null;
 					if (StringUtils.isBlank(subTableAttr)) {
 						actionInfo = new EntityActionInfo(entityName, pkValue, null, null, null, viewName, null);
 					} else {
-						actionInfo = new EntityActionInfo(entityName, uid, subTableAttr, pkValue, null, viewName,
-								null);
+						actionInfo = new EntityActionInfo(entityName, uid, subTableAttr, pkValue, null, viewName, null);
 					}
 					value = (String) fieldDefinition.getValueHandler().getFieldValue(actionInfo);
 					break;
@@ -704,18 +706,18 @@ public abstract class AbstractFlyDataAccessService implements IFlyDataAccessServ
 					if (values != null) {
 						// 原始值
 						value = (String) values.get("uid");
+						String title = JSONUtil.toJSON(values.get("title"));
 						// Label字段
 						String labelField = fieldDefinition.getName() + "__label";
 						if (!result.containsKey(labelField)) {
-							result.put(labelField, (String) values.get("title"));
+							result.put(labelField, title);
 						}
 						if (!printMode && !FieldDataType.AUTORELATION.equals(fieldDefinition.getDataType())) {
 							// 为查找关系实体增加超链接
 							linkValue = EntityLinkUtil.getEntityActionLinkHtml(EntityAction.VIEW,
-									fieldDefinition.getType().getName(), (String)(values.get("uid")), (String)(values.get("title")), viewName, false,
-									false);
+									fieldDefinition.getType().getName(), value, title, viewName, false, false);
 						} else {
-							linkValue = (String) values.get("title");
+							linkValue = title;
 						}
 						if (!result.containsKey(linkField)) {
 							result.put(linkField, linkValue);

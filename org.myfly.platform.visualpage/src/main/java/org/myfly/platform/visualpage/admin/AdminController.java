@@ -463,7 +463,7 @@ public class AdminController extends BaseViewController {
 		return mv;
 	}
 
-	@Autowired
+	@Autowired(required=false)
 	private RedisServerInfo redis;
 	
 	@RequestMapping("redis")

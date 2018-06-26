@@ -82,6 +82,7 @@ public class TableDefinition extends BaseDenifition {
 	}
 
 	public TableDefinition() {
+		setLabelField("name");
 	}
 
 	public String getTitle() {

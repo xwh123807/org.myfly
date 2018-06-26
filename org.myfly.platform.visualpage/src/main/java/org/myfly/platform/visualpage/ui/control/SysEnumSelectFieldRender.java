@@ -11,6 +11,7 @@ import org.myfly.platform.visualpage.ui.InputType;
 
 /**
  * 系统枚举选择，枚举由枚举类定义
+ * 
  * @author xiangwanhong
  *
  */
@@ -20,10 +21,14 @@ public class SysEnumSelectFieldRender extends SelectFieldRender {
 	@Override
 	public String getOptions() {
 		try {
-			List<? extends BaseEnum> items = EnumUtils.getEnumList(ClassUtils.getClass(getField().getType().getName()));
+			List<Enum> items = EnumUtils.getEnumList(ClassUtils.getClass(getField().getType().getName()));
 			StringBuffer buffer = new StringBuffer();
-			for (BaseEnum item : items) {
-				buffer.append("<option value='" + ((Enum) item).name() + "'>" + item.getTitle() + "</option>");
+			for (Enum item : items) {
+				if (item instanceof BaseEnum) {
+					buffer.append("<option value='" + ((Enum) item).name() + "'>" + ((BaseEnum)item).getTitle() + "</option>");
+				}else {
+					buffer.append("<option value='" + ((Enum) item).name() + "'>" + item.name() + "</option>");
+				}
 			}
 			return buffer.toString();
 		} catch (ClassNotFoundException e) {
@@ -41,7 +46,7 @@ public class SysEnumSelectFieldRender extends SelectFieldRender {
 	public String controlForView() {
 		return "<span class=\"bg-info\">$!{obj." + getField().getName() + "__label}</span>";
 	}
-	
+
 	@Override
 	public String controlForSearch() {
 		return "<span class=\"bg-info\">$!{objitem." + getField().getName() + "__label}</span>";

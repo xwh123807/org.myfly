@@ -2,6 +2,7 @@ package org.myfly.platform.visualpage.builder;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.myfly.platform.core.domain.ViewMode;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.testmodel.Master;

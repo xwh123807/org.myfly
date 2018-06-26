@@ -54,6 +54,7 @@ public class PKFieldDefinition extends BaseDenifition {
 	/**
 	 * 主键类属性信息，有顺序的，使用LinkedHashMap存储
 	 */
+	@JsonIgnore
 	private Map<String, FieldInfo> idClassFieldInfo;
 	/**
 	 * 主键值设置和获取

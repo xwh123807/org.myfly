@@ -37,6 +37,7 @@ public class FlyEntityUtilsTest {
 	public void fromEntity() {
 		FlyEntityMap flyEntity = FlyEntityUtils.fromEntity(model.getTestEntity());
 		Assert.assertNotNull(flyEntity);
+		Assert.assertNotNull(flyEntity.get("details"));
 	}
 
 	@Test

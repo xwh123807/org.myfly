@@ -53,7 +53,7 @@ public class PTable extends FlyEntity implements IFlyDataModel {
 	private String help;
 
 	@FlyField(name = "DB Table Name", description = "Name of the table in the database", help = "The DB Table Name indicates the name of the table in database.")
-	@Column(length = 40, name = "TableName")
+	@Column(length = 40, name = "TableName", unique=true)
 	private String tableName;
 
 	@FlyField(description = "Use Search instead of Pick list", help = "The High Volume Checkbox indicates if a search screen will display as opposed to a pick list for selecting records from this table.")

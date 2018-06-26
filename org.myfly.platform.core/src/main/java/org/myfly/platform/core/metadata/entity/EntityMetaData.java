@@ -22,6 +22,7 @@ import org.myfly.platform.core.metadata.service.EntityMetaDataConstants;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.FuncUtil;
+import org.myfly.platform.core.utils.JSONUtil;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -532,4 +533,7 @@ public class EntityMetaData {
 		return "entityName: " + getEntityName();
 	}
 
+	public String toJson() {
+		return JSONUtil.toJSON(this);
+	}
 }

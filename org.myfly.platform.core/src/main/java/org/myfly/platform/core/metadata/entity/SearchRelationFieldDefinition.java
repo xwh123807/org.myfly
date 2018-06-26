@@ -23,6 +23,9 @@ public class SearchRelationFieldDefinition extends RelationFieldDefinition {
 		setDataType(FieldDataType.SEARCHRELATION);
 		ManyToOne manyToOne = field.getAnnotation(ManyToOne.class);
 		setRequired(!manyToOne.optional());
+		if (manyToOne != null && manyToOne.targetEntity()!= void.class) {
+			setRelationClass(manyToOne.targetEntity().getName());
+		}
 		setValueHandler(new SearchRelationFieldValueHandler(this));
 	}
 
