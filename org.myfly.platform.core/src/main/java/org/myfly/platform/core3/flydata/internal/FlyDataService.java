@@ -53,7 +53,11 @@ public class FlyDataService implements IFlyDataService {
 	@Override
 	public FlyEntityMap findOne(String entityName, String uid) {
 		IFlyEntity entity = (IFlyEntity) jpaService.findOne(getEntityClass(entityName), uid);
-		return FlyEntityUtils.fromEntity(getFlyDataModel(entityName), entity);
+		if (entity != null) {
+			return FlyEntityUtils.fromEntity(getFlyDataModel(entityName), entity);
+		} else {
+			return null;
+		}
 	}
 
 	/*
@@ -120,8 +124,7 @@ public class FlyDataService implements IFlyDataService {
 	public void mergeEntity(String entityName, String uid, FlyEntityMap flyEntity) {
 		Object obj = jpaService.findOne(getEntityClass(entityName), uid);
 		// 合并实体，只覆盖部分属性
-		Object mergedObj = FlyEntityUtils.mergeEntity(getFlyDataModel(entityName), (IFlyEntity) obj, flyEntity,
-				false);
+		Object mergedObj = FlyEntityUtils.mergeEntity(getFlyDataModel(entityName), (IFlyEntity) obj, flyEntity, false);
 		jpaService.updateEntity(mergedObj);
 	}
 
@@ -155,7 +158,32 @@ public class FlyDataService implements IFlyDataService {
 	@Override
 	public FlyEntityMap find(String entityName, String uid, boolean hasSubTable, String[] subTableAttrs) {
 		Object obj = jpaService.findOne(getEntityClass(entityName), uid);
-		return FlyEntityUtils.fromEntity(getFlyDataModel(entityName), obj);
+		if (obj != null) {
+			return FlyEntityUtils.fromEntity(getFlyDataModel(entityName), obj);
+		} else {
+			return null;
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.flydata.service.IFlyDataService#findAll(java.lang.
+	 * String, boolean, java.lang.String[])
+	 */
+	@Override
+	public List<FlyEntityMap> findAll(String entityName, boolean hasSubTable, String[] subTableAttrs) {
+		IFlyDataModel dataModel = getFlyDataModel(entityName);
+		List<?> list = jpaService.findAll(getEntityClass(entityName));
+		if (CollectionUtils.isNotEmpty(list)) {
+			List<FlyEntityMap> results = new ArrayList<>();
+			list.forEach(item -> {
+				results.add(FlyEntityUtils.fromEntity(dataModel, item, hasSubTable, subTableAttrs));
+			});
+			return results;
+		}
+		return null;
 	}
 
 }

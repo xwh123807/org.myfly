@@ -2,11 +2,14 @@ package org.myfly.platform.core3.flydata.internal;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
+import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
 import org.myfly.platform.core3.metadata.define.ValueHandlerFactory;
@@ -147,6 +150,59 @@ public class FlyEntityUtils {
 	}
 
 	/**
+	 * 判断子表是否需要转换处理
+	 * 
+	 * @param dataModel
+	 * @param hasSubTable
+	 * @param subTableAttrs
+	 * @return
+	 */
+	public static Map<String, Boolean> subTableNeedConvert(IFlyDataModel dataModel, boolean hasSubTable,
+			String[] subTableAttrs) {
+		Map<String, Boolean> result = new HashMap<>();
+		dataModel.getColumns().stream().filter(column -> FlyDataType.SubTable.equals(column.getDataType()))
+				.forEach(subTable -> {
+					boolean isNotNeed = !hasSubTable
+							|| (hasSubTable && !ArrayUtils.contains(subTableAttrs, subTable.getApiName()));
+					if (!isNotNeed) {
+						result.put(subTable.getApiName(), false);
+					}
+				});
+		return result;
+	}
+
+	/**
+	 * 将实体类转换为FlyEntityMap
+	 * 
+	 * @param dataModel
+	 * @param item
+	 * @param hasSubTable
+	 *            是否转换子表
+	 * @param subTableAttrs
+	 *            需要转换的子表，为空表示所有子表
+	 * @return
+	 */
+	public static FlyEntityMap fromEntity(IFlyDataModel dataModel, Object entityObj, boolean hasSubTable,
+			String[] subTableAttrs) {
+		if (entityObj == null) {
+			return null;
+		}
+		FlyEntityMap result = new FlyEntityMap();
+		for (IFlyColumn field : dataModel.getColumns()) {
+			boolean isNeed = true;
+			if (FlyDataType.SubTable.equals(field.getDataType())) {
+				isNeed = hasSubTable
+						&& (subTableAttrs == null || ArrayUtils.contains(subTableAttrs, field.getApiName()));
+			}
+			// 是子表类型，且hasSubTable=false或者hasSubTable=true且不需要处理
+			if (isNeed) {
+				result.put(field.getApiName(), AppUtil.getColumnValueHandler(field).getFieldValue(entityObj));
+			}
+		}
+		return result;
+	}
+
+	/**
 	 * 将实体类转换为FlyEntityResult3
 	 * 
 	 * @param metaData
@@ -154,6 +210,9 @@ public class FlyEntityUtils {
 	 * @return
 	 */
 	public static FlyEntityMap fromEntity(IFlyDataModel dataModel, Object entityObj) {
+		if (entityObj == null) {
+			return null;
+		}
 		FlyEntityMap result = new FlyEntityMap();
 		for (IFlyColumn field : dataModel.getColumns()) {
 			result.put(field.getApiName(), AppUtil.getColumnValueHandler(field).getFieldValue(entityObj));

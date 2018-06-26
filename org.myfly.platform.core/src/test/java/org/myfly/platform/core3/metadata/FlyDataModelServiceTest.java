@@ -1,4 +1,4 @@
-package org.myfly.platform.core3.metadata.datamodel;
+package org.myfly.platform.core3.metadata;
 
 import java.util.List;
 

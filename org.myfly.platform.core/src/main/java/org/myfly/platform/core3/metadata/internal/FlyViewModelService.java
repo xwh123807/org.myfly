@@ -98,6 +98,7 @@ public class FlyViewModelService implements IFlyViewModelService {
 							updateFlyEntity(field);
 						});
 					});
+					dataService.saveEntity(viewModel);
 				});
 		return list;
 	}

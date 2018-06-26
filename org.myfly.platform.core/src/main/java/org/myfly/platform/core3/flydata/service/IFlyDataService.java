@@ -2,6 +2,8 @@ package org.myfly.platform.core3.flydata.service;
 
 import java.util.List;
 
+import org.myfly.platform.core3.metadata.service.IFlyDataModel;
+
 /**
  * FlyData服务<br>
  * 1、entityName，实体名，值在系统中唯一，没有特别指定则为实体类名<br>
@@ -101,4 +103,6 @@ public interface IFlyDataService {
 	 * @return
 	 */
 	public FlyEntityMap find(String entityName, String uid, boolean hasSubTable, String[] subTableAttrs);
+
+	public List<FlyEntityMap> findAll(String entityName, boolean hasSubTable, String[] subTableAttrs);
 }

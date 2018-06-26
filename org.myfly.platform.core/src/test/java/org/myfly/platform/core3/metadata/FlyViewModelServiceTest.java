@@ -1,4 +1,4 @@
-package org.myfly.platform.core3.metadata.viewmodel;
+package org.myfly.platform.core3.metadata;
 
 import org.junit.Assert;
 import org.junit.Test;
