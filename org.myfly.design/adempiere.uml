@@ -144,6 +144,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_8gPBUHLwEei8fL2NKOUI8Q" name="AD_System" visibility="public"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_KFCDEHLxEei8fL2NKOUI8Q" name="AD_Language" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_L5LHkHn_EeiVTvIfrfqdrw" name="AD_RefTable" visibility="public"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_bbOn0HIKEei8fL2NKOUI8Q" name="organization">
     <packagedElement xmi:type="uml:Class" xmi:id="_iwHKsHIKEei8fL2NKOUI8Q" name="AD_Client" visibility="public"/>

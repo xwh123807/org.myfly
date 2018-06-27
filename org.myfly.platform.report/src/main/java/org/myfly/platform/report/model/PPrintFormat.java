@@ -77,4 +77,16 @@ public class PPrintFormat {
 	
 	@Column
 	private Boolean isPrintParameters;
+	
+	@Column
+	private Boolean isStandardHeaderFooter;
+	
+	@Column
+	private Boolean isSummary;
+	
+	@FlyField(defaultValue="Y")
+	@Column
+	private Boolean isTableBased;
+	
+	
 }

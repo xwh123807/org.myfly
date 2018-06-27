@@ -73,6 +73,30 @@
     <packagedElement xmi:type="uml:Class" xmi:id="_4WTG4HjXEei_35Tg4gDLRw" name="SubTableValueHandler" visibility="public">
       <generalization xmi:id="_5YbSQHjXEei_35Tg4gDLRw" general="_SjbCQHPOEei8fL2NKOUI8Q"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_VE1l4Hn_EeiVTvIfrfqdrw" name="PRefTable" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_aKl-wHn_EeiVTvIfrfqdrw" name="PElement" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_dF9jsHn_EeiVTvIfrfqdrw" name="PReference" visibility="public"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lFbUoHn_EeiVTvIfrfqdrw" memberEnd="_lFbUoXn_EeiVTvIfrfqdrw _lFbUpHn_EeiVTvIfrfqdrw" navigableOwnedEnd="_lFbUpHn_EeiVTvIfrfqdrw">
+      <ownedEnd xmi:id="_lFbUoXn_EeiVTvIfrfqdrw" name="pReferences" type="_dF9jsHn_EeiVTvIfrfqdrw" association="_lFbUoHn_EeiVTvIfrfqdrw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lFbUonn_EeiVTvIfrfqdrw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lFbUo3n_EeiVTvIfrfqdrw" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_lFbUpHn_EeiVTvIfrfqdrw" name="pRefLists" type="_-Zq0AHjWEei_35Tg4gDLRw" aggregation="composite" association="_lFbUoHn_EeiVTvIfrfqdrw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lFbUpXn_EeiVTvIfrfqdrw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lFb7sHn_EeiVTvIfrfqdrw" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lrpnIHn_EeiVTvIfrfqdrw" memberEnd="_lrpnIXn_EeiVTvIfrfqdrw _lrqOMnn_EeiVTvIfrfqdrw" navigableOwnedEnd="_lrqOMnn_EeiVTvIfrfqdrw">
+      <ownedEnd xmi:id="_lrpnIXn_EeiVTvIfrfqdrw" name="pReferences" type="_dF9jsHn_EeiVTvIfrfqdrw" association="_lrpnIHn_EeiVTvIfrfqdrw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lrqOMHn_EeiVTvIfrfqdrw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lrqOMXn_EeiVTvIfrfqdrw" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_lrqOMnn_EeiVTvIfrfqdrw" name="pRefTables" type="_VE1l4Hn_EeiVTvIfrfqdrw" aggregation="composite" association="_lrpnIHn_EeiVTvIfrfqdrw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lrqOM3n_EeiVTvIfrfqdrw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lrqONHn_EeiVTvIfrfqdrw" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_oVKnEHn_EeiVTvIfrfqdrw" client="_TraTUHjXEei_35Tg4gDLRw" supplier="_dF9jsHn_EeiVTvIfrfqdrw"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_8ValcHPBEei8fL2NKOUI8Q" name="annotation">
     <packagedElement xmi:type="uml:Dependency" xmi:id="_DMUy4HPCEei8fL2NKOUI8Q" client="_8ValcHPBEei8fL2NKOUI8Q" supplier="__ggBYHPBEei8fL2NKOUI8Q"/>
