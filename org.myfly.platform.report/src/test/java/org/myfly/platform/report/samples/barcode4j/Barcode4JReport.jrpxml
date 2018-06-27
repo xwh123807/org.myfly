@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperPrint xmlns="http://jasperreports.sourceforge.net/jasperreports/print" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/print http://jasperreports.sourceforge.net/xsd/jasperprint.xsd" name="Barcode4JReport" pageWidth="595" pageHeight="842" topMargin="50" leftMargin="40" bottomMargin="50" rightMargin="40" locale="zh_CN" timezone="Asia/Shanghai">
+	<property name="net.sf.jasperreports.export.xml.start.page.index" value="0"/>
+	<property name="net.sf.jasperreports.export.xml.end.page.index" value="0"/>
+	<property name="net.sf.jasperreports.export.xml.page.count" value="1"/>
+	<origin band="title"/>
+	<origin band="detail"/>
+	<style name="Barcode" fontName="Monaco" fontSize="10"/>
+	<page>
+		<line>
+			<reportElement uuid="f980135d-c40f-42a7-93cd-d9d82925d5e2" x="40" y="50" width="515" height="1" origin="0" srcId="1" printId="1"/>
+		</line>
+		<text textAlignment="Center" textHeight="25.910156" lineSpacingFactor="1.1777344" leadingOffset="-4.640625">
+			<reportElement uuid="df70158b-7d84-4c11-ae3e-a7bd238bcf3f" x="40" y="60" width="515" height="30" origin="0" srcId="2" printId="1"/>
+			<font size="22"/>
+			<textContent><![CDATA[Barcode Sample]]></textContent>
+		</text>
+		<text textAlignment="Center" textHeight="14.1328125" lineSpacingFactor="1.1777344" leadingOffset="-2.53125">
+			<reportElement uuid="50f14e7a-b548-4a5d-9395-a387ea2e7e81" x="40" y="100" width="515" height="20" origin="0" srcId="3" printId="1"/>
+			<font size="12"/>
+			<textContent><![CDATA[This sample uses Barcode4J Version 2.0]]></textContent>
+		</text>
+		<text textAlignment="Center" textHeight="14.1328125" lineSpacingFactor="1.1777344" leadingOffset="-2.53125" hyperlinkType="Reference" hyperlinkReference="http://barcode4j.sourceforge.net/">
+			<reportElement uuid="55317c38-260d-4fb5-8c73-693d6425c411" x="40" y="120" width="515" height="20" origin="0" srcId="4" printId="1"/>
+			<font size="12"/>
+			<textContent><![CDATA[http://barcode4j.sourceforge.net/]]></textContent>
+		</text>
+		<text textHeight="13.334961" lineSpacingFactor="1.3334961" leadingOffset="-2.5">
+			<reportElement uuid="e3c8aa4c-a571-4288-b6ab-9eca96752649" style="Barcode" x="40" y="150" width="100" height="30" origin="0" srcId="5" printId="1"/>
+			<textContent><![CDATA[Code 128]]></textContent>
+		</text>
+		<image scaleImage="RetainShape">
+			<reportElement uuid="17dc8c86-0d9c-4542-b153-71844a13bfe5" style="Barcode" x="170" y="150" width="200" height="30" origin="0" srcId="6" printId="1">
+				<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+				<property name="net.sf.jasperreports.export.html.embedded.svg.use.fonts" value="true"/>
+			</reportElement>
+			<imageSource>
+				<![CDATA[Barcode4JReport.jrpxml_files/img_0]]>
+			</imageSource>
+		</image>
+		<text textHeight="13.334961" lineSpacingFactor="1.3334961" leadingOffset="-2.5">
+			<reportElement uuid="038aa527-7c7f-48b5-9547-7ba91470754c" style="Barcode" x="40" y="185" width="100" height="30" origin="0" srcId="7" printId="1"/>
+			<textContent><![CDATA[Codabar]]></textContent>
+		</text>
+		<image scaleImage="RetainShape">
+			<reportElement uuid="a8dd7541-3d7d-44fc-9281-2bf0bd7ff556" style="Barcode" x="170" y="185" width="200" height="30" origin="0" srcId="8" printId="1">
+				<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+				<property name="net.sf.jasperreports.export.html.embedded.svg.use.fonts" value="true"/>
+			</reportElement>
+			<imageSource>
+				<![CDATA[Barcode4JReport.jrpxml_files/img_1]]>
+			</imageSource>
+		</image>
+		<text textHeight="13.334961" lineSpacingFactor="1.3334961" leadingOffset="-2.5">
+			<reportElement uuid="e819db15-0b87-47b8-8474-cbe17cc7a37a" style="Barcode" x="40" y="220" width="100" height="40" origin="0" srcId="9" printId="1"/>
+			<textContent><![CDATA[DataMatrix]]></textContent>
+		</text>
+		<image scaleImage="RetainShape">
+			<reportElement uuid="3955570e-f418-4cf2-9a94-cbed633f8e68" style="Barcode" x="170" y="220" width="70" height="40" origin="0" srcId="10" printId="1">
+				<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+				<property name="net.sf.jasperreports.export.html.embedded.svg.use.fonts" value="true"/>
+			</reportElement>
+			<imageSource>
+				<![CDATA[Barcode4JReport.jrpxml_files/img_2]]>
+			</imageSource>
+		</image>
+		<text textHeight="13.334961" lineSpacingFactor="1.3334961" leadingOffset="-2.5">
+			<reportElement uuid="079dc326-5af1-4979-927c-3d9d75bfe21b" style="Barcode" x="40" y="265" width="100" height="30" origin="0" srcId="11" printId="1"/>
+			<textContent><![CDATA[EAN-128]]></textContent>
+		</text>
+		<image scaleImage="RetainShape">
+			<reportElement uuid="d5a009ab-4cd5-401e-96c8-9ba64b1fc8e9" style="Barcode" x="170" y="265" width="250" height="30" origin="0" srcId="12" printId="1">
+				<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+				<property name="net.sf.jasperreports.export.html.embedded.svg.use.fonts" value="true"/>
+			</reportElement>
+			<imageSource>
+				<![CDATA[Barcode4JReport.jrpxml_files/img_3]]>
+			</imageSource>
+		</image>
+		<text textHeight="13.334961" lineSpacingFactor="1.3334961" leadingOffset="-2.5">
+			<reportElement uuid="63b7698e-e4a1-4fff-9ea0-a9772dd5b2c4" style="Barcode" x="40" y="300" width="100" height="30" origin="0" srcId="13" printId="1"/>
+			<textContent><![CDATA[Code39]]></textContent>
+		</text>
+		<image scaleImage="RetainShape">
+			<reportElement uuid="7fc9f508-28ba-4b6e-bf7d-2e5e39b98ed8" style="Barcode" x="170" y="300" width="400" height="30" origin="0" srcId="14" printId="1">
+				<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+				<property name="net.sf.jasperreports.export.html.embedded.svg.use.fonts" value="true"/>
+			</reportElement>
+			<imageSource>
+				<![CDATA[Barcode4JReport.jrpxml_files/img_4]]>
+			</imageSource>
+		</image>
+		<text textHeight="26.669922" lineSpacingFactor="1.3334961" leadingOffset="-2.5">
+			<reportElement uuid="8ca7d2e2-c66f-4c25-ab3d-2fb15453b8b0" style="Barcode" x="40" y="335" width="100" height="30" origin="0" srcId="15" printId="1"/>
+			<textContent><![CDATA[USPS Intelligent Mail]]></textContent>
+		</text>
+		<image scaleImage="RetainShape">
+			<reportElement uuid="8fdd4d61-26b7-4a0e-b569-18d70d929c10" style="Barcode" x="170" y="335" width="400" height="30" origin="0" srcId="16" printId="1">
+				<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+				<property name="net.sf.jasperreports.export.html.embedded.svg.use.fonts" value="true"/>
+			</reportElement>
+			<imageSource>
+				<![CDATA[Barcode4JReport.jrpxml_files/img_5]]>
+			</imageSource>
+		</image>
+		<text textHeight="26.669922" lineSpacingFactor="1.3334961" leadingOffset="-2.5">
+			<reportElement uuid="df0b440d-9a4f-49ea-aa1d-c860c2ad3911" style="Barcode" x="40" y="370" width="100" height="30" origin="0" srcId="17" printId="1"/>
+			<textContent><![CDATA[Royal Mail Customer]]></textContent>
+		</text>
+		<image scaleImage="RetainShape">
+			<reportElement uuid="4d2d0a42-1318-4873-8572-3cca99ebde50" style="Barcode" x="170" y="370" width="400" height="30" origin="0" srcId="18" printId="1">
+				<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+				<property name="net.sf.jasperreports.export.html.embedded.svg.use.fonts" value="true"/>
+			</reportElement>
+			<imageSource>
+				<![CDATA[Barcode4JReport.jrpxml_files/img_6]]>
+			</imageSource>
+		</image>
+		<text textHeight="26.669922" lineSpacingFactor="1.3334961" leadingOffset="-2.5">
+			<reportElement uuid="dc520315-36de-4535-9d40-2dc5b96e07bc" style="Barcode" x="40" y="405" width="100" height="30" origin="0" srcId="19" printId="1"/>
+			<textContent><![CDATA[Interleaved 2 of 5]]></textContent>
+		</text>
+		<image scaleImage="RetainShape">
+			<reportElement uuid="26bab176-29df-4677-ba6a-e8df79eea8e1" style="Barcode" x="170" y="405" width="400" height="30" origin="0" srcId="20" printId="1">
+				<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+				<property name="net.sf.jasperreports.export.html.embedded.svg.use.fonts" value="true"/>
+			</reportElement>
+			<imageSource>
+				<![CDATA[Barcode4JReport.jrpxml_files/img_7]]>
+			</imageSource>
+		</image>
+		<text textHeight="13.334961" lineSpacingFactor="1.3334961" leadingOffset="-2.5">
+			<reportElement uuid="ddcf57ba-86e5-4b2c-8293-89cc3c044890" style="Barcode" x="40" y="440" width="100" height="30" origin="0" srcId="21" printId="1"/>
+			<textContent><![CDATA[UPC-A]]></textContent>
+		</text>
+		<image scaleImage="RetainShape">
+			<reportElement uuid="234c47ef-0149-43aa-9595-44eb81a2bd54" style="Barcode" x="170" y="440" width="400" height="30" origin="0" srcId="22" printId="1">
+				<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+				<property name="net.sf.jasperreports.export.html.embedded.svg.use.fonts" value="true"/>
+			</reportElement>
+			<imageSource>
+				<![CDATA[Barcode4JReport.jrpxml_files/img_8]]>
+			</imageSource>
+		</image>
+		<text textHeight="13.334961" lineSpacingFactor="1.3334961" leadingOffset="-2.5">
+			<reportElement uuid="1ee2c6c4-54d0-4bae-af20-03970939c63c" style="Barcode" x="40" y="475" width="100" height="30" origin="0" srcId="23" printId="1"/>
+			<textContent><![CDATA[UPC-E]]></textContent>
+		</text>
+		<image scaleImage="RetainShape">
+			<reportElement uuid="51b4da4c-b93b-4757-9f6e-8757a6716ea1" style="Barcode" x="170" y="475" width="400" height="30" origin="0" srcId="24" printId="1">
+				<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+				<property name="net.sf.jasperreports.export.html.embedded.svg.use.fonts" value="true"/>
+			</reportElement>
+			<imageSource>
+				<![CDATA[Barcode4JReport.jrpxml_files/img_9]]>
+			</imageSource>
+		</image>
+		<text textHeight="13.334961" lineSpacingFactor="1.3334961" leadingOffset="-2.5">
+			<reportElement uuid="2cb2f39b-a468-4d35-9047-2066f52aec84" style="Barcode" x="40" y="510" width="100" height="30" origin="0" srcId="25" printId="1"/>
+			<textContent><![CDATA[EAN-13]]></textContent>
+		</text>
+		<image scaleImage="RetainShape">
+			<reportElement uuid="35e15c85-135e-4e4a-ada4-3caab948d304" style="Barcode" x="170" y="510" width="400" height="30" origin="0" srcId="26" printId="1">
+				<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+				<property name="net.sf.jasperreports.export.html.embedded.svg.use.fonts" value="true"/>
+			</reportElement>
+			<imageSource>
+				<![CDATA[Barcode4JReport.jrpxml_files/img_10]]>
+			</imageSource>
+		</image>
+		<text textHeight="13.334961" lineSpacingFactor="1.3334961" leadingOffset="-2.5">
+			<reportElement uuid="9399924d-03f6-4825-adfd-0a51cca77964" style="Barcode" x="40" y="545" width="100" height="30" origin="0" srcId="27" printId="1"/>
+			<textContent><![CDATA[EAN-8]]></textContent>
+		</text>
+		<image scaleImage="RetainShape">
+			<reportElement uuid="00eb6f75-bdf7-408a-ba56-f76ecca2f8e6" style="Barcode" x="170" y="545" width="400" height="30" origin="0" srcId="28" printId="1">
+				<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+				<property name="net.sf.jasperreports.export.html.embedded.svg.use.fonts" value="true"/>
+			</reportElement>
+			<imageSource>
+				<![CDATA[Barcode4JReport.jrpxml_files/img_11]]>
+			</imageSource>
+		</image>
+		<text textHeight="13.334961" lineSpacingFactor="1.3334961" leadingOffset="-2.5">
+			<reportElement uuid="6ffb2cc2-63fd-4754-b8c3-48828cca8ab1" style="Barcode" x="40" y="580" width="100" height="20" origin="0" srcId="29" printId="1"/>
+			<textContent><![CDATA[POSTNET]]></textContent>
+		</text>
+		<image scaleImage="RetainShape">
+			<reportElement uuid="16fee5fe-1e0f-4f56-b240-64a2ff904744" style="Barcode" x="170" y="580" width="400" height="20" origin="0" srcId="30" printId="1">
+				<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+				<property name="net.sf.jasperreports.export.html.embedded.svg.use.fonts" value="true"/>
+			</reportElement>
+			<imageSource>
+				<![CDATA[Barcode4JReport.jrpxml_files/img_12]]>
+			</imageSource>
+		</image>
+		<text textHeight="13.334961" lineSpacingFactor="1.3334961" leadingOffset="-2.5">
+			<reportElement uuid="c1127dd1-6cde-483c-8b1c-927b5fd285a3" style="Barcode" x="40" y="605" width="100" height="30" origin="0" srcId="31" printId="1"/>
+			<textContent><![CDATA[PDF417]]></textContent>
+		</text>
+		<image scaleImage="RetainShape">
+			<reportElement uuid="f8257c9c-cc13-40f4-8c1e-b2dda037fb3d" style="Barcode" x="170" y="605" width="400" height="30" origin="0" srcId="32" printId="1">
+				<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+				<property name="net.sf.jasperreports.export.html.embedded.svg.use.fonts" value="true"/>
+			</reportElement>
+			<imageSource>
+				<![CDATA[Barcode4JReport.jrpxml_files/img_13]]>
+			</imageSource>
+		</image>
+		<text textHeight="13.334961" lineSpacingFactor="1.3334961" leadingOffset="-2.5">
+			<reportElement uuid="c1127dd1-6cde-483c-8b1c-927b5fd285a3" style="Barcode" x="40" y="650" width="100" height="80" origin="0" srcId="33" printId="1"/>
+			<textContent><![CDATA[QRCode]]></textContent>
+		</text>
+		<image scaleImage="RetainShape">
+			<reportElement uuid="f8257c9c-cc13-40f4-8c1e-b2dda037fb3d" style="Barcode" mode="Opaque" x="170" y="650" width="400" height="80" forecolor="#0000FF" backcolor="#FFFF00" origin="0" srcId="34" printId="1">
+				<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+				<property name="net.sf.jasperreports.export.html.embedded.svg.use.fonts" value="true"/>
+			</reportElement>
+			<imageSource>
+				<![CDATA[Barcode4JReport.jrpxml_files/img_14]]>
+			</imageSource>
+		</image>
+	</page>
+</jasperPrint>
