@@ -8,6 +8,7 @@ import java.lang.annotation.Target;
 
 import org.myfly.platform.core3.domain.EntityType;
 import org.myfly.platform.core3.domain.FlyDataType;
+import org.myfly.platform.core3.model.dict.Element;
 
 /**
  * 实体类字段注解<br>
@@ -31,7 +32,11 @@ public @interface FlyField {
 	
 	FlyDataType dataType() default FlyDataType.NONE;
 	
+	String columnName() default "";
+	
 	String defaultValue() default "";
+	
+	int fieldLength() default 255;
 	
 	boolean isAllowCopy() default true;
 	
@@ -58,4 +63,6 @@ public @interface FlyField {
 	String valueMax() default "";
 	
 	String vFormat() default "";
+	
+	Element element() default Element.None;
 }

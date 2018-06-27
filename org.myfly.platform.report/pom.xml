@@ -10,6 +10,17 @@
 	<artifactId>org.myfly.platform.report</artifactId>
 	<dependencies>
 		<dependency>
+			<groupId>org.myfly.platform.microapps</groupId>
+			<artifactId>org.myfly.platform.core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.myfly.platform.microapps</groupId>
+			<artifactId>org.myfly.platform.test</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
 			<version>6.6.0</version>
