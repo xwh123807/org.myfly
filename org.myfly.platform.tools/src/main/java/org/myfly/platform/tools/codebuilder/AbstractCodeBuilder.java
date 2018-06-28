@@ -3,7 +3,7 @@ package org.myfly.platform.tools.codebuilder;
 import java.util.List;
 import java.util.Map;
 
-public class CodeBuilder {
+public abstract class AbstractCodeBuilder {
 	/**
 	 * 生成代码存放路径
 	 */
@@ -12,16 +12,13 @@ public class CodeBuilder {
 	 * 代码包名
 	 */
 	private String packageName;
-	/**
-	 * 代码模板
-	 */
-	private String template;
+
 	/**
 	 * 源
 	 */
 	private List<Map<String, Object>> sources;
 
-	public CodeBuilder() {
+	public AbstractCodeBuilder() {
 	}
 
 	public String getPath() {
@@ -40,13 +37,13 @@ public class CodeBuilder {
 		this.packageName = packageName;
 	}
 
-	public String getTemplate() {
-		return template;
+	public List<Map<String, Object>> getData(String tableName) {
+		return DB.getJdbcTemplate().queryForList("select * from " + tableName);
 	}
 
-	public void setTemplate(String template) {
-		this.template = template;
-	}
+	public abstract void prepare();
+
+	public abstract void generateCodes();
 
 	public List<Map<String, Object>> getSources() {
 		return sources;
@@ -54,9 +51,5 @@ public class CodeBuilder {
 
 	public void setSources(List<Map<String, Object>> sources) {
 		this.sources = sources;
-	}
-
-	public void generateCodes() {
-		
 	}
 }

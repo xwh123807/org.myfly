@@ -4,20 +4,22 @@ import java.io.IOException;
 
 import javax.lang.model.element.Modifier;
 
-import org.myfly.platform.core3.metadata.annotation.FlyElement;
-
-import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.TypeSpec.Builder;
 
-public class ElementCodeBuilder extends CodeBuilder {
+public class ElementCodeBuilder extends AbstractCodeBuilder {
+	@Override
+	public void prepare() {
+		setSources(getData("eevolution.AD_Element"));
+	}
+
 	@Override
 	public void generateCodes() {
 		Builder builder = TypeSpec.enumBuilder("Element").addModifiers(Modifier.PUBLIC);
 		getSources().forEach(source -> {
-			builder.addEnumConstant((String) source.get("Name"));
-			builder.addAnnotation(AnnotationSpec.builder(FlyElement.class).build());
+			builder.addEnumConstant((String) source.get("columnname"));
+			//builder.addAnnotation(AnnotationSpec.builder(FlyElement.class).build());
 		});
 
 		JavaFile javaFile = JavaFile.builder(getPackageName(), builder.build()).build();
