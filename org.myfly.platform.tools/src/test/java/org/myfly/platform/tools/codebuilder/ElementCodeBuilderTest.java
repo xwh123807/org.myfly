@@ -1,34 +1,26 @@
 package org.myfly.platform.tools.codebuilder;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Test;
 
 public class ElementCodeBuilderTest {
-	private List<Map<String, Object>> getSources() {
-		List<Map<String, Object>> list = new ArrayList<>();
-		list.add(newElement("Name", "Name", ""));
-		list.add(newElement("Description", "Name", ""));
-		list.add(newElement("Help", "Name", ""));
-		return list;
-	}
-
-	private Map<String, Object> newElement(String name, String description, String help) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("Name", name);
-		map.put("Description", description);
-		map.put("Help", help);
-		return map;
+	private List<ADElement> getSources() {
+		List<ADElement> sources = new ArrayList<>();
+		ADElement element1 = new ADElement();
+		element1.setColumnName("Name");
+		element1.setName("Name");
+		element1.setDescription("desc");
+		element1.setHelp("help");
+		sources.add(element1);
+		return sources;
 	}
 
 	@Test
-	public void codeBuilder() {
+	public void genCodes() {
 		ElementCodeBuilder builder = new ElementCodeBuilder();
-		builder.setPath("/xwh.work/git/org.myfly/org.myfly.platform.tools/target/gencodes");
-		builder.setPackageName("org.myfly.platform.core.model");
+		builder.setPackageName("org.myfly");
 		builder.setSources(getSources());
 		builder.generateCodes();
 	}

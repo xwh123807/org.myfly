@@ -1,9 +1,15 @@
 package org.myfly.platform.tools.codebuilder;
 
+import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
-public abstract class AbstractCodeBuilder {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
+
+import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.TypeSpec.Builder;
+
+public abstract class AbstractCodeBuilder<T> {
 	/**
 	 * 生成代码存放路径
 	 */
@@ -12,11 +18,12 @@ public abstract class AbstractCodeBuilder {
 	 * 代码包名
 	 */
 	private String packageName;
-
-	/**
-	 * 源
-	 */
-	private List<Map<String, Object>> sources;
+	
+	private List<T> sources;
+	
+	@Autowired
+	private ADEmpiereRepostory repository;
+	
 
 	public AbstractCodeBuilder() {
 	}
@@ -37,19 +44,42 @@ public abstract class AbstractCodeBuilder {
 		this.packageName = packageName;
 	}
 
-	public List<Map<String, Object>> getData(String tableName) {
-		return DB.getJdbcTemplate().queryForList("select * from " + tableName);
+	public ADEmpiereRepostory getRepository() {
+		return repository;
 	}
 
-	public abstract void prepare();
-
+	public void setRepository(ADEmpiereRepostory repository) {
+		this.repository = repository;
+	}
+	
+	public void toFile(String packageName, Builder builder) {
+		JavaFile javaFile = JavaFile.builder(packageName, builder.build()).build();
+		try {
+			javaFile.writeTo(System.out);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 生成代码
+	 */
 	public abstract void generateCodes();
+	
+	/**
+	 * 准备数据，为sources赋值
+	 */
+	public abstract void parareData();
 
-	public List<Map<String, Object>> getSources() {
+	public List<T> getSources() {
 		return sources;
 	}
 
-	public void setSources(List<Map<String, Object>> sources) {
+	public void setSources(List<T> sources) {
 		this.sources = sources;
+	}
+	
+	public void validate() {
+		Assert.notEmpty(getSources(), "sources不能为空");
 	}
 }

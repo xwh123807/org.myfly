@@ -1,32 +1,34 @@
 package org.myfly.platform.tools.codebuilder;
 
-import java.io.IOException;
-
 import javax.lang.model.element.Modifier;
 
-import com.squareup.javapoet.JavaFile;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+
 import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.TypeSpec.Builder;
 
-public class ElementCodeBuilder extends AbstractCodeBuilder {
+@Service
+public class ElementCodeBuilder extends AbstractCodeBuilder<ADElement> {
 	@Override
-	public void prepare() {
-		setSources(getData("eevolution.AD_Element"));
+	public void parareData() {
+		setSources(getRepository().getElements());
+	}
+
+	@Override
+	public void validate() {
+		super.validate();
+		Assert.hasLength(getPackageName(), "属性packageName不能为空");
 	}
 
 	@Override
 	public void generateCodes() {
+		validate();
 		Builder builder = TypeSpec.enumBuilder("Element").addModifiers(Modifier.PUBLIC);
-		getSources().forEach(source -> {
-			builder.addEnumConstant((String) source.get("columnname"));
-			//builder.addAnnotation(AnnotationSpec.builder(FlyElement.class).build());
+		getSources().forEach(element -> {
+			element.build(builder);
 		});
 
-		JavaFile javaFile = JavaFile.builder(getPackageName(), builder.build()).build();
-		try {
-			javaFile.writeTo(System.out);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		toFile(getPackageName(), builder);
 	}
 }

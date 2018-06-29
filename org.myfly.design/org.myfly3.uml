@@ -362,37 +362,27 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_NHx-kHqVEeiEueCsS9cxKw" name="ElementCodeBuilder" visibility="public">
       <generalization xmi:id="_PRW6MHqVEeiEueCsS9cxKw" general="_LtjcQHqVEeiEueCsS9cxKw"/>
+      <interfaceRealization xmi:id="_Knp8MHs6EeiEueCsS9cxKw" client="_NHx-kHqVEeiEueCsS9cxKw" supplier="_GnIGAHs6EeiEueCsS9cxKw" contract="_GnIGAHs6EeiEueCsS9cxKw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_oappUHrWEeiVTvIfrfqdrw" name="Element" visibility="public">
       <generalization xmi:id="_0b5NoHrWEeiVTvIfrfqdrw" general="_ypSnkHrWEeiVTvIfrfqdrw"/>
+      <ownedOperation xmi:id="_bn0q4Hs1EeiEueCsS9cxKw" name="getName"/>
+      <ownedOperation xmi:id="_dLKs8Hs1EeiEueCsS9cxKw" name="getApiName"/>
+      <ownedOperation xmi:id="_ejXO8Hs1EeiEueCsS9cxKw" name="getDescription"/>
+      <ownedOperation xmi:id="_gOU78Hs1EeiEueCsS9cxKw" name="getHelp"/>
+      <ownedOperation xmi:id="_k8jloHs1EeiEueCsS9cxKw" name="build"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_ypSnkHrWEeiVTvIfrfqdrw" name="HashMap" visibility="public"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_7jbRAHrWEeiVTvIfrfqdrw" name="elementCodeBuildersToElements" memberEnd="_7jbRAXrWEeiVTvIfrfqdrw _7jbRBHrWEeiVTvIfrfqdrw" navigableOwnedEnd="_7jbRBHrWEeiVTvIfrfqdrw">
-      <ownedEnd xmi:id="_7jbRAXrWEeiVTvIfrfqdrw" name="elementCodeBuilders" type="_NHx-kHqVEeiEueCsS9cxKw" association="_7jbRAHrWEeiVTvIfrfqdrw">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7jbRAnrWEeiVTvIfrfqdrw"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7jbRA3rWEeiVTvIfrfqdrw" value="*"/>
-      </ownedEnd>
-      <ownedEnd xmi:id="_7jbRBHrWEeiVTvIfrfqdrw" name="elements" type="_oappUHrWEeiVTvIfrfqdrw" aggregation="shared" association="_7jbRAHrWEeiVTvIfrfqdrw">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7jbRBXrWEeiVTvIfrfqdrw"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7jbRBnrWEeiVTvIfrfqdrw" value="*"/>
-      </ownedEnd>
-    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_fr4s8HrXEeiVTvIfrfqdrw" name="Table" visibility="public">
-      <generalization xmi:id="_jf9bgHrXEeiVTvIfrfqdrw" general="_ypSnkHrWEeiVTvIfrfqdrw"/>
+      <generalization xmi:id="_ZHc_4Hs1EeiEueCsS9cxKw" general="_oappUHrWEeiVTvIfrfqdrw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_hGTcgHrXEeiVTvIfrfqdrw" name="Column" visibility="public">
-      <generalization xmi:id="_j_ZJgHrXEeiVTvIfrfqdrw" general="_ypSnkHrWEeiVTvIfrfqdrw"/>
+      <ownedOperation xmi:id="_ptzHEHs1EeiEueCsS9cxKw" name="getReference"/>
+      <ownedOperation xmi:id="_tQ0h4Hs1EeiEueCsS9cxKw" name="getFlyDataType"/>
+      <ownedOperation xmi:id="_vvZdIHs1EeiEueCsS9cxKw" name="getFieldLength"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_mvX90HrXEeiVTvIfrfqdrw" name="FlyEntityGenerator" visibility="public"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_uCwE0HrXEeiVTvIfrfqdrw" name="flyEntityGeneratorsToTables" memberEnd="_uCwE0XrXEeiVTvIfrfqdrw _uCwE1HrXEeiVTvIfrfqdrw" navigableOwnedEnd="_uCwE1HrXEeiVTvIfrfqdrw">
-      <ownedEnd xmi:id="_uCwE0XrXEeiVTvIfrfqdrw" name="flyEntityGenerators" type="_mvX90HrXEeiVTvIfrfqdrw" association="_uCwE0HrXEeiVTvIfrfqdrw">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uCwE0nrXEeiVTvIfrfqdrw"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uCwE03rXEeiVTvIfrfqdrw" value="*"/>
-      </ownedEnd>
-      <ownedEnd xmi:id="_uCwE1HrXEeiVTvIfrfqdrw" name="tables" type="_fr4s8HrXEeiVTvIfrfqdrw" aggregation="shared" association="_uCwE0HrXEeiVTvIfrfqdrw">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uCwE1XrXEeiVTvIfrfqdrw"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uCwE1nrXEeiVTvIfrfqdrw" value="*"/>
-      </ownedEnd>
+    <packagedElement xmi:type="uml:Class" xmi:id="_mvX90HrXEeiVTvIfrfqdrw" name="FlyEntityGenerator" visibility="public">
+      <interfaceRealization xmi:id="_LZclgHs6EeiEueCsS9cxKw" client="_mvX90HrXEeiVTvIfrfqdrw" supplier="_GnIGAHs6EeiEueCsS9cxKw" contract="_GnIGAHs6EeiEueCsS9cxKw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_0lWPIHrXEeiVTvIfrfqdrw" name="tablesToColumns" memberEnd="_0lWPIXrXEeiVTvIfrfqdrw _0lW2MHrXEeiVTvIfrfqdrw" navigableOwnedEnd="_0lW2MHrXEeiVTvIfrfqdrw">
       <ownedEnd xmi:id="_0lWPIXrXEeiVTvIfrfqdrw" name="tables" type="_fr4s8HrXEeiVTvIfrfqdrw" association="_0lWPIHrXEeiVTvIfrfqdrw">
@@ -403,6 +393,26 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0lW2MXrXEeiVTvIfrfqdrw"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0lW2MnrXEeiVTvIfrfqdrw" value="*"/>
       </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_f6R0AHs0EeiEueCsS9cxKw" name="支持Shell命令行模式"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_jlXlsHs0EeiEueCsS9cxKw" memberEnd="_jlXlsXs0EeiEueCsS9cxKw _jlXlsns0EeiEueCsS9cxKw">
+      <ownedEnd xmi:id="_jlXlsXs0EeiEueCsS9cxKw" type="_3GruoHqDEeiEueCsS9cxKw" association="_jlXlsHs0EeiEueCsS9cxKw"/>
+      <ownedEnd xmi:id="_jlXlsns0EeiEueCsS9cxKw" type="_f6R0AHs0EeiEueCsS9cxKw" association="_jlXlsHs0EeiEueCsS9cxKw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_m6zQcHs0EeiEueCsS9cxKw" name="spring-shell-starter"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_64WkAHs0EeiEueCsS9cxKw" name="集成代码生成框架"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_AfnugHs1EeiEueCsS9cxKw" memberEnd="_AfnugXs1EeiEueCsS9cxKw _AfoVkHs1EeiEueCsS9cxKw">
+      <ownedEnd xmi:id="_AfnugXs1EeiEueCsS9cxKw" type="_3GruoHqDEeiEueCsS9cxKw" association="_AfnugHs1EeiEueCsS9cxKw"/>
+      <ownedEnd xmi:id="_AfoVkHs1EeiEueCsS9cxKw" type="_64WkAHs0EeiEueCsS9cxKw" association="_AfnugHs1EeiEueCsS9cxKw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_BFW40Hs1EeiEueCsS9cxKw" name="javapoet"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_29Fy4Hs1EeiEueCsS9cxKw" name="ToolsApplication" visibility="public"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_GnIGAHs6EeiEueCsS9cxKw" name="ShellCommand" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_0dmDEHtgEeiEueCsS9cxKw" name="ADEmpiereRepostory" visibility="public">
+      <ownedOperation xmi:id="_1touoHtgEeiEueCsS9cxKw" name="getElements"/>
+      <ownedOperation xmi:id="_31d90HtgEeiEueCsS9cxKw" name="getTables"/>
+      <ownedOperation xmi:id="_5KcMsHtgEeiEueCsS9cxKw" name="getTableColumns"/>
+      <ownedOperation xmi:id="_83WjUHtgEeiEueCsS9cxKw" name="getTable"/>
     </packagedElement>
   </packagedElement>
 </uml:Model>

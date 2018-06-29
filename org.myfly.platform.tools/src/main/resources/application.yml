@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/eevolution
+    username: eevolution
+    password: eevolution
+    driverClassName: org.postgresql.Driver
+
+codebuilder:
+  org.myfly.platform.core3.model.data:
+    - AD_Table
+    - AD_Column
