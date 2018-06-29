@@ -42,10 +42,6 @@ public class ADElement extends HashMap<String, Object> {
 		return (String) get("help");
 	}
 
-	public void build(Builder builder) {
-		builder.addEnumConstant(getApiName());
-	}
-
 	public void setName(String value) {
 		put("name", value);
 	}
@@ -60,5 +56,25 @@ public class ADElement extends HashMap<String, Object> {
 
 	public void setColumnName(String value) {
 		put("columnname", value);
+	}
+
+	public String getEntityType() {
+		return (String) get("entitytype");
+	}
+
+	public void setEntityType(String value) {
+		put("entitytype", value);
+	}
+
+	public String getPrintName() {
+		return (String) get("printname");
+	}
+
+	public void setPrintName(String value) {
+		put("printname", value);
+	}
+	
+	public void build(Builder builder) {
+		builder.addEnumConstant(getApiName());
 	}
 }

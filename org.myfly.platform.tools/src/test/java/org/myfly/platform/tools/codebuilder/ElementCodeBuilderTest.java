@@ -13,6 +13,8 @@ public class ElementCodeBuilderTest {
 		element1.setName("Name");
 		element1.setDescription("desc");
 		element1.setHelp("help");
+		element1.setEntityType("D");
+		element1.setPrintName("print name");
 		sources.add(element1);
 		return sources;
 	}
