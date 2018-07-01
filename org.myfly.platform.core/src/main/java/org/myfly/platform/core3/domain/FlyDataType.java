@@ -14,34 +14,34 @@ public enum FlyDataType implements IRefList {
 	@FlyField(description = "")
 	NONE,
 	//
-	@FlyField(description = "Character String")
+	@FlyField(name = "String", description = "Character String")
 	String,
 	//
-	@FlyField(description = "10 Digit numeric")
+	@FlyField(name = "Integer", description = "10 Digit numeric")
 	Integer,
 	//
-	@FlyField(description = "Number with 4 decimals")
+	@FlyField(name = "Amount", description = "Number with 4 decimals")
 	Amount,
 	//
-	@FlyField(description = "10 Digit Identifier")
+	@FlyField(name = "ID", description = "10 Digit Identifier")
 	ID,
 	//
-	@FlyField(description = "Character String up to 2000 characters")
+	@FlyField(name = "Text", description = "Character String up to 2000 characters")
 	Text,
 	//
-	@FlyField(description = "Date yyyy-mm-dd")
+	@FlyField(name = "Date", description = "Date yyyy-mm-dd")
 	Date,
 	//
-	@FlyField(description = "Date with time yyyy-mm-dd hh:mm:ss")
+	@FlyField(name = "Date+Time", description = "Date with time yyyy-mm-dd hh:mm:ss")
 	DateTime,
 	//
-	@FlyField(description = "Reference List")
+	@FlyField(name = "List", description = "Reference List")
 	List,
 	//
-	@FlyField(description = "Table List")
+	@FlyField(name = "Table", description = "Table List")
 	Table,
 	//
-	@FlyField(description = "Direct Table Access")
+	@FlyField(name = "Table Direct", description = "Direct Table Access")
 	TableDirect,
 	//
 	@FlyField(name = "Yes-No", description = "CheckBox")
@@ -50,73 +50,76 @@ public enum FlyDataType implements IRefList {
 	@FlyField(name = "Location (Address)", description = "Location/Address")
 	Location,
 	//
-	@FlyField(description = "Float Number")
+	@FlyField(name = "Number", description = "Float Number")
 	Number,
 	//
-	@FlyField(description = "Binary Data")
+	@FlyField(name = "Binary", description = "Binary Data")
 	Binary,
 	//
-	@FlyField(description = "Time")
+	@FlyField(name = "Time", description = "Time")
 	Time,
 	//
-	@FlyField(description = "Account Element")
+	@FlyField(name = "Account", description = "Account Element")
 	Account,
 	//
-	@FlyField(description = "Row ID Data Type")
+	@FlyField(name = "RowID", description = "Row ID Data Type")
 	RowID,
 	//
-	@FlyField(description = "Color element")
+	@FlyField(name = "Color", description = "Color element")
 	Color,
 	//
-	@FlyField(description = "Command Button - starts a process")
+	@FlyField(name = "Button", description = "Command Button - starts a process")
 	Button,
 	//
-	@FlyField(description = "Quantity data type")
+	@FlyField(name = "Quantity", description = "Quantity data type")
 	Quantity,
 	//
-	@FlyField(description = "Search Field")
+	@FlyField(name = "Search", description = "Search Field")
 	Search,
 	//
 	@FlyField(name = "Locator (WH)", description = "Warehouse Locator Data type")
 	Locator,
 	//
-	@FlyField(description = "Binary Image Data")
+	@FlyField(name = "Image", description = "Binary Image Data")
 	Image,
 	//
-	@FlyField(description = "Resource Assignment")
+	@FlyField(name = "Assignment", description = "Resource Assignment")
 	Assignment,
 	//
-	@FlyField(description = "Large Text Editor - Character String up to 2000 characters")
+	@FlyField(name = "Memo", description = "Large Text Editor - Character String up to 2000 characters")
 	Memo,
 	//
-	@FlyField(description = "Product Attribute")
+	@FlyField(name = "Product Attribute", description = "Product Attribute")
 	ProductAttribute,
 	//
-	@FlyField(description = "Text (Long) - Text > 2000 characters")
+	@FlyField(name = "Text Long", description = "Text (Long) - Text > 2000 characters")
 	LongText,
 	//
-	@FlyField(description = "Costs + Prices (minimum currency precision but if exists more)")
+	@FlyField(name = "Costs+Prices", description = "Costs + Prices (minimum currency precision but if exists more)")
 	CostsPrices,
 	//
-	@FlyField(description = "Local File Path")
+	@FlyField(name = "FilePath", description = "Local File Path")
 	FilePath,
 	//
-	@FlyField(description = "Local File")
+	@FlyField(name = "FileName", description = "Local File")
 	FileName,
 	//
-	@FlyField(description = "URL")
+	@FlyField(name = "FilePathOrName", description = "Local File Path or Name", help = "Selects a path or a single file.")
+	FilePathOrName,
+	//
+	@FlyField(name = "URL", description = "URL")
 	URL,
 	//
-	@FlyField(description = "")
+	@FlyField(name = "Printer Name", description = "")
 	PrinterName,
 	//
-	@FlyField(description = "email address")
+	@FlyField(name = "EMail", description = "email address")
 	EMail,
 	//
-	@FlyField(description = "sub table")
+	@FlyField(name = "Sub Table", description = "sub table")
 	SubTable,
 	//
-	@FlyField(description = "One to One")
+	@FlyField(name = "In Table", description = "One to One")
 	InTable;
 
 }

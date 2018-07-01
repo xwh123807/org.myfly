@@ -1,6 +1,5 @@
-package org.myfly.platform.core3.model.dict;
+package org.myfly.platform.core3.domain;
 
-import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.metadata.annotation.FlyElement;
 
 /**
@@ -10,7 +9,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyElement;
  * @author xiangwanhong
  *
  */
-public enum Element {
+public enum Element implements IRefList{
 	None,
 	//
 	@FlyElement(name = "Name", description = "Alphanumeric identifier of the entity", //

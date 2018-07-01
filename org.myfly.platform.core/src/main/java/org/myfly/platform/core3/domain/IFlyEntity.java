@@ -1,33 +1,21 @@
 package org.myfly.platform.core3.domain;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
-
-import org.myfly.platform.core3.model.security.PClient;
-import org.myfly.platform.core3.model.security.POrg;
-import org.myfly.platform.core3.model.security.PUser;
 
 /**
  * 
  * @author xiangwanhong
  *
  */
-public interface IFlyEntity {
-	public final String UID = "uid";
+public interface IFlyEntity extends Serializable{
 	public final String CREATED = "created";
 	public final String CREATED_BY = "createdBy";
 	public final String UPDATED = "updated";
 	public final String UPDATED_BY = "updatedBy";
-	public final String ACTIVE = "active";
-	public final String CLIENT = "client";
-	public final String ORG = "org";
-
-	/**
-	 * 
-	 * @return
-	 */
-	public String getUid();
-
-	public void setUid(String uid);
+	public final String ACTIVE = "isActive";
+	public final String CLIENT = "clientID";
+	public final String ORG = "orgID";
 
 	public Timestamp getCreated();
 
@@ -41,19 +29,19 @@ public interface IFlyEntity {
 
 	public void setIsActive(Boolean active);
 
-	public PUser getCreatedBy();
+	public String getCreatedBy();
 
-	public void setCreatedBy(PUser createdBy);
+	public void setCreatedBy(String createdBy);
 
-	public PUser getUpdatedBy();
+	public String getUpdatedBy();
 
-	public void setUpdatedBy(PUser updatedBy);
+	public void setUpdatedBy(String updatedBy);
 
-	public PClient getClient();
+	public String getClientID();
 
-	public void setClient(PClient client);
+	public void setClientID(String clientID);
 
-	public POrg getOrg();
+	public String getOrgID();
 
-	public void setOrg(POrg org);
+	public void setOrgID(String orgID);
 }

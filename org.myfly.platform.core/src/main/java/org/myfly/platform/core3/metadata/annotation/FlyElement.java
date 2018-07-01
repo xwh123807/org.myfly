@@ -1,12 +1,19 @@
 package org.myfly.platform.core3.metadata.annotation;
 
-import org.myfly.platform.core3.domain.EntityType;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
 import org.myfly.platform.core3.domain.FlyDataType;
 
+@Target({ FIELD })
+@Retention(RUNTIME)
 public @interface FlyElement {
 	String name() default "";
 
-	EntityType entityType() default EntityType.D;
+	String entityType() default "D";
 
 	String description() default "";
 
@@ -19,4 +26,9 @@ public @interface FlyElement {
 	String printName() default "";
 	
 	int fieldLength() default 255;
+	/**
+	 * 引用名称，在PReference表Name字段中选取
+	 * @return
+	 */
+	String referenceName() default "";
 }

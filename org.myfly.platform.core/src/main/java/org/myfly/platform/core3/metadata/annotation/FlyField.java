@@ -6,9 +6,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import org.myfly.platform.core3.domain.Element;
 import org.myfly.platform.core3.domain.EntityType;
 import org.myfly.platform.core3.domain.FlyDataType;
-import org.myfly.platform.core3.model.dict.Element;
 
 /**
  * 实体类字段注解<br>

@@ -15,8 +15,8 @@ import org.myfly.platform.core3.metadata.service.IFlyColumn;
 import org.myfly.platform.core3.metadata.service.IFlyViewField;
 import org.myfly.platform.core3.metadata.service.IFlyViewTab;
 import org.myfly.platform.core3.model.data.PColumn;
-import org.myfly.platform.core3.model.data.PRefList;
-import org.myfly.platform.core3.model.data.PReference;
+import org.myfly.platform.core3.model.dict.PRefList;
+import org.myfly.platform.core3.model.dict.PReference;
 
 @Entity
 @Table(name = "PT_Field")

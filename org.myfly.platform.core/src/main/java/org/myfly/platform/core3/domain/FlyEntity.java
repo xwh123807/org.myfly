@@ -3,17 +3,9 @@ package org.myfly.platform.core3.domain;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-
-import org.myfly.platform.core3.metadata.annotation.FlyField;
-import org.myfly.platform.core3.model.security.PClient;
-import org.myfly.platform.core3.model.security.POrg;
-import org.myfly.platform.core3.model.security.PUser;
 
 /**
  * 
@@ -23,50 +15,31 @@ import org.myfly.platform.core3.model.security.PUser;
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.JOINED)
 public class FlyEntity implements IFlyEntity {
-	@Id
-	@org.springframework.data.annotation.Id
-	@Column(length = 32, updatable = false, nullable = false)
-	@FlyField(name = "Immutable Universally Unique Identifier", description = "Immutable Universally Unique Identifier", help = "\"A surrogate key in a database is a unique identifier for either an entity in the modeled world or an object in the database. The surrogate key is not derived from application data, unlike a natural (or business) key which is derived from application data. \" , According to Wikipedia http://en.wikipedia.org/wiki/Surrogate_key")
-	private String uid;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 746459563296000455L;
 
-	@FlyField(name = "Created", description = "Date this record was created", help = "The Created field indicates the date that this record was created.")
 	@Column
 	private Timestamp created;
 
-	@FlyField(name = "Created By", dataType = FlyDataType.TableDirect, defaultValue = "@#PT_User_ID@")
-	@ManyToOne(fetch=FetchType.LAZY)
-	private PUser createdBy;
+	@Column(length = 32)
+	private String createdBy;
 
-	@FlyField(name = "Updated", description = "Date this record was updated", help = "The Updated field indicates the date that this record was updated.")
 	@Column
 	private Timestamp updated;
 
-	@FlyField(name = "Updated By", dataType = FlyDataType.TableDirect, defaultValue = "@#PT_User_ID@")
-	@ManyToOne(fetch=FetchType.LAZY)
-	private PUser updatedBy;
+	@Column(length = 32)
+	private String updatedBy;
 
-	@FlyField(name = "Active", defaultValue = "Y", description = "The record is active in the system", help = "There are two methods of making records unavailable in the system: One is to delete the record, the other is to de-activate the record. A de-activated record is not available for selection, but available for reports.\n"
-			+ "There are two reasons for de-activating and not deleting records:\n"
-			+ "(1) The system requires the record for audit purposes.\n"
-			+ "(2) The record is referenced by other records. E.g., you cannot delete a Business Partner, if there are invoices for this partner record existing. You de-activate the Business Partner and prevent that this record is used for future entries.")
 	@Column
 	private Boolean isActive;
 
-	@FlyField(name = "Client", dataType = FlyDataType.TableDirect, defaultValue = "@#PT_Client_ID@")
-	@ManyToOne(fetch=FetchType.LAZY)
-	private PClient client;
+	@Column(length = 32)
+	private String clientID;
 
-	@FlyField(name = "Organization", dataType = FlyDataType.TableDirect, defaultValue = "@#PT_Org_ID@")
-	@ManyToOne(fetch=FetchType.LAZY)
-	private POrg org;
-
-	public String getUid() {
-		return uid;
-	}
-
-	public void setUid(String uid) {
-		this.uid = uid;
-	}
+	@Column(length = 32)
+	private String orgID;
 
 	public Timestamp getCreated() {
 		return created;
@@ -74,6 +47,14 @@ public class FlyEntity implements IFlyEntity {
 
 	public void setCreated(Timestamp created) {
 		this.created = created;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 
 	public Timestamp getUpdated() {
@@ -84,46 +65,35 @@ public class FlyEntity implements IFlyEntity {
 		this.updated = updated;
 	}
 
-	@Override
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
 	public Boolean getIsActive() {
 		return isActive;
 	}
 
-	@Override
-	public void setIsActive(Boolean active) {
-		this.isActive = active;
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 
-	public PUser getCreatedBy() {
-		return createdBy;
+	public String getClientID() {
+		return clientID;
 	}
 
-	public void setCreatedBy(PUser createdBy) {
-		this.createdBy = createdBy;
+	public void setClientID(String clientID) {
+		this.clientID = clientID;
 	}
 
-	public PUser getUpdatedBy() {
-		return updatedBy;
+	public String getOrgID() {
+		return orgID;
 	}
 
-	public void setUpdatedBy(PUser updatedBy) {
-		this.updatedBy = updatedBy;
+	public void setOrgID(String orgID) {
+		this.orgID = orgID;
 	}
-
-	public PClient getClient() {
-		return client;
-	}
-
-	public void setClient(PClient client) {
-		this.client = client;
-	}
-
-	public POrg getOrg() {
-		return org;
-	}
-
-	public void setOrg(POrg org) {
-		this.org = org;
-	}
-
 }
