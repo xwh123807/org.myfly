@@ -664,41 +664,32 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_recvYHx0Eeidk_4ESs1ygQ" name="AbstractEnumImporter" visibility="public" isAbstract="true">
       <generalization xmi:id="_TRxxsH3BEeiCu7f2FL4vPg"/>
-      <ownedAttribute xmi:id="_e5in4Hx1Eeidk_4ESs1ygQ" name="targets" visibility="public">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e5in4Xx1Eeidk_4ESs1ygQ"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_e5in4nx1Eeidk_4ESs1ygQ" value="1"/>
-      </ownedAttribute>
+      <generalization xmi:id="_9HMLwH31Eeidk_4ESs1ygQ" general="_3oP20H31Eeidk_4ESs1ygQ"/>
       <ownedOperation xmi:id="_asGXEHx1Eeidk_4ESs1ygQ" name="load"/>
       <ownedOperation xmi:id="_lNHewHx1Eeidk_4ESs1ygQ" name="convertField" isAbstract="true"/>
-      <ownedOperation xmi:id="_nPCTMHx1Eeidk_4ESs1ygQ" name="save"/>
-      <ownedOperation xmi:id="_VouJ4HzPEeidk_4ESs1ygQ" name="printJson"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_jWkksHz1Eeidk_4ESs1ygQ" name="ReferenceImporter" visibility="public">
+    <packagedElement xmi:type="uml:Class" xmi:id="_jWkksHz1Eeidk_4ESs1ygQ" name="RefListImporter" visibility="public">
       <generalization xmi:id="_oA8pIHz1Eeidk_4ESs1ygQ" general="_recvYHx0Eeidk_4ESs1ygQ"/>
       <ownedOperation xmi:id="_pNulUHz1Eeidk_4ESs1ygQ" name="convertField"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Fw6fcH2aEeiEuuCsS9cxKw" name="RefTableImporter" visibility="public">
-      <ownedOperation xmi:id="_MFpM4H2aEeiEuuCsS9cxKw" name="convertField"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_V2UcwH2aEeiEuuCsS9cxKw" name="RefListImporter" visibility="public">
-      <generalization xmi:id="_awcNYH2aEeiEuuCsS9cxKw" general="_jWkksHz1Eeidk_4ESs1ygQ"/>
-      <ownedOperation xmi:id="_V2UcwX2aEeiEuuCsS9cxKw" name="convertField"/>
     </packagedElement>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_w5BOEH2aEeiEuuCsS9cxKw" name="从实体类导入实体数据模型">
       <include xmi:id="_nTAYQH2pEeiCu7f2FL4vPg" addition="_WbVQgH2pEeiCu7f2FL4vPg"/>
       <include xmi:id="_oFUmAH2pEeiCu7f2FL4vPg" addition="_WbRmIH2pEeiCu7f2FL4vPg"/>
       <include xmi:id="_o5MS8H2pEeiCu7f2FL4vPg" addition="_WbFY4H2pEeiCu7f2FL4vPg"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_mbFaIH2bEeiEuuCsS9cxKw" name="AbstractClassImporter" visibility="public">
+    <packagedElement xmi:type="uml:Class" xmi:id="_mbFaIH2bEeiEuuCsS9cxKw" name="AbstractClassImporter" visibility="public" isAbstract="true">
       <generalization xmi:id="_T_J1EH3BEeiCu7f2FL4vPg"/>
+      <generalization xmi:id="_90gkwH31Eeidk_4ESs1ygQ" general="_3oP20H31Eeidk_4ESs1ygQ"/>
       <ownedOperation xmi:id="_o81I4H3BEeiCu7f2FL4vPg" name="load"/>
       <ownedOperation xmi:id="_ruwd8H3BEeiCu7f2FL4vPg" name="convertField"/>
       <ownedOperation xmi:id="_t3wx0H3BEeiCu7f2FL4vPg" name="convertClass"/>
-      <ownedOperation xmi:id="_we06sH3BEeiCu7f2FL4vPg" name="save"/>
+      <ownedOperation xmi:id="_T04rsH32Eeidk_4ESs1ygQ" name="convertFinish"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ssRrYH2bEeiEuuCsS9cxKw" name="FlyDataModelImporter" visibility="public">
+    <packagedElement xmi:type="uml:Class" xmi:id="_ssRrYH2bEeiEuuCsS9cxKw" name="TableImporter" visibility="public">
       <generalization xmi:id="_vlmo8H2bEeiEuuCsS9cxKw" general="_mbFaIH2bEeiEuuCsS9cxKw"/>
+      <ownedOperation xmi:id="_be-pkH32Eeidk_4ESs1ygQ" name="convertClass"/>
+      <ownedOperation xmi:id="_evVAAH32Eeidk_4ESs1ygQ" name="convertField"/>
+      <ownedOperation xmi:id="_gdB38H32Eeidk_4ESs1ygQ" name="convertFinish"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_3u3uwH2eEeiCu7f2FL4vPg" memberEnd="_3u6LAH2eEeiCu7f2FL4vPg _3u6yEH2eEeiCu7f2FL4vPg">
       <ownedEnd xmi:id="_3u6LAH2eEeiCu7f2FL4vPg" type="_AEOMQHxDEeidk_4ESs1ygQ" association="_3u3uwH2eEeiCu7f2FL4vPg"/>
@@ -711,10 +702,6 @@
     <packagedElement xmi:type="uml:Association" xmi:id="_AxpW0H2fEeiCu7f2FL4vPg" memberEnd="_AxpW0X2fEeiCu7f2FL4vPg _AxpW0n2fEeiCu7f2FL4vPg">
       <ownedEnd xmi:id="_AxpW0X2fEeiCu7f2FL4vPg" type="_WCK_YHxFEeidk_4ESs1ygQ" association="_AxpW0H2fEeiCu7f2FL4vPg"/>
       <ownedEnd xmi:id="_AxpW0n2fEeiCu7f2FL4vPg" type="_oC4ncHx0Eeidk_4ESs1ygQ" association="_AxpW0H2fEeiCu7f2FL4vPg"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_E2d3IH2fEeiCu7f2FL4vPg" memberEnd="_E2d3IX2fEeiCu7f2FL4vPg _E2eeMH2fEeiCu7f2FL4vPg">
-      <ownedEnd xmi:id="_E2d3IX2fEeiCu7f2FL4vPg" type="_EMrSkHxHEeidk_4ESs1ygQ" association="_E2d3IH2fEeiCu7f2FL4vPg"/>
-      <ownedEnd xmi:id="_E2eeMH2fEeiCu7f2FL4vPg" type="_V2UcwH2aEeiEuuCsS9cxKw" association="_E2d3IH2fEeiCu7f2FL4vPg"/>
     </packagedElement>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_WbFY4H2pEeiCu7f2FL4vPg" name="从实体类属性注解@Column、@FlyField构建PColumn">
       <include xmi:id="_mTBh8H2pEeiCu7f2FL4vPg" addition="_WbN7wH2pEeiCu7f2FL4vPg"/>
@@ -742,6 +729,16 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Enumeration" xmi:id="_DTJXUH2sEeiCu7f2FL4vPg" name="EntityTypeEN" visibility="public"/>
       <packagedElement xmi:type="uml:Enumeration" xmi:id="_Q-Y_UH2sEeiCu7f2FL4vPg" name="FlyDataTypeCN" visibility="public"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_3oP20H31Eeidk_4ESs1ygQ" name="AbstractImporter" visibility="public" isAbstract="true">
+      <ownedAttribute xmi:id="_GLzm4H32Eeidk_4ESs1ygQ" name="targets" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GLzm4X32Eeidk_4ESs1ygQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GLzm4n32Eeidk_4ESs1ygQ" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_IyCpUH32Eeidk_4ESs1ygQ" name="printJson"/>
+      <ownedOperation xmi:id="_IyCpUX32Eeidk_4ESs1ygQ" name="save"/>
+      <ownedOperation xmi:id="_NS920H32Eeidk_4ESs1ygQ" name="beforeSave"/>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Actor" xmi:id="_WZ31EHxCEeidk_4ESs1ygQ" name="System">

@@ -1,5 +1,6 @@
 package org.myfly.platform.core3.dbinit;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
@@ -14,13 +15,17 @@ public class AbstractImporter<T extends IFlyEntity> {
 	@Autowired
 	private IJpaDataAccessService dataService;
 
-	private List<? extends IFlyEntity> targets;
+	private List<T> targets;
 
-	public List<? extends IFlyEntity> getTargets() {
+	public AbstractImporter() {
+		setTargets(new ArrayList<>());
+	}
+
+	public List<T> getTargets() {
 		return targets;
 	}
 
-	public void setTargets(List<? extends IFlyEntity> targets) {
+	public void setTargets(List<T> targets) {
 		this.targets = targets;
 	}
 
@@ -43,7 +48,7 @@ public class AbstractImporter<T extends IFlyEntity> {
 			target.setOrgID(FlySystemResource.UID_ALL_ORG);
 		});
 	}
-	
+
 	/**
 	 * 将targets实体保存到数据库中
 	 */

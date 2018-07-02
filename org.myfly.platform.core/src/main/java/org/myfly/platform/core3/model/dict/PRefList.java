@@ -6,11 +6,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.myfly.platform.core3.domain.FlyMetaEntity;
+import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 @Entity
 @Table(name = "PT_Ref_List")
 @FlyTable(name = "Reference List", description = "Reference List based on Table")
+@FlyRefTable(name = "PRefList_value", keyColumn = "refListID", displayColumn = "name")
 public class PRefList extends FlyMetaEntity {
 
 	/**
@@ -26,7 +28,7 @@ public class PRefList extends FlyMetaEntity {
 	private String referenceID;
 
 	@Column(length = 32)
-	private String entityTypeID;
+	private String entityType;
 
 	@Column(name = "ValidFrom", length = 7)
 	private String validFrom;
@@ -61,12 +63,12 @@ public class PRefList extends FlyMetaEntity {
 		this.value = value;
 	}
 
-	public String getEntityTypeID() {
-		return entityTypeID;
+	public String getEntityType() {
+		return entityType;
 	}
 
-	public void setEntityTypeID(String entityTypeID) {
-		this.entityTypeID = entityTypeID;
+	public void setEntityType(String entityType) {
+		this.entityType = entityType;
 	}
 
 	public String getRefListID() {

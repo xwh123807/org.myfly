@@ -11,12 +11,13 @@ import org.springframework.stereotype.Component;
 
 /**
  * 从枚举FlyDataType导入数据到PDataType中.
+ * 
  * @author xiangwanhong
  *
  */
 @Component
 @Scope("prototype")
-public class DataTypeImporter extends AbstractEnumImporter<FlyDataType, PDataType> {
+public class DataTypeImporter extends AbstractEnumImporter<PDataType, FlyDataType> {
 
 	@Override
 	public PDataType convertField(Field field) {

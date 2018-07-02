@@ -14,7 +14,6 @@ import org.myfly.platform.core.utils.StringUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.domain.EntityType;
 import org.myfly.platform.core3.domain.FlyDataType;
-import org.myfly.platform.core3.domain.FlyEntity;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
@@ -37,14 +36,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Scope("prototype")
-public class TableImporter extends AbstractClassImporter<FlyEntity> {
+public class TableImporter extends AbstractClassImporter<IFlyEntity> {
 	private PTable table;
 	private List<PColumn> columns;
 	private List<PReference> references;
 	private List<PRefTable> refTables;
 
 	public TableImporter() {
-		setTargets(new ArrayList<>());
 		columns = new ArrayList<>();
 		references = new ArrayList<>();
 		refTables = new ArrayList<>();

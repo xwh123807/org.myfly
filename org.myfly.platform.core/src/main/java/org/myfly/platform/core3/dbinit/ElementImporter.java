@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Scope("prototype")
-public class ElementImporter extends AbstractEnumImporter<Element, PElement> {
+public class ElementImporter extends AbstractEnumImporter<PElement, Element> {
 
 	@Override
 	public PElement convertField(Field field) {

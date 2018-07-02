@@ -14,6 +14,8 @@ public @interface FlyRefItem {
 	String name();
 
 	String description() default "";
+	
+	String help() default "";
 
 	String entityType() default "D";
 

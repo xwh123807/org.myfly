@@ -11,12 +11,13 @@ import org.springframework.stereotype.Component;
 
 /**
  * 从枚举EntityType中导入数据到PEntityType中
+ * 
  * @author xiangwanhong
  *
  */
 @Component
 @Scope("prototype")
-public class EntityTypeImporter extends AbstractEnumImporter<EntityType, PEntityType> {
+public class EntityTypeImporter extends AbstractEnumImporter<PEntityType, EntityType> {
 
 	@Override
 	public PEntityType convertField(Field field) {
