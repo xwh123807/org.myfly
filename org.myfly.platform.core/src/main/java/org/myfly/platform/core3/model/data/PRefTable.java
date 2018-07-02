@@ -29,7 +29,7 @@ public class PRefTable extends FlyEntity {
 	private String referenceID;
 
 	@Column(length = 32)
-	private String entityTypeID;
+	private String entityType;
 
 	@Column(length = 32)
 	private String tableID;
@@ -67,14 +67,6 @@ public class PRefTable extends FlyEntity {
 
 	public void setReferenceID(String referenceID) {
 		this.referenceID = referenceID;
-	}
-
-	public String getEntityTypeID() {
-		return entityTypeID;
-	}
-
-	public void setEntityTypeID(String entityTypeID) {
-		this.entityTypeID = entityTypeID;
 	}
 
 	public String getTableID() {
@@ -155,5 +147,13 @@ public class PRefTable extends FlyEntity {
 
 	public void setWhereClause(String whereClause) {
 		this.whereClause = whereClause;
+	}
+
+	public String getEntityType() {
+		return entityType;
+	}
+
+	public void setEntityType(String entityType) {
+		this.entityType = entityType;
 	}
 }

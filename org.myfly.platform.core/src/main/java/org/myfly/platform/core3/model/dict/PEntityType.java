@@ -1,9 +1,13 @@
 package org.myfly.platform.core3.model.dict;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.myfly.platform.core3.domain.FlyMetaEntity;
+import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
+import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 /**
  * 实体类型 <br>
@@ -13,6 +17,12 @@ import org.myfly.platform.core3.domain.FlyMetaEntity;
  * @author xiangwanhong
  *
  */
+@Entity
+@Table(name = "PT_EntityType")
+@FlyTable(name = "Entity Type", description = "Dictionary Entity Type; Determines ownership and synchronization", //
+		help = "The Entity Types \"Dictionary\", \"Adempiere\" and \"Application\" might be automatically synchronized and customizations deleted or overwritten.  n\"\n"
+				+ "			+ \"n\" + \"For customizations, copy the entity and select \"User\"!")
+@FlyRefTable(keyColumn = "entityType", displayColumn = "name", name = "Entity Type")
 public class PEntityType extends FlyMetaEntity {
 	/**
 	 * 

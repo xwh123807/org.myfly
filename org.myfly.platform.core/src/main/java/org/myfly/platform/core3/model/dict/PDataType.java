@@ -1,9 +1,13 @@
 package org.myfly.platform.core3.model.dict;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.myfly.platform.core3.domain.FlyMetaEntity;
+import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
+import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 /**
  * 系统数据类型 <br>
@@ -13,6 +17,10 @@ import org.myfly.platform.core3.domain.FlyMetaEntity;
  * @author xiangwanhong
  *
  */
+@Entity
+@Table(name="PT_DataType")
+@FlyTable()
+@FlyRefTable(displayColumn = "name", keyColumn = "dataType", name = "DataType")
 public class PDataType extends FlyMetaEntity {
 	/**
 	 * 

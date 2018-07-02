@@ -1,6 +1,6 @@
 package org.myfly.platform.core3.domain;
 
-public interface IFlyMetaEntity {
+public interface IFlyMetaEntity{
 	public final String Name = "name";
 	public final String Description = "description";
 	public final String Help = "help";

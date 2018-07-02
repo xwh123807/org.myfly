@@ -6,10 +6,17 @@ import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.domain.Element;
 import org.myfly.platform.core3.metadata.annotation.FlyElement;
 import org.myfly.platform.core3.model.dict.PElement;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+/**
+ * 从枚举Element中导入数据到PElement中
+ * @author xiangwanhong
+ *
+ */
 @Component
-public class ElementImporter extends AbstractImporter<Element, PElement> {
+@Scope("prototype")
+public class ElementImporter extends AbstractEnumImporter<Element, PElement> {
 
 	@Override
 	public PElement convertField(Field field) {

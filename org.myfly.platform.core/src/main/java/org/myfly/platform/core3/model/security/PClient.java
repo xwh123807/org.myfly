@@ -22,6 +22,11 @@ import org.myfly.platform.core3.model.dict.PReplicationStrategy;
 @Entity
 @FlyTable(name = "Client", description = "Client/Tenant for this installation.")
 public class PClient extends FlyEntity {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8452625601049940882L;
+
 	@FlyField(name = "Search Key", description = "Search key for the record in the format required - must be unique", help = "A search key allows you a fast method of finding a particular record.\n"
 			+ "If you leave the search key empty, the system automatically creates a numeric number.  The document sequence used for this fallback number is defined in the \"Maintain Sequence\" window with the name \"DocumentNo_<TableName>\", where TableName is the actual name of the table (e.g. C_Order).")
 	@Column(name = "Value", length = 40, unique = true)

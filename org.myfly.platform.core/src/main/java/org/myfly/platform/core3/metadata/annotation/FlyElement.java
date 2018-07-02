@@ -8,6 +8,11 @@ import java.lang.annotation.Target;
 
 import org.myfly.platform.core3.domain.FlyDataType;
 
+/**
+ * 标记字段定义
+ * @author xiangwanhong
+ *
+ */
 @Target({ FIELD })
 @Retention(RUNTIME)
 public @interface FlyElement {

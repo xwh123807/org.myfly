@@ -7,6 +7,7 @@ import javax.persistence.Table;
 
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.FlyMetaEntity;
+import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 /**
@@ -20,6 +21,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 @Entity
 @Table(name = "PT_Element")
 @FlyTable(name = "System Element", description = "System Element enables the central maintenance of column description and help.")
+@FlyRefTable(displayColumn = "name", keyColumn = "elementID", name = "elementID")
 public class PElement extends FlyMetaEntity {
 	/**
 	 * 

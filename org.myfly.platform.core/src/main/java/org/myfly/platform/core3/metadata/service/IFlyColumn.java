@@ -1,30 +1,29 @@
 package org.myfly.platform.core3.metadata.service;
 
-import org.myfly.platform.core3.domain.EntityType;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.IFlyEntity;
+import org.myfly.platform.core3.domain.IFlyMetaEntity;
 
-public interface IFlyColumn extends IFlyEntity{
+public interface IFlyColumn extends IFlyMetaEntity, IFlyEntity{
+	String getColumnID();
+	
+	void setColumnID(String columnID);
+	
+	String getTableID();
+	
+	void setTableID(String tableID);
 
-	String getName();
+	String getEntityType();
 
-	void setName(String name);
-
-	String getDescription();
-
-	void setDescription(String description);
-
-	String getHelp();
-
-	void setHelp(String help);
-
-	EntityType getEntityType();
-
-	void setEntityType(EntityType entityType);
+	void setEntityType(String entityType);
 
 	String getCallout();
 
 	void setCallout(String callout);
+	
+	String getElementID();
+	
+	void setElementID(String elementID);
 
 	String getColumnName();
 
@@ -41,6 +40,10 @@ public interface IFlyColumn extends IFlyEntity{
 	Integer getFieldLength();
 
 	void setFieldLength(Integer fieldLength);
+	
+	String getReferenceID();
+	
+	void setReferenceID(String referenceID);
 
 	String getFormatPattern();
 
@@ -133,10 +136,6 @@ public interface IFlyColumn extends IFlyEntity{
 	String getvFormat();
 
 	void setvFormat(String vFormat);
-
-	IFlyDataModel getTable();
-
-	void setTable(IFlyDataModel table);
 
 	String getApiName();
 

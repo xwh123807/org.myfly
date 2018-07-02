@@ -1,16 +1,13 @@
 package org.myfly.platform.core3.metadata.service;
 
-import java.util.Set;
-
-import org.myfly.platform.core3.domain.EntityType;
 import org.myfly.platform.core3.domain.IFlyEntity;
+import org.myfly.platform.core3.domain.IFlyMetaEntity;
 import org.myfly.platform.core3.model.data.AccessLevel;
 
-public interface IFlyDataModel extends IFlyEntity{
+public interface IFlyDataModel extends IFlyEntity, IFlyMetaEntity {
+	String getTableID();
 
-	String getName();
-
-	void setName(String name);
+	void setTableID(String tableID);
 
 	String getTableName();
 
@@ -20,21 +17,13 @@ public interface IFlyDataModel extends IFlyEntity{
 
 	void setIsHighVolume(Boolean isHighVolume);
 
-	EntityType getEntityType();
+	String getEntityType();
 
-	void setEntityType(EntityType entityType);
-
-	String getDescription();
-
-	void setDescription(String description);
+	void setEntityType(String entityType);
 
 	AccessLevel getAccessLevel();
 
 	void setAccessLevel(AccessLevel accessLevel);
-
-	String getHelp();
-
-	void setHelp(String help);
 
 	String getReplicationType();
 
@@ -76,10 +65,6 @@ public interface IFlyDataModel extends IFlyEntity{
 
 	void setCopyColumnsFromTable(String copyColumnsFromTable);
 
-	Set<IFlyColumn> getColumns();
-
-	void setColumns(Set<IFlyColumn> columns);
-
 	String getApiName();
 
 	void setApiName(String apiName);
@@ -88,8 +73,8 @@ public interface IFlyDataModel extends IFlyEntity{
 
 	void setIsCentrallyMaintained(Boolean isCentrallyMaintained);
 
-	IFlyViewModel getWindow();
+	String getWindowID();
 
-	void setWindow(IFlyViewModel window);
+	void setWindowID(String windowID);
 
 }
