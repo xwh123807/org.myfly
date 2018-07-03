@@ -120,6 +120,6 @@ public enum FlyDataType implements IRefList {
 	SubTable,
 	//
 	@FlyField(name = "In Table", description = "One to One")
-	InTable;
+	InTable, Chart;
 
 }

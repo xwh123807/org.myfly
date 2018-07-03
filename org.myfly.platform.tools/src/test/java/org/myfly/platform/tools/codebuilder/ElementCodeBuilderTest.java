@@ -4,8 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.myfly.platform.tools.ToolsApplication;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest(classes = ToolsApplication.class)
 public class ElementCodeBuilderTest {
+	@Autowired
+	private ElementCodeBuilder builder;
+
 	private List<ADElement> getSources() {
 		List<ADElement> sources = new ArrayList<>();
 		ADElement element1 = new ADElement();
@@ -19,11 +29,18 @@ public class ElementCodeBuilderTest {
 		return sources;
 	}
 
+//	@Test
+//	public void genCodes() {
+//		ElementCodeBuilder builder = new ElementCodeBuilder();
+//		builder.setPackageName("org.myfly.platform.tools.codebuilder");
+//		builder.setSources(getSources());
+//		builder.generateCodes();
+//	}
+
 	@Test
-	public void genCodes() {
-		ElementCodeBuilder builder = new ElementCodeBuilder();
-		builder.setPackageName("org.myfly");
-		builder.setSources(getSources());
+	public void genCodesFromDB() {
+		builder.setPackageName("org.myfly.platform.tools.codebuilder");
+		builder.parareData();
 		builder.generateCodes();
 	}
 }

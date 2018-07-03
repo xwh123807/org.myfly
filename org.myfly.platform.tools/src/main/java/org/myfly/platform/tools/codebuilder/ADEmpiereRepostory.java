@@ -19,7 +19,7 @@ public class ADEmpiereRepostory {
 	 * @return
 	 */
 	public List<ADElement> getElements() {
-		List<Map<String, Object>> list = jdbcTemplate.queryForList("select * from ad_element");
+		List<Map<String, Object>> list = jdbcTemplate.queryForList("select * from ad_element order by columnname");
 		return list.stream().map(item -> new ADElement(item)).collect(Collectors.toList());
 	}
 
