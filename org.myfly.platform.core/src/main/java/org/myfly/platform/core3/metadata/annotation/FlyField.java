@@ -6,8 +6,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import org.myfly.platform.core3.domain.Element;
-import org.myfly.platform.core3.domain.EntityType;
+import org.myfly.platform.core3.dbinit.resources.Element;
+import org.myfly.platform.core3.dbinit.resources.EntityType;
 import org.myfly.platform.core3.domain.FlyDataType;
 
 /**

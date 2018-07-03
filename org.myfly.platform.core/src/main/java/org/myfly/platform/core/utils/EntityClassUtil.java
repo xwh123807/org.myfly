@@ -7,9 +7,11 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -19,6 +21,17 @@ import org.myfly.platform.core.metadata.annotation.FieldView;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 
 public class EntityClassUtil {
+
+	/**
+	 * 获取指定包下的实体类
+	 * 
+	 * @param packageName
+	 * @return
+	 */
+	public static List<Class<?>> getEntityClasses(String packageName) {
+		return ClassUtil.getClasses(packageName).stream().filter(item -> item.getAnnotation(Entity.class) != null)
+				.collect(Collectors.toList());
+	}
 
 	/**
 	 * 获取实体类属性，包含超类重定义的实体属性
@@ -40,6 +53,21 @@ public class EntityClassUtil {
 			list.addAll(getAllEntityFields(entityClass.getSuperclass()));
 		}
 		return list;
+	}
+
+	/**
+	 * 获取实体类属性，包含超类重定义的实体属性
+	 * @param entityClass
+	 * @return
+	 */
+	public static List<Field> getAllEntityFields(String entityClass) {
+		Class<?> cls = null;
+		try {
+			cls = Class.forName(entityClass);
+		} catch (ClassNotFoundException e) {
+			throw new IllegalArgumentException(e.getMessage());
+		}
+		return getAllEntityFields(cls);
 	}
 
 	/**

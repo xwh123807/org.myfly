@@ -1,15 +1,15 @@
 package org.myfly.platform.core3.model.security;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.myfly.platform.core3.domain.EntityType;
-import org.myfly.platform.core3.domain.FlyEntity;
-import org.myfly.platform.core3.metadata.annotation.FlyField;
+import org.myfly.platform.core3.domain.IFlyEntity;
+import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
-import org.myfly.platform.core3.model.dict.PReplicationStrategy;
 
 /**
  * 
@@ -19,27 +19,49 @@ import org.myfly.platform.core3.model.dict.PReplicationStrategy;
 @Entity
 @Table(name = "PT_Org")
 @FlyTable(name = "Organization", description = "Organizational entity within client")
-public class POrg extends FlyEntity {
-	@FlyField(name = "Search Key", description = "Search key for the record in the format required - must be unique", help = "A search key allows you a fast method of finding a particular record.\n"
-			+ "If you leave the search key empty, the system automatically creates a numeric number.  The document sequence used for this fallback number is defined in the \"Maintain Sequence\" window with the name \"DocumentNo_<TableName>\", where TableName is the actual name of the table (e.g. C_Order).")
+@FlyRefTable(name = "orgID", keyColumn = "orgID", displayColumn = "name")
+public class POrg implements IFlyEntity {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4936038273008540694L;
+
+	@Id
+	@Column(length = 32)
+	private String orgID;
+	
+	@Column
+	private Timestamp created;
+
+	@Column(length = 32)
+	private String createdBy;
+
+	@Column
+	private Timestamp updated;
+
+	@Column(length = 32)
+	private String updatedBy;
+
+	@Column
+	private Boolean isActive;
+
+	@Column(length = 32)
+	private String clientID;
+
 	@Column(name = "Value", length = 40, unique = true)
 	private String value;
 
-	@FlyField(name = "Name", description = "Alphanumeric identifier of the entity", help = "The name of an entity (record) is used as an default search option in addition to the search key. The name is up to 60 characters in length.", entityType = EntityType.D)
 	@Column(length = 60)
 	private String name;
-	
-	@FlyField(name = "Description", description = "Optional short description of the record", help = "A description is limited to 255 characters.")
+
 	@Column(length = 255)
 	private String description;
 
-	@FlyField(name = "Summary Level", description = "This is a summary entity", help = "A summary entity represents a branch in a tree rather than an end-node. Summary entities are used for reporting and do not have own values.")
 	@Column(name = "IsSummary")
 	private Boolean isSummary;
 
-	@FlyField(name = "Replication Strategy")
-	@ManyToOne()
-	private PReplicationStrategy replicationStrategy;
+	@Column(length = 32)
+	private String replicationStrategyID;
 
 	public String getValue() {
 		return value;
@@ -65,19 +87,75 @@ public class POrg extends FlyEntity {
 		this.isSummary = isSummary;
 	}
 
-	public PReplicationStrategy getReplicationStrategy() {
-		return replicationStrategy;
-	}
-
-	public void setReplicationStrategy(PReplicationStrategy replicationStrategy) {
-		this.replicationStrategy = replicationStrategy;
-	}
-
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getReplicationStrategyID() {
+		return replicationStrategyID;
+	}
+
+	public void setReplicationStrategyID(String replicationStrategyID) {
+		this.replicationStrategyID = replicationStrategyID;
+	}
+
+	public Timestamp getCreated() {
+		return created;
+	}
+
+	public void setCreated(Timestamp created) {
+		this.created = created;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Timestamp getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Timestamp updated) {
+		this.updated = updated;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	public String getClientID() {
+		return clientID;
+	}
+
+	public void setClientID(String clientID) {
+		this.clientID = clientID;
+	}
+
+	public String getOrgID() {
+		return orgID;
+	}
+
+	public void setOrgID(String orgID) {
+		this.orgID = orgID;
 	}
 }

@@ -1,82 +1,57 @@
 package org.myfly.platform.core3.model.view;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.myfly.platform.core3.domain.EntityType;
-import org.myfly.platform.core3.domain.FlyDataType;
-import org.myfly.platform.core3.domain.FlyEntity;
-import org.myfly.platform.core3.metadata.annotation.FlyField;
+import org.myfly.platform.core3.domain.FlyMetaEntity;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
 import org.myfly.platform.core3.metadata.service.IFlyViewModel;
-import org.myfly.platform.core3.metadata.service.IFlyViewTab;
-import org.myfly.platform.core3.model.dict.PColor;
-import org.myfly.platform.core3.model.dict.PImage;
 
 @Entity
 @Table(name = "PT_WINDOW")
 @FlyTable(name = "Window", description = "Data entry or display window", isHighVolume = true, isCentrallyMaintained = true)
-public class PWindow extends FlyEntity implements IFlyViewModel {
-	@FlyField(name = "Name", description = "Alphanumeric identifier of the entity", help = "The name of an entity (record) is used as an default search option in addition to the search key. The name is up to 60 characters in length.", entityType = EntityType.D)
-	@Column(length = 60)
-	private String name;
+public class PWindow extends FlyMetaEntity implements IFlyViewModel {
 
-	@FlyField(name = "Entity Type", dataType = FlyDataType.Table, description = "Dictionary Entity Type; Determines ownership and synchronization", help = "The Entity Types \"Dictionary\", \"Adempiere\" and \"Application\" might be automatically synchronized and customizations deleted or overwritten.  \n"
-			+ "\n" + "For customizations, copy the entity and select \"User\"!")
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1215729018901191338L;
+
+	@Id
+	@Column(length = 32)
+	private String windowID;
+
 	@Column(name = "EntityType")
-	private EntityType entityType;
+	private String entityType;
 
-	@FlyField(name = "Description", description = "Optional short description of the record", help = "A description is limited to 255 characters.")
-	@Column(length = 255)
-	private String description;
-
-	@FlyField(name = "Comment/Help", dataType = FlyDataType.Text, description = "Comment or Hint", help = "The Help field contains a hint, comment or help about the use of this item.")
-	@Column(length = 2000)
-	private String help;
-
-	@FlyField(name = "Beta Functionality", description = "This functionality is considered Beta", help = "Beta functionality is not fully tested or completed.")
 	@Column(name = "IsBetaFunctionality")
 	private String IsBetaFunctionality;
 
-	@FlyField(name = "Default", description = "Default value", help = "The Default Checkbox indicates if this record will be used as a default value.")
 	@Column(name = "IsDefault")
 	private Boolean isDefault;
 
-	@FlyField(name = "Sales Transaction", defaultValue = "Y", description = "This is a Sales Transaction", help = "The Sales Transaction checkbox indicates if this item is a Sales Transaction.")
 	@Column(name = "IsSOTrx")
 	private Boolean isSOTrx;
 
-	@FlyField(name = "Process Now")
 	@Column
 	private Boolean processing;
 
-	@FlyField(name = "WindowType", description = "Type or classification of a Window", help = "The Window Type indicates the type of window being defined (Maintain, Transaction or Query)")
 	@Column(name = "WindowType")
 	private WindowType windowType;
 
-	@FlyField(name = "Window Height")
 	@Column(name = "WinHeight")
 	private Integer winHeight;
 
-	@FlyField(name = "Window Width")
 	@Column(name = "WinWidth")
 	private Integer winWidth;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	private PImage image;
+	@Column(length = 32)
+	private String imageID;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	private PColor color;
-
-	@OneToMany(mappedBy = "window", fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, targetEntity = PTab.class)
-	private Set<IFlyViewTab> tabs;
+	@Column(length = 32)
+	private String colorID;
 
 	/*
 	 * (non-Javadoc)
@@ -102,31 +77,10 @@ public class PWindow extends FlyEntity implements IFlyViewModel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.myfly.platform.core3.model.view.IFlyViewModel#getName()
-	 */
-	@Override
-	public String getName() {
-		return name;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.myfly.platform.core3.model.view.IFlyViewModel#setName(java.lang.String)
-	 */
-	@Override
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see org.myfly.platform.core3.model.view.IFlyViewModel#getEntityType()
 	 */
 	@Override
-	public EntityType getEntityType() {
+	public String getEntityType() {
 		return entityType;
 	}
 
@@ -138,51 +92,8 @@ public class PWindow extends FlyEntity implements IFlyViewModel {
 	 * platform.core3.domain.EntityType)
 	 */
 	@Override
-	public void setEntityType(EntityType entityType) {
+	public void setEntityType(String entityType) {
 		this.entityType = entityType;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.myfly.platform.core3.model.view.IFlyViewModel#getDescription()
-	 */
-	@Override
-	public String getDescription() {
-		return description;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.myfly.platform.core3.model.view.IFlyViewModel#setDescription(java.lang.
-	 * String)
-	 */
-	@Override
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.myfly.platform.core3.model.view.IFlyViewModel#getHelp()
-	 */
-	@Override
-	public String getHelp() {
-		return help;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.myfly.platform.core3.model.view.IFlyViewModel#setHelp(java.lang.String)
-	 */
-	@Override
-	public void setHelp(String help) {
-		this.help = help;
 	}
 
 	/*
@@ -317,67 +228,14 @@ public class PWindow extends FlyEntity implements IFlyViewModel {
 		this.winWidth = winWidth;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.myfly.platform.core3.model.view.IFlyViewModel#getImage()
-	 */
 	@Override
-	public PImage getImage() {
-		return image;
+	public String getWindowID() {
+		return windowID;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.myfly.platform.core3.model.view.IFlyViewModel#setImage(org.myfly.platform
-	 * .core3.model.dict.PImage)
-	 */
 	@Override
-	public void setImage(PImage image) {
-		this.image = image;
+	public void setWindowID(String windowID) {
+		this.windowID = windowID;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.myfly.platform.core3.model.view.IFlyViewModel#getColor()
-	 */
-	@Override
-	public PColor getColor() {
-		return color;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.myfly.platform.core3.model.view.IFlyViewModel#setColor(org.myfly.platform
-	 * .core3.model.dict.PColor)
-	 */
-	@Override
-	public void setColor(PColor color) {
-		this.color = color;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.myfly.platform.core3.model.view.IFlyViewModel#getTabs()
-	 */
-	@Override
-	public Set<IFlyViewTab> getTabs() {
-		return tabs;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.myfly.platform.core3.model.view.IFlyViewModel#setTabs(java.util.Set)
-	 */
-	@Override
-	public void setTabs(Set<IFlyViewTab> tabs) {
-		this.tabs = tabs;
-	}
 }

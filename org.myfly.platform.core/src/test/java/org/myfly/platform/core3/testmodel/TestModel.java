@@ -1,12 +1,9 @@
 package org.myfly.platform.core3.testmodel;
 
-import java.util.HashSet;
-
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
-import org.myfly.platform.core3.model.test.PTDetail;
 import org.myfly.platform.core3.model.test.PTMaster;
 
 public class TestModel {
@@ -112,15 +109,6 @@ public class TestModel {
 	}
 
 	private PTMaster newTestEntity() {
-		PTMaster entity = new PTMaster();
-		entity.setUid(getUid());
-		entity.setIsActive(true);
-		entity.setCreated(DateUtil.nowSqlTimestamp());
-		entity.setDetails(new HashSet<>());
-		PTDetail detail = new PTDetail();
-		detail.setUid(subUid);
-		detail.setMaster(entity);
-		entity.getDetails().add(detail);
-		return entity;
+		return changedEntity;
 	}
 }

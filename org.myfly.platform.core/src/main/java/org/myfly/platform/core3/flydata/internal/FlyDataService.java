@@ -10,7 +10,7 @@ import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
 import org.myfly.platform.core3.flydata.service.IFlyDataService;
-import org.myfly.platform.core3.metadata.service.IFlyDataModel;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +39,7 @@ public class FlyDataService implements IFlyDataService {
 	 * @param entityName
 	 * @return
 	 */
-	private IFlyDataModel getFlyDataModel(String entityName) {
+	private FlyDataModel getFlyDataModel(String entityName) {
 		return dataModelService.getFlyDataModel(entityName);
 	}
 
@@ -81,8 +81,9 @@ public class FlyDataService implements IFlyDataService {
 	 */
 	@Override
 	public String saveEntity(String entityName, FlyEntityMap flyEntity) {
-		IFlyEntity entity = jpaService.saveEntity(FlyEntityUtils.toEntity(getFlyDataModel(entityName), flyEntity));
-		return entity.getUid();
+		FlyDataModel dataModel = getFlyDataModel(entityName);
+		IFlyEntity entity = jpaService.saveEntity(FlyEntityUtils.toEntity(dataModel, flyEntity));
+		return dataModel.getPKValue(entity);
 	}
 
 	/*
@@ -137,7 +138,7 @@ public class FlyDataService implements IFlyDataService {
 	 */
 	@Override
 	public List<FlyEntityMap> findAll(String entityName) {
-		IFlyDataModel dataModel = getFlyDataModel(entityName);
+		FlyDataModel dataModel = getFlyDataModel(entityName);
 		List<?> list = jpaService.findAll(getEntityClass(entityName));
 		if (CollectionUtils.isNotEmpty(list)) {
 			List<FlyEntityMap> results = new ArrayList<>();
@@ -174,7 +175,7 @@ public class FlyDataService implements IFlyDataService {
 	 */
 	@Override
 	public List<FlyEntityMap> findAll(String entityName, boolean hasSubTable, String[] subTableAttrs) {
-		IFlyDataModel dataModel = getFlyDataModel(entityName);
+		FlyDataModel dataModel = getFlyDataModel(entityName);
 		List<?> list = jpaService.findAll(getEntityClass(entityName));
 		if (CollectionUtils.isNotEmpty(list)) {
 			List<FlyEntityMap> results = new ArrayList<>();

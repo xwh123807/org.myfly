@@ -2,20 +2,14 @@ package org.myfly.platform.core3.metadata.handler;
 
 import java.util.Map;
 
-import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
-import org.myfly.platform.core3.metadata.define.ColumnDefinition;
-import org.myfly.platform.core3.metadata.service.IFlyDataModel;
+import org.myfly.platform.core3.metadata.define.FlyColumn;
 
 public class TableDirectValueHandler extends DefaultValueHandler {
-	private IFlyDataModel getFlyDataModel() {
-		return AppUtil.getFlyDataModel(getColumnDefinition().getFieldInfo().getField().getType().getName());
-	}
-
-	public TableDirectValueHandler(ColumnDefinition columnDefinition) {
-		super(columnDefinition);
+	public TableDirectValueHandler(FlyColumn column) {
+		super(column);
 	}
 
 	@Override

@@ -1,56 +1,48 @@
 package org.myfly.platform.core3.metadata.service;
 
-import java.util.Set;
-
-import org.myfly.platform.core3.domain.EntityType;
 import org.myfly.platform.core3.domain.IFlyEntity;
-import org.myfly.platform.core3.model.dict.PImage;
+import org.myfly.platform.core3.domain.IFlyMetaEntity;
 
-public interface IFlyViewTab extends IFlyEntity{
+public interface IFlyViewTab extends IFlyEntity, IFlyMetaEntity{
+	String getTabID();
+	
+	void setTabID(String tabID);
 
-	IFlyViewModel getWindow();
+	String getWindowID();
 
-	void setWindow(IFlyViewModel window);
+	void setWindow(String windowID);
 
-	IFlyDataModel getTable();
+	String getTableID();
 
-	void setTable(IFlyDataModel table);
+	void setTableID(String table);
 
-	PImage getImage();
+	String getImageID();
 
-	void setImage(PImage image);
+	void setImageID(String image);
 
 	String getCommitWarning();
 
 	void setCommitWarning(String commitWarning);
 
-	String getDescription();
-
-	void setDescription(String description);
-
 	String getDisplayLogic();
 
 	void setDisplayLogic(String displayLogic);
 
-	EntityType getEntityType();
+	String getEntityType();
 
-	void setEntityType(EntityType entityType);
+	void setEntityType(String entityType);
 
 	Boolean getHasTree();
 
 	void setHasTree(Boolean hasTree);
 
-	String getHelp();
-
-	void setHelp(String help);
-
 	String getImportFields();
 
 	void setImportFields(String importFields);
 
-	IFlyViewTab getIncludedTab();
+	String getIncludedTab();
 
-	void setIncludedTab(IFlyViewTab includedTab);
+	void setIncludedTab(String includedTab);
 
 	Boolean getIsAdvancedTab();
 
@@ -80,17 +72,13 @@ public interface IFlyViewTab extends IFlyEntity{
 
 	void setIsTranslationTab(Boolean isTranslationTab);
 
-	String getName();
-
-	void setName(String name);
-
 	String getOrderByClause();
 
 	void setOrderByClause(String orderByClause);
 
-	IFlyColumn getParentColumn();
+	String getParentColumn();
 
-	void setParentColumn(IFlyColumn parentColumn);
+	void setParentColumn(String parentColumn);
 
 	Boolean getProcessing();
 
@@ -111,9 +99,5 @@ public interface IFlyViewTab extends IFlyEntity{
 	String getWhereClause();
 
 	void setWhereClause(String whereClause);
-
-	Set<IFlyViewField> getFields();
-
-	void setFields(Set<IFlyViewField> fields);
 
 }

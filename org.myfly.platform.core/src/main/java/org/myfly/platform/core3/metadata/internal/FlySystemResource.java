@@ -39,6 +39,22 @@ public class FlySystemResource {
 	 * 40289f65642bc6b401642bc6b6160008 40289f65642bc6b401642bc6b6160009
 	 */
 
+	public String getSystemClientID() {
+		return UID_SYSTEM_CLIENT;
+	}
+
+	public String getAllOrgID() {
+		return UID_ALL_ORG;
+	}
+
+	public String getSystemUserID() {
+		return UID_SYSTEM_USER;
+	}
+
+	public String getSuperUserID() {
+		return UID_SUPER_USER;
+	}
+
 	public PClient getSystemClient() {
 		return dataService.findOne(PClient.class, UID_SYSTEM_CLIENT);
 	}

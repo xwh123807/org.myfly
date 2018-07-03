@@ -10,10 +10,7 @@ import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core3.metadata.service.IFlyDataModel;
-import org.myfly.platform.core3.model.security.PClient;
-import org.myfly.platform.core3.model.security.POrg;
-import org.myfly.platform.core3.model.security.PUser;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
 
 /**
  * 数据查询结果集<br>
@@ -74,7 +71,7 @@ public class FlyEntityMap extends HashMap<String, Object> implements IFlyEntity 
 	 * @return
 	 */
 	public Object toEntity(String entityName) {
-		IFlyDataModel metaData = AppUtil.getFlyDataModel(entityName);
+		FlyDataModel metaData = AppUtil.getFlyDataModel(entityName);
 		return FlyEntityUtils.toEntity(metaData, this);
 	}
 
@@ -99,16 +96,6 @@ public class FlyEntityMap extends HashMap<String, Object> implements IFlyEntity 
 			}
 		});
 		return this;
-	}
-
-	@Override
-	public String getUid() {
-		return (String) get(IFlyEntity.UID);
-	}
-
-	@Override
-	public void setUid(String uid) {
-		put(IFlyEntity.UID, uid);
 	}
 
 	@Override
@@ -142,42 +129,42 @@ public class FlyEntityMap extends HashMap<String, Object> implements IFlyEntity 
 	}
 
 	@Override
-	public PUser getCreatedBy() {
-		return (PUser) get(IFlyEntity.CREATED_BY);
+	public String getCreatedBy() {
+		return (String) get(IFlyEntity.CREATED_BY);
 	}
 
 	@Override
-	public void setCreatedBy(PUser createdBy) {
+	public void setCreatedBy(String createdBy) {
 		put(IFlyEntity.CREATED_BY, createdBy);
 	}
 
 	@Override
-	public PUser getUpdatedBy() {
-		return (PUser) get(IFlyEntity.UPDATED_BY);
+	public String getUpdatedBy() {
+		return (String) get(IFlyEntity.UPDATED_BY);
 	}
 
 	@Override
-	public void setUpdatedBy(PUser updatedBy) {
+	public void setUpdatedBy(String updatedBy) {
 		put(IFlyEntity.UPDATED_BY, updatedBy);
 	}
 
 	@Override
-	public PClient getClient() {
-		return (PClient) get(IFlyEntity.CLIENT);
+	public String getClientID() {
+		return (String) get(IFlyEntity.CLIENT);
 	}
 
 	@Override
-	public void setClient(PClient client) {
+	public void setClientID(String client) {
 		put(IFlyEntity.CLIENT, client);
 	}
 
 	@Override
-	public POrg getOrg() {
-		return (POrg) get(IFlyEntity.ORG);
+	public String getOrgID() {
+		return (String) get(IFlyEntity.ORG);
 	}
 
 	@Override
-	public void setOrg(POrg org) {
+	public void setOrgID(String org) {
 		put(IFlyEntity.ORG, org);
 	}
 }

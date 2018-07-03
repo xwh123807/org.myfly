@@ -2,6 +2,8 @@ package org.myfly.platform.core3.metadata.service;
 
 import java.util.List;
 
+import org.myfly.platform.core3.domain.IFlyEntity;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.core3.model.data.PColumn;
 import org.myfly.platform.core3.model.data.PTable;
 
@@ -27,7 +29,7 @@ public interface IFlyDataModelService {
 	 * 
 	 * @return
 	 */
-	List<Class<?>> getAllEntityClasses();
+	List<Class<? extends IFlyEntity>> getAllEntityClasses();
 
 	/**
 	 * 获取实体类
@@ -43,7 +45,7 @@ public interface IFlyDataModelService {
 	 * @param entityName
 	 * @return
 	 */
-	public IFlyDataModel getFlyDataModel(String entityName);
+	public FlyDataModel getFlyDataModel(String entityName);
 
 	/**
 	 * 获取表的数据模型
@@ -51,12 +53,5 @@ public interface IFlyDataModelService {
 	 * @param entityClass
 	 * @return
 	 */
-	public IFlyDataModel getFlyDataModelFromEntityClass(Class<?> entityClass);
-
-	/**
-	 * 从实体类中导入数据模型到数据库中
-	 * 
-	 * @return
-	 */
-	public List<String> importDataModelFromAllEntityClasses();
+	public FlyDataModel getFlyDataModelFromEntityClass(Class<?> entityClass);
 }

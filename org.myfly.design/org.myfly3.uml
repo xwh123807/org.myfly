@@ -43,7 +43,9 @@
       <interfaceRealization xmi:id="_DT8RcH3AEeiCu7f2FL4vPg" client="_-ZnwsHjWEei_35Tg4gDLRw" supplier="_OhaToHjXEei_35Tg4gDLRw" contract="_OhaToHjXEei_35Tg4gDLRw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_-Zq0AHjWEei_35Tg4gDLRw" name="PRefList" visibility="public"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_A8v0wHjXEei_35Tg4gDLRw" name="FlyDataModelBuilder" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_A8v0wHjXEei_35Tg4gDLRw" name="FlyDataModelBuilder" visibility="public">
+      <generalization xmi:id="_GCeEQH5wEeiCu7f2FL4vPg" general="_0v9yAH28EeiCu7f2FL4vPg"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="_OhaToHjXEei_35Tg4gDLRw" name="IFlyDataModel" visibility="public"/>
     <packagedElement xmi:type="uml:Interface" xmi:id="_TraTUHjXEei_35Tg4gDLRw" name="IFlyColumn" visibility="public"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_hoMXQHjXEei_35Tg4gDLRw" memberEnd="_hoMXQXjXEei_35Tg4gDLRw _hoM-UXjXEei_35Tg4gDLRw" navigableOwnedEnd="_hoM-UXjXEei_35Tg4gDLRw">

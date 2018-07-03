@@ -1,6 +1,5 @@
 package org.myfly.platform.core3.metadata.handler;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -13,13 +12,13 @@ import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
-import org.myfly.platform.core3.metadata.define.ColumnDefinition;
-import org.myfly.platform.core3.metadata.service.IFlyDataModel;
+import org.myfly.platform.core3.metadata.define.FlyColumn;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
 
 public class SubTableValueHandler extends DefaultValueHandler {
 
-	public SubTableValueHandler(ColumnDefinition columnDefinition) {
-		super(columnDefinition);
+	public SubTableValueHandler(FlyColumn column) {
+		super(column);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -27,7 +26,7 @@ public class SubTableValueHandler extends DefaultValueHandler {
 	public Object getFieldValueForEntity(Object entity) {
 		Collection<IFlyEntity> values = (Collection<IFlyEntity>) super.getFieldValueForEntity(entity);
 		List<FlyEntityMap> list = new ArrayList<>();
-		IFlyDataModel dataModel = null;
+		FlyDataModel dataModel = null;
 		if (CollectionUtils.isNotEmpty(values)) {
 			for (Object item : values) {
 				if (dataModel == null) {
@@ -57,8 +56,9 @@ public class SubTableValueHandler extends DefaultValueHandler {
 		}
 	}
 
-	private IFlyDataModel getFlyDataModel() {
-		ParameterizedType type = (ParameterizedType) getColumnDefinition().getFieldInfo().getField().getGenericType();
-		return AppUtil.getFlyDataModel(type.getActualTypeArguments()[0].getTypeName());
+	private FlyDataModel getFlyDataModel() {
+		return null;
+//		ParameterizedType type = (ParameterizedType) getGetter().getReturnType().
+//		return AppUtil.getFlyDataModel(type.getActualTypeArguments()[0].getTypeName());
 	}
 }

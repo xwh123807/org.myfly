@@ -50,7 +50,8 @@ public class AbstractImporter<T extends IFlyEntity> {
 	}
 
 	/**
-	 * 将targets实体保存到数据库中
+	 * 将targets实体保存到数据库中<br>
+	 * 如果targets中有多个不同类型的实体，子类则需要覆盖save方法，分开保存不同类的实体<br>
 	 */
 	public void save() {
 		beforeSave();

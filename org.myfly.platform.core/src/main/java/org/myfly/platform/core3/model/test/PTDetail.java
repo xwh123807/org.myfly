@@ -2,8 +2,7 @@ package org.myfly.platform.core3.model.test;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.myfly.platform.core3.domain.FlyEntity;
@@ -11,19 +10,19 @@ import org.myfly.platform.core3.domain.FlyEntity;
 @Entity
 @Table(name="PT_Detail")
 public class PTDetail extends FlyEntity {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4451063686901889950L;
+	@Id
+	@Column(length=32)
+	private String detailID;
+	
 	@Column
 	private String name;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private PTMaster master;
-
-	public PTMaster getMaster() {
-		return master;
-	}
-
-	public void setMaster(PTMaster master) {
-		this.master = master;
-	}
+	@Column(length=32)
+	private String masterID;
 
 	public String getName() {
 		return name;
@@ -31,5 +30,21 @@ public class PTDetail extends FlyEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDetailID() {
+		return detailID;
+	}
+
+	public void setDetailID(String detailID) {
+		this.detailID = detailID;
+	}
+
+	public String getMasterID() {
+		return masterID;
+	}
+
+	public void setMasterID(String masterID) {
+		this.masterID = masterID;
 	}
 }

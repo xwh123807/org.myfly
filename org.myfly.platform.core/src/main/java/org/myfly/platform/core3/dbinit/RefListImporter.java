@@ -1,11 +1,13 @@
 package org.myfly.platform.core3.dbinit;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.myfly.platform.core.utils.UUIDUtil;
+import org.myfly.platform.core3.dbinit.resources.RefList;
 import org.myfly.platform.core3.domain.IFlyEntity;
-import org.myfly.platform.core3.domain.RefList;
 import org.myfly.platform.core3.metadata.annotation.FlyRefList;
 import org.myfly.platform.core3.model.data.ValidationType;
 import org.myfly.platform.core3.model.dict.PRefList;
@@ -23,13 +25,24 @@ import org.springframework.util.Assert;
 @Component
 @Scope("prototype")
 public class RefListImporter extends AbstractEnumImporter<IFlyEntity, RefList> {
+	private PReference reference;
+
+	private List<PRefList> refLists;
+
+	public PReference getReference() {
+		return reference;
+	}
+
+	public List<PRefList> getRefLists() {
+		return refLists;
+	}
 
 	@Override
 	public IFlyEntity convertField(Field field) {
 		FlyRefList flyRefList = field.getAnnotation(FlyRefList.class);
 		Assert.notNull(flyRefList);
 
-		PReference reference = new PReference();
+		reference = new PReference();
 		reference.setReferenceID(UUIDUtil.newUUID());
 		reference.setName(flyRefList.name());
 		reference.setDescription(flyRefList.description());
@@ -39,6 +52,7 @@ public class RefListImporter extends AbstractEnumImporter<IFlyEntity, RefList> {
 		getTargets().add(reference);
 
 		Assert.notEmpty(flyRefList.items());
+		refLists = new ArrayList<>();
 		Stream.of(flyRefList.items()).forEach(item -> {
 			PRefList refList = new PRefList();
 			refList.setReferenceID(reference.getReferenceID());
@@ -50,9 +64,16 @@ public class RefListImporter extends AbstractEnumImporter<IFlyEntity, RefList> {
 			refList.setValidFrom(item.validFrom());
 			refList.setValidTo(item.validTo());
 			refList.setEntityType(item.entityType());
+			refLists.add(refList);
 			getTargets().add(refList);
 		});
 		return null;
 	}
 
+	@Override
+	public void save() {
+		beforeSave();
+		getDataService().saveEntity(getReference());
+		getDataService().batchSaveEntity(getRefLists());
+	}
 }

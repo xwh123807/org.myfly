@@ -2,19 +2,16 @@ package org.myfly.platform.core3.flydata.internal;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Stream;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.JSONUtil;
-import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
-import org.myfly.platform.core3.metadata.define.ValueHandlerFactory;
-import org.myfly.platform.core3.metadata.service.IFlyColumn;
-import org.myfly.platform.core3.metadata.service.IFlyDataModel;
+import org.myfly.platform.core3.metadata.define.FlyColumn;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
 
 public class FlyEntityUtils {
 	/**
@@ -24,7 +21,7 @@ public class FlyEntityUtils {
 	 * @param jsonEntity
 	 * @return
 	 */
-	public static IFlyEntity toEntity(IFlyDataModel metaData, String jsonEntity) {
+	public static IFlyEntity toEntity(FlyDataModel metaData, String jsonEntity) {
 		FlyEntityMap result = JSONUtil.fromJSON(jsonEntity, FlyEntityMap.class);
 		return toEntity(metaData, result);
 	}
@@ -36,7 +33,7 @@ public class FlyEntityUtils {
 	 * @param flyEntity
 	 * @return
 	 */
-	public static IFlyEntity toEntity(IFlyDataModel metaData, FlyEntityMap flyEntity) {
+	public static IFlyEntity toEntity(FlyDataModel metaData, FlyEntityMap flyEntity) {
 		return toEntity(metaData, (Map<String, Object>) flyEntity, true);
 	}
 
@@ -63,8 +60,8 @@ public class FlyEntityUtils {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	private static IFlyEntity getCachedEntity(IFlyDataModel metaData, IFlyEntity entity, boolean isNew) {
-		String uid = ((IFlyEntity) entity).getUid();
+	private static IFlyEntity getCachedEntity(FlyDataModel metaData, IFlyEntity entity, boolean isNew) {
+		String uid = metaData.getPKValue(entity);
 		String key = metaData.getApiName() + "_" + uid;
 		if (isNew || !localEntityCache.get().containsKey(key)) {
 			// 新增模式或缓存中不存在
@@ -82,8 +79,8 @@ public class FlyEntityUtils {
 	 * @param entity
 	 */
 	@SuppressWarnings("unchecked")
-	private static void mergeCachedEntity(IFlyDataModel metaData, IFlyEntity entity) {
-		String uid = ((IFlyEntity) entity).getUid();
+	private static void mergeCachedEntity(FlyDataModel metaData, IFlyEntity entity) {
+		String uid = metaData.getPKValue(entity);
 		String key = metaData.getApiName() + "_" + uid;
 		localEntityCache.get().put(key, entity);
 	}
@@ -97,30 +94,15 @@ public class FlyEntityUtils {
 	 *            是新增模式调用，还是修改模式调用
 	 * @return
 	 */
-	public static IFlyEntity toEntity(IFlyDataModel metaData, Map<String, Object> flyEntity, boolean isNew) {
+	public static IFlyEntity toEntity(FlyDataModel metaData, Map<String, Object> flyEntity, boolean isNew) {
 		IFlyEntity entity = FlyEntityUtils.newInstance(metaData.getApiName());
-		metaData.getColumns().forEach(field -> {
-			// 主键字段已经在对象构建时设置了值，此处跳过不重复设置
+		metaData.getColumnMap().values().forEach(field -> {
 			if (flyEntity.containsKey(field.getApiName())) {
 				Object value = flyEntity.get(field.getApiName());
-				AppUtil.getColumnValueHandler(field).setFieldValue(entity, value);
+				field.getValueHandler().setFieldValue(entity, value);
 			}
 		});
 		return entity;
-
-		// IFlyEntity entity = metaData.newEntityInstance(flyEntity);
-		// IFlyEntity cacheEntity = getCachedEntity(metaData, entity, isNew);
-		// if (cacheEntity != null) {
-		// return cacheEntity;
-		// }
-		// metaData.getFlyFields().values().forEach(field -> {
-		// // 主键字段已经在对象构建时设置了值，此处跳过不重复设置
-		// if (flyEntity.containsKey(field.getApiName())) {
-		// Object value = flyEntity.get(field.getApiName());
-		// field.getValueHandler().setFieldValue(entity, value);
-		// }
-		// });
-		// return entity;
 	}
 
 	/**
@@ -135,15 +117,15 @@ public class FlyEntityUtils {
 	 *            是否全覆盖，没有的属性设为null
 	 * @return
 	 */
-	public static IFlyEntity mergeEntity(IFlyDataModel metaData, IFlyEntity entity, Map flyEntity, boolean isAllMerge) {
+	public static IFlyEntity mergeEntity(FlyDataModel metaData, IFlyEntity entity, Map flyEntity, boolean isAllMerge) {
 		mergeCachedEntity(metaData, entity);
-		metaData.getColumns().forEach(field -> {
+		metaData.getColumnMap().values().forEach(field -> {
 			// 主键字段已经在对象构建时设置了值，此处跳过不重复设置
 			if (isAllMerge || flyEntity.containsKey(field.getApiName())) {
 				// 全覆盖或属性有修改
 				Object value = flyEntity.get(field.getApiName());
 				// Object oldValue = field.getValueHandler().getFieldValue(entity);
-				AppUtil.getColumnValueHandler(field).setFieldValue(entity, value);
+				field.getValueHandler().setFieldValue(entity, value);
 			}
 		});
 		return entity;
@@ -157,10 +139,10 @@ public class FlyEntityUtils {
 	 * @param subTableAttrs
 	 * @return
 	 */
-	public static Map<String, Boolean> subTableNeedConvert(IFlyDataModel dataModel, boolean hasSubTable,
+	public static Map<String, Boolean> subTableNeedConvert(FlyDataModel dataModel, boolean hasSubTable,
 			String[] subTableAttrs) {
 		Map<String, Boolean> result = new HashMap<>();
-		dataModel.getColumns().stream().filter(column -> FlyDataType.SubTable.equals(column.getDataType()))
+		dataModel.getColumnMap().values().stream().filter(column -> FlyDataType.SubTable.equals(column.getDataType()))
 				.forEach(subTable -> {
 					boolean isNotNeed = !hasSubTable
 							|| (hasSubTable && !ArrayUtils.contains(subTableAttrs, subTable.getApiName()));
@@ -182,13 +164,13 @@ public class FlyEntityUtils {
 	 *            需要转换的子表，为空表示所有子表
 	 * @return
 	 */
-	public static FlyEntityMap fromEntity(IFlyDataModel dataModel, Object entityObj, boolean hasSubTable,
+	public static FlyEntityMap fromEntity(FlyDataModel dataModel, Object entityObj, boolean hasSubTable,
 			String[] subTableAttrs) {
 		if (entityObj == null) {
 			return null;
 		}
 		FlyEntityMap result = new FlyEntityMap();
-		for (IFlyColumn field : dataModel.getColumns()) {
+		for (FlyColumn field : dataModel.getColumnMap().values()) {
 			boolean isNeed = true;
 			if (FlyDataType.SubTable.equals(field.getDataType())) {
 				isNeed = hasSubTable
@@ -196,7 +178,7 @@ public class FlyEntityUtils {
 			}
 			// 是子表类型，且hasSubTable=false或者hasSubTable=true且不需要处理
 			if (isNeed) {
-				result.put(field.getApiName(), AppUtil.getColumnValueHandler(field).getFieldValue(entityObj));
+				result.put(field.getApiName(), field.getValueHandler().getFieldValue(entityObj));
 			}
 		}
 		return result;
@@ -209,13 +191,13 @@ public class FlyEntityUtils {
 	 * @param entityObj
 	 * @return
 	 */
-	public static FlyEntityMap fromEntity(IFlyDataModel dataModel, Object entityObj) {
+	public static FlyEntityMap fromEntity(FlyDataModel dataModel, Object entityObj) {
 		if (entityObj == null) {
 			return null;
 		}
 		FlyEntityMap result = new FlyEntityMap();
-		for (IFlyColumn field : dataModel.getColumns()) {
-			result.put(field.getApiName(), AppUtil.getColumnValueHandler(field).getFieldValue(entityObj));
+		for (FlyColumn field : dataModel.getColumnMap().values()) {
+			result.put(field.getApiName(), field.getValueHandler().getFieldValue(entityObj));
 		}
 		return result;
 	}
@@ -281,9 +263,8 @@ public class FlyEntityUtils {
 	@SuppressWarnings("unchecked")
 	public static <T extends IFlyEntity> T newFlyEntity(Class<T> entityClass, IFlyEntity from) {
 		IFlyEntity entity = newInstance(entityClass);
-		entity.setUid(UUIDUtil.newUUID());
-		entity.setClient(from.getClient());
-		entity.setOrg(from.getOrg());
+		entity.setClientID(from.getClientID());
+		entity.setOrgID(from.getOrgID());
 		entity.setCreated(DateUtil.nowSqlTimestamp());
 		entity.setCreatedBy(from.getCreatedBy());
 		entity.setUpdated(DateUtil.nowSqlTimestamp());

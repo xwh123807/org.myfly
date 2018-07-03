@@ -1,52 +1,45 @@
 package org.myfly.platform.core3.metadata.service;
 
-import org.myfly.platform.core3.domain.EntityType;
+import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.IFlyEntity;
-import org.myfly.platform.core3.model.dict.PRefList;
-import org.myfly.platform.core3.model.dict.PReference;
-import org.myfly.platform.core3.model.view.PFieldGroup;
+import org.myfly.platform.core3.domain.IFlyMetaEntity;
 
-public interface IFlyViewField extends IFlyEntity{
+public interface IFlyViewField extends IFlyEntity, IFlyMetaEntity{
+	String getFieldID();
+	
+	void setFieldID(String fieldID);
 
-	IFlyColumn getColumn();
+	String getColumnID();
 
-	void setColumn(IFlyColumn column);
+	void setColumn(String columnID);
 
-	PFieldGroup getFieldGroup();
+	String getFieldGroupID();
 
-	void setFieldGroup(PFieldGroup fieldGroup);
+	void setFieldGroup(String fieldGroupID);
 
-	PReference getReference();
+	FlyDataType getDataType();
 
-	void setReference(PReference reference);
+	void setDataType(FlyDataType dataType);
 
-	PRefList getRefList();
+	String getReferenceID();
 
-	void setRefList(PRefList refList);
+	void setReferenceID(String referenceID);
 
-	IFlyViewTab getTab();
+	String getTabID();
 
-	void setTab(IFlyViewTab tab);
+	void setTab(String tabID);
 
 	String getDefaultValue();
 
 	void setDefaultValue(String defaultValue);
 
-	String getDescription();
+	String getEntityType();
 
-	void setDescription(String description);
+	void setEntityType(String entityType);
 
-	EntityType getEntityType();
+	String getIncludedTab();
 
-	void setEntityType(EntityType entityType);
-
-	String getHelp();
-
-	void setHelp(String help);
-
-	IFlyViewTab getIncludedTab();
-
-	void setIncludedTab(IFlyViewTab includedTab);
+	void setIncludedTab(String includedTab);
 
 	String getInfoFactoryClass();
 
@@ -95,10 +88,6 @@ public interface IFlyViewField extends IFlyEntity{
 	Boolean getIsSameLine();
 
 	void setIsSameLine(Boolean isSameLine);
-
-	String getName();
-
-	void setName(String name);
 
 	Boolean getPreferredWidth();
 

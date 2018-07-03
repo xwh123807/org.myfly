@@ -15,10 +15,8 @@ import org.myfly.platform.core3.model.data.ValidationType;
 @Entity
 @Table(name = "PT_Reference", indexes = @Index(columnList = "name", unique = true))
 @FlyTable(name = "Reference", description = "System Reference (Pick List)", help = "The Reference could be a display type, list or table validation.")
-@FlyReferences(references= {
-		@FlyRefTable(displayColumn = "name", keyColumn = "referenceID", name = "referenceID"),
-		@FlyRefTable(displayColumn = "name", keyColumn = "name", name = "PReference_name")
-})
+@FlyReferences(references = { @FlyRefTable(displayColumn = "name", keyColumn = "referenceID", name = "referenceID"),
+		@FlyRefTable(displayColumn = "name", keyColumn = "name", name = "PReference_name") })
 public class PReference extends FlyMetaEntity {
 	/**
 	 * 
@@ -26,7 +24,7 @@ public class PReference extends FlyMetaEntity {
 	private static final long serialVersionUID = -80653804439861600L;
 
 	@Id
-	@Column(name = "Reference_ID", length = 32)
+	@Column(length = 32)
 	private String referenceID;
 
 	@Column(length = 40)

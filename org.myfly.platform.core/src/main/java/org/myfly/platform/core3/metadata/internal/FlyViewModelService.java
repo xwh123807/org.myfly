@@ -64,14 +64,13 @@ public class FlyViewModelService implements IFlyViewModelService {
 	}
 
 	private void updateFlyEntity(IFlyEntity flyEntity) {
-		flyEntity.setUid(UUIDUtil.newUUID());
 		flyEntity.setIsActive(true);
 		flyEntity.setCreated(DateUtil.nowSqlTimestamp());
-		flyEntity.setCreatedBy(systemResource.getSystemUser());
+		flyEntity.setCreatedBy(systemResource.getSystemUserID());
 		flyEntity.setUpdated(DateUtil.nowSqlTimestamp());
-		flyEntity.setUpdatedBy(systemResource.getSystemUser());
-		flyEntity.setClient(systemResource.getSystemClient());
-		flyEntity.setOrg(systemResource.getAllOrg());
+		flyEntity.setUpdatedBy(systemResource.getSystemUserID());
+		flyEntity.setClientID(systemResource.getSystemClientID());
+		flyEntity.setOrgID(systemResource.getAllOrgID());
 	}
 
 	/*
@@ -83,23 +82,23 @@ public class FlyViewModelService implements IFlyViewModelService {
 	@Override
 	public List<String> importBuildInViewModelFromAllDataModels() {
 		List<String> list = new ArrayList<>();
-		dataModelService.getAllEntityClasses().stream().map(entityClass -> entityClass.getName())
-				.forEach(entityName -> {
-					String info = "导入显示模型：" + entityName;
-					if (log.isInfoEnabled()) {
-						log.info(info);
-					}
-					list.add(info);
-					IFlyViewModel viewModel = getFlyViewModelFromBuildIn(entityName);
-					updateFlyEntity(viewModel);
-					viewModel.getTabs().forEach(tab -> {
-						updateFlyEntity(tab);
-						tab.getFields().forEach(field -> {
-							updateFlyEntity(field);
-						});
-					});
-					dataService.saveEntity(viewModel);
-				});
+//		dataModelService.getAllEntityClasses().stream().map(entityClass -> entityClass.getName())
+//				.forEach(entityName -> {
+//					String info = "导入显示模型：" + entityName;
+//					if (log.isInfoEnabled()) {
+//						log.info(info);
+//					}
+//					list.add(info);
+//					IFlyViewModel viewModel = getFlyViewModelFromBuildIn(entityName);
+//					updateFlyEntity(viewModel);
+//					viewModel.getTabs().forEach(tab -> {
+//						updateFlyEntity(tab);
+//						tab.getFields().forEach(field -> {
+//							updateFlyEntity(field);
+//						});
+//					});
+//					dataService.saveEntity(viewModel);
+//				});
 		return list;
 	}
 

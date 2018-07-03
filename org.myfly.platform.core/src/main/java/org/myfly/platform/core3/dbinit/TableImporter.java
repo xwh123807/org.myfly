@@ -6,13 +6,15 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.utils.EntityClassUtil.FieldInfo;
 import org.myfly.platform.core.utils.StringUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
-import org.myfly.platform.core3.domain.EntityType;
+import org.myfly.platform.core3.dbinit.resources.EntityType;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
@@ -27,6 +29,7 @@ import org.myfly.platform.core3.model.data.ValidationType;
 import org.myfly.platform.core3.model.dict.PReference;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 /**
  * 从实体类定义中导入数据到PTable、PColumn、PRefTable中
@@ -41,6 +44,7 @@ public class TableImporter extends AbstractClassImporter<IFlyEntity> {
 	private List<PColumn> columns;
 	private List<PReference> references;
 	private List<PRefTable> refTables;
+	private Class<? extends IFlyEntity> entityClass;
 
 	public TableImporter() {
 		columns = new ArrayList<>();
@@ -50,18 +54,38 @@ public class TableImporter extends AbstractClassImporter<IFlyEntity> {
 
 	@Override
 	public void convertClass(Class<? extends IFlyEntity> entityClass) {
+		this.entityClass = entityClass;
 		table = new PTable();
 		table.setTableID(UUIDUtil.newUUID());
 		buildTable(entityClass);
-		buildRefTable(entityClass);
 	}
-	
+
 	@Override
 	public void convertFinish() {
+		buildRefTable(entityClass);
 		getTargets().add(getTable());
 		getTargets().addAll(getReferences());
-		getTargets().addAll(getRefTabls());
 		getTargets().addAll(getColumns());
+		getTargets().addAll(getRefTabls());
+	}
+
+	/**
+	 * 查找指定列
+	 * 
+	 * @param columnName
+	 * @return
+	 */
+	private PColumn getColumn(String columnName) {
+		Assert.notEmpty(getColumns(), "columns还没有初始化");
+		PColumn result = null;
+		for (PColumn item : getColumns()) {
+			if (item.getApiName().equals(columnName)) {
+				result = item;
+				break;
+			}
+		}
+		Assert.notNull(result, "列名[" + columnName + "]找不到.");
+		return result;
 	}
 
 	@Override
@@ -99,8 +123,8 @@ public class TableImporter extends AbstractClassImporter<IFlyEntity> {
 			PRefTable refTable = new PRefTable();
 			refTable.setReferenceID(reference.getReferenceID());
 			refTable.setEntityType(ref.entityType());
-			refTable.setKeyColumn(ref.keyColumn());
-			refTable.setDisplayColumn(ref.displayColumn());
+			refTable.setKeyColumn(getColumn(ref.keyColumn()).getColumnID());
+			refTable.setDisplayColumn(getColumn(ref.displayColumn()).getColumnID());
 			refTable.setDisplaySQL(ref.displaySQL());
 			refTable.setIsAlert(ref.isAlert());
 			refTable.setIsDisplayIdentifier(ref.isDisplayIdentifier());
@@ -122,6 +146,9 @@ public class TableImporter extends AbstractClassImporter<IFlyEntity> {
 		PColumn column = new PColumn();
 		column.setColumnID(UUIDUtil.newUUID());
 		column.setApiName(property.getName());
+		if (property.getAnnotation(Id.class) != null) {
+			column.setIsKey(true);
+		}
 		FlyField view = property.getAnnotation(FlyField.class);
 		if (view != null) {
 			column.setName(view.name());
@@ -177,7 +204,7 @@ public class TableImporter extends AbstractClassImporter<IFlyEntity> {
 	private void buildTable(Class<? extends IFlyEntity> entityClass) {
 		table.setApiName(entityClass.getName());
 		Table anno = entityClass.getAnnotation(Table.class);
-		if (table != null) {
+		if (anno != null) {
 			table.setTableName(anno.name());
 		}
 		FlyTable flyTable = entityClass.getAnnotation(FlyTable.class);
@@ -218,5 +245,18 @@ public class TableImporter extends AbstractClassImporter<IFlyEntity> {
 
 	public List<PRefTable> getRefTabls() {
 		return refTables;
+	}
+
+	@Override
+	public void save() {
+		beforeSave();
+		getDataService().saveEntity(getTable());
+		if (CollectionUtils.isNotEmpty(getReferences())) {
+			getDataService().batchSaveEntity(getReferences());
+		}
+		getDataService().batchSaveEntity(getColumns());
+		if (CollectionUtils.isNotEmpty(getRefTabls())) {
+			getDataService().batchSaveEntity(getRefTabls());
+		}
 	}
 }

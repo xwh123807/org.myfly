@@ -1,14 +1,13 @@
 package org.myfly.platform.core3.metadata.service;
 
-import java.util.Set;
-
-import org.myfly.platform.core3.domain.EntityType;
 import org.myfly.platform.core3.domain.IFlyEntity;
-import org.myfly.platform.core3.model.dict.PColor;
-import org.myfly.platform.core3.model.dict.PImage;
+import org.myfly.platform.core3.domain.IFlyMetaEntity;
 import org.myfly.platform.core3.model.view.WindowType;
 
-public interface IFlyViewModel extends IFlyEntity {
+public interface IFlyViewModel extends IFlyEntity, IFlyMetaEntity {
+	String getWindowID();
+	
+	void setWindowID(String windowID);
 
 	Boolean getIsSOTrx();
 
@@ -18,9 +17,9 @@ public interface IFlyViewModel extends IFlyEntity {
 
 	void setName(String name);
 
-	EntityType getEntityType();
+	String getEntityType();
 
-	void setEntityType(EntityType entityType);
+	void setEntityType(String entityType);
 
 	String getDescription();
 
@@ -53,17 +52,5 @@ public interface IFlyViewModel extends IFlyEntity {
 	Integer getWinWidth();
 
 	void setWinWidth(Integer winWidth);
-
-	PImage getImage();
-
-	void setImage(PImage image);
-
-	PColor getColor();
-
-	void setColor(PColor color);
-
-	Set<IFlyViewTab> getTabs();
-
-	void setTabs(Set<IFlyViewTab> tabs);
 
 }

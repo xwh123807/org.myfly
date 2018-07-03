@@ -3,7 +3,7 @@ package org.myfly.platform.core3.dbinit;
 import java.lang.reflect.Field;
 
 import org.myfly.platform.core.utils.UUIDUtil;
-import org.myfly.platform.core3.domain.EntityType;
+import org.myfly.platform.core3.dbinit.resources.EntityType;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.model.dict.PEntityType;
 import org.springframework.context.annotation.Scope;

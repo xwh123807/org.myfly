@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.ClassUtil;
-import org.myfly.platform.core3.metadata.define.ColumnDefinition;
+import org.myfly.platform.core3.metadata.define.FlyColumn;
 import org.myfly.platform.core3.metadata.define.IValueHandler;
 
 /**
@@ -15,30 +15,26 @@ import org.myfly.platform.core3.metadata.define.IValueHandler;
  *
  */
 public class DefaultValueHandler implements IValueHandler {
-	private ColumnDefinition columnDefinition;
+	private FlyColumn column;
 
-	public DefaultValueHandler(ColumnDefinition columnDefinition) {
-		this.setColumnDefinition(columnDefinition);
+	public DefaultValueHandler(FlyColumn column) {
+		this.column = column;
+	}
+	
+	public FlyColumn getColumn() {
+		return column;
 	}
 
-	public ColumnDefinition getColumnDefinition() {
-		return columnDefinition;
+	public String getApiName() {
+		return column.getApiName();
 	}
 
-	public void setColumnDefinition(ColumnDefinition columnDefinition) {
-		this.columnDefinition = columnDefinition;
+	public Method getGetter() {
+		return column.getGetter();
 	}
 
-	private String getApiName() {
-		return getColumnDefinition().getColumn().getApiName();
-	}
-
-	private Method getGetter() {
-		return getColumnDefinition().getFieldInfo().getGetter();
-	}
-
-	private Method getSetter() {
-		return getColumnDefinition().getFieldInfo().getSetter();
+	public Method getSetter() {
+		return column.getSetter();
 	}
 
 	@Override

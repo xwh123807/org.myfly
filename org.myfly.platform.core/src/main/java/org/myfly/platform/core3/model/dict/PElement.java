@@ -41,7 +41,7 @@ public class PElement extends FlyMetaEntity {
 	private FlyDataType dataType;
 	
 	@Column(length=32)
-	private String entityTypeID;
+	private String entityType;
 
 	/**
 	 * Required to specify, if data type is Table or List
@@ -98,5 +98,13 @@ public class PElement extends FlyMetaEntity {
 
 	public void setFieldLength(Integer fieldLength) {
 		this.fieldLength = fieldLength;
+	}
+
+	public String getEntityType() {
+		return entityType;
+	}
+
+	public void setEntityType(String entityType) {
+		this.entityType = entityType;
 	}
 }

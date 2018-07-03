@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
-import org.myfly.platform.core3.metadata.service.IFlyDataModel;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.core3.model.test.PTMaster;
 import org.myfly.platform.core3.testmodel.AssertEntity;
 import org.myfly.platform.core3.testmodel.TestModel;
@@ -19,7 +19,7 @@ public class FlyEntityUtilsTest {
 		model = new TestModel();
 	}
 
-	private IFlyDataModel getPMasterDataModel() {
+	private FlyDataModel getPMasterDataModel() {
 		return AppUtil.getFlyDataModel(PTMaster.class.getName());
 	}
 

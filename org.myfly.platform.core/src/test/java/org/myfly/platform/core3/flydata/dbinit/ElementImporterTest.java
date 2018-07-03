@@ -2,7 +2,7 @@ package org.myfly.platform.core3.flydata.dbinit;
 
 import org.junit.Test;
 import org.myfly.platform.core3.dbinit.ElementImporter;
-import org.myfly.platform.core3.domain.Element;
+import org.myfly.platform.core3.dbinit.resources.Element;
 
 public class ElementImporterTest {
 	@Test

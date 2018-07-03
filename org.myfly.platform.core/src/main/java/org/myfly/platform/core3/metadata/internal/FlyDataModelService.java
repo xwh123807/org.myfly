@@ -9,12 +9,10 @@ import javax.transaction.Transactional;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.utils.DateUtil;
-import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.domain.IFlyEntity;
-import org.myfly.platform.core3.metadata.repository.IPTableRepository;
-import org.myfly.platform.core3.metadata.service.IFlyDataModel;
+import org.myfly.platform.core3.metadata.builder.FlyDataModelBuilder;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
-import org.myfly.platform.core3.model.data.PTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
@@ -30,17 +28,17 @@ public class FlyDataModelService implements IFlyDataModelService {
 	private JpaMetamodelMappingContext mappingContext;
 
 	@Autowired
-	private IPTableRepository tableRepos;
-
-	@Autowired
 	private FlySystemResource systemResource;
 
+	@Autowired
+	private FlyDataModelBuilder flyDataModelBuilder;
+
 	@Override
-	public List<Class<?>> getAllEntityClasses() {
-		List<Class<?>> entityClasses = new ArrayList<>();
+	public List<Class<? extends IFlyEntity>> getAllEntityClasses() {
+		List<Class<? extends IFlyEntity>> entityClasses = new ArrayList<>();
 		for (JpaPersistentEntity<?> entity : mappingContext.getPersistentEntities()) {
 			if (entity.findAnnotation(Entity.class) != null) {
-				entityClasses.add(entity.getType());
+				entityClasses.add((Class<? extends IFlyEntity>) entity.getType());
 			}
 		}
 		return entityClasses;
@@ -69,54 +67,24 @@ public class FlyDataModelService implements IFlyDataModelService {
 	@Override
 	@Cacheable(cacheNames = "datamodel")
 	@Transactional
-	public IFlyDataModel getFlyDataModel(String entityNameOrClassName) {
-		IFlyDataModel flyTable = tableRepos.findByApiName(entityNameOrClassName);
-		if (flyTable == null) {
-			Class<?> entityClass = getEntityClass(entityNameOrClassName);
-			if (entityClass != null) {
-				flyTable = getFlyDataModelFromEntityClass(entityClass);
-			} else {
-				throw new IllegalArgumentException("找不到名称为[" + entityNameOrClassName + "]的数据模型");
-			}
-		}
-		return flyTable;
+	public FlyDataModel getFlyDataModel(String entityNameOrClassName) {
+		return new FlyDataModel(flyDataModelBuilder.build(entityNameOrClassName));
 	}
 
 	@Override
 	@Cacheable(cacheNames = "datamodel", key = "#entityClass.getName()")
-	public IFlyDataModel getFlyDataModelFromEntityClass(Class<?> entityClass) {
+	public FlyDataModel getFlyDataModelFromEntityClass(Class<?> entityClass) {
 		Assert.notNull(entityClass, "参数[entityClass]不能为空");
 		return FlyMetaDataUtils.newFlyDataModelFromEntityClass(entityClass);
 	}
 
-	@Transactional
-	@Override
-	public List<String> importDataModelFromAllEntityClasses() {
-		List<String> list = new ArrayList<>();
-		getAllEntityClasses().forEach(entityClass -> {
-			String info = "导入数据模型：" + entityClass.getName();
-			if (log.isInfoEnabled()) {
-				log.info(info);
-			}
-			list.add(info);
-			IFlyDataModel dataModel = getFlyDataModelFromEntityClass(entityClass);
-			updateFlyEntity(dataModel);
-			dataModel.getColumns().forEach(column -> {
-				updateFlyEntity(column);
-			});
-			tableRepos.save((PTable) dataModel);
-		});
-		return list;
-	}
-
 	private void updateFlyEntity(IFlyEntity flyEntity) {
-		flyEntity.setUid(UUIDUtil.newUUID());
 		flyEntity.setIsActive(true);
 		flyEntity.setCreated(DateUtil.nowSqlTimestamp());
-		flyEntity.setCreatedBy(systemResource.getSystemUser());
+		flyEntity.setCreatedBy(systemResource.getSystemUserID());
 		flyEntity.setUpdated(DateUtil.nowSqlTimestamp());
-		flyEntity.setUpdatedBy(systemResource.getSystemUser());
-		flyEntity.setClient(systemResource.getSystemClient());
-		flyEntity.setOrg(systemResource.getAllOrg());
+		flyEntity.setUpdatedBy(systemResource.getSystemUserID());
+		flyEntity.setClientID(systemResource.getSystemClientID());
+		flyEntity.setOrgID(systemResource.getAllOrgID());
 	}
 }
