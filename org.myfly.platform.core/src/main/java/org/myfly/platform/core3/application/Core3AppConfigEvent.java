@@ -5,7 +5,7 @@ import org.myfly.platform.core.metadata.service.IMetaDataRegister;
 import org.myfly.platform.core.starter.IAppConfigEvent;
 import org.myfly.platform.core.starter.ICodeLevelModelRegister;
 import org.myfly.platform.core.system.service.IMenuService;
-import org.myfly.platform.core3.dbinit.DBInit;
+import org.myfly.platform.core3.dbinit.Core3SystemData;
 import org.myfly.platform.core3.dbinit.FlyDataModelImporter;
 import org.myfly.platform.core3.dbinit.resources.Element;
 import org.myfly.platform.core3.dbinit.resources.EntityType;
@@ -17,10 +17,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class Core3AppConfigEvent implements IAppConfigEvent {
 	@Autowired
-	private DBInit dbInit;
+	private FlyDataModelImporter flyDataModelImporter;
 	
 	@Autowired
-	private FlyDataModelImporter flyDataModelImporter;
+	private Core3SystemData systemData;
 
 	/**
 	 * 是否初始化数据库
@@ -40,8 +40,7 @@ public class Core3AppConfigEvent implements IAppConfigEvent {
 	@Override
 	public void initSysData() {
 		if (initDB) {
-			//dbInit.dbInit();
-			//dbInit.saveModels();
+			systemData.initCore3SystemData();
 			flyDataModelImporter.importAll();
 		}
 	}
