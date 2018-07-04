@@ -8,7 +8,7 @@ import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.starter.ApplicationStarter;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
-import org.myfly.platform.core3.metadata.internal.FlyMetaDataUtils;
+import org.myfly.platform.core3.metadata.define.FlyMemoryDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.convert.ConversionService;
@@ -193,8 +193,7 @@ public class AppUtil {
 			} catch (Exception e) {
 			}
 			if (metaData == null) {
-				Class<?> entityClass = Class.forName(entityName);
-				metaData = FlyMetaDataUtils.newFlyDataModelFromEntityClass(entityClass);
+				metaData = FlyMemoryDataModel.getInstance().getFlyDataModel(entityName);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,102 +1,161 @@
 package org.myfly.platform.core3.metadata.builder;
 
-import java.util.HashMap;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.BooleanUtils;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.utils.EntityClassUtil;
 import org.myfly.platform.core.utils.EntityClassUtil.FieldInfo;
+import org.myfly.platform.core.utils.StringUtil;
+import org.myfly.platform.core.utils.UUIDUtil;
+import org.myfly.platform.core3.dbinit.resources.EntityType;
+import org.myfly.platform.core3.domain.FlyDataType;
+import org.myfly.platform.core3.domain.IFlyEntity;
+import org.myfly.platform.core3.metadata.annotation.FlyField;
+import org.myfly.platform.core3.metadata.annotation.FlyTable;
 import org.myfly.platform.core3.metadata.define.FlyColumn;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.core3.metadata.define.ValueHandlerFactory;
-import org.myfly.platform.core3.metadata.repository.IPColumnRepository;
-import org.myfly.platform.core3.metadata.repository.IPTableRepository;
-import org.myfly.platform.core3.model.data.PColumn;
 import org.myfly.platform.core3.model.data.PTable;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 
-/**
- * 构造数据模型<br>
- * 
- * @author xiangwanhong
- *
- */
-@Component
-@Scope("prototype")
-public class FlyDataModelBuilder extends FlyDataModel {
+public class FlyDataModelBuilder extends AbstractBuilder<PTable, FlyDataModel> {
 	private static Log log = LogFactory.getLog(FlyDataModelBuilder.class);
-	@Autowired
-	private IPTableRepository tableRepo;
 
-	@Autowired
-	private IPColumnRepository columnRepo;
+	@Override
+	public FlyDataModel convert(PTable builder) {
+		return null;
+	}
 
-	private Map<String, FieldInfo> fieldInfos;
+	@Override
+	public List<FlyDataModel> convertEntityClass(Class<? extends IFlyEntity> entityClass) {
+		List<FlyDataModel> list = new ArrayList<>();
+		list.add(buildTable(entityClass));
+		return list;
+	}
+
 	/**
+	 * 构建实体PTable
 	 * 
+	 * @param entityClass
 	 */
-	private static final long serialVersionUID = -1815063451624942610L;
-
-	public FlyDataModelBuilder build(String apiName) {
-		PTable table = tableRepo.findByApiName(apiName);
-		Assert.notNull(table, "找不到apiName[" + apiName + "]的Table");
-		fieldInfos = EntityClassUtil.getEntityFieldInfo(apiName);
-		Assert.notEmpty(fieldInfos);
-		buildTable(table);
-		buildFields(columnRepo.findByTableID(table.getTableID()));
-		return this;
-	}
-
-	public void buildFields(List<PColumn> columns) {
-		Assert.notEmpty(columns);
-		setColumnMap(new HashMap<>());
-		columns.forEach(item -> {
-			getColumnMap().put(item.getApiName(), buildFlyColumn(item));
-		});
-	}
-
-	private FlyColumn buildFlyColumn(PColumn builder) {
-		FlyColumn column = new FlyColumn();
-		column.setApiName(builder.getApiName());
-		column.setName(builder.getName());
-		column.setDescription(builder.getDescription());
-		column.setHelp(builder.getHelp());
-		column.setColumnName(builder.getColumnName());
-		column.setDataType(builder.getDataType());
-		column.setReferenceID(builder.getReferenceID());
-		column.setElementID(builder.getElementID());
-		column.setFieldLength(builder.getFieldLength());
-		column.setValueHandler(ValueHandlerFactory.getValueHandler(column));
-		column.setIsKey(builder.getIsKey());
-		if (BooleanUtils.isTrue(builder.getIsKey())) {
-			// 列是主键
-			if (getPrimaryKey() == null) {
-				setPrimaryKey(column);
-			} else {
-				log.warn("只支持单主键，请检查实体[" + getApiName() + "]");
-				//throw new IllegalArgumentException("只支持单主键，请检查实体[" + getApiName() + "]");
-			}
+	private FlyDataModel buildTable(Class<? extends IFlyEntity> entityClass) {
+		FlyDataModel result = new FlyDataModel();
+		result.setApiName(entityClass.getName());
+		Table anno = entityClass.getAnnotation(Table.class);
+		if (anno != null) {
+			result.setTableName(anno.name());
 		}
-		FieldInfo fieldInfo = fieldInfos.get(column.getApiName());
-		if (fieldInfo != null) {
-			column.setGetter(fieldInfo.getGetter());
-			column.setSetter(fieldInfo.getSetter());
+		FlyTable flyTable = entityClass.getAnnotation(FlyTable.class);
+		if (flyTable != null) {
+			result.setName(flyTable.name());
+			result.setEntityType(flyTable.entityType().name());
+			result.setDescription(flyTable.description());
+			result.setHelp(flyTable.help());
+			result.setAccessLevel(flyTable.accessLevel());
+			result.setIsHighVolume(flyTable.isHighVolume());
+			result.setIsChangeLog(flyTable.isChangeLog());
+			result.setIsIgnoreMigration(flyTable.isIgnoreMigration());
+			result.setIsDocument(flyTable.isDocument());
+			result.setIsSecurityEnabled(flyTable.isSecurityEnabled());
+			result.setIsDeleteable(flyTable.isDeleteable());
+			result.setIsView(flyTable.isView());
+			result.setIsCentrallyMaintained(flyTable.isCentrallyMaintained());
+		}
+		if (StringUtils.isBlank(result.getName())) {
+			result.setName(entityClass.getSimpleName());
+		}
+		if (StringUtils.isBlank(result.getTableName())) {
+			result.setTableName(result.getName());
+		}
+
+		// 构建字段
+		result.setColumnMap(new LinkedHashMap<>());
+		Map<String, FieldInfo> fieldInfos = EntityClassUtil.getEntityFieldInfo(entityClass);
+		fieldInfos.values().forEach(fieldInfo -> {
+			FlyColumn flyColumn = buildField(fieldInfo);
+			if (BooleanUtils.isTrue(flyColumn.getIsKey())) {
+				if (result.getPrimaryKey() == null) {
+					result.setPrimaryKey(flyColumn);
+				} else {
+					log.warn("实体[" + entityClass.getName() + "]主键重复");
+				}
+			}
+			flyColumn.setGetter(fieldInfo.getGetter());
+			flyColumn.setSetter(fieldInfo.getSetter());
+			flyColumn.setValueHandler(ValueHandlerFactory.getValueHandler(flyColumn));
+			result.getColumnMap().put(flyColumn.getApiName(), flyColumn);
+		});
+		return result;
+	}
+
+	/**
+	 * 构建实体PColumn
+	 * 
+	 * @param property
+	 * @return
+	 */
+	private FlyColumn buildField(FieldInfo fieldInfo) {
+		Field property = fieldInfo.getField();
+		FlyColumn column = new FlyColumn();
+		column.setColumnID(UUIDUtil.newUUID());
+		column.setApiName(property.getName());
+		if (property.getAnnotation(Id.class) != null) {
+			column.setIsKey(true);
+		}
+		FlyField view = property.getAnnotation(FlyField.class);
+		if (view != null) {
+			column.setName(view.name());
+			column.setEntityType(view.entityType().name());
+			column.setDescription(view.description());
+			column.setHelp(view.help());
+			column.setColumnSQL(view.columnSQL());
+			column.setDataType(view.dataType());
+			column.setDefaultValue(view.defaultValue());
+			column.setIsAllowCopy(view.isAllowCopy());
+			column.setIsAllowLogging(view.isAllowLogging());
+			column.setIsAlwaysUpdateable(view.isAlwaysUpdateable());
+			column.setIsAutocomplete(view.isAutocomplete());
+			column.setIsEncrypted(view.isEncrypted());
+			column.setIsParent(view.isParent());
+			column.setIsRange(view.isRange());
+			column.setIsSelectionColumn(view.isSelectionColumn());
+			column.setIsSyncDatabase(view.isSyncDatabase());
+			column.setIsTranslated(view.isTranslated());
+			column.setValueMin(view.valueMin());
+			column.setValueMax(view.valueMax());
+			column.setvFormat(view.vFormat());
+		} else {
+			// 设置默认值
+			column.setEntityType(EntityType.D.name());
+			column.setDataType(FlyDataType.NONE);
+			column.setIsAllowCopy(true);
+			column.setIsTranslated(true);
+		}
+		Column col = property.getAnnotation(Column.class);
+		if (col != null) {
+			column.setColumnName(col.name());
+			column.setFieldLength(col.length());
+			column.setIsMandatory(col.nullable());
+		}
+		if (StringUtils.isBlank(column.getName())) {
+			column.setName(column.getApiName());
+		}
+		if (StringUtils.isBlank(column.getColumnName())) {
+			column.setColumnName(StringUtil.getHibernateName(column.getApiName()));
+		}
+		if (FlyDataType.NONE.equals(column.getDataType())) {
+			FlyDataTypeUtils.updatColumnFromField(column, property);
 		}
 		return column;
-	}
-
-	public void buildTable(PTable builder) {
-		setApiName(builder.getApiName());
-		setName(builder.getName());
-		setDescription(builder.getDescription());
-		setHelp(builder.getHelp());
-		setTableName(builder.getTableName());
-		setEntityType(builder.getEntityType());
 	}
 }

@@ -59,5 +59,6 @@ public class FlyColumn extends PColumn {
 		Assert.hasLength(getColumnName(), "属性[columnName]不能为空");
 		Assert.notNull(getGetter(), "属性[Getter]不能为空");
 		Assert.notNull(getSetter(), "属性[Setter]不能为空");
+		Assert.notNull(getValueHandler(), "属性[ValueHandler]不能为空");
 	}
 }

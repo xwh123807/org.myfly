@@ -7,7 +7,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.utils.DateUtil;
-import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
@@ -48,7 +47,7 @@ public class FlyViewModelService implements IFlyViewModelService {
 	@Override
 	public IFlyViewModel getFlyViewModelFromBuildIn(String entityName) {
 		IFlyDataModel dataModel = dataModelService.getFlyDataModel(entityName);
-		IFlyViewModel viewModel = FlyMetaDataUtils.newFlyViewModelFromDataModel(dataModel);
+		IFlyViewModel viewModel = null;
 		return viewModel;
 	}
 

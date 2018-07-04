@@ -6,7 +6,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import org.myfly.platform.core3.dbinit.resources.Element;
 import org.myfly.platform.core3.dbinit.resources.EntityType;
 import org.myfly.platform.core3.domain.FlyDataType;
 
@@ -63,6 +62,4 @@ public @interface FlyField {
 	String valueMax() default "";
 	
 	String vFormat() default "";
-	
-	Element element() default Element.None;
 }

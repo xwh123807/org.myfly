@@ -4,7 +4,7 @@ import javax.transaction.Transactional;
 
 import org.myfly.platform.core3.dbinit.resources.Element;
 import org.myfly.platform.core3.dbinit.resources.EntityType;
-import org.myfly.platform.core3.dbinit.resources.RefList;
+import org.myfly.platform.core3.dbinit.resources.RefLists;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
@@ -64,7 +64,7 @@ public class DBInit {
 	}
 
 	private void importRefList() {
-		refListImporter.load(RefList.class);
+		refListImporter.load(RefLists.class);
 		refListImporter.save();
 	}
 

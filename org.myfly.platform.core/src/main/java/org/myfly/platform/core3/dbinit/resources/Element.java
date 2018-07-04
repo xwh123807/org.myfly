@@ -11,8 +11,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyElement;
  * @author xiangwanhong
  *
  */
-public enum Element implements IRefList{
-	None,
+public enum Element implements IRefList {
 	//
 	@FlyElement(name = "Name", description = "Alphanumeric identifier of the entity", //
 			help = "The name of an entity (record) is used as an default search option in addition to the search key. The name is up to 60 characters in length.", //
@@ -24,7 +23,7 @@ public enum Element implements IRefList{
 					+ "\n" + "For customizations, copy the entity and select \"User\"!")
 	EntityType,
 	//
-	@FlyElement(name = "Active", columnName = "IsActive", description = "The record is active in the system", //
+	@FlyElement(name = "Active", description = "The record is active in the system", //
 			help = "There are two methods of making records unavailable in the system: One is to delete the record, the other is to de-activate the record. A de-activated record is not available for selection, but available for reports.\n"
 					+ "There are two reasons for de-activating and not deleting records:\n"
 					+ "(1) The system requires the record for audit purposes.\n"
@@ -87,7 +86,7 @@ public enum Element implements IRefList{
 	IsTableBased,
 
 	//
-	@FlyElement(name = "", printName = "", description = "", //
+	@FlyElement(name = "JasperProcess_ID", printName = "", description = "", //
 			help = "", //
 			dataType = FlyDataType.YesNo)
 	JasperProcess_ID,

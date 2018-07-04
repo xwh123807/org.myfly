@@ -3,7 +3,6 @@ package org.myfly.platform.core3.metadata.define;
 import java.util.Map;
 
 import org.myfly.platform.core.utils.JSONUtil;
-import org.myfly.platform.core3.metadata.builder.FlyDataModelBuilder;
 import org.myfly.platform.core3.model.data.PTable;
 import org.springframework.util.Assert;
 
@@ -13,7 +12,7 @@ import org.springframework.util.Assert;
  * @author xiangwanhong
  *
  */
-public class FlyDataModel extends PTable {
+public class FlyDataModel extends PTable implements IDefinition{
 
 	/**
 	 * 
@@ -29,18 +28,6 @@ public class FlyDataModel extends PTable {
 	private FlyColumn primaryKey;
 
 	public FlyDataModel() {
-	}
-
-	public FlyDataModel(FlyDataModelBuilder builder) {
-		setApiName(builder.getApiName());
-		setName(builder.getName());
-		setDescription(builder.getDescription());
-		setHelp(builder.getHelp());
-		setTableName(builder.getTableName());
-		setEntityType(builder.getEntityType());
-		setColumnMap(builder.getColumnMap());
-		setPrimaryKey(builder.getPrimaryKey());
-		validate();
 	}
 
 	public Map<String, FlyColumn> getColumnMap() {
@@ -99,5 +86,10 @@ public class FlyDataModel extends PTable {
 		Assert.notNull(getPrimaryKey(), "属性[primaryKey]不能为空");
 		Assert.notEmpty(getColumnMap(), "属性[columnMap]不能为空，且长度至少大于0");
 		getColumnMap().values().forEach(item -> item.validate());
+	}
+
+	@Override
+	public String getKey() {
+		return getApiName();
 	}
 }

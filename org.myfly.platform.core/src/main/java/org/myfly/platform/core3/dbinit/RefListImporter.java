@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import org.myfly.platform.core.utils.UUIDUtil;
-import org.myfly.platform.core3.dbinit.resources.RefList;
+import org.myfly.platform.core3.dbinit.resources.RefLists;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.metadata.annotation.FlyRefList;
 import org.myfly.platform.core3.model.data.ValidationType;
@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
  */
 @Component
 @Scope("prototype")
-public class RefListImporter extends AbstractEnumImporter<IFlyEntity, RefList> {
+public class RefListImporter extends AbstractEnumImporter<IFlyEntity, RefLists> {
 	private PReference reference;
 
 	private List<PRefList> refLists;

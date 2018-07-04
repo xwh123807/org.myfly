@@ -46,12 +46,4 @@ public interface IFlyDataModelService {
 	 * @return
 	 */
 	public FlyDataModel getFlyDataModel(String entityName);
-
-	/**
-	 * 获取表的数据模型
-	 * 
-	 * @param entityClass
-	 * @return
-	 */
-	public FlyDataModel getFlyDataModelFromEntityClass(Class<?> entityClass);
 }

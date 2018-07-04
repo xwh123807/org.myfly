@@ -7,6 +7,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.myfly.platform.core.domain.AppStartLevel;
 import org.myfly.platform.core.flydata.config.FlyDataProperties;
 import org.myfly.platform.core.metadata.internal.FileMetaDataRegister;
+import org.myfly.platform.core.metadata.service.IMetaDataRegister;
 import org.myfly.platform.core.spring.ExtendConvertersRegister;
 import org.myfly.platform.core.system.service.IMenuService;
 import org.myfly.platform.core.utils.AppUtil;
@@ -24,6 +25,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * 系统启动类，在SpringBoot启动完成后执行，用于应用的初始化
+ * 
  * @author xiangwanhong
  *
  */
@@ -35,17 +37,20 @@ public class ApplicationStarter implements ApplicationRunner {
 	@Autowired
 	private FlyDataProperties myFlyDataProperties;
 
-	@Autowired(required=false)
+	@Autowired(required = false)
 	private List<IAppConfigEvent> appConfigEvents;
 
 	@Autowired
 	private FileMetaDataRegister fileMetaDataRegister;
 
-	@Autowired(required=false)
+	@Autowired(required = false)
 	private IMenuService menuService;
-	
-	@Autowired(required=false)
+
+	@Autowired(required = false)
 	private CacheManager cacheManager;
+	
+	@Autowired
+	private ICodeLevelModelRegister codeLevelModelRegister;
 
 	@Autowired
 	public void setApplicationContext(ApplicationContext applicationContext) {
@@ -78,7 +83,7 @@ public class ApplicationStarter implements ApplicationRunner {
 		AssertUtil.parameterEmpty(conversionService, "conversionService");
 		ExtendConvertersRegister.registerExtendConverters(conversionService);
 	}
-	
+
 	private void showCacheInfo() {
 		if (cacheManager != null) {
 			System.out.println("cache implements: " + cacheManager.getClass().getName());
@@ -91,6 +96,7 @@ public class ApplicationStarter implements ApplicationRunner {
 
 	/**
 	 * 按顺序启动应用配置插件
+	 * 
 	 * @param executor
 	 */
 	private void processConfigEvent(IAppConfigEventExecutor executor) {
@@ -117,6 +123,13 @@ public class ApplicationStarter implements ApplicationRunner {
 				if (event.getAppStartLevel() == null) {
 					throw new RuntimeException("应用配置事件[" + event.getClass().getName() + "]没有配置启动级别.");
 				}
+			}
+		});
+
+		processConfigEvent(new IAppConfigEventExecutor() {
+			@Override
+			public void execute(IAppConfigEvent appConfigEvent) {
+				appConfigEvent.loadCodeLevelModels(codeLevelModelRegister);
 			}
 		});
 
