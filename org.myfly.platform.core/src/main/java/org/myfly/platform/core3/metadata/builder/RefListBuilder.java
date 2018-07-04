@@ -43,5 +43,4 @@ public class RefListBuilder extends AbstractBuilder<PReference, FRefList> {
 		});
 		return result;
 	}
-
 }

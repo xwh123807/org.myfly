@@ -92,4 +92,14 @@ public class FlyDataModel extends PTable implements IDefinition{
 	public String getKey() {
 		return getApiName();
 	}
+
+	@Override
+	public void setUid(String value) {
+		setTableID(value);
+	}
+	
+	@Override
+	public String getUid() {
+		return getTableID();
+	}
 }

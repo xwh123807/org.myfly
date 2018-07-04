@@ -36,6 +36,7 @@ public class Core3AppConfigEvent implements IAppConfigEvent {
 	public void initSysData() {
 		if (initDB) {
 			//dbInit.dbInit();
+			dbInit.saveModels();
 		}
 	}
 

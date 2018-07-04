@@ -33,4 +33,13 @@ public class FEntityType extends PEntityType implements IDefinition {
 		return getEntityType();
 	}
 
+	@Override
+	public void setUid(String value) {
+		setEntityTypeID(value);
+	}
+
+	@Override
+	public String getUid() {
+		return getEntityTypeID();
+	}
 }

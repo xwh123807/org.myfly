@@ -56,4 +56,13 @@ public class FRefTable extends PReference implements IDefinition {
 		this.tableClassName = tableClassName;
 	}
 
+	@Override
+	public void setUid(String value) {
+		setReferenceID(value);
+	}
+
+	@Override
+	public String getUid() {
+		return getReferenceID();
+	}
 }

@@ -1,18 +1,27 @@
 package org.myfly.platform.core3.dbinit;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.transaction.Transactional;
 
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core3.dbinit.resources.Element;
 import org.myfly.platform.core3.dbinit.resources.EntityType;
 import org.myfly.platform.core3.dbinit.resources.RefLists;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.IFlyEntity;
+import org.myfly.platform.core3.metadata.define.FlyMemoryDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
+import org.myfly.platform.core3.model.dict.PElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DBInit {
+	@Autowired
+	private IJpaDataAccessService dataService;
+	
 	@Autowired
 	private IFlyDataModelService dataModelService;
 
@@ -42,6 +51,17 @@ public class DBInit {
 		importElement();
 		importRefList();
 		importTables();
+	}
+	
+	@Transactional
+	public void saveModels() {
+		saveElements();
+	}
+
+	private void saveElements() {
+		List<PElement> list = FlyMemoryDataModel.getInstance().getElements().values().stream().map(item -> item.toPO())
+				.collect(Collectors.toList());
+		dataService.batchSaveEntity(list);
 	}
 
 	private void importSystemData() {

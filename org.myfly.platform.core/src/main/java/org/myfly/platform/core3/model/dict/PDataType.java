@@ -18,7 +18,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
  *
  */
 @Entity
-@Table(name="PT_DataType")
+@Table(name = "PT_DataType")
 @FlyTable()
 @FlyRefTable(displayColumn = "name", keyColumn = "dataType", name = "DataType")
 public class PDataType extends FlyMetaEntity {
@@ -35,14 +35,14 @@ public class PDataType extends FlyMetaEntity {
 	private String dataType;
 
 	@Column(length = 32)
-	private String entityTypeID;
+	private String entityType;
 
-	public String getEntityTypeID() {
-		return entityTypeID;
+	public String getEntityType() {
+		return entityType;
 	}
 
-	public void setEntityTypeID(String entityTypeID) {
-		this.entityTypeID = entityTypeID;
+	public void setEntityType(String entityType) {
+		this.entityType = entityType;
 	}
 
 	public String getDataTypeID() {

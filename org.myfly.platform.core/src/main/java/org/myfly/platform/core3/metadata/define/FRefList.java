@@ -53,4 +53,16 @@ public class FRefList extends PReference implements IDefinition {
 		this.items = items;
 	}
 
+	@Override
+	public void setUid(String value) {
+		setReferenceID(value);
+	}
+	
+	@Override
+	public String getUid() {
+		return getReferenceID();
+	}
+	
+	public void toPO() {
+	}
 }
