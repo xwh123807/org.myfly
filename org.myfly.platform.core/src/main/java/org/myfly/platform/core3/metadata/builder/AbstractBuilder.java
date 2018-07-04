@@ -6,26 +6,16 @@ import java.util.List;
 
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.domain.IFlyMetaEntity;
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 
 public abstract class AbstractBuilder<S extends IFlyEntity, T extends IFlyEntity> {
 
 	public void copyFlyFields(IFlyEntity result, IFlyEntity from) {
-		result.setClientID(from.getClientID());
-		result.setOrgID(from.getOrgID());
-		result.setCreated(from.getCreated());
-		result.setCreatedBy(from.getCreatedBy());
-		result.setUpdated(from.getUpdated());
-		result.setUpdatedBy(from.getUpdatedBy());
-		result.setIsActive(from.getIsActive());
-		if (result instanceof IFlyMetaEntity && from instanceof IFlyMetaEntity) {
-			copyFlyMetaFields((IFlyMetaEntity) result, (IFlyMetaEntity) from);
-		}
+		FlyEntityUtils.copyFlyFields(result, from);
 	}
 
 	public void copyFlyMetaFields(IFlyMetaEntity result, IFlyMetaEntity from) {
-		result.setName(from.getName());
-		result.setDescription(from.getDescription());
-		result.setHelp(from.getHelp());
+		FlyEntityUtils.copyFlyMetaFields(result, from);
 	}
 
 	/**

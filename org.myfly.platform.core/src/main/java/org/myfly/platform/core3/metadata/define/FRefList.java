@@ -1,9 +1,12 @@
 package org.myfly.platform.core3.metadata.define;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections.MapUtils;
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.model.dict.PRefList;
 import org.myfly.platform.core3.model.dict.PReference;
 import org.springframework.util.Assert;
@@ -57,12 +60,24 @@ public class FRefList extends PReference implements IDefinition {
 	public void setUid(String value) {
 		setReferenceID(value);
 	}
-	
+
 	@Override
 	public String getUid() {
 		return getReferenceID();
 	}
-	
-	public void toPO() {
+
+	public PReference toReferencePO() {
+		PReference result = new PReference();
+		result.setReferenceID(getReferenceID());
+		result.setEntityType(getEntityType());
+		result.setIsOrderByValue(getIsOrderByValue());
+		result.setValidationType(getValidationType());
+		result.setvFormat(getvFormat());
+		FlyEntityUtils.copyFlyMetaFields(result, this);
+		return result;
+	}
+
+	public List<PRefList> toRefListPOs() {
+		return getItems().values().stream().collect(Collectors.toList());
 	}
 }

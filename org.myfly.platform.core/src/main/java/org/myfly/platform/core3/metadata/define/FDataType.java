@@ -1,8 +1,9 @@
 package org.myfly.platform.core3.metadata.define;
 
 import org.myfly.platform.core.utils.JSONUtil;
-import org.myfly.platform.core.utils.UUIDUtil;
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.model.dict.PDataType;
+import org.springframework.util.Assert;
 
 public class FDataType extends PDataType implements IDefinition {
 
@@ -28,7 +29,9 @@ public class FDataType extends PDataType implements IDefinition {
 
 	@Override
 	public void validate() {
-
+		Assert.hasLength(getKey(), "属性[Key]不能为空");
+		Assert.hasLength(getEntityType(), "属性[EntityType]不能为空");
+		Assert.hasLength(getName(), "属性[Name]不能为空");
 	}
 
 	@Override
@@ -41,11 +44,12 @@ public class FDataType extends PDataType implements IDefinition {
 		System.out.println(toJson());
 	}
 
-	public PDataType toPO() {
+	public PDataType toDataTypePO() {
 		PDataType result = new PDataType();
-		result.setDataTypeID(UUIDUtil.newUUID());
+		result.setDataTypeID(getDataTypeID());
 		result.setDataType(getDataType());
 		result.setEntityType(getEntityType());
+		FlyEntityUtils.copyFlyMetaFields(result, this);
 		return result;
 	}
 }

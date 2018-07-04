@@ -9,9 +9,11 @@ import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.IFlyEntity;
+import org.myfly.platform.core3.domain.IFlyMetaEntity;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
 import org.myfly.platform.core3.metadata.define.FlyColumn;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.metadata.internal.FlySystemResource;
 
 public class FlyEntityUtils {
 	/**
@@ -271,5 +273,32 @@ public class FlyEntityUtils {
 		entity.setUpdatedBy(from.getUpdatedBy());
 		entity.setIsActive(true);
 		return (T) entity;
+	}
+
+	public static void copyFlyFields(IFlyEntity result, IFlyEntity from) {
+		result.setClientID(from.getClientID());
+		result.setOrgID(from.getOrgID());
+		result.setCreated(from.getCreated());
+		result.setCreatedBy(from.getCreatedBy());
+		result.setUpdated(from.getUpdated());
+		result.setUpdatedBy(from.getUpdatedBy());
+		result.setIsActive(from.getIsActive());
+	}
+
+	public static void copyFlyMetaFields(IFlyMetaEntity result, IFlyMetaEntity from) {
+		copyFlyFields((IFlyEntity)result, (IFlyEntity)from);
+		result.setName(from.getName());
+		result.setDescription(from.getDescription());
+		result.setHelp(from.getHelp());
+	}
+
+	public static void updateFlyEntityForSystem(IFlyEntity result) {
+		result.setClientID(FlySystemResource.UID_SYSTEM_CLIENT);
+		result.setOrgID(FlySystemResource.UID_ALL_ORG);
+		result.setCreated(DateUtil.nowSqlTimestamp());
+		result.setCreatedBy(FlySystemResource.UID_SYSTEM_USER);
+		result.setUpdated(DateUtil.nowSqlTimestamp());
+		result.setUpdatedBy(FlySystemResource.UID_SYSTEM_USER);
+		result.setIsActive(true);
 	}
 }

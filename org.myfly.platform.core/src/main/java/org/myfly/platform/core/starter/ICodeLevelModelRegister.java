@@ -2,7 +2,9 @@ package org.myfly.platform.core.starter;
 
 import java.util.List;
 
+import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.IFlyEntity;
+import org.myfly.platform.core3.metadata.define.FDataType;
 import org.myfly.platform.core3.metadata.define.FElement;
 import org.myfly.platform.core3.metadata.define.FEntityType;
 import org.myfly.platform.core3.metadata.define.FRefTable;
@@ -22,12 +24,16 @@ public interface ICodeLevelModelRegister {
 	void registerFlyDataModelFromPackage(String packageName);
 
 	void registerFlyDataModelFromEntityClass(Class<? extends IFlyEntity> entityClass);
-	
-	 void registerFlyDataModels(List<FlyDataModel> flyDataModels);
-	
+
+	void registerFlyDataModels(List<FlyDataModel> flyDataModels);
+
 	void registerRefTablesFromEntityClass(Class<? extends IFlyEntity> entityClass);
 
 	void registerRefTablesFromPackage(String packageName);
-	
+
 	void registerRefTables(List<FRefTable> refTables);
+
+	void registerDataTypesFromEnumClass(Class<FlyDataType> enumClass);
+
+	void registerDataTypes(List<FDataType> dataTypes);
 }

@@ -1,8 +1,12 @@
 package org.myfly.platform.core3.metadata.define;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
+import org.myfly.platform.core3.model.data.PColumn;
 import org.myfly.platform.core3.model.data.PTable;
 import org.springframework.util.Assert;
 
@@ -12,7 +16,7 @@ import org.springframework.util.Assert;
  * @author xiangwanhong
  *
  */
-public class FlyDataModel extends PTable implements IDefinition{
+public class FlyDataModel extends PTable implements IDefinition {
 
 	/**
 	 * 
@@ -97,9 +101,37 @@ public class FlyDataModel extends PTable implements IDefinition{
 	public void setUid(String value) {
 		setTableID(value);
 	}
-	
+
 	@Override
 	public String getUid() {
 		return getTableID();
+	}
+
+	public PTable toTablePO() {
+		PTable result = new PTable();
+		result.setAccessLevel(getAccessLevel());
+		result.setaCTriggerLength(getaCTriggerLength());
+		result.setApiName(getApiName());
+		result.setCopyColumnsFromTable(getCopyColumnsFromTable());
+		result.setEntityType(getEntityType());
+		result.setImportTable(getImportTable());
+		result.setIsCentrallyMaintained(getIsCentrallyMaintained());
+		result.setIsChangeLog(getIsChangeLog());
+		result.setIsDeleteable(getIsDeleteable());
+		result.setIsDocument(getIsDocument());
+		result.setIsHighVolume(getIsHighVolume());
+		result.setIsIgnoreMigration(getIsIgnoreMigration());
+		result.setIsSecurityEnabled(getIsSecurityEnabled());
+		result.setIsView(getIsView());
+		result.setReplicationType(getReplicationType());
+		result.setTableID(getTableID());
+		result.setTableName(getTableName());
+		result.setWindowID(getWindowID());
+		FlyEntityUtils.copyFlyMetaFields(result, this);
+		return result;
+	}
+
+	public List<PColumn> toColumnPOs() {
+		return getColumnMap().values().stream().map(item -> item.toColumnPO()).collect(Collectors.toList());
 	}
 }

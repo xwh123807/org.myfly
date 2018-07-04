@@ -2,6 +2,7 @@ package org.myfly.platform.core3.metadata.define;
 
 import java.lang.reflect.Method;
 
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.model.data.PColumn;
 import org.springframework.util.Assert;
 
@@ -60,5 +61,45 @@ public class FlyColumn extends PColumn {
 		Assert.notNull(getGetter(), "属性[Getter]不能为空");
 		Assert.notNull(getSetter(), "属性[Setter]不能为空");
 		Assert.notNull(getValueHandler(), "属性[ValueHandler]不能为空");
+	}
+
+	public PColumn toColumnPO() {
+		PColumn result = new PColumn();
+		result.setApiName(getApiName());
+		result.setCallout(getCallout());
+		result.setColumnID(getColumnID());
+		result.setColumnName(getColumnName());
+		result.setColumnSQL(getColumnSQL());
+		result.setDataType(getDataType());
+		result.setDefaultValue(getDefaultValue());
+		result.setElementID(getElementID());
+		result.setEntityType(getEntityType());
+		result.setFieldLength(getFieldLength());
+		result.setFormatPattern(getFormatPattern());
+		result.setInfoFactoryClass(getInfoFactoryClass());
+		result.setIsAllowCopy(getIsAllowCopy());
+		result.setIsAllowLogging(getIsAllowLogging());
+		result.setIsAlwaysUpdateable(getIsAlwaysUpdateable());
+		result.setIsAutocomplete(getIsAutocomplete());
+		result.setIsEncrypted(getIsEncrypted());
+		result.setIsIdentifier(getIsIdentifier());
+		result.setIsKey(getIsKey());
+		result.setIsMandatory(getIsMandatory());
+		result.setIsParent(getIsParent());
+		result.setIsRange(getIsRange());
+		result.setIsSelectionColumn(getIsSelectionColumn());
+		result.setIsSyncDatabase(getIsSyncDatabase());
+		result.setIsTranslated(getIsTranslated());
+		result.setIsUpdateable(getIsUpdateable());
+		result.setReadOnlyLogic(getReadOnlyLogic());
+		result.setReferenceID(getReferenceID());
+		result.setSeqNo(getSeqNo());
+		result.setTableID(getTableID());
+		result.setValueMax(getValueMax());
+		result.setValueMin(getValueMin());
+		result.setVersion(getVersion());
+		result.setvFormat(getvFormat());
+		FlyEntityUtils.copyFlyMetaFields(result, this);
+		return result;
 	}
 }

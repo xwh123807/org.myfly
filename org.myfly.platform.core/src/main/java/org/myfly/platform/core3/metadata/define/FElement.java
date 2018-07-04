@@ -1,7 +1,7 @@
 package org.myfly.platform.core3.metadata.define;
 
 import org.myfly.platform.core.utils.JSONUtil;
-import org.myfly.platform.core.utils.UUIDUtil;
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.model.dict.PElement;
 import org.springframework.util.Assert;
 
@@ -55,15 +55,16 @@ public class FElement extends PElement implements IDefinition {
 		return getElementID();
 	}
 
-	public PElement toPO() {
+	public PElement toElementPO() {
 		PElement result = new PElement();
-		result.setElementID(UUIDUtil.newUUID());
+		result.setElementID(getElementID());
 		result.setColumnName(getColumnName());
 		result.setDataType(getDataType());
 		result.setEntityType(getEntityType());
 		result.setFieldLength(getFieldLength());
 		result.setPrintName(getPrintName());
 		result.setReferenceID(getReferenceID());
+		FlyEntityUtils.copyFlyMetaFields(result, this);
 		return result;
 	}
 }

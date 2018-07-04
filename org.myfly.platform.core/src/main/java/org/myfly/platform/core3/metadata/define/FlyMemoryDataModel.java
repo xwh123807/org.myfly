@@ -24,6 +24,11 @@ public class FlyMemoryDataModel {
 	 * 实体类型
 	 */
 	private Map<String, FEntityType> entityTypes;
+	
+	/**
+	 * 数据类型
+	 */
+	private Map<String, FDataType> dataTypes;
 
 	/**
 	 * 系统元素
@@ -50,6 +55,7 @@ public class FlyMemoryDataModel {
 		elements = new ConcurrentHashMap<>();
 		refTables = new ConcurrentHashMap<>();
 		refLists = new ConcurrentHashMap<>();
+		dataTypes = new ConcurrentHashMap<>();
 	}
 
 	public static FlyMemoryDataModel getInstance() {
@@ -58,6 +64,10 @@ public class FlyMemoryDataModel {
 
 	public Map<String, FEntityType> getEntityTypes() {
 		return this.entityTypes;
+	}
+	
+	public Map<String, FDataType> getDataTypes(){
+		return this.dataTypes;
 	}
 
 	public Map<String, FRefTable> getRefTables() {
@@ -138,5 +148,9 @@ public class FlyMemoryDataModel {
 
 	public void addFlyDataModels(List<FlyDataModel> list) {
 		addList(list, getFlyDataModels());
+	}
+
+	public void addDataTypes(List<FDataType> list) {
+		addList(list, getDataTypes());
 	}
 }

@@ -7,12 +7,15 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.starter.ICodeLevelModelRegister;
 import org.myfly.platform.core.utils.EntityClassUtil;
+import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.IFlyEntity;
+import org.myfly.platform.core3.metadata.builder.DataTypeBuilder;
 import org.myfly.platform.core3.metadata.builder.ElementBuilder;
 import org.myfly.platform.core3.metadata.builder.EntityTypeBuilder;
 import org.myfly.platform.core3.metadata.builder.FlyDataModelBuilder;
 import org.myfly.platform.core3.metadata.builder.RefListBuilder;
 import org.myfly.platform.core3.metadata.builder.RefTableBuilder;
+import org.myfly.platform.core3.metadata.define.FDataType;
 import org.myfly.platform.core3.metadata.define.FElement;
 import org.myfly.platform.core3.metadata.define.FEntityType;
 import org.myfly.platform.core3.metadata.define.FRefList;
@@ -109,6 +112,19 @@ public class CodeLevelModelRegister implements ICodeLevelModelRegister {
 		RefTableBuilder builder = new RefTableBuilder();
 		List<FRefTable> list = builder.loadFromEntityClass(entityClass);
 		registerRefTables(list);
+	}
+
+	@Override
+	public void registerDataTypesFromEnumClass(Class<FlyDataType> enumClass) {
+		log.info("注册FlyDataType，" + enumClass.getName());
+		DataTypeBuilder builder = new DataTypeBuilder();
+		List<FDataType> list = builder.loadFromEnumClass(enumClass);
+		registerDataTypes(list);
+	}
+
+	@Override
+	public void registerDataTypes(List<FDataType> dataTypes) {
+		getFlyMemoryDataModel().addDataTypes(dataTypes);
 	}
 
 }

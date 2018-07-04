@@ -11,7 +11,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyField;
  */
 public enum FlyDataType implements IRefList {
 	//
-	@FlyField(description = "")
+	@FlyField(name = "None", description = "")
 	NONE,
 	//
 	@FlyField(name = "String", description = "Character String")
@@ -120,6 +120,9 @@ public enum FlyDataType implements IRefList {
 	SubTable,
 	//
 	@FlyField(name = "In Table", description = "One to One")
-	InTable, Chart;
+	InTable,
+	//
+	@FlyField(name = "Chart")
+	Chart;
 
 }

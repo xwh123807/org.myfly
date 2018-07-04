@@ -6,9 +6,11 @@ import org.myfly.platform.core.starter.IAppConfigEvent;
 import org.myfly.platform.core.starter.ICodeLevelModelRegister;
 import org.myfly.platform.core.system.service.IMenuService;
 import org.myfly.platform.core3.dbinit.DBInit;
+import org.myfly.platform.core3.dbinit.FlyDataModelImporter;
 import org.myfly.platform.core3.dbinit.resources.Element;
 import org.myfly.platform.core3.dbinit.resources.EntityType;
 import org.myfly.platform.core3.dbinit.resources.RefLists;
+import org.myfly.platform.core3.domain.FlyDataType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +18,9 @@ import org.springframework.stereotype.Component;
 public class Core3AppConfigEvent implements IAppConfigEvent {
 	@Autowired
 	private DBInit dbInit;
+	
+	@Autowired
+	private FlyDataModelImporter flyDataModelImporter;
 
 	/**
 	 * 是否初始化数据库
@@ -36,7 +41,8 @@ public class Core3AppConfigEvent implements IAppConfigEvent {
 	public void initSysData() {
 		if (initDB) {
 			//dbInit.dbInit();
-			dbInit.saveModels();
+			//dbInit.saveModels();
+			flyDataModelImporter.importAll();
 		}
 	}
 
@@ -51,6 +57,7 @@ public class Core3AppConfigEvent implements IAppConfigEvent {
 
 	@Override
 	public void loadCodeLevelModels(ICodeLevelModelRegister modelRegister) {
+		modelRegister.registerDataTypesFromEnumClass(FlyDataType.class);
 		modelRegister.registerEntityTypesFromEnumClass(EntityType.class);
 		modelRegister.registerElementsFromEnumClass(Element.class);
 		modelRegister.registerRefListsFromEnumClass(RefLists.class);

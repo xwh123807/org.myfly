@@ -1,6 +1,7 @@
 package org.myfly.platform.core3.metadata.define;
 
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.model.data.PRefTable;
 import org.myfly.platform.core3.model.dict.PReference;
 import org.springframework.util.Assert;
@@ -64,5 +65,20 @@ public class FRefTable extends PReference implements IDefinition {
 	@Override
 	public String getUid() {
 		return getReferenceID();
+	}
+
+	public PReference toReferencePO() {
+		PReference result = new PReference();
+		result.setReferenceID(getReferenceID());
+		result.setEntityType(getEntityType());
+		result.setIsOrderByValue(getIsOrderByValue());
+		result.setValidationType(getValidationType());
+		result.setvFormat(getvFormat());
+		FlyEntityUtils.copyFlyMetaFields(result, this);
+		return result;
+	}
+
+	public PRefTable toRefTablePO() {
+		return getRefTable();
 	}
 }

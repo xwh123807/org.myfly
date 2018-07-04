@@ -1,6 +1,7 @@
 package org.myfly.platform.core3.metadata.define;
 
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.model.dict.PEntityType;
 import org.springframework.util.Assert;
 
@@ -41,5 +42,16 @@ public class FEntityType extends PEntityType implements IDefinition {
 	@Override
 	public String getUid() {
 		return getEntityTypeID();
+	}
+
+	public PEntityType toEntityTypePO() {
+		PEntityType result = new PEntityType();
+		result.setClassPath(getClassPath());
+		result.setEntityType(getEntityType());
+		result.setEntityTypeID(getEntityTypeID());
+		result.setModelPackage(getModelPackage());
+		result.setProcessing(getProcessing());
+		FlyEntityUtils.copyFlyMetaFields(result, this);
+		return result;
 	}
 }

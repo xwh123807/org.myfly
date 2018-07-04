@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.lang.model.element.Modifier;
 import javax.persistence.Column;
 
+import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 
 import com.squareup.javapoet.AnnotationSpec;
@@ -48,10 +49,6 @@ public class ADColumn extends ADElement {
 		return ((BigDecimal) get("ad_reference_id")).intValue();
 	}
 
-	public Class getDataType() {
-		return String.class;
-	}
-
 	public AnnotationSpec getFlyFieldAnnotationSpec() {
 		return AnnotationSpec.builder(FlyField.class).addMember("name", "$S", getName())
 				.addMember("description", "$S", getDescription()).addMember("help", "$S", getHelp()).build();
@@ -59,6 +56,11 @@ public class ADColumn extends ADElement {
 
 	public AnnotationSpec getColumnAnnotation() {
 		return AnnotationSpec.builder(Column.class).build();
+	}
+	
+	@Override
+	public FlyDataType getDataType() {
+		return super.getDataType();
 	}
 
 	public FieldSpec getFieldSpec() {

@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 public class DBInit {
 	@Autowired
 	private IJpaDataAccessService dataService;
-	
+
 	@Autowired
 	private IFlyDataModelService dataModelService;
 
@@ -52,15 +52,14 @@ public class DBInit {
 		importRefList();
 		importTables();
 	}
-	
+
 	@Transactional
 	public void saveModels() {
-		saveElements();
 	}
 
 	private void saveElements() {
-		List<PElement> list = FlyMemoryDataModel.getInstance().getElements().values().stream().map(item -> item.toPO())
-				.collect(Collectors.toList());
+		List<PElement> list = FlyMemoryDataModel.getInstance().getElements().values().stream()
+				.map(item -> item.toElementPO()).collect(Collectors.toList());
 		dataService.batchSaveEntity(list);
 	}
 
