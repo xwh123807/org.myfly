@@ -56,6 +56,10 @@ public class ADColumn extends ADElement {
 				.addMember("help", "$S", convertStr(getHelp())).build();
 	}
 
+	public AnnotationSpec getFlyFieldAnnotationSpec2() {
+		return AnnotationSpec.builder(FlyField.class).addMember("dataType", "$S", getDataType()).build();
+	}
+
 	private boolean isIDColumn() {
 		return FlyDataType.ID.equals(getDataType()) || FlyDataType.Table.equals(getDataType())
 				|| FlyDataType.TableDirect.equals(getDataType()) || FlyDataType.List.equals(getDataType());
@@ -74,9 +78,8 @@ public class ADColumn extends ADElement {
 	}
 
 	public FieldSpec getFieldSpec() {
-		return FieldSpec.builder(getJavaType(), getApiName(), Modifier.PRIVATE).addAnnotation(getColumnAnnotation())
-				.build();
-		// .addAnnotation(getFlyFieldAnnotationSpec())
+		return FieldSpec.builder(getJavaType(), getApiName(), Modifier.PRIVATE).addAnnotation(getColumnAnnotation()).build();
+				//.addAnnotation(getFlyFieldAnnotationSpec2()).build();
 	}
 
 	public MethodSpec getGetterMethodSpec() {

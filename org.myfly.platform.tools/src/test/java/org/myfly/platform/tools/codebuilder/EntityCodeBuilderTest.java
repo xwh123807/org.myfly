@@ -13,12 +13,12 @@ public class EntityCodeBuilderTest {
 
 	@Autowired
 	private EntityCodeBuilder builder;
-	
+
 	@Test
 	public void genCodes() {
 		builder.setPath("/gencodes/");
 		PackageTable[] packages = new PackageTable[] {
-				new PackageTable("org.myfly.platform.core3.model.data", new String[] { "AD_Table", "AD_Column" }) };
+				new PackageTable("org.myfly.platform.core3.model.data", ExportConstants.EXPORT_TABLES) };
 		builder.setPackages(packages);
 		builder.parareData();
 		builder.generateCodes();

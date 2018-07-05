@@ -16,19 +16,30 @@ public class RefListCodeBuilderTest {
 	@Test
 	public void genCodes() {
 		builder.setPath("/gencodes/");
-		builder.setPackageName("org.myfly.platform.tools.codebuilder");
+		builder.setPackageName("org.myfly.platform.core3.model.data");
 		builder.setClassName("RefLists_ALL");
 		builder.setLanguage("");
 		builder.parareData();
 		builder.generateCodes();
 	}
-	
+
 	@Test
 	public void genCodesForCN() {
 		builder.setPath("/gencodes/");
-		builder.setPackageName("org.myfly.platform.tools.codebuilder");
+		builder.setPackageName("org.myfly.platform.core3.model.data");
 		builder.setClassName("RefLists_ALL");
 		builder.setLanguage("zh_CN");
+		builder.parareData();
+		builder.generateCodes();
+	}
+
+	@Test
+	public void genCodesForCNWithTables() {
+		builder.setPath("/gencodes/");
+		builder.setPackageName("org.myfly.platform.core3.model.data");
+		builder.setClassName("RefLists");
+		builder.setLanguage("zh_CN");
+		builder.setTables(ExportConstants.EXPORT_TABLES);
 		builder.parareData();
 		builder.generateCodes();
 	}

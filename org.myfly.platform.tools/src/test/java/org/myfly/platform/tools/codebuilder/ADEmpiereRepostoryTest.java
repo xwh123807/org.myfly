@@ -24,6 +24,13 @@ public class ADEmpiereRepostoryTest {
 	}
 
 	@Test
+	public void getElementsByTables() {
+		List<ADElement> elements = repository.getElementsByTables(new String[] { "AD_Table" });
+		Assert.assertNotNull(elements);
+		Assert.assertTrue(elements.size() > 0);
+	}
+
+	@Test
 	public void getTables() {
 		List<ADTable> elements = repository.getTables();
 		Assert.assertNotNull(elements);
@@ -42,6 +49,13 @@ public class ADEmpiereRepostoryTest {
 	@Test
 	public void getReferencesByList() {
 		List<ADReference> elements = repository.getReferencesByList();
+		Assert.assertNotNull(elements);
+		Assert.assertTrue(elements.size() > 0);
+	}
+	
+	@Test
+	public void getReferencesByListWithTables() {
+		List<ADReference> elements = repository.getReferencesByListWithTables(new String[] { "AD_Table" });
 		Assert.assertNotNull(elements);
 		Assert.assertTrue(elements.size() > 0);
 	}

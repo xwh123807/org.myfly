@@ -2,14 +2,22 @@ package org.myfly.platform.tools.codebuilder;
 
 import java.util.List;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 @Component
 public class RefListCodeBuilder extends AbstractCodeBuilder<ADReference> {
+	/**
+	 * 只包含指定表的Element
+	 */
+	private String[] tables;
+
 	@Override
 	public void parareData() {
-		List<ADReference> refs = getRepository().getReferencesByList();
+		List<ADReference> refs = ArrayUtils.isNotEmpty(getTables())
+				? getRepository().getReferencesByListWithTables(getTables())
+				: getRepository().getReferencesByList();
 		refs.forEach(item -> {
 			item.setApiName(item.getName());
 		});
@@ -57,5 +65,13 @@ public class RefListCodeBuilder extends AbstractCodeBuilder<ADReference> {
 		System.out.println(buffer.toString());
 
 		toFile(getPackageName(), getClassNameWithLanguage(), buffer);
+	}
+
+	public String[] getTables() {
+		return tables;
+	}
+
+	public void setTables(String[] tables) {
+		this.tables = tables;
 	}
 }

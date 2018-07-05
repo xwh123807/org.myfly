@@ -1,14 +1,24 @@
 package org.myfly.platform.tools.codebuilder;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 @Service
 public class ElementCodeBuilder extends AbstractCodeBuilder<ADElement> {
+	/**
+	 * 只包含指定表的Element
+	 */
+	private String[] tables;
+
 	@Override
 	public void parareData() {
-		setSources(getRepository().getElements());
+		if (ArrayUtils.isNotEmpty(getTables())) {
+			setSources(getRepository().getElementsByTables(getTables()));
+		} else {
+			setSources(getRepository().getElements());
+		}
 		prepareLanguage("AD_Element");
 		mergeLanguages(getSources(), "ad_element_id");
 	}
@@ -54,5 +64,13 @@ public class ElementCodeBuilder extends AbstractCodeBuilder<ADElement> {
 		System.out.println(buffer.toString());
 
 		toFile(getPackageName(), getClassNameWithLanguage(), buffer);
+	}
+
+	public String[] getTables() {
+		return tables;
+	}
+
+	public void setTables(String[] tables) {
+		this.tables = tables;
 	}
 }

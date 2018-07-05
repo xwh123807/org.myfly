@@ -10,21 +10,16 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 @Entity
 @Table(
-    name = "AD_Reference"
+    name = "AD_FieldGroup"
 )
 @FlyTable(
-    name = "Reference",
-    description = "System Reference (Pick List)",
+    name = "Field Group",
+    description = "Logical grouping of fields",
     help = ""
 )
-public class AD_Reference {
+public class AD_FieldGroup {
   @Column
-  private Timestamp updated;
-
-  @Column(
-      length = 32
-  )
-  private String aD_Reference_ID;
+  private Timestamp created;
 
   @Column(
       length = 32
@@ -34,13 +29,23 @@ public class AD_Reference {
   @Column(
       length = 32
   )
+  private String createdBy;
+
+  @Column(
+      length = 32
+  )
   private String aD_Org_ID;
 
   @Column
-  private Boolean isActive;
+  private Timestamp updated;
+
+  @Column(
+      length = 32
+  )
+  private String aD_FieldGroup_ID;
 
   @Column
-  private Timestamp created;
+  private Boolean isActive;
 
   @Column(
       length = 32
@@ -50,25 +55,7 @@ public class AD_Reference {
   @Column(
       length = 32
   )
-  private String validationType;
-
-  @Column(
-      length = 2000
-  )
-  private String help;
-
-  @Column(
-      length = 32
-  )
   private String updatedBy;
-
-  @Column
-  private Boolean isOrderByValue;
-
-  @Column(
-      length = 40
-  )
-  private String vFormat;
 
   @Column(
       length = 60
@@ -76,14 +63,12 @@ public class AD_Reference {
   private String name;
 
   @Column(
-      length = 255
-  )
-  private String description;
-
-  @Column(
       length = 32
   )
-  private String createdBy;
+  private String fieldGroupType;
+
+  @Column
+  private Boolean isCollapsedByDefault;
 
   @Column(
       length = 36

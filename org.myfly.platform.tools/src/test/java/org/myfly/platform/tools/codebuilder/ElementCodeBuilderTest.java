@@ -16,7 +16,7 @@ public class ElementCodeBuilderTest {
 	@Test
 	public void genCodes() {
 		builder.setPath("/gencodes/");
-		builder.setPackageName("org.myfly.platform.tools.codebuilder");
+		builder.setPackageName("org.myfly.platform.core3.model.data");
 		builder.setClassName("Element_ALL");
 		builder.setLanguage("");
 		builder.parareData();
@@ -26,9 +26,20 @@ public class ElementCodeBuilderTest {
 	@Test
 	public void genCodesForCN() {
 		builder.setPath("/gencodes/");
-		builder.setPackageName("org.myfly.platform.tools.codebuilder");
+		builder.setPackageName("org.myfly.platform.core3.model.data");
 		builder.setClassName("Element_ALL");
 		builder.setLanguage("zh_CN");
+		builder.parareData();
+		builder.generateCodes();
+	}
+
+	@Test
+	public void genCodesForCNWithTables() {
+		builder.setPath("/gencodes/");
+		builder.setPackageName("org.myfly.platform.core3.model.data");
+		builder.setClassName("Element");
+		builder.setLanguage("zh_CN");
+		builder.setTables(ExportConstants.EXPORT_TABLES);
 		builder.parareData();
 		builder.generateCodes();
 	}

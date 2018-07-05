@@ -3,7 +3,7 @@ package org.myfly.platform.core3.model.data;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.metadata.annotation.FlyElement;
 
-public enum Element_ALL_zh_CN{
+public enum Element_zh_CN{
 	//
 	@FlyElement(name="数据访问级别", description="所要求的访问级别", help="Indicates the access level required for this record or process.", dataType=FlyDataType.List, entityType="D", printName="数据访问级别", fieldLength=1)
 	AccessLevel,

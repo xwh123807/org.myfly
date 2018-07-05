@@ -5,7 +5,4 @@ spring:
     password: eevolution
     driverClassName: org.postgresql.Driver
 
-codebuilder:
-  org.myfly.platform.core3.model.data:
-    - AD_Table
-    - AD_Column
+codebuilder.exportTables: AD_Table,AD_Column

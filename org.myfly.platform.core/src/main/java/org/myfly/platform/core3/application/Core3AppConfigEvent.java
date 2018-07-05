@@ -7,9 +7,9 @@ import org.myfly.platform.core.starter.ICodeLevelModelRegister;
 import org.myfly.platform.core.system.service.IMenuService;
 import org.myfly.platform.core3.dbinit.Core3SystemData;
 import org.myfly.platform.core3.dbinit.FlyDataModelImporter;
-import org.myfly.platform.core3.dbinit.resources.Element;
+import org.myfly.platform.core3.dbinit.resources.Element_zh_CN;
 import org.myfly.platform.core3.dbinit.resources.EntityType;
-import org.myfly.platform.core3.dbinit.resources.RefLists;
+import org.myfly.platform.core3.dbinit.resources.RefLists_zh_CN;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -58,8 +58,8 @@ public class Core3AppConfigEvent implements IAppConfigEvent {
 	public void loadCodeLevelModels(ICodeLevelModelRegister modelRegister) {
 		modelRegister.registerDataTypesFromEnumClass(FlyDataType.class);
 		modelRegister.registerEntityTypesFromEnumClass(EntityType.class);
-		modelRegister.registerElementsFromEnumClass(Element.class);
-		modelRegister.registerRefListsFromEnumClass(RefLists.class);
+		modelRegister.registerElementsFromEnumClass(Element_zh_CN.class);
+		modelRegister.registerRefListsFromEnumClass(RefLists_zh_CN.class);
 		modelRegister.registerRefTablesFromPackage("org.myfly.platform.core3");
 		modelRegister.registerFlyDataModelFromPackage("org.myfly.platform.core3");
 	}
