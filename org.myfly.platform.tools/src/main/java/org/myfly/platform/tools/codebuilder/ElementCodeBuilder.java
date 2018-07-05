@@ -21,23 +21,9 @@ public class ElementCodeBuilder extends AbstractCodeBuilder<ADElement> {
 		Assert.hasLength(getPackageName(), "属性packageName不能为空");
 	}
 
-	private String convertStr(String value) {
-		String tmp = value.replaceAll("\n", "\t");
-		tmp = tmp.replaceAll("\r", "\t");
-		tmp = tmp.replaceAll("\"", "'");
-		return tmp;
-	}
-
 	@Override
 	public void generateCodes() {
 		validate();
-		// Builder builder =
-		// TypeSpec.enumBuilder("Element").addModifiers(Modifier.PUBLIC);
-		// getSources().forEach(element -> {
-		// element.build(builder);
-		// });
-		// toFile(getPackageName(), builder);
-
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("package " + getPackageName() + ";").append("\n");
 		buffer.append("\n");
@@ -70,8 +56,9 @@ public class ElementCodeBuilder extends AbstractCodeBuilder<ADElement> {
 		buffer.append("}");
 		System.out.println(buffer.toString());
 
-		File file = new File(
-				"/Users/xiangwanhong/git/org.myfly/org.myfly.platform.tools/src/test/java/org/myfly/platform/tools/codebuilder/Element.java");
+		String userDir = System.getProperty("user.dir");
+		String fileName = userDir + "/src/test/java/" + getPackageName().replaceAll("\\.", "/") + "/Element.java";
+		File file = new File(fileName);
 		try {
 			FileUtils.writeByteArrayToFile(file, buffer.toString().getBytes());
 		} catch (IOException e) {

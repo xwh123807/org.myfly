@@ -55,4 +55,25 @@ public class ADEmpiereRepostory {
 				tableId);
 		return list.stream().map(item -> new ADColumn(item)).collect(Collectors.toList());
 	}
+	
+	/**
+	 * 获取列表引用类型
+	 * @return
+	 */
+	public List<ADReference> getReferencesByList(){
+		List<Map<String, Object>> list = jdbcTemplate.queryForList("select * from ad_reference where validationtype = ?",
+				"L");
+		return list.stream().map(item -> new ADReference(item)).collect(Collectors.toList());
+	}
+	
+	/**
+	 * 获取引用列表
+	 * @param referenceID
+	 * @return
+	 */
+	public List<ADRefList> getRefLists(int referenceID){
+		List<Map<String, Object>> list = jdbcTemplate.queryForList("select * from ad_ref_list where ad_reference_id = ?",
+				referenceID);
+		return list.stream().map(item -> new ADRefList(item)).collect(Collectors.toList());
+	}
 }

@@ -1,6 +1,9 @@
 package org.myfly.platform.core3.metadata.builder;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -84,5 +87,70 @@ public class FlyDataTypeUtils {
 				field.setDataType(FlyDataType.ID);
 			}
 		}
+	}
+	
+	/**
+	 * 获取类的Java类型
+	 * @param column
+	 * @return
+	 */
+	public static Class<?> getJavaType(FlyDataType dataType){
+		Class<?> result = null;
+		switch (dataType) {
+		case Date:
+			result = Date.class;
+			break;
+		case DateTime:
+			result = Timestamp.class;
+			break;
+		case Binary:
+		case Image:
+			result = byte[].class;
+			break;
+		case NONE:
+			break;
+		case Quantity:
+		case Amount:
+		case CostsPrices:
+		case Integer:
+		case Number:
+			result = BigDecimal.class;
+			break;
+		case InTable:
+		case List:
+		case ProductAttribute:
+		case RowID:
+		case Search:
+		case SubTable:
+		case ID:
+		case Table:
+		case TableDirect:
+		case Time:
+		case Account:
+		case Assignment:
+		case Button:
+		case Chart:
+		case Color:
+		case EMail:
+		case FileName:
+		case FilePath:
+		case FilePathOrName:
+		case Location:
+		case Locator:
+		case LongText:
+		case Memo:
+		case PrinterName:
+		case String:
+		case Text:
+		case URL:
+			result = String.class;
+			break;
+		case YesNo:
+			result = Boolean.class;
+			break;
+		default:
+			break;
+		}
+		return result;
 	}
 }

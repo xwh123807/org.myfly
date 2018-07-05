@@ -6,8 +6,8 @@ import java.util.Map;
 import javax.lang.model.element.Modifier;
 import javax.persistence.Column;
 
-import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
+import org.myfly.platform.core3.metadata.builder.FlyDataTypeUtils;
 
 import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.FieldSpec;
@@ -58,24 +58,23 @@ public class ADColumn extends ADElement {
 		return AnnotationSpec.builder(Column.class).build();
 	}
 	
-	@Override
-	public FlyDataType getDataType() {
-		return super.getDataType();
+	public Class<?> getJavaType(){
+		return FlyDataTypeUtils.getJavaType(getDataType());
 	}
-
+	
 	public FieldSpec getFieldSpec() {
-		return FieldSpec.builder(getDataType(), getApiName(), Modifier.PRIVATE)
+		return FieldSpec.builder(getJavaType(), getApiName(), Modifier.PRIVATE)
 				.addAnnotation(getFlyFieldAnnotationSpec()).addAnnotation(getColumnAnnotation()).build();
 	}
 
 	public MethodSpec getGetterMethodSpec() {
-		return MethodSpec.methodBuilder("get" + getColumnName()).addModifiers(Modifier.PUBLIC).returns(getDataType())
+		return MethodSpec.methodBuilder("get" + getColumnName()).addModifiers(Modifier.PUBLIC).returns(getJavaType())
 				.addStatement("return $N", getApiName()).build();
 	}
 
 	public MethodSpec getSetterMethodSpec() {
 		return MethodSpec.methodBuilder("set" + getColumnName()).addModifiers(Modifier.PUBLIC)
-				.addParameter(getDataType(), "value").returns(void.class).addStatement("this.$N = value", getApiName())
+				.addParameter(getJavaType(), "value").returns(void.class).addStatement("this.$N = value", getApiName())
 				.build();
 	}
 

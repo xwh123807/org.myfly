@@ -38,4 +38,18 @@ public class ADEmpiereRepostoryTest {
 		Assert.assertNotNull(columns);
 		Assert.assertTrue(columns.size() > 0);
 	}
+
+	@Test
+	public void getReferencesByList() {
+		List<ADReference> elements = repository.getReferencesByList();
+		Assert.assertNotNull(elements);
+		Assert.assertTrue(elements.size() > 0);
+	}
+
+	@Test
+	public void getRefLists() {
+		List<ADRefList> list = repository.getRefLists(101);
+		Assert.assertNotNull(list);
+		Assert.assertTrue(list.size() > 0);
+	}
 }

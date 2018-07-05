@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
@@ -54,21 +55,25 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 		AssertUtil.parameterEmpty(entityClass, "entityClass");
 		AssertUtil.parameterEmpty(uid, "uid");
 		return entityManager.find(entityClass, uid);
-		//return (T) getSimpleJpaRepository(entityClass).getOne(uid);
+		// return (T) getSimpleJpaRepository(entityClass).getOne(uid);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see org.myfly.platform.core.flydata.service.IJpaDataAccessService#refresh(java.lang.Object)
+	 * 
+	 * @see
+	 * org.myfly.platform.core.flydata.service.IJpaDataAccessService#refresh(java.
+	 * lang.Object)
 	 */
 	@Override
 	public <T> void refresh(T entity) {
 		entityManager.refresh(entity);
 	}
-	
+
 	@Override
 	public <T> T findOne(Class<T> entityClass, Map<String, Object> keyParams) {
-		return findOne(entityClass, AppUtil.getEntityMetaData(entityClass.getName()).getPkFieldDefinition().buildPK(keyParams) );
+		return findOne(entityClass,
+				AppUtil.getEntityMetaData(entityClass.getName()).getPkFieldDefinition().buildPK(keyParams));
 	}
 
 	/*
@@ -123,7 +128,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 		beforeInsertFlyEntity(entity);
 		entityManager.persist(entity);
 		return entity;
-		//return (T) getSimpleJpaRepository(entity.getClass()).save(entity);
+		// return (T) getSimpleJpaRepository(entity.getClass()).save(entity);
 	}
 
 	/*
@@ -175,7 +180,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	public <T> T updateEntity(T entity) {
 		AssertUtil.parameterEmpty(entity, "entity");
 		return entityManager.merge(entity);
-		//return (T) getSimpleJpaRepository(entity.getClass()).save(entity);
+		// return (T) getSimpleJpaRepository(entity.getClass()).save(entity);
 	}
 
 	@Override
@@ -271,7 +276,9 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 
 	@Override
 	public <T> void batchSaveEntity(List<T> batchList) {
-		getSimpleJpaRepository(batchList.get(0).getClass()).save(batchList);
+		if (CollectionUtils.isNotEmpty(batchList)) {
+			getSimpleJpaRepository(batchList.get(0).getClass()).save(batchList);
+		}
 	}
 
 	/*

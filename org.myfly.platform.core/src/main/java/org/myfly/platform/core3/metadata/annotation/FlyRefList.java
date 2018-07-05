@@ -11,9 +11,9 @@ import java.lang.annotation.Target;
 public @interface FlyRefList {
 	String name();
 
-	String description();
+	String description() default "";
 
-	String help();
+	String help() default "";
 
 	String entityType() default "D";
 

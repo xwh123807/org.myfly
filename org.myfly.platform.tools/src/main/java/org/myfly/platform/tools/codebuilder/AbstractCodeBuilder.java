@@ -82,4 +82,11 @@ public abstract class AbstractCodeBuilder<T> {
 	public void validate() {
 		Assert.notEmpty(getSources(), "sources不能为空");
 	}
+	
+	public String convertStr(String value) {
+		String tmp = value.replaceAll("\n", "\t");
+		tmp = tmp.replaceAll("\r", "\t");
+		tmp = tmp.replaceAll("\"", "'");
+		return tmp;
+	}
 }

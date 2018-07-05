@@ -62,6 +62,7 @@ public class ADTable extends ADElement {
 		put("columns", list);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<ADColumn> getColumns() {
 		return (List<ADColumn>) get("columns");
 	}
