@@ -1,5 +1,6 @@
 package org.myfly.platform.tools.codebuilder;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,5 +21,9 @@ public class ADRefList extends HashMap<String, Object> {
 	
 	public String getValue() {
 		return (String) get("value");
+	}
+
+	public int getUID() {
+		return ((BigDecimal)get("ad_ref_list_id")).intValue();
 	}
 }

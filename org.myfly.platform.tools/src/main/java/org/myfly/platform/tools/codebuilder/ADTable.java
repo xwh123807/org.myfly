@@ -40,7 +40,6 @@ public class ADTable extends ADElement {
 	public String getTableName() {
 		return (String) get("tablename");
 	}
-	
 
 	public void setTableName(String value) {
 		put("tablename", value);
@@ -80,8 +79,9 @@ public class ADTable extends ADElement {
 	}
 
 	private AnnotationSpec getFlyTableAnnotaion() {
-		return AnnotationSpec.builder(FlyTable.class).addMember("name", "$S", getName())
-				.addMember("description", "$S", getDescription()).addMember("help", "$S", getHelp()).build();
+		return AnnotationSpec.builder(FlyTable.class).addMember("name", "$S", convertStr(getName()))
+				.addMember("description", "$S", convertStr(getDescription()))
+				.addMember("help", "$S", convertStr(getHelp())).build();
 	}
 
 }

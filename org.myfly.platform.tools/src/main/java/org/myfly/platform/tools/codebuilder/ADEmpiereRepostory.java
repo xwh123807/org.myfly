@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -19,7 +20,8 @@ public class ADEmpiereRepostory {
 	 * @return
 	 */
 	public List<ADElement> getElements() {
-		List<Map<String, Object>> list = jdbcTemplate.queryForList("select * from ad_element order by columnname");
+		List<Map<String, Object>> list = jdbcTemplate
+				.queryForList("select * from ad_element where entitytype='D' order by columnname");
 		return list.stream().map(item -> new ADElement(item)).collect(Collectors.toList());
 	}
 
@@ -41,6 +43,9 @@ public class ADEmpiereRepostory {
 	 */
 	public ADTable getTable(String tableName) {
 		Map<String, Object> item = jdbcTemplate.queryForMap("select * from ad_table where tablename = ?", tableName);
+		if (MapUtils.isEmpty(item)) {
+			throw new IllegalArgumentException("表[" + tableName + "]不存在");
+		}
 		return new ADTable(item);
 	}
 
@@ -55,25 +60,27 @@ public class ADEmpiereRepostory {
 				tableId);
 		return list.stream().map(item -> new ADColumn(item)).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * 获取列表引用类型
+	 * 
 	 * @return
 	 */
-	public List<ADReference> getReferencesByList(){
-		List<Map<String, Object>> list = jdbcTemplate.queryForList("select * from ad_reference where validationtype = ?",
-				"L");
+	public List<ADReference> getReferencesByList() {
+		List<Map<String, Object>> list = jdbcTemplate
+				.queryForList("select * from ad_reference where entitytype='D' and validationtype = ?", "L");
 		return list.stream().map(item -> new ADReference(item)).collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * 获取引用列表
+	 * 
 	 * @param referenceID
 	 * @return
 	 */
-	public List<ADRefList> getRefLists(int referenceID){
-		List<Map<String, Object>> list = jdbcTemplate.queryForList("select * from ad_ref_list where ad_reference_id = ?",
-				referenceID);
+	public List<ADRefList> getRefLists(int referenceID) {
+		List<Map<String, Object>> list = jdbcTemplate
+				.queryForList("select * from ad_ref_list where ad_reference_id = ?", referenceID);
 		return list.stream().map(item -> new ADRefList(item)).collect(Collectors.toList());
 	}
 }

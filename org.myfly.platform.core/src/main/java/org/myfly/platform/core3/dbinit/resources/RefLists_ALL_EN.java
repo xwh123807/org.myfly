@@ -6,7 +6,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyRefList;
 public enum RefLists_ALL_EN {
 	//
 	@FlyRefList(name = "A_Table_Rate_Type", description = "List that contains type of rate", items = {
-			@FlyRefItem(name = "Amount", value = "Amount"), @FlyRefItem(name = "Rate", value = "Rate"), }, help = "")
+			@FlyRefItem(name = "Amount", value = "Amount"), @FlyRefItem(name = "Rate", value = "Rate"), })
 	A_Table_Rate_Type,
 	//
 	@FlyRefList(name = "AD_Validation Rule Types", description = "Validation Rule Type list", help = "e.g. S - SQL", items = {
@@ -337,75 +337,9 @@ public enum RefLists_ALL_EN {
 			@FlyRefItem(name = "Client only", value = "Client only"), })
 	AD_Table_Access_Levels,
 	//
-	@FlyRefList(name = "PP_Process Type", description = "Process Type", items = {
-			@FlyRefItem(name = "Batch Flow ", value = "Batch Flow "),
-			@FlyRefItem(name = "Continuous Flow", value = "Continuous Flow"),
-			@FlyRefItem(name = "Dedicate Repetititive Flow", value = "Dedicate Repetititive Flow"),
-			@FlyRefItem(name = "Job Shop", value = "Job Shop"),
-			@FlyRefItem(name = "Mixed Repetitive Flow", value = "Mixed Repetitive Flow"),
-			@FlyRefItem(name = "Plant", value = "Plant"), })
-	PP_Process_Type,
-	//
-	@FlyRefList(name = "PP_ComponentType", items = { @FlyRefItem(name = "By-Product", value = "By-Product"),
-			@FlyRefItem(name = "Component", value = "Component"), @FlyRefItem(name = "Phantom", value = "Phantom"),
-			@FlyRefItem(name = "Packing", value = "Packing"), @FlyRefItem(name = "Planning", value = "Planning"),
-			@FlyRefItem(name = "Tools", value = "Tools"), @FlyRefItem(name = "Option", value = "Option"),
-			@FlyRefItem(name = "Variant", value = "Variant"), @FlyRefItem(name = "Co-Product", value = "Co-Product"), })
-	PP_ComponentType,
-	//
-	@FlyRefList(name = "PP_Product_BOM IssueMethod", description = "Issue Method", items = {
-			@FlyRefItem(name = "Issue", value = "Issue"), @FlyRefItem(name = "Backflush", value = "Backflush"),
-			@FlyRefItem(name = "Floor Stock", value = "Floor Stock"), })
-	PP_Product_BOM_IssueMethod,
-	//
-	@FlyRefList(name = "PP_Product_BOM Component Change", description = "Component Change", help = "Component Change", items = {
-			@FlyRefItem(name = "Add", value = "Add"), @FlyRefItem(name = "Deactivate", value = "Deactivate"),
-			@FlyRefItem(name = "Expire", value = "Expire"), @FlyRefItem(name = "Replace", value = "Replace"),
-			@FlyRefItem(name = "Replace & Expire", value = "Replace & Expire"), })
-	PP_Product_BOM_Component_Change,
-	//
-	@FlyRefList(name = "PP_Product_Planning Order Policy", items = {
-			@FlyRefItem(name = "Fixed Order Quantity", value = "Fixed Order Quantity"),
-			@FlyRefItem(name = "Lot-for-Lot", value = "Lot-for-Lot"),
-			@FlyRefItem(name = "Period Order Quantity", value = "Period Order Quantity"), })
-	PP_Product_Planning_Order_Policy,
-	//
 	@FlyRefList(name = "CRM Schedule", help = "Forward and Backward Scheduling", items = {
 			@FlyRefItem(name = "Backward ", value = "Backward "), @FlyRefItem(name = "Forward", value = "Forward"), })
 	CRM_Schedule,
-	//
-	@FlyRefList(name = "C_TaxBase", items = { @FlyRefItem(name = "Weight", value = "Weight"),
-			@FlyRefItem(name = "Cost", value = "Cost"), @FlyRefItem(name = "Price", value = "Price"),
-			@FlyRefItem(name = "Quantity", value = "Quantity"), })
-	C_TaxBase,
-	//
-	@FlyRefList(name = "EXP_Line_Type", description = "List with Export Line types", items = {
-			@FlyRefItem(name = "XML Element", value = "XML Element"),
-			@FlyRefItem(name = "XML Attribute", value = "XML Attribute"),
-			@FlyRefItem(name = "Embedded EXP Format", value = "Embedded EXP Format"),
-			@FlyRefItem(name = "Referenced EXP Format", value = "Referenced EXP Format"), })
-	EXP_Line_Type,
-	//
-	@FlyRefList(name = "HR Type", items = { @FlyRefItem(name = "Concept", value = "Concept"),
-			@FlyRefItem(name = "Rule Engine", value = "Rule Engine"),
-			@FlyRefItem(name = "Information", value = "Information"),
-			@FlyRefItem(name = "Reference", value = "Reference"), })
-	HR_Type,
-	//
-	@FlyRefList(name = "_MRP Type", description = "MRP type can be a Demand or Supply", items = {
-			@FlyRefItem(name = "Supply", value = "Supply"), @FlyRefItem(name = "Demand", value = "Demand"), })
-	_MRP_Type,
-	//
-	@FlyRefList(name = "S_Resource MFG Type", description = "Manufacturing Resource Type", items = {
-			@FlyRefItem(name = "Production Line", value = "Production Line"),
-			@FlyRefItem(name = "Plant", value = "Plant"), @FlyRefItem(name = "Work Center", value = "Work Center"),
-			@FlyRefItem(name = "Work Station", value = "Work Station"), })
-	S_Resource_MFG_Type,
-	//
-	@FlyRefList(name = "HR ColumnType", items = { @FlyRefItem(name = "Amount", value = "Amount"),
-			@FlyRefItem(name = "Date", value = "Date"), @FlyRefItem(name = "Quantity", value = "Quantity"),
-			@FlyRefItem(name = "Text", value = "Text"), })
-	HR_ColumnType,
 	//
 	@FlyRefList(name = "C_DocType SubTypeSO", description = "Order Types list", items = {
 			@FlyRefItem(name = "On Credit Order", value = "On Credit Order"),
@@ -979,7 +913,7 @@ public enum RefLists_ALL_EN {
 			@FlyRefItem(name = "Total Credit Only", value = "Total Credit Only"),
 			@FlyRefItem(name = "Total Balance", value = "Total Balance"),
 			@FlyRefItem(name = "Natural Balance", value = "Natural Balance"), })
-	PA_Report_AmountType_deprecated,
+	PA_Report_AmountType__deprecated_,
 	//
 	@FlyRefList(name = "PA_Report CalculationType", items = {
 			@FlyRefItem(name = "Add (Op1+Op2)", value = "Add (Op1+Op2)"),
@@ -1329,16 +1263,6 @@ public enum RefLists_ALL_EN {
 			@FlyRefItem(name = "CashBook", value = "CashBook"), })
 	_TransferType,
 	//
-	@FlyRefList(name = "PP_CostCollectorType Transaction Manufacturing Management", items = {
-			@FlyRefItem(name = "Material Receipt", value = "Material Receipt"),
-			@FlyRefItem(name = "Component Issue", value = "Component Issue"),
-			@FlyRefItem(name = "Usege Variance", value = "Usege Variance"),
-			@FlyRefItem(name = "Method Change Variance", value = "Method Change Variance"),
-			@FlyRefItem(name = "Rate Variance", value = "Rate Variance"),
-			@FlyRefItem(name = "Mix Variance", value = "Mix Variance"),
-			@FlyRefItem(name = "Activity Control", value = "Activity Control"), })
-	PP_CostCollectorType_Transaction_Manufacturing_Management,
-	//
 	@FlyRefList(name = "SearchType", items = { @FlyRefItem(name = "Query", value = "Query"),
 			@FlyRefItem(name = "Table", value = "Table"), })
 	SearchType,
@@ -1544,15 +1468,6 @@ public enum RefLists_ALL_EN {
 			@FlyRefItem(name = "SQL Statement", value = "SQL Statement"), })
 	Migration_step_type,
 	//
-	@FlyRefList(name = "PP_Forecast Load Type", description = "List Forecast Load Type indicated that period date is use to create the forecast line.", items = {
-			@FlyRefItem(name = "Use Period End Date", value = "Use Period End Date"),
-			@FlyRefItem(name = "Use Period Start Date", value = "Use Period Start Date"), })
-	PP_Forecast_Load_Type,
-	//
-	@FlyRefList(name = "PP_Forecast Action Type", description = "Forecast Action Type List containt the option if the forecast is replaced or combined", items = {
-			@FlyRefItem(name = "Merge", value = "Merge"), @FlyRefItem(name = "Replace", value = "Replace"), })
-	PP_Forecast_Action_Type,
-	//
 	@FlyRefList(name = "_ReportStyle", description = "The styles for a report are defined", items = {
 			@FlyRefItem(name = "Total Line", value = "Total Line"),
 			@FlyRefItem(name = "Double Line for Total", value = "Double Line for Total"),
@@ -1571,79 +1486,9 @@ public enum RefLists_ALL_EN {
 			@FlyRefItem(name = "onDoubleClick", value = "onDoubleClick"), })
 	Event_List,
 	//
-	@FlyRefList(name = "WM_InOutBound InOutboundType", items = {
-			@FlyRefItem(name = "Outbound Operation", value = "Outbound Operation"),
-			@FlyRefItem(name = "Inbound Operation", value = "Inbound Operation"), })
-	WM_InOutBound_InOutboundType,
-	//
-	@FlyRefList(name = "WM_InOutBound Inbound & Outbound Rule", items = {
-			@FlyRefItem(name = "Custum Interface", value = "Custum Interface"),
-			@FlyRefItem(name = "Find any locator with available capacity", value = "Find any locator with available capacity"),
-			@FlyRefItem(name = "For the material oldest using FIFO", value = "For the material oldest using FIFO"),
-			@FlyRefItem(name = "For the material most recent using LIFO", value = "For the material most recent using LIFO"), })
-	WM_InOutBound_Inbound__Outbound_Rule,
-	//
-	@FlyRefList(name = "HR_Education Year Of Passing", items = { @FlyRefItem(name = "1970", value = "1970"),
-			@FlyRefItem(name = "1971", value = "1971"), @FlyRefItem(name = "1972", value = "1972"),
-			@FlyRefItem(name = "1973", value = "1973"), @FlyRefItem(name = "1974", value = "1974"),
-			@FlyRefItem(name = "1975", value = "1975"), @FlyRefItem(name = "1976", value = "1976"),
-			@FlyRefItem(name = "1977", value = "1977"), @FlyRefItem(name = "1978", value = "1978"),
-			@FlyRefItem(name = "1979", value = "1979"), @FlyRefItem(name = "1980", value = "1980"),
-			@FlyRefItem(name = "1981", value = "1981"), @FlyRefItem(name = "1982", value = "1982"),
-			@FlyRefItem(name = "1983", value = "1983"), @FlyRefItem(name = "1984", value = "1984"),
-			@FlyRefItem(name = "1985", value = "1985"), @FlyRefItem(name = "1986", value = "1986"),
-			@FlyRefItem(name = "1987", value = "1987"), @FlyRefItem(name = "1988", value = "1988"),
-			@FlyRefItem(name = "1989", value = "1989"), @FlyRefItem(name = "1990", value = "1990"),
-			@FlyRefItem(name = "1991", value = "1991"), @FlyRefItem(name = "1992", value = "1992"),
-			@FlyRefItem(name = "1993", value = "1993"), @FlyRefItem(name = "1994", value = "1994"),
-			@FlyRefItem(name = "1995", value = "1995"), @FlyRefItem(name = "1996", value = "1996"),
-			@FlyRefItem(name = "1997", value = "1997"), @FlyRefItem(name = "1998", value = "1998"),
-			@FlyRefItem(name = "1999", value = "1999"), @FlyRefItem(name = "2000", value = "2000"),
-			@FlyRefItem(name = "2001", value = "2001"), @FlyRefItem(name = "2002", value = "2002"),
-			@FlyRefItem(name = "2003", value = "2003"), @FlyRefItem(name = "2004", value = "2004"),
-			@FlyRefItem(name = "2005", value = "2005"), @FlyRefItem(name = "2006", value = "2006"),
-			@FlyRefItem(name = "2007", value = "2007"), @FlyRefItem(name = "2008", value = "2008"),
-			@FlyRefItem(name = "2009", value = "2009"), @FlyRefItem(name = "2010", value = "2010"),
-			@FlyRefItem(name = "2011", value = "2011"), @FlyRefItem(name = "2012", value = "2012"),
-			@FlyRefItem(name = "2013", value = "2013"), @FlyRefItem(name = "2014", value = "2014"),
-			@FlyRefItem(name = "2015", value = "2015"), @FlyRefItem(name = "2016", value = "2016"),
-			@FlyRefItem(name = "2017", value = "2017"), @FlyRefItem(name = "2018", value = "2018"),
-			@FlyRefItem(name = "2019", value = "2019"), @FlyRefItem(name = "2020", value = "2020"),
-			@FlyRefItem(name = "2021", value = "2021"), @FlyRefItem(name = "2022", value = "2022"),
-			@FlyRefItem(name = "2023", value = "2023"), @FlyRefItem(name = "2024", value = "2024"),
-			@FlyRefItem(name = "2025", value = "2025"), @FlyRefItem(name = "2026", value = "2026"),
-			@FlyRefItem(name = "2027", value = "2027"), @FlyRefItem(name = "2028", value = "2028"),
-			@FlyRefItem(name = "2029", value = "2029"), @FlyRefItem(name = "2030", value = "2030"),
-			@FlyRefItem(name = "2031", value = "2031"), @FlyRefItem(name = "2032", value = "2032"),
-			@FlyRefItem(name = "2033", value = "2033"), @FlyRefItem(name = "2034", value = "2034"),
-			@FlyRefItem(name = "2035", value = "2035"), @FlyRefItem(name = "2036", value = "2036"),
-			@FlyRefItem(name = "2037", value = "2037"), @FlyRefItem(name = "2038", value = "2038"),
-			@FlyRefItem(name = "2039", value = "2039"), @FlyRefItem(name = "2040", value = "2040"),
-			@FlyRefItem(name = "2041", value = "2041"), @FlyRefItem(name = "2042", value = "2042"),
-			@FlyRefItem(name = "2043", value = "2043"), @FlyRefItem(name = "2044", value = "2044"),
-			@FlyRefItem(name = "2045", value = "2045"), @FlyRefItem(name = "2046", value = "2046"),
-			@FlyRefItem(name = "2047", value = "2047"), @FlyRefItem(name = "2048", value = "2048"),
-			@FlyRefItem(name = "2049", value = "2049"), @FlyRefItem(name = "2050", value = "2050"), })
-	HR_Education_Year_Of_Passing,
-	//
-	@FlyRefList(name = "C_BPartner_Location Contact Type", description = "C_BPartner_Location", items = {
-			@FlyRefItem(name = "Emergency", value = "Emergency"), @FlyRefItem(name = "Primary", value = "Primary"), })
-	C_BPartner_Location_Contact_Type,
-	//
-	@FlyRefList(name = "HR_EmployeeInsurance Payment Frequency", description = "Payment Frequency", items = {
-			@FlyRefItem(name = "Quarterly", value = "Quarterly"),
-			@FlyRefItem(name = "Semi-yearly", value = "Semi-yearly"), @FlyRefItem(name = "Yearly", value = "Yearly"),
-			@FlyRefItem(name = "Monthly", value = "Monthly"), })
-	HR_EmployeeInsurance_Payment_Frequency,
-	//
 	@FlyRefList(name = "_Document Action Import budget", description = "Document action list", items = {
 			@FlyRefItem(name = "Draft", value = "Draft"), @FlyRefItem(name = "Complete", value = "Complete"), })
 	_Document_Action_Import_budget,
-	//
-	@FlyRefList(name = "HR_LeaveType Credit Time", description = "Leave Type Credit Time", items = {
-			@FlyRefItem(name = "Begining Of The Month", value = "Begining Of The Month"),
-			@FlyRefItem(name = "End Of The Month", value = "End Of The Month"), })
-	HR_LeaveType_Credit_Time,
 	//
 	@FlyRefList(name = "A_Asset Status", description = "Asset Status", items = {
 			@FlyRefItem(name = "Activated", value = "Activated"), @FlyRefItem(name = "Disposed", value = "Disposed"),
@@ -1651,10 +1496,6 @@ public enum RefLists_ALL_EN {
 			@FlyRefItem(name = "Preservation", value = "Preservation"),
 			@FlyRefItem(name = "Retired", value = "Retired"), @FlyRefItem(name = "Sold", value = "Sold"), })
 	A_Asset_Status,
-	//
-	@FlyRefList(name = "Gender", description = "Gender", items = { @FlyRefItem(name = "Female", value = "Female"),
-			@FlyRefItem(name = "Male", value = "Male"), })
-	Gender,
 	//
 	@FlyRefList(name = "A_Tip_Finantare", description = "Tip finantare investitii", items = {
 			@FlyRefItem(name = "Cofinantare", value = "Cofinantare"), @FlyRefItem(name = "Proprie", value = "Proprie"),
@@ -1694,51 +1535,6 @@ public enum RefLists_ALL_EN {
 			@FlyRefItem(name = "Email", value = "Email"), @FlyRefItem(name = "Phone call", value = "Phone call"),
 			@FlyRefItem(name = "Meeting", value = "Meeting"), @FlyRefItem(name = "Task", value = "Task"), })
 	C_ContactActivity_Type,
-	//
-	@FlyRefList(name = "HR_LeaveType Leave Repeated Type", description = "Leave Repeated Type", help = "Leave Repeated Type", items = {
-			@FlyRefItem(name = "Monthly", value = "Monthly"), @FlyRefItem(name = "Quarterly", value = "Quarterly"),
-			@FlyRefItem(name = "Yearly", value = "Yearly"), })
-	HR_LeaveType_Leave_Repeated_Type,
-	//
-	@FlyRefList(name = "HR_LeaveType Adjacent Holidays Type", description = "Adjacent Holidays Type", help = "Adjacent Holidays Type", items = {
-			@FlyRefItem(name = "Adjacent", value = "Adjacent"), @FlyRefItem(name = "Included", value = "Included"),
-			@FlyRefItem(name = "None", value = "None"),
-			@FlyRefItem(name = "Included & Adjacent", value = "Included & Adjacent"), })
-	HR_LeaveType_Adjacent_Holidays_Type,
-	//
-	@FlyRefList(name = "HR_LeaveReason Types Of the reasons", description = "Types Of the reasons", help = "Types Of the reasons", items = {
-			@FlyRefItem(name = "Leave request disapproval", value = "Leave request disapproval"),
-			@FlyRefItem(name = "Leave Request", value = "Leave Request"),
-			@FlyRefItem(name = "Other Reason", value = "Other Reason"), })
-	HR_LeaveReason_Types_Of_the_reasons,
-	//
-	@FlyRefList(name = "HR_EmployeeType Wage Level", description = "Wage Level", items = {
-			@FlyRefItem(name = "Daily", value = "Daily"), @FlyRefItem(name = "Monthly", value = "Monthly"), })
-	HR_EmployeeType_Wage_Level,
-	//
-	@FlyRefList(name = "HR_JobApplication Identity Proof", description = "Identity Proof", help = "Identity Proof", items = {
-			@FlyRefItem(name = "Aadhar Card", value = "Aadhar Card"),
-			@FlyRefItem(name = "Driving License", value = "Driving License"),
-			@FlyRefItem(name = "PAN card", value = "PAN card"),
-			@FlyRefItem(name = "Ration Card", value = "Ration Card"),
-			@FlyRefItem(name = "Voter Card", value = "Voter Card"), })
-	HR_JobApplication_Identity_Proof,
-	//
-	@FlyRefList(name = "HR_Application Status", description = "Status Of The Application", help = "Applied	- Shortlisted	- Rejected	- Interview (In-progress)	- Offered	- Offer Accepted	- Joined	", items = {
-			@FlyRefItem(name = "Applied", value = "Applied"),
-			@FlyRefItem(name = "Interview (In-progress) ", value = "Interview (In-progress) "),
-			@FlyRefItem(name = "Joined", value = "Joined"),
-			@FlyRefItem(name = "Offer Accepted ", value = "Offer Accepted "),
-			@FlyRefItem(name = "Offered", value = "Offered"), @FlyRefItem(name = "Rejected", value = "Rejected"),
-			@FlyRefItem(name = "Shortlisted", value = "Shortlisted"), })
-	HR_Application_Status,
-	//
-	@FlyRefList(name = "Inter View Rating / Score", description = "Inter View Rating / Score", help = "Inter View Rating / Score", items = {
-			@FlyRefItem(name = "Average", value = "Average"), @FlyRefItem(name = "Bad", value = "Bad"),
-			@FlyRefItem(name = "Excellent", value = "Excellent"), @FlyRefItem(name = "Good", value = "Good"),
-			@FlyRefItem(name = "Outstanding", value = "Outstanding"),
-			@FlyRefItem(name = "Very Bad", value = "Very Bad"), @FlyRefItem(name = "Very Good", value = "Very Good"), })
-	Inter_View_Rating__Score,
 	//
 	@FlyRefList(name = "C_DocType DocBaseType", description = "Base Document Types", items = {
 			@FlyRefItem(name = "AR Credit Memo", value = "AR Credit Memo"),
@@ -1809,22 +1605,6 @@ public enum RefLists_ALL_EN {
 			@FlyRefItem(name = "Delivery / Receipt", value = "Delivery / Receipt"), })
 	CreateFromType_List,
 	//
-	@FlyRefList(name = "HR_Employee Status & ESI Response Code", description = "Employee Status & ESI Response Code", items = {
-			@FlyRefItem(name = "Without Reason", value = "Without Reason"),
-			@FlyRefItem(name = "On Leave", value = "On Leave"),
-			@FlyRefItem(name = "Left Service", value = "Left Service"),
-			@FlyRefItem(name = "Retired", value = "Retired"), @FlyRefItem(name = "Expired", value = "Expired"),
-			@FlyRefItem(name = "Non Implemented Area", value = "Non Implemented Area"),
-			@FlyRefItem(name = "Compliance by Immediate Ex", value = "Compliance by Immediate Ex"),
-			@FlyRefItem(name = "Suspension of work", value = "Suspension of work"),
-			@FlyRefItem(name = "Strike/Lockout", value = "Strike/Lockout"),
-			@FlyRefItem(name = "Retrenchment", value = "Retrenchment"),
-			@FlyRefItem(name = "No Work", value = "No Work"),
-			@FlyRefItem(name = "Doesnt Belong To This Employee", value = "Doesnt Belong To This Employee"),
-			@FlyRefItem(name = "Out of Coverage", value = "Out of Coverage"),
-			@FlyRefItem(name = "Active", value = "Active"), })
-	HR_Employee_Status__ESI_Response_Code,
-	//
 	@FlyRefList(name = "PA_ReportLine Line Stroke Type", items = { @FlyRefItem(name = "Solid", value = "Solid"),
 			@FlyRefItem(name = "Double Solid", value = "Double Solid"), @FlyRefItem(name = "Dotted", value = "Dotted"),
 			@FlyRefItem(name = "Double Dotted", value = "Double Dotted"),
@@ -1837,74 +1617,7 @@ public enum RefLists_ALL_EN {
 			@FlyRefItem(name = "XLSX", value = "XLSX"), })
 	ReportType,
 	//
-	@FlyRefList(name = "Marital Status", description = "Marital Status", items = {
-			@FlyRefItem(name = "Divorced", value = "Divorced"), @FlyRefItem(name = "Live-in", value = "Live-in"),
-			@FlyRefItem(name = "Married", value = "Married"), @FlyRefItem(name = "Single", value = "Single"),
-			@FlyRefItem(name = "Widow", value = "Widow"), @FlyRefItem(name = "Windower", value = "Windower"), })
-	Marital_Status,
-	//
-	@FlyRefList(name = "C_BPartner Blood Group", description = "Blood Group", items = {
-			@FlyRefItem(name = "O -", value = "O -"), @FlyRefItem(name = "A +", value = "A +"),
-			@FlyRefItem(name = "AB +", value = "AB +"), @FlyRefItem(name = "B -", value = "B -"),
-			@FlyRefItem(name = "B +", value = "B +"), @FlyRefItem(name = "O +", value = "O +"),
-			@FlyRefItem(name = "A -", value = "A -"), @FlyRefItem(name = "AB -", value = "AB -"), })
-	C_BPartner_Blood_Group,
-	//
-	@FlyRefList(name = "DD_LicenseType Transport License Type", description = "Transport License Type", items = {
-			@FlyRefItem(name = "License Driver", value = "License Driver"),
-			@FlyRefItem(name = "Vehicle License", value = "Vehicle License"), })
-	DD_LicenseType_Transport_License_Type,
-	//
-	@FlyRefList(name = "DD_TransportUnitType Transport Mode", description = "The modes of transport supported", items = {
-			@FlyRefItem(name = "Barge", value = "Barge"), @FlyRefItem(name = "Marine", value = "Marine"),
-			@FlyRefItem(name = "Pipeline", value = "Pipeline"), @FlyRefItem(name = "Rail", value = "Rail"),
-			@FlyRefItem(name = "Road", value = "Road"), })
-	DD_TransportUnitType_Transport_Mode,
-	//
-	@FlyRefList(name = "DD_TransportUnitType Transport Physical Type", description = " physical type of the transport unit into a part that carries the load, a mover, and other load bearing elements", items = {
-			@FlyRefItem(name = "Other weight-bearing units", value = "Other weight-bearing units"),
-			@FlyRefItem(name = "Prime mover", value = "Prime mover"),
-			@FlyRefItem(name = "Single units with engine and loading capacity", value = "Single units with engine and loading capacity"),
-			@FlyRefItem(name = "Trailer", value = "Trailer"), })
-	DD_TransportUnitType_Transport_Physical_Type,
-	//
-	@FlyRefList(name = "DD_TransportUnit Transport Unit Status", description = "Transport unit status", items = {
-			@FlyRefItem(name = "Available", value = "Available"), @FlyRefItem(name = "In Disuse", value = "In Disuse"),
-			@FlyRefItem(name = "Not Available", value = "Not Available"), })
-	DD_TransportUnit_Transport_Unit_Status,
-	//
-	@FlyRefList(name = "DD_Driver Driver Status", description = "Driver Status", items = {
-			@FlyRefItem(name = "Available", value = "Available"),
-			@FlyRefItem(name = "Not available", value = "Not available"), })
-	DD_Driver_Driver_Status,
-	//
-	@FlyRefList(name = "DD_VehicleType Vehicle Type", items = { @FlyRefItem(name = "Barges", value = "Barges"),
-			@FlyRefItem(name = "Pipelines", value = "Pipelines"), @FlyRefItem(name = "Ships", value = "Ships"),
-			@FlyRefItem(name = "Trucks", value = "Trucks"), @FlyRefItem(name = "Trains", value = "Trains"), })
-	DD_VehicleType_Vehicle_Type,
-	//
-	@FlyRefList(name = "DD_Vehicle Vehicle Status", description = "Vehicle Status", items = {
-			@FlyRefItem(name = "Available", value = "Available"), @FlyRefItem(name = "In Disuse", value = "In Disuse"),
-			@FlyRefItem(name = "Not Available", value = "Not Available"), })
-	DD_Vehicle_Vehicle_Status,
-	//
 	@FlyRefList(name = "Print Document", items = { @FlyRefItem(name = "Order", value = "Order"),
 			@FlyRefItem(name = "Shipment", value = "Shipment"), @FlyRefItem(name = "Invoice", value = "Invoice"), })
 	Print_Document,
-	//
-	@FlyRefList(name = "M_ReplenishPlanLine RecordType", items = {
-			@FlyRefItem(name = "Closing Balance", value = "Closing Balance"),
-			@FlyRefItem(name = "Opening Balance", value = "Opening Balance"),
-			@FlyRefItem(name = "Supply - Purchasing", value = "Supply - Purchasing"),
-			@FlyRefItem(name = "Supply - Requisition", value = "Supply - Requisition"),
-			@FlyRefItem(name = "Planned Production", value = "Planned Production"),
-			@FlyRefItem(name = "Confirmed Production", value = "Confirmed Production"),
-			@FlyRefItem(name = "Total Demand", value = "Total Demand"),
-			@FlyRefItem(name = "Total Supply", value = "Total Supply"),
-			@FlyRefItem(name = "Total Supply - PO", value = "Total Supply - PO"),
-			@FlyRefItem(name = "Total Supply - Requisition", value = "Total Supply - Requisition"),
-			@FlyRefItem(name = "Total Planned Production", value = "Total Planned Production"),
-			@FlyRefItem(name = "Total Confirmed Production", value = "Total Confirmed Production"),
-			@FlyRefItem(name = "Demand", value = "Demand"), })
-	M_ReplenishPlanLine_RecordType,
 }

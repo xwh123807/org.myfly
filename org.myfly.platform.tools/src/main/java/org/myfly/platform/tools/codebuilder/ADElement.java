@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core3.domain.FlyDataType;
 
 import com.squareup.javapoet.TypeSpec.Builder;
@@ -200,5 +201,17 @@ public class ADElement extends HashMap<String, Object> {
 			}
 		}
 		return result;
+	}
+
+	public int getUID() {
+		return ((BigDecimal)get("ad_element_id")).intValue();
+	}
+	
+	public String convertStr(String value) {
+		if (StringUtils.isBlank(value)) {
+			return "";
+		}else {
+			return value;
+		}
 	}
 }

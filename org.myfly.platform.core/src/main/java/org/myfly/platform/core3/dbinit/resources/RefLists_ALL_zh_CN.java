@@ -1,43 +1,41 @@
-package org.myfly.platform.tools.codebuilder;
+package org.myfly.platform.core3.dbinit.resources;
 
 import org.myfly.platform.core3.metadata.annotation.FlyRefItem;
 import org.myfly.platform.core3.metadata.annotation.FlyRefList;
 
-public enum RefLists {
+public enum RefLists_ALL_zh_CN {
 	//
 	@FlyRefList(name = "A_Table_Rate_Type", description = "List that contains type of rate", items = {
-			@FlyRefItem(name = "Amount", value = "Amount"), @FlyRefItem(name = "Rate", value = "Rate"), }, help = "")
+			@FlyRefItem(name = "Amount", value = "Amount"), @FlyRefItem(name = "Rate", value = "Rate"), })
 	A_Table_Rate_Type,
 	//
-	@FlyRefList(name = "AD_Validation Rule Types", description = "Validation Rule Type list", help = "e.g. S - SQL", items = {
-			@FlyRefItem(name = "SQL", value = "SQL"), @FlyRefItem(name = "Java Language", value = "Java Language"),
+	@FlyRefList(name = "AD_Validation 规则类型", description = "验证规则类型列表", help = "e.g. S - SQL", items = {
+			@FlyRefItem(name = "SQL", value = "SQL"), @FlyRefItem(name = "Java", value = "Java"),
 			@FlyRefItem(name = "Java Script", value = "Java Script"), })
 	AD_Validation_Rule_Types,
 	//
-	@FlyRefList(name = "AD_Message Type", description = "Message Type list", items = {
-			@FlyRefItem(name = "Error", value = "Error"), @FlyRefItem(name = "Information", value = "Information"),
-			@FlyRefItem(name = "Menu", value = "Menu"), })
+	@FlyRefList(name = "AD_Message 类型", description = "信息类型列表", items = { @FlyRefItem(name = "错误", value = "错误"),
+			@FlyRefItem(name = "信息", value = "信息"), @FlyRefItem(name = "菜单", value = "菜单"), })
 	AD_Message_Type,
 	//
-	@FlyRefList(name = "AD_Print Label Line Type", items = { @FlyRefItem(name = "Field", value = "Field"),
-			@FlyRefItem(name = "Text", value = "Text"), })
+	@FlyRefList(name = "AD_Print 标签线类型", items = { @FlyRefItem(name = "字段", value = "字段"),
+			@FlyRefItem(name = "文本", value = "文本"), })
 	AD_Print_Label_Line_Type,
 	//
-	@FlyRefList(name = "C_Recurring Frequency", items = { @FlyRefItem(name = "Daily", value = "Daily"),
-			@FlyRefItem(name = "Weekly", value = "Weekly"), @FlyRefItem(name = "Monthly", value = "Monthly"),
-			@FlyRefItem(name = "Quarterly", value = "Quarterly"), })
+	@FlyRefList(name = "C_Recurring 频率", items = { @FlyRefItem(name = "每日的", value = "每日的"),
+			@FlyRefItem(name = "每周的", value = "每周的"), @FlyRefItem(name = "每月的", value = "每月的"),
+			@FlyRefItem(name = "每季的", value = "每季的"), })
 	C_Recurring_Frequency,
 	//
-	@FlyRefList(name = "C_Recurring Type", items = { @FlyRefItem(name = "Invoice", value = "Invoice"),
-			@FlyRefItem(name = "Order", value = "Order"), @FlyRefItem(name = "GL Journal", value = "GL Journal"),
-			@FlyRefItem(name = "Project", value = "Project"), })
+	@FlyRefList(name = "C_Recurring 类型", items = { @FlyRefItem(name = "发票", value = "发票"),
+			@FlyRefItem(name = "定单", value = "定单"), @FlyRefItem(name = "总帐分类帐", value = "总帐分类帐"),
+			@FlyRefItem(name = "项目", value = "项目"), })
 	C_Recurring_Type,
 	//
-	@FlyRefList(name = "AD_Menu Action", description = "Menu Action list", items = {
-			@FlyRefItem(name = "Form", value = "Form"), @FlyRefItem(name = "Process", value = "Process"),
-			@FlyRefItem(name = "Report", value = "Report"), @FlyRefItem(name = "Workbench", value = "Workbench"),
-			@FlyRefItem(name = "Window", value = "Window"), @FlyRefItem(name = "Task", value = "Task"),
-			@FlyRefItem(name = "WorkFlow", value = "WorkFlow"),
+	@FlyRefList(name = "AD_Menu 动作", description = "菜单动作列表", items = { @FlyRefItem(name = "表单", value = "表单"),
+			@FlyRefItem(name = "程序", value = "程序"), @FlyRefItem(name = "报表", value = "报表"),
+			@FlyRefItem(name = "工作台", value = "工作台"), @FlyRefItem(name = "窗口 ", value = "窗口 "),
+			@FlyRefItem(name = "任务", value = "任务"), @FlyRefItem(name = "工作流", value = "工作流"),
 			@FlyRefItem(name = "Smart Browse", value = "Smart Browse"), })
 	AD_Menu_Action,
 	//
@@ -70,117 +68,98 @@ public enum RefLists {
 			@FlyRefItem(name = "text/css", value = "text/css"), @FlyRefItem(name = "image/gif", value = "image/gif"), })
 	CM_Media_Media_Type,
 	//
-	@FlyRefList(name = "AD_Window Types", description = "Window Type list", help = "e.g. M = Multi/Single (one uppercase character)", items = {
-			@FlyRefItem(name = "Single Record", value = "Single Record"),
-			@FlyRefItem(name = "Maintain", value = "Maintain"),
-			@FlyRefItem(name = "Transaction", value = "Transaction"),
-			@FlyRefItem(name = "Query Only", value = "Query Only"), })
+	@FlyRefList(name = "AD_Window 类型", description = "视窗类型列表", help = "e.g. M = Multi Single (one uppercase character)", items = {
+			@FlyRefItem(name = "单一记录", value = "单一记录"), @FlyRefItem(name = "维护", value = "维护"),
+			@FlyRefItem(name = "交易", value = "交易"), @FlyRefItem(name = "只有查询", value = "只有查询"), })
 	AD_Window_Types,
 	//
-	@FlyRefList(name = "C_Conversion_Rate Types", description = "Conversion Rate Type list", items = {
-			@FlyRefItem(name = "Company", value = "Company"), @FlyRefItem(name = "User Type", value = "User Type"),
-			@FlyRefItem(name = "Manual Rate", value = "Manual Rate"), @FlyRefItem(name = "None", value = "None"),
-			@FlyRefItem(name = "Spot", value = "Spot"), @FlyRefItem(name = "Period End", value = "Period End"),
-			@FlyRefItem(name = "Fixed", value = "Fixed"), @FlyRefItem(name = "Average", value = "Average"), })
+	@FlyRefList(name = "C_Conversion_Rate 类型", description = "汇率类型类型", items = { @FlyRefItem(name = "公司", value = "公司"),
+			@FlyRefItem(name = "用户类型", value = "用户类型"), @FlyRefItem(name = "手工比率", value = "手工比率"),
+			@FlyRefItem(name = "没有", value = "没有"), @FlyRefItem(name = "现场", value = "现场"),
+			@FlyRefItem(name = "周期类型", value = "周期类型"), @FlyRefItem(name = "固定", value = "固定"),
+			@FlyRefItem(name = "平均", value = "平均"), })
 	C_Conversion_Rate_Types,
 	//
-	@FlyRefList(name = "M_InOutConfirm Type", items = {
-			@FlyRefItem(name = "Vendor Confirmation", value = "Vendor Confirmation"),
-			@FlyRefItem(name = "Customer Confirmation", value = "Customer Confirmation"),
+	@FlyRefList(name = "M_InOutConfirm 类型", items = { @FlyRefItem(name = "供应商确认", value = "供应商确认"),
+			@FlyRefItem(name = "客户确认", value = "客户确认"),
 			@FlyRefItem(name = "Drop Ship Confirm", value = "Drop Ship Confirm"),
 			@FlyRefItem(name = "Ship/Receipt Confirm", value = "Ship/Receipt Confirm"),
 			@FlyRefItem(name = "Pick/QA Confirm", value = "Pick/QA Confirm"), })
 	M_InOutConfirm_Type,
 	//
-	@FlyRefList(name = "C_Period Type", description = "Period Type list", items = {
-			@FlyRefItem(name = "Standard Calendar Period", value = "Standard Calendar Period"),
-			@FlyRefItem(name = "Adjustment Period", value = "Adjustment Period"), })
+	@FlyRefList(name = "C_Period 类型", description = "分期类型列表", items = { @FlyRefItem(name = "标准日历分期", value = "标准日历分期"),
+			@FlyRefItem(name = "调整分期", value = "调整分期"), })
 	C_Period_Type,
 	//
-	@FlyRefList(name = "C_Element Type", description = "Account Element Types", items = {
-			@FlyRefItem(name = "Account", value = "Account"),
-			@FlyRefItem(name = "User defined", value = "User defined"), })
+	@FlyRefList(name = "C_Element 类型", description = "会计科目类型", items = { @FlyRefItem(name = "帐户", value = "帐户"),
+			@FlyRefItem(name = "用户定义", value = "用户定义"), })
 	C_Element_Type,
 	//
-	@FlyRefList(name = "C_ElementValue AccountType", description = "Account Type list", items = {
-			@FlyRefItem(name = "Asset", value = "Asset"), @FlyRefItem(name = "Liability", value = "Liability"),
-			@FlyRefItem(name = "Revenue", value = "Revenue"), @FlyRefItem(name = "Expense", value = "Expense"),
-			@FlyRefItem(name = "Owner's Equity", value = "Owner's Equity"),
-			@FlyRefItem(name = "Memo", value = "Memo"), })
+	@FlyRefList(name = "C_ElementValue AccountType", description = "帐户类型目录", items = {
+			@FlyRefItem(name = "资产", value = "资产"), @FlyRefItem(name = "负债", value = "负债"),
+			@FlyRefItem(name = "收入", value = "收入"), @FlyRefItem(name = "费用", value = "费用"),
+			@FlyRefItem(name = "权益", value = "权益"), @FlyRefItem(name = "备忘录", value = "备忘录"), })
 	C_ElementValue_AccountType,
 	//
-	@FlyRefList(name = "C_ElementValue Account Sign", description = "Account Sign list", items = {
-			@FlyRefItem(name = "Natural", value = "Natural"), @FlyRefItem(name = "Debit", value = "Debit"),
-			@FlyRefItem(name = "Credit", value = "Credit"), })
+	@FlyRefList(name = "C_ElementValue 帐户符号", description = "帐户符号列表", items = { @FlyRefItem(name = "普通", value = "普通"),
+			@FlyRefItem(name = "借方", value = "借方"), @FlyRefItem(name = "贷方", value = "贷方"), })
 	C_ElementValue_Account_Sign,
 	//
-	@FlyRefList(name = "AD_TreeType Type", description = "Tree Type list", help = "Determines which element to use as the base for the information", items = {
+	@FlyRefList(name = "AD_TreeType 类型", description = "树类型列表", help = "Determines which element to use as the base for the information", items = {
 			@FlyRefItem(name = "User 1", value = "User 1"), @FlyRefItem(name = "User 2", value = "User 2"),
 			@FlyRefItem(name = "User 3", value = "User 3"), @FlyRefItem(name = "User 4", value = "User 4"),
 			@FlyRefItem(name = "CM Container", value = "CM Container"),
 			@FlyRefItem(name = "CM Container Stage", value = "CM Container Stage"),
 			@FlyRefItem(name = "CM Template", value = "CM Template"),
-			@FlyRefItem(name = "CM Media", value = "CM Media"), @FlyRefItem(name = "Menu", value = "Menu"),
-			@FlyRefItem(name = "Element Value", value = "Element Value"),
-			@FlyRefItem(name = "Product", value = "Product"), @FlyRefItem(name = "BPartner", value = "BPartner"),
-			@FlyRefItem(name = "Organization", value = "Organization"), @FlyRefItem(name = "BoM", value = "BoM"),
-			@FlyRefItem(name = "Project", value = "Project"),
-			@FlyRefItem(name = "Sales Region", value = "Sales Region"),
-			@FlyRefItem(name = "Product Category", value = "Product Category"),
-			@FlyRefItem(name = "Campaign", value = "Campaign"), @FlyRefItem(name = "Activity", value = "Activity"), })
+			@FlyRefItem(name = "CM Media", value = "CM Media"), @FlyRefItem(name = "菜单", value = "菜单"),
+			@FlyRefItem(name = "Element Value (Account, etc.)", value = "Element Value (Account, etc.)"),
+			@FlyRefItem(name = "产品", value = "产品"), @FlyRefItem(name = "主业务伙伴", value = "主业务伙伴"),
+			@FlyRefItem(name = "组织", value = "组织"), @FlyRefItem(name = "物料清单", value = "物料清单"),
+			@FlyRefItem(name = "项目", value = "项目"), @FlyRefItem(name = "销售区域", value = "销售区域"),
+			@FlyRefItem(name = "产品种类", value = "产品种类"), @FlyRefItem(name = "活动", value = "活动"),
+			@FlyRefItem(name = "活动", value = "活动"), })
 	AD_TreeType_Type,
 	//
 	@FlyRefList(name = "X12DE98 Entity Identifier Code", description = "X12DE98 Entity Identifier Code list", help = "Identify organizational entity physical location property or individual list", items = {
-			@FlyRefItem(name = "Regional Office", value = "Regional Office"),
-			@FlyRefItem(name = "Accounts Payable Office", value = "Accounts Payable Office"),
-			@FlyRefItem(name = "Plant", value = "Plant"),
-			@FlyRefItem(name = "Small Business", value = "Small Business"),
-			@FlyRefItem(name = "Minority-Owned Small Business", value = "Minority-Owned Small Business"),
-			@FlyRefItem(name = "Minority-Owned Business", value = "Minority-Owned Business"),
-			@FlyRefItem(name = "Woman-Owned Small Business", value = "Woman-Owned Small Business"),
-			@FlyRefItem(name = "Woman-Owned Business", value = "Woman-Owned Business"),
-			@FlyRefItem(name = "Subcontractor", value = "Subcontractor"),
-			@FlyRefItem(name = "Individual", value = "Individual"),
-			@FlyRefItem(name = "Partnership", value = "Partnership"),
-			@FlyRefItem(name = "Corporation", value = "Corporation"),
-			@FlyRefItem(name = "Drop-off Location", value = "Drop-off Location"), })
+			@FlyRefItem(name = "地方的办公室", value = "地方的办公室"), @FlyRefItem(name = "办公费应付帐户", value = "办公费应付帐户"),
+			@FlyRefItem(name = "植物", value = "植物"), @FlyRefItem(name = "小的业务", value = "小的业务"),
+			@FlyRefItem(name = "少数-拥有小的业务", value = "少数-拥有小的业务"), @FlyRefItem(name = "少数-拥有了业务", value = "少数-拥有了业务"),
+			@FlyRefItem(name = "女人拥有的小业务", value = "女人拥有的小业务"), @FlyRefItem(name = "女人拥有的业务", value = "女人拥有的业务"),
+			@FlyRefItem(name = "转包商", value = "转包商"), @FlyRefItem(name = "个人", value = "个人"),
+			@FlyRefItem(name = "合伙", value = "合伙"), @FlyRefItem(name = "公司", value = "公司"),
+			@FlyRefItem(name = "下载位置", value = "下载位置"), })
 	X12DE98_Entity_Identifier_Code,
 	//
-	@FlyRefList(name = "C_AcctSchema Costing Method", description = "Costing Method list", items = {
-			@FlyRefItem(name = "Last PO Price", value = "Last PO Price"), @FlyRefItem(name = "_", value = "_"),
-			@FlyRefItem(name = "Standard Costing", value = "Standard Costing"),
-			@FlyRefItem(name = "Average PO", value = "Average PO"), @FlyRefItem(name = "Lifo", value = "Lifo"),
-			@FlyRefItem(name = "Fifo", value = "Fifo"),
+	@FlyRefList(name = "C_AcctSchema 成本计算方法", description = "成本计算方法目录", items = {
+			@FlyRefItem(name = "最近采购定单价格", value = "最近采购定单价格"), @FlyRefItem(name = "_", value = "_"),
+			@FlyRefItem(name = "标准成本计算", value = "标准成本计算"), @FlyRefItem(name = "平均", value = "平均"),
+			@FlyRefItem(name = "后进先出", value = "后进先出"), @FlyRefItem(name = "先进先出", value = "先进先出"),
 			@FlyRefItem(name = "Average Invoice", value = "Average Invoice"),
 			@FlyRefItem(name = "Last Invoice", value = "Last Invoice"),
 			@FlyRefItem(name = "User Defined", value = "User Defined"), })
 	C_AcctSchema_Costing_Method,
 	//
 	@FlyRefList(name = "C_AcctSchema GAAP", description = "General Accepted Accounting Principle list", items = {
-			@FlyRefItem(name = "International GAAP", value = "International GAAP"),
-			@FlyRefItem(name = "US GAAP", value = "US GAAP"), @FlyRefItem(name = "German HGB", value = "German HGB"),
-			@FlyRefItem(name = "French Accounting Standard", value = "French Accounting Standard"),
-			@FlyRefItem(name = "Custom Accounting Rules", value = "Custom Accounting Rules"), })
+			@FlyRefItem(name = "国际的 GAAP", value = "国际的 GAAP"), @FlyRefItem(name = "美国 GAAP", value = "美国 GAAP"),
+			@FlyRefItem(name = "德国的 HGB", value = "德国的 HGB"), @FlyRefItem(name = "法国会计规则", value = "法国会计规则"),
+			@FlyRefItem(name = "定制会计规则", value = "定制会计规则"), })
 	C_AcctSchema_GAAP,
 	//
-	@FlyRefList(name = "AD_Table Replication Type", description = "Replication Type", items = {
-			@FlyRefItem(name = "Local", value = "Local"), @FlyRefItem(name = "Merge", value = "Merge"),
-			@FlyRefItem(name = "Reference", value = "Reference"),
+	@FlyRefList(name = "AD_Table 复制类型", description = "复制类型", items = { @FlyRefItem(name = "本地复制", value = "本地复制"),
+			@FlyRefItem(name = "合并复制", value = "合并复制"), @FlyRefItem(name = "引用复制", value = "引用复制"),
 			@FlyRefItem(name = "Broadcast", value = "Broadcast"), })
 	AD_Table_Replication_Type,
 	//
-	@FlyRefList(name = "M_Product BOM Product TypeX", description = "Old", items = {
+	@FlyRefList(name = "M_Product BOM 类型", items = {
 			@FlyRefItem(name = "In alternative Group 5", value = "In alternative Group 5"),
 			@FlyRefItem(name = "In alternative Group 6", value = "In alternative Group 6"),
 			@FlyRefItem(name = "In alternative Group 7", value = "In alternative Group 7"),
 			@FlyRefItem(name = "In alternative Group 8", value = "In alternative Group 8"),
 			@FlyRefItem(name = "In alternative Group 9", value = "In alternative Group 9"),
-			@FlyRefItem(name = "Standard Part", value = "Standard Part"),
-			@FlyRefItem(name = "Optional Part", value = "Optional Part"),
-			@FlyRefItem(name = "In alternative Group 1", value = "In alternative Group 1"),
-			@FlyRefItem(name = "In alternative Group 2", value = "In alternative Group 2"),
-			@FlyRefItem(name = "In alternaltve Group 3", value = "In alternaltve Group 3"),
-			@FlyRefItem(name = "In alternative Group 4", value = "In alternative Group 4"), })
+			@FlyRefItem(name = "标准部件", value = "标准部件"), @FlyRefItem(name = "可选部件", value = "可选部件"),
+			@FlyRefItem(name = "替代方案组 1", value = "替代方案组 1"), @FlyRefItem(name = "替代方案组 2", value = "替代方案组 2"),
+			@FlyRefItem(name = "改变naltve 组 3", value = "改变naltve 组 3"),
+			@FlyRefItem(name = "替代方案组 4", value = "替代方案组 4"), })
 	M_Product_BOM_Product_TypeX,
 	//
 	@FlyRefList(name = "AD_Workflow Type", description = "Workflow Type", items = {
@@ -209,18 +188,15 @@ public enum RefLists {
 			@FlyRefItem(name = "Payables only", value = "Payables only"), })
 	APAR,
 	//
-	@FlyRefList(name = "_Posting Type", description = "Posting Type (Actual Budget etc.) list", items = {
-			@FlyRefItem(name = "Actual", value = "Actual"), @FlyRefItem(name = "Budget", value = "Budget"),
-			@FlyRefItem(name = "Commitment", value = "Commitment"),
-			@FlyRefItem(name = "Statistical", value = "Statistical"),
+	@FlyRefList(name = "All_Posting 类型", description = "Posting Type (Actual Budget etc.) list", items = {
+			@FlyRefItem(name = "实际", value = "实际"), @FlyRefItem(name = "预算", value = "预算"),
+			@FlyRefItem(name = "债权", value = "债权"), @FlyRefItem(name = "统计的", value = "统计的"),
 			@FlyRefItem(name = "Reservation", value = "Reservation"), })
 	_Posting_Type,
 	//
-	@FlyRefList(name = "_Entity Type", description = "Entity Type (Dictionary, ..)", items = {
-			@FlyRefItem(name = "Dictionary", value = "Dictionary"),
-			@FlyRefItem(name = "Adempiere", value = "Adempiere"),
-			@FlyRefItem(name = "User maintained", value = "User maintained"),
-			@FlyRefItem(name = "Applications", value = "Applications"),
+	@FlyRefList(name = "All_Entity 类型", description = "Entity Type (Dictionary, ..)", items = {
+			@FlyRefItem(name = "字典", value = "字典"), @FlyRefItem(name = "Adempiere", value = "Adempiere"),
+			@FlyRefItem(name = "用户维护", value = "用户维护"), @FlyRefItem(name = "应用", value = "应用"),
 			@FlyRefItem(name = "Customization", value = "Customization"), })
 	_Entity_Type,
 	//
@@ -231,61 +207,54 @@ public enum RefLists {
 			@FlyRefItem(name = "Show Help", value = "Show Help"), })
 	ShowHelp_List,
 	//
-	@FlyRefList(name = "_Document Status", description = "Document Status list", items = {
-			@FlyRefItem(name = "Approved", value = "Approved"), @FlyRefItem(name = "Closed", value = "Closed"),
-			@FlyRefItem(name = "Completed", value = "Completed"), @FlyRefItem(name = "Invalid", value = "Invalid"),
-			@FlyRefItem(name = "Reversed", value = "Reversed"), @FlyRefItem(name = "Voided", value = "Voided"),
-			@FlyRefItem(name = "Unknown", value = "Unknown"), @FlyRefItem(name = "In Progress", value = "In Progress"),
-			@FlyRefItem(name = "Not Approved", value = "Not Approved"),
-			@FlyRefItem(name = "Waiting Payment", value = "Waiting Payment"),
-			@FlyRefItem(name = "Drafted", value = "Drafted"),
-			@FlyRefItem(name = "Waiting Confirmation", value = "Waiting Confirmation"), })
+	@FlyRefList(name = "All_Document 状态", description = "文档状态目录", items = { @FlyRefItem(name = "已批准", value = "已批准"),
+			@FlyRefItem(name = "关闭", value = "关闭"), @FlyRefItem(name = "完成", value = "完成"),
+			@FlyRefItem(name = "未活动的", value = "未活动的"), @FlyRefItem(name = "取消", value = "取消"),
+			@FlyRefItem(name = "空虚", value = "空虚"), @FlyRefItem(name = "未知的", value = "未知的"),
+			@FlyRefItem(name = "过程中", value = "过程中"), @FlyRefItem(name = "未核准", value = "未核准"),
+			@FlyRefItem(name = "等候付款", value = "等候付款"), @FlyRefItem(name = "起草", value = "起草"),
+			@FlyRefItem(name = "等待确认", value = "等待确认"), })
 	_Document_Status,
 	//
-	@FlyRefList(name = "_Document Action", description = "Document action list", items = {
-			@FlyRefItem(name = "Complete", value = "Complete"), @FlyRefItem(name = "Approve", value = "Approve"),
-			@FlyRefItem(name = "Reject", value = "Reject"), @FlyRefItem(name = "Post", value = "Post"),
-			@FlyRefItem(name = "Void", value = "Void"), @FlyRefItem(name = "Close", value = "Close"),
-			@FlyRefItem(name = "Reverse - Correct", value = "Reverse - Correct"),
+	@FlyRefList(name = "All_Document 动作", description = "文档动作目录", items = { @FlyRefItem(name = "完成", value = "完成"),
+			@FlyRefItem(name = "批准", value = "批准"), @FlyRefItem(name = "被拒", value = "被拒"),
+			@FlyRefItem(name = "职位", value = "职位"), @FlyRefItem(name = "空白", value = "空白"),
+			@FlyRefItem(name = "结束", value = "结束"),
+			@FlyRefItem(name = "Reverse - Correction", value = "Reverse - Correction"),
 			@FlyRefItem(name = "Reverse - Accrual", value = "Reverse - Accrual"),
-			@FlyRefItem(name = "Invalidate", value = "Invalidate"),
-			@FlyRefItem(name = "Re-activate", value = "Re-activate"), @FlyRefItem(name = "<None>", value = "<None>"),
-			@FlyRefItem(name = "Wait Complete", value = "Wait Complete"),
-			@FlyRefItem(name = "Prepare", value = "Prepare"), @FlyRefItem(name = "Unlock", value = "Unlock"), })
+			@FlyRefItem(name = "转帐", value = "转帐"), @FlyRefItem(name = "重新激活", value = "重新激活"),
+			@FlyRefItem(name = "<没有>", value = "<没有>"), @FlyRefItem(name = "Wait Complete", value = "Wait Complete"),
+			@FlyRefItem(name = "程序", value = "程序"), @FlyRefItem(name = "解锁", value = "解锁"), })
 	_Document_Action,
 	//
-	@FlyRefList(name = "M_Discount CumulativeLevel", items = { @FlyRefItem(name = "Line", value = "Line"), })
+	@FlyRefList(name = "M_Discount 累计级别", items = { @FlyRefItem(name = "明细", value = "明细"), })
 	M_Discount_CumulativeLevel,
 	//
-	@FlyRefList(name = "M_Discount Type", items = { @FlyRefItem(name = "Flat Percent", value = "Flat Percent"),
-			@FlyRefItem(name = "Formula", value = "Formula"), @FlyRefItem(name = "Breaks", value = "Breaks"),
-			@FlyRefItem(name = "Pricelist", value = "Pricelist"), })
+	@FlyRefList(name = "M_Discount 类型", items = { @FlyRefItem(name = "直线的百分比", value = "直线的百分比"),
+			@FlyRefItem(name = "公式", value = "公式"), @FlyRefItem(name = "休息", value = "休息"),
+			@FlyRefItem(name = "价目表", value = "价目表"), })
 	M_Discount_Type,
 	//
-	@FlyRefList(name = "AD_Color StartPoint", description = "Nord-West-..", items = {
-			@FlyRefItem(name = "North", value = "North"), @FlyRefItem(name = "North East", value = "North East"),
-			@FlyRefItem(name = "East", value = "East"), @FlyRefItem(name = "South East", value = "South East"),
-			@FlyRefItem(name = "South", value = "South"), @FlyRefItem(name = "South West", value = "South West"),
-			@FlyRefItem(name = "West", value = "West"), @FlyRefItem(name = "North West", value = "North West"), })
+	@FlyRefList(name = "AD_Color StartPoint", items = { @FlyRefItem(name = "北方", value = "北方"),
+			@FlyRefItem(name = "东北方", value = "东北方"), @FlyRefItem(name = "东方", value = "东方"),
+			@FlyRefItem(name = "东南方", value = "东南方"), @FlyRefItem(name = "南方", value = "南方"),
+			@FlyRefItem(name = "西南方", value = "西南方"), @FlyRefItem(name = "西方", value = "西方"),
+			@FlyRefItem(name = "西北方", value = "西北方"), })
 	AD_Color_StartPoint,
 	//
-	@FlyRefList(name = "CostUpdate Source", items = { @FlyRefItem(name = "FiFo", value = "FiFo"),
+	@FlyRefList(name = "M_Product_Costing 来源", items = { @FlyRefItem(name = "FiFo", value = "FiFo"),
 			@FlyRefItem(name = "LiFo", value = "LiFo"),
 			@FlyRefItem(name = "Average Invoice", value = "Average Invoice"),
 			@FlyRefItem(name = "Old Standard Cost", value = "Old Standard Cost"),
 			@FlyRefItem(name = "Future Standard Cost", value = "Future Standard Cost"),
-			@FlyRefItem(name = "Standard Cost", value = "Standard Cost"),
-			@FlyRefItem(name = "Average PO", value = "Average PO"),
-			@FlyRefItem(name = "Last PO Price", value = "Last PO Price"),
-			@FlyRefItem(name = "Last Invoice Price", value = "Last Invoice Price"),
-			@FlyRefItem(name = "Price List (Limit)", value = "Price List (Limit)"),
-			@FlyRefItem(name = "Average PO History", value = "Average PO History"),
-			@FlyRefItem(name = "Average Invoice History", value = "Average Invoice History"), })
+			@FlyRefItem(name = "标准成本", value = "标准成本"), @FlyRefItem(name = "平均成本", value = "平均成本"),
+			@FlyRefItem(name = "最近采购定单价格", value = "最近采购定单价格"), @FlyRefItem(name = "最近发票价格", value = "最近发票价格"),
+			@FlyRefItem(name = "价目表", value = "价目表"), @FlyRefItem(name = "采购定单差异调整", value = "采购定单差异调整"),
+			@FlyRefItem(name = "Adjust using Invoice Difference", value = "Adjust using Invoice Difference"), })
 	CostUpdate_Source,
 	//
 	@FlyRefList(name = "C_Tax SPPOType", items = { @FlyRefItem(name = "Both", value = "Both"),
-			@FlyRefItem(name = "Sales Tax", value = "Sales Tax"),
-			@FlyRefItem(name = "Purchase Tax", value = "Purchase Tax"), })
+			@FlyRefItem(name = "销项税", value = "销项税"), @FlyRefItem(name = "进项税", value = "进项税"), })
 	C_Tax_SPPOType,
 	//
 	@FlyRefList(name = "C_BPartner SOCreditStatus", description = "Sales Credit Status", items = {
@@ -308,118 +277,45 @@ public enum RefLists {
 			@FlyRefItem(name = "Exporting", value = "Exporting"), })
 	AD_Table_Access_RuleType,
 	//
-	@FlyRefList(name = "M_TransactionAllocation Type", items = { @FlyRefItem(name = "LiFo", value = "LiFo"),
+	@FlyRefList(name = "M_TransactionAllocation 类型", items = { @FlyRefItem(name = "LiFo", value = "LiFo"),
 			@FlyRefItem(name = "FiFo", value = "FiFo"), })
 	M_TransactionAllocation_Type,
 	//
-	@FlyRefList(name = "M_Inventory Type", description = "Inventory Type (Difference - Charge)", items = {
+	@FlyRefList(name = "M_Inventory 类型", description = "Inventory Type (Difference - Charge)", items = {
 			@FlyRefItem(name = "Inventory Difference", value = "Inventory Difference"),
 			@FlyRefItem(name = "Charge Account", value = "Charge Account"), })
 	M_Inventory_Type,
 	//
-	@FlyRefList(name = "C_ProjectType Category", items = { @FlyRefItem(name = "General", value = "General"),
-			@FlyRefItem(name = "Asset Project", value = "Asset Project"),
+	@FlyRefList(name = "C_ProjectType 分类", items = { @FlyRefItem(name = "General", value = "General"),
+			@FlyRefItem(name = "资产项目", value = "资产项目"),
 			@FlyRefItem(name = "Work Order (Job)", value = "Work Order (Job)"),
-			@FlyRefItem(name = "Service (Charge) Project", value = "Service (Charge) Project"), })
+			@FlyRefItem(name = "服务(费用) 项目", value = "服务(费用) 项目"), })
 	C_ProjectType_Category,
 	//
-	@FlyRefList(name = "AD_Reference Validation Types", description = "Reference Validation Type list", help = "e.g. I - Independent ", items = {
-			@FlyRefItem(name = "List Validation", value = "List Validation"),
-			@FlyRefItem(name = "DataType", value = "DataType"),
-			@FlyRefItem(name = "Table Validation", value = "Table Validation"), })
+	@FlyRefList(name = "AD_Reference 验证类型", description = "Reference Validation Type list", help = "e.g. I - Independent ", items = {
+			@FlyRefItem(name = "列表验证", value = "列表验证"), @FlyRefItem(name = "数据类型", value = "数据类型"),
+			@FlyRefItem(name = "表验证", value = "表验证"), })
 	AD_Reference_Validation_Types,
 	//
-	@FlyRefList(name = "AD_Table Access Levels", description = "Table Access and Sharing Level list", items = {
-			@FlyRefItem(name = "System+Client", value = "System+Client"),
-			@FlyRefItem(name = "Organization", value = "Organization"),
-			@FlyRefItem(name = "Client+Organization", value = "Client+Organization"),
-			@FlyRefItem(name = "System only", value = "System only"), @FlyRefItem(name = "All", value = "All"),
-			@FlyRefItem(name = "Client only", value = "Client only"), })
+	@FlyRefList(name = "AD_Table 访问级别", description = "Table Access and Sharing Level list", items = {
+			@FlyRefItem(name = "系统+客户", value = "系统+客户"), @FlyRefItem(name = "机构", value = "机构"),
+			@FlyRefItem(name = "客户+机构", value = "客户+机构"), @FlyRefItem(name = "仅系统级", value = "仅系统级"),
+			@FlyRefItem(name = "全部", value = "全部"), @FlyRefItem(name = "仅客户级", value = "仅客户级"), })
 	AD_Table_Access_Levels,
-	//
-	@FlyRefList(name = "PP_Process Type", description = "Process Type", items = {
-			@FlyRefItem(name = "Batch Flow ", value = "Batch Flow "),
-			@FlyRefItem(name = "Continuous Flow", value = "Continuous Flow"),
-			@FlyRefItem(name = "Dedicate Repetititive Flow", value = "Dedicate Repetititive Flow"),
-			@FlyRefItem(name = "Job Shop", value = "Job Shop"),
-			@FlyRefItem(name = "Mixed Repetitive Flow", value = "Mixed Repetitive Flow"),
-			@FlyRefItem(name = "Plant", value = "Plant"), })
-	PP_Process_Type,
-	//
-	@FlyRefList(name = "PP_ComponentType", items = { @FlyRefItem(name = "By-Product", value = "By-Product"),
-			@FlyRefItem(name = "Component", value = "Component"), @FlyRefItem(name = "Phantom", value = "Phantom"),
-			@FlyRefItem(name = "Packing", value = "Packing"), @FlyRefItem(name = "Planning", value = "Planning"),
-			@FlyRefItem(name = "Tools", value = "Tools"), @FlyRefItem(name = "Option", value = "Option"),
-			@FlyRefItem(name = "Variant", value = "Variant"), @FlyRefItem(name = "Co-Product", value = "Co-Product"), })
-	PP_ComponentType,
-	//
-	@FlyRefList(name = "PP_Product_BOM IssueMethod", description = "Issue Method", items = {
-			@FlyRefItem(name = "Issue", value = "Issue"), @FlyRefItem(name = "Backflush", value = "Backflush"),
-			@FlyRefItem(name = "Floor Stock", value = "Floor Stock"), })
-	PP_Product_BOM_IssueMethod,
-	//
-	@FlyRefList(name = "PP_Product_BOM Component Change", description = "Component Change", help = "Component Change", items = {
-			@FlyRefItem(name = "Add", value = "Add"), @FlyRefItem(name = "Deactivate", value = "Deactivate"),
-			@FlyRefItem(name = "Expire", value = "Expire"), @FlyRefItem(name = "Replace", value = "Replace"),
-			@FlyRefItem(name = "Replace & Expire", value = "Replace & Expire"), })
-	PP_Product_BOM_Component_Change,
-	//
-	@FlyRefList(name = "PP_Product_Planning Order Policy", items = {
-			@FlyRefItem(name = "Fixed Order Quantity", value = "Fixed Order Quantity"),
-			@FlyRefItem(name = "Lot-for-Lot", value = "Lot-for-Lot"),
-			@FlyRefItem(name = "Period Order Quantity", value = "Period Order Quantity"), })
-	PP_Product_Planning_Order_Policy,
 	//
 	@FlyRefList(name = "CRM Schedule", help = "Forward and Backward Scheduling", items = {
 			@FlyRefItem(name = "Backward ", value = "Backward "), @FlyRefItem(name = "Forward", value = "Forward"), })
 	CRM_Schedule,
 	//
-	@FlyRefList(name = "C_TaxBase", items = { @FlyRefItem(name = "Weight", value = "Weight"),
-			@FlyRefItem(name = "Cost", value = "Cost"), @FlyRefItem(name = "Price", value = "Price"),
-			@FlyRefItem(name = "Quantity", value = "Quantity"), })
-	C_TaxBase,
-	//
-	@FlyRefList(name = "EXP_Line_Type", description = "List with Export Line types", items = {
-			@FlyRefItem(name = "XML Element", value = "XML Element"),
-			@FlyRefItem(name = "XML Attribute", value = "XML Attribute"),
-			@FlyRefItem(name = "Embedded EXP Format", value = "Embedded EXP Format"),
-			@FlyRefItem(name = "Referenced EXP Format", value = "Referenced EXP Format"), })
-	EXP_Line_Type,
-	//
-	@FlyRefList(name = "HR Type", items = { @FlyRefItem(name = "Concept", value = "Concept"),
-			@FlyRefItem(name = "Rule Engine", value = "Rule Engine"),
-			@FlyRefItem(name = "Information", value = "Information"),
-			@FlyRefItem(name = "Reference", value = "Reference"), })
-	HR_Type,
-	//
-	@FlyRefList(name = "_MRP Type", description = "MRP type can be a Demand or Supply", items = {
-			@FlyRefItem(name = "Supply", value = "Supply"), @FlyRefItem(name = "Demand", value = "Demand"), })
-	_MRP_Type,
-	//
-	@FlyRefList(name = "S_Resource MFG Type", description = "Manufacturing Resource Type", items = {
-			@FlyRefItem(name = "Production Line", value = "Production Line"),
-			@FlyRefItem(name = "Plant", value = "Plant"), @FlyRefItem(name = "Work Center", value = "Work Center"),
-			@FlyRefItem(name = "Work Station", value = "Work Station"), })
-	S_Resource_MFG_Type,
-	//
-	@FlyRefList(name = "HR ColumnType", items = { @FlyRefItem(name = "Amount", value = "Amount"),
-			@FlyRefItem(name = "Date", value = "Date"), @FlyRefItem(name = "Quantity", value = "Quantity"),
-			@FlyRefItem(name = "Text", value = "Text"), })
-	HR_ColumnType,
-	//
-	@FlyRefList(name = "C_DocType SubTypeSO", description = "Order Types list", items = {
-			@FlyRefItem(name = "On Credit Order", value = "On Credit Order"),
-			@FlyRefItem(name = "POS Order", value = "POS Order"),
-			@FlyRefItem(name = "Warehouse Order", value = "Warehouse Order"),
-			@FlyRefItem(name = "Standard Order", value = "Standard Order"),
-			@FlyRefItem(name = "Proposal", value = "Proposal"), @FlyRefItem(name = "Quotation", value = "Quotation"),
-			@FlyRefItem(name = "Return Material", value = "Return Material"),
-			@FlyRefItem(name = "Prepay Order", value = "Prepay Order"), })
+	@FlyRefList(name = "C_DocType SubTypeSO", description = "定单类型列出", items = {
+			@FlyRefItem(name = "信用定单", value = "信用定单"), @FlyRefItem(name = "POS定单", value = "POS定单"),
+			@FlyRefItem(name = "仓库定单", value = "仓库定单"), @FlyRefItem(name = "标准定单", value = "标准定单"),
+			@FlyRefItem(name = "提议", value = "提议"), @FlyRefItem(name = "报价", value = "报价"),
+			@FlyRefItem(name = "退回材料 **", value = "退回材料 **"), @FlyRefItem(name = "先付定单", value = "先付定单"), })
 	C_DocType_SubTypeSO,
 	//
-	@FlyRefList(name = "AD_Print Graph Type", items = { @FlyRefItem(name = "Pie Chart", value = "Pie Chart"),
-			@FlyRefItem(name = "Line Chart", value = "Line Chart"),
-			@FlyRefItem(name = "Bar Chart", value = "Bar Chart"), })
+	@FlyRefList(name = "AD_Print 曲线图类型", items = { @FlyRefItem(name = "饼图", value = "饼图"),
+			@FlyRefItem(name = "线图", value = "线图"), @FlyRefItem(name = "直条图", value = "直条图"), })
 	AD_Print_Graph_Type,
 	//
 	@FlyRefList(name = "_MRP Order Type", items = { @FlyRefItem(name = "Safety Stock", value = "Safety Stock"),
@@ -431,28 +327,26 @@ public enum RefLists {
 			@FlyRefItem(name = "Manufacturing Order", value = "Manufacturing Order"), })
 	_MRP_Order_Type,
 	//
-	@FlyRefList(name = "C_Payment CreditCard Type", description = "C_Payment Credit Card Type list", items = {
-			@FlyRefItem(name = "Amex", value = "Amex"), @FlyRefItem(name = "ATM", value = "ATM"),
-			@FlyRefItem(name = "MasterCard", value = "MasterCard"), @FlyRefItem(name = "Visa", value = "Visa"),
-			@FlyRefItem(name = "Purchase Card", value = "Purchase Card"),
-			@FlyRefItem(name = "Diners", value = "Diners"), @FlyRefItem(name = "Discover", value = "Discover"), })
+	@FlyRefList(name = "C_Payment CreditCard 类型", description = "C_Payment Credit Card Type list", items = {
+			@FlyRefItem(name = "美国证券交易所", value = "美国证券交易所"), @FlyRefItem(name = "自动柜员机", value = "自动柜员机"),
+			@FlyRefItem(name = "MasterCard", value = "MasterCard"), @FlyRefItem(name = "签证", value = "签证"),
+			@FlyRefItem(name = "采购卡片", value = "采购卡片"), @FlyRefItem(name = "用餐者", value = "用餐者"),
+			@FlyRefItem(name = "发现", value = "发现"), })
 	C_Payment_CreditCard_Type,
 	//
-	@FlyRefList(name = "M_Product_ProductType", items = { @FlyRefItem(name = "Item", value = "Item"),
-			@FlyRefItem(name = "Service", value = "Service"), @FlyRefItem(name = "Resource", value = "Resource"),
-			@FlyRefItem(name = "Expense type", value = "Expense type"),
-			@FlyRefItem(name = "Online", value = "Online"), })
+	@FlyRefList(name = "M_Product_ProductType", items = { @FlyRefItem(name = "项目", value = "项目"),
+			@FlyRefItem(name = "服务", value = "服务"), @FlyRefItem(name = "资源", value = "资源"),
+			@FlyRefItem(name = "费用类型", value = "费用类型"), @FlyRefItem(name = "在线", value = "在线"), })
 	M_Product_ProductType,
 	//
-	@FlyRefList(name = "M_DiscountPriceList RoundingRule", description = "Price Rounding Rule list", items = {
+	@FlyRefList(name = "M_DiscountPriceList RoundingRule", description = "定圆整规则目录的价格", items = {
 			@FlyRefItem(name = "Whole Number .00", value = "Whole Number .00"),
-			@FlyRefItem(name = "No Rounding", value = "No Rounding"),
+			@FlyRefItem(name = "没有圆整", value = "没有圆整"),
 			@FlyRefItem(name = "Quarter .25 .50 .75", value = "Quarter .25 .50 .75"),
 			@FlyRefItem(name = "Dime .10, .20, .30, ...", value = "Dime .10, .20, .30, ..."),
 			@FlyRefItem(name = "Nickel .05, .10, .15, ...", value = "Nickel .05, .10, .15, ..."),
 			@FlyRefItem(name = "Ten 10.00, 20.00, ..", value = "Ten 10.00, 20.00, .."),
-			@FlyRefItem(name = "Currency Precision", value = "Currency Precision"),
-			@FlyRefItem(name = "Ending in 9/5", value = "Ending in 9/5"), })
+			@FlyRefItem(name = "币种精度", value = "币种精度"), @FlyRefItem(name = "Ending in 9/5", value = "Ending in 9/5"), })
 	M_DiscountPriceList_RoundingRule,
 	//
 	@FlyRefList(name = "AD_PrintFormatItem ShapeType", items = {
@@ -681,9 +575,9 @@ public enum RefLists {
 			@FlyRefItem(name = "Lower", value = "Lower"), @FlyRefItem(name = "Higher", value = "Higher"), })
 	C_BP_Group_PriorityBase,
 	//
-	@FlyRefList(name = "AD_Color Type", items = { @FlyRefItem(name = "Normal (Flat)", value = "Normal (Flat)"),
-			@FlyRefItem(name = "Gradient", value = "Gradient"), @FlyRefItem(name = "Line", value = "Line"),
-			@FlyRefItem(name = "Texture (Picture)", value = "Texture (Picture)"), })
+	@FlyRefList(name = "AD_Color 类型", items = { @FlyRefItem(name = "常态", value = "常态"),
+			@FlyRefItem(name = "倾斜度", value = "倾斜度"), @FlyRefItem(name = "明细", value = "明细"),
+			@FlyRefItem(name = "织法", value = "织法"), })
 	AD_Color_Type,
 	//
 	@FlyRefList(name = "AD_User BP AccessType", items = {
@@ -710,28 +604,25 @@ public enum RefLists {
 			@FlyRefItem(name = "Bi-Weekly", value = "Bi-Weekly"), })
 	C_Remuneration_Type,
 	//
-	@FlyRefList(name = "C_Order InvoiceRule", description = "Invoicing Rules list", items = {
-			@FlyRefItem(name = "After Order delivered", value = "After Order delivered"),
-			@FlyRefItem(name = "After Delivery", value = "After Delivery"),
+	@FlyRefList(name = "C_Order InvoiceRule", description = "开发票规则列表", items = {
+			@FlyRefItem(name = "在定单配送之后", value = "在定单配送之后"), @FlyRefItem(name = "在配送之后", value = "在配送之后"),
 			@FlyRefItem(name = "Customer Schedule after Delivery", value = "Customer Schedule after Delivery"),
-			@FlyRefItem(name = "Immediate", value = "Immediate"), })
+			@FlyRefItem(name = "立即的", value = "立即的"), })
 	C_Order_InvoiceRule,
 	//
-	@FlyRefList(name = "_PriorityRule", description = "Priority scale list", items = {
-			@FlyRefItem(name = "High", value = "High"), @FlyRefItem(name = "Medium", value = "Medium"),
-			@FlyRefItem(name = "Low", value = "Low"), @FlyRefItem(name = "Urgent", value = "Urgent"),
-			@FlyRefItem(name = "Minor", value = "Minor"), })
+	@FlyRefList(name = "All_PriorityRule", description = "优先权刻度目录", items = { @FlyRefItem(name = "高级", value = "高级"),
+			@FlyRefItem(name = "中等", value = "中等"), @FlyRefItem(name = "低级", value = "低级"),
+			@FlyRefItem(name = "Urgent", value = "Urgent"), @FlyRefItem(name = "Minor", value = "Minor"), })
 	_PriorityRule,
 	//
-	@FlyRefList(name = "C_Order FreightCostRule", description = "Freight cost Rule list", items = {
-			@FlyRefItem(name = "Freight included", value = "Freight included"),
-			@FlyRefItem(name = "Calculated", value = "Calculated"),
-			@FlyRefItem(name = "Fix price", value = "Fix price"), @FlyRefItem(name = "Line", value = "Line"), })
+	@FlyRefList(name = "C_Order FreightCostRule", description = "运费规则列表", items = {
+			@FlyRefItem(name = "已包括运费", value = "已包括运费"), @FlyRefItem(name = "计算", value = "计算"),
+			@FlyRefItem(name = "固定价格", value = "固定价格"), @FlyRefItem(name = "明细", value = "明细"), })
 	C_Order_FreightCostRule,
 	//
-	@FlyRefList(name = "C_Order DeliveryViaRule", description = "Delivery via Rule list", items = {
-			@FlyRefItem(name = "Delivery", value = "Delivery"), @FlyRefItem(name = "Shipper", value = "Shipper"),
-			@FlyRefItem(name = "Pickup", value = "Pickup"), })
+	@FlyRefList(name = "C_Order DeliveryViaRule", description = "配送经由规则列表", items = {
+			@FlyRefItem(name = "配送", value = "配送"), @FlyRefItem(name = "运输商", value = "运输商"),
+			@FlyRefItem(name = "自提", value = "自提"), })
 	C_Order_DeliveryViaRule,
 	//
 	@FlyRefList(name = "M_BOM Type", items = { @FlyRefItem(name = "Current Active", value = "Current Active"),
@@ -864,7 +755,7 @@ public enum RefLists {
 	PA_Ratio_Operand,
 	//
 	@FlyRefList(name = "_PublishStatus", description = "Publication Status", items = {
-			@FlyRefItem(name = "Released", value = "Released"), @FlyRefItem(name = "Test", value = "Test"),
+			@FlyRefItem(name = "Released", value = "Released"), @FlyRefItem(name = "测试", value = "测试"),
 			@FlyRefItem(name = "Under Revision", value = "Under Revision"),
 			@FlyRefItem(name = "Void", value = "Void"), })
 	_PublishStatus,
@@ -875,167 +766,145 @@ public enum RefLists {
 			@FlyRefItem(name = "Purchase Order and Receipt", value = "Purchase Order and Receipt"), })
 	C_Invoice_MatchRequirement,
 	//
-	@FlyRefList(name = "AD_Find Operation", items = { @FlyRefItem(name = " =", value = " ="),
+	@FlyRefList(name = "AD_Find 操作", items = { @FlyRefItem(name = " =", value = " ="),
 			@FlyRefItem(name = ">=", value = ">="), @FlyRefItem(name = ">", value = ">"),
 			@FlyRefItem(name = "<", value = "<"), @FlyRefItem(name = " ~", value = " ~"),
 			@FlyRefItem(name = "<=", value = "<="), @FlyRefItem(name = "|<x>|", value = "|<x>|"),
 			@FlyRefItem(name = "sql", value = "sql"), @FlyRefItem(name = "!=", value = "!="), })
 	AD_Find_Operation,
 	//
-	@FlyRefList(name = "AD_ImpFormat Type", items = { @FlyRefItem(name = "Product", value = "Product"),
-			@FlyRefItem(name = "Business Partner", value = "Business Partner"),
-			@FlyRefItem(name = "Accounts", value = "Accounts"),
-			@FlyRefItem(name = "GL Balances", value = "GL Balances"),
-			@FlyRefItem(name = "Exchange Rates", value = "Exchange Rates"),
-			@FlyRefItem(name = "Inventory Count", value = "Inventory Count"), })
+	@FlyRefList(name = "AD_ImpFormat 类型", items = { @FlyRefItem(name = "产品", value = "产品"),
+			@FlyRefItem(name = "业务伙伴 ", value = "业务伙伴 "), @FlyRefItem(name = "帐户", value = "帐户"),
+			@FlyRefItem(name = "总帐余款", value = "总帐余款"), @FlyRefItem(name = "交换比率", value = "交换比率"),
+			@FlyRefItem(name = "盘点", value = "盘点"), })
 	AD_ImpFormat_Type,
 	//
-	@FlyRefList(name = "AD_ImpFormat FormatType", items = {
-			@FlyRefItem(name = "Fixed Position", value = "Fixed Position"),
-			@FlyRefItem(name = "Comma Separated", value = "Comma Separated"),
-			@FlyRefItem(name = "Tab Separated", value = "Tab Separated"), @FlyRefItem(name = "XML", value = "XML"),
+	@FlyRefList(name = "AD_ImpFormat FormatType", items = { @FlyRefItem(name = "固定的位置", value = "固定的位置"),
+			@FlyRefItem(name = "逗点分开", value = "逗点分开"), @FlyRefItem(name = "定位键分开", value = "定位键分开"),
+			@FlyRefItem(name = "XML语言", value = "XML语言"),
 			@FlyRefItem(name = "Custom Separator Char", value = "Custom Separator Char"), })
 	AD_ImpFormat_FormatType,
 	//
-	@FlyRefList(name = "AD_ImpFormat_Row Type", items = { @FlyRefItem(name = "String", value = "String"),
-			@FlyRefItem(name = "Number", value = "Number"), @FlyRefItem(name = "Date", value = "Date"),
-			@FlyRefItem(name = "Constant", value = "Constant"), })
+	@FlyRefList(name = "AD_ImpFormat_Row 类型", items = { @FlyRefItem(name = "字符串", value = "字符串"),
+			@FlyRefItem(name = "数字", value = "数字"), @FlyRefItem(name = "日期", value = "日期"),
+			@FlyRefItem(name = "常数", value = "常数"), })
 	AD_ImpFormat_Row_Type,
 	//
 	@FlyRefList(name = "M_InventoryCount QtyRange", items = { @FlyRefItem(name = "> 0", value = "> 0"),
 			@FlyRefItem(name = "= 0", value = "= 0"), @FlyRefItem(name = "< 0", value = "< 0"),
-			@FlyRefItem(name = "not 0", value = "not 0"), })
+			@FlyRefItem(name = "非0", value = "非0"), })
 	M_InventoryCount_QtyRange,
 	//
-	@FlyRefList(name = "C_Bank Account Type", items = { @FlyRefItem(name = "Checking", value = "Checking"),
-			@FlyRefItem(name = "Savings", value = "Savings"), })
+	@FlyRefList(name = "C_Bank 帐户类型", items = { @FlyRefItem(name = "检查", value = "检查"),
+			@FlyRefItem(name = "储蓄", value = "储蓄"), })
 	C_Bank_Account_Type,
 	//
-	@FlyRefList(name = "C_Cash Trx Type", items = {
-			@FlyRefItem(name = "Bank Account Transfer", value = "Bank Account Transfer"),
-			@FlyRefItem(name = "Invoice", value = "Invoice"),
-			@FlyRefItem(name = "General Expense", value = "General Expense"),
-			@FlyRefItem(name = "General Receipts", value = "General Receipts"),
-			@FlyRefItem(name = "Charge", value = "Charge"), @FlyRefItem(name = "Difference", value = "Difference"), })
+	@FlyRefList(name = "C_Cash Trx 类型", items = { @FlyRefItem(name = "转帐到银行帐户", value = "转帐到银行帐户"),
+			@FlyRefItem(name = "发票", value = "发票"), @FlyRefItem(name = "通用费用", value = "通用费用"),
+			@FlyRefItem(name = "通用收据", value = "通用收据"), @FlyRefItem(name = "费用", value = "费用"),
+			@FlyRefItem(name = "差额", value = "差额"), })
 	C_Cash_Trx_Type,
 	//
-	@FlyRefList(name = "R_Request Request Type", items = { @FlyRefItem(name = "Information", value = "Information"),
-			@FlyRefItem(name = "Service", value = "Service"), @FlyRefItem(name = "Charge", value = "Charge"),
-			@FlyRefItem(name = "Account", value = "Account"), @FlyRefItem(name = "Help", value = "Help"),
-			@FlyRefItem(name = "Alert", value = "Alert"), @FlyRefItem(name = "Warranty", value = "Warranty"),
-			@FlyRefItem(name = "Other", value = "Other"), })
+	@FlyRefList(name = "R_Request 请求类型", items = { @FlyRefItem(name = "数据", value = "数据"),
+			@FlyRefItem(name = "服务", value = "服务"), @FlyRefItem(name = "费用", value = "费用"),
+			@FlyRefItem(name = "帐户", value = "帐户"), @FlyRefItem(name = "帮助", value = "帮助"),
+			@FlyRefItem(name = " 警报", value = " 警报"), @FlyRefItem(name = "担保", value = "担保"),
+			@FlyRefItem(name = "其他", value = "其他"), })
 	R_Request_Request_Type,
 	//
-	@FlyRefList(name = "R_Request Next Action", items = { @FlyRefItem(name = "None", value = "None"),
-			@FlyRefItem(name = "Follow up", value = "Follow up"), })
+	@FlyRefList(name = "R_Request 下一个动作", items = { @FlyRefItem(name = "没有", value = "没有"),
+			@FlyRefItem(name = "追踪", value = "追踪"), })
 	R_Request_Next_Action,
 	//
-	@FlyRefList(name = "_Frequency Type", description = "Processor Frequency Type", items = {
-			@FlyRefItem(name = "Minute", value = "Minute"), @FlyRefItem(name = "Hour", value = "Hour"),
-			@FlyRefItem(name = "Day", value = "Day"), })
+	@FlyRefList(name = "R_Request 频率类型", items = { @FlyRefItem(name = "分钟", value = "分钟"),
+			@FlyRefItem(name = "小时", value = "小时"), @FlyRefItem(name = "日", value = "日"), })
 	_Frequency_Type,
 	//
-	@FlyRefList(name = "R_Request Due Type", items = { @FlyRefItem(name = "Overdue", value = "Overdue"),
-			@FlyRefItem(name = "Due", value = "Due"), @FlyRefItem(name = "Scheduled", value = "Scheduled"), })
+	@FlyRefList(name = "R_Request 应付款类型", items = { @FlyRefItem(name = "超储的", value = "超储的"),
+			@FlyRefItem(name = "应付款", value = "应付款"), @FlyRefItem(name = "预定", value = "预定"), })
 	R_Request_Due_Type,
 	//
-	@FlyRefList(name = "C_Commission DocBasis", items = { @FlyRefItem(name = "Order", value = "Order"),
-			@FlyRefItem(name = "Invoice", value = "Invoice"), @FlyRefItem(name = "Receipt", value = "Receipt"), })
+	@FlyRefList(name = "C_Commission DocBasis", items = { @FlyRefItem(name = "定单", value = "定单"),
+			@FlyRefItem(name = "发票", value = "发票"), @FlyRefItem(name = "收货", value = "收货"), })
 	C_Commission_DocBasis,
 	//
-	@FlyRefList(name = "C_Commission Frequency", items = { @FlyRefItem(name = "Yearly", value = "Yearly"),
-			@FlyRefItem(name = "Weekly", value = "Weekly"), @FlyRefItem(name = "Monthly", value = "Monthly"),
-			@FlyRefItem(name = "Quarterly", value = "Quarterly"), })
+	@FlyRefList(name = "C_Commission 频率", items = { @FlyRefItem(name = "Yearly", value = "Yearly"),
+			@FlyRefItem(name = "每周的", value = "每周的"), @FlyRefItem(name = "每月的", value = "每月的"),
+			@FlyRefItem(name = "每季的", value = "每季的"), })
 	C_Commission_Frequency,
 	//
-	@FlyRefList(name = "AD_Role User Level", items = { @FlyRefItem(name = "System", value = "System"),
-			@FlyRefItem(name = "Client", value = "Client"), @FlyRefItem(name = "Organization", value = "Organization"),
-			@FlyRefItem(name = "Client+Organization", value = "Client+Organization"), })
+	@FlyRefList(name = "AD_Role 用户级别", items = { @FlyRefItem(name = "系统 ", value = "系统 "),
+			@FlyRefItem(name = "客户", value = "客户"), @FlyRefItem(name = "机构", value = "机构"),
+			@FlyRefItem(name = "客户+机构", value = "客户+机构"), })
 	AD_Role_User_Level,
 	//
-	@FlyRefList(name = "PA_Measure Type", items = { @FlyRefItem(name = "Request", value = "Request"),
+	@FlyRefList(name = "PA_Measure 类型", items = { @FlyRefItem(name = "Request", value = "Request"),
 			@FlyRefItem(name = "Project", value = "Project"),
 			@FlyRefItem(name = "User defined", value = "User defined"), @FlyRefItem(name = "Ratio", value = "Ratio"),
-			@FlyRefItem(name = "Manual", value = "Manual"), @FlyRefItem(name = "Calculated", value = "Calculated"),
-			@FlyRefItem(name = "Achievements", value = "Achievements"), })
+			@FlyRefItem(name = "手工", value = "手工"), @FlyRefItem(name = "计算", value = "计算"),
+			@FlyRefItem(name = "进步", value = "进步"), })
 	PA_Measure_Type,
 	//
-	@FlyRefList(name = "GL Category Type", items = { @FlyRefItem(name = "System generated", value = "System generated"),
-			@FlyRefItem(name = "Document", value = "Document"), @FlyRefItem(name = "Import", value = "Import"),
-			@FlyRefItem(name = "Manual", value = "Manual"), })
+	@FlyRefList(name = "总帐种类类型", items = { @FlyRefItem(name = "System generated", value = "System generated"),
+			@FlyRefItem(name = "文件", value = "文件"), @FlyRefItem(name = "导入", value = "导入"),
+			@FlyRefItem(name = "手工", value = "手工"), })
 	GL_Category_Type,
 	//
-	@FlyRefList(name = "PA_Report AmountType (deprecated)", items = {
-			@FlyRefItem(name = "Period Balance", value = "Period Balance"),
-			@FlyRefItem(name = "Period Credit Only", value = "Period Credit Only"),
-			@FlyRefItem(name = "Period Debit Only", value = "Period Debit Only"),
-			@FlyRefItem(name = "Period Quantity", value = "Period Quantity"),
-			@FlyRefItem(name = "Total Quantity", value = "Total Quantity"),
-			@FlyRefItem(name = "Year Balance", value = "Year Balance"),
-			@FlyRefItem(name = "Year Credit Only", value = "Year Credit Only"),
-			@FlyRefItem(name = "Year Debit Only", value = "Year Debit Only"),
-			@FlyRefItem(name = "Year Quantity", value = "Year Quantity"),
-			@FlyRefItem(name = "Total Debit Only", value = "Total Debit Only"),
-			@FlyRefItem(name = "Total Credit Only", value = "Total Credit Only"),
-			@FlyRefItem(name = "Total Balance", value = "Total Balance"),
+	@FlyRefList(name = "PA_Report 金额类型", items = { @FlyRefItem(name = "分期余款", value = "分期余款"),
+			@FlyRefItem(name = "只有分期信用", value = "只有分期信用"), @FlyRefItem(name = "只有分期借方", value = "只有分期借方"),
+			@FlyRefItem(name = "分期量", value = "分期量"), @FlyRefItem(name = "总量", value = "总量"),
+			@FlyRefItem(name = "年余款", value = "年余款"), @FlyRefItem(name = "只有年信用", value = "只有年信用"),
+			@FlyRefItem(name = "只有年借方", value = "只有年借方"), @FlyRefItem(name = "年量", value = "年量"),
+			@FlyRefItem(name = "只有总借方", value = "只有总借方"), @FlyRefItem(name = "只有总贷方", value = "只有总贷方"),
+			@FlyRefItem(name = "总余款", value = "总余款"),
 			@FlyRefItem(name = "Natural Balance", value = "Natural Balance"), })
-	PA_Report_AmountType_deprecated,
+	PA_Report_AmountType__deprecated_,
 	//
-	@FlyRefList(name = "PA_Report CalculationType", items = {
-			@FlyRefItem(name = "Add (Op1+Op2)", value = "Add (Op1+Op2)"),
-			@FlyRefItem(name = "Subtract (Op1-Op2)", value = "Subtract (Op1-Op2)"),
-			@FlyRefItem(name = "Percentage (Op1 of Op2)", value = "Percentage (Op1 of Op2)"),
-			@FlyRefItem(name = "Add Range (Op1 to Op2)", value = "Add Range (Op1 to Op2)"), })
+	@FlyRefList(name = "PA_Report 计算类型", items = { @FlyRefItem(name = "增加", value = "增加"),
+			@FlyRefItem(name = "减去", value = "减去"), @FlyRefItem(name = "百分比", value = "百分比"),
+			@FlyRefItem(name = "增加范围", value = "增加范围"), })
 	PA_Report_CalculationType,
 	//
-	@FlyRefList(name = "PA_Report ColumnType", items = {
-			@FlyRefItem(name = "Relative Period", value = "Relative Period"),
-			@FlyRefItem(name = "Calculation", value = "Calculation"),
-			@FlyRefItem(name = "Segment Value", value = "Segment Value"), })
+	@FlyRefList(name = "PA_Report 列类型", items = { @FlyRefItem(name = "相对分期", value = "相对分期"),
+			@FlyRefItem(name = "计算", value = "计算"), @FlyRefItem(name = "表值", value = "表值"), })
 	PA_Report_ColumnType,
 	//
-	@FlyRefList(name = "PA_Report CurrencyType", items = {
-			@FlyRefItem(name = "Source Currency", value = "Source Currency"),
-			@FlyRefItem(name = "Accounting Currency", value = "Accounting Currency"), })
+	@FlyRefList(name = "PA_Report 货币类型", items = { @FlyRefItem(name = "来源币种", value = "来源币种"),
+			@FlyRefItem(name = "会计币种", value = "会计币种"), })
 	PA_Report_CurrencyType,
 	//
-	@FlyRefList(name = "M_Replenish Type", items = { @FlyRefItem(name = "Custom", value = "Custom"),
-			@FlyRefItem(name = "Maintain Maximum Level", value = "Maintain Maximum Level"),
-			@FlyRefItem(name = "Manual", value = "Manual"),
-			@FlyRefItem(name = "Reorder below Minimum Level", value = "Reorder below Minimum Level"),
+	@FlyRefList(name = "M_Replenish 类型", items = { @FlyRefItem(name = "Custom", value = "Custom"),
+			@FlyRefItem(name = "维护最大值水平", value = "维护最大值水平"), @FlyRefItem(name = "手工", value = "手工"),
+			@FlyRefItem(name = "低于最小量水平定货", value = "低于最小量水平定货"),
 			@FlyRefItem(name = "Replenish Plan Calculated", value = "Replenish Plan Calculated"), })
 	M_Replenish_Type,
 	//
-	@FlyRefList(name = "C_Payment AVS", items = { @FlyRefItem(name = "No Match", value = "No Match"),
-			@FlyRefItem(name = "Unavailable", value = "Unavailable"), @FlyRefItem(name = "Match", value = "Match"), })
+	@FlyRefList(name = "C_Payment AVS", items = { @FlyRefItem(name = "不匹配", value = "不匹配"),
+			@FlyRefItem(name = "不可用的", value = "不可用的"), @FlyRefItem(name = "匹配", value = "匹配"), })
 	C_Payment_AVS,
 	//
-	@FlyRefList(name = "C_Payment Trx Type", description = "CC Trx Type", items = {
-			@FlyRefItem(name = "Credit (Payment)", value = "Credit (Payment)"),
-			@FlyRefItem(name = "Delayed Capture", value = "Delayed Capture"),
-			@FlyRefItem(name = "Voice Authorization", value = "Voice Authorization"),
-			@FlyRefItem(name = "Sales", value = "Sales"), @FlyRefItem(name = "Void", value = "Void"),
-			@FlyRefItem(name = "Authorization", value = "Authorization"), })
+	@FlyRefList(name = "C_Payment Trx 类型", items = { @FlyRefItem(name = "信用", value = "信用"),
+			@FlyRefItem(name = "延迟捕获", value = "延迟捕获"), @FlyRefItem(name = "宣述授权", value = "宣述授权"),
+			@FlyRefItem(name = "销售", value = "销售"), @FlyRefItem(name = "空白", value = "空白"),
+			@FlyRefItem(name = "授权", value = "授权"), })
 	C_Payment_Trx_Type,
 	//
-	@FlyRefList(name = "C_Payment Tender Type", description = "Direct Debit/Deposit - Check - CC", items = {
-			@FlyRefItem(name = "Direct Deposit", value = "Direct Deposit"),
-			@FlyRefItem(name = "Credit Card", value = "Credit Card"), @FlyRefItem(name = "Check", value = "Check"),
+	@FlyRefList(name = "C_Payment 投标类型", items = { @FlyRefItem(name = "ACH", value = "ACH"),
+			@FlyRefItem(name = "信用卡", value = "信用卡"), @FlyRefItem(name = "支票", value = "支票"),
 			@FlyRefItem(name = "Cash", value = "Cash"), @FlyRefItem(name = "Direct Debit", value = "Direct Debit"),
 			@FlyRefItem(name = "Credit Memo", value = "Credit Memo"),
 			@FlyRefItem(name = "Account", value = "Account"), })
 	C_Payment_Tender_Type,
 	//
-	@FlyRefList(name = "Weekdays", description = "List of days", items = {
-			@FlyRefItem(name = "Sunday", value = "Sunday"), @FlyRefItem(name = "Monday", value = "Monday"),
-			@FlyRefItem(name = "Tuesday", value = "Tuesday"), @FlyRefItem(name = "Wednesday", value = "Wednesday"),
-			@FlyRefItem(name = "Thursday", value = "Thursday"), @FlyRefItem(name = "Friday", value = "Friday"),
-			@FlyRefItem(name = "Saturday", value = "Saturday"), })
+	@FlyRefList(name = "星期", description = "星期列表", items = { @FlyRefItem(name = "星期日", value = "星期日"),
+			@FlyRefItem(name = "星期一", value = "星期一"), @FlyRefItem(name = "星期二", value = "星期二"),
+			@FlyRefItem(name = "星期三", value = "星期三"), @FlyRefItem(name = "星期四", value = "星期四"),
+			@FlyRefItem(name = "星期五", value = "星期五"), @FlyRefItem(name = "星期六", value = "星期六"), })
 	Weekdays,
 	//
-	@FlyRefList(name = "C_InvoiceSchedule InvoiceFrequency", items = { @FlyRefItem(name = "Daily", value = "Daily"),
-			@FlyRefItem(name = "Weekly", value = "Weekly"), @FlyRefItem(name = "Monthly", value = "Monthly"),
-			@FlyRefItem(name = "Twice Monthly", value = "Twice Monthly"), })
+	@FlyRefList(name = "C_InvoiceSchedule InvoiceFrequency", items = { @FlyRefItem(name = "每日的", value = "每日的"),
+			@FlyRefItem(name = "每周的", value = "每周的"), @FlyRefItem(name = "每月的", value = "每月的"),
+			@FlyRefItem(name = "两次每月的", value = "两次每月的"), })
 	C_InvoiceSchedule_InvoiceFrequency,
 	//
 	@FlyRefList(name = "AD_FieldGroup", description = "Field Group Type", items = {
@@ -1043,99 +912,89 @@ public enum RefLists {
 			@FlyRefItem(name = "Collapse", value = "Collapse"), })
 	AD_FieldGroup,
 	//
-	@FlyRefList(name = "C_PeriodControl Action", items = { @FlyRefItem(name = "Open Period", value = "Open Period"),
-			@FlyRefItem(name = "Close Period", value = "Close Period"),
-			@FlyRefItem(name = "<No Action>", value = "<No Action>"),
-			@FlyRefItem(name = "Permanently Close Period", value = "Permanently Close Period"), })
+	@FlyRefList(name = "C_PeriodControl 动作", items = { @FlyRefItem(name = "有效分期", value = "有效分期"),
+			@FlyRefItem(name = "关闭的分期", value = "关闭的分期"), @FlyRefItem(name = "<没有动作>", value = "<没有动作>"),
+			@FlyRefItem(name = "永久关闭分期", value = "永久关闭分期"), })
 	C_PeriodControl_Action,
 	//
-	@FlyRefList(name = "C_PeriodControl Status", items = { @FlyRefItem(name = "Open", value = "Open"),
-			@FlyRefItem(name = "Closed", value = "Closed"),
-			@FlyRefItem(name = "Permanently closed", value = "Permanently closed"),
-			@FlyRefItem(name = "Never opened", value = "Never opened"), })
+	@FlyRefList(name = "C_PeriodControl状态", items = { @FlyRefItem(name = "打开", value = "打开"),
+			@FlyRefItem(name = "关闭", value = "关闭"), @FlyRefItem(name = "永久关闭", value = "永久关闭"),
+			@FlyRefItem(name = "从未打开", value = "从未打开"), })
 	C_PeriodControl_Status,
 	//
-	@FlyRefList(name = "GL_Budget Status", items = { @FlyRefItem(name = "Approved", value = "Approved"),
-			@FlyRefItem(name = "Draft", value = "Draft"), })
+	@FlyRefList(name = "GL_Budget 状态", items = { @FlyRefItem(name = "已批准", value = "已批准"),
+			@FlyRefItem(name = "草稿", value = "草稿"), })
 	GL_Budget_Status,
 	//
-	@FlyRefList(name = "_ErrorType", description = "List of type of errors", items = {
-			@FlyRefItem(name = "Error", value = "Error"), @FlyRefItem(name = "Warning", value = "Warning"),
-			@FlyRefItem(name = "Information", value = "Information"), })
+	@FlyRefList(name = "All_ErrorType", description = "列出错误的类型", items = { @FlyRefItem(name = "错误", value = "错误"),
+			@FlyRefItem(name = "警告", value = "警告"), @FlyRefItem(name = "信息", value = "信息"), })
 	_ErrorType,
 	//
-	@FlyRefList(name = "C_AcctSchema ElementType", description = "Element Types for Accounting Elements", help = "Hardcoded Element Types", items = {
+	@FlyRefList(name = "C_AcctSchema ElementType", description = "Element Types for Accounting Elements", help = "Hardcoded 元素打字", items = {
 			@FlyRefItem(name = "Sub Account", value = "Sub Account"),
 			@FlyRefItem(name = "User Element 1", value = "User Element 1"),
-			@FlyRefItem(name = "User Element 2", value = "User Element 2"),
-			@FlyRefItem(name = "User List 2", value = "User List 2"),
-			@FlyRefItem(name = "Organization", value = "Organization"),
-			@FlyRefItem(name = "Account", value = "Account"), @FlyRefItem(name = "Product", value = "Product"),
-			@FlyRefItem(name = "BPartner", value = "BPartner"), @FlyRefItem(name = "Org Trx", value = "Org Trx"),
-			@FlyRefItem(name = "Activity", value = "Activity"),
-			@FlyRefItem(name = "Location From", value = "Location From"),
-			@FlyRefItem(name = "Location To", value = "Location To"),
-			@FlyRefItem(name = "Sales Region", value = "Sales Region"),
-			@FlyRefItem(name = "Project", value = "Project"), @FlyRefItem(name = "Campaign", value = "Campaign"),
-			@FlyRefItem(name = "User List 1", value = "User List 1"),
+			@FlyRefItem(name = "User Element 2", value = "User Element 2"), @FlyRefItem(name = "用户 2", value = "用户 2"),
+			@FlyRefItem(name = "机构", value = "机构"), @FlyRefItem(name = "帐户", value = "帐户"),
+			@FlyRefItem(name = "产品", value = "产品"), @FlyRefItem(name = "Bus.Partner", value = "Bus.Partner"),
+			@FlyRefItem(name = "Trx. Org", value = "Trx. Org"), @FlyRefItem(name = "活动", value = "活动"),
+			@FlyRefItem(name = "来源位置", value = "来源位置"), @FlyRefItem(name = "目标位置", value = "目标位置"),
+			@FlyRefItem(name = "销售区域", value = "销售区域"), @FlyRefItem(name = "项目", value = "项目"),
+			@FlyRefItem(name = "活动", value = "活动"), @FlyRefItem(name = "用户 1", value = "用户 1"),
 			@FlyRefItem(name = "User List 3", value = "User List 3"),
 			@FlyRefItem(name = "User List 4", value = "User List 4"), })
 	C_AcctSchema_ElementType,
 	//
-	@FlyRefList(name = "M_DiscountPriceList Base", items = { @FlyRefItem(name = "List Price", value = "List Price"),
-			@FlyRefItem(name = "Standard Price", value = "Standard Price"),
-			@FlyRefItem(name = "Limit (PO) Price", value = "Limit (PO) Price"),
-			@FlyRefItem(name = "Fixed Price", value = "Fixed Price"), })
+	@FlyRefList(name = "M_DiscountPriceList 基础", items = { @FlyRefItem(name = "列表价格", value = "列表价格"),
+			@FlyRefItem(name = "标准价格", value = "标准价格"), @FlyRefItem(name = "限制 (采购定单) 价格", value = "限制 (采购定单) 价格"),
+			@FlyRefItem(name = "固定的价格", value = "固定的价格"), })
 	M_DiscountPriceList_Base,
 	//
 	@FlyRefList(name = "C_RevenueRecognition Frequency", description = "Frequency of Revenue Recognition", items = {
-			@FlyRefItem(name = "Month", value = "Month"), @FlyRefItem(name = "Quarter", value = "Quarter"),
-			@FlyRefItem(name = "Year", value = "Year"), })
+			@FlyRefItem(name = "月", value = "月"), @FlyRefItem(name = "季", value = "季"),
+			@FlyRefItem(name = "年", value = "年"), })
 	C_RevenueRecognition_Frequency,
 	//
 	@FlyRefList(name = "M_Inventory ReportType", items = {
-			@FlyRefItem(name = "Blind list (w/o book quantity)", value = "Blind list (w/o book quantity)"),
+			@FlyRefItem(name = "Blind list (w o book quantity)", value = "Blind list (w o book quantity)"),
 			@FlyRefItem(name = "Count list (with book quantity)", value = "Count list (with book quantity)"),
-			@FlyRefItem(name = "Control list", value = "Control list"), })
+			@FlyRefItem(name = "控制目录", value = "控制目录"), })
 	M_Inventory_ReportType,
 	//
-	@FlyRefList(name = "AD_Print Field Alignment", items = { @FlyRefItem(name = "Default", value = "Default"),
-			@FlyRefItem(name = "Leading (left)", value = "Leading (left)"),
-			@FlyRefItem(name = "Trailing (right)", value = "Trailing (right)"),
-			@FlyRefItem(name = "Block", value = "Block"), @FlyRefItem(name = "Center", value = "Center"), })
+	@FlyRefList(name = "AD_Print 字段对准", items = { @FlyRefItem(name = "缺省值", value = "缺省值"),
+			@FlyRefItem(name = "领先", value = "领先"), @FlyRefItem(name = "拖", value = "拖"),
+			@FlyRefItem(name = "块", value = "块"), @FlyRefItem(name = "中心", value = "中心"), })
 	AD_Print_Field_Alignment,
 	//
-	@FlyRefList(name = "AD_Print Line Alignment", items = { @FlyRefItem(name = "None", value = "None"),
-			@FlyRefItem(name = "Leading (left)", value = "Leading (left)"),
-			@FlyRefItem(name = "Center", value = "Center"),
-			@FlyRefItem(name = "Trailing (right)", value = "Trailing (right)"), })
+	@FlyRefList(name = "AD_Print 线对准", items = { @FlyRefItem(name = "没有", value = "没有"),
+			@FlyRefItem(name = "领先", value = "领先"), @FlyRefItem(name = "中心", value = "中心"),
+			@FlyRefItem(name = "拖", value = "拖"), })
 	AD_Print_Line_Alignment,
 	//
-	@FlyRefList(name = "AD_Print Format Type", items = { @FlyRefItem(name = "Image", value = "Image"),
-			@FlyRefItem(name = "Field", value = "Field"), @FlyRefItem(name = "Text", value = "Text"),
-			@FlyRefItem(name = "Print Format", value = "Print Format"),
-			@FlyRefItem(name = "Rectangle", value = "Rectangle"), @FlyRefItem(name = "Line", value = "Line"), })
+	@FlyRefList(name = "AD_Print 格式类型", items = { @FlyRefItem(name = "图像", value = "图像"),
+			@FlyRefItem(name = "字段", value = "字段"), @FlyRefItem(name = "文本", value = "文本"),
+			@FlyRefItem(name = "打印格式", value = "打印格式"), @FlyRefItem(name = "Rectangle", value = "Rectangle"),
+			@FlyRefItem(name = "Line", value = "Line"), })
 	AD_Print_Format_Type,
 	//
-	@FlyRefList(name = "AD_Print Area", items = { @FlyRefItem(name = "Content", value = "Content"),
-			@FlyRefItem(name = "Header", value = "Header"), @FlyRefItem(name = "Footer", value = "Footer"), })
+	@FlyRefList(name = "AD_Print 区域", items = { @FlyRefItem(name = "内容", value = "内容"),
+			@FlyRefItem(name = "头", value = "头"), @FlyRefItem(name = "脚", value = "脚"), })
 	AD_Print_Area,
 	//
-	@FlyRefList(name = "C_BP_EDI EDI Type", items = { @FlyRefItem(name = "ASC X12 ", value = "ASC X12 "),
-			@FlyRefItem(name = "EDIFACT", value = "EDIFACT"), @FlyRefItem(name = "Email EDI", value = "Email EDI"), })
+	@FlyRefList(name = "C_BP_EDI EDI 类型", items = { @FlyRefItem(name = "ASC X12", value = "ASC X12"),
+			@FlyRefItem(name = "EDIFACT", value = "EDIFACT"), @FlyRefItem(name = "发电子邮件给 EDI", value = "发电子邮件给 EDI"), })
 	C_BP_EDI_EDI_Type,
 	//
-	@FlyRefList(name = "M_EDI Status", items = { @FlyRefItem(name = "Draft", value = "Draft"),
-			@FlyRefItem(name = "Sent", value = "Sent"), @FlyRefItem(name = "Acknowledged", value = "Acknowledged"),
-			@FlyRefItem(name = "Answered (complete)", value = "Answered (complete)"), })
+	@FlyRefList(name = "M_EDI 状态", items = { @FlyRefItem(name = "草稿", value = "草稿"),
+			@FlyRefItem(name = "已发送", value = "已发送"), @FlyRefItem(name = "确认", value = "确认"),
+			@FlyRefItem(name = "回答", value = "回答"), })
 	M_EDI_Status,
 	//
-	@FlyRefList(name = "M_EDI Trx Type", items = { @FlyRefItem(name = "Inquiry", value = "Inquiry"),
-			@FlyRefItem(name = "Purchase Order", value = "Purchase Order"), })
+	@FlyRefList(name = "M_EDI Trx 类型", items = { @FlyRefItem(name = "查询", value = "查询"),
+			@FlyRefItem(name = "采购定单", value = "采购定单"), })
 	M_EDI_Trx_Type,
 	//
-	@FlyRefList(name = "AD_Find AndOr", items = { @FlyRefItem(name = "And", value = "And"),
-			@FlyRefItem(name = "Or", value = "Or"), })
+	@FlyRefList(name = "AD_Find AndOr", items = { @FlyRefItem(name = "而且", value = "而且"),
+			@FlyRefItem(name = "或", value = "或"), })
 	AD_Find_AndOr,
 	//
 	@FlyRefList(name = "WF_DurationUnit", items = { @FlyRefItem(name = "Year", value = "Year"),
@@ -1154,65 +1013,52 @@ public enum RefLists {
 	WF_Join_Split,
 	//
 	@FlyRefList(name = "WF_Action", description = "Superset of Menu Action", items = {
-			@FlyRefItem(name = "Document Action", value = "Document Action"),
-			@FlyRefItem(name = "EMail", value = "EMail"), @FlyRefItem(name = "User Form", value = "User Form"),
-			@FlyRefItem(name = "Apps Task", value = "Apps Task"),
-			@FlyRefItem(name = "Apps Report", value = "Apps Report"),
-			@FlyRefItem(name = "Apps Process", value = "Apps Process"),
-			@FlyRefItem(name = "Wait (Sleep)", value = "Wait (Sleep)"),
-			@FlyRefItem(name = "User Choice", value = "User Choice"),
-			@FlyRefItem(name = "User Workbench", value = "User Workbench"),
-			@FlyRefItem(name = "Sub Workflow", value = "Sub Workflow"),
+			@FlyRefItem(name = "文档动作", value = "文档动作"), @FlyRefItem(name = "EMail", value = "EMail"),
+			@FlyRefItem(name = "用户表单", value = "用户表单"), @FlyRefItem(name = "应用任务", value = "应用任务"),
+			@FlyRefItem(name = "应用报表", value = "应用报表"), @FlyRefItem(name = "应用进程", value = "应用进程"),
+			@FlyRefItem(name = "等待(睡眠)", value = "等待(睡眠)"), @FlyRefItem(name = "User Choice", value = "User Choice"),
+			@FlyRefItem(name = "User Workbench", value = "User Workbench"), @FlyRefItem(name = "子工作流", value = "子工作流"),
 			@FlyRefItem(name = "Set Variable", value = "Set Variable"),
 			@FlyRefItem(name = "User Window", value = "User Window"),
 			@FlyRefItem(name = "Smart View", value = "Smart View"),
 			@FlyRefItem(name = "Smart Browse", value = "Smart Browse"), })
 	WF_Action,
 	//
-	@FlyRefList(name = "WF_Start-Finish Mode", items = { @FlyRefItem(name = "Automatic", value = "Automatic"),
-			@FlyRefItem(name = "Manual", value = "Manual"), })
+	@FlyRefList(name = "WF_Start-Finish Mode", items = { @FlyRefItem(name = "自动", value = "自动"),
+			@FlyRefItem(name = "手动", value = "手动"), })
 	WF_Start_Finish_Mode,
 	//
-	@FlyRefList(name = "WF_Participant Type", items = { @FlyRefItem(name = "Organization", value = "Organization"),
-			@FlyRefItem(name = "Human", value = "Human"), @FlyRefItem(name = "Role", value = "Role"),
-			@FlyRefItem(name = "System Resource", value = "System Resource"), })
+	@FlyRefList(name = "WF_Participant 类型", items = { @FlyRefItem(name = "机构", value = "机构"),
+			@FlyRefItem(name = "人", value = "人"), @FlyRefItem(name = "角色", value = "角色"),
+			@FlyRefItem(name = "系统资源", value = "系统资源"), })
 	WF_Participant_Type,
 	//
-	@FlyRefList(name = "WF_Instance State", items = { @FlyRefItem(name = "Running", value = "Running"),
-			@FlyRefItem(name = "Suspended", value = "Suspended"),
-			@FlyRefItem(name = "Not Started", value = "Not Started"),
-			@FlyRefItem(name = "Completed", value = "Completed"), @FlyRefItem(name = "Aborted", value = "Aborted"),
-			@FlyRefItem(name = "Terminated", value = "Terminated"), })
+	@FlyRefList(name = "WF_Instance 状态", items = { @FlyRefItem(name = "运行中", value = "运行中"),
+			@FlyRefItem(name = "挂起", value = "挂起"), @FlyRefItem(name = "未启动", value = "未启动"),
+			@FlyRefItem(name = "完毕", value = "完毕"), @FlyRefItem(name = "取消", value = "取消"),
+			@FlyRefItem(name = "中止", value = "中止"), })
 	WF_Instance_State,
 	//
-	@FlyRefList(name = "WF_EventType", items = { @FlyRefItem(name = "Process Created", value = "Process Created"),
-			@FlyRefItem(name = "State Changed", value = "State Changed"),
-			@FlyRefItem(name = "Process Completed", value = "Process Completed"), })
+	@FlyRefList(name = "WF_EventType", items = { @FlyRefItem(name = "进程被创建", value = "进程被创建"),
+			@FlyRefItem(name = "状态被改变", value = "状态被改变"), @FlyRefItem(name = "处理完毕", value = "处理完毕"), })
 	WF_EventType,
 	//
-	@FlyRefList(name = "WF_SubFlow Execution", items = { @FlyRefItem(name = "Asynchronously", value = "Asynchronously"),
-			@FlyRefItem(name = "Synchronously", value = "Synchronously"), })
+	@FlyRefList(name = "WF_SubFlow 执行", items = { @FlyRefItem(name = "异步", value = "异步"),
+			@FlyRefItem(name = "同步", value = "同步"), })
 	WF_SubFlow_Execution,
 	//
-	@FlyRefList(name = "_Payment Rule", description = "In & Out Payment Options", items = {
-			@FlyRefItem(name = "Credit Card", value = "Credit Card"),
-			@FlyRefItem(name = "On Credit", value = "On Credit"), @FlyRefItem(name = "Check", value = "Check"),
-			@FlyRefItem(name = "Direct Deposit", value = "Direct Deposit"), @FlyRefItem(name = "Cash", value = "Cash"),
+	@FlyRefList(name = "All_Payment 规则", description = "在 &出自付款选项", items = { @FlyRefItem(name = "信用卡", value = "信用卡"),
+			@FlyRefItem(name = "记帐", value = "记帐"), @FlyRefItem(name = "支票", value = "支票"),
+			@FlyRefItem(name = "转帐", value = "转帐"), @FlyRefItem(name = "现金", value = "现金"),
 			@FlyRefItem(name = "Direct Debit", value = "Direct Debit"), @FlyRefItem(name = "Mixed", value = "Mixed"), })
 	_Payment_Rule,
 	//
-	@FlyRefList(name = "M_Transaction Movement Type", items = {
-			@FlyRefItem(name = "Production -", value = "Production -"),
-			@FlyRefItem(name = "Customer Returns", value = "Customer Returns"),
-			@FlyRefItem(name = "Customer Shipment", value = "Customer Shipment"),
-			@FlyRefItem(name = "Inventory In", value = "Inventory In"),
-			@FlyRefItem(name = "Inventory Out", value = "Inventory Out"),
-			@FlyRefItem(name = "Vendor Receipts", value = "Vendor Receipts"),
-			@FlyRefItem(name = "Vendor Returns", value = "Vendor Returns"),
-			@FlyRefItem(name = "Movement From", value = "Movement From"),
-			@FlyRefItem(name = "Work Order -", value = "Work Order -"),
-			@FlyRefItem(name = "Movement To", value = "Movement To"),
-			@FlyRefItem(name = "Production +", value = "Production +"),
+	@FlyRefList(name = "M_Movement 类型", items = { @FlyRefItem(name = "制造 -", value = "制造 -"),
+			@FlyRefItem(name = "客户归还", value = "客户归还"), @FlyRefItem(name = "客户物料出货", value = "客户物料出货"),
+			@FlyRefItem(name = "库存在", value = "库存在"), @FlyRefItem(name = "出库", value = "出库"),
+			@FlyRefItem(name = "供应商收货", value = "供应商收货"), @FlyRefItem(name = "供应商归还", value = "供应商归还"),
+			@FlyRefItem(name = "调拨从", value = "调拨从"), @FlyRefItem(name = "Work Order -", value = "Work Order -"),
+			@FlyRefItem(name = "调拨到", value = "调拨到"), @FlyRefItem(name = "制造 +", value = "制造 +"),
 			@FlyRefItem(name = "Work Order +", value = "Work Order +"), })
 	M_Transaction_Movement_Type,
 	//
@@ -1227,13 +1073,11 @@ public enum RefLists {
 	AD_Language_Maintenance,
 	//
 	@FlyRefList(name = "AD_PrintTableFormat Stroke", description = "Stroke Type", items = {
-			@FlyRefItem(name = "Solid Line", value = "Solid Line"),
-			@FlyRefItem(name = "Dashed Line", value = "Dashed Line"),
-			@FlyRefItem(name = "Dotted Line", value = "Dotted Line"),
-			@FlyRefItem(name = "Dash-Dotted Line", value = "Dash-Dotted Line"), })
+			@FlyRefItem(name = "实线", value = "实线"), @FlyRefItem(name = "虚线", value = "虚线"),
+			@FlyRefItem(name = "点线", value = "点线"), @FlyRefItem(name = "点划线", value = "点划线"), })
 	AD_PrintTableFormat_Stroke,
 	//
-	@FlyRefList(name = "M_RelatedProduct Type", items = { @FlyRefItem(name = "Web Promotion", value = "Web Promotion"),
+	@FlyRefList(name = "M_RelatedProduct 类型", items = { @FlyRefItem(name = "Web Promotion", value = "Web Promotion"),
 			@FlyRefItem(name = "Alternative", value = "Alternative"),
 			@FlyRefItem(name = "Supplemental", value = "Supplemental"), })
 	M_RelatedProduct_Type,
@@ -1254,7 +1098,7 @@ public enum RefLists {
 	AD_Scheduler_Type,
 	//
 	@FlyRefList(name = "M_AttributeSet MandatoryType", items = {
-			@FlyRefItem(name = "Not Mandatory", value = "Not Mandatory"),
+			@FlyRefItem(name = "Not Mandatary", value = "Not Mandatary"),
 			@FlyRefItem(name = "Always Mandatory", value = "Always Mandatory"),
 			@FlyRefItem(name = "When Shipping", value = "When Shipping"), })
 	M_AttributeSet_MandatoryType,
@@ -1264,9 +1108,8 @@ public enum RefLists {
 			@FlyRefItem(name = "Number", value = "Number"), @FlyRefItem(name = "List", value = "List"), })
 	M_Attribute_Value_Type,
 	//
-	@FlyRefList(name = "PA_Report LineType", items = { @FlyRefItem(name = "Segment Value", value = "Segment Value"),
-			@FlyRefItem(name = "Calculation", value = "Calculation"),
-			@FlyRefItem(name = "Tabbed Text", value = "Tabbed Text"),
+	@FlyRefList(name = "PA_Report 行类型", items = { @FlyRefItem(name = "表值", value = "表值"),
+			@FlyRefItem(name = "计算", value = "计算"), @FlyRefItem(name = "Tabbed Text", value = "Tabbed Text"),
 			@FlyRefItem(name = "Customized Line", value = "Customized Line"),
 			@FlyRefItem(name = "Blank line", value = "Blank line"), })
 	PA_Report_LineType,
@@ -1275,12 +1118,10 @@ public enum RefLists {
 			@FlyRefItem(name = "Factor", value = "Factor"), @FlyRefItem(name = "Index", value = "Index"), })
 	A_Reval_Multiplier,
 	//
-	@FlyRefList(name = "_Posted Status", items = { @FlyRefItem(name = "Not Posted", value = "Not Posted"),
-			@FlyRefItem(name = "Posted", value = "Posted"), @FlyRefItem(name = "Not Balanced", value = "Not Balanced"),
-			@FlyRefItem(name = "Not Convertible (no rate)", value = "Not Convertible (no rate)"),
-			@FlyRefItem(name = "Invalid Account", value = "Invalid Account"),
-			@FlyRefItem(name = "Period Closed", value = "Period Closed"),
-			@FlyRefItem(name = "Post Prepared", value = "Post Prepared"),
+	@FlyRefList(name = "All_Posted 状态", items = { @FlyRefItem(name = "未过帐", value = "未过帐"),
+			@FlyRefItem(name = "已过帐", value = "已过帐"), @FlyRefItem(name = "未平衡", value = "未平衡"),
+			@FlyRefItem(name = "不可兑换(无汇率)", value = "不可兑换(无汇率)"), @FlyRefItem(name = "无效帐户", value = "无效帐户"),
+			@FlyRefItem(name = "关闭的分期", value = "关闭的分期"), @FlyRefItem(name = "过账准备好", value = "过账准备好"),
 			@FlyRefItem(name = "Posting Error", value = "Posting Error"), })
 	_Posted_Status,
 	//
@@ -1328,16 +1169,6 @@ public enum RefLists {
 			@FlyRefItem(name = "Bank Account", value = "Bank Account"),
 			@FlyRefItem(name = "CashBook", value = "CashBook"), })
 	_TransferType,
-	//
-	@FlyRefList(name = "PP_CostCollectorType Transaction Manufacturing Management", items = {
-			@FlyRefItem(name = "Material Receipt", value = "Material Receipt"),
-			@FlyRefItem(name = "Component Issue", value = "Component Issue"),
-			@FlyRefItem(name = "Usege Variance", value = "Usege Variance"),
-			@FlyRefItem(name = "Method Change Variance", value = "Method Change Variance"),
-			@FlyRefItem(name = "Rate Variance", value = "Rate Variance"),
-			@FlyRefItem(name = "Mix Variance", value = "Mix Variance"),
-			@FlyRefItem(name = "Activity Control", value = "Activity Control"), })
-	PP_CostCollectorType_Transaction_Manufacturing_Management,
 	//
 	@FlyRefList(name = "SearchType", items = { @FlyRefItem(name = "Query", value = "Query"),
 			@FlyRefItem(name = "Table", value = "Table"), })
@@ -1544,15 +1375,6 @@ public enum RefLists {
 			@FlyRefItem(name = "SQL Statement", value = "SQL Statement"), })
 	Migration_step_type,
 	//
-	@FlyRefList(name = "PP_Forecast Load Type", description = "List Forecast Load Type indicated that period date is use to create the forecast line.", items = {
-			@FlyRefItem(name = "Use Period End Date", value = "Use Period End Date"),
-			@FlyRefItem(name = "Use Period Start Date", value = "Use Period Start Date"), })
-	PP_Forecast_Load_Type,
-	//
-	@FlyRefList(name = "PP_Forecast Action Type", description = "Forecast Action Type List containt the option if the forecast is replaced or combined", items = {
-			@FlyRefItem(name = "Merge", value = "Merge"), @FlyRefItem(name = "Replace", value = "Replace"), })
-	PP_Forecast_Action_Type,
-	//
 	@FlyRefList(name = "_ReportStyle", description = "The styles for a report are defined", items = {
 			@FlyRefItem(name = "Total Line", value = "Total Line"),
 			@FlyRefItem(name = "Double Line for Total", value = "Double Line for Total"),
@@ -1571,79 +1393,9 @@ public enum RefLists {
 			@FlyRefItem(name = "onDoubleClick", value = "onDoubleClick"), })
 	Event_List,
 	//
-	@FlyRefList(name = "WM_InOutBound InOutboundType", items = {
-			@FlyRefItem(name = "Outbound Operation", value = "Outbound Operation"),
-			@FlyRefItem(name = "Inbound Operation", value = "Inbound Operation"), })
-	WM_InOutBound_InOutboundType,
-	//
-	@FlyRefList(name = "WM_InOutBound Inbound & Outbound Rule", items = {
-			@FlyRefItem(name = "Custum Interface", value = "Custum Interface"),
-			@FlyRefItem(name = "Find any locator with available capacity", value = "Find any locator with available capacity"),
-			@FlyRefItem(name = "For the material oldest using FIFO", value = "For the material oldest using FIFO"),
-			@FlyRefItem(name = "For the material most recent using LIFO", value = "For the material most recent using LIFO"), })
-	WM_InOutBound_Inbound__Outbound_Rule,
-	//
-	@FlyRefList(name = "HR_Education Year Of Passing", items = { @FlyRefItem(name = "1970", value = "1970"),
-			@FlyRefItem(name = "1971", value = "1971"), @FlyRefItem(name = "1972", value = "1972"),
-			@FlyRefItem(name = "1973", value = "1973"), @FlyRefItem(name = "1974", value = "1974"),
-			@FlyRefItem(name = "1975", value = "1975"), @FlyRefItem(name = "1976", value = "1976"),
-			@FlyRefItem(name = "1977", value = "1977"), @FlyRefItem(name = "1978", value = "1978"),
-			@FlyRefItem(name = "1979", value = "1979"), @FlyRefItem(name = "1980", value = "1980"),
-			@FlyRefItem(name = "1981", value = "1981"), @FlyRefItem(name = "1982", value = "1982"),
-			@FlyRefItem(name = "1983", value = "1983"), @FlyRefItem(name = "1984", value = "1984"),
-			@FlyRefItem(name = "1985", value = "1985"), @FlyRefItem(name = "1986", value = "1986"),
-			@FlyRefItem(name = "1987", value = "1987"), @FlyRefItem(name = "1988", value = "1988"),
-			@FlyRefItem(name = "1989", value = "1989"), @FlyRefItem(name = "1990", value = "1990"),
-			@FlyRefItem(name = "1991", value = "1991"), @FlyRefItem(name = "1992", value = "1992"),
-			@FlyRefItem(name = "1993", value = "1993"), @FlyRefItem(name = "1994", value = "1994"),
-			@FlyRefItem(name = "1995", value = "1995"), @FlyRefItem(name = "1996", value = "1996"),
-			@FlyRefItem(name = "1997", value = "1997"), @FlyRefItem(name = "1998", value = "1998"),
-			@FlyRefItem(name = "1999", value = "1999"), @FlyRefItem(name = "2000", value = "2000"),
-			@FlyRefItem(name = "2001", value = "2001"), @FlyRefItem(name = "2002", value = "2002"),
-			@FlyRefItem(name = "2003", value = "2003"), @FlyRefItem(name = "2004", value = "2004"),
-			@FlyRefItem(name = "2005", value = "2005"), @FlyRefItem(name = "2006", value = "2006"),
-			@FlyRefItem(name = "2007", value = "2007"), @FlyRefItem(name = "2008", value = "2008"),
-			@FlyRefItem(name = "2009", value = "2009"), @FlyRefItem(name = "2010", value = "2010"),
-			@FlyRefItem(name = "2011", value = "2011"), @FlyRefItem(name = "2012", value = "2012"),
-			@FlyRefItem(name = "2013", value = "2013"), @FlyRefItem(name = "2014", value = "2014"),
-			@FlyRefItem(name = "2015", value = "2015"), @FlyRefItem(name = "2016", value = "2016"),
-			@FlyRefItem(name = "2017", value = "2017"), @FlyRefItem(name = "2018", value = "2018"),
-			@FlyRefItem(name = "2019", value = "2019"), @FlyRefItem(name = "2020", value = "2020"),
-			@FlyRefItem(name = "2021", value = "2021"), @FlyRefItem(name = "2022", value = "2022"),
-			@FlyRefItem(name = "2023", value = "2023"), @FlyRefItem(name = "2024", value = "2024"),
-			@FlyRefItem(name = "2025", value = "2025"), @FlyRefItem(name = "2026", value = "2026"),
-			@FlyRefItem(name = "2027", value = "2027"), @FlyRefItem(name = "2028", value = "2028"),
-			@FlyRefItem(name = "2029", value = "2029"), @FlyRefItem(name = "2030", value = "2030"),
-			@FlyRefItem(name = "2031", value = "2031"), @FlyRefItem(name = "2032", value = "2032"),
-			@FlyRefItem(name = "2033", value = "2033"), @FlyRefItem(name = "2034", value = "2034"),
-			@FlyRefItem(name = "2035", value = "2035"), @FlyRefItem(name = "2036", value = "2036"),
-			@FlyRefItem(name = "2037", value = "2037"), @FlyRefItem(name = "2038", value = "2038"),
-			@FlyRefItem(name = "2039", value = "2039"), @FlyRefItem(name = "2040", value = "2040"),
-			@FlyRefItem(name = "2041", value = "2041"), @FlyRefItem(name = "2042", value = "2042"),
-			@FlyRefItem(name = "2043", value = "2043"), @FlyRefItem(name = "2044", value = "2044"),
-			@FlyRefItem(name = "2045", value = "2045"), @FlyRefItem(name = "2046", value = "2046"),
-			@FlyRefItem(name = "2047", value = "2047"), @FlyRefItem(name = "2048", value = "2048"),
-			@FlyRefItem(name = "2049", value = "2049"), @FlyRefItem(name = "2050", value = "2050"), })
-	HR_Education_Year_Of_Passing,
-	//
-	@FlyRefList(name = "C_BPartner_Location Contact Type", description = "C_BPartner_Location", items = {
-			@FlyRefItem(name = "Emergency", value = "Emergency"), @FlyRefItem(name = "Primary", value = "Primary"), })
-	C_BPartner_Location_Contact_Type,
-	//
-	@FlyRefList(name = "HR_EmployeeInsurance Payment Frequency", description = "Payment Frequency", items = {
-			@FlyRefItem(name = "Quarterly", value = "Quarterly"),
-			@FlyRefItem(name = "Semi-yearly", value = "Semi-yearly"), @FlyRefItem(name = "Yearly", value = "Yearly"),
-			@FlyRefItem(name = "Monthly", value = "Monthly"), })
-	HR_EmployeeInsurance_Payment_Frequency,
-	//
 	@FlyRefList(name = "_Document Action Import budget", description = "Document action list", items = {
 			@FlyRefItem(name = "Draft", value = "Draft"), @FlyRefItem(name = "Complete", value = "Complete"), })
 	_Document_Action_Import_budget,
-	//
-	@FlyRefList(name = "HR_LeaveType Credit Time", description = "Leave Type Credit Time", items = {
-			@FlyRefItem(name = "Begining Of The Month", value = "Begining Of The Month"),
-			@FlyRefItem(name = "End Of The Month", value = "End Of The Month"), })
-	HR_LeaveType_Credit_Time,
 	//
 	@FlyRefList(name = "A_Asset Status", description = "Asset Status", items = {
 			@FlyRefItem(name = "Activated", value = "Activated"), @FlyRefItem(name = "Disposed", value = "Disposed"),
@@ -1651,10 +1403,6 @@ public enum RefLists {
 			@FlyRefItem(name = "Preservation", value = "Preservation"),
 			@FlyRefItem(name = "Retired", value = "Retired"), @FlyRefItem(name = "Sold", value = "Sold"), })
 	A_Asset_Status,
-	//
-	@FlyRefList(name = "Gender", description = "Gender", items = { @FlyRefItem(name = "Female", value = "Female"),
-			@FlyRefItem(name = "Male", value = "Male"), })
-	Gender,
 	//
 	@FlyRefList(name = "A_Tip_Finantare", description = "Tip finantare investitii", items = {
 			@FlyRefItem(name = "Cofinantare", value = "Cofinantare"), @FlyRefItem(name = "Proprie", value = "Proprie"),
@@ -1695,83 +1443,27 @@ public enum RefLists {
 			@FlyRefItem(name = "Meeting", value = "Meeting"), @FlyRefItem(name = "Task", value = "Task"), })
 	C_ContactActivity_Type,
 	//
-	@FlyRefList(name = "HR_LeaveType Leave Repeated Type", description = "Leave Repeated Type", help = "Leave Repeated Type", items = {
-			@FlyRefItem(name = "Monthly", value = "Monthly"), @FlyRefItem(name = "Quarterly", value = "Quarterly"),
-			@FlyRefItem(name = "Yearly", value = "Yearly"), })
-	HR_LeaveType_Leave_Repeated_Type,
-	//
-	@FlyRefList(name = "HR_LeaveType Adjacent Holidays Type", description = "Adjacent Holidays Type", help = "Adjacent Holidays Type", items = {
-			@FlyRefItem(name = "Adjacent", value = "Adjacent"), @FlyRefItem(name = "Included", value = "Included"),
-			@FlyRefItem(name = "None", value = "None"),
-			@FlyRefItem(name = "Included & Adjacent", value = "Included & Adjacent"), })
-	HR_LeaveType_Adjacent_Holidays_Type,
-	//
-	@FlyRefList(name = "HR_LeaveReason Types Of the reasons", description = "Types Of the reasons", help = "Types Of the reasons", items = {
-			@FlyRefItem(name = "Leave request disapproval", value = "Leave request disapproval"),
-			@FlyRefItem(name = "Leave Request", value = "Leave Request"),
-			@FlyRefItem(name = "Other Reason", value = "Other Reason"), })
-	HR_LeaveReason_Types_Of_the_reasons,
-	//
-	@FlyRefList(name = "HR_EmployeeType Wage Level", description = "Wage Level", items = {
-			@FlyRefItem(name = "Daily", value = "Daily"), @FlyRefItem(name = "Monthly", value = "Monthly"), })
-	HR_EmployeeType_Wage_Level,
-	//
-	@FlyRefList(name = "HR_JobApplication Identity Proof", description = "Identity Proof", help = "Identity Proof", items = {
-			@FlyRefItem(name = "Aadhar Card", value = "Aadhar Card"),
-			@FlyRefItem(name = "Driving License", value = "Driving License"),
-			@FlyRefItem(name = "PAN card", value = "PAN card"),
-			@FlyRefItem(name = "Ration Card", value = "Ration Card"),
-			@FlyRefItem(name = "Voter Card", value = "Voter Card"), })
-	HR_JobApplication_Identity_Proof,
-	//
-	@FlyRefList(name = "HR_Application Status", description = "Status Of The Application", help = "Applied	- Shortlisted	- Rejected	- Interview (In-progress)	- Offered	- Offer Accepted	- Joined	", items = {
-			@FlyRefItem(name = "Applied", value = "Applied"),
-			@FlyRefItem(name = "Interview (In-progress) ", value = "Interview (In-progress) "),
-			@FlyRefItem(name = "Joined", value = "Joined"),
-			@FlyRefItem(name = "Offer Accepted ", value = "Offer Accepted "),
-			@FlyRefItem(name = "Offered", value = "Offered"), @FlyRefItem(name = "Rejected", value = "Rejected"),
-			@FlyRefItem(name = "Shortlisted", value = "Shortlisted"), })
-	HR_Application_Status,
-	//
-	@FlyRefList(name = "Inter View Rating / Score", description = "Inter View Rating / Score", help = "Inter View Rating / Score", items = {
-			@FlyRefItem(name = "Average", value = "Average"), @FlyRefItem(name = "Bad", value = "Bad"),
-			@FlyRefItem(name = "Excellent", value = "Excellent"), @FlyRefItem(name = "Good", value = "Good"),
-			@FlyRefItem(name = "Outstanding", value = "Outstanding"),
-			@FlyRefItem(name = "Very Bad", value = "Very Bad"), @FlyRefItem(name = "Very Good", value = "Very Good"), })
-	Inter_View_Rating__Score,
-	//
-	@FlyRefList(name = "C_DocType DocBaseType", description = "Base Document Types", items = {
-			@FlyRefItem(name = "AR Credit Memo", value = "AR Credit Memo"),
-			@FlyRefItem(name = "AP Payment", value = "AP Payment"),
-			@FlyRefItem(name = "AR Pro Forma Invoice", value = "AR Pro Forma Invoice"),
-			@FlyRefItem(name = "AR Invoice", value = "AR Invoice"),
-			@FlyRefItem(name = "AR Receipt", value = "AR Receipt"),
-			@FlyRefItem(name = "GL Document", value = "GL Document"),
-			@FlyRefItem(name = "Material Movement", value = "Material Movement"),
-			@FlyRefItem(name = "Material Receipt", value = "Material Receipt"),
-			@FlyRefItem(name = "Material Delivery", value = "Material Delivery"),
-			@FlyRefItem(name = "Purchase Order", value = "Purchase Order"),
-			@FlyRefItem(name = "Purchase Requisition", value = "Purchase Requisition"),
-			@FlyRefItem(name = "Sales Order", value = "Sales Order"),
-			@FlyRefItem(name = "Cash Journal", value = "Cash Journal"),
-			@FlyRefItem(name = "Payroll", value = "Payroll"),
+	@FlyRefList(name = "C_DocType DocBaseType", description = "以文件类型作基础", items = {
+			@FlyRefItem(name = "应收款信用备忘录", value = "应收款信用备忘录"), @FlyRefItem(name = "应付帐款", value = "应付帐款"),
+			@FlyRefItem(name = "应收款格式发票", value = "应收款格式发票"), @FlyRefItem(name = "应收款发票", value = "应收款发票"),
+			@FlyRefItem(name = "应收帐款", value = "应收帐款"), @FlyRefItem(name = "总帐文件", value = "总帐文件"),
+			@FlyRefItem(name = "物料运动", value = "物料运动"), @FlyRefItem(name = "物料收货", value = "物料收货"),
+			@FlyRefItem(name = "物料配送", value = "物料配送"), @FlyRefItem(name = "采购定单", value = "采购定单"),
+			@FlyRefItem(name = "采购请求", value = "采购请求"), @FlyRefItem(name = "销售定单", value = "销售定单"),
+			@FlyRefItem(name = "现金簿", value = "现金簿"), @FlyRefItem(name = "Payroll", value = "Payroll"),
 			@FlyRefItem(name = "Maintenance Order", value = "Maintenance Order"),
 			@FlyRefItem(name = "Manufacturing Order", value = "Manufacturing Order"),
 			@FlyRefItem(name = "Quality Order", value = "Quality Order"),
 			@FlyRefItem(name = "Fixed Assets Disposal", value = "Fixed Assets Disposal"),
 			@FlyRefItem(name = "Fixed Assets Depreciation", value = "Fixed Assets Depreciation"),
-			@FlyRefItem(name = "AP Credit Memo", value = "AP Credit Memo"),
-			@FlyRefItem(name = "AP Invoice", value = "AP Invoice"),
-			@FlyRefItem(name = "Payment Allocation", value = "Payment Allocation"),
-			@FlyRefItem(name = "Bank Statement", value = "Bank Statement"),
+			@FlyRefItem(name = "应付款信用备忘录", value = "应付款信用备忘录"), @FlyRefItem(name = "应付款发票", value = "应付款发票"),
+			@FlyRefItem(name = "付款分配", value = "付款分配"), @FlyRefItem(name = "银行对帐单", value = "银行对帐单"),
 			@FlyRefItem(name = "Distribution Order", value = "Distribution Order"),
 			@FlyRefItem(name = "Fixed Assets Addition", value = "Fixed Assets Addition"),
-			@FlyRefItem(name = "GL Journal", value = "GL Journal"),
+			@FlyRefItem(name = "总帐分类帐", value = "总帐分类帐"),
 			@FlyRefItem(name = "Manufacturing Cost Collector", value = "Manufacturing Cost Collector"),
-			@FlyRefItem(name = "Material Physical Inventory", value = "Material Physical Inventory"),
-			@FlyRefItem(name = "Material Production", value = "Material Production"),
-			@FlyRefItem(name = "Match Invoice", value = "Match Invoice"),
-			@FlyRefItem(name = "Match PO", value = "Match PO"),
+			@FlyRefItem(name = "物料实际的库存", value = "物料实际的库存"), @FlyRefItem(name = "物料制造", value = "物料制造"),
+			@FlyRefItem(name = "匹配发票", value = "匹配发票"), @FlyRefItem(name = "匹配采购定单", value = "匹配采购定单"),
 			@FlyRefItem(name = "Project Issue", value = "Project Issue"),
 			@FlyRefItem(name = "Warehouse Management Order", value = "Warehouse Management Order"),
 			@FlyRefItem(name = "AP Payment Selection", value = "AP Payment Selection"),
@@ -1779,15 +1471,13 @@ public enum RefLists {
 			@FlyRefItem(name = "Sales Commission", value = "Sales Commission"), })
 	C_DocType_DocBaseType,
 	//
-	@FlyRefList(name = "_YesNo", items = { @FlyRefItem(name = "Yes", value = "Yes"),
-			@FlyRefItem(name = "No", value = "No"), })
+	@FlyRefList(name = "_YesNo", items = { @FlyRefItem(name = "是", value = "是"),
+			@FlyRefItem(name = "否", value = "否"), })
 	_YesNo,
 	//
-	@FlyRefList(name = "C_Order DeliveryRule", description = "Delivery Rules list", items = {
-			@FlyRefItem(name = "After Receipt", value = "After Receipt"),
-			@FlyRefItem(name = "Availability", value = "Availability"),
-			@FlyRefItem(name = "Complete Line", value = "Complete Line"),
-			@FlyRefItem(name = "Complete Order", value = "Complete Order"),
+	@FlyRefList(name = "C_Order DeliveryRule", description = "配送规则列表", items = {
+			@FlyRefItem(name = "在收款之后", value = "在收款之后"), @FlyRefItem(name = "平均ailability", value = "平均ailability"),
+			@FlyRefItem(name = "定单明细完成", value = "定单明细完成"), @FlyRefItem(name = "定单完成", value = "定单完成"),
 			@FlyRefItem(name = "Force", value = "Force"), @FlyRefItem(name = "Manual", value = "Manual"), })
 	C_Order_DeliveryRule,
 	//
@@ -1809,22 +1499,6 @@ public enum RefLists {
 			@FlyRefItem(name = "Delivery / Receipt", value = "Delivery / Receipt"), })
 	CreateFromType_List,
 	//
-	@FlyRefList(name = "HR_Employee Status & ESI Response Code", description = "Employee Status & ESI Response Code", items = {
-			@FlyRefItem(name = "Without Reason", value = "Without Reason"),
-			@FlyRefItem(name = "On Leave", value = "On Leave"),
-			@FlyRefItem(name = "Left Service", value = "Left Service"),
-			@FlyRefItem(name = "Retired", value = "Retired"), @FlyRefItem(name = "Expired", value = "Expired"),
-			@FlyRefItem(name = "Non Implemented Area", value = "Non Implemented Area"),
-			@FlyRefItem(name = "Compliance by Immediate Ex", value = "Compliance by Immediate Ex"),
-			@FlyRefItem(name = "Suspension of work", value = "Suspension of work"),
-			@FlyRefItem(name = "Strike/Lockout", value = "Strike/Lockout"),
-			@FlyRefItem(name = "Retrenchment", value = "Retrenchment"),
-			@FlyRefItem(name = "No Work", value = "No Work"),
-			@FlyRefItem(name = "Doesnt Belong To This Employee", value = "Doesnt Belong To This Employee"),
-			@FlyRefItem(name = "Out of Coverage", value = "Out of Coverage"),
-			@FlyRefItem(name = "Active", value = "Active"), })
-	HR_Employee_Status__ESI_Response_Code,
-	//
 	@FlyRefList(name = "PA_ReportLine Line Stroke Type", items = { @FlyRefItem(name = "Solid", value = "Solid"),
 			@FlyRefItem(name = "Double Solid", value = "Double Solid"), @FlyRefItem(name = "Dotted", value = "Dotted"),
 			@FlyRefItem(name = "Double Dotted", value = "Double Dotted"),
@@ -1837,74 +1511,7 @@ public enum RefLists {
 			@FlyRefItem(name = "XLSX", value = "XLSX"), })
 	ReportType,
 	//
-	@FlyRefList(name = "Marital Status", description = "Marital Status", items = {
-			@FlyRefItem(name = "Divorced", value = "Divorced"), @FlyRefItem(name = "Live-in", value = "Live-in"),
-			@FlyRefItem(name = "Married", value = "Married"), @FlyRefItem(name = "Single", value = "Single"),
-			@FlyRefItem(name = "Widow", value = "Widow"), @FlyRefItem(name = "Windower", value = "Windower"), })
-	Marital_Status,
-	//
-	@FlyRefList(name = "C_BPartner Blood Group", description = "Blood Group", items = {
-			@FlyRefItem(name = "O -", value = "O -"), @FlyRefItem(name = "A +", value = "A +"),
-			@FlyRefItem(name = "AB +", value = "AB +"), @FlyRefItem(name = "B -", value = "B -"),
-			@FlyRefItem(name = "B +", value = "B +"), @FlyRefItem(name = "O +", value = "O +"),
-			@FlyRefItem(name = "A -", value = "A -"), @FlyRefItem(name = "AB -", value = "AB -"), })
-	C_BPartner_Blood_Group,
-	//
-	@FlyRefList(name = "DD_LicenseType Transport License Type", description = "Transport License Type", items = {
-			@FlyRefItem(name = "License Driver", value = "License Driver"),
-			@FlyRefItem(name = "Vehicle License", value = "Vehicle License"), })
-	DD_LicenseType_Transport_License_Type,
-	//
-	@FlyRefList(name = "DD_TransportUnitType Transport Mode", description = "The modes of transport supported", items = {
-			@FlyRefItem(name = "Barge", value = "Barge"), @FlyRefItem(name = "Marine", value = "Marine"),
-			@FlyRefItem(name = "Pipeline", value = "Pipeline"), @FlyRefItem(name = "Rail", value = "Rail"),
-			@FlyRefItem(name = "Road", value = "Road"), })
-	DD_TransportUnitType_Transport_Mode,
-	//
-	@FlyRefList(name = "DD_TransportUnitType Transport Physical Type", description = " physical type of the transport unit into a part that carries the load, a mover, and other load bearing elements", items = {
-			@FlyRefItem(name = "Other weight-bearing units", value = "Other weight-bearing units"),
-			@FlyRefItem(name = "Prime mover", value = "Prime mover"),
-			@FlyRefItem(name = "Single units with engine and loading capacity", value = "Single units with engine and loading capacity"),
-			@FlyRefItem(name = "Trailer", value = "Trailer"), })
-	DD_TransportUnitType_Transport_Physical_Type,
-	//
-	@FlyRefList(name = "DD_TransportUnit Transport Unit Status", description = "Transport unit status", items = {
-			@FlyRefItem(name = "Available", value = "Available"), @FlyRefItem(name = "In Disuse", value = "In Disuse"),
-			@FlyRefItem(name = "Not Available", value = "Not Available"), })
-	DD_TransportUnit_Transport_Unit_Status,
-	//
-	@FlyRefList(name = "DD_Driver Driver Status", description = "Driver Status", items = {
-			@FlyRefItem(name = "Available", value = "Available"),
-			@FlyRefItem(name = "Not available", value = "Not available"), })
-	DD_Driver_Driver_Status,
-	//
-	@FlyRefList(name = "DD_VehicleType Vehicle Type", items = { @FlyRefItem(name = "Barges", value = "Barges"),
-			@FlyRefItem(name = "Pipelines", value = "Pipelines"), @FlyRefItem(name = "Ships", value = "Ships"),
-			@FlyRefItem(name = "Trucks", value = "Trucks"), @FlyRefItem(name = "Trains", value = "Trains"), })
-	DD_VehicleType_Vehicle_Type,
-	//
-	@FlyRefList(name = "DD_Vehicle Vehicle Status", description = "Vehicle Status", items = {
-			@FlyRefItem(name = "Available", value = "Available"), @FlyRefItem(name = "In Disuse", value = "In Disuse"),
-			@FlyRefItem(name = "Not Available", value = "Not Available"), })
-	DD_Vehicle_Vehicle_Status,
-	//
 	@FlyRefList(name = "Print Document", items = { @FlyRefItem(name = "Order", value = "Order"),
 			@FlyRefItem(name = "Shipment", value = "Shipment"), @FlyRefItem(name = "Invoice", value = "Invoice"), })
 	Print_Document,
-	//
-	@FlyRefList(name = "M_ReplenishPlanLine RecordType", items = {
-			@FlyRefItem(name = "Closing Balance", value = "Closing Balance"),
-			@FlyRefItem(name = "Opening Balance", value = "Opening Balance"),
-			@FlyRefItem(name = "Supply - Purchasing", value = "Supply - Purchasing"),
-			@FlyRefItem(name = "Supply - Requisition", value = "Supply - Requisition"),
-			@FlyRefItem(name = "Planned Production", value = "Planned Production"),
-			@FlyRefItem(name = "Confirmed Production", value = "Confirmed Production"),
-			@FlyRefItem(name = "Total Demand", value = "Total Demand"),
-			@FlyRefItem(name = "Total Supply", value = "Total Supply"),
-			@FlyRefItem(name = "Total Supply - PO", value = "Total Supply - PO"),
-			@FlyRefItem(name = "Total Supply - Requisition", value = "Total Supply - Requisition"),
-			@FlyRefItem(name = "Total Planned Production", value = "Total Planned Production"),
-			@FlyRefItem(name = "Total Confirmed Production", value = "Total Confirmed Production"),
-			@FlyRefItem(name = "Demand", value = "Demand"), })
-	M_ReplenishPlanLine_RecordType,
 }

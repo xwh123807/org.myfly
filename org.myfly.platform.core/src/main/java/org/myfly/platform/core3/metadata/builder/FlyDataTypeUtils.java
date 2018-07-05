@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.metadata.service.IFlyColumn;
 
@@ -150,6 +151,9 @@ public class FlyDataTypeUtils {
 			break;
 		default:
 			break;
+		}
+		if (result == null) {
+			result = String.class;
 		}
 		return result;
 	}

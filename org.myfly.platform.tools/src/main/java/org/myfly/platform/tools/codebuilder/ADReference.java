@@ -28,6 +28,14 @@ public class ADReference extends HashMap<String, Object> {
 		return (String) get("help");
 	}
 
+	public String getApiName() {
+		return (String) get("apiName");
+	}
+
+	public void setApiName(String value) {
+		put("apiName", value);
+	}
+
 	public int getReferenceID() {
 		return ((BigDecimal) get("ad_reference_id")).intValue();
 	}
@@ -35,9 +43,9 @@ public class ADReference extends HashMap<String, Object> {
 	public void setRefLists(List<ADRefList> refList) {
 		put("refLists", refList);
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public List<ADRefList> getRefLists(){
+	public List<ADRefList> getRefLists() {
 		return (List<ADRefList>) get("refLists");
 	}
 }

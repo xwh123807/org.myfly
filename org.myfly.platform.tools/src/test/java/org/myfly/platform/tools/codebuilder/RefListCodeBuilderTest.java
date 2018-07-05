@@ -14,8 +14,21 @@ public class RefListCodeBuilderTest {
 	private RefListCodeBuilder builder;
 
 	@Test
-	public void genCodesFromDB() {
+	public void genCodes() {
+		builder.setPath("/gencodes/");
 		builder.setPackageName("org.myfly.platform.tools.codebuilder");
+		builder.setClassName("RefLists_ALL");
+		builder.setLanguage("");
+		builder.parareData();
+		builder.generateCodes();
+	}
+	
+	@Test
+	public void genCodesForCN() {
+		builder.setPath("/gencodes/");
+		builder.setPackageName("org.myfly.platform.tools.codebuilder");
+		builder.setClassName("RefLists_ALL");
+		builder.setLanguage("zh_CN");
 		builder.parareData();
 		builder.generateCodes();
 	}

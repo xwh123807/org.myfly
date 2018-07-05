@@ -20,3 +20,29 @@
 1530257863180:generate-entity
 1530258427475:help
 1530258605951:exit
+1530776549989:help
+1530776558451:generate-element
+1530776650206:help
+1530776655716:generate-entity
+1530776880001:help
+1530776884476:element
+1530776893079:generate-element
+1530777066552:help
+1530777075552:help generate-element
+1530777099834:generate-element
+1530777113041:generate-element --language zh-CN
+1530777135139:generate-element --language zh_CN
+1530777304699:help
+1530777313542:generate-entity --help
+1530777316576:help generate-entity
+1530777324548:generate-entity --table
+1530777334582:generate-entity --table AD_Column
+1530777348163:generate-entity --table AD_Reference
+1530777349954:generate-entity --table AD_Reference1
+1530777615319:help
+1530777632639:gen-entity
+1530777643703:help gen-entity
+1530777654088:gen-entity --table ad_table2
+1530777663231:gen-entity --table ad_table
+1530777678065:gen-entity --table AD_Table
+1530777859403:gen-entity --table AD_Window

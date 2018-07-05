@@ -1,10 +1,9 @@
-package org.myfly.platform.tools.codebuilder;
+package org.myfly.platform.core3.model.data;
 
 import org.myfly.platform.core3.domain.FlyDataType;
-import org.myfly.platform.core3.domain.IRefList;
 import org.myfly.platform.core3.metadata.annotation.FlyElement;
 
-public enum Element implements IRefList{
+public enum Element_ALL_EN{
 	//
 	@FlyElement(name="A_Account_Number", dataType=FlyDataType.Account, entityType="D", printName="A_Account_Number", fieldLength=22)
 	A_Account_Number,
@@ -234,9 +233,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Access Type", description="The type of access for this rule", help="If you restrict Access to the entity, you also cannot Report or Export it (i.e. to have access is a requirement that you can report or export the data).  The Report and Export rules are further restrictions if you have access.", dataType=FlyDataType.List, entityType="D", printName="Access Type", fieldLength=1)
 	AccessTypeRule,
 	//
-	@FlyElement(name="Account", dataType=FlyDataType.String, entityType="EE05", printName="Account", fieldLength=255)
-	Account,
-	//
 	@FlyElement(name="Account_Acct", dataType=FlyDataType.Account, entityType="D", printName="Account_Acct", fieldLength=22)
 	Account_Acct,
 	//
@@ -341,12 +337,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Backup", dataType=FlyDataType.ID, entityType="D", printName="Backup", fieldLength=22)
 	AD_Backup_ID,
-	//
-	@FlyElement(name="Browse Field", dataType=FlyDataType.ID, entityType="EE07", printName="Browse Field", fieldLength=22)
-	AD_Browse_Field_ID,
-	//
-	@FlyElement(name="Smart Browse", dataType=FlyDataType.TableDirect, entityType="EE07", printName="Smart Browse", fieldLength=22)
-	AD_Browse_ID,
 	//
 	@FlyElement(name="Change Log", description="Log of data changes", help="Log of data changes", dataType=FlyDataType.ID, entityType="D", printName="Change Log", fieldLength=22)
 	AD_ChangeLog_ID,
@@ -570,9 +560,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="System Issue", description="Automatically created or manually entered System Issue", help="System Issues are created to speed up the resolution of any system related issues (potential bugs).  If enabled, they are automatically reported to Adempiere.  No data or confidential information is transferred.", dataType=FlyDataType.ID, entityType="D", printName="System Issue", fieldLength=10)
 	AD_Issue_ID,
 	//
-	@FlyElement(name="Adjacent Holidays Type", description="Adjacent Holidays Type", help="The Adjacent Holidays Type", dataType=FlyDataType.List, entityType="EE02", printName="Adjacent Holidays Type", fieldLength=0)
-	AdjacentHolidayType,
-	//
 	@FlyElement(name="Key column", description="Unique identifier of a record", help="The Key Column indicates that this the unique identifier of a record on this table.", dataType=FlyDataType.Table, entityType="D", printName="Key column", fieldLength=22)
 	AD_Key,
 	//
@@ -789,20 +776,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="Relation Type", dataType=FlyDataType.ID, entityType="D", printName="Relation Type", fieldLength=22)
 	AD_RelationType_ID,
 	//
-	@FlyElement(name="Replication Document", dataType=FlyDataType.ID, entityType="EE05", printName="Replication Document", fieldLength=22)
-	AD_ReplicationDocument_ID,
-	//
 	@FlyElement(name="Replication", description="Data Replication Target", help="Data Replication Target Details. Maintained on the central server.", dataType=FlyDataType.TableDirect, entityType="D", printName="Replication", fieldLength=22)
 	AD_Replication_ID,
 	//
 	@FlyElement(name="Replication Log", description="Data Replication Log Details", help="Data Replication Run Log", dataType=FlyDataType.ID, entityType="D", printName="Replication Log", fieldLength=22)
 	AD_Replication_Log_ID,
-	//
-	@FlyElement(name="Replication Organization Access ID", dataType=FlyDataType.NONE, entityType="EE05", printName="Replication Organization Access ID", fieldLength=0)
-	AD_ReplicationOrgAccess_ID,
-	//
-	@FlyElement(name="Replication Role Access ID", dataType=FlyDataType.NONE, entityType="EE05", printName="Replication Role Access ID", fieldLength=0)
-	AD_ReplicationRoleAccess_ID,
 	//
 	@FlyElement(name="Replication Run", description="Data Replication Run", help="Data Replication Run information", dataType=FlyDataType.ID, entityType="D", printName="Replication Run", fieldLength=22)
 	AD_Replication_Run_ID,
@@ -945,15 +923,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Dynamic Validation", description="Dynamic Validation Rule", help="These rules define how an entry is determined to valid. You can use variables for dynamic (context sensitive) validation.", dataType=FlyDataType.TableDirect, entityType="D", printName="Validation", fieldLength=22)
 	AD_Val_Rule_ID,
 	//
-	@FlyElement(name="View Column", description="Column of View", dataType=FlyDataType.TableDirect, entityType="EE07", printName="View Column", fieldLength=22)
-	AD_View_Column_ID,
-	//
-	@FlyElement(name="View Definition", description="The View Definition allow defined the tables for a view.", dataType=FlyDataType.ID, entityType="EE07", printName="View Definition", fieldLength=22)
-	AD_View_Definition_ID,
-	//
-	@FlyElement(name="View", description="View allows you to create dynamic views of information from the dictionary application", help="These views can be based on tables and views of the dictionary application.", dataType=FlyDataType.TableDirect, entityType="EE07", printName="View", fieldLength=22)
-	AD_View_ID,
-	//
 	@FlyElement(name="Workflow Activity", description="Workflow Activity", help="The Workflow Activity is the actual Workflow Node in a Workflow Process instance", dataType=FlyDataType.ID, entityType="D", printName="Wf Activity", fieldLength=22)
 	AD_WF_Activity_ID,
 	//
@@ -1044,9 +1013,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Asset Funding Mode", dataType=FlyDataType.NONE, entityType="D", printName="Asset Funding Mode", fieldLength=0)
 	A_FundingMode_ID,
 	//
-	@FlyElement(name="Age", description="Age of a person", help="The age of a person", dataType=FlyDataType.String, entityType="EE02", printName="Age", fieldLength=0)
-	Age,
-	//
 	@FlyElement(name="Driver License", description="Payment Identification - Driver License", help="The Driver's License being used as identification.", dataType=FlyDataType.String, entityType="D", printName="Driver License", fieldLength=20)
 	A_Ident_DL,
 	//
@@ -1128,9 +1094,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Allow Cities out of List", description="A flag to allow cities, currently not in the list, to be entered", dataType=FlyDataType.YesNo, entityType="D", printName="Allow Cities out of List", fieldLength=1)
 	AllowCitiesOutOfList,
 	//
-	@FlyElement(name="Allow  Leave with", description="Allow  Leave with", help="The Valid Leave Type for an leave", dataType=FlyDataType.Table, entityType="EE02", printName="Allow  Leave with", fieldLength=0)
-	AllowedLeaveType_ID,
-	//
 	@FlyElement(name="Allow HTML View", dataType=FlyDataType.YesNo, entityType="D", printName="Allow HTML View", fieldLength=1)
 	Allow_HTML_View,
 	//
@@ -1146,17 +1109,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="Allow Info CashJournal", dataType=FlyDataType.YesNo, entityType="D", printName="Allow Info CashJournal", fieldLength=1)
 	Allow_Info_CashJournal,
 	//
-	@FlyElement(name="Allow Info CRP", dataType=FlyDataType.YesNo, entityType="EE01", printName="Allow Info CRP", fieldLength=1)
-	Allow_Info_CRP,
-	//
 	@FlyElement(name="Allow Info InOut", dataType=FlyDataType.YesNo, entityType="D", printName="Allow Info InOut", fieldLength=1)
 	Allow_Info_InOut,
 	//
 	@FlyElement(name="Allow Info Invoice", dataType=FlyDataType.YesNo, entityType="D", printName="Allow Info Invoice", fieldLength=1)
 	Allow_Info_Invoice,
-	//
-	@FlyElement(name="Allow Info MRP", dataType=FlyDataType.YesNo, entityType="EE01", printName="Allow Info MRP", fieldLength=1)
-	Allow_Info_MRP,
 	//
 	@FlyElement(name="Allow Info Order", dataType=FlyDataType.YesNo, entityType="D", printName="Allow Info Order", fieldLength=1)
 	Allow_Info_Order,
@@ -1407,9 +1364,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Asset Policy No", dataType=FlyDataType.String, entityType="D", printName="Asset Policy No", fieldLength=100)
 	A_Policy_No,
 	//
-	@FlyElement(name="Applicants No", description="Applicants No for this position", help="Applicants No for this position", dataType=FlyDataType.String, entityType="EE02", printName="Applicants No", fieldLength=0)
-	ApplicantsNo,
-	//
 	@FlyElement(name="Apply", description="Apply migration", dataType=FlyDataType.NONE, entityType="D", printName="Apply", fieldLength=0)
 	Apply,
 	//
@@ -1527,9 +1481,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Source Type", dataType=FlyDataType.List, entityType="D", printName="Source Type", fieldLength=3)
 	A_SourceType,
 	//
-	@FlyElement(name="ASP Browse", dataType=FlyDataType.TableDirect, entityType="ECA02", printName="ASP Browse", fieldLength=10)
-	ASP_Browse_ID,
-	//
 	@FlyElement(name="Client Exception", dataType=FlyDataType.ID, entityType="D", printName="Client Exception", fieldLength=22)
 	ASP_ClientException_ID,
 	//
@@ -1574,9 +1525,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="ASP Workflow", dataType=FlyDataType.ID, entityType="D", printName="ASP Workflow", fieldLength=10)
 	ASP_Workflow_ID,
-	//
-	@FlyElement(name="Quantity Assay", description="Indicated the Quantity Assay to use into Quality Order", help="Indicated the Quantity Assay to use into Quality Order", dataType=FlyDataType.Quantity, entityType="EE01", printName="Quantity Assay", fieldLength=22)
-	Assay,
 	//
 	@FlyElement(name="AssetAccumDepreciationAmt", dataType=FlyDataType.Amount, entityType="D", printName="AssetAccumDepreciationAmt", fieldLength=22)
 	AssetAccumDepreciationAmt,
@@ -1655,12 +1603,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Attribute Name", description="Name of the Attribute", help="Identifier of the attribute", dataType=FlyDataType.String, entityType="D", printName="Attribute Name", fieldLength=60)
 	AttributeName,
-	//
-	@FlyElement(name="Attribute Search Name", description="Name of the Attribute Search", help="Identifier of the Attribute Search", dataType=FlyDataType.NONE, entityType="EE01", printName="Attribute Search Name", fieldLength=0)
-	AttributeSearchName,
-	//
-	@FlyElement(name="Attribute Set Name", description="Name of the Attribute Set", help="Identifier of the Attribute Set", dataType=FlyDataType.NONE, entityType="EE01", printName="Attribute Set Name", fieldLength=0)
-	AttributeSetName,
 	//
 	@FlyElement(name="Attribute Value", description="Value of the Attribute", help="Adempiere converts the (string) field values to the attribute data type.  Booleans (Yes-No) may have the values 'true' and 'false', the date format is YYYY-MM-DD", dataType=FlyDataType.String, entityType="D", printName="Attribute Value", fieldLength=60)
 	AttributeValue,
@@ -1752,20 +1694,8 @@ public enum Element implements IRefList{
 	@FlyElement(name="ax_case", dataType=FlyDataType.NONE, entityType="D", printName="ax_case", fieldLength=0)
 	ax_case,
 	//
-	@FlyElement(name="Axis Column", description="Axis the link column.", help="Axis Column defines the base column to show the records on this table as columns inside the browser", dataType=FlyDataType.Table, entityType="EE07", printName="Axis Column", fieldLength=22)
-	Axis_Column_ID,
-	//
-	@FlyElement(name="Axis Parent Column", description="The link Axis column view on the parent key", help="Axis Parent Column filters the records used by Axis Column, the values for the filter are obtained from the context of the Field Browser defined as query criteria	context.", dataType=FlyDataType.Table, entityType="EE07", printName="Axis Parent Column", fieldLength=22)
-	Axis_Parent_Column_ID,
-	//
-	@FlyElement(name="Number of axles", dataType=FlyDataType.Quantity, entityType="EE03", printName="Number of axles", fieldLength=0)
-	AxlesNumber,
-	//
 	@FlyElement(name="Account Zip/Postal", description="Zip Code of the Credit Card or Account Holder", help="The Zip Code of the Credit Card or Account Holder.", dataType=FlyDataType.String, entityType="D", printName="Zip ", fieldLength=20)
 	A_Zip,
-	//
-	@FlyElement(name="Backflush Group", description="The Grouping Components to the Backflush", help="When the components are deliver is possible to indicated The Backflush Group this way you only can deliver the components that are for this Backflush Group.", dataType=FlyDataType.String, entityType="EE01", printName="Backflush Group", fieldLength=20)
-	BackflushGroup,
 	//
 	@FlyElement(name="Backup Folder", description="Backup Folder", dataType=FlyDataType.FilePath, entityType="D", printName="Backup Folder", fieldLength=255)
 	BackupFolder,
@@ -1776,9 +1706,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Balance", dataType=FlyDataType.Amount, entityType="D", printName="Balance", fieldLength=22)
 	Balance,
 	//
-	@FlyElement(name="Balance Amount", description="Balance Amount", help="The Balance Amount", dataType=FlyDataType.Number, entityType="EE02", printName="Balance Amount", fieldLength=0)
-	BalanceAmount,
-	//
 	@FlyElement(name="Bank Account No", description="Bank Account Number", dataType=FlyDataType.String, entityType="D", printName="Bank Account No", fieldLength=20)
 	BankAccountNo,
 	//
@@ -1787,9 +1714,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Bank Name", dataType=FlyDataType.String, entityType="D", printName="Bank Name", fieldLength=120)
 	BankName,
-	//
-	@FlyElement(name="Barcode Scanner", description="This form allows processing the transactions of materials by means of a Barcode Scanner.", help="This form allows processing the transactions of materials by means of a Barcode Scanner using the Search Key, UPC/EAN, SKU, Partner Product Key", dataType=FlyDataType.Button, entityType="EE03", printName="Barcode Scanner", fieldLength=1)
-	BarcodeScanner,
 	//
 	@FlyElement(name="Barcode Type", description="Type of barcode", dataType=FlyDataType.List, entityType="D", printName="Barcode", fieldLength=3)
 	BarcodeType,
@@ -1899,29 +1823,8 @@ public enum Element implements IRefList{
 	@FlyElement(name="Bank In Transit", description="Bank In Transit Account", help="The Bank in Transit Account identifies the account to be used for funds which are in transit.", dataType=FlyDataType.Account, entityType="D", printName="Bank In Transit", fieldLength=22)
 	B_InTransit_Acct,
 	//
-	@FlyElement(name="Birth City", description="Identifies a City of Birth", help="The City identifies a unique City for this Country or Region.", dataType=FlyDataType.String, entityType="ECA02", printName="Birth City", fieldLength=60)
-	BirthCity,
-	//
-	@FlyElement(name="Birth Country Code", description="Country Code of Place of Birth", dataType=FlyDataType.String, entityType="ECA02", printName="Birth Country Code", fieldLength=60)
-	BirthCountryCode,
-	//
-	@FlyElement(name="Birth Country", description="Country of Place of Birth", dataType=FlyDataType.Search, entityType="ECA02", printName="Birth Country", fieldLength=10)
-	BirthCountry_ID,
-	//
 	@FlyElement(name="Birthday", description="Birthday or Anniversary day", help="Birthday or Anniversary day", dataType=FlyDataType.Date, entityType="D", printName="Birthday", fieldLength=7)
 	Birthday,
-	//
-	@FlyElement(name="Birth Postal Zone", description="Postal Zone of Place of Birth", dataType=FlyDataType.String, entityType="ECA02", printName="Birth Postal Zone", fieldLength=60)
-	BirthPostal,
-	//
-	@FlyElement(name="Region of Birth", description="Name of the Region of Birth", help="The Region Name defines the name that will print when this region is used in a document.", dataType=FlyDataType.Search, entityType="ECA02", printName="Region of Birth", fieldLength=10)
-	BirthRegion_ID,
-	//
-	@FlyElement(name="Region of Birth", description="Name of the Region of Birth", help="The Region Name defines the name that will print when this region is used in a document.", dataType=FlyDataType.String, entityType="ECA02", printName="Region of Birth", fieldLength=60)
-	BirthRegionName,
-	//
-	@FlyElement(name="Blood Group", dataType=FlyDataType.List, entityType="EE02", printName="Blood Group", fieldLength=3)
-	BloodGroup,
 	//
 	@FlyElement(name="Blue", description="Color RGB blue value", dataType=FlyDataType.Integer, entityType="D", printName="Blue", fieldLength=22)
 	Blue,
@@ -2070,9 +1973,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Callout", description="Fully qualified class names and method - separated by semicolons", help="A Callout allow you to create Java extensions to perform certain tasks always after a value changed. Callouts should not be used for validation but consequences of a user selecting a certain value.	The callout is a Java class implementing org.compiere.model.Callout and a method name to call.  Example: 'org.compiere.model.CalloutRequest.copyText' instantiates the class 'CalloutRequest' and calls the method 'copyText'. You can have multiple callouts by separating them via a semicolon", dataType=FlyDataType.String, entityType="D", printName="Callout", fieldLength=255)
 	Callout,
 	//
-	@FlyElement(name="Campaign Value", dataType=FlyDataType.String, entityType="EE01", printName="Campaign Value", fieldLength=40)
-	CampaignValue,
-	//
 	@FlyElement(name="Capture Sequence", help="The Capture Sequence defines the fields to be used when capturing an address on this country.  The following notations are used: @CO@=Country, @C@=City, @P@=Postal, @A@=PostalAdd, @R@=Region, @A1@=Address 1 to @A4@=Address 4.  Country is always mandatory, add a bang ! to make another field mandatory, for example @C!@ makes city mandatory, @A1!@ makes Address 1 mandatory.", dataType=FlyDataType.String, entityType="D", printName="Capture Sequence", fieldLength=60)
 	CaptureSequence,
 	//
@@ -2087,15 +1987,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Card Transfer Type", dataType=FlyDataType.List, entityType="D", printName="Card Transfer Type", fieldLength=1)
 	CardTransferType,
-	//
-	@FlyElement(name="Career Level Name", description="The Career Level Name for this position", help="Career level name required for this position", dataType=FlyDataType.String, entityType="EE02", printName="Career Level Name", fieldLength=255)
-	CareerLevelName,
-	//
-	@FlyElement(name="Career Level Value", description="The Career Level Value for this position", help="Career level value required for this position", dataType=FlyDataType.String, entityType="EE02", printName="Career Level Value", fieldLength=60)
-	CareerLevelValue,
-	//
-	@FlyElement(name="Carrier Number", dataType=FlyDataType.String, entityType="EE03", printName="Carrier Number", fieldLength=0)
-	CarrierNumber,
 	//
 	@FlyElement(name="Cash Book Transfer Type", description="Where the money in the cash book should be transfered to. Either a Bank Account or another Cash Book", dataType=FlyDataType.List, entityType="D", printName="Cash Book Transfer Type", fieldLength=1)
 	CashBookTransferType,
@@ -2201,9 +2092,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Cash BPartner", description="BPartner to be used for Cash transactions", dataType=FlyDataType.Table, entityType="D", printName="Cash BPartner", fieldLength=22)
 	C_CashBPartner_ID,
-	//
-	@FlyElement(name="C_CashFlow_ID", dataType=FlyDataType.NONE, entityType="EE06", printName="C_CashFlow_ID", fieldLength=0)
-	C_CashFlow_ID,
 	//
 	@FlyElement(name="Cash Journal", description="Cash Journal", help="The Cash Journal uniquely identifies a Cash Journal.  The Cash Journal will record transactions for the cash bank account", dataType=FlyDataType.ID, entityType="D", printName="Cash Journal", fieldLength=22)
 	C_Cash_ID,
@@ -2447,9 +2335,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Position Remuneration", description="Remuneration for the Position", dataType=FlyDataType.ID, entityType="D", printName="Position Remuneration", fieldLength=10)
 	C_JobRemuneration_ID,
-	//
-	@FlyElement(name="Claimed Amount", description="Claimed Amount", help="The Claimed Amount of Insurance", dataType=FlyDataType.Number, entityType="EE02", printName="Claimed Amount", fieldLength=0)
-	ClaimedAmount,
 	//
 	@FlyElement(name="Landed Cost Allocation", description="Allocation for Land Costs", dataType=FlyDataType.ID, entityType="D", printName="Landed Cost Allocation", fieldLength=10)
 	C_LandedCostAllocation_ID,
@@ -2703,18 +2588,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Commodity Code", description="Commodity code used for tax calculation", help="The Commodity Code indicates a code that is used in tax calculations", dataType=FlyDataType.String, entityType="D", printName="Commodity Code", fieldLength=20)
 	CommodityCode,
 	//
-	@FlyElement(name="Company", description="Previous working Company Name(Organization)", help="The Previous working Company Name(Organization)", dataType=FlyDataType.String, entityType="EE02", printName="Company", fieldLength=0)
-	Company,
-	//
-	@FlyElement(name="Number of compartments", dataType=FlyDataType.Integer, entityType="EE03", printName="Number of compartments", fieldLength=0)
-	CompartmentsNumber,
-	//
-	@FlyElement(name="Component Type", description="Component Type for a Bill of Material or Formula", help="The Component Type can be:		1.- By Product: Define a By Product as Component into BOM	2.- Component: Define a normal Component into BOM	3.- Option: Define an Option for Product Configure BOM	4.- Phantom: Define a Phantom as Component into BOM	5.- Packing: Define a Packing as Component into BOM	6.- Planning : Define Planning as Component into BOM	7.- Tools: Define Tools as Component into BOM	8.- Variant: Define Variant  for Product Configure BOM", dataType=FlyDataType.List, entityType="EE01", printName="Component Type", fieldLength=2)
-	ComponentType,
-	//
-	@FlyElement(name="Concept Value", description="Value of the Concept", dataType=FlyDataType.NONE, entityType="EE02", printName="Concept Value", fieldLength=40)
-	ConceptValue,
-	//
 	@FlyElement(name="Confidentiality", description="Type of Confidentiality", dataType=FlyDataType.List, entityType="D", printName="Confidentiality", fieldLength=1)
 	ConfidentialType,
 	//
@@ -2757,12 +2630,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Contact Name", description="Business Partner Contact Name", dataType=FlyDataType.String, entityType="D", printName="Contact Name", fieldLength=60)
 	ContactName,
 	//
-	@FlyElement(name="Contact Person", description="Contact Person Defines the contact person for this location", dataType=FlyDataType.String, entityType="EE02", printName="Contact Person", fieldLength=0)
-	ContactPerson,
-	//
-	@FlyElement(name="Contact Type", description="Contact Type defines the type of contact for this location", dataType=FlyDataType.List, entityType="EE02", printName="Contact Type", fieldLength=0)
-	ContactType,
-	//
 	@FlyElement(name="External Link (URL)", description="External Link (URL) for the Container", help="External URL for the Container	", dataType=FlyDataType.URL, entityType="D", printName="External Link", fieldLength=60)
 	ContainerLinkURL,
 	//
@@ -2777,9 +2644,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Content", dataType=FlyDataType.LongText, entityType="D", printName="Content", fieldLength=0)
 	ContentText,
-	//
-	@FlyElement(name="Payroll Contract Value", description="Payroll Contract Value", dataType=FlyDataType.String, entityType="ECA02", printName="Payroll Contract Value", fieldLength=60)
-	ContractValue,
 	//
 	@FlyElement(name="Control Amount", description="If not zero, the Debit amount of the document must be equal this amount", help="If the control amount is zero, no check is performed.	Otherwise the total Debit amount must be equal to the control amount, before the document is processed.", dataType=FlyDataType.Amount, entityType="D", printName="Control Amt", fieldLength=22)
 	ControlAmt,
@@ -2850,9 +2714,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Cost Adjustment LL", description="Product Cost Adjustment Lower Level", help="product cost adjustments", dataType=FlyDataType.NONE, entityType="D", printName="Cost Adjustment Lower Level", fieldLength=0)
 	CostAdjustmentLL,
 	//
-	@FlyElement(name="Cost Allocation Percent", description="Cost allocation percent in case of a co-product.", dataType=FlyDataType.Number, entityType="EE01", printName="Allocation%", fieldLength=22)
-	CostAllocationPerc,
-	//
 	@FlyElement(name="Cost Value", description="Value with Cost", dataType=FlyDataType.Amount, entityType="D", printName="Cost Value", fieldLength=22)
 	CostAmt,
 	//
@@ -2867,9 +2728,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Average Cost Quantity Sum", description="Cumulative average cost quantities (internal)", help="Current cumulative quantity for calculating the average costs", dataType=FlyDataType.Quantity, entityType="D", printName="Average Cost Quantity Sum", fieldLength=22)
 	CostAverageCumQty,
-	//
-	@FlyElement(name="Cost Collector Type", description="Transaction Type for Manufacturing Management", dataType=FlyDataType.List, entityType="EE01", printName="Cost Collector Type", fieldLength=3)
-	CostCollectorType,
 	//
 	@FlyElement(name="Cost Element Type", description="Type of Cost Element", dataType=FlyDataType.List, entityType="D", printName="Cost Element Type", fieldLength=1)
 	CostElementType,
@@ -2939,9 +2797,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Country", description="Country Name", dataType=FlyDataType.String, entityType="D", printName="Country", fieldLength=60)
 	CountryName,
-	//
-	@FlyElement(name="Coverage Amount", description="Coverage Amount", help="The Coverage Amount of Insurance", dataType=FlyDataType.Number, entityType="EE02", printName="Coverage Amount", fieldLength=0)
-	CoverageAmount,
 	//
 	@FlyElement(name="Allocate Payment", description="Allocate Payment to Invoices", help="You can directly allocate payments to invoices when creating the Payment. 	Note that you can over- or under-allocate the payment.  When processing the payment, the allocation is created.", dataType=FlyDataType.ID, entityType="D", printName="Allocate Payment", fieldLength=10)
 	C_PaymentAllocate_ID,
@@ -3026,9 +2881,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Created By", description="User who created this records", help="The Created By field indicates the user who created this record.", dataType=FlyDataType.Table, entityType="D", printName="Created By", fieldLength=22)
 	CreatedBy,
-	//
-	@FlyElement(name="Created By Issue", dataType=FlyDataType.Table, entityType="EE01", printName="Created By Issue", fieldLength=22)
-	CreatedByIssue,
 	//
 	@FlyElement(name="CreatedDate", dataType=FlyDataType.String, entityType="D", printName="CreatedDate", fieldLength=50)
 	CreatedDate,
@@ -3159,9 +3011,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Sales Dashboard", dataType=FlyDataType.NONE, entityType="D", printName="Sales Dashboard", fieldLength=0)
 	C_SalesDashboard_ID,
 	//
-	@FlyElement(name="Sales History", description="Sales History for statistics and forecast", dataType=FlyDataType.NONE, entityType="EE01", printName="Sales History", fieldLength=0)
-	C_SalesHistory_ID,
-	//
 	@FlyElement(name="Sales Region", description="Sales coverage region", help="The Sales Region indicates a specific area of sales coverage.", dataType=FlyDataType.ID, entityType="D", printName="Sales Region", fieldLength=22)
 	C_SalesRegion_ID,
 	//
@@ -3189,9 +3038,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Standard Task", description="Standard Project Type Task", help="Standard Project Task in a Project Phase with standard effort", dataType=FlyDataType.ID, entityType="D", printName="Standard Task", fieldLength=22)
 	C_Task_ID,
 	//
-	@FlyElement(name="Tax Base", dataType=FlyDataType.TableDirect, entityType="EE04", printName="Tax Base", fieldLength=22)
-	C_TaxBase_ID,
-	//
 	@FlyElement(name="Tax Category", description="Tax Category", help="The Tax Category provides a method of grouping similar taxes.  For example, Sales Tax or Value Added Tax.", dataType=FlyDataType.TableDirect, entityType="D", printName="Tax Category", fieldLength=22)
 	C_TaxCategory_ID,
 	//
@@ -3204,20 +3050,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="Tax Declaration Line", description="Tax Declaration Document Information", help="The lines are created by the create process. You can delete them if you do not want to include them in a particular declaration. ", dataType=FlyDataType.ID, entityType="D", printName="Tax Declaration Line", fieldLength=10)
 	C_TaxDeclarationLine_ID,
 	//
-	@FlyElement(name="Tax Definition", dataType=FlyDataType.ID, entityType="EE04", printName="Tax Definition", fieldLength=10)
-	C_TaxDefinition_ID,
-	//
-	@FlyElement(name="Tax Group", dataType=FlyDataType.ID, entityType="EE04", printName="Tax Group", fieldLength=10)
-	C_TaxGroup_ID,
-	//
 	@FlyElement(name="Tax", description="Tax identifier", help="The Tax indicates the type of tax used in document line.", dataType=FlyDataType.TableDirect, entityType="D", printName="Tax", fieldLength=22)
 	C_Tax_ID,
 	//
 	@FlyElement(name="Tax ZIP", description="Tax Postal/ZIP", help="For local tax, you may have to define a list of (ranges of) postal codes or ZIPs", dataType=FlyDataType.ID, entityType="D", printName="Tax ZIP", fieldLength=22)
 	C_TaxPostal_ID,
-	//
-	@FlyElement(name="Tax Type", dataType=FlyDataType.TableDirect, entityType="EE04", printName="Tax Type", fieldLength=22)
-	C_TaxType_ID,
 	//
 	@FlyElement(name="Template BPartner", description="BPartner that is to be used as template when new customers are created", dataType=FlyDataType.Table, entityType="D", printName="Template BPartner", fieldLength=22)
 	C_TemplateBPartner_ID,
@@ -3228,14 +3065,8 @@ public enum Element implements IRefList{
 	@FlyElement(name="Accumulated Amt LL", description="Total Amount", help="Sum of all amounts", dataType=FlyDataType.NONE, entityType="D", printName="Accumulated Amt Lower Lavel", fieldLength=0)
 	CumulatedAmtLL,
 	//
-	@FlyElement(name="Cumulated Amt Post", dataType=FlyDataType.Quantity, entityType="EE01", printName="Cumulated Amt Post", fieldLength=22)
-	CumulatedAmtPost,
-	//
 	@FlyElement(name="Accumulated Qty", description="Total Quantity", help="Sum of the quantities", dataType=FlyDataType.Quantity, entityType="D", printName="Accumulated Qty", fieldLength=22)
 	CumulatedQty,
-	//
-	@FlyElement(name="Cumulated Qty Post", dataType=FlyDataType.Quantity, entityType="EE01", printName="Cumulated Qty Post", fieldLength=14)
-	CumulatedQtyPost,
 	//
 	@FlyElement(name="Accumulation Level", description="Level for accumulative calculations", dataType=FlyDataType.List, entityType="D", printName="Accumulation Level", fieldLength=1)
 	CumulativeLevel,
@@ -3279,9 +3110,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Current Cost Price", description="The currently used cost price", dataType=FlyDataType.CostsPrices, entityType="D", printName="Current Cost Price", fieldLength=22)
 	CurrentCostPrice,
 	//
-	@FlyElement(name="Current Cost Price LL", description="Current Price Lower Level Is the sum of the costs of the components of this product manufactured for this level.", help="Current Price Lower Level is used for get the total costs for lower level the a product manufactured.		The Current Price Lower Level always will be calculated.		You can see the Current Cost Price and Current Cost Price Lower Level with Cost  Bill of Material & Formula Detail Report.	 	The sum the Current Cost Price + Current Cost Price Lower Level is the total cost to a product manufactured.	", dataType=FlyDataType.Quantity, entityType="EE01", printName="Current Cost Price Lower Level", fieldLength=22)
-	CurrentCostPriceLL,
-	//
 	@FlyElement(name="currentcostvalue", dataType=FlyDataType.NONE, entityType="D", printName="currentcostvalue", fieldLength=0)
 	currentcostvalue,
 	//
@@ -3293,12 +3121,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Current Quantity", description="Current Quantity", dataType=FlyDataType.Quantity, entityType="D", printName="Current Qty", fieldLength=22)
 	CurrentQty,
-	//
-	@FlyElement(name="Current Status", description="Indicates the current status", help="The Current Status Indicates the current status", dataType=FlyDataType.String, entityType="EE02", printName="Current Status", fieldLength=0)
-	CurrentStatus,
-	//
-	@FlyElement(name="Current Strength", description="Current Strength ", dataType=FlyDataType.String, entityType="EE02", printName="Current Strength", fieldLength=0)
-	CurrentStrength,
 	//
 	@FlyElement(name="Symbol", description="Symbol of the currency (opt used for printing only)", help="The Currency Symbol defines the symbol that will print when this currency is used.", dataType=FlyDataType.String, entityType="D", printName="Currency", fieldLength=10)
 	CurSymbol,
@@ -3329,15 +3151,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Year", description="Calendar Year", help="The Year uniquely identifies an accounting year for a calendar.", dataType=FlyDataType.TableDirect, entityType="D", printName="Year", fieldLength=22)
 	C_Year_ID,
-	//
-	@FlyElement(name="Daily Capacity", dataType=FlyDataType.Quantity, entityType="EE01", printName="Daily Capacity", fieldLength=10)
-	DailyCapacity,
-	//
-	@FlyElement(name="Daily Salary", description="Daily Salary", dataType=FlyDataType.Number, entityType="EE02", printName="Daily Salary", fieldLength=0)
-	DailySalary,
-	//
-	@FlyElement(name="Daily Salary (Concept)", description="Reference to concept used for daily salary", dataType=FlyDataType.Table, entityType="ECA02", printName="Daily Salary (Concept)", fieldLength=10)
-	DailySalary_ID,
 	//
 	@FlyElement(name="Data Column 2", description="Data Column for Line Charts", help="Additional Graph Data Column for Line/Bar Charts", dataType=FlyDataType.Table, entityType="D", printName="Data Column 2", fieldLength=22)
 	Data1_PrintFormatItem_ID,
@@ -3419,12 +3232,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Date last inventory count", description="Date of Last Inventory Count", help="The Date Last Inventory Count indicates the last time an Inventory count was done.", dataType=FlyDataType.Date, entityType="D", printName="Date last inventory count", fieldLength=7)
 	DateLastInventory,
-	//
-	@FlyElement(name="Last Paid Date", description="Last Paid Date", help="The Last Paid Date of an Insurance", dataType=FlyDataType.Date, entityType="EE02", printName="Last Paid Date", fieldLength=7)
-	DateLastPaid,
-	//
-	@FlyElement(name="Last Premium Date", description="Last Premium Date", help="The Last Premium Date of an Insurance", dataType=FlyDataType.Date, entityType="EE02", printName="Last Premium Date", fieldLength=7)
-	DateLastPremium,
 	//
 	@FlyElement(name="Date last run", description="Date the process was last run.", help="The Date Last Run indicates the last time that a process was run.", dataType=FlyDataType.DateTime, entityType="D", printName="Date last run", fieldLength=7)
 	DateLastRun,
@@ -3513,75 +3320,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="DBType", dataType=FlyDataType.List, entityType="D", printName="DBType", fieldLength=22)
 	DBType,
 	//
-	@FlyElement(name="Compartment Assignment  ID", dataType=FlyDataType.NONE, entityType="EE03", printName="Compartment Assignment  ID", fieldLength=0)
-	DD_CompartmentAssignment_ID,
-	//
-	@FlyElement(name="Transport Compartment", dataType=FlyDataType.TableDirect, entityType="EE03", printName="Transport Compartment", fieldLength=0)
-	DD_Compartment_ID,
-	//
-	@FlyElement(name="Transport Compatibility Group", dataType=FlyDataType.TableDirect, entityType="EE03", printName="Transport Compatibility Group", fieldLength=0)
-	DD_CompatibilityGroup_ID,
-	//
-	@FlyElement(name="Driver Assignment", dataType=FlyDataType.NONE, entityType="EE03", printName="Driver Assignment", fieldLength=0)
-	DD_DriverAssignment_ID,
-	//
-	@FlyElement(name="Driver", dataType=FlyDataType.TableDirect, entityType="EE03", printName="Driver", fieldLength=0)
-	DD_Driver_ID,
-	//
-	@FlyElement(name="Order Freight ID", dataType=FlyDataType.NONE, entityType="EE03", printName="Order Freight ID", fieldLength=0)
-	DD_Freight_ID,
-	//
-	@FlyElement(name="Order Freight Line ID", dataType=FlyDataType.NONE, entityType="EE03", printName="Order Freight Line ID", fieldLength=0)
-	DD_FreightLine_ID,
-	//
-	@FlyElement(name="License Types Assignment", dataType=FlyDataType.NONE, entityType="EE03", printName="License Types Assignment", fieldLength=0)
-	DD_LicenseAssignment_ID,
-	//
-	@FlyElement(name="License", dataType=FlyDataType.TableDirect, entityType="EE03", printName="License", fieldLength=0)
-	DD_License_ID,
-	//
-	@FlyElement(name="Transport License Type", dataType=FlyDataType.TableDirect, entityType="EE03", printName="Transport License Type", fieldLength=0)
-	DD_LicenseType_ID,
-	//
-	@FlyElement(name="Network Distribution", description="Identifies a distribution network, distribution networks are used to establish the source and target of the materials in the supply chain", help="DRP uses the distribution networks to generate the distribution plan.		A distribution network defines the supply path by a relationship between the source and target warehouse and a percentage of the supply quantity.", dataType=FlyDataType.ID, entityType="EE01", printName="Network Distribution", fieldLength=22)
-	DD_NetworkDistribution_ID,
-	//
-	@FlyElement(name="Network Distribution Line", dataType=FlyDataType.ID, entityType="EE01", printName="Network Distribution Line", fieldLength=22)
-	DD_NetworkDistributionLine_ID,
-	//
-	@FlyElement(name="Distribution Order", dataType=FlyDataType.ID, entityType="EE01", printName="Distribution Order", fieldLength=22)
-	DD_Order_ID,
-	//
-	@FlyElement(name="Distribution Order Line", dataType=FlyDataType.ID, entityType="EE01", printName="Distribution Order Line", fieldLength=22)
-	DD_OrderLine_ID,
-	//
-	@FlyElement(name="Transport Requirement Assignment", dataType=FlyDataType.NONE, entityType="EE03", printName="Transport Requirement Assignment", fieldLength=0)
-	DD_RequirementAssignment_ID,
-	//
-	@FlyElement(name="Transport Requirement", dataType=FlyDataType.TableDirect, entityType="EE03", printName="Transport Requirement", fieldLength=0)
-	DD_Requirement_ID,
-	//
-	@FlyElement(name="Transport Requirement Type", dataType=FlyDataType.TableDirect, entityType="EE03", printName="Transport Requirement Type", fieldLength=0)
-	DD_RequirementType_ID,
-	//
-	@FlyElement(name="Transport Assignment", dataType=FlyDataType.NONE, entityType="EE03", printName="Transport Assignment", fieldLength=0)
-	DD_TransportAssignment_ID,
-	//
-	@FlyElement(name="Transport Unit", dataType=FlyDataType.TableDirect, entityType="EE03", printName="Transport Unit", fieldLength=0)
-	DD_TransportUnit_ID,
-	//
-	@FlyElement(name="Transport Unit Type", dataType=FlyDataType.NONE, entityType="EE03", printName="Transport Unit Type", fieldLength=0)
-	DD_TransportUnitType_ID,
-	//
-	@FlyElement(name="Vehicle Assignment ID", dataType=FlyDataType.NONE, entityType="EE03", printName="Vehicle Assignment ID", fieldLength=0)
-	DD_VehicleAssignment_ID,
-	//
-	@FlyElement(name="Vehicle", dataType=FlyDataType.TableDirect, entityType="EE03", printName="Vehicle", fieldLength=0)
-	DD_Vehicle_ID,
-	//
-	@FlyElement(name="Vehicle Type", dataType=FlyDataType.TableDirect, entityType="EE03", printName="Vehicle Type", fieldLength=0)
-	DD_VehicleType_ID,
-	//
 	@FlyElement(name="Decimal Pattern", description="Java Decimal Pattern", help="Option Decimal pattern in Java notation. Examples: 0000 will format 23 to 0023", dataType=FlyDataType.String, entityType="D", printName="Decimal Pattern", fieldLength=40)
 	DecimalPattern,
 	//
@@ -3608,12 +3346,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Definite Sequence", dataType=FlyDataType.Table, entityType="D", printName="Definite Sequence", fieldLength=22)
 	DefiniteSequence_ID,
-	//
-	@FlyElement(name="Degree Name", description="Degree Name for an Employee Import", help="The Degree Name for an Employee", dataType=FlyDataType.String, entityType="ECA02", printName="Degree Name", fieldLength=255)
-	DegreeName,
-	//
-	@FlyElement(name="Degree Value", description="Degree Value for an Employee Import", help="The Degree for an Employee", dataType=FlyDataType.String, entityType="ECA02", printName="Degree Value", fieldLength=60)
-	DegreeValue,
 	//
 	@FlyElement(name="Delete old/existing records", description="Otherwise records will be added", dataType=FlyDataType.NONE, entityType="D", printName="Delete old/existing records", fieldLength=0)
 	DeleteOld,
@@ -3657,15 +3389,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Delta Use Life Years (fiscal)", description="Delta Use Life Years (fiscal)", dataType=FlyDataType.NONE, entityType="D", printName="Delta Use Life Years (fiscal)", fieldLength=0)
 	DeltaUseLifeYears_F,
 	//
-	@FlyElement(name="Department Name", description="Department Name", dataType=FlyDataType.String, entityType="EE02", printName="Department Name", fieldLength=60)
-	DepartmentName,
-	//
-	@FlyElement(name="Department Value", description="Department Value", dataType=FlyDataType.String, entityType="EE02", printName="Department Value", fieldLength=40)
-	DepartmentValue,
-	//
-	@FlyElement(name="Dependent Birthday", description="Dependent Birthday or Anniversary day", help="Dependent Birthday or Anniversary day", dataType=FlyDataType.Date, entityType="ECA02", printName="Dependent Birthday", fieldLength=7)
-	DependentBirthday,
-	//
 	@FlyElement(name="DepreciationType", dataType=FlyDataType.String, entityType="D", printName="DepreciationType", fieldLength=10)
 	DepreciationType,
 	//
@@ -3677,15 +3400,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Description URL", description="URL for the description", dataType=FlyDataType.URL, entityType="D", printName="Description URL", fieldLength=120)
 	DescriptionURL,
-	//
-	@FlyElement(name="Designation Value", description="Designation Value is a nationally recognized level", help="Designation Value is a nationally recognized level of achievement within the field of human resources.", dataType=FlyDataType.String, entityType="EE02", printName="Designation Value", fieldLength=60)
-	DesignationValue,
-	//
-	@FlyElement(name="Designation (When Left)", description="Designation (When Left)", help="The Designation (When Left)", dataType=FlyDataType.String, entityType="EE02", printName="Designation (When Left)", fieldLength=0)
-	DesignationWhenLeft,
-	//
-	@FlyElement(name="Designation (When Joined)", description="Designation (When Joined)", help="The Designation (When Joined) of an employee in this work.", dataType=FlyDataType.String, entityType="EE02", printName="Designation (When Joined)", fieldLength=0)
-	DesignationWhereJoined,
 	//
 	@FlyElement(name="Destination_Directory", dataType=FlyDataType.String, entityType="D", printName="Destination_Directory", fieldLength=255)
 	Destination_Directory,
@@ -3710,9 +3424,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Dimension Units", description="Units of Dimension", dataType=FlyDataType.List, entityType="D", printName="Units", fieldLength=1)
 	DimensionUnits,
-	//
-	@FlyElement(name="Dimension Unit of Measure", dataType=FlyDataType.Table, entityType="EE03", printName="Dimension Unit of Measure", fieldLength=0)
-	Dimension_UOM_ID,
 	//
 	@FlyElement(name="Direct Deploy", dataType=FlyDataType.Button, entityType="D", printName="Direct Deploy", fieldLength=1)
 	DirectDeploy,
@@ -3762,12 +3473,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Display SQL", description="SQL for display of lookup value", help="Fully qualified subquery SQL", dataType=FlyDataType.NONE, entityType="D", printName="Display SQL", fieldLength=0)
 	DisplaySQL,
 	//
-	@FlyElement(name="Distribution Order Mail Text", description="Email text used for sending Distribution Order", help="Standard email template used to send Manufacturing Order as attachments.", dataType=FlyDataType.Table, entityType="EE01", printName="Distribution Order Text", fieldLength=22)
-	Distrib_Order_MailText_ID,
-	//
-	@FlyElement(name="Distribution Order Print Format", description="Print Format for printing Distribution Order", help="You need to define a Print Format to print the document.", dataType=FlyDataType.Table, entityType="EE01", printName="Distribution Order Print Format", fieldLength=22)
-	Distrib_Order_PrintFormat_ID,
-	//
 	@FlyElement(name="Distribution Sorting", description="Quantity distribution sorting by unit price", dataType=FlyDataType.List, entityType="D", printName="Distribution Sorting", fieldLength=1)
 	DistributionSorting,
 	//
@@ -3816,9 +3521,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Document Note", description="Additional information for a Document", help="The Document Note is used for recording any additional information regarding this product.", dataType=FlyDataType.Text, entityType="D", printName="Doc Note", fieldLength=2000)
 	DocumentNote,
 	//
-	@FlyElement(name="Document No (To)", description="Document sequence number of the document", help="The document number is usually automatically generated by the system and determined by the document type of the document. If the document is not saved, the preliminary number is displayed in '<>'.		If the document type of your document has no automatic document sequence defined, the field is empty if you create a new document. This is for documents which usually have an external number (like vendor invoice).  If you leave the field empty, the system will generate a document number for you. The document sequence used for this fallback number is defined in the 'Maintain Sequence' window with the name 'DocumentNo_<TableName>', where TableName is the actual name of the table (e.g. C_Order).", dataType=FlyDataType.String, entityType="ECA02", printName="Document No (To)", fieldLength=30)
-	DocumentNoTo,
-	//
 	@FlyElement(name="Document Type", description="Document Type", dataType=FlyDataType.String, entityType="D", printName="Document Type", fieldLength=60)
 	DocumentType,
 	//
@@ -3839,9 +3541,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Account (debit)", description="Account used", help="The (natural) account used", dataType=FlyDataType.NONE, entityType="D", printName="Account (debit)", fieldLength=0)
 	DR_Account_ID,
-	//
-	@FlyElement(name="Driver Status", dataType=FlyDataType.List, entityType="EE03", printName="Driver Status", fieldLength=0)
-	DriverStatus,
 	//
 	@FlyElement(name="Drop Shipment Partner", description="Business Partner to ship to", help="If empty the business partner will be shipped to.", dataType=FlyDataType.Search, entityType="D", printName="Drop Shipment  Partner", fieldLength=22)
 	DropShip_BPartner_ID,
@@ -3911,12 +3610,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Duration", description="Normal Duration in Duration Unit", help="Expected (normal) Length of time for the execution", dataType=FlyDataType.Integer, entityType="D", printName="Duration", fieldLength=22)
 	Duration,
-	//
-	@FlyElement(name="Duration Real", dataType=FlyDataType.Integer, entityType="EE01", printName="Duration Real", fieldLength=22)
-	DurationReal,
-	//
-	@FlyElement(name="Duration Required", dataType=FlyDataType.Integer, entityType="EE01", printName="Duration Required", fieldLength=22)
-	DurationRequired,
 	//
 	@FlyElement(name="Duration Unit", description="Unit of Duration", help="Unit to define the length of time for the execution", dataType=FlyDataType.List, entityType="D", printName="Duration Unit", fieldLength=1)
 	DurationUnit,
@@ -4044,18 +3737,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="EMail Verify", description="Date Email was verified", dataType=FlyDataType.DateTime, entityType="D", printName="EMail Verify", fieldLength=7)
 	EMailVerifyDate,
 	//
-	@FlyElement(name="Employee Image", description="Employee Image", help="Employee Image", dataType=FlyDataType.Image, entityType="EE02", printName="Employee Image", fieldLength=0)
-	EmployeeImage_ID,
-	//
-	@FlyElement(name="Employee Status", dataType=FlyDataType.List, entityType="EE02", printName="Employee Status", fieldLength=2)
-	EmployeeStatus,
-	//
-	@FlyElement(name="Employee Type Name", description="Employee Type Name", dataType=FlyDataType.String, entityType="EE02", printName="Employee Type Name", fieldLength=60)
-	EmployeeTypeName,
-	//
-	@FlyElement(name="Employee Type Value", description="Employee Type Value", dataType=FlyDataType.String, entityType="EE02", printName="Employee Type Value", fieldLength=40)
-	EmployeeTypeValue,
-	//
 	@FlyElement(name="EMU Entry Date", description="Date when the currency joined / will join the EMU", help="The EMU Entry Date defines the date that this currency entered, or will enter the Economic Monetary Union.", dataType=FlyDataType.Date, entityType="D", printName="EMU Entry Date", fieldLength=7)
 	EMUEntryDate,
 	//
@@ -4128,20 +3809,8 @@ public enum Element implements IRefList{
 	@FlyElement(name="Expected Close Date", description="Expected Close Date", help="The Expected Close Date indicates the expected last or final date", dataType=FlyDataType.NONE, entityType="D", printName="Expected Close Date", fieldLength=0)
 	ExpectedCloseDate,
 	//
-	@FlyElement(name="Expected Cost", dataType=FlyDataType.CostsPrices, entityType="EE01", printName="Expected Cost", fieldLength=0)
-	ExpectedCost,
-	//
-	@FlyElement(name="Expected Cost Lower Lever", dataType=FlyDataType.CostsPrices, entityType="EE01", printName="Expected Cost Lower Lever", fieldLength=0)
-	ExpectedCostLL,
-	//
 	@FlyElement(name="Expected Result", dataType=FlyDataType.String, entityType="D", printName="Expected Result", fieldLength=22)
 	ExpectedResult,
-	//
-	@FlyElement(name="Expected Total Cost", dataType=FlyDataType.CostsPrices, entityType="EE01", printName="Expected Total Cost", fieldLength=0)
-	ExpectedTotalCost,
-	//
-	@FlyElement(name="Embedded Format", dataType=FlyDataType.Table, entityType="EE05", printName="Embedded Format", fieldLength=10)
-	EXP_EmbeddedFormat_ID,
 	//
 	@FlyElement(name="Expense", dataType=FlyDataType.Amount, entityType="D", printName="Expense", fieldLength=22)
 	Expense,
@@ -4152,23 +3821,8 @@ public enum Element implements IRefList{
 	@FlyElement(name="Expense (fiscal)", dataType=FlyDataType.NONE, entityType="D", printName="Expense (fiscal)", fieldLength=0)
 	Expense_F,
 	//
-	@FlyElement(name="Export Format", dataType=FlyDataType.ID, entityType="EE05", printName="Export Format", fieldLength=10)
-	EXP_Format_ID,
-	//
-	@FlyElement(name="Format Line", dataType=FlyDataType.ID, entityType="EE05", printName="Format Line", fieldLength=10)
-	EXP_FormatLine_ID,
-	//
 	@FlyElement(name="Export to XML", description="Export this record to XML", dataType=FlyDataType.NONE, entityType="D", printName="Export to XML", fieldLength=0)
 	ExportXML,
-	//
-	@FlyElement(name="Export Processor", dataType=FlyDataType.TableDirect, entityType="EE05", printName="Export Processor", fieldLength=10)
-	EXP_Processor_ID,
-	//
-	@FlyElement(name="Processor Parameter", dataType=FlyDataType.ID, entityType="EE05", printName="Processor Parameter", fieldLength=10)
-	EXP_ProcessorParameter_ID,
-	//
-	@FlyElement(name="Export Processor Type", dataType=FlyDataType.TableDirect, entityType="EE05", printName="Export Processor Type", fieldLength=10)
-	EXP_Processor_Type_ID,
 	//
 	@FlyElement(name="Bank Account No Format", description="Format of the Bank Account", dataType=FlyDataType.String, entityType="D", printName="Bank Account No Format", fieldLength=20)
 	ExpressionBankAccountNo,
@@ -4191,44 +3845,14 @@ public enum Element implements IRefList{
 	@FlyElement(name="Factor", description="Scaling factor.", help="Numbers are divided by the scaling factor for presentation.  E.g. 123,000 with a scaling factor of 1,000 will display as 123.", dataType=FlyDataType.List, entityType="D", printName="Factor", fieldLength=1)
 	Factor,
 	//
-	@FlyElement(name="Factor Alpha", description="Identifies an Factor Alpha", help="The Factor Alpha is smoothing constant used in this exponential smoothing model.", dataType=FlyDataType.NONE, entityType="EE01", printName="Factor Alpha", fieldLength=0)
-	FactorAlpha,
-	//
-	@FlyElement(name="Factor Beta", description="Identifies a Factor Beta", help="Factor Beta is the second smoothing constant (beta) used in this Triple exponential smoothing model.		<p>betaTolerance the required precision/accuracy - or tolerance of error - required in the estimate of the beta smoothing constant", dataType=FlyDataType.Number, entityType="EE01", printName="Factor Beta", fieldLength=22)
-	FactorBeta,
-	//
-	@FlyElement(name="Factor Gamma", description="Identifies a Factor Gamma", help="Factor Gamma is the second smoothing constant (gamma) used in this exponential smoothing model This is used to smooth the trend.", dataType=FlyDataType.NONE, entityType="EE01", printName="Factor Gamma", fieldLength=0)
-	FactorGamma,
-	//
-	@FlyElement(name="Factor Multiplier", description="Identifies a Factor Multiplier", help="Factor Multiplier defines the increase or decrease in percentage for the forecast quantity, A negative percentage indicates that the amount is reduced.", dataType=FlyDataType.NONE, entityType="EE01", printName="Factor Multiplier", fieldLength=0)
-	FactorMultiplier,
-	//
-	@FlyElement(name="Factor Scale", description="Identifies a Factor Scale", help="Factor Scale defines the scale in percentage applied for the forecast quantity, this value cannot be negative.", dataType=FlyDataType.NONE, entityType="EE01", printName="Factor Scale", fieldLength=0)
-	FactorScale,
-	//
-	@FlyElement(name="User Factor", description="Identifies a User Factor", help="The User Factor used in some forecast rules.", dataType=FlyDataType.Number, entityType="EE01", printName="User Factor", fieldLength=22)
-	FactorUser,
-	//
 	@FlyElement(name="Accounting Fact Reconciliation", dataType=FlyDataType.NONE, entityType="D", printName="Accounting Fact Reconciliation", fieldLength=0)
 	Fact_Reconciliation_ID,
-	//
-	@FlyElement(name="Father Name", description="Father Name of a person", help="The Father Name of a person", dataType=FlyDataType.String, entityType="EE02", printName="Father Name", fieldLength=0)
-	FatherName,
-	//
-	@FlyElement(name="Father's Name", description="Father's Name", dataType=FlyDataType.String, entityType="EE02", printName="Father's Name", fieldLength=0)
-	FathersName,
 	//
 	@FlyElement(name="Fax", description="Facsimile number", help="The Fax identifies a facsimile number for this Business Partner or  Location", dataType=FlyDataType.String, entityType="D", printName="Fax", fieldLength=40)
 	Fax,
 	//
-	@FlyElement(name="Feature", description="Indicated the Feature for Product Configure", help="Indicated the Feature for Product Configure", dataType=FlyDataType.String, entityType="EE01", printName="Feature", fieldLength=30)
-	Feature,
-	//
 	@FlyElement(name="Fee Amount", description="Fee amount in invoice currency", help="The Fee Amount indicates the charge amount on a dunning letter for overdue invoices.  This field will only display if the charge fee checkbox has been selected.", dataType=FlyDataType.Amount, entityType="D", printName="Fee", fieldLength=22)
 	FeeAmt,
-	//
-	@FlyElement(name="Feedback", dataType=FlyDataType.Text, entityType="EE02", printName="Feedback", fieldLength=0)
-	Feedback,
 	//
 	@FlyElement(name="Field Alignment", description="Field Text Alignment", help="Alignment of field text. The default is determined by the data/display type: Numbers are right aligned, other data is left aligned", dataType=FlyDataType.List, entityType="D", printName="Field Alignment", fieldLength=1)
 	FieldAlignmentType,
@@ -4263,9 +3887,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="First Count Qty", dataType=FlyDataType.NONE, entityType="D", printName="1st Count", fieldLength=0)
 	FirstCountQty,
 	//
-	@FlyElement(name="First Name", description="First Name of a person", help="The First Name of a person", dataType=FlyDataType.String, entityType="EE02", printName="First Name", fieldLength=0)
-	FirstName,
-	//
 	@FlyElement(name="First Sale", description="Date of First Sale", help="The First Sale Date identifies the date of the first sale to this Business Partner", dataType=FlyDataType.Date, entityType="D", printName="First Sale", fieldLength=7)
 	FirstSale,
 	//
@@ -4290,12 +3911,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Flat Discount %", description="Flat discount percentage ", dataType=FlyDataType.Number, entityType="D", printName="Flat Discount", fieldLength=22)
 	FlatDiscount,
 	//
-	@FlyElement(name="Float After", dataType=FlyDataType.Quantity, entityType="EE01", printName="Float After", fieldLength=22)
-	FloatAfter,
-	//
-	@FlyElement(name="Float Befored", dataType=FlyDataType.Quantity, entityType="EE01", printName="Float Befored", fieldLength=22)
-	FloatBefored,
-	//
 	@FlyElement(name="Folder", description="A folder on a local or remote system to store data into", help="We store files in folders, especially media files.", dataType=FlyDataType.String, entityType="D", printName="Folder", fieldLength=60)
 	Folder,
 	//
@@ -4310,12 +3925,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Footer Right", description="Content of the right portion of the footer.", dataType=FlyDataType.String, entityType="D", printName="Footer Right", fieldLength=255)
 	FooterRight,
-	//
-	@FlyElement(name="Forecast", description="Indicated the % of participation this component into a of the BOM Planning", help="The BOM of Planning Type are useful to Planning the Product family.		For example is possible create a BOM Planning for an Automobile		10% Automobile Red	35% Automobile Blue	45% Automobile Black	19% Automobile Green	1%  Automobile Orange		When Material Plan is calculated MRP generate a Manufacturing Order meet to demand to each  of the Automobile", dataType=FlyDataType.Quantity, entityType="EE01", printName="Forecast", fieldLength=22)
-	Forecast,
-	//
-	@FlyElement(name="Forecast Key", description="Key of the Forecast", dataType=FlyDataType.String, entityType="EE01", printName="Forecast Key", fieldLength=40)
-	ForecastValue,
 	//
 	@FlyElement(name="Format Pattern", description="The pattern used to format a number or date.", help="A string complying with either Java SimpleDateFormat or DecimalFormat pattern syntax used to override the default presentation format of a date or number type field.", dataType=FlyDataType.String, entityType="D", printName="Format Pattern", fieldLength=22)
 	FormatPattern,
@@ -4362,14 +3971,8 @@ public enum Element implements IRefList{
 	@FlyElement(name="Future Cost Price", dataType=FlyDataType.CostsPrices, entityType="D", printName="Future Cost price", fieldLength=22)
 	FutureCostPrice,
 	//
-	@FlyElement(name="Future Cost Price LL", dataType=FlyDataType.CostsPrices, entityType="EE01", printName="Future Cost price Lower Level", fieldLength=22)
-	FutureCostPriceLL,
-	//
 	@FlyElement(name="GAAP", description="Generally Accepted Accounting Principles", help="The GAAP identifies the account principles that this accounting schema will adhere to.", dataType=FlyDataType.List, entityType="D", printName="GAAP", fieldLength=2)
 	GAAP,
-	//
-	@FlyElement(name="Gender", dataType=FlyDataType.List, entityType="EE02", printName="Gender", fieldLength=1)
-	Gender,
 	//
 	@FlyElement(name="Generate Class", description="Generate Class Button", dataType=FlyDataType.Button, entityType="D", printName="Generate Class", fieldLength=1)
 	GenerateClass,
@@ -4430,12 +4033,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Grace Days", description="Days after due date to send first dunning letter", help="The Grace Days indicates the number of days after the due date to send the first dunning letter.  This field displays only if the send dunning letters checkbox has been selected.", dataType=FlyDataType.Integer, entityType="D", printName="Grace Days", fieldLength=22)
 	GraceDays,
-	//
-	@FlyElement(name="Grade Name", description="Grade Name for Impor Employee", help="Grade Name for Employee", dataType=FlyDataType.String, entityType="ECA02", printName="Grade Name", fieldLength=255)
-	GradeName,
-	//
-	@FlyElement(name="Grade Value", description="Grade Value for Impor Employee", help="Grade Value for Employee", dataType=FlyDataType.String, entityType="ECA02", printName="Grade Value", fieldLength=60)
-	GradeValue,
 	//
 	@FlyElement(name="Grand Total", description="Total amount of document", help="The Grand Total displays the total amount including Tax and Freight in document currency", dataType=FlyDataType.Amount, entityType="D", printName="Grand Total", fieldLength=22)
 	GrandTotal,
@@ -4506,9 +4103,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Has Tree", description="Window has Tree Graph", help="The Has Tree checkbox indicates if this window displays a tree metaphor.", dataType=FlyDataType.YesNo, entityType="D", printName="Has Tree", fieldLength=1)
 	HasTree,
 	//
-	@FlyElement(name="Has Vapor Recovery System", description="Indicates the existence of a vapor recovery system", dataType=FlyDataType.YesNo, entityType="EE03", printName="Has Vapor Recovery System", fieldLength=0)
-	HasVaporRecoverySystem,
-	//
 	@FlyElement(name="Header Line Color", description="Table header row line color", help="Color of the table header row lines", dataType=FlyDataType.Table, entityType="D", printName="Header Line Color", fieldLength=22)
 	HdrLine_PrintColor_ID,
 	//
@@ -4542,203 +4136,14 @@ public enum Element implements IRefList{
 	@FlyElement(name="Comment/Help", description="Comment or Hint", help="The Help field contains a hint, comment or help about the use of this item.", dataType=FlyDataType.Text, entityType="D", printName="Comment", fieldLength=2000)
 	Help,
 	//
-	@FlyElement(name="Highest Education", description="Highest Education for this position", help="The Highest Education for this position", dataType=FlyDataType.String, entityType="EE02", printName="Highest Education", fieldLength=0)
-	HighestEducation,
-	//
 	@FlyElement(name="HistoryYears", description="Number of years prior to current year to create in calendar", dataType=FlyDataType.Integer, entityType="D", printName="History Years", fieldLength=22)
 	HistoryYears,
-	//
-	@FlyElement(name="Host", dataType=FlyDataType.String, entityType="EE05", printName="Host", fieldLength=255)
-	Host,
 	//
 	@FlyElement(name="Host Address", description="Host Address URL or DNS", help="The Host Address identifies the URL or DNS of the target host", dataType=FlyDataType.String, entityType="D", printName="Host Address", fieldLength=60)
 	HostAddress,
 	//
 	@FlyElement(name="Host port", description="Host Communication Port", help="The Host Port identifies the port to communicate with the host.", dataType=FlyDataType.Integer, entityType="D", printName="Host port", fieldLength=22)
 	HostPort,
-	//
-	@FlyElement(name="Payroll Attribute Account", dataType=FlyDataType.Account, entityType="EE02", printName="Payroll Attribute Account", fieldLength=10)
-	HR_Attribute_Acct,
-	//
-	@FlyElement(name="Payroll Employee Attribute", description="Employee Attribute allows to add any metadata of type (text, date , quantity and amount ) of an Employee.", dataType=FlyDataType.ID, entityType="EE02", printName="Payroll Employee Attribute", fieldLength=22)
-	HR_Attribute_ID,
-	//
-	@FlyElement(name="Career Level", description="The Career Level for this position", help="Career level required for this position", dataType=FlyDataType.ID, entityType="EE02", printName="Career Level", fieldLength=0)
-	HR_CareerLevel_ID,
-	//
-	@FlyElement(name="Payroll Concept Account", dataType=FlyDataType.Account, entityType="EE02", printName="Payroll Concept Account", fieldLength=10)
-	HR_Concept_Acct,
-	//
-	@FlyElement(name="Payroll Concept Account", dataType=FlyDataType.ID, entityType="EE02", printName="Payroll Concept Account", fieldLength=10)
-	HR_Concept_Acct_ID,
-	//
-	@FlyElement(name="Global Payroll Concept Category", description="Global Payroll Concept Category allows to grouping of Global Concept to reports and queries", dataType=FlyDataType.TableDirect, entityType="EE02", printName="Global Payroll Concept Category", fieldLength=10)
-	HR_Concept_Category_ID,
-	//
-	@FlyElement(name="Global Payroll Concept", description="The Payroll Concept allows to define all the perception and deductions elements needed to define a payroll.", dataType=FlyDataType.ID, entityType="EE02", printName="Global Payroll Concept", fieldLength=10)
-	HR_Concept_ID,
-	//
-	@FlyElement(name="Global Payroll Concept Type", description="Allows define types for concepts", dataType=FlyDataType.ID, entityType="EE02", printName="Global Payroll Concept Type", fieldLength=22)
-	HR_Concept_Type_ID,
-	//
-	@FlyElement(name="Payroll Contract", dataType=FlyDataType.TableDirect, entityType="EE02", printName="Payroll Contract", fieldLength=10)
-	HR_Contract_ID,
-	//
-	@FlyElement(name="Degree", description="Degree for an Employee", help="The Degree for an Employee", dataType=FlyDataType.TableDirect, entityType="EE02", printName="Degree", fieldLength=22)
-	HR_Degree_ID,
-	//
-	@FlyElement(name="Payroll Department", dataType=FlyDataType.NONE, entityType="EE02", printName="Payroll Department", fieldLength=10)
-	HR_Department_ID,
-	//
-	@FlyElement(name="Department Consumption Limit", dataType=FlyDataType.ID, entityType="EE02", printName="Department Consumption Limit", fieldLength=0)
-	HR_DepartmentProduct_ID,
-	//
-	@FlyElement(name="Designation", description="Designation is a nationally recognized level", help="Designation is a nationally recognized level of achievement within the field of human resources.", dataType=FlyDataType.TableDirect, entityType="EE02", printName="Designation", fieldLength=0)
-	HR_Designation_ID,
-	//
-	@FlyElement(name="Education", description="Education of an Employee", help="The Education of an Employee", dataType=FlyDataType.ID, entityType="EE02", printName="Education", fieldLength=0)
-	HR_Education_ID,
-	//
-	@FlyElement(name="Employee Dependents", description="Employee Dependents", help="Employee Dependents", dataType=FlyDataType.ID, entityType="EE02", printName="Employee Dependents", fieldLength=0)
-	HR_EmployeeDependent_ID,
-	//
-	@FlyElement(name="Work Experience", description="Work Experience", help="The Work Experience", dataType=FlyDataType.ID, entityType="EE02", printName="Work Experience", fieldLength=0)
-	HR_EmployeeExperience_ID,
-	//
-	@FlyElement(name="Payroll Employee", dataType=FlyDataType.ID, entityType="EE02", printName="Payroll Employee", fieldLength=10)
-	HR_Employee_ID,
-	//
-	@FlyElement(name="HR_EmployeeInsurance_ID", description="Employee Insurance", help="The Employee Insurance", dataType=FlyDataType.ID, entityType="EE02", printName="HR_EmployeeInsurance_ID", fieldLength=0)
-	HR_EmployeeInsurance_ID,
-	//
-	@FlyElement(name="Employee Type", description="Employee Type", dataType=FlyDataType.TableDirect, entityType="EE02", printName="Employee Type", fieldLength=0)
-	HR_EmployeeType_ID,
-	//
-	@FlyElement(name="Employee Weekly Off", description="Employee Weekly Off of an Employee", help="The Employee Weekly Off defines the weekdays working and nonworking an Employee", dataType=FlyDataType.ID, entityType="EE02", printName="Employee Weekly Off", fieldLength=0)
-	HR_EmployeeWeeklyOff_ID,
-	//
-	@FlyElement(name="Payroll Expense Account", dataType=FlyDataType.Account, entityType="EE02", printName="Payroll Expense Account", fieldLength=10)
-	HR_Expense_Acct,
-	//
-	@FlyElement(name="Grade", description="Grade", help="Grade", dataType=FlyDataType.TableDirect, entityType="EE02", printName="Grade", fieldLength=0)
-	HR_Grade_ID,
-	//
-	@FlyElement(name="Insurance Type", description="Insurance Type", help="The Insurance Type defined for an employee", dataType=FlyDataType.TableDirect, entityType="EE02", printName="Insurance Type", fieldLength=0)
-	HR_InsuranceType_ID,
-	//
-	@FlyElement(name="Applicants Interview", dataType=FlyDataType.ID, entityType="EE02", printName="Applicants Interview", fieldLength=0)
-	HR_Interview_ID,
-	//
-	@FlyElement(name="Job Application History", description="Job Application History", help="The Job Application History", dataType=FlyDataType.ID, entityType="EE02", printName="Job Application History", fieldLength=0)
-	HR_JobApplicationHistory_ID,
-	//
-	@FlyElement(name="Job Application", description="Job Application", help="The Job Application", dataType=FlyDataType.ID, entityType="EE02", printName="Job Application", fieldLength=0)
-	HR_JobApplication_ID,
-	//
-	@FlyElement(name="Job Education", description="The Job Education for this position", help="Job Education required for this position", dataType=FlyDataType.ID, entityType="EE02", printName="Job Education", fieldLength=0)
-	HR_JobEducation_ID,
-	//
-	@FlyElement(name="Payroll Job", dataType=FlyDataType.NONE, entityType="EE02", printName="Payroll Job", fieldLength=10)
-	HR_Job_ID,
-	//
-	@FlyElement(name="Job Opening History", dataType=FlyDataType.ID, entityType="EE02", printName="Job Opening History", fieldLength=0)
-	HR_JobOpeningHistory_ID,
-	//
-	@FlyElement(name="Job Openings ", description="Job Openings for Recruitment Management", help="The Job Opening required for a Department", dataType=FlyDataType.ID, entityType="EE02", printName="Job Openings ", fieldLength=0)
-	HR_JobOpening_ID,
-	//
-	@FlyElement(name="Job Type", description="The Job Type for a Job Openings", help="Job Type for Recruitment Management", dataType=FlyDataType.ID, entityType="EE02", printName="Job Type", fieldLength=0)
-	HR_JobType_ID,
-	//
-	@FlyElement(name="Leave Assign", description="Leave Assign", help="Leave Assign for an Employee", dataType=FlyDataType.ID, entityType="EE02", printName="Leave Assign", fieldLength=0)
-	HR_LeaveAssign_ID,
-	//
-	@FlyElement(name="Leave Credit History", description="The Leave Credit History of an Employee", dataType=FlyDataType.ID, entityType="EE02", printName="Leave Credit History", fieldLength=0)
-	HR_LeaveCreditHistory_ID,
-	//
-	@FlyElement(name="Leave Reason", description="Predefiend reasons", help="Select predefiend reason for leave or select Others for new reason", dataType=FlyDataType.ID, entityType="EE02", printName="Leave Reason", fieldLength=0)
-	HR_LeaveReason_ID,
-	//
-	@FlyElement(name="Leave Type Combination", description="Leave Type Combination", help="The combination valid leave type for an leave", dataType=FlyDataType.ID, entityType="EE02", printName="Leave Type Combination", fieldLength=0)
-	HR_LeaveTypeCombination_ID,
-	//
-	@FlyElement(name="Leave Type for employee type", description="Leave type for employee type", help="The Leave Type for employee type", dataType=FlyDataType.ID, entityType="EE02", printName="Leave Type for employee type", fieldLength=0)
-	HR_LeaveTypeEmployeeType_ID,
-	//
-	@FlyElement(name="Leave Type", description="Leave Type for an Employee", help="The Leave Type for an Employee", dataType=FlyDataType.TableDirect, entityType="EE02", printName="Leave Type", fieldLength=0)
-	HR_LeaveType_ID,
-	//
-	@FlyElement(name="Payroll List Base", dataType=FlyDataType.Table, entityType="EE02", printName="Payroll List Base", fieldLength=10)
-	HR_ListBase_ID,
-	//
-	@FlyElement(name="Payroll List", dataType=FlyDataType.ID, entityType="EE02", printName="Payroll List", fieldLength=10)
-	HR_List_ID,
-	//
-	@FlyElement(name="Payroll List Line", dataType=FlyDataType.ID, entityType="EE02", printName="Payroll List Line", fieldLength=10)
-	HR_ListLine_ID,
-	//
-	@FlyElement(name="Payroll List Type", dataType=FlyDataType.ID, entityType="EE02", printName="Payroll List Type", fieldLength=10)
-	HR_ListType_ID,
-	//
-	@FlyElement(name="Payroll List Version", dataType=FlyDataType.ID, entityType="EE02", printName="Payroll List Version", fieldLength=10)
-	HR_ListVersion_ID,
-	//
-	@FlyElement(name="Payroll Movement", dataType=FlyDataType.ID, entityType="EE02", printName="Payroll Movement", fieldLength=10)
-	HR_Movement_ID,
-	//
-	@FlyElement(name="Payroll Concept", description="The payroll concept allows to define all those Global Concept that are using to calculate a payroll.", dataType=FlyDataType.ID, entityType="EE02", printName="Payroll Concept", fieldLength=10)
-	HR_PayrollConcept_ID,
-	//
-	@FlyElement(name="Payroll", dataType=FlyDataType.NONE, entityType="EE02", printName="Payroll", fieldLength=22)
-	HR_Payroll_ID,
-	//
-	@FlyElement(name="Payroll Pay Selection Check ID", dataType=FlyDataType.NONE, entityType="EE02", printName="Payroll Pay Selection Check ID", fieldLength=0)
-	HR_PaySelectionCheck_ID,
-	//
-	@FlyElement(name="Payroll Payment Selection ID", dataType=FlyDataType.NONE, entityType="EE02", printName="Payroll Payment Selection ID", fieldLength=0)
-	HR_PaySelection_ID,
-	//
-	@FlyElement(name="Payroll Payment Selection Line ID", dataType=FlyDataType.NONE, entityType="EE02", printName="Payroll Payment Selection Line ID", fieldLength=0)
-	HR_PaySelectionLine_ID,
-	//
-	@FlyElement(name="Payroll Period", dataType=FlyDataType.Table, entityType="EE02", printName="Payroll Period", fieldLength=10)
-	HR_Period_ID,
-	//
-	@FlyElement(name="Payroll Process", dataType=FlyDataType.ID, entityType="EE02", printName="Payroll Process", fieldLength=10)
-	HR_Process_ID,
-	//
-	@FlyElement(name="Race", description="Race", help="Race", dataType=FlyDataType.ID, entityType="EE02", printName="Race", fieldLength=0)
-	HR_Race_ID,
-	//
-	@FlyElement(name="Employee Relationship", description="Employee Relationship Identifies an employee relations", help="The Employee Relationship  Identifies an employee relations", dataType=FlyDataType.ID, entityType="EE02", printName="Employee Relationship", fieldLength=0)
-	HR_Relationship_ID,
-	//
-	@FlyElement(name="Payroll Revenue Account", dataType=FlyDataType.Account, entityType="EE02", printName="Payroll Revenue Account", fieldLength=10)
-	HR_Revenue_Acct,
-	//
-	@FlyElement(name="Salary Range", description="The Salary Rage is use in Job Openings", help="Salary range for Job Opening", dataType=FlyDataType.ID, entityType="EE02", printName="Salary Range", fieldLength=0)
-	HR_SalaryRange_ID,
-	//
-	@FlyElement(name="Salary Structure", description="Salary Structure of an Employee", help="The Salary Structure define ", dataType=FlyDataType.ID, entityType="EE02", printName="Salary Structure", fieldLength=0)
-	HR_SalaryStructure_ID,
-	//
-	@FlyElement(name="Salary Structure Line", description="Salary Structure Line", help="Salary Structure Line", dataType=FlyDataType.ID, entityType="EE02", printName="Salary Structure Line", fieldLength=0)
-	HR_SalaryStructureLine_ID,
-	//
-	@FlyElement(name="Shift Group", description="Shift Group", help="The Shift Group provides a way to grouping of Shifts", dataType=FlyDataType.TableDirect, entityType="EE02", printName="Shift Group", fieldLength=10)
-	HR_ShiftGroup_ID,
-	//
-	@FlyElement(name="Skill Type", description="Skill Type for an Employee", help="The Skill Type for an Employee", dataType=FlyDataType.ID, entityType="EE02", printName="Skill Type", fieldLength=10)
-	HR_SkillType_ID,
-	//
-	@FlyElement(name="Work Group", description="Work Group", help="The Work Group provides a way to grouping of Work", dataType=FlyDataType.TableDirect, entityType="EE02", printName="Work Group", fieldLength=10)
-	HR_WorkGroup_ID,
-	//
-	@FlyElement(name="Work Shift", description="Work Shift", help=".", dataType=FlyDataType.TableDirect, entityType="EE02", printName="Work Shift", fieldLength=0)
-	HR_WorkShift_ID,
-	//
-	@FlyElement(name="Payroll Year", dataType=FlyDataType.TableDirect, entityType="EE02", printName="Payroll Year", fieldLength=10)
-	HR_Year_ID,
 	//
 	@FlyElement(name="HTML", dataType=FlyDataType.LongText, entityType="D", printName="HTML", fieldLength=0)
 	HTML,
@@ -4764,15 +4169,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Import Conversion Rate", description="Import Currency Conversion Rate", dataType=FlyDataType.ID, entityType="D", printName="Import Conversion Rate", fieldLength=22)
 	I_Conversion_Rate_ID,
 	//
-	@FlyElement(name="Identification Mark", description="Identification Mark", help="Identification Mark", dataType=FlyDataType.String, entityType="EE02", printName="Identification Mark", fieldLength=0)
-	IdentificationMark,
-	//
-	@FlyElement(name="Identity Proof", description="Defines the type of Identity Proof", help="Defines the type of Identity Proof", dataType=FlyDataType.List, entityType="EE02", printName="Identity Proof", fieldLength=0)
-	IdentityProof,
-	//
-	@FlyElement(name="Identity Proof No", description="Identity Proof No of applicant", help="The Identity Proof No of applicant", dataType=FlyDataType.String, entityType="EE02", printName="Identity Proof No", fieldLength=0)
-	IdentityProofNo,
-	//
 	@FlyElement(name="ID Range End", description="End if the ID Range used", help="The ID Range allows to restrict the range of the internally used IDs. Please note that the ID range is NOT enforced.", dataType=FlyDataType.Number, entityType="D", printName="ID End", fieldLength=22)
 	IDRangeEnd,
 	//
@@ -4791,23 +4187,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="Imported Fixed Asset", dataType=FlyDataType.NONE, entityType="D", printName="Imported Fixed Asset", fieldLength=0)
 	I_FixedAsset_ID,
 	//
-	@FlyElement(name="Import Forecast ID", dataType=FlyDataType.NONE, entityType="EE01", printName="Import Forecast ID", fieldLength=0)
-	I_Forecast_ID,
-	//
 	@FlyElement(name="Import GL Journal", description="Import General Ledger Journal", dataType=FlyDataType.ID, entityType="D", printName="Import GL Journal", fieldLength=22)
 	I_GLJournal_ID,
 	//
 	@FlyElement(name="IgnorePrevProduction", description="IgnorePrevProduction", help="IgnorePrevProduction", dataType=FlyDataType.YesNo, entityType="D", printName="IgnorePrevProduction", fieldLength=1)
 	IgnorePrevProduction,
-	//
-	@FlyElement(name="I_HR_Attribute", dataType=FlyDataType.NONE, entityType="EE02", printName="I_HR_Attribute", fieldLength=0)
-	I_HR_Attribute_ID,
-	//
-	@FlyElement(name="I_HR_Employee ID", dataType=FlyDataType.NONE, entityType="EE02", printName="I_HR_Employee ID", fieldLength=0)
-	I_HR_Employee_ID,
-	//
-	@FlyElement(name="Payroll Movement Import", dataType=FlyDataType.ID, entityType="EE02", printName="Payroll Movement Import", fieldLength=10)
-	I_HR_Movement_ID,
 	//
 	@FlyElement(name="Ship/Receipt Confirmation Import Line", description="Material Shipment or Receipt Confirmation Import Line", help="Import Confirmation Line Details", dataType=FlyDataType.ID, entityType="D", printName="Ship/Receipt Confirm Import Line", fieldLength=22)
 	I_InOutLineConfirm_ID,
@@ -4833,29 +4217,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="Image URL", description="URL of  image", help="URL of image; The image is not stored in the database, but retrieved at runtime. The image can be a gif, jpeg or png.", dataType=FlyDataType.URL, entityType="D", printName="Image URL", fieldLength=120)
 	ImageURL,
 	//
-	@FlyElement(name="I_Movement_ID", dataType=FlyDataType.ID, entityType="EE01", printName="I_Movement_ID", fieldLength=10)
-	I_Movement_ID,
-	//
-	@FlyElement(name="Implosion", description="Implosion of a Bill of Materials refers to finding all the BOM''s in which a component is used.", help="Commonly called a Where-Used report.", dataType=FlyDataType.YesNo, entityType="EE01", printName="Implosion", fieldLength=1)
-	Implosion,
-	//
 	@FlyElement(name="Import Fields", description="Create Fields from Table Columns", dataType=FlyDataType.Button, entityType="D", printName="Import Fields", fieldLength=1)
 	ImportFields,
 	//
 	@FlyElement(name="Import Table", description="Import Table Columns from Database", dataType=FlyDataType.Button, entityType="D", printName="Import Table", fieldLength=1)
 	ImportTable,
-	//
-	@FlyElement(name="Import Processor", dataType=FlyDataType.ID, entityType="EE05", printName="Import Processor", fieldLength=10)
-	IMP_Processor_ID,
-	//
-	@FlyElement(name="Import Processor Log", dataType=FlyDataType.ID, entityType="EE05", printName="Import Processor Log", fieldLength=22)
-	IMP_ProcessorLog_ID,
-	//
-	@FlyElement(name="Import Processor Parameter", dataType=FlyDataType.ID, entityType="EE05", printName="Import Processor Parameter", fieldLength=10)
-	IMP_ProcessorParameter_ID,
-	//
-	@FlyElement(name="Import Processor Type", dataType=FlyDataType.TableDirect, entityType="EE05", printName="Import Processor Type", fieldLength=10)
-	IMP_Processor_Type_ID,
 	//
 	@FlyElement(name="Inactivity Alert Days", description="Send Alert when there is no activity after days (0= no alert)", help="An email alert is sent when the request shows no activity for the number of days defined.", dataType=FlyDataType.Integer, entityType="D", printName="Inactivity Alert Days", fieldLength=22)
 	InactivityAlertDays,
@@ -4893,23 +4259,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="Info To", dataType=FlyDataType.String, entityType="D", printName="Info To", fieldLength=60)
 	Info_To,
 	//
-	@FlyElement(name="Inbound & Outbound Class", description="Custom class to implemeted new Inbound & Outbound Rule logic", help="If you select a custom Inbound & Outbound type, you need to create a class implementing org.eevolution.util.IInOutboundRule and set that on Inbound & Outbound Rule.", dataType=FlyDataType.NONE, entityType="EE03", printName="Â© Class", fieldLength=0)
-	InOutboundClass,
-	//
-	@FlyElement(name="Inbound & Outbound Rule", description="Inbound & Outbound Rule determinated the putaway or pick location for goods stocked in the warehouse", help="Inbound & Outbound Rule are used to define which locators should be considered for putaway or picking.", dataType=FlyDataType.NONE, entityType="EE03", printName="Inbound & Outbound Rule", fieldLength=0)
-	InOutBoundRule,
-	//
-	@FlyElement(name="Inbound & Outbound Type", description="Inbound & Outbound Type", help="The Inbound & Outbound Type defines the type of In & Out Operation to be Putaway or Picking.", dataType=FlyDataType.NONE, entityType="EE03", printName="Inbound & Outbound Type", fieldLength=0)
-	InOutBoundType,
-	//
 	@FlyElement(name="Shipment/Receipt", description="MaterialShipment Document", help="The Material Shipment / Receipt ", dataType=FlyDataType.Search, entityType="D", printName="Shipment/Receipt", fieldLength=22)
 	InOut_ID,
 	//
 	@FlyElement(name="Instructions", dataType=FlyDataType.Memo, entityType="D", printName="Instructions", fieldLength=1000)
 	Instructions,
-	//
-	@FlyElement(name="Insurance Plan", description="The Insurance Plan", dataType=FlyDataType.String, entityType="EE02", printName="Insurance Plan", fieldLength=0)
-	InsurancePlan,
 	//
 	@FlyElement(name="Intercompany Due From Acct", description="Intercompany Due From / Receivables Account", help="The Intercompany Due From account indicates the account that represents money owed to this organization from other organizations.", dataType=FlyDataType.Account, entityType="D", printName="Intercompany Due From Acct", fieldLength=22)
 	IntercompanyDueFrom_Acct,
@@ -4992,17 +4346,8 @@ public enum Element implements IRefList{
 	@FlyElement(name="Import Price List", dataType=FlyDataType.ID, entityType="D", printName="Import Price List", fieldLength=22)
 	I_PriceList_ID,
 	//
-	@FlyElement(name="Import Product Attribute Set Instance ID", dataType=FlyDataType.NONE, entityType="EE01", printName="Import Product Attribute Set Instance ID", fieldLength=0)
-	I_Product_ASI_ID,
-	//
-	@FlyElement(name="I_Product_BOM_ID", dataType=FlyDataType.ID, entityType="EE01", printName="I_Product_BOM_ID", fieldLength=10)
-	I_Product_BOM_ID,
-	//
 	@FlyElement(name="Import Product", description="Import Item or Service", dataType=FlyDataType.ID, entityType="D", printName="Import Product", fieldLength=22)
 	I_Product_ID,
-	//
-	@FlyElement(name="Import Product Planning", dataType=FlyDataType.ID, entityType="EE01", printName="Import Product Planning", fieldLength=10)
-	I_ProductPlanning_ID,
 	//
 	@FlyElement(name="Import Report Line Set", description="Import Report Line Set values", dataType=FlyDataType.ID, entityType="D", printName="Import Report Line Set", fieldLength=22)
 	I_ReportLine_ID,
@@ -5028,9 +4373,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Activity Dimension", description="Include Activity as a cube dimension", dataType=FlyDataType.YesNo, entityType="D", printName="Activity Dimension", fieldLength=1)
 	IsActivityDim,
 	//
-	@FlyElement(name="Add Invoice Reference Line", description="Add a line on invoice with information about reference of shipment", help="It can have information about shipment no and shipment date", dataType=FlyDataType.YesNo, entityType="ECA02", printName="Add Invoice Reference Line", fieldLength=1)
-	IsAddInvoiceReferenceLine,
-	//
 	@FlyElement(name="Reverse Local Address Lines", description="Print Local Address in reverse Order", help="If NOT selected the local sequence is Address 1, Address 2, Address 3, Address 4, City/Region/Postal, Country.	If selected the local sequence is Country, City/Region/Postal, Address 4, Address 3, Address 2, Address 1.	The sequence of City/Region/Postal is determined by the local address format.", dataType=FlyDataType.YesNo, entityType="D", printName="Reverse Local Address", fieldLength=1)
 	IsAddressLinesLocalReverse,
 	//
@@ -5043,9 +4385,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Adhoc Conversion", description="Perform conversion for all amounts to currency", help="If a currency is selected, only this currency will be reported. If adhoc conversion is selected, all currencies are converted to the defined currency", dataType=FlyDataType.YesNo, entityType="D", printName="Adhoc Conversion", fieldLength=1)
 	IsAdhocConversion,
 	//
-	@FlyElement(name="Consider Adjacent Holidays As Leave?", description="Consider Adjacent Holidays As Leave?", dataType=FlyDataType.YesNo, entityType="EE02", printName="Consider Adjacent Holidays As Leave?", fieldLength=0)
-	IsAdjacentHolidayAsLeave,
-	//
 	@FlyElement(name="Adjust COGS", description="Adjust Cost of Good Sold", help="For Invoice costing methods, you can adjust the cost of goods sold. At the time of shipment, you may not have received the invoice for the receipt or cost adjustments like freight, customs, etc.", dataType=FlyDataType.YesNo, entityType="D", printName="Adjust COGS", fieldLength=1)
 	IsAdjustCOGS,
 	//
@@ -5054,9 +4393,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Alert", description="Display alert message when referenced record is accessed", dataType=FlyDataType.NONE, entityType="D", printName="Alert", fieldLength=0)
 	IsAlert,
-	//
-	@FlyElement(name="Import Sales History ID", dataType=FlyDataType.NONE, entityType="EE01", printName="Import Sales History ID", fieldLength=0)
-	I_SalesHistory_ID,
 	//
 	@FlyElement(name="Include All Currencies", description="Report not just foreign currency Invoices", dataType=FlyDataType.YesNo, entityType="D", printName="All Currencies", fieldLength=1)
 	IsAllCurrencies,
@@ -5069,9 +4405,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Allow Copy", description="Defines whether the value of this field is considered in the copy of record", help="The default value is yes, it is recommended that values such as ID, document action, document status  should be defined as no.", dataType=FlyDataType.YesNo, entityType="D", printName="Allow Copy", fieldLength=1)
 	IsAllowCopy,
-	//
-	@FlyElement(name="Allowed En Cashment?", description="Allowed En Cashment? ", help="The Allowed En Cashment ", dataType=FlyDataType.YesNo, entityType="EE02", printName="Allowed En Cashment?", fieldLength=0)
-	IsAllowedEnCashment,
 	//
 	@FlyElement(name="Allow Logging", description="Determine if a column must be recorded into the change log", dataType=FlyDataType.YesNo, entityType="D", printName="Allow Logging", fieldLength=1)
 	IsAllowLogging,
@@ -5124,9 +4457,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Automatic Production", dataType=FlyDataType.YesNo, entityType="D", printName="Automatic Production", fieldLength=1)
 	IsAutoProduction,
 	//
-	@FlyElement(name="Reconcile Automatically", description="Reconcile a payment automatically", dataType=FlyDataType.YesNo, entityType="ECA02", printName="Reconcile Automatically", fieldLength=1)
-	IsAutoReconciled,
-	//
 	@FlyElement(name="Auto numbering", description="Automatically assign the next number", help="The Auto Numbering checkbox indicates if the system will assign the next number automatically.", dataType=FlyDataType.YesNo, entityType="D", printName="Auto numbering", fieldLength=1)
 	IsAutoSequence,
 	//
@@ -5150,9 +4480,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Base Language", description="The system information is maintained in this language", dataType=FlyDataType.YesNo, entityType="D", printName="Base Language", fieldLength=1)
 	IsBaseLanguage,
-	//
-	@FlyElement(name="Is BatchTime", dataType=FlyDataType.YesNo, entityType="EE01", printName="Is BatchTime", fieldLength=1)
-	IsBatchTime,
 	//
 	@FlyElement(name="Before Approval", description="The Check is before the (manual) approval", help="If selected, the Budget Approval is before manual approvals - i.e. is only approved if budget is available.  This may cause that the use of the budget is delayed (after the approval)", dataType=FlyDataType.YesNo, entityType="D", printName="Before Approval", fieldLength=1)
 	IsBeforeApproval,
@@ -5214,12 +4541,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Collapsible", description="Flag to indicate the state of the dashboard panel", help="Flag to indicate the state of the dashboard panel (i.e. collapsible or static)", dataType=FlyDataType.YesNo, entityType="D", printName="Collapsible", fieldLength=1)
 	IsCollapsible,
 	//
-	@FlyElement(name="Is collapsible by default", description="Flag to indicate if is collapsible by default", help="Flag to indicate if is collapsible by default", dataType=FlyDataType.YesNo, entityType="EE07", printName="Is collapsible by default", fieldLength=1)
-	IsCollapsibleByDefault,
-	//
-	@FlyElement(name="Is Collect Cash?", description="Is Collect Cash?", help="Is Collect Cash?", dataType=FlyDataType.YesNo, entityType="EE02", printName="Is Collect Cash?", fieldLength=0)
-	IsCollectCash,
-	//
 	@FlyElement(name="Collective Asset", description="Asset Quantity is Collective", help="Asset Quantity is Collective", dataType=FlyDataType.NONE, entityType="D", printName="Collective Asset", fieldLength=0)
 	IsCollectiveAsset,
 	//
@@ -5237,15 +4558,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Confirmed", description="Assignment is confirmed", help="Resource assignment is confirmed", dataType=FlyDataType.YesNo, entityType="D", printName="Confirmed", fieldLength=1)
 	IsConfirmed,
-	//
-	@FlyElement(name="Is Consumes Forecast", description="Is Consumes Forecast", help="Indicates if the sales order line will generate or not a demand for MPS", dataType=FlyDataType.YesNo, entityType="EE01", printName="Is Consumes Forecast", fieldLength=1)
-	IsConsumesForecast,
-	//
-	@FlyElement(name="Copy Document No On Reversal", description="It Copy the Document No on Reversal Document instead of generate a new Sequence", help="Example of a Document #50000: when is reversed it generate a new sequence with next document no (#50001). If it flag is setted then the next sequence is not generate and the reversal document will be generated with #50000 wiht ^ as prefix: #50000^", dataType=FlyDataType.YesNo, entityType="ECA02", printName="Copy Document No On Reversal", fieldLength=1)
-	IsCopyDocNoOnReversal,
-	//
-	@FlyElement(name="Cost Frozen", description="Indicated that the Standard Cost is frozen", dataType=FlyDataType.YesNo, entityType="EE01", printName="Cost Frozen", fieldLength=1)
-	IsCostFrozen,
 	//
 	@FlyElement(name="Cost Immediately", description="Update Costs immediately for testing", help="If selected, costs are updated immediately when a Cost Detail record is created (by matching or shipping).  Otherwise the costs are updated by batch or when the costs are needed for posting. You should select this only if you are testing,", dataType=FlyDataType.YesNo, entityType="D", printName="Cost Immediate", fieldLength=1)
 	IsCostImmediate,
@@ -5277,26 +4589,14 @@ public enum Element implements IRefList{
 	@FlyElement(name="Create New Journal", description="If selected a new journal within the batch is created", help="Note that the balance check does not check that individual journals are balanced.", dataType=FlyDataType.YesNo, entityType="D", printName="New Journal", fieldLength=1)
 	IsCreateNewJournal,
 	//
-	@FlyElement(name="Create if Not Exists", description="Create it if not exists", dataType=FlyDataType.YesNo, entityType="ECA02", printName="Create if Not Exists", fieldLength=1)
-	IsCreateNonExisting,
-	//
-	@FlyElement(name="Create Plan", description="Indicates whether planned orders will be generated by MRP", help="Indicates whether planned orders will be generated by MRP, if this flag is not just MRP generate a 'Create' action notice", dataType=FlyDataType.YesNo, entityType="EE01", printName="Create Plan", fieldLength=1)
-	IsCreatePlan,
-	//
 	@FlyElement(name="Create Reversal", description="Indicates that reversal movement will be created, if disabled the original movement will be deleted.", dataType=FlyDataType.YesNo, entityType="D", printName="Create Reversal", fieldLength=1)
 	IsCreateReversal,
 	//
 	@FlyElement(name="Create Single Order", description="For all shipments create one Order", dataType=FlyDataType.YesNo, entityType="D", printName="Create Single Order", fieldLength=1)
 	IsCreateSingleOrder,
 	//
-	@FlyElement(name="IsCreateSupply", description="Create supply for product not available", help="Allow create Manufacturing Order or Requisition Material for product not available", dataType=FlyDataType.YesNo, entityType="EE03", printName="Create supply", fieldLength=1)
-	IsCreateSupply,
-	//
 	@FlyElement(name="Credit Approved", description="Credit  has been approved", help="Credit Approved indicates if the credit approval was successful for Orders", dataType=FlyDataType.YesNo, entityType="D", printName="Credit Approved", fieldLength=1)
 	IsCreditApproved,
-	//
-	@FlyElement(name="Is Critical Component", description="Indicate that a Manufacturing Order can not begin without have this component", help="Indicate that a Manufacturing Order can not begin without have this component", dataType=FlyDataType.YesNo, entityType="EE01", printName="Is Critical Component", fieldLength=1)
-	IsCritical,
 	//
 	@FlyElement(name="Current vendor", description="Use this Vendor for pricing and stock replenishment", help="The Current Vendor indicates if prices are used and Product is reordered from this vendor", dataType=FlyDataType.YesNo, entityType="D", printName="Current vendor", fieldLength=1)
 	IsCurrentVendor,
@@ -5463,9 +4763,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Is Exclude Kanban", description="Exclude the Kanban execution", dataType=FlyDataType.YesNo, entityType="D", printName="Is Exclude Kanban", fieldLength=1)
 	IsExcludeKanban,
 	//
-	@FlyElement(name="Is executed query by default", description="Is executed query by default", help="Allow define if a Browser is execute by default", dataType=FlyDataType.YesNo, entityType="EE07", printName="Is executed query by default", fieldLength=1)
-	IsExecutedQueryByDefault,
-	//
 	@FlyElement(name="Explicit Cost Adjustment", description="Post the cost adjustment explicitly", help="If selected, landed costs are posted to the account in the line and then this posting is reversed by the postings to the cost adjustment accounts.  If not selected, it is directly posted to the cost adjustment accounts.", dataType=FlyDataType.YesNo, entityType="D", printName="Explicit Cost Adjustment", fieldLength=1)
 	IsExplicitCostAdjustment,
 	//
@@ -5511,9 +4808,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Form", description="If Selected, a Form is printed, if not selected a columnar List report", help="A form has individual elements with layout information (example: invoice, check)	<br>	A columnar list report has individual columns (example: list of invoices)", dataType=FlyDataType.YesNo, entityType="D", printName="Form", fieldLength=1)
 	IsForm,
 	//
-	@FlyElement(name="Are you a former employee?", description="Are you a former employee?", help="Are you a former employee?", dataType=FlyDataType.YesNo, entityType="EE02", printName="Are you a former employee?", fieldLength=0)
-	IsFormerEmployee,
-	//
 	@FlyElement(name="Full BP Access", description="The user/contact has full access to Business Partner information and resources", help="If selected, the user has full access to the Business Partner (BP) information (Business Documents like Orders, Invoices - Requests) or resources (Assets, Downloads). If you deselect it, the user has no access rights unless, you explicitly grant it in tab 'BP Access'", dataType=FlyDataType.YesNo, entityType="D", printName="Full BP Access", fieldLength=1)
 	IsFullBPAccess,
 	//
@@ -5544,12 +4838,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Mandatory Guarantee Date", description="The entry of a Guarantee Date is mandatory when creating a Product Instance", dataType=FlyDataType.YesNo, entityType="D", printName="Mandatory Guarantee Date", fieldLength=1)
 	IsGuaranteeDateMandatory,
 	//
-	@FlyElement(name="Half Day Leave Allowed ?", description="Half Day Leave Allowed ?", dataType=FlyDataType.YesNo, entityType="EE02", printName="Half Day Leave Allowed ?", fieldLength=0)
-	IsHalfDayLeaveAllowed,
-	//
-	@FlyElement(name="Has fixed Workgroup?", dataType=FlyDataType.YesNo, entityType="EE02", printName="Has fixed Workgroup?", fieldLength=0)
-	IsHasFixedWorkgroup,
-	//
 	@FlyElement(name="Heading only", description="Field without Column - Only label is displayed", help="The Heading Only checkbox indicates if just the label will display on the screen", dataType=FlyDataType.YesNo, entityType="D", printName="Heading only", fieldLength=1)
 	IsHeading,
 	//
@@ -5559,17 +4847,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="High Volume", description="Use Search instead of Pick list", help="The High Volume Checkbox indicates if a search screen will display as opposed to a pick list for selecting records from this table.", dataType=FlyDataType.YesNo, entityType="D", printName="High Volume", fieldLength=1)
 	IsHighVolume,
 	//
-	@FlyElement(name="HR Approved", description="HR Approved", help="The Approved checkbox indicates if this document was approved by Human Resource.", dataType=FlyDataType.YesNo, entityType="EE02", printName="HR Approved", fieldLength=0)
-	IsHRApproved,
-	//
 	@FlyElement(name="HTML", description="Text has HTML tags", dataType=FlyDataType.YesNo, entityType="D", printName="HTML", fieldLength=1)
 	IsHtml,
 	//
 	@FlyElement(name="Identifier", description="This column is part of the record identifier", help="The Identifier checkbox indicates that this column is part of the identifier or key for this table.  ", dataType=FlyDataType.YesNo, entityType="D", printName="Identifier", fieldLength=1)
 	IsIdentifier,
-	//
-	@FlyElement(name="Ignore Default Payroll", description="Ignore Default Payroll for Employee", dataType=FlyDataType.YesNo, entityType="ECA02", printName="Ignore Default Payroll", fieldLength=1)
-	IsIgnoreDefaultPayroll,
 	//
 	@FlyElement(name="Ignore Migration", description="Ignore this record in log migration", dataType=FlyDataType.YesNo, entityType="D", printName="Ignore Migration", fieldLength=1)
 	IsIgnoreMigration,
@@ -5594,18 +4876,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Included", description="Defines whether this content / template is included into another one", help="Templates can be independent or included. Included Templates are also called subtemplates", dataType=FlyDataType.YesNo, entityType="D", printName="Included", fieldLength=1)
 	IsInclude,
-	//
-	@FlyElement(name="Include Bank Balances", dataType=FlyDataType.NONE, entityType="EE06", printName="IsIncludeBankBalances", fieldLength=0)
-	IsIncludeBankBalances,
-	//
-	@FlyElement(name="Include Cash Flow (manual)						records					", dataType=FlyDataType.NONE, entityType="EE06", printName="IsIncludeCashFlows", fieldLength=0)
-	IsIncludeCashFlows,
-	//
-	@FlyElement(name="Include Invoices", dataType=FlyDataType.NONE, entityType="EE06", printName="IsIncludeInvoices", fieldLength=0)
-	IsIncludeInvoices,
-	//
-	@FlyElement(name="IsIncludeNotAvailable", description="The product not available lines are include in the shipment", dataType=FlyDataType.YesNo, entityType="EE03", printName="Add product not available lines", fieldLength=1)
-	IsIncludeNotAvailable,
 	//
 	@FlyElement(name="Include Nulls in Activity", description="Include nulls in the selection of the activity", dataType=FlyDataType.YesNo, entityType="D", printName="Include Nulls in Activity", fieldLength=1)
 	IsIncludeNullsActivity,
@@ -5667,9 +4937,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Include Nulls in User List 4", description="Include nulls in the selection of the User List 4", dataType=FlyDataType.YesNo, entityType="D", printName="Include Nulls in User List 4", fieldLength=1)
 	IsIncludeNullsUserList4,
 	//
-	@FlyElement(name="Include Orders", dataType=FlyDataType.NONE, entityType="EE06", printName="IsIncludeOrders", fieldLength=0)
-	IsIncludeOrders,
-	//
 	@FlyElement(name="Include Payments", description="Include payments in the aging report", dataType=FlyDataType.NONE, entityType="D", printName="Include Payments", fieldLength=0)
 	IsIncludePayments,
 	//
@@ -5688,9 +4955,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Accounting Tab", description="This Tab contains accounting information", help="The Accounting Tab checkbox indicates if this window contains accounting information. To display accounting information, enable this in Tools>Preference and Role.", dataType=FlyDataType.YesNo, entityType="D", printName="Accounting Tab", fieldLength=1)
 	IsInfoTab,
 	//
-	@FlyElement(name="Is In Payroll", description="Defined if any User Contact will be used for Calculate Payroll", dataType=FlyDataType.YesNo, entityType="EE02", printName="Is In Payroll", fieldLength=1)
-	IsInPayroll,
-	//
 	@FlyElement(name="In Possession", description="The asset is in the possession of the organization", help="Assets which are not in possession are e.g. at Customer site and may or may not be owned by the company.", dataType=FlyDataType.YesNo, entityType="D", printName="In Possession", fieldLength=1)
 	IsInPosession,
 	//
@@ -5706,12 +4970,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Internal", description="Internal Organization", dataType=FlyDataType.YesNo, entityType="D", printName="Internal", fieldLength=1)
 	IsInternal,
 	//
-	@FlyElement(name="Internal User", description="Is just for use internal", dataType=FlyDataType.YesNo, entityType="ECA02", printName="Internal User", fieldLength=1)
-	IsInternalUser,
-	//
-	@FlyElement(name="Interview Over", description="Interview Over Indicates whether an applicant will be interviewed", help="The Interview Over Indicates whether an applicant will be interviewed", dataType=FlyDataType.YesNo, entityType="EE02", printName="Interview Over", fieldLength=0)
-	IsInterviewOver,
-	//
 	@FlyElement(name="In Transit", description="Movement is in transit", help="Material Movement is in transit - shipped, but not received.	The transaction is completed, if confirmed.", dataType=FlyDataType.YesNo, entityType="D", printName="In Transit", fieldLength=1)
 	IsInTransit,
 	//
@@ -5723,9 +4981,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Print detail records on invoice ", description="Print detail BOM elements on the invoice", help="The Print Details on Invoice indicates that the BOM element products will print on the Invoice as opposed to this product.", dataType=FlyDataType.YesNo, entityType="D", printName="Print detail on invoice", fieldLength=1)
 	IsInvoicePrintDetails,
-	//
-	@FlyElement(name="Is Issue", dataType=FlyDataType.YesNo, entityType="EE01", printName="Is Issue", fieldLength=1)
-	IsIssue,
 	//
 	@FlyElement(name="Just Migrated", description="Value set by Migration for post-Migration tasks.", dataType=FlyDataType.YesNo, entityType="D", printName="Just Migrated", fieldLength=1)
 	IsJustMigrated,
@@ -5739,12 +4994,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Landscape", description="Landscape orientation", dataType=FlyDataType.YesNo, entityType="D", printName="Landscape", fieldLength=1)
 	IsLandscape,
 	//
-	@FlyElement(name="Is Leave Repeated?", description="Is Leave Repeated?", dataType=FlyDataType.YesNo, entityType="EE02", printName="Is Leave Repeated?", fieldLength=0)
-	IsLeaveRepeated,
-	//
-	@FlyElement(name="Leaves forward to next year", description="Leaves forward to next year", dataType=FlyDataType.YesNo, entityType="EE02", printName="Leaves forward to next year", fieldLength=0)
-	IsLeavesForwardToNextYear,
-	//
 	@FlyElement(name="List Invoices", description="Include List of Invoices", dataType=FlyDataType.YesNo, entityType="D", printName="List Invoices", fieldLength=1)
 	IsListInvoices,
 	//
@@ -5757,20 +5006,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="Logging", description="Do we need to log the banner impressions and clicks? (needs much performance)", help="As of performance we should only log banners if really necessary, as this takes a lot of performance", dataType=FlyDataType.YesNo, entityType="D", printName="Logging", fieldLength=1)
 	IsLogged,
 	//
-	@FlyElement(name="Login User", help="Define if the user can login", dataType=FlyDataType.YesNo, entityType="ECA02", printName="Login User", fieldLength=1)
-	IsLoginUser,
-	//
 	@FlyElement(name="Lot", description="The product instances have a Lot Number", help="For individual products, you can define Lot Numbers", dataType=FlyDataType.YesNo, entityType="D", printName="Lot", fieldLength=1)
 	IsLot,
 	//
 	@FlyElement(name="Mandatory Lot", description="The entry of Lot info is mandatory when creating a Product Instance", dataType=FlyDataType.YesNo, entityType="D", printName="Mandatory Lot", fieldLength=1)
 	IsLotMandatory,
-	//
-	@FlyElement(name="Manager", description="Defines employee as manager", help="The Manager defines employee as manager", dataType=FlyDataType.YesNo, entityType="EE02", printName="Manager", fieldLength=0)
-	IsManager,
-	//
-	@FlyElement(name="Manager Approved", description="Manager Approved indicates if this document was approved by Manager.", help="The Manager Approved checkbox indicates if this document was approved by Manager.", dataType=FlyDataType.YesNo, entityType="EE02", printName="Manager Approved", fieldLength=0)
-	IsManagerApproved,
 	//
 	@FlyElement(name="Mandatory", description="Data entry is required in this column", help="The field must have a value for the record to be saved to the database.", dataType=FlyDataType.YesNo, entityType="D", printName="Mandatory", fieldLength=1)
 	IsMandatory,
@@ -5789,9 +5029,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Is Manufacturer", description="Indicate role of this Business partner as Manufacturer", dataType=FlyDataType.YesNo, entityType="D", printName="Is Manufacturer", fieldLength=1)
 	IsManufacturer,
-	//
-	@FlyElement(name="Manufacturing Resource", dataType=FlyDataType.YesNo, entityType="EE01", printName="Manufacturing Resource", fieldLength=1)
-	IsManufacturingResource,
 	//
 	@FlyElement(name="Calculate Maximum (?)", description="Calculate the maximum amount", help="Calculate the Maximum (¿)  of the data if the field is numeric, otherwise maximum length of the field.", dataType=FlyDataType.YesNo, entityType="D", printName="Calc Max", fieldLength=1)
 	IsMaxCalc,
@@ -5826,9 +5063,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Menu Shipments", description="Show Menu Shipments", dataType=FlyDataType.YesNo, entityType="D", printName="Shipments", fieldLength=1)
 	IsMenuShipments,
 	//
-	@FlyElement(name="Is Milestone", dataType=FlyDataType.YesNo, entityType="EE01", printName="Is Milestone", fieldLength=1)
-	IsMilestone,
-	//
 	@FlyElement(name="Calculate Minimum (¿)", description="Calculate the minimum amount", help="Calculate the Minimum (¿) of the data if the field is numeric, otherwise minimum length of the field.", dataType=FlyDataType.YesNo, entityType="D", printName="Calc Min", fieldLength=1)
 	IsMinCalc,
 	//
@@ -5837,9 +5071,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Modify Price", description="Allow modifying the price", help="Allow modifying the price for products with a non zero price", dataType=FlyDataType.YesNo, entityType="D", printName="Modify Price", fieldLength=1)
 	IsModifyPrice,
-	//
-	@FlyElement(name="Is MPS", description="Indicates if this product is part of the master production schedule", help="The independent demand products such as end products or spare parts, should be part of the MPS.	<br>	<br>	This flag is used to segregate the products to be used in reports and inquiries of the MPS and allows to calculate the MPS by the execution of a selective MRP process.", dataType=FlyDataType.YesNo, entityType="EE01", printName="Is MPS", fieldLength=1)
-	IsMPS,
 	//
 	@FlyElement(name="Multi Line Header", description="Print column headers on mutliple lines if necessary.", help="If selected, column header text will wrap onto the next line -- otherwise the text will be truncated.", dataType=FlyDataType.YesNo, entityType="D", printName="Multi Line Header", fieldLength=1)
 	IsMultiLineHeader,
@@ -5870,9 +5101,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Next Page", description="The column is printed on the next page", help="Before printing this column, there will be a page break.", dataType=FlyDataType.YesNo, entityType="D", printName="Next Page", fieldLength=1)
 	IsNextPage,
-	//
-	@FlyElement(name="No Save In History If Is Null", dataType=FlyDataType.YesNo, entityType="ECA02", printName="No Save In History If Is Null", fieldLength=1)
-	IsNotSaveInHistoryIfNull,
 	//
 	@FlyElement(name="ISO Currency Code", description="Three letter ISO 4217 Code of the Currency", help="For details - http://www.unece.org/trade/rec/rec09en.htm", dataType=FlyDataType.String, entityType="D", printName="ISO Currency", fieldLength=3)
 	ISO_Code,
@@ -5913,9 +5141,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="OrgTrx Dimension", description="Include OrgTrx as a cube dimension", dataType=FlyDataType.YesNo, entityType="D", printName="OrgTrx Dimension", fieldLength=1)
 	IsOrgTrxDim,
 	//
-	@FlyElement(name="Over Time Applicable", description="Is over time applicable to this Shift?", dataType=FlyDataType.YesNo, entityType="EE02", printName="Over Time Applicable", fieldLength=0)
-	IsOverTimeApplicable,
-	//
 	@FlyElement(name="Over/Under Payment", description="Over-Payment (unallocated) or Under-Payment (partial payment)", help="Overpayments (negative) are unallocated amounts and allow you to receive money for more than the particular invoice. 	Underpayments (positive) is a partial payment for the invoice. You do not write off the unpaid amount.", dataType=FlyDataType.YesNo, entityType="D", printName="Over/Under Payment", fieldLength=1)
 	IsOverUnderPayment,
 	//
@@ -5955,23 +5180,14 @@ public enum Element implements IRefList{
 	@FlyElement(name="Parent link column", description="This column is a link to the parent table (e.g. header from lines) - incl. Association key columns", help="The Parent checkbox indicates if this column is a link to the parent table.", dataType=FlyDataType.YesNo, entityType="D", printName="Parent link column", fieldLength=1)
 	IsParent,
 	//
-	@FlyElement(name="Is Part Unique Index", dataType=FlyDataType.YesNo, entityType="EE05", printName="Is Part Unique Index", fieldLength=1)
-	IsPartUniqueIndex,
-	//
 	@FlyElement(name="Transfer passive", description="FTP passive transfer", help="Should the transfer be run in passive mode?", dataType=FlyDataType.YesNo, entityType="D", printName="Transfer passive", fieldLength=1)
 	IsPassive,
 	//
 	@FlyElement(name="Pay-From Address", description="Business Partner pays from that address and we'll send dunning letters there", help="If the Pay-From Address is selected, this location is the address the Business Partner pays from and where dunning letters will be sent to.", dataType=FlyDataType.YesNo, entityType="D", printName="Pay-From Address", fieldLength=1)
 	IsPayFrom,
 	//
-	@FlyElement(name="Payroll Account", description="Used for mark a bank account defined for payment of payroll", help="If you mark a business partner bank account like payroll account, it can be used for generate payment of payroll", dataType=FlyDataType.YesNo, entityType="ECA02", printName="Payroll Account", fieldLength=1)
-	IsPayrollAccount,
-	//
 	@FlyElement(name="Pay Schedule valid", description="Is the Payment Schedule is valid", help="Payment Schedules allow to have multiple due dates.", dataType=FlyDataType.YesNo, entityType="D", printName="Pay Schedule valid", fieldLength=1)
 	IsPayScheduleValid,
-	//
-	@FlyElement(name="Is Percentage", description="Indicates that Quantity is expressed as Percentage (%)", dataType=FlyDataType.YesNo, entityType="ECA02", printName="Is Percentage", fieldLength=1)
-	IsPercentage,
 	//
 	@FlyElement(name="Percent withholding", description="Withholding amount is a percentage of the invoice amount", help="The Percent Withholding checkbox indicates if the withholding amount is a percentage of the invoice amount.", dataType=FlyDataType.YesNo, entityType="D", printName="Percent withholding", fieldLength=1)
 	IsPercentWithholding,
@@ -6036,9 +5252,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Print Parameters", description="Print query parameters on list report", help="If selected, query parameters will be printed at the start of the report.", dataType=FlyDataType.YesNo, entityType="D", printName="Print Parameters", fieldLength=1)
 	IsPrintParameters,
 	//
-	@FlyElement(name="Is Print Pick List", description="Indicate if a Pick List is print", help="When you select this checkbox a Pick list is printed", dataType=FlyDataType.YesNo, entityType="EE03", printName="Is Print Pick List", fieldLength=1)
-	IsPrintPickList,
-	//
 	@FlyElement(name="Processing", dataType=FlyDataType.YesNo, entityType="D", printName="Processing", fieldLength=1)
 	IsProcessing,
 	//
@@ -6057,9 +5270,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Prospect", description="Indicates this is a Prospect", help="The Prospect checkbox indicates an entity that is an active prospect.", dataType=FlyDataType.YesNo, entityType="D", printName="Prospect", fieldLength=1)
 	IsProspect,
 	//
-	@FlyElement(name="Is Provident Fund Employee?", description="Is Provident Fund Employee?", dataType=FlyDataType.YesNo, entityType="EE02", printName="Is Provident Fund Employee?", fieldLength=0)
-	IsProvidentFund,
-	//
 	@FlyElement(name="Public", description="Public can read entry", help="If selected, public users can read/view the entry. Public are users without a Role in the system. Use security rules for more specific access control.", dataType=FlyDataType.YesNo, entityType="D", printName="Public", fieldLength=1)
 	IsPublic,
 	//
@@ -6077,9 +5287,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="QC Pass", dataType=FlyDataType.YesNo, entityType="D", printName="QC Pass", fieldLength=1)
 	IsQCPass,
-	//
-	@FlyElement(name="Is Qty Percentage", description="Indicate that this component is based in % Quantity", help="Indicate that this component is based in % Quantity", dataType=FlyDataType.YesNo, entityType="EE01", printName="Is Qty Percentage", fieldLength=1)
-	IsQtyPercentage,
 	//
 	@FlyElement(name="Quantity based", description="Trade discount break level based on Quantity (not value)", help="The calculation of the trade discount level is based on the quantity of the order and not the value amount of the order", dataType=FlyDataType.YesNo, entityType="D", printName="Quantity based", fieldLength=1)
 	IsQuantityBased,
@@ -6128,12 +5335,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Reproducible", description="Problem can re reproduced in Gardenworld", help="The problem occurs also in the standard distribution in the demo client Gardenworld.", dataType=FlyDataType.List, entityType="D", printName="Reproducible", fieldLength=1)
 	IsReproducible,
-	//
-	@FlyElement(name="Is DRP Required", description="Is DRP Required", help="If the DRP Required checkbox is ticked, this means it has been a change in some element which affect the material plan  for this product, i.e Network Distribution, Orders, Inventory, MPS, etc. and therefore  you need to executed again DRP to adjust the Planned Orders to the new conditions and to get the updated action messages.", dataType=FlyDataType.YesNo, entityType="EE01", printName="Is DRP Required", fieldLength=1)
-	IsRequiredDRP,
-	//
-	@FlyElement(name="Is MRP Required", description="Is MRP Required", help="If the MRP Required checkbox is ticked, this means it has been a change in some element which affect the material plan  for this product, i.e BOM, Orders, Inventory, MPS, etc. and therefore  you need to executed again MRP to adjust the Planned Orders to the new conditions and to get the updated action messages.", dataType=FlyDataType.YesNo, entityType="EE01", printName="Is MRP Required", fieldLength=1)
-	IsRequiredMRP,
 	//
 	@FlyElement(name="Re-Validate", description="Re-Validate entries", dataType=FlyDataType.NONE, entityType="D", printName="Re-Validate", fieldLength=0)
 	IsReValidate,
@@ -6192,9 +5393,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Selected", dataType=FlyDataType.YesNo, entityType="D", printName="Selected", fieldLength=1)
 	IsSelected,
 	//
-	@FlyElement(name="Is selected by default", description="Allows auto select rows of a browser", help="Allows auto select rows of a browser", dataType=FlyDataType.YesNo, entityType="EE07", printName="Is selected by default", fieldLength=1)
-	IsSelectedByDefault,
-	//
 	@FlyElement(name="Selected Winner", description="The response is the selected winner", help="The response is the selected winner. If selected on Response level, the line selections are ignored.", dataType=FlyDataType.YesNo, entityType="D", printName="Selected Winner", fieldLength=1)
 	IsSelectedWinner,
 	//
@@ -6228,9 +5426,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Set Payment Term", description="Set the payment term of the Business Partner", help="If a dunning letter of this level is created, the payment term of this business partner is overwritten.", dataType=FlyDataType.YesNo, entityType="D", printName="Set Payment Term", fieldLength=1)
 	IsSetPaymentTerm,
 	//
-	@FlyElement(name="Shift Allocation", description="Shift Allocation", help="The Shift Allocation", dataType=FlyDataType.YesNo, entityType="EE02", printName="Shift Allocation", fieldLength=0)
-	IsShiftAllocation,
-	//
 	@FlyElement(name="Ship/Receipt Confirmation", description="Require Ship or Receipt Confirmation before processing", help="The processing of the Shipment (Receipt) requires Ship (Receipt) Confirmation. Note that shipments for automatic documents like POS/Warehouse Orders cannot have confirmations!", dataType=FlyDataType.YesNo, entityType="D", printName="Ship/Receipt Confirm", fieldLength=1)
 	IsShipConfirm,
 	//
@@ -6248,9 +5443,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Show Opposite Sign", description="Display values with the opposite sign", help="Displays values for a Report Line with the opposite sign to the calculated value. The 'Allow Opposite Sign' flag on Report Column must also be set for this to take effect. Note that all report calculations are performed before the sign is reversed.", dataType=FlyDataType.YesNo, entityType="D", printName="Show Opposite Sign", fieldLength=1)
 	IsShowOppositeSign,
-	//
-	@FlyElement(name="Show Total", description="Show totals into Smart Browser", help="Show totals for the column  of amount type.", dataType=FlyDataType.YesNo, entityType="EE07", printName="Show Total", fieldLength=1)
-	IsShowTotal,
 	//
 	@FlyElement(name="Simulation", description="Performing the function is only simulated", dataType=FlyDataType.NONE, entityType="D", printName="Simulation", fieldLength=0)
 	IsSimulation,
@@ -6297,17 +5489,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="Sub Acct Dimension", description="Include Sub Acct as a cube dimension", dataType=FlyDataType.YesNo, entityType="D", printName="Sub Acct Dimension", fieldLength=1)
 	IsSubAcctDim,
 	//
-	@FlyElement(name="Is Subcontracting", dataType=FlyDataType.YesNo, entityType="EE01", printName="Is Subcontracting", fieldLength=1)
-	IsSubcontracting,
-	//
 	@FlyElement(name="Issue Description", description="Description of the Issue line", dataType=FlyDataType.String, entityType="D", printName="Issue Description", fieldLength=255)
 	IssueDescription,
 	//
 	@FlyElement(name="Issue Line", description="Line number of the issue", dataType=FlyDataType.Integer, entityType="D", printName="Issue Line", fieldLength=22)
 	IssueLine,
-	//
-	@FlyElement(name="Issue Method", description="There are two methods for issue the components to Manufacturing Order", help="Method Issue: The component are delivered one for one and is necessary indicate the delivered quantity for each component.		Method BackFlush: The component are delivered based in BOM, The  delivered quantity for each component is based in BOM or Formula and Manufacturing Order Quantity.		Use the field Backflush Group for grouping the component in a Backflush Method.", dataType=FlyDataType.List, entityType="EE01", printName="Issue Method", fieldLength=1)
-	IssueMethod,
 	//
 	@FlyElement(name="Source", description="Issue Source", help="Source of the Issue", dataType=FlyDataType.List, entityType="D", printName="Source", fieldLength=1)
 	IssueSource,
@@ -6468,17 +5654,8 @@ public enum Element implements IRefList{
 	@FlyElement(name="Featured in Web Store", description="If selected, the product is displayed in the initial or any empty search", help="In the display of products in the Web Store, the product is displayed in the initial view or if no search criteria are entered. To be displayed, the product must be in the price list used.", dataType=FlyDataType.YesNo, entityType="D", printName="Featured", fieldLength=1)
 	IsWebStoreFeatured,
 	//
-	@FlyElement(name="Webstore User", description="Is a user for Webstore", help="It is created from Webstore", dataType=FlyDataType.YesNo, entityType="ECA02", printName="Webstore User", fieldLength=1)
-	IsWebstoreUser,
-	//
 	@FlyElement(name="Willing to commit", dataType=FlyDataType.YesNo, entityType="D", printName="Willing to commit", fieldLength=1)
 	IsWillingToCommit,
-	//
-	@FlyElement(name="Is Willing to Relocate?", description="Is Willing to Relocate?", help="Is Willing to Relocate?", dataType=FlyDataType.YesNo, entityType="EE02", printName="Is Willing to Relocate?", fieldLength=0)
-	IsWillingToRelocate,
-	//
-	@FlyElement(name="Is Willing to Travel?", description="Is Willing to Travel?", help="Is Willing to Travel?", dataType=FlyDataType.YesNo, entityType="EE02", printName="Is Willing to Travel?", fieldLength=0)
-	IsWillingToTravel,
 	//
 	@FlyElement(name="Work In Progress", dataType=FlyDataType.NONE, entityType="D", printName="WIP", fieldLength=0)
 	IsWIP,
@@ -6492,9 +5669,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Print Item Name", dataType=FlyDataType.String, entityType="D", printName="Item Name", fieldLength=60)
 	ItemName,
 	//
-	@FlyElement(name="I_Workflow_ID", dataType=FlyDataType.NONE, entityType="EE01", printName="Import Workflow", fieldLength=0)
-	I_Workflow_ID,
-	//
 	@FlyElement(name="Jasper Process", description="The Jasper Process used by the printengine if any process defined", dataType=FlyDataType.Table, entityType="D", printName="Jasper Process", fieldLength=22)
 	JasperProcess_ID,
 	//
@@ -6504,41 +5678,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="Jasper Report", dataType=FlyDataType.String, entityType="D", printName="Jasper Report", fieldLength=255)
 	JasperReport,
 	//
-	@FlyElement(name="Java Class", dataType=FlyDataType.String, entityType="EE05", printName="Java Class", fieldLength=255)
-	JavaClass,
-	//
 	@FlyElement(name="Java Info", description="Java Version Info", dataType=FlyDataType.String, entityType="D", printName="Java Info", fieldLength=255)
 	JavaInfo,
 	//
 	@FlyElement(name="Journal Line Description", dataType=FlyDataType.NONE, entityType="D", printName="Journal Line Description", fieldLength=0)
 	Jnl_Line_Description,
-	//
-	@FlyElement(name="Job Application Date", description="Job Application Date", help="The Job Application Date", dataType=FlyDataType.Date, entityType="EE02", printName="Job Application Date", fieldLength=0)
-	JobApplicationDate,
-	//
-	@FlyElement(name="Job Cant", dataType=FlyDataType.Integer, entityType="EE02", printName="Job Cant", fieldLength=10)
-	JobCant,
-	//
-	@FlyElement(name="Job Education Name", description="Job Education Name of an Employee", help="The Job Education Name of an Employee", dataType=FlyDataType.String, entityType="EE02", printName="Job Education Name", fieldLength=255)
-	JobEducationName,
-	//
-	@FlyElement(name="Job Education Value", description="Job Education Value of an Employee", help="The Job Education Value of an Employee", dataType=FlyDataType.String, entityType="EE02", printName="Job Education Value", fieldLength=60)
-	JobEducationValue,
-	//
-	@FlyElement(name="Job Name", description="Job Name", dataType=FlyDataType.String, entityType="EE02", printName="Job Name", fieldLength=60)
-	JobName,
-	//
-	@FlyElement(name="Job Type Name", description="The Job Type Name for a Job Openings", help="Job Type Name for Recruitment Management", dataType=FlyDataType.String, entityType="EE02", printName="Job Type Name", fieldLength=255)
-	JobTypeName,
-	//
-	@FlyElement(name="Job Type Value", description="The Job Type Value for a Job Openings", help="Job Type Value for Recruitment Management", dataType=FlyDataType.String, entityType="EE02", printName="Job Type Value", fieldLength=60)
-	JobTypeValue,
-	//
-	@FlyElement(name="Job Value", description="Job Value", dataType=FlyDataType.String, entityType="EE02", printName="Job Value", fieldLength=40)
-	JobValue,
-	//
-	@FlyElement(name="Join Clause", description="Defined the Join Clause between Tables", dataType=FlyDataType.Text, entityType="EE07", printName="Join Caluse", fieldLength=255)
-	JoinClause,
 	//
 	@FlyElement(name="Join Element", description="Semantics for multiple incoming Transitions", help="Semantics for multiple incoming Transitions for a Node/Activity. AND joins all concurrent threads - XOR requires one thread (no synchronization).", dataType=FlyDataType.List, entityType="D", printName="Join Element", fieldLength=1)
 	JoinElement,
@@ -6639,9 +5783,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Last Maintenence Date", dataType=FlyDataType.Date, entityType="D", printName="Last Maintenence Date", fieldLength=29)
 	LastMaintenenceDate,
 	//
-	@FlyElement(name="Last Name", description="Last Name of a person", help="The Last Name of a person", dataType=FlyDataType.String, entityType="EE02", printName="Last Name", fieldLength=0)
-	LastName,
-	//
 	@FlyElement(name="Last Recalculated", description="The time last recalculated.", dataType=FlyDataType.DateTime, entityType="D", printName="Last Recalculated", fieldLength=7)
 	LastRecalculated,
 	//
@@ -6693,12 +5834,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Lease Termination", description="Lease Termination Date", help="Last Date of Lease", dataType=FlyDataType.Date, entityType="D", printName="Lease Termination", fieldLength=7)
 	LeaseTerminationDate,
 	//
-	@FlyElement(name="Leave Credit Time Type", description="Leave Credit Time Type", help="The Leave Credit Time Type", dataType=FlyDataType.List, entityType="EE02", printName="Leave Credit Time Type", fieldLength=0)
-	LeaveCreditTimeType,
-	//
-	@FlyElement(name="Leave Reason Type", description="Leave Reason Type", dataType=FlyDataType.List, entityType="EE02", printName="Leave Reason Type", fieldLength=0)
-	LeaveReasonType,
-	//
 	@FlyElement(name="Maximum Level", description="Maximum Inventory level for this product", help="Indicates the maximum quantity of this product to be stocked in inventory.", dataType=FlyDataType.Amount, entityType="D", printName="Maximum Level", fieldLength=22)
 	Level_Max,
 	//
@@ -6707,9 +5842,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Level no", dataType=FlyDataType.Integer, entityType="D", printName="Level no", fieldLength=22)
 	LevelNo,
-	//
-	@FlyElement(name="Levels", dataType=FlyDataType.String, entityType="EE01", printName="Levels", fieldLength=250)
-	Levels,
 	//
 	@FlyElement(name="Life use", description="Units of use until the asset is not usable anymore", help="Life use and the actual use may be used to calculate the depreciation", dataType=FlyDataType.Integer, entityType="D", printName="Life use", fieldLength=22)
 	LifeUseUnits,
@@ -6861,9 +5993,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Location comment", description="Additional comments or remarks concerning the location", dataType=FlyDataType.String, entityType="D", printName="Location comment", fieldLength=255)
 	LocationComment,
 	//
-	@FlyElement(name="Locator To Key", dataType=FlyDataType.String, entityType="EE01", printName="Locator To Key", fieldLength=40)
-	LocatorToValue,
-	//
 	@FlyElement(name="Locator Key", description="Key of the Warehouse Locator", dataType=FlyDataType.String, entityType="D", printName="Locator Key", fieldLength=40)
 	LocatorValue,
 	//
@@ -6915,9 +6044,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Lot Char Start Overwrite", description="Lot/Batch Start Indicator overwrite - default «", help="If not defined, the default character « is used", dataType=FlyDataType.String, entityType="D", printName="Lot Char Start", fieldLength=1)
 	LotCharSOverwrite,
 	//
-	@FlyElement(name="Low Level", description="The Low Level is used to calculate the material plan and determines if a net requirement should be exploited", dataType=FlyDataType.Integer, entityType="EE01", printName="Low Level", fieldLength=8)
-	LowLevel,
-	//
 	@FlyElement(name="Macro", description="Macro", dataType=FlyDataType.Text, entityType="D", printName="Macro", fieldLength=2000)
 	Macro,
 	//
@@ -6960,15 +6086,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Manufacturer", dataType=FlyDataType.NONE, entityType="D", printName="Manufacturer", fieldLength=0)
 	Manufacturer_ID,
 	//
-	@FlyElement(name="Manufacturing Resource Type", dataType=FlyDataType.List, entityType="EE01", printName="Manufacturing Resource Type", fieldLength=2)
-	ManufacturingResourceType,
-	//
-	@FlyElement(name="Manufacturing Order Mail Text", description="Email text used for sending Manufacturing Order", help="Standard email template used to send Manufacturing Order as attachments.", dataType=FlyDataType.Table, entityType="EE01", printName="Manufacturing Order Text", fieldLength=22)
-	Manuf_Order_MailText_ID,
-	//
-	@FlyElement(name="Manufacturing Order Print Format", description="Print Format for printing Manufacturing Order", help="You need to define a Print Format to print the document.", dataType=FlyDataType.Table, entityType="EE01", printName="Manufacturing Order Print Format", fieldLength=22)
-	Manuf_Order_PrintFormat_ID,
-	//
 	@FlyElement(name="Margin %", description="Margin for a product as a percentage", help="The Margin indicates the margin for this product as a percentage of the limit price and selling price.", dataType=FlyDataType.Number, entityType="D", printName="Margin %", fieldLength=22)
 	Margin,
 	//
@@ -6987,9 +6104,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Top Margin", description="Top Space in 1/72 inch", help="Space on top of a page in 1/72 inch", dataType=FlyDataType.Integer, entityType="D", printName="Top", fieldLength=22)
 	MarginTop,
 	//
-	@FlyElement(name="Marital Status", dataType=FlyDataType.List, entityType="EE02", printName="Marital Status", fieldLength=2)
-	MaritalStatus,
-	//
 	@FlyElement(name="Mark 1 Percent", description="Percentage up to this color is used", help="Example 50 - i.e. below 50% this color is used", dataType=FlyDataType.Integer, entityType="D", printName="Mark 1 Percent", fieldLength=10)
 	Mark1Percent,
 	//
@@ -7001,9 +6115,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Mark 4 Percent", description="Percentage up to this color is used", help="Example 9999 - e.g., if Mark 3 is 100 - this color is used above 100%", dataType=FlyDataType.Integer, entityType="D", printName="Mark 4 Percent", fieldLength=10)
 	Mark4Percent,
-	//
-	@FlyElement(name="Marriage Anniversary Date", description="Marriage Anniversary Date", help="Marriage Anniversary Date", dataType=FlyDataType.Date, entityType="EE02", printName="Marriage Anniversary Date", fieldLength=0)
-	MarriageAnniversaryDate,
 	//
 	@FlyElement(name="Match Code", description="String identifying related accounting facts", dataType=FlyDataType.NONE, entityType="D", printName="Match Code", fieldLength=0)
 	MatchCode,
@@ -7041,38 +6152,20 @@ public enum Element implements IRefList{
 	@FlyElement(name="Max Click Count", description="Maximum Click Count until banner is deactivated", help="A banner has a maximum number of clicks after which it will get deactivated", dataType=FlyDataType.Integer, entityType="D", printName="Max Click Count", fieldLength=10)
 	MaxClick,
 	//
-	@FlyElement(name="Maximum continous leaves", description="Maximum continous leaves", dataType=FlyDataType.Number, entityType="EE02", printName="Maximum continous leaves", fieldLength=0)
-	MaxContinousLeaves,
-	//
 	@FlyElement(name="Max Height", description="Maximum Height in 1/72 if an inch - 0 = no restriction", help="Maximum height of the element in 1/72 of an inch (point). If zero (0), there is no height restriction.", dataType=FlyDataType.Integer, entityType="D", printName="Max Height", fieldLength=22)
 	MaxHeight,
 	//
 	@FlyElement(name="Max Impression Count", description="Maximum Impression Count until banner is deactivated", help="A banner has a maximum number of impressions after which it will get deactivated", dataType=FlyDataType.Integer, entityType="D", printName="Max Impression Count", fieldLength=10)
 	MaxImpression,
 	//
-	@FlyElement(name="Maximum Volume", dataType=FlyDataType.Number, entityType="EE03", printName="Maximum Volume", fieldLength=0)
-	MaximumVolume,
-	//
-	@FlyElement(name="Maximum Weight", dataType=FlyDataType.Number, entityType="EE03", printName="Maximum Weight", fieldLength=0)
-	MaximumWeight,
-	//
 	@FlyElement(name="Maximum write-off per Invoice", description="Maximum invoice amount to be written off in invoice currency", dataType=FlyDataType.NONE, entityType="D", printName="Maximum write-off per Invoice", fieldLength=0)
 	MaxInvWriteOffAmt,
-	//
-	@FlyElement(name="Maximum leaves carry forwarded", description="Maximum leaves carry forwarded", dataType=FlyDataType.Number, entityType="EE02", printName="Maximum leaves carry forwarded", fieldLength=0)
-	MaxLeavesToForward,
 	//
 	@FlyElement(name="Maximum Length", description="Maximum Length of Data", dataType=FlyDataType.NONE, entityType="D", printName="Maximum Length", fieldLength=0)
 	MaxLength,
 	//
 	@FlyElement(name="Max Query Records", description="If defined, you cannot query more records as defined - the query criteria needs to be changed to query less records", help="Enter the number of records a user will be able to query to avoid unnecessary system load.  If 0, no restrictions are imposed.", dataType=FlyDataType.Integer, entityType="D", printName="Max Query Records", fieldLength=10)
 	MaxQueryRecords,
-	//
-	@FlyElement(name="Max Taxable", dataType=FlyDataType.Integer, entityType="EE04", printName="Max Taxable", fieldLength=10)
-	MaxTaxable,
-	//
-	@FlyElement(name="Max Value", dataType=FlyDataType.Integer, entityType="EE02", printName="Max Value", fieldLength=10)
-	MaxValue,
 	//
 	@FlyElement(name="Max Width", description="Maximum Width in 1/72 if an inch - 0 = no restriction", help="Maximum width of the element in 1/72 of an inch (point). If zero (0), there is no width restriction.", dataType=FlyDataType.Integer, entityType="D", printName="Max Width", fieldLength=22)
 	MaxWidth,
@@ -7215,9 +6308,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Meta RobotsTag", description="RobotsTag defines how search robots should handle this content", help="The Meta Robots Tag define on how a search engines robot should handle this page and the following ones. It defines two keywords: (NO)INDEX which defines whether or not to index this content and (NO)FOLLOW which defines whether or not to follow links. The most common combination is INDEX,FOLLOW which will force a search robot to index the content and follow links and images.", dataType=FlyDataType.String, entityType="D", printName="Meta RobotsTag", fieldLength=2000)
 	Meta_RobotsTag,
 	//
-	@FlyElement(name="Method Change Variance", dataType=FlyDataType.CostsPrices, entityType="EE01", printName="Method Change Variance", fieldLength=0)
-	MethodChangeVariance,
-	//
 	@FlyElement(name="Fixed in", description="Fixed in Change Notice", dataType=FlyDataType.Table, entityType="D", printName="Fixed in", fieldLength=10)
 	M_FixChangeNotice_ID,
 	//
@@ -7248,26 +6338,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="Micr", description="Combination of routing no, account and check no", help="The Micr number is the combination of the bank routing number, account number and check number", dataType=FlyDataType.String, entityType="D", printName="Micr", fieldLength=20)
 	Micr,
 	//
-	@FlyElement(name="Middle Name", description="Middle Name of a person", help="The Middle Name of a person", dataType=FlyDataType.String, entityType="EE02", printName="Middle Name", fieldLength=0)
-	MiddleName,
-	//
 	@FlyElement(name="Min Amount", description="Minimum Amount in invoice currency", help="The Minimum amount indicates the minimum amount as stated in the currency of the invoice.", dataType=FlyDataType.Amount, entityType="D", printName="Min Amt", fieldLength=22)
 	MinAmt,
 	//
-	@FlyElement(name="Minimum Attendance Require", description="Minimum Attendance Require to elgibile leave", help="Minimum Attendance Require to elgibile leave", dataType=FlyDataType.Number, entityType="EE02", printName="Minimum Attendance Require", fieldLength=0)
-	MinAttendanceRequire,
-	//
-	@FlyElement(name="Minimum Encashment Days in a Request", description="Minimum Encashment Days in a Request", help="The Minimum Encashment Days in a Request", dataType=FlyDataType.Amount, entityType="EE02", printName="Minimum Encashment Days in a Request", fieldLength=0)
-	MinForencashmentDays,
-	//
 	@FlyElement(name="Minimum Amt", description="Minimum Amount in Document Currency", dataType=FlyDataType.Amount, entityType="D", printName="Minimum Amt", fieldLength=22)
 	MinimumAmt,
-	//
-	@FlyElement(name="Minimum Volume", dataType=FlyDataType.Number, entityType="EE03", printName="Minimum Volume", fieldLength=0)
-	MinimumVolume,
-	//
-	@FlyElement(name="Minimum Weight", description="Minimum Weight of a product", help="The Minimum Weight indicates the weight  of the product in the Weight UOM of the Client", dataType=FlyDataType.Amount, entityType="EE03", printName="Minimum Weight", fieldLength=0)
-	MinimumWeight,
 	//
 	@FlyElement(name="Ship/Receipt Confirmation", description="Material Shipment or Receipt Confirmation", help="Confirmation of Shipment or Receipt - Created from the Shipment/Receipt", dataType=FlyDataType.ID, entityType="D", printName="Ship/Receipt Confirm", fieldLength=22)
 	M_InOutConfirm_ID,
@@ -7284,20 +6359,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="Minimum Quantity", description="Minimum quantity for the business partner", help="If a minimum quantity is defined, and the quantity is based on the percentage is lower, the minimum quantity is used.", dataType=FlyDataType.Quantity, entityType="D", printName="Min Qty", fieldLength=22)
 	MinQty,
 	//
-	@FlyElement(name="Min Taxable", dataType=FlyDataType.Integer, entityType="EE04", printName="Min Taxable", fieldLength=10)
-	MinTaxable,
-	//
-	@FlyElement(name="Min Value", dataType=FlyDataType.Integer, entityType="EE02", printName="Min Value", fieldLength=10)
-	MinValue,
-	//
 	@FlyElement(name="Phys.Inventory", description="Parameters for a Physical Inventory", help="The Physical Inventory indicates a unique parameters for a physical inventory.", dataType=FlyDataType.ID, entityType="D", printName="Phys.Inventory", fieldLength=22)
 	M_Inventory_ID,
 	//
 	@FlyElement(name="Phys.Inventory Line", description="Unique line in an Inventory document", help="The Physical Inventory Line indicates the inventory document line (if applicable) for this transaction", dataType=FlyDataType.ID, entityType="D", printName="Phys.Inventory Line", fieldLength=22)
 	M_InventoryLine_ID,
-	//
-	@FlyElement(name="Mix Variance", dataType=FlyDataType.CostsPrices, entityType="EE01", printName="Mix Variance", fieldLength=0)
-	MixVariance,
 	//
 	@FlyElement(name="Locator", description="Warehouse Locator", help="The Locator indicates where in a Warehouse a product is located.", dataType=FlyDataType.ID, entityType="D", printName="Locator", fieldLength=22)
 	M_Locator_ID,
@@ -7334,9 +6400,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Material Policy", description="Material Movement Policy", help="The Material Movement Policy determines how the stock is flowing (FiFo or LiFo) if a specific Product Instance was not selected.  The policy can not contradict the costing method (e.g. FiFo movement policy and LiFo costing method).", dataType=FlyDataType.List, entityType="D", printName="Mat Policy", fieldLength=1)
 	MMPolicy,
-	//
-	@FlyElement(name="Mobile Phone", description="Identifies an alternate telephone mobile number.", help="The Mobile No field identifies an alternate telephone number.", dataType=FlyDataType.String, entityType="EE02", printName="Mobile Phone", fieldLength=0)
-	MobilePhone,
 	//
 	@FlyElement(name="ModelPackage", description="Java Package of the model classes", help="By default, the Java model classes for extensions are in the compiere.model package.  If you provide a jar file in the classpath, you can define here your specific model package.  The model classes are used to save/modify/delete entries and as well as in Workflow.  Refer to the Compiere naming convention to make sure that your class is used rather then the base classes.", dataType=FlyDataType.String, entityType="D", printName="ModelPackage", fieldLength=255)
 	ModelPackage,
@@ -7431,12 +6494,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Day of the Month", description="Day of the month 1 to 28/29/30/31", dataType=FlyDataType.Integer, entityType="D", printName="Month Day", fieldLength=22)
 	MonthDay,
 	//
-	@FlyElement(name="Monthly Salary", description="Monthly Salary", help="The Monthly Salary of an Employee", dataType=FlyDataType.Number, entityType="EE02", printName="Monthly Salary", fieldLength=0)
-	MonthlySalary,
-	//
-	@FlyElement(name="Monthly Salary (Concept)", description="Reference to concept used for monthly salary", dataType=FlyDataType.Table, entityType="ECA02", printName="Monthly Salary (Concept)", fieldLength=10)
-	MonthlySalary_ID,
-	//
 	@FlyElement(name="Operation Resource", description="Product Operation Resource", help="Resources for the Operation. You can have multiple resources (e.g. tool, labor) per operation.", dataType=FlyDataType.ID, entityType="D", printName="Operation Resource", fieldLength=10)
 	M_OperationResource_ID,
 	//
@@ -7448,9 +6505,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Movement Type", description="Method of moving the inventory", help="The Movement Type indicates the type of movement (in, out, to production, etc)", dataType=FlyDataType.List, entityType="D", printName="Movement Type", fieldLength=2)
 	MovementType,
-	//
-	@FlyElement(name="Moving Time", dataType=FlyDataType.Integer, entityType="EE01", printName="Moving Time", fieldLength=22)
-	MovingTime,
 	//
 	@FlyElement(name="Package", description="Shipment Package", help="A Shipment can have one or more Packages.  A Package may be individually tracked.", dataType=FlyDataType.TableDirect, entityType="D", printName="Package", fieldLength=22)
 	M_Package_ID,
@@ -7590,12 +6644,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="RMA Type", description="Return Material Authorization Type", help="Types of RMA", dataType=FlyDataType.TableDirect, entityType="D", printName="RMA Type", fieldLength=22)
 	M_RMAType_ID,
 	//
-	@FlyElement(name="Demand No", description="MRP Demand No", dataType=FlyDataType.NONE, entityType="EE01", printName="Demand No", fieldLength=0)
-	MRP_Demand_ID,
-	//
-	@FlyElement(name="Supply No", description="MRP Supply No", dataType=FlyDataType.NONE, entityType="EE01", printName="Supply No", fieldLength=0)
-	MRP_Supply_ID,
-	//
 	@FlyElement(name="Exclude SerNo", description="Exclude the ability to create Serial Numbers in Attribute Sets", dataType=FlyDataType.ID, entityType="D", printName="Exclude SerNo", fieldLength=10)
 	M_SerNoCtlExclude_ID,
 	//
@@ -7653,12 +6701,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Name Font", dataType=FlyDataType.NONE, entityType="D", printName="Name Font", fieldLength=0)
 	Name_PrintFont_ID,
 	//
-	@FlyElement(name="National Code", dataType=FlyDataType.NONE, entityType="EE02", printName="National Code", fieldLength=60)
-	NationalCode,
-	//
-	@FlyElement(name="Nationality", description="Nationality", dataType=FlyDataType.Table, entityType="EE02", printName="Nationality", fieldLength=0)
-	Nationality_ID,
-	//
 	@FlyElement(name="Invoice net Amount", description="Net amount of this Invoice", help="Indicates the net amount for this invoice.  It does not include shipping or any additional charges.", dataType=FlyDataType.Amount, entityType="D", printName="Invoice net Amt", fieldLength=22)
 	NetAmtToInvoice,
 	//
@@ -7667,9 +6709,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Net Days", description="Net Days in which payment is due", help="Indicates the number of days after invoice date that payment is due.", dataType=FlyDataType.Integer, entityType="D", printName="Net Days", fieldLength=22)
 	NetDays,
-	//
-	@FlyElement(name="Network Distribution Key", description="Key of the Network Distribution", dataType=FlyDataType.String, entityType="EE01", printName="Network Distribution Key", fieldLength=40)
-	NetworkDistributionValue,
 	//
 	@FlyElement(name="New EMail Address", description="Enter new EMail Address - not changed if empty", dataType=FlyDataType.NONE, entityType="D", printName="New EMail Address", fieldLength=0)
 	NewEMail,
@@ -7689,9 +6728,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Next action", description="Next Action to be taken", help="The Next Action indicates the next action to be taken on this request.", dataType=FlyDataType.List, entityType="D", printName="Next action", fieldLength=1)
 	NextAction,
 	//
-	@FlyElement(name="Next Job", dataType=FlyDataType.Table, entityType="EE02", printName="Next Job", fieldLength=10)
-	Next_Job_ID,
-	//
 	@FlyElement(name="Next Maintenance Use Unit", dataType=FlyDataType.Integer, entityType="D", printName="Next Maintenance Use Unit", fieldLength=22)
 	NextMaintenanceUseUnit,
 	//
@@ -7707,15 +6743,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Node", dataType=FlyDataType.ID, entityType="D", printName="Node", fieldLength=22)
 	Node_ID,
 	//
-	@FlyElement(name="Node Name", dataType=FlyDataType.NONE, entityType="EE01", printName="Node Name", fieldLength=0)
-	NodeName,
-	//
-	@FlyElement(name="Node Next Key", description="Next Node in Transition", help="The Next Node Serach Key indicates the next step or task in this Workflow.", dataType=FlyDataType.NONE, entityType="EE01", printName="Node Next Key", fieldLength=0)
-	NodeNextValue,
-	//
-	@FlyElement(name="Node Key", dataType=FlyDataType.NONE, entityType="EE01", printName="Node Key", fieldLength=0)
-	NodeValue,
-	//
 	@FlyElement(name="Expired Guarantee Mail", description="Send email to partners with expired guarantee", dataType=FlyDataType.NONE, entityType="D", printName="Expired Guarantee Mail", fieldLength=0)
 	NoGuarantee_MailText_ID,
 	//
@@ -7728,26 +6755,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="Not Committed Aount", description="Amount not committed yet", dataType=FlyDataType.Amount, entityType="D", printName="Not Committed Amt", fieldLength=22)
 	NonCommittedAmt,
 	//
-	@FlyElement(name="Number of Hours", description="Number of Hours This Shift Contains", dataType=FlyDataType.Amount, entityType="EE02", printName="Number of Hours", fieldLength=0)
-	NoOfHours,
-	//
-	@FlyElement(name="No of Hours this Shift", description="No of Hours this Shift work hours of the shift", help="The No of Hours this Shift indicates work hours of the shift", dataType=FlyDataType.Amount, entityType="EE02", printName="No of Hours this Shift", fieldLength=0)
-	NoOfHoursThisShift,
-	//
-	@FlyElement(name="Number of Leaves Allocated", description="Number of Leaves Allocated", help="The Number of Leaves Allocated", dataType=FlyDataType.Number, entityType="EE02", printName="Number of Leaves Allocated", fieldLength=0)
-	NoOfLeavesAllocated,
-	//
-	@FlyElement(name="No Of Leaves Credited", description="No Of Leaves Credited", help="The No Of Leaves Credited of an Employee", dataType=FlyDataType.Number, entityType="EE02", printName="No Of Leaves Credited", fieldLength=0)
-	NoOfLeavesCredited,
-	//
 	@FlyElement(name="No_Of_Periods", dataType=FlyDataType.NONE, entityType="D", printName="No_Of_Periods", fieldLength=0)
 	No_Of_Periods,
 	//
 	@FlyElement(name="No Packages", description="Number of packages shipped", dataType=FlyDataType.Integer, entityType="D", printName="No Packages", fieldLength=22)
 	NoPackages,
-	//
-	@FlyElement(name="Number of Periods", dataType=FlyDataType.NONE, entityType="EE01", printName="NoPeriods", fieldLength=0)
-	NoPeriods,
 	//
 	@FlyElement(name="Processors", description="Number of Database Processors", dataType=FlyDataType.Integer, entityType="D", printName="Processors", fieldLength=22)
 	NoProcessors,
@@ -7842,9 +6854,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Open Amount", description="Open item amount", dataType=FlyDataType.Amount, entityType="D", printName="Open", fieldLength=22)
 	OpenAmt,
 	//
-	@FlyElement(name="Open Positions", description="Number of places for this position.", help="The  Number Of Open Positions is used to control the balance of places allocated for this position.", dataType=FlyDataType.Integer, entityType="EE02", printName="Open Positions", fieldLength=0)
-	OpenPositions,
-	//
 	@FlyElement(name="Open Requests", dataType=FlyDataType.NONE, entityType="D", printName="Open Requests", fieldLength=0)
 	OpenRequests,
 	//
@@ -7881,26 +6890,14 @@ public enum Element implements IRefList{
 	@FlyElement(name="Order Mail Text", description="Email text used for sending order acknowledgements or quotations", help="Standard email template used to send acknowledgements or quotations as attachments.", dataType=FlyDataType.Table, entityType="D", printName="Order Mail Text", fieldLength=22)
 	Order_MailText_ID,
 	//
-	@FlyElement(name="Maximum Order Qty", description="Maximum order quantity in UOM", help="The Maximum Order Quantity indicates the biggest quantity of this product which can be ordered.", dataType=FlyDataType.Quantity, entityType="EE01", printName="Maximum Order Qty", fieldLength=10)
-	Order_Max,
-	//
 	@FlyElement(name="Minimum Order Qty", description="Minimum order quantity in UOM", help="The Minimum Order Quantity indicates the smallest quantity of this product which can be ordered.", dataType=FlyDataType.Quantity, entityType="D", printName="Minimum Order Qty", fieldLength=22)
 	Order_Min,
 	//
 	@FlyElement(name="Order Pack Qty", description="Package order size in UOM (e.g. order set of 5 units)", help="The Order Pack Quantity indicates the number of units in each pack of this product.", dataType=FlyDataType.Quantity, entityType="D", printName="Order Pack Qty", fieldLength=22)
 	Order_Pack,
 	//
-	@FlyElement(name="Order Period", description="Order Period", help="Number of calendar days used to accumulate  the net requirements to integrate the quantity of a planned order under the policy of POQ.", dataType=FlyDataType.Quantity, entityType="EE01", printName="Order Period", fieldLength=22)
-	Order_Period,
-	//
-	@FlyElement(name="Order Policy", description="Order Policy", help="If the DRP Required checkbox is ticked, this means it has been a change in some element which affect the material plan  for this product, i.e Network Distribution, Orders, Inventory, MPS, etc. and therefore  you need to executed again DRP to adjust the Planned Orders to the new conditions and to get the updated action messages.	<br>	<p>	Lot-For-Lot  (LFL): Creates planned orders to satisfy the demand, an order is created to satisfy each net requirement. so MRP process must generate one planned order for each demand not satisfied.	<p>	Period Order Quantity (POQ): Creates planned orders to satisfy the demand, the requirements are accumulated in a defined period and a planned order is created for the period quantity accumulation. The number of days are entered in the field Order Period.	<p>	Use  Fixed Order Quantity when you always need to ask for  the same Quantity of product, this Quantity is entered in the field Order Qty.	<br><br>	If the order policy is not FOQ and you enter a quantity in the Order Qty field, this quantity is the Economic Order Quantity.", dataType=FlyDataType.List, entityType="EE01", printName="Order Policy", fieldLength=3)
-	Order_Policy,
-	//
 	@FlyElement(name="Order Print Format", description="Print Format for Orders, Quotes, Offers", help="You need to define a Print Format to print the document.", dataType=FlyDataType.Table, entityType="D", printName="Order Print Format", fieldLength=22)
 	Order_PrintFormat_ID,
-	//
-	@FlyElement(name="Order Qty", description="Order Qty", help="Define the fixed quantity to be ordered when the order policy used is FOQ", dataType=FlyDataType.Quantity, entityType="EE01", printName="Order Qty", fieldLength=22)
-	Order_Qty,
 	//
 	@FlyElement(name="Order Type", description="Type of Order: MRP records grouped by source (Sales Order, Purchase Order, Distribution Order, Requisition)", dataType=FlyDataType.String, entityType="D", printName="Order Type", fieldLength=510)
 	OrderType,
@@ -7956,14 +6953,8 @@ public enum Element implements IRefList{
 	@FlyElement(name="Escalate after Days Due", description="Escalation to superior after number of due days (0 = no)", help="The item will be escalated and assigned to the supervisor after the number of days over due. If 0, there is no escalation.", dataType=FlyDataType.Integer, entityType="D", printName="Escalate after Days", fieldLength=22)
 	OverdueAssignDays,
 	//
-	@FlyElement(name="Overlap Units", description="Overlap Units are number of units that must be completed before they are moved the next activity", help="When there are two consecutive avtivity, you can sometimes save time by moving partial quantites from one activity to the next before the first activity as been completed.", dataType=FlyDataType.Integer, entityType="EE01", printName="Overlap Units", fieldLength=22)
-	OverlapUnits,
-	//
 	@FlyElement(name="Overline Stroke Type", dataType=FlyDataType.List, entityType="D", printName="Overline Stroke Type", fieldLength=5)
 	OverlineStrokeType,
-	//
-	@FlyElement(name="Over Time Amount", description="Is Over time Applicable  Then How Much Amount", dataType=FlyDataType.Amount, entityType="EE02", printName="Over Time Amount", fieldLength=0)
-	OverTimeAmount,
 	//
 	@FlyElement(name="Overtime Amount", description="Hourly Overtime Rate", help="Hourly Amount without Benefits and Employer overhead", dataType=FlyDataType.Amount, entityType="D", printName="Overtime Amount", fieldLength=22)
 	OvertimeAmt,
@@ -8088,9 +7079,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Parameter Type", dataType=FlyDataType.NONE, entityType="D", printName="Parameter Type", fieldLength=0)
 	ParameterType,
 	//
-	@FlyElement(name="Parameter Value", dataType=FlyDataType.String, entityType="EE05", printName="Parameter Value", fieldLength=60)
-	ParameterValue,
-	//
 	@FlyElement(name="Ratio Element", description="Performance Ratio Element", help="Individual calculation instruction for a ratio", dataType=FlyDataType.ID, entityType="D", printName="Ratio Element", fieldLength=10)
 	PA_RatioElement_ID,
 	//
@@ -8148,12 +7136,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Partner ID", description="Partner ID or Account for the Payment Processor", help="Partner ID (Verisign) or Account ID (Optimal)", dataType=FlyDataType.String, entityType="D", printName="Partner ID", fieldLength=60)
 	PartnerID,
 	//
-	@FlyElement(name="Partners Birth Date", description="Partners Birth Date", help="The Partners Birth Date", dataType=FlyDataType.Date, entityType="EE02", printName="Partners Birth Date", fieldLength=0)
-	PartnersBirthDate,
-	//
-	@FlyElement(name="Partner's Name", description="Partner's Name", help="The Partner's Name of an Employee", dataType=FlyDataType.String, entityType="EE02", printName="Partner's Name", fieldLength=0)
-	PartnersName,
-	//
 	@FlyElement(name="SLA Criteria", description="Service Level Agreement Criteria", help="Criteria to measure service level agreements (e.g. Quality, Delivery meets Promised date, ..)", dataType=FlyDataType.ID, entityType="D", printName="SLA Criteria", fieldLength=22)
 	PA_SLA_Criteria_ID,
 	//
@@ -8168,9 +7150,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Password", description="Password of any length (case sensitive)", help="The Password for this User.  Passwords are required to identify authorized users.  For Adempiere Users, you can change the password via the Process 'Reset Password'.", dataType=FlyDataType.String, entityType="D", printName="Password", fieldLength=1024)
 	Password,
-	//
-	@FlyElement(name="Password Info", dataType=FlyDataType.String, entityType="EE05", printName="Password Info", fieldLength=255)
-	PasswordInfo,
 	//
 	@FlyElement(name="Past Due 1-30", dataType=FlyDataType.Amount, entityType="D", printName="Past Due 1-30", fieldLength=22)
 	PastDue1_30,
@@ -8226,9 +7205,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Payment Export Class", dataType=FlyDataType.String, entityType="D", printName="Payment Export Class", fieldLength=60)
 	PaymentExportClass,
 	//
-	@FlyElement(name="Payment Frequency", description="Payment Frequency", help="The Payment Frequency", dataType=FlyDataType.List, entityType="EE02", printName="Payment Frequency", fieldLength=0)
-	PaymentFrequency,
-	//
 	@FlyElement(name="Payment Rule", description="How you pay the invoice", help="The Payment Rule indicates the method of invoice payment.", dataType=FlyDataType.List, entityType="D", printName="Payment Rule", fieldLength=1)
 	PaymentRule,
 	//
@@ -8247,20 +7223,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="Payment Processor Class", description="Payment Processor Java Class", help="Payment Processor class identifies the Java class used to process payments extending the org.compiere.model.PaymentProcessor class. <br>	Example implementations are Optimal Payments: org.compiere.model.PP_Optimal or Verisign: org.compiere.model.PP_PayFlowPro", dataType=FlyDataType.String, entityType="D", printName="Payment Processor Class", fieldLength=60)
 	PayProcessorClass,
 	//
-	@FlyElement(name="Payroll Value", description="Define the a Search key of a payroll", dataType=FlyDataType.String, entityType="EE02", printName="Payroll Value", fieldLength=40)
-	PayrollValue,
-	//
-	@FlyElement(name="Burden", description="The Burden account is the account used Manufacturing Order", help="The Burden is used for accounting the Burden", dataType=FlyDataType.Account, entityType="EE01", printName="Account for Burden", fieldLength=22)
-	P_Burden_Acct,
-	//
 	@FlyElement(name="Product COGS", description="Account for Cost of Goods Sold", help="The Product COGS Account indicates the account used when recording costs associated with this product.", dataType=FlyDataType.Account, entityType="D", printName="Product COGS", fieldLength=22)
 	P_COGS_Acct,
 	//
 	@FlyElement(name="Cost Adjustment", description="Product Cost Adjustment Account", help="Account used for posting product cost adjustments (e.g. landed costs)", dataType=FlyDataType.Account, entityType="D", printName="Cost Adjustment", fieldLength=10)
 	P_CostAdjustment_Acct,
-	//
-	@FlyElement(name="Cost Of Production", description="The Cost Of Production account is the account used Manufacturing Order", help="The Cost Of Production is used for accounting Non productive Labor	", dataType=FlyDataType.Account, entityType="EE01", printName="Account for Cost Of Production", fieldLength=22)
-	P_CostOfProduction_Acct,
 	//
 	@FlyElement(name="Process Date", description="Process Parameter", dataType=FlyDataType.DateTime, entityType="D", printName="P Date", fieldLength=7)
 	P_Date,
@@ -8283,17 +7250,8 @@ public enum Element implements IRefList{
 	@FlyElement(name="Total Percent", description="Sum of the Percent details ", dataType=FlyDataType.Number, entityType="D", printName="Total Percent", fieldLength=22)
 	PercentTotal,
 	//
-	@FlyElement(name="% Utilization", dataType=FlyDataType.Number, entityType="EE01", printName="% Utilization", fieldLength=10)
-	PercentUtilization,
-	//
 	@FlyElement(name="Period Action", description="Action taken for this period", help="The Period Action indicates the action to be taken for this period.  For example 'Close Period' or 'Open Period'.", dataType=FlyDataType.List, entityType="D", printName="Period Action", fieldLength=1)
 	PeriodAction,
-	//
-	@FlyElement(name="Periods of History", description="Number Period of History", dataType=FlyDataType.NONE, entityType="EE01", printName="Periods of History", fieldLength=0)
-	PeriodHistory,
-	//
-	@FlyElement(name="Period Name", dataType=FlyDataType.NONE, entityType="EE01", printName="Period Name", fieldLength=0)
-	PeriodName,
 	//
 	@FlyElement(name="Period No", description="Unique Period Number", help="The Period No identifies a specific period for this year. Each period is defined by a start and end date.  Date ranges for a calendar and year cannot overlap.", dataType=FlyDataType.Integer, entityType="D", printName="Period No", fieldLength=22)
 	PeriodNo,
@@ -8315,9 +7273,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Product Expense", description="Account for Product Expense", help="The Product Expense Account indicates the account used to record expenses associated with this product.", dataType=FlyDataType.Account, entityType="D", printName="Product Expense", fieldLength=22)
 	P_Expense_Acct,
-	//
-	@FlyElement(name="Floor Stock", description="The Floor Stock account is the account used Manufacturing Order", help="The Floor Stock is used for accounting the component with Issue method  is set Floor stock  into Bill of Material & Formula Window.		The components with Issue Method  defined as Floor stock is acounting next way:		Debit Floor Stock Account	Credit Work in Process Account", dataType=FlyDataType.Account, entityType="EE01", printName="Account for Floor Stock", fieldLength=22)
-	P_FloorStock_Acct,
 	//
 	@FlyElement(name="Phone", description="Identifies a telephone number", help="The Phone field identifies a telephone number", dataType=FlyDataType.String, entityType="D", printName="Phone", fieldLength=40)
 	Phone,
@@ -8370,15 +7325,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Package Version", dataType=FlyDataType.String, entityType="D", printName="Package Version", fieldLength=40)
 	PK_Version,
 	//
-	@FlyElement(name="Labor", description="The Labor account is the account used Manufacturing Order", help="The Labor is used for accounting the productive Labor	", dataType=FlyDataType.Account, entityType="EE01", printName="Account for Labor", fieldLength=22)
-	P_Labor_Acct,
-	//
-	@FlyElement(name="Place of Birth", description="Place of Birth", dataType=FlyDataType.String, entityType="EE02", printName="Place of Birth", fieldLength=0)
-	PlaceOfBirth,
-	//
-	@FlyElement(name="Place of Birth (Location)", description="Place of Birth (Location)", dataType=FlyDataType.Location, entityType="ECA02", printName="Place of Birth (Location)", fieldLength=10)
-	PlaceOfBirth_ID,
-	//
 	@FlyElement(name="Planned Amount", description="Planned amount for this project", help="The Planned Amount indicates the anticipated amount for this project or project line.", dataType=FlyDataType.Amount, entityType="D", printName="Planned Amt", fieldLength=22)
 	PlannedAmt,
 	//
@@ -8397,23 +7343,8 @@ public enum Element implements IRefList{
 	@FlyElement(name="Planned Quantity", description="Planned quantity for this project", help="The Planned Quantity indicates the anticipated quantity for this project or project line", dataType=FlyDataType.Quantity, entityType="D", printName="Planned Qty", fieldLength=22)
 	PlannedQty,
 	//
-	@FlyElement(name="Planner", description="Company Agent for Planning", help="The Master Planner indicates the company agent in charge of the MPS management. Any Master Planner must be a valid internal user.", dataType=FlyDataType.Table, entityType="EE01", printName="Planner", fieldLength=22)
-	Planner_ID,
-	//
-	@FlyElement(name="Planner Key", description="Search Key of the Planning", dataType=FlyDataType.String, entityType="EE01", printName="Planner Key", fieldLength=40)
-	PlannerValue,
-	//
-	@FlyElement(name="Planning Horizon", description="The planning horizon is the amount of time (Days) an organisation will look into the future when preparing a strategic plan.", help="The planning horizon is the amount of time (Days) an organisation will look into the future when preparing a strategic plan.", dataType=FlyDataType.Integer, entityType="EE01", printName="Planning Horizon", fieldLength=22)
-	PlanningHorizon,
-	//
 	@FlyElement(name="Platform Info", description="Information about Server and Client Platform", help="Include information on Server, Network [Operating System, RAM, Disk, CPUs] and (number of) Clients.", dataType=FlyDataType.Text, entityType="D", printName="Platform", fieldLength=255)
 	PlatformInfo,
-	//
-	@FlyElement(name="Method Change Variance", description="The Method Change Variance account is the account used Manufacturing Order", help="The Method Change Variance is used in Standard Costing. It reflects the difference between the Standard BOM , Standard Manufacturing Workflow and Manufacturing BOM Manufacturing Workflow.		If you change the method the manufacturing defined in BOM or Workflow Manufacturig then this variance is generate.", dataType=FlyDataType.Account, entityType="EE01", printName="Account for Method Change Variance", fieldLength=22)
-	P_MethodChangeVariance_Acct,
-	//
-	@FlyElement(name="Mix Variance", description="The Mix Variance account is the account used Manufacturing Order", help="The Mix Variance is used when a co-product  received in Inventory  is different the quantity  expected	", dataType=FlyDataType.Account, entityType="EE01", printName="Account for Mix Variance", fieldLength=22)
-	P_MixVariance_Acct,
 	//
 	@FlyElement(name="Process Message", dataType=FlyDataType.String, entityType="D", printName="P Msg", fieldLength=2000)
 	P_Msg,
@@ -8450,9 +7381,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Order Reference", description="Transaction Reference Number (Sales Order, Purchase Order) of your Business Partner", help="The business partner order reference is the order reference for this specific transaction; Often Purchase Order numbers are given to print on Invoices for easier reference.  A standard number can be defined in the Business Partner (Customer) window.", dataType=FlyDataType.String, entityType="D", printName="Order Reference", fieldLength=20)
 	POReference,
-	//
-	@FlyElement(name="Port", dataType=FlyDataType.Integer, entityType="EE05", printName="Port", fieldLength=14)
-	Port,
 	//
 	@FlyElement(name="Position", dataType=FlyDataType.String, entityType="D", printName="Position", fieldLength=10)
 	Position,
@@ -8496,113 +7424,14 @@ public enum Element implements IRefList{
 	@FlyElement(name="Potential Life Time Value", description="Total Revenue expected", help="The Potential Life Time Value is the anticipated revenue in primary accounting currency to be generated by the Business Partner.", dataType=FlyDataType.Amount, entityType="D", printName="Potential Life Time Value", fieldLength=22)
 	PotentialLifeTimeValue,
 	//
-	@FlyElement(name="Outside Processing", description="The Outside Processing Account is the account used in Manufacturing Order", help="The Outside Processing Account is used for accounting the Outside Processing", dataType=FlyDataType.Account, entityType="EE01", printName="Account for Burden", fieldLength=22)
-	P_OutsideProcessing_Acct,
-	//
-	@FlyElement(name="Overhead", description="The Overhead account is the account used  in Manufacturing Order ", dataType=FlyDataType.Account, entityType="EE01", printName="Account for Overhead", fieldLength=22)
-	P_Overhead_Acct,
-	//
 	@FlyElement(name="PO Window", description="Purchase Order Window", help="Window for Purchase Order (AP) Zooms", dataType=FlyDataType.Table, entityType="D", printName="PO Window", fieldLength=22)
 	PO_Window_ID,
-	//
-	@FlyElement(name="Operational Calendar", description="Operational Period, allows to define the periods for the Operational Calendar", dataType=FlyDataType.NONE, entityType="EE01", printName="Operational Calendar", fieldLength=0)
-	PP_Calendar_ID,
-	//
-	@FlyElement(name="Manufacturing Cost Collector", dataType=FlyDataType.TableDirect, entityType="EE01", printName="Manufacturing Cost Collector", fieldLength=10)
-	PP_Cost_Collector_ID,
-	//
-	@FlyElement(name="Manufacturing Order MA", dataType=FlyDataType.ID, entityType="EE01", printName="Manufacturing Cost Collector", fieldLength=10)
-	PP_Cost_CollectorMA_ID,
-	//
-	@FlyElement(name="Forecast Definition", dataType=FlyDataType.NONE, entityType="EE01", printName="Forecast Definition", fieldLength=0)
-	PP_ForecastDefinition_ID,
-	//
-	@FlyElement(name="Forecast Definition Line", dataType=FlyDataType.NONE, entityType="EE01", printName="Forecast Definition Line", fieldLength=0)
-	PP_ForecastDefinitionLine_ID,
-	//
-	@FlyElement(name="Forecast Rule", description="Forecast Rules define the business logic according to a previously implemented algorithm.", dataType=FlyDataType.NONE, entityType="EE01", printName="Forecast Rule", fieldLength=0)
-	PP_ForecastRule_ID,
-	//
-	@FlyElement(name="Forecast Run Detail", description="Contains the forecasting calculation results based on forecast definition.", dataType=FlyDataType.NONE, entityType="EE01", printName="Forecast Run Detail", fieldLength=0)
-	PP_ForecastRunDetail_ID,
-	//
-	@FlyElement(name="Forecast Run", description="Create the forecast simulation based on the forecast definition", dataType=FlyDataType.NONE, entityType="EE01", printName="Forecast Run", fieldLength=0)
-	PP_ForecastRun_ID,
-	//
-	@FlyElement(name="Forecast Run Line", description="Contains the forecasting calculation results based on forecast definition.", dataType=FlyDataType.NONE, entityType="EE01", printName="Forecast Run Line", fieldLength=0)
-	PP_ForecastRunLine_ID,
-	//
-	@FlyElement(name="Forecast Run Master", dataType=FlyDataType.NONE, entityType="EE01", printName="Forecast Run Master", fieldLength=0)
-	PP_ForecastRunMaster_ID,
-	//
-	@FlyElement(name="Forecast Run Result", description="Containts  the forecast calculation results.", dataType=FlyDataType.NONE, entityType="EE01", printName="Forecast Run Result", fieldLength=0)
-	PP_ForecastRunResult_ID,
-	//
-	@FlyElement(name="MRP Detail ID", description="Contains the supplies chronological relationships for each demand.", dataType=FlyDataType.NONE, entityType="EE01", printName="MRP Detail ID", fieldLength=0)
-	PP_MRP_Detail_ID,
-	//
-	@FlyElement(name="Material Requirement Planning", description="MRP ID", dataType=FlyDataType.ID, entityType="EE01", printName="Material Requirement Planning", fieldLength=10)
-	PP_MRP_ID,
-	//
-	@FlyElement(name="Manufacturing Order BOM", dataType=FlyDataType.TableDirect, entityType="EE01", printName="Manufacturing Order BOM", fieldLength=22)
-	PP_Order_BOM_ID,
-	//
-	@FlyElement(name="Manufacturing Order BOM Line", dataType=FlyDataType.ID, entityType="EE01", printName="Manufacturing Order BOM Line", fieldLength=10)
-	PP_Order_BOMLine_ID,
-	//
-	@FlyElement(name="Manufacturing Order Cost", dataType=FlyDataType.ID, entityType="EE01", printName="Manufacturing Order Cost", fieldLength=22)
-	PP_Order_Cost_ID,
-	//
-	@FlyElement(name="Manufacturing Order", description="Manufacturing Order", dataType=FlyDataType.TableDirect, entityType="EE01", printName="Manufacturing Order", fieldLength=10)
-	PP_Order_ID,
-	//
-	@FlyElement(name="Manufacturing Order Activity Next", dataType=FlyDataType.Table, entityType="EE01", printName="Manufacturing Order Activity Next", fieldLength=22)
-	PP_Order_Next_ID,
-	//
-	@FlyElement(name="Manufacturing Order Activity Asset", dataType=FlyDataType.ID, entityType="EE01", printName="Manufacturing Order Activity Asset", fieldLength=22)
-	PP_Order_Node_Asset_ID,
-	//
-	@FlyElement(name="Manufacturing Order Activity", description="Workflow Node (activity), step or process", help="The Workflow Node indicates a unique step or process in a Workflow.", dataType=FlyDataType.ID, entityType="EE01", printName="Manufacturing Order Activity", fieldLength=22)
-	PP_Order_Node_ID,
-	//
-	@FlyElement(name="Manufacturing Order Activity Next", dataType=FlyDataType.ID, entityType="EE01", printName="Manufacturing Order Activity Next", fieldLength=10)
-	PP_Order_NodeNext_ID,
-	//
-	@FlyElement(name="Manufacturing Order Activity Product", dataType=FlyDataType.ID, entityType="EE01", printName="Manufacturing Order Activity Product", fieldLength=22)
-	PP_Order_Node_Product_ID,
-	//
-	@FlyElement(name="Manufacturing Order Workflow", dataType=FlyDataType.TableDirect, entityType="EE01", printName="Manufacturing Order Workflow", fieldLength=22)
-	PP_Order_Workflow_ID,
-	//
-	@FlyElement(name="Current Period", description="Period Definition, allows to define time cycles for the Operational Calendar", dataType=FlyDataType.ID, entityType="EE01", printName="Current Period", fieldLength=22)
-	PP_PeriodDefinition_ID,
-	//
-	@FlyElement(name="Operational Period", description="Forecast Definition Periods.", dataType=FlyDataType.NONE, entityType="EE01", printName="Operational Period", fieldLength=0)
-	PP_Period_ID,
-	//
-	@FlyElement(name="BOM & Formula", description="BOM & Formula", dataType=FlyDataType.Search, entityType="EE01", printName="BOM & Formula", fieldLength=10)
-	PP_Product_BOM_ID,
-	//
-	@FlyElement(name="BOM Line", description="BOM Line", help="The BOM Line is a unique identifier for a BOM line in an BOM.", dataType=FlyDataType.ID, entityType="EE01", printName="BOM Line", fieldLength=22)
-	PP_Product_BOMLine_ID,
-	//
-	@FlyElement(name="Product Planning", description="Product Planning", help="Defines the planning data for each product to be able to calculate the Materials plan, these data can be maintained by Organization, Plant and Warehouse.", dataType=FlyDataType.ID, entityType="EE01", printName="Product Planning", fieldLength=22)
-	PP_Product_Planning_ID,
 	//
 	@FlyElement(name="Purchase Price Variance", description="Difference between Standard Cost and Purchase Price (PPV)", help="The Purchase Price Variance is used in Standard Costing. It reflects the difference between the Standard Cost and the Purchase Order Price.", dataType=FlyDataType.Account, entityType="D", printName="Purchase Price Variance", fieldLength=22)
 	P_PurchasePriceVariance_Acct,
 	//
 	@FlyElement(name="PPV Offset", description="Purchase Price Variance Offset Account", help="Offset account for standard costing purchase price variances. The counter account is Product PPV.", dataType=FlyDataType.Account, entityType="D", printName="PPV Offset", fieldLength=22)
 	PPVOffset_Acct,
-	//
-	@FlyElement(name="Workflow Node Asset", dataType=FlyDataType.ID, entityType="EE01", printName="Workflow Node Asset", fieldLength=22)
-	PP_WF_Node_Asset_ID,
-	//
-	@FlyElement(name="Workflow Node Product", dataType=FlyDataType.ID, entityType="EE01", printName="Workflow Node Product", fieldLength=22)
-	PP_WF_Node_Product_ID,
-	//
-	@FlyElement(name="Rate Variance", description="The Rate Variance account is the account used Manufacturing Order", help="The Rate Variance is used in Standard Costing. It reflects the difference between the Standard Cost Rates and  The Cost Rates of Manufacturing Order.		If you change the Standard Rates then this variance is generate.", dataType=FlyDataType.Account, entityType="EE01", printName="Account for Rate Variance", fieldLength=22)
-	P_RateVariance_Acct,
 	//
 	@FlyElement(name="Preference Level", description="Determines what preferences the user can set", help="Preferences allow you to define default values.  If set to None, you cannot set any preference nor value preference. Only if set to Client, you can see the Record Info Change Log.", dataType=FlyDataType.List, entityType="D", printName="Preference Level", fieldLength=1)
 	PreferenceType,
@@ -8612,9 +7441,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Prefix", description="Prefix before the sequence number", help="The Prefix indicates the characters to print in front of the document number.", dataType=FlyDataType.String, entityType="D", printName="Prefix", fieldLength=255)
 	Prefix,
-	//
-	@FlyElement(name="Premium Amount", description="Premium Amount", help="The Premium Amount of an Insurance", dataType=FlyDataType.Number, entityType="EE02", printName="Premium Amount", fieldLength=0)
-	PremiumAmount,
 	//
 	@FlyElement(name="Pre Period Name", dataType=FlyDataType.NONE, entityType="D", printName="Pre Period Name", fieldLength=0)
 	PrePeriodName,
@@ -8694,9 +7520,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Std Price Value", description="Valuation with standard price", dataType=FlyDataType.CostsPrices, entityType="D", printName="Std Price Value", fieldLength=22)
 	PriceStdAmt,
 	//
-	@FlyElement(name="Primary Skills", description="Define of Primary Skills for this position", help="The Primary Skills are of most important and necessary for the position", dataType=FlyDataType.Text, entityType="EE02", printName="Primary Skills", fieldLength=0)
-	PrimarySkills,
-	//
 	@FlyElement(name="Area", description="Print Area", help="Print area of this item", dataType=FlyDataType.List, entityType="D", printName="Area", fieldLength=1)
 	PrintAreaType,
 	//
@@ -8757,20 +7580,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="Processing date", dataType=FlyDataType.Date, entityType="D", printName="Processing date", fieldLength=7)
 	ProcessingDate,
 	//
-	@FlyElement(name="Process Name", description="Name of the Process", dataType=FlyDataType.String, entityType="EE02", printName="Process Name", fieldLength=60)
-	ProcessName,
-	//
-	@FlyElement(name="Process Type", dataType=FlyDataType.List, entityType="EE01", printName="Process Type", fieldLength=2)
-	ProcessType,
-	//
 	@FlyElement(name="Product", dataType=FlyDataType.String, entityType="D", printName="Product", fieldLength=40)
 	Product,
 	//
 	@FlyElement(name="Product Attribute", description="Product Attribute Instance Description", dataType=FlyDataType.String, entityType="D", printName="Product Attribute", fieldLength=2000)
 	ProductAttribute,
-	//
-	@FlyElement(name="Product Attribute To", description="Product Attribute Instance Description", dataType=FlyDataType.Text, entityType="EE01", printName="Product Attribute To", fieldLength=10)
-	ProductAttributeTo,
 	//
 	@FlyElement(name="Product BOM Key", description="Key of Product BOM", dataType=FlyDataType.String, entityType="D", printName="Product BOM Key", fieldLength=40)
 	Product_BOM_Value,
@@ -8868,9 +7682,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Proxy port", description="Port of your proxy server", help="The Proxy Port identifies the port of your proxy server.", dataType=FlyDataType.Integer, entityType="D", printName="Proxy port", fieldLength=22)
 	ProxyPort,
 	//
-	@FlyElement(name="Scrap", description="The Scrap account is the account used  in Manufacturing Order ", dataType=FlyDataType.Account, entityType="EE01", printName="Account for Scrap", fieldLength=22)
-	P_Scrap_Acct,
-	//
 	@FlyElement(name="Process String", description="Process Parameter", dataType=FlyDataType.String, entityType="D", printName="P String", fieldLength=255)
 	P_String,
 	//
@@ -8892,41 +7703,17 @@ public enum Element implements IRefList{
 	@FlyElement(name="Publication Status", description="Status of Publication", help="Used for internal documentation", dataType=FlyDataType.List, entityType="D", printName="Publication Status", fieldLength=1)
 	PublishStatus,
 	//
-	@FlyElement(name="Usage Variance", description="The Usage Variance account is the account used Manufacturing Order", help="The Usage Variance is used in Standard Costing. It reflects the difference between the  Quantities of Standard BOM  or Time Standard Manufacturing Workflow and Quantities of Manufacturing BOM or Time Manufacturing Workflow of Manufacturing Order.		If you change the Quantities or Time  defined in BOM or Workflow Manufacturig then this variance is generate.", dataType=FlyDataType.Account, entityType="EE01", printName="Account for Usage Variance", fieldLength=22)
-	P_UsageVariance_Acct,
-	//
-	@FlyElement(name="Work In Process", description="The Work in Process account is the account used Manufacturing Order", dataType=FlyDataType.Account, entityType="EE01", printName="Account for Work in Progress", fieldLength=22)
-	P_WIP_Acct,
-	//
-	@FlyElement(name="Quality Specification", dataType=FlyDataType.ID, entityType="EE01", printName="Quality Specification", fieldLength=22)
-	QM_Specification_ID,
-	//
 	@FlyElement(name="QM Specification Line", dataType=FlyDataType.ID, entityType="D", printName="QM Specification Line", fieldLength=22)
 	QM_SpecificationLine_ID,
 	//
 	@FlyElement(name="Quantity", description="Quantity", help="The Quantity indicates the number of a specific product or item for this document.", dataType=FlyDataType.Amount, entityType="D", printName="Qty", fieldLength=22)
 	Qty,
 	//
-	@FlyElement(name="Abnormal Quantity", description="Abnormal Demand Quantity", dataType=FlyDataType.NONE, entityType="EE01", printName="Abnormal Quantity", fieldLength=0)
-	QtyAbnormal,
-	//
 	@FlyElement(name="Available Quantity", description="Available Quantity (On Hand - Reserved)", help="Quantity available to promise = On Hand minus Reserved Quantity", dataType=FlyDataType.Quantity, entityType="D", printName="Qty Available", fieldLength=22)
 	QtyAvailable,
 	//
 	@FlyElement(name="Backordered", description="Backordered Quantity", help="Calculated: ordered - delivered quantity", dataType=FlyDataType.Quantity, entityType="D", printName="Backordered", fieldLength=22)
 	QtyBackOrdered,
-	//
-	@FlyElement(name="Quantity in %", description="Indicate the Quantity % use in this Formula", help="Exist two way the add a compenent to a BOM or Formula:		1.- Adding a Component based in quantity to use in this BOM	2.- Adding a Component based in % to use the Order Quantity of Manufacturing Order in this Formula.	", dataType=FlyDataType.Number, entityType="EE01", printName="Quantity in %", fieldLength=22)
-	QtyBatch,
-	//
-	@FlyElement(name="Qty Batchs", dataType=FlyDataType.Quantity, entityType="EE01", printName="Qty Batchs", fieldLength=22)
-	QtyBatchs,
-	//
-	@FlyElement(name="Qty Batch Size", dataType=FlyDataType.Quantity, entityType="EE01", printName="Qty Batch Size", fieldLength=10)
-	QtyBatchSize,
-	//
-	@FlyElement(name="Quantity", description="Indicate the Quantity  use in this BOM", help="Exist two way the add a compenent to a BOM or Formula:		1.- Adding a Component based in quantity to use in this BOM	2.- Adding a Component based in % to use the Order Quantity of Manufacturing Order in this Formula.	", dataType=FlyDataType.Number, entityType="EE01", printName="Quantity", fieldLength=22)
-	QtyBOM,
 	//
 	@FlyElement(name="Quantity book", description="Book Quantity", help="The Quantity Book indicates the line count stored in the system for a product in inventory", dataType=FlyDataType.Quantity, entityType="D", printName="Qty book", fieldLength=22)
 	QtyBook,
@@ -8946,29 +7733,14 @@ public enum Element implements IRefList{
 	@FlyElement(name="Delivered Quantity", description="Delivered Quantity", help="The Delivered Quantity indicates the quantity of a product that has been delivered.", dataType=FlyDataType.Quantity, entityType="D", printName="Delivered Qty", fieldLength=22)
 	QtyDelivered,
 	//
-	@FlyElement(name="Qty Delivered Line", dataType=FlyDataType.Quantity, entityType="EE01", printName="Qty Delivered Line", fieldLength=22)
-	QtyDeliveredLine,
-	//
 	@FlyElement(name="Quantity", description="The Quantity Entered is based on the selected UoM", help="The Quantity Entered is converted to base product UoM quantity", dataType=FlyDataType.Quantity, entityType="D", printName="Quantity", fieldLength=22)
 	QtyEntered,
-	//
-	@FlyElement(name="Gross Requirements Quantity", dataType=FlyDataType.NONE, entityType="EE01", printName="Gross Req. Qty", fieldLength=0)
-	QtyGrossReq,
 	//
 	@FlyElement(name="Internal Use Qty", description="Internal Use Quantity removed from Inventory", help="Quantity of product inventory used internally (positive if taken out - negative if returned)", dataType=FlyDataType.Quantity, entityType="D", printName="Internal Use", fieldLength=22)
 	QtyInternalUse,
 	//
-	@FlyElement(name="Qty In Transit", dataType=FlyDataType.Quantity, entityType="EE01", printName="Qty In Transit", fieldLength=22)
-	QtyInTransit,
-	//
 	@FlyElement(name="Quantity Invoiced", description="Invoiced Quantity", help="The Invoiced Quantity indicates the quantity of a product that have been invoiced.", dataType=FlyDataType.Quantity, entityType="D", printName="Invoiced", fieldLength=22)
 	QtyInvoiced,
-	//
-	@FlyElement(name="Qty Issue Scrap Should Be", dataType=FlyDataType.Quantity, entityType="EE01", printName="Qty Issue Scrap Should Be", fieldLength=22)
-	QtyIssueScrapShouldBe,
-	//
-	@FlyElement(name="Qty Issue Should Be", dataType=FlyDataType.Quantity, entityType="EE01", printName="Qty Issue Should Be", fieldLength=22)
-	QtyIssueShouldBe,
 	//
 	@FlyElement(name="Lost Sales Qty", description="Quantity of potential sales", help="When an order is closed and there is a difference between the ordered quantity and the delivered (invoiced) quantity is the Lost Sales Quantity.  Note that the Lost Sales Quantity is 0 if you void an order, so close the order if you want to track lost opportunities.  [Void = data entry error - Close = the order is finished]", dataType=FlyDataType.Quantity, entityType="D", printName="Lost Sales Qty", fieldLength=22)
 	QtyLostSales,
@@ -8981,9 +7753,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="On Hand Quantity", description="On Hand Quantity", help="The On Hand Quantity indicates the quantity of a product that is on hand in a warehouse.", dataType=FlyDataType.Quantity, entityType="D", printName="On Hand Qty", fieldLength=22)
 	QtyOnHand,
-	//
-	@FlyElement(name="On Hand Projected Quantity", description="On Hand Projected Quantity", help="The On Hand Projected Quantity indicates the quantity of a product that is on hand in time line.", dataType=FlyDataType.NONE, entityType="EE01", printName="On Hand Projected Qty", fieldLength=0)
-	QtyOnHandProjected,
 	//
 	@FlyElement(name="On Hand Quantity Total", description="On Hand Quantity Total", help="The On Hand Quantity Total indicates the quantity of a product that is on hand in a warehouse.", dataType=FlyDataType.NONE, entityType="D", printName="On Hand Qty Total", fieldLength=0)
 	QtyOnHandTotal,
@@ -9000,9 +7769,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Quantity Plan", description="Planned Quantity", help="Planned Quantity", dataType=FlyDataType.Quantity, entityType="D", printName="Quantity Plan", fieldLength=22)
 	QtyPlan,
 	//
-	@FlyElement(name="Qty Post", dataType=FlyDataType.Quantity, entityType="EE01", printName="Qty Post", fieldLength=22)
-	QtyPost,
-	//
 	@FlyElement(name="Quantity Price", dataType=FlyDataType.CostsPrices, entityType="D", printName="Qty Price", fieldLength=22)
 	QtyPrice,
 	//
@@ -9015,12 +7781,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Quantity Reimbursed", description="The reimbursed quantity", help="The reimbursed quantity is derived from the entered quantity and can be overwritten when approving the expense report.", dataType=FlyDataType.Quantity, entityType="D", printName="Qty Reimbursed", fieldLength=22)
 	QtyReimbursed,
 	//
-	@FlyElement(name="Qty Reject", dataType=FlyDataType.Quantity, entityType="EE01", printName="Qty Reject", fieldLength=22)
-	QtyReject,
-	//
-	@FlyElement(name="Qty Required", dataType=FlyDataType.Quantity, entityType="EE01", printName="Qty Required", fieldLength=22)
-	QtyRequired,
-	//
 	@FlyElement(name="Reserved Quantity", description="Reserved Quantity", help="The Reserved Quantity indicates the quantity of a product that is currently reserved.", dataType=FlyDataType.Quantity, entityType="D", printName="Reserved Qty", fieldLength=22)
 	QtyReserved,
 	//
@@ -9029,15 +7789,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Reward Quantity", dataType=FlyDataType.Quantity, entityType="D", printName="Reward Quantity", fieldLength=0)
 	QtyReward,
-	//
-	@FlyElement(name="Scheduled Receipts Quantity", dataType=FlyDataType.NONE, entityType="EE01", printName="Scheduled Receipts Qty", fieldLength=0)
-	QtyScheduledReceipts,
-	//
-	@FlyElement(name="Scrap %", description="Scrap % Quantity for this componet", help="Scrap % Quantity for this componet", dataType=FlyDataType.Quantity, entityType="EE01", printName="Scrap %", fieldLength=22)
-	QtyScrap,
-	//
-	@FlyElement(name="Qty Scrap Line", dataType=FlyDataType.Quantity, entityType="EE01", printName="Qty Scrap Line", fieldLength=22)
-	QtyScrapLine,
 	//
 	@FlyElement(name="Quantity Used", description="Quantity used for this event", dataType=FlyDataType.Quantity, entityType="D", printName="Qty Used", fieldLength=22)
 	QtySpent,
@@ -9066,17 +7817,8 @@ public enum Element implements IRefList{
 	@FlyElement(name="Query Source", description="Source of the Query", dataType=FlyDataType.List, entityType="D", printName="Source", fieldLength=1)
 	QuerySource,
 	//
-	@FlyElement(name="Queuing Time", description="Queue time is the time a job waits at a work center before begin handled.", help="Queuing time has no implication on costs, but on Capacity Requirement Planning (CRP) to calculate the total time needed to manufacture a product.", dataType=FlyDataType.Quantity, entityType="EE01", printName="Queuing Time", fieldLength=10)
-	QueuingTime,
-	//
 	@FlyElement(name="RfQ Type", description="Request for Quotation Type", dataType=FlyDataType.List, entityType="D", printName="RfQ Type", fieldLength=1)
 	QuoteType,
-	//
-	@FlyElement(name="Race Name", description="Race Name", dataType=FlyDataType.String, entityType="EE02", printName="Race Name", fieldLength=60)
-	RaceName,
-	//
-	@FlyElement(name="Race Value", description="Race Value", dataType=FlyDataType.String, entityType="EE02", printName="Race Value", fieldLength=40)
-	RaceValue,
 	//
 	@FlyElement(name="Range Label", description="Label for the range axis.", dataType=FlyDataType.String, entityType="D", printName="Range Label", fieldLength=60)
 	RangeLabel,
@@ -9089,9 +7831,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Rate", description="Rate or Tax or Exchange", help="The Rate indicates the percentage to be multiplied by the source to arrive at the tax or exchange amount.", dataType=FlyDataType.Number, entityType="D", printName="Rate", fieldLength=22)
 	Rate,
-	//
-	@FlyElement(name="Rate Variance", dataType=FlyDataType.CostsPrices, entityType="EE01", printName="Rate Variance", fieldLength=0)
-	RateVariance,
 	//
 	@FlyElement(name="Rating", description="Classification or Importance", help="The Rating is used to differentiate the importance", dataType=FlyDataType.String, entityType="D", printName="Rating", fieldLength=1)
 	Rating,
@@ -9147,12 +7886,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Receive Order Reply", dataType=FlyDataType.YesNo, entityType="D", printName="Order reply", fieldLength=1)
 	ReceiveOrderReply,
 	//
-	@FlyElement(name="RecentItems Max Saved", dataType=FlyDataType.Integer, entityType="ECA02", printName="RecentItems Max Saved", fieldLength=10)
-	RecentItemsMaxSaved,
-	//
-	@FlyElement(name="RecentItems Max Shown", dataType=FlyDataType.Integer, entityType="ECA02", printName="RecentItems Max Shown", fieldLength=10)
-	RecentItemsMaxShown,
-	//
 	@FlyElement(name="Recognition frequency", dataType=FlyDataType.List, entityType="D", printName="Recognition frequency", fieldLength=1)
 	RecognitionFrequency,
 	//
@@ -9165,9 +7898,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="RecordType", dataType=FlyDataType.String, entityType="D", printName="RecordType", fieldLength=0)
 	RecordType,
 	//
-	@FlyElement(name="Recruited Employee", description="Recruited Employee for this Job Application", help="The Recruited Employee for this Job Application", dataType=FlyDataType.Table, entityType="EE02", printName="Recruited Employee", fieldLength=0)
-	RecruitedEmployee_ID,
-	//
 	@FlyElement(name="Recurring Type", description="Type of Recurring Document", help="The type of document to be generated", dataType=FlyDataType.List, entityType="D", printName="Recurring Type", fieldLength=1)
 	RecurringType,
 	//
@@ -9179,12 +7909,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Redo", dataType=FlyDataType.Button, entityType="D", printName="Redo", fieldLength=1)
 	Redo,
-	//
-	@FlyElement(name="Employee Reference", description="Employee Reference", help="The Employee Reference", dataType=FlyDataType.Table, entityType="EE02", printName="Employee Reference", fieldLength=0)
-	Ref_BPartner_ID,
-	//
-	@FlyElement(name="Past Period Definition", description="Period Definition, allows to define time cycles for the Operational Calendar", dataType=FlyDataType.NONE, entityType="EE01", printName="Past Period Definition", fieldLength=0)
-	Ref_DefinitionPeriod_ID,
 	//
 	@FlyElement(name="Reference", description="Reference for this record", help="The Reference displays the source document number.", dataType=FlyDataType.String, entityType="D", printName="Reference", fieldLength=60)
 	Reference,
@@ -9252,9 +7976,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Remaining Amt", description="Remaining Amount", dataType=FlyDataType.Amount, entityType="D", printName="Remaining Amt", fieldLength=22)
 	RemainingAmt,
 	//
-	@FlyElement(name="Remarks", description="Remarks", dataType=FlyDataType.String, entityType="EE02", printName="Remarks", fieldLength=0)
-	Remarks,
-	//
 	@FlyElement(name="Reminder Days", description="Days between sending Reminder Emails for a due or inactive Document", help="When a document is due for too long without activity, a reminder is sent. 0 means no reminders.	The Remind Days are the days when the next email reminder is sent.", dataType=FlyDataType.Integer, entityType="D", printName="Reminder Days", fieldLength=22)
 	RemindDays,
 	//
@@ -9284,9 +8005,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Repeat Distance", description="Distance in points to repeat gradient color - or zero", help="The gradient color is not repeated, if the value is zero. The distance is added to (or subtracted from) the starting point of the gradient.", dataType=FlyDataType.Integer, entityType="D", printName="Repeat Distance", fieldLength=22)
 	RepeatDistance,
-	//
-	@FlyElement(name="Repeated type", description="Repeated type", help="The Repeated type", dataType=FlyDataType.List, entityType="EE02", printName="Repeated type", fieldLength=0)
-	RepeatedType,
 	//
 	@FlyElement(name="Replenishment Class", description="Custom class to calculate Quantity to Order", help="If you select a custom replenishment type, you need to create a class implementing org.compiere.util.ReplenishInterface and set that on warehouse level.", dataType=FlyDataType.String, entityType="D", printName="Replenishment Class", fieldLength=60)
 	ReplenishmentClass,
@@ -9375,17 +8093,8 @@ public enum Element implements IRefList{
 	@FlyElement(name="Resource Description", description="Resource Allocation Description", dataType=FlyDataType.String, entityType="D", printName="Resource Description", fieldLength=255)
 	ResourceDescription,
 	//
-	@FlyElement(name="Resource Key", description="Key of the Resource", dataType=FlyDataType.String, entityType="EE01", printName="Resource Key", fieldLength=40)
-	ResourceValue,
-	//
 	@FlyElement(name="Response Text", description="Request Response Text", help="Text block to be copied into request response text", dataType=FlyDataType.Text, entityType="D", printName="Response Text", fieldLength=2000)
 	ResponseText,
-	//
-	@FlyElement(name="Responsibilities", description="Role and responsibilities of the position.", help="The responsibilities for this position", dataType=FlyDataType.Text, entityType="EE02", printName="Responsibilities", fieldLength=0)
-	Responsibilities,
-	//
-	@FlyElement(name="Responsible Name", dataType=FlyDataType.NONE, entityType="EE01", printName="Responsible Name", fieldLength=0)
-	ResponsibleName,
 	//
 	@FlyElement(name="Responsible Type", description="Type of the Responsibility for a workflow", help="Type how the responsible user for the execution of a workflow is determined", dataType=FlyDataType.List, entityType="D", printName="Responsible Type", fieldLength=1)
 	ResponsibleType,
@@ -9401,9 +8110,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Reversal Line", description="Use to keep the reversal line ID for reversing costing purpose", dataType=FlyDataType.Table, entityType="D", printName="Reversal Line", fieldLength=22)
 	ReversalLine_ID,
-	//
-	@FlyElement(name="Revision", dataType=FlyDataType.String, entityType="EE01", printName="Revision", fieldLength=10)
-	Revision,
 	//
 	@FlyElement(name="Reward Type", description="Type of reward which consists of percentage discount, flat discount or absolute amount", dataType=FlyDataType.List, entityType="D", printName="Reward Type", fieldLength=1)
 	RewardType,
@@ -9531,18 +8237,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Invoice Create From Identifier", dataType=FlyDataType.ID, entityType="D", printName="Invoice Create From Identifier", fieldLength=10)
 	RV_Invoice_CreateFrom_ID,
 	//
-	@FlyElement(name="RV_PP_ForecastRun ID", dataType=FlyDataType.NONE, entityType="EE01", printName="RV_PP_ForecastRun ID", fieldLength=0)
-	RV_PP_ForecastRun_ID,
-	//
-	@FlyElement(name="Safety Stock Qty", description="Safety stock is a term used to describe a level of stock that is maintained below the cycle stock to buffer against stock-outs", help="Safety stock is defined as extra units of inventory carried as protection against possible stockouts. It is held when an organization cannot accurately predict demand and/or lead time for the product.		Rereference:	http://en.wikipedia.org/wiki/Safety_stock", dataType=FlyDataType.Quantity, entityType="EE01", printName="Safety Stock Qty", fieldLength=22)
-	SafetyStock,
-	//
-	@FlyElement(name="Salary Range Value", description="The Salary Rage Value is use in Job Openings", help="Salary range value for Job Opening", dataType=FlyDataType.String, entityType="EE02", printName="Salary Range Value", fieldLength=60)
-	SalaryRangeValue,
-	//
-	@FlyElement(name="Salary Structure Value", description="Salary Structure Value of an Employee", help="The Salary Structure Value define ", dataType=FlyDataType.String, entityType="EE02", printName="Salary Structure Value", fieldLength=60)
-	SalaryStructureValue,
-	//
 	@FlyElement(name="Sales Pipeline", dataType=FlyDataType.NONE, entityType="D", printName="Sales Pipeline", fieldLength=0)
 	SalesPipeline,
 	//
@@ -9563,15 +8257,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Schedule Type", description="Type of schedule", help="Define the method how the next occurrence is calculated", dataType=FlyDataType.List, entityType="D", printName="Schedule Type", fieldLength=1)
 	ScheduleType,
-	//
-	@FlyElement(name="School/College", description="School/College", dataType=FlyDataType.String, entityType="EE02", printName="School/College", fieldLength=0)
-	SchoolCollege,
-	//
-	@FlyElement(name="School/College Address", description="School/College Address", dataType=FlyDataType.Text, entityType="EE01", printName="School/College Address", fieldLength=0)
-	SchoolCollegeAddress,
-	//
-	@FlyElement(name="Scrap %", description="Indicate the Scrap %  for calculate the Scrap Quantity", help="Scrap is useful to determinate a rigth Standard Cost and management a good supply.", dataType=FlyDataType.Number, entityType="EE01", printName="Scrap %", fieldLength=22)
-	Scrap,
 	//
 	@FlyElement(name="Scrapped Quantity", description="The Quantity scrapped due to QA issues", dataType=FlyDataType.Quantity, entityType="D", printName="Scrapped Qty", fieldLength=22)
 	ScrappedQty,
@@ -9594,17 +8279,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="Search Type", description="Which kind of search is used (Query or Table)", dataType=FlyDataType.String, entityType="D", printName="Search Type", fieldLength=1)
 	SearchType,
 	//
-	@FlyElement(name="Secondary Skills", description="Define of Secondary Skills for this position", help="The Secondary Skills for the position", dataType=FlyDataType.Text, entityType="EE02", printName="Secondary Skills", fieldLength=0)
-	SecondarySkills,
-	//
 	@FlyElement(name="Second Count Qty", dataType=FlyDataType.NONE, entityType="D", printName="2nd Count", fieldLength=0)
 	SecondCountQty,
 	//
 	@FlyElement(name="Sql SELECT", description="SQL SELECT clause", help="The Select Clause indicates the SQL SELECT clause to use for selecting the record for a measure calculation. Do not include the SELECT itself.", dataType=FlyDataType.Text, entityType="D", printName="Select Clause", fieldLength=2000)
 	SelectClause,
-	//
-	@FlyElement(name="Selected Product", dataType=FlyDataType.ID, entityType="EE01", printName="Selected Product", fieldLength=10)
-	Sel_Product_ID,
 	//
 	@FlyElement(name="Send dunning letters", description="Indicates if dunning letters will be sent", help="The Send Dunning Letters checkbox indicates if dunning letters will be sent to Business Partners who use this dunning rule.", dataType=FlyDataType.YesNo, entityType="D", printName="Send dunning letters", fieldLength=1)
 	SendDunningLetter,
@@ -9672,12 +8351,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Setup Time", description="Setup time before starting Production", help="Once per operation", dataType=FlyDataType.Number, entityType="D", printName="Setup Time", fieldLength=22)
 	SetupTime,
 	//
-	@FlyElement(name="Setup Time Real", dataType=FlyDataType.Integer, entityType="EE01", printName="Setup Time Real", fieldLength=22)
-	SetupTimeReal,
-	//
-	@FlyElement(name="Setup Time Required", dataType=FlyDataType.Integer, entityType="EE01", printName="Setup Time Required", fieldLength=22)
-	SetupTimeRequired,
-	//
 	@FlyElement(name="Expense Type", description="Expense report type", dataType=FlyDataType.TableDirect, entityType="D", printName="Expense Type", fieldLength=22)
 	S_ExpenseType_ID,
 	//
@@ -9711,15 +8384,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Shelf Width", description="Shelf width required", help="The Shelf Width indicates the width dimension required on a shelf for a product", dataType=FlyDataType.Integer, entityType="D", printName="Shelf Width", fieldLength=22)
 	ShelfWidth,
 	//
-	@FlyElement(name="Shift From Time", description="Shift Starting Time", dataType=FlyDataType.Time, entityType="EE02", printName="Shift From Time", fieldLength=0)
-	ShiftFromTime,
-	//
-	@FlyElement(name="Shift Group Value", description="Shift Group Value", help="The Shift Group provides a way to grouping of Shifts", dataType=FlyDataType.String, entityType="ECA02", printName="Shift Group Value", fieldLength=60)
-	ShiftGroupValue,
-	//
-	@FlyElement(name="Shift To Time", description="Shift Ending At Time", dataType=FlyDataType.Time, entityType="EE02", printName="Shift To Time", fieldLength=0)
-	ShiftToTime,
-	//
 	@FlyElement(name="Ship Date", description="Shipment Date/Time", help="Actual Date/Time of Shipment (pick up)", dataType=FlyDataType.DateTime, entityType="D", printName="Ship Date", fieldLength=7)
 	ShipDate,
 	//
@@ -9731,9 +8395,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Shipment Print Format", description="Print Format for Shipments, Receipts, Pick Lists", help="You need to define a Print Format to print the document.", dataType=FlyDataType.Table, entityType="D", printName="Shipment Print Format", fieldLength=22)
 	Shipment_PrintFormat_ID,
-	//
-	@FlyElement(name="ShipperName", dataType=FlyDataType.String, entityType="EE01", printName="Shipper Name", fieldLength=40)
-	ShipperName,
 	//
 	@FlyElement(name="Show Actual Amount", dataType=FlyDataType.NONE, entityType="D", printName="Show Actual Amount", fieldLength=0)
 	ShowActualAmt,
@@ -9758,12 +8419,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Size Y", description="Y (vertical) dimension size", help="Size of Y (vertical) dimension in Units", dataType=FlyDataType.Number, entityType="D", printName="Size Y", fieldLength=5)
 	SizeY,
-	//
-	@FlyElement(name="Skill Type Name", description="Skill Type Name", dataType=FlyDataType.String, entityType="EE02", printName="Skill Type Name", fieldLength=60)
-	SkillTypeName,
-	//
-	@FlyElement(name="Skill Type Value", description="Skill Type Value", dataType=FlyDataType.String, entityType="EE02", printName="Skill Type Value", fieldLength=40)
-	SkillTypeValue,
 	//
 	@FlyElement(name="SKU", description="Stock Keeping Unit", help="The SKU indicates a user defined stock keeping unit.  It may be used for an additional bar code symbols or your own schema.", dataType=FlyDataType.String, entityType="D", printName="SKU", fieldLength=30)
 	SKU,
@@ -9813,9 +8468,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Split Element", description="Semantics for multiple outgoing Transitions", help="Semantics for multiple outgoing Transitions for a Node/Activity.  AND represents multiple concurrent threads - XOR represents the first transition with a true Transition condition.", dataType=FlyDataType.List, entityType="D", printName="Split Element", fieldLength=1)
 	SplitElement,
 	//
-	@FlyElement(name="Sponsor Name", description="Sponsor Name", help="The Sponsor Name", dataType=FlyDataType.String, entityType="EE02", printName="Sponsor Name", fieldLength=0)
-	SponsorName,
-	//
 	@FlyElement(name="SQLStatement", dataType=FlyDataType.Memo, entityType="D", printName="SQLStatement", fieldLength=2000)
 	SQLStatement,
 	//
@@ -9830,9 +8482,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Resource Unavailability", dataType=FlyDataType.ID, entityType="D", printName="Resource Unavailability", fieldLength=22)
 	S_ResourceUnAvailable_ID,
-	//
-	@FlyElement(name="Social Security Code", dataType=FlyDataType.NONE, entityType="EE02", printName="Social Security Code", fieldLength=60)
-	SSCode,
 	//
 	@FlyElement(name="Stack Trace", description="System Log Trace", dataType=FlyDataType.Text, entityType="D", printName="Stack Trace", fieldLength=2000)
 	StackTrace,
@@ -9945,9 +8594,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Training", description="Repeated Training", help="The training may have multiple actual classes", dataType=FlyDataType.TableDirect, entityType="D", printName="Training", fieldLength=22)
 	S_Training_ID,
 	//
-	@FlyElement(name="Stregth Required", description="Stregth Required", help="The Stregth Required", dataType=FlyDataType.Integer, entityType="EE02", printName="Stregth Required", fieldLength=0)
-	StrengthRequired,
-	//
 	@FlyElement(name="StructureXML", description="Autogenerated Containerdefinition as XML Code", help="Autogenerated Containerdefinition as XML Code", dataType=FlyDataType.Text, entityType="D", printName="StructureXML", fieldLength=2000)
 	StructureXML,
 	//
@@ -10017,9 +8663,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="System Status", description="Status of the system - Support priority depends on system status", help="System status helps to prioritize support resources", dataType=FlyDataType.List, entityType="D", printName="System Status", fieldLength=1)
 	SystemStatus,
 	//
-	@FlyElement(name="DB Table Alias", description="Alias of the table in the view", help="The DB Table Alias indicates the name of the alias in view.", dataType=FlyDataType.String, entityType="EE07", printName="DB Table Alias", fieldLength=20)
-	TableAlias,
-	//
 	@FlyElement(name="DB Table Name", description="Name of the table in the database", help="The DB Table Name indicates the name of the table in database.", dataType=FlyDataType.String, entityType="D", printName="DB Table Name", fieldLength=40)
 	TableName,
 	//
@@ -10068,9 +8711,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Indented BOM Report", dataType=FlyDataType.ID, entityType="D", printName="Indented BOM Report", fieldLength=10)
 	T_BOM_Indented_ID,
 	//
-	@FlyElement(name="Temporal BOM Line", dataType=FlyDataType.ID, entityType="EE01", printName="Temporal BOM Line", fieldLength=10)
-	T_BOMLine_ID,
-	//
 	@FlyElement(name="Tax Credit", description="Account for Tax you can reclaim", help="The Tax Credit Account indicates the account used to record taxes that can be reclaimed", dataType=FlyDataType.Account, entityType="D", printName="Tax Credit", fieldLength=22)
 	T_Credit_Acct,
 	//
@@ -10092,17 +8732,8 @@ public enum Element implements IRefList{
 	@FlyElement(name="Tender type", description="Method of Payment", help="The Tender Type indicates the method of payment (ACH or Direct Deposit, Credit Card, Check, Direct Debit)", dataType=FlyDataType.List, entityType="D", printName="Tender type", fieldLength=1)
 	TenderType,
 	//
-	@FlyElement(name="Termination Date", description="Previous Termination Date", help="The Previous Termination Date", dataType=FlyDataType.Date, entityType="EE02", printName="Termination Date", fieldLength=0)
-	TerminationDate,
-	//
-	@FlyElement(name="Test Export Model", dataType=FlyDataType.Button, entityType="EE05", printName="Test Export Model", fieldLength=1)
-	TestExportModel,
-	//
 	@FlyElement(name="Test ID", dataType=FlyDataType.ID, entityType="D", printName="Test ID", fieldLength=22)
 	Test_ID,
-	//
-	@FlyElement(name="Test Import Model", dataType=FlyDataType.Button, entityType="EE05", printName="Test Import Model", fieldLength=1)
-	TestImportModel,
 	//
 	@FlyElement(name="Test Value", description="Value to test", dataType=FlyDataType.NONE, entityType="D", printName="Test Value", fieldLength=0)
 	TestValue,
@@ -10125,14 +8756,8 @@ public enum Element implements IRefList{
 	@FlyElement(name="Threshold min", description="Minimum gross amount for withholding calculation", help="The Threshold Minimum indicates the minimum gross amount to be used in the withholding calculation.", dataType=FlyDataType.Amount, entityType="D", printName="Threshold min", fieldLength=22)
 	Thresholdmin,
 	//
-	@FlyElement(name="Thumb Image", description="Thumb Image", help="Thumb Image", dataType=FlyDataType.Image, entityType="EE02", printName="Thumb Image", fieldLength=0)
-	ThumbImage_ID,
-	//
 	@FlyElement(name="Ticket Handler Class Name", description="Java Classname for Ticket Handler", help="The Classname identifies the Java classname used by this report or process.", dataType=FlyDataType.String, entityType="D", printName="Ticket Handler Class Name", fieldLength=60)
 	TicketClassName,
-	//
-	@FlyElement(name="Time Fence", description="The Time Fence is the number of days since you execute the MRP process inside of which  the system must not change the planned orders. ", help="The system will generate  action messages warning if some order needs to be modified or created into the time fence.	<p>	The Limit time is used for the master plan products, the number of days is the equal or bigger than the product’s delivery time.	<p>	It is recommended to establish a limit time, so you don’t have a nervous manufacturing system or a systems that reacts to any change or plan modification.", dataType=FlyDataType.Quantity, entityType="EE01", printName="Time Fence", fieldLength=22)
-	TimeFence,
 	//
 	@FlyElement(name="Time Offset", description="Number of time units to offset displayed chart data from the current date.", help="For example an offset of -12 with a chart time unit of Month will result in previous year data being displayed.", dataType=FlyDataType.Integer, entityType="D", printName="Time Offset", fieldLength=10)
 	TimeOffset,
@@ -10169,12 +8794,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Tax Liability", description="Account for Tax declaration liability", help="The Tax Liability Account indicates the account used to record your tax liability declaration.", dataType=FlyDataType.Account, entityType="D", printName="Tax Liability", fieldLength=22)
 	T_Liability_Acct,
-	//
-	@FlyElement(name="Product", dataType=FlyDataType.Search, entityType="EE01", printName="Product", fieldLength=22)
-	TM_Product_ID,
-	//
-	@FlyElement(name="Temporal MRP & CRP", dataType=FlyDataType.ID, entityType="EE01", printName="Temporal MRP & CRP", fieldLength=10)
-	T_MRP_CRP_ID,
 	//
 	@FlyElement(name="Number", dataType=FlyDataType.Number, entityType="D", printName="Number", fieldLength=22)
 	T_Number,
@@ -10215,9 +8834,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Total Invoice Quantity", description="Cumulative total lifetime invoice quantity", help="The cumulative total lifetime invoice quantity is used to calculate the total average price", dataType=FlyDataType.Quantity, entityType="D", printName="Total Invoice Quantity", fieldLength=22)
 	TotalInvQty,
 	//
-	@FlyElement(name="Total of Leaves", description="Total of Leaves", help="The Total of Leaves of an Employee", dataType=FlyDataType.Number, entityType="EE02", printName="Total of Leaves", fieldLength=0)
-	TotalLeaves,
-	//
 	@FlyElement(name="Total Lines", description="Total of all document lines", help="The Total amount displays the total of all lines in document currency", dataType=FlyDataType.Amount, entityType="D", printName="Total Lines", fieldLength=22)
 	TotalLines,
 	//
@@ -10226,9 +8842,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Total Quantity", description="Total Quantity", dataType=FlyDataType.Quantity, entityType="D", printName="Total Qty", fieldLength=22)
 	TotalQty,
-	//
-	@FlyElement(name="Total Relevant Experience", description="Total Relevant Experience", help="The Total Relevant Experience of a Job Application", dataType=FlyDataType.String, entityType="EE02", printName="Total Relevant Experience", fieldLength=0)
-	TotalRelevantExperience,
 	//
 	@FlyElement(name="Qty", dataType=FlyDataType.Quantity, entityType="D", printName="Qty", fieldLength=22)
 	T_Qty,
@@ -10251,32 +8864,8 @@ public enum Element implements IRefList{
 	@FlyElement(name="CashBook for transfers", dataType=FlyDataType.Table, entityType="D", printName="CashBook for transfers", fieldLength=22)
 	TransferCashBook_ID,
 	//
-	@FlyElement(name="Transfer Time", description="Transfer Time", help="Indicates the number of days the product needs to be moved from one warehouse to another.", dataType=FlyDataType.Quantity, entityType="EE01", printName="Transfer Time", fieldLength=10)
-	TransferTime,
-	//
 	@FlyElement(name="Transition Code", description="Code resulting in TRUE of FALSE", help="The transition is executed, if the code results in TRUE (or is empty)", dataType=FlyDataType.Text, entityType="D", printName="Transition Code", fieldLength=2000)
 	TransitionCode,
-	//
-	@FlyElement(name="Transport Height", dataType=FlyDataType.Number, entityType="EE03", printName="Transport Height", fieldLength=0)
-	TransportHeight,
-	//
-	@FlyElement(name="Transport Length", dataType=FlyDataType.Number, entityType="EE03", printName="Transport Length", fieldLength=0)
-	TransportLength,
-	//
-	@FlyElement(name="License Type", dataType=FlyDataType.List, entityType="EE03", printName="License Type", fieldLength=0)
-	TransportLicenseType,
-	//
-	@FlyElement(name="Transport Mode", description="The modes of transport supported", dataType=FlyDataType.List, entityType="EE03", printName="Transport Mode", fieldLength=0)
-	TransportMode,
-	//
-	@FlyElement(name="Transport Physical Type", description="The system divides the physical type of the transport unit into a part that carries the load, a mover, and other load bearing elements", dataType=FlyDataType.List, entityType="EE03", printName="Transport Physical Type", fieldLength=0)
-	TransportPhysicalType,
-	//
-	@FlyElement(name="Transport Status", description="Transport unit status", dataType=FlyDataType.List, entityType="EE03", printName="Transport Status", fieldLength=0)
-	TransportStatus,
-	//
-	@FlyElement(name="Transport Width", dataType=FlyDataType.Number, entityType="EE03", printName="Transport Width", fieldLength=0)
-	TransportWidth,
 	//
 	@FlyElement(name="Tax Receivables", description="Account for Tax credit after tax declaration", help="The Tax Receivables Account indicates the account used to record the tax credit amount after your tax declaration.", dataType=FlyDataType.Account, entityType="D", printName="Tax Receivables", fieldLength=22)
 	T_Receivables_Acct,
@@ -10335,9 +8924,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Runtime per Unit", description="Time to produce one unit", dataType=FlyDataType.Number, entityType="D", printName="Unit Runtine", fieldLength=22)
 	UnitRuntime,
 	//
-	@FlyElement(name="Units by Cycles", description="The Units by Cycles are defined for process type  Flow Repetitive Dedicated and  indicated the product to be manufactured on a production line for duration unit.", help="When Units by Cycles are defined the duration time is the total of time to manufactured the units", dataType=FlyDataType.Number, entityType="EE01", printName="Units by Cycles", fieldLength=14)
-	UnitsCycles,
-	//
 	@FlyElement(name="UnitsPerPack", description="The Units Per Pack indicates the no of units of a product packed together.", dataType=FlyDataType.Integer, entityType="D", printName="UnitsPerPack", fieldLength=14)
 	UnitsPerPack,
 	//
@@ -10349,9 +8935,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Unix Attachment Path", dataType=FlyDataType.String, entityType="D", printName="Unix Attachment Path", fieldLength=255)
 	UnixAttachmentPath,
-	//
-	@FlyElement(name="Unladen Weight", dataType=FlyDataType.Number, entityType="EE03", printName="Unladen Weight", fieldLength=0)
-	UnladenWeight,
 	//
 	@FlyElement(name="UnlockingTime", description="Time at which the terminal should be unlocked", dataType=FlyDataType.DateTime, entityType="D", printName="UnlockingTime", fieldLength=7)
 	UnlockingTime,
@@ -10380,9 +8963,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Updated By", description="User who updated this records", help="The Updated By field indicates the user who updated this record.", dataType=FlyDataType.Table, entityType="D", printName="Updated By", fieldLength=22)
 	UpdatedBy,
 	//
-	@FlyElement(name="Updated By Issue", dataType=FlyDataType.Table, entityType="EE01", printName="Updated By Issue", fieldLength=22)
-	UpdatedByIssue,
-	//
 	@FlyElement(name="UpdatedDate", dataType=FlyDataType.String, entityType="D", printName="UpdatedDate", fieldLength=50)
 	UpdatedDate,
 	//
@@ -10407,17 +8987,11 @@ public enum Element implements IRefList{
 	@FlyElement(name="Role Menu", dataType=FlyDataType.ID, entityType="D", printName="Role Menu", fieldLength=22)
 	U_RoleMenu_ID,
 	//
-	@FlyElement(name="Usage Variance", dataType=FlyDataType.CostsPrices, entityType="EE01", printName="Usage Variance", fieldLength=0)
-	UsageVariance,
-	//
 	@FlyElement(name="Use Currency Balancing", dataType=FlyDataType.YesNo, entityType="D", printName="Use Currency Balancing", fieldLength=1)
 	UseCurrencyBalancing,
 	//
 	@FlyElement(name="UseDate", dataType=FlyDataType.Date, entityType="D", printName="UseDate", fieldLength=7)
 	UseDate,
-	//
-	@FlyElement(name="Used Leaves", description="Used Leaves", help="The Used Leaves of an Employee", dataType=FlyDataType.Number, entityType="EE02", printName="Used Leaves", fieldLength=0)
-	UsedLeaves,
 	//
 	@FlyElement(name="Usable Life - Months", description="Months of the usable life of the asset", dataType=FlyDataType.Integer, entityType="D", printName="Usable life months", fieldLength=22)
 	UseLifeMonths,
@@ -10542,12 +9116,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Date", dataType=FlyDataType.Date, entityType="D", printName="Date", fieldLength=7)
 	V_Date,
 	//
-	@FlyElement(name="Vehicle Status", dataType=FlyDataType.List, entityType="EE03", printName="Vehicle Status", fieldLength=0)
-	VehicleStatus,
-	//
-	@FlyElement(name="Vehicle Type", description="Vehicle Type defines the mode of transport", dataType=FlyDataType.List, entityType="EE03", printName="Vehicle Type", fieldLength=0)
-	VehicleType,
-	//
 	@FlyElement(name="Partner Category", description="Product Category of the Business Partner", help="The Business Partner Category identifies the category used by the Business Partner for this product.", dataType=FlyDataType.String, entityType="D", printName="BPartner Category", fieldLength=30)
 	VendorCategory,
 	//
@@ -10587,9 +9155,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Volume", description="Volume of a product", help="The Volume indicates the volume of the product in the Volume UOM of the Client", dataType=FlyDataType.Amount, entityType="D", printName="Volume", fieldLength=22)
 	Volume,
 	//
-	@FlyElement(name="Volume Unit of Measure", dataType=FlyDataType.Table, entityType="EE03", printName="Volume Unit of Measure", fieldLength=0)
-	Volume_UOM_ID,
-	//
 	@FlyElement(name="Vendor Prepayment", description="Account for Vendor Prepayments", help="The Vendor Prepayment Account indicates the account used to record prepayments from a vendor.", dataType=FlyDataType.Account, entityType="D", printName="Vendor Prepayment", fieldLength=22)
 	V_Prepayment_Acct,
 	//
@@ -10598,9 +9163,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Advertisement", description="Web Advertisement", help="Advertisement on the Web", dataType=FlyDataType.ID, entityType="D", printName="Advertisement", fieldLength=22)
 	W_Advertisement_ID,
-	//
-	@FlyElement(name="Wage Level", description="Wage Level", dataType=FlyDataType.List, entityType="EE02", printName="Wage Level", fieldLength=0)
-	WageLevel,
 	//
 	@FlyElement(name="Waiting Time", description="Workflow Simulation Waiting time", help="Amount of time needed to prepare the performance of the task on Duration Units", dataType=FlyDataType.Integer, entityType="D", printName="Waiting Time", fieldLength=22)
 	WaitingTime,
@@ -10749,12 +9311,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Weighted Amount", description="The amount adjusted by the probability.", dataType=FlyDataType.NONE, entityType="D", printName="Weighted Amount", fieldLength=0)
 	WeightedAmt,
 	//
-	@FlyElement(name="Weight Unit of Measure", dataType=FlyDataType.Table, entityType="EE03", printName="Weight Unit of Measure", fieldLength=0)
-	Weight_UOM_ID,
-	//
-	@FlyElement(name="WF Processor Name", dataType=FlyDataType.NONE, entityType="EE01", printName="WF Processor Name", fieldLength=0)
-	WFProcessorName,
-	//
 	@FlyElement(name="Workflow State", description="State of the execution of the workflow", dataType=FlyDataType.List, entityType="D", printName="Wf State", fieldLength=2)
 	WFState,
 	//
@@ -10788,42 +9344,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Mail Message", description="Web Store Mail Message Template", dataType=FlyDataType.ID, entityType="D", printName="Mail Message", fieldLength=10)
 	W_MailMsg_ID,
 	//
-	@FlyElement(name="Warehouse Area", description="Warehouse Area allow grouping the Warehouse Section", dataType=FlyDataType.NONE, entityType="EE03", printName="Warehouse Area", fieldLength=0)
-	WM_Area_ID,
-	//
-	@FlyElement(name="Warehouse Area Type", description="Warehouse Area Type allow grouping the Warehouse Area for Type", dataType=FlyDataType.NONE, entityType="EE01", printName="Warehouse Area Type", fieldLength=0)
-	WM_Area_Type_ID,
-	//
-	@FlyElement(name="Inboud & Outbound Definition", dataType=FlyDataType.NONE, entityType="EE03", printName="Inboud & Outbound Definition", fieldLength=0)
-	WM_Definition_ID,
-	//
-	@FlyElement(name="In & Out Bound Order", dataType=FlyDataType.TableDirect, entityType="EE01", printName="In & Out Bound Order", fieldLength=0)
-	WM_InOutBound_ID,
-	//
-	@FlyElement(name="Inbound & Outbound Order Line", dataType=FlyDataType.NONE, entityType="EE01", printName="Inbound & Outbound Order Line", fieldLength=0)
-	WM_InOutBoundLine_ID,
-	//
-	@FlyElement(name="Inbound & Outbound Order Line MA ID", dataType=FlyDataType.NONE, entityType="EE03", printName="Inbound & Outbound Order Line MA ID", fieldLength=0)
-	WM_InOutBoundLineMA_ID,
-	//
-	@FlyElement(name="Inbound & Outbound Rule", dataType=FlyDataType.NONE, entityType="EE03", printName="Inbound & Outbound Rule", fieldLength=0)
-	WM_Rule_ID,
-	//
-	@FlyElement(name="Warehouse Section Detail", description="Define the Locations that belong to this section", dataType=FlyDataType.NONE, entityType="EE03", printName="Warehouse Section Deatil", fieldLength=0)
-	WM_Section_Detail_ID,
-	//
-	@FlyElement(name="Warehouse Section", description="The Warehouse Section is an grouping of Locators with similar features.", help="The criteria for grouping the locators can be for Moving Type (Fast, Slow ), heavy part, bulky Material ", dataType=FlyDataType.NONE, entityType="EE03", printName="Warehouse Section", fieldLength=0)
-	WM_Section_ID,
-	//
-	@FlyElement(name="Warehouse Section Type", dataType=FlyDataType.NONE, entityType="EE03", printName="Warehouse Section Type", fieldLength=0)
-	WM_Section_Type_ID,
-	//
-	@FlyElement(name="Inbound & Outbound Strategy Detail ID", dataType=FlyDataType.NONE, entityType="EE03", printName="Inbound & Outbound Strategy Detail ID", fieldLength=0)
-	WM_Strategy_Detail_ID,
-	//
-	@FlyElement(name="Warehouse Managamet Strategy", dataType=FlyDataType.NONE, entityType="EE03", printName="Warehouse Managamet Strategy", fieldLength=0)
-	WM_Strategy_ID,
-	//
 	@FlyElement(name="Workflow", description="Workflow or tasks", help="The Workflow field identifies a unique workflow.   A workflow is a grouping of related tasks, in a specified sequence and optionally including approvals", dataType=FlyDataType.Table, entityType="D", printName="Workflow", fieldLength=22)
 	Workflow_ID,
 	//
@@ -10832,9 +9352,6 @@ public enum Element implements IRefList{
 	//
 	@FlyElement(name="Workflow Key", description="Key of the Workflow to start", dataType=FlyDataType.String, entityType="D", printName="Workflow", fieldLength=40)
 	WorkflowValue,
-	//
-	@FlyElement(name="Work Group Value", description="Work Group Value used for import", help="The Work Group provides a way to grouping of Work", dataType=FlyDataType.String, entityType="ECA02", printName="Work Group Value", fieldLength=60)
-	WorkGroupValue,
 	//
 	@FlyElement(name="Working Time", description="Workflow Simulation Execution Time", help="Amount of time the performer of the activity needs to perform the task in Duration Unit", dataType=FlyDataType.Integer, entityType="D", printName="Working Time", fieldLength=22)
 	WorkingTime,
@@ -10896,12 +9413,6 @@ public enum Element implements IRefList{
 	@FlyElement(name="Bin (Y)", description="Y dimension, e.g., Bin", help="The Y dimension indicates the Bin a product is located in", dataType=FlyDataType.String, entityType="D", printName="Y", fieldLength=60)
 	Y,
 	//
-	@FlyElement(name="Year of Passing", description="Year of Passing", help="The Year of Passing", dataType=FlyDataType.List, entityType="EE02", printName="Year of Passing", fieldLength=0)
-	YearOfPassing,
-	//
-	@FlyElement(name="Yield %", description="The Yield is the percentage of a lot that is expected to be of acceptable wuality may fall below 100 percent", help="ADempiere Calculate the total yield for a product from the yield for each activity when the process Workflow Cost Roll-Up is executed.		The expected yield for an Activity can be expressed as:		Yield = Acceptable Units at Activity End x 100		The Total manufacturing yield for a product is determined by multiplying the yied percentage for each activity.		Manufacturing Yield = Yield % for Activity 10 x Yied % for Activity 20 , etc		Take care when setting yield to anything but 100% particularly when yied is used for multiples activities", dataType=FlyDataType.Integer, entityType="EE01", printName="Yield %", fieldLength=22)
-	Yield,
-	//
 	@FlyElement(name="Y Position", description="Absolute Y (vertical) position in 1/72 of an inch", help="Absolute Y (vertical) position in 1/72 of an inch", dataType=FlyDataType.Integer, entityType="D", printName="Y Position", fieldLength=22)
 	YPosition,
 	//
@@ -10924,5 +9435,5 @@ public enum Element implements IRefList{
 	Zoom_Window_ID,
 	//
 	@FlyElement(name="ZUL File Path", description="Absolute path to zul file", help="Absolute path to zul file that is use to generate dashboard content", dataType=FlyDataType.String, entityType="D", printName="ZUL File Path", fieldLength=255)
-	ZulFilePath;
+	ZulFilePath,
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.lang.model.element.Modifier;
 import javax.persistence.Column;
 
+import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.builder.FlyDataTypeUtils;
 
@@ -50,21 +51,32 @@ public class ADColumn extends ADElement {
 	}
 
 	public AnnotationSpec getFlyFieldAnnotationSpec() {
-		return AnnotationSpec.builder(FlyField.class).addMember("name", "$S", getName())
-				.addMember("description", "$S", getDescription()).addMember("help", "$S", getHelp()).build();
+		return AnnotationSpec.builder(FlyField.class).addMember("name", "$S", convertStr(getName()))
+				.addMember("description", "$S", convertStr(getDescription()))
+				.addMember("help", "$S", convertStr(getHelp())).build();
+	}
+
+	private boolean isIDColumn() {
+		return FlyDataType.ID.equals(getDataType()) || FlyDataType.Table.equals(getDataType())
+				|| FlyDataType.TableDirect.equals(getDataType()) || FlyDataType.List.equals(getDataType());
 	}
 
 	public AnnotationSpec getColumnAnnotation() {
-		return AnnotationSpec.builder(Column.class).build();
+		AnnotationSpec.Builder builder = AnnotationSpec.builder(Column.class);
+		if (getJavaType() == String.class) {
+			builder.addMember("length", "$L", isIDColumn() ? 32 : getFieldLength());
+		}
+		return builder.build();
 	}
-	
-	public Class<?> getJavaType(){
+
+	public Class<?> getJavaType() {
 		return FlyDataTypeUtils.getJavaType(getDataType());
 	}
-	
+
 	public FieldSpec getFieldSpec() {
-		return FieldSpec.builder(getJavaType(), getApiName(), Modifier.PRIVATE)
-				.addAnnotation(getFlyFieldAnnotationSpec()).addAnnotation(getColumnAnnotation()).build();
+		return FieldSpec.builder(getJavaType(), getApiName(), Modifier.PRIVATE).addAnnotation(getColumnAnnotation())
+				.build();
+		// .addAnnotation(getFlyFieldAnnotationSpec())
 	}
 
 	public MethodSpec getGetterMethodSpec() {
@@ -79,6 +91,7 @@ public class ADColumn extends ADElement {
 	}
 
 	public void build(Builder builder) {
-		builder.addField(getFieldSpec()).addMethod(getGetterMethodSpec()).addMethod(getSetterMethodSpec());
+		builder.addField(getFieldSpec());
+		// .addMethod(getGetterMethodSpec()).addMethod(getSetterMethodSpec());
 	}
 }
