@@ -11,18 +11,18 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 @Entity
 @Table(
-    name = "AD_Tab"
+    name = "PT_Tab"
 )
 @FlyTable(
     name = "Tab",
     description = "Tab within a Window",
     help = ""
 )
-public class AD_Tab {
+public class PTab {
   @Column(
       length = 32
   )
-  private String aD_Process_ID;
+  private String processID;
 
   @Column
   private Timestamp created;
@@ -30,12 +30,12 @@ public class AD_Tab {
   @Column(
       length = 32
   )
-  private String aD_Org_ID;
+  private String orgID;
 
   @Column(
       length = 32
   )
-  private String aD_Client_ID;
+  private String clientID;
 
   @Column
   private Timestamp updated;
@@ -43,7 +43,7 @@ public class AD_Tab {
   @Column(
       length = 32
   )
-  private String aD_Tab_ID;
+  private String tabID;
 
   @Column
   private Boolean isActive;
@@ -81,7 +81,7 @@ public class AD_Tab {
   @Column(
       length = 32
   )
-  private String parent_Column_ID;
+  private String parentColumnID;
 
   @Column(
       length = 2000
@@ -99,7 +99,7 @@ public class AD_Tab {
   @Column(
       length = 32
   )
-  private String aD_Table_ID;
+  private String tableID;
 
   @Column
   private Boolean hasTree;
@@ -107,7 +107,7 @@ public class AD_Tab {
   @Column(
       length = 32
   )
-  private String aD_ColumnSortYesNo_ID;
+  private String columnSortYesNoID;
 
   @Column(
       length = 2000
@@ -125,7 +125,7 @@ public class AD_Tab {
   @Column(
       length = 32
   )
-  private String aD_Image_ID;
+  private String imageID;
 
   @Column(
       length = 32
@@ -135,7 +135,7 @@ public class AD_Tab {
   @Column(
       length = 32
   )
-  private String included_Tab_ID;
+  private String includedTabID;
 
   @Column
   private BigDecimal tabLevel;
@@ -152,7 +152,7 @@ public class AD_Tab {
   @Column(
       length = 32
   )
-  private String aD_Window_ID;
+  private String windowID;
 
   @Column
   private Boolean isSortTab;
@@ -163,12 +163,12 @@ public class AD_Tab {
   @Column(
       length = 32
   )
-  private String aD_Column_ID;
+  private String columnID;
 
   @Column(
       length = 32
   )
-  private String aD_ColumnSortOrder_ID;
+  private String columnSortOrderID;
 
   @Column(
       length = 2000

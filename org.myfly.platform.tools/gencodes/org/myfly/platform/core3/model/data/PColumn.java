@@ -11,14 +11,14 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 @Entity
 @Table(
-    name = "AD_Column"
+    name = "PT_Column"
 )
 @FlyTable(
     name = "Column",
     description = "Column in the table",
     help = ""
 )
-public class AD_Column {
+public class PColumn {
   @Column
   private BigDecimal seqNo;
 
@@ -30,7 +30,7 @@ public class AD_Column {
   @Column(
       length = 32
   )
-  private String aD_Column_ID;
+  private String columnID;
 
   @Column
   private Timestamp created;
@@ -54,17 +54,17 @@ public class AD_Column {
   @Column(
       length = 32
   )
-  private String aD_Client_ID;
+  private String clientID;
 
   @Column(
       length = 32
   )
-  private String aD_Org_ID;
+  private String orgID;
 
   @Column(
       length = 32
   )
-  private String aD_Chart_ID;
+  private String chartID;
 
   @Column(
       length = 20
@@ -74,7 +74,7 @@ public class AD_Column {
   @Column(
       length = 32
   )
-  private String aD_Table_ID;
+  private String tableID;
 
   @Column(
       length = 60
@@ -111,7 +111,7 @@ public class AD_Column {
   @Column(
       length = 22
   )
-  private String aD_Element_ID;
+  private String elementID;
 
   @Column
   private Boolean isSelectionColumn;
@@ -127,7 +127,7 @@ public class AD_Column {
   @Column(
       length = 32
   )
-  private String aD_Process_ID;
+  private String processID;
 
   @Column(
       length = 2000
@@ -150,7 +150,7 @@ public class AD_Column {
   @Column(
       length = 32
   )
-  private String aD_Reference_Value_ID;
+  private String referenceValueID;
 
   @Column(
       length = 2000
@@ -165,7 +165,7 @@ public class AD_Column {
   @Column(
       length = 32
   )
-  private String aD_Val_Rule_ID;
+  private String valRuleID;
 
   @Column(
       length = 2000
@@ -178,7 +178,7 @@ public class AD_Column {
   @Column(
       length = 32
   )
-  private String aD_Reference_ID;
+  private String referenceID;
 
   @Column
   private Boolean isUpdateable;

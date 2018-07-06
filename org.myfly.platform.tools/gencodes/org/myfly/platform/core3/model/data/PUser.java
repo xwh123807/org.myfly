@@ -12,14 +12,14 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 @Entity
 @Table(
-    name = "AD_User"
+    name = "PT_User"
 )
 @FlyTable(
     name = "User/Contact",
     description = "User within the system - Internal or Business Partner Contact",
     help = ""
 )
-public class AD_User {
+public class PUser {
   @Column
   private BigDecimal recentItemsMaxSaved;
 
@@ -34,12 +34,12 @@ public class AD_User {
   @Column(
       length = 10
   )
-  private String bP_Location_ID;
+  private String bPLocationID;
 
   @Column(
       length = 32
   )
-  private String aD_User_ID;
+  private String userID;
 
   @Column(
       length = 1
@@ -49,7 +49,7 @@ public class AD_User {
   @Column(
       length = 32
   )
-  private String aD_Org_ID;
+  private String orgID;
 
   @Column
   private Timestamp updated;
@@ -57,7 +57,7 @@ public class AD_User {
   @Column(
       length = 32
   )
-  private String aD_Client_ID;
+  private String clientID;
 
   @Column
   private Boolean isActive;
@@ -102,12 +102,12 @@ public class AD_User {
   @Column(
       length = 22
   )
-  private String c_BPartner_ID;
+  private String cBPartnerID;
 
   @Column(
       length = 32
   )
-  private String aD_OrgTrx_ID;
+  private String orgTrxID;
 
   @Column(
       length = 40
@@ -117,12 +117,12 @@ public class AD_User {
   @Column(
       length = 32
   )
-  private String c_BPartner_Location_ID;
+  private String cBPartnerLocationID;
 
   @Column(
       length = 22
   )
-  private String supervisor_ID;
+  private String supervisorID;
 
   @Column(
       length = 60
@@ -147,7 +147,7 @@ public class AD_User {
   @Column(
       length = 32
   )
-  private String c_Campaign_ID;
+  private String cCampaignID;
 
   @Column
   private Date lastContact;
@@ -155,7 +155,7 @@ public class AD_User {
   @Column(
       length = 32
   )
-  private String c_Job_ID;
+  private String cJobID;
 
   @Column(
       length = 32
@@ -196,7 +196,7 @@ public class AD_User {
   @Column(
       length = 32
   )
-  private String c_Location_ID;
+  private String cLocationID;
 
   @Column(
       length = 32
@@ -216,7 +216,7 @@ public class AD_User {
   @Column(
       length = 32
   )
-  private String salesRep_ID;
+  private String salesRepID;
 
   @Column
   private Timestamp eMailVerifyDate;
@@ -242,7 +242,7 @@ public class AD_User {
   @Column(
       length = 32
   )
-  private String c_Greeting_ID;
+  private String cGreetingID;
 
   @Column(
       length = 40
@@ -270,7 +270,7 @@ public class AD_User {
   @Column(
       length = 32
   )
-  private String aD_EMailConfig_ID;
+  private String eMailConfigID;
 
   @Column(
       length = 36

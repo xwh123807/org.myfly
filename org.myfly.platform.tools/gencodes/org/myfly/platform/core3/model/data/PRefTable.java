@@ -10,37 +10,24 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 @Entity
 @Table(
-    name = "AD_Reference"
+    name = "PT_Ref_Table"
 )
 @FlyTable(
-    name = "Reference",
-    description = "System Reference (Pick List)",
+    name = "AD_Ref_Table",
+    description = "Reference Table Definitions",
     help = ""
 )
-public class AD_Reference {
+public class PRefTable {
+  @Column
+  private Timestamp created;
+
   @Column
   private Timestamp updated;
 
   @Column(
       length = 32
   )
-  private String aD_Reference_ID;
-
-  @Column(
-      length = 32
-  )
-  private String aD_Client_ID;
-
-  @Column(
-      length = 32
-  )
-  private String aD_Org_ID;
-
-  @Column
-  private Boolean isActive;
-
-  @Column
-  private Timestamp created;
+  private String display;
 
   @Column(
       length = 32
@@ -50,12 +37,48 @@ public class AD_Reference {
   @Column(
       length = 32
   )
-  private String validationType;
+  private String clientID;
+
+  @Column(
+      length = 32
+  )
+  private String orgID;
+
+  @Column
+  private Boolean isActive;
+
+  @Column(
+      length = 32
+  )
+  private String tableID;
+
+  @Column
+  private Boolean isValueDisplayed;
+
+  @Column(
+      length = 32
+  )
+  private String windowID;
+
+  @Column(
+      length = 32
+  )
+  private String key;
 
   @Column(
       length = 2000
   )
-  private String help;
+  private String orderByClause;
+
+  @Column(
+      length = 2000
+  )
+  private String whereClause;
+
+  @Column(
+      length = 32
+  )
+  private String referenceID;
 
   @Column(
       length = 32
@@ -63,22 +86,15 @@ public class AD_Reference {
   private String updatedBy;
 
   @Column
-  private Boolean isOrderByValue;
+  private Boolean isAlert;
 
   @Column(
-      length = 40
+      length = 2000
   )
-  private String vFormat;
+  private String displaySQL;
 
-  @Column(
-      length = 60
-  )
-  private String name;
-
-  @Column(
-      length = 255
-  )
-  private String description;
+  @Column
+  private Boolean isDisplayIdentifier;
 
   @Column(
       length = 32

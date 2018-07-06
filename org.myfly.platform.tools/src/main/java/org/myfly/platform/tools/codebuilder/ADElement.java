@@ -23,7 +23,7 @@ public class ADElement extends HashMap<String, Object> {
 	}
 
 	public String getApiName() {
-		return getColumnName();
+		return Util.toFieldApiName(getColumnName());
 	}
 
 	public String getClassName() {
@@ -45,7 +45,7 @@ public class ADElement extends HashMap<String, Object> {
 	public String getHelp() {
 		return (String) get("help");
 	}
-
+	
 	public void setName(String value) {
 		put("name", value);
 	}
@@ -214,4 +214,5 @@ public class ADElement extends HashMap<String, Object> {
 			return value;
 		}
 	}
+
 }

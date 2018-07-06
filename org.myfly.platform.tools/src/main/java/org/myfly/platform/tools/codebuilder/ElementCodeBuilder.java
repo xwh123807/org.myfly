@@ -42,7 +42,8 @@ public class ElementCodeBuilder extends AbstractCodeBuilder<ADElement> {
 		getSources().forEach(item -> {
 			buffer.append("\t").append("//").append("\n");
 			buffer.append("\t").append("@FlyElement(");
-			buffer.append("name=\"" + convertStr(item.getName()) + "\"");
+			buffer.append("columnName=\"" + Util.toFieldName(item.getColumnName()) + "\"");
+			buffer.append(", name=\"" + convertStr(item.getName()) + "\"");
 			if (StringUtils.hasLength(item.getDescription())) {
 				buffer.append(", description=\"" + convertStr(item.getDescription()) + "\"");
 			}

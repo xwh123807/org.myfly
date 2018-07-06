@@ -10,21 +10,21 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 @Entity
 @Table(
-    name = "AD_FieldGroup"
+    name = "PT_FieldGroup"
 )
 @FlyTable(
     name = "Field Group",
     description = "Logical grouping of fields",
     help = ""
 )
-public class AD_FieldGroup {
+public class PFieldGroup {
   @Column
   private Timestamp created;
 
   @Column(
       length = 32
   )
-  private String aD_Client_ID;
+  private String clientID;
 
   @Column(
       length = 32
@@ -34,7 +34,7 @@ public class AD_FieldGroup {
   @Column(
       length = 32
   )
-  private String aD_Org_ID;
+  private String orgID;
 
   @Column
   private Timestamp updated;
@@ -42,7 +42,7 @@ public class AD_FieldGroup {
   @Column(
       length = 32
   )
-  private String aD_FieldGroup_ID;
+  private String fieldGroupID;
 
   @Column
   private Boolean isActive;

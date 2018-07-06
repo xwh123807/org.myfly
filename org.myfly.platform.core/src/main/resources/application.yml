@@ -40,6 +40,8 @@ spring:
       #create|create-drop|update|validate
       ddlAuto: create
       formatSql: true
+      namingStrategy: org.hibernate.cfg.DefaultNamingStrategy
+      physicalStrategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   cache:
     #type: ehcache
     cacheNames: 

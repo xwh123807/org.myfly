@@ -11,19 +11,19 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 @Entity
 @Table(
-    name = "AD_Role"
+    name = "PT_Role"
 )
 @FlyTable(
     name = "Role",
     description = "Responsibility Role",
     help = ""
 )
-public class AD_Role {
+public class PRole {
   @Column
   private Boolean isCanLoad;
 
   @Column
-  private Boolean allow_Info_Order;
+  private Boolean allowInfoOrder;
 
   @Column
   private Timestamp updated;
@@ -37,29 +37,29 @@ public class AD_Role {
   @Column(
       length = 32
   )
-  private String aD_Client_ID;
+  private String clientID;
 
   @Column(
       length = 32
   )
-  private String aD_Role_ID;
+  private String roleID;
 
   @Column(
       length = 32
   )
-  private String aD_Org_ID;
+  private String orgID;
 
   @Column
   private Boolean isChangeLog;
 
   @Column
-  private Boolean allow_Info_MRP;
+  private Boolean allowInfoMRP;
 
   @Column
-  private Boolean allow_HTML_View;
+  private Boolean allowHTMLView;
 
   @Column
-  private Boolean allow_XLS_View;
+  private Boolean allowXLSView;
 
   @Column(
       length = 32
@@ -78,15 +78,15 @@ public class AD_Role {
   private BigDecimal amtApproval;
 
   @Column
-  private Boolean allow_Info_Payment;
+  private Boolean allowInfoPayment;
 
   @Column
-  private Boolean allow_Info_Product;
+  private Boolean allowInfoProduct;
 
   @Column(
       length = 22
   )
-  private String supervisor_ID;
+  private String supervisorID;
 
   @Column
   private Boolean isShowAcct;
@@ -101,12 +101,12 @@ public class AD_Role {
   private Boolean isManual;
 
   @Column
-  private Boolean allow_Info_Resource;
+  private Boolean allowInfoResource;
 
   @Column(
       length = 32
   )
-  private String aD_Tree_Menu_ID;
+  private String treeMenuID;
 
   @Column
   private Boolean isCanExport;
@@ -128,19 +128,19 @@ public class AD_Role {
   private String connectionProfile;
 
   @Column
-  private Boolean allow_Info_Schedule;
+  private Boolean allowInfoSchedule;
 
   @Column
-  private Boolean allow_Info_CRP;
+  private Boolean allowInfoCRP;
 
   @Column
-  private Boolean allow_Info_Account;
+  private Boolean allowInfoAccount;
 
   @Column
-  private Boolean allow_Info_BPartner;
+  private Boolean allowInfoBPartner;
 
   @Column
-  private Boolean allow_Info_Asset;
+  private Boolean allowInfoAsset;
 
   @Column
   private BigDecimal userDiscount;
@@ -148,7 +148,7 @@ public class AD_Role {
   @Column(
       length = 32
   )
-  private String c_Currency_ID;
+  private String cCurrencyID;
 
   @Column(
       length = 60
@@ -174,19 +174,19 @@ public class AD_Role {
   @Column(
       length = 32
   )
-  private String aD_Tree_Org_ID;
+  private String treeOrgID;
 
   @Column
   private BigDecimal confirmQueryRecords;
 
   @Column
-  private Boolean allow_Info_InOut;
+  private Boolean allowInfoInOut;
 
   @Column
-  private Boolean allow_Info_CashJournal;
+  private Boolean allowInfoCashJournal;
 
   @Column
-  private Boolean allow_Info_Invoice;
+  private Boolean allowInfoInvoice;
 
   @Column
   private Boolean isAccessAllOrgs;

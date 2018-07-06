@@ -32,7 +32,7 @@ public class EntityCodeBuilder extends AbstractCodeBuilder<ADTable> {
 	public void generateCodes() {
 		validate();
 		getSources().forEach(table -> {
-			Builder builder = TypeSpec.classBuilder(table.getClassName());
+			Builder builder = TypeSpec.classBuilder(table.getApiName());
 			table.build(builder);
 			toFile(table.getPackageName(), builder);
 		});

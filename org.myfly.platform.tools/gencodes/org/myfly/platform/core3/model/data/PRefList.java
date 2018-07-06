@@ -11,14 +11,14 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 @Entity
 @Table(
-    name = "AD_Ref_List"
+    name = "PT_Ref_List"
 )
 @FlyTable(
     name = "Reference List",
     description = "Reference List based on Table",
     help = ""
 )
-public class AD_Ref_List {
+public class PRefList {
   @Column
   private Timestamp created;
 
@@ -33,12 +33,12 @@ public class AD_Ref_List {
   @Column(
       length = 32
   )
-  private String aD_Ref_List_ID;
+  private String refListID;
 
   @Column(
       length = 32
   )
-  private String aD_Org_ID;
+  private String orgID;
 
   @Column
   private Boolean isActive;
@@ -46,7 +46,7 @@ public class AD_Ref_List {
   @Column(
       length = 32
   )
-  private String aD_Client_ID;
+  private String clientID;
 
   @Column(
       length = 60
@@ -56,7 +56,7 @@ public class AD_Ref_List {
   @Column(
       length = 32
   )
-  private String aD_Reference_ID;
+  private String referenceID;
 
   @Column(
       length = 32

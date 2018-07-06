@@ -10,18 +10,31 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 @Entity
 @Table(
-    name = "AD_Org"
+    name = "PT_Reference"
 )
 @FlyTable(
-    name = "Organization",
-    description = "Organizational entity within client",
+    name = "Reference",
+    description = "System Reference (Pick List)",
     help = ""
 )
-public class AD_Org {
+public class PReference {
+  @Column
+  private Timestamp updated;
+
   @Column(
       length = 32
   )
-  private String aD_Org_ID;
+  private String referenceID;
+
+  @Column(
+      length = 32
+  )
+  private String clientID;
+
+  @Column(
+      length = 32
+  )
+  private String orgID;
 
   @Column
   private Boolean isActive;
@@ -32,33 +45,35 @@ public class AD_Org {
   @Column(
       length = 32
   )
-  private String aD_Client_ID;
-
-  @Column
-  private Timestamp updated;
+  private String entityType;
 
   @Column(
-      length = 60
+      length = 32
   )
-  private String name;
+  private String validationType;
+
+  @Column(
+      length = 2000
+  )
+  private String help;
 
   @Column(
       length = 32
   )
   private String updatedBy;
 
-  @Column(
-      length = 32
-  )
-  private String createdBy;
-
   @Column
-  private Boolean isSummary;
+  private Boolean isOrderByValue;
 
   @Column(
       length = 40
   )
-  private String value;
+  private String vFormat;
+
+  @Column(
+      length = 60
+  )
+  private String name;
 
   @Column(
       length = 255
@@ -68,7 +83,7 @@ public class AD_Org {
   @Column(
       length = 32
   )
-  private String aD_ReplicationStrategy_ID;
+  private String createdBy;
 
   @Column(
       length = 36

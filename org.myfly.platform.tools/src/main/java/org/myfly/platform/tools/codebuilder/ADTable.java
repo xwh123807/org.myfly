@@ -29,7 +29,7 @@ public class ADTable extends ADElement {
 
 	@Override
 	public String getApiName() {
-		return getTableName().substring(0, 1).toLowerCase() + getTableName().substring(1);
+		return Util.toTableApiName(getTableName());
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class ADTable extends ADElement {
 	}
 
 	public AnnotationSpec getTableAnnotation() {
-		return AnnotationSpec.builder(Table.class).addMember("name", "$S", getTableName()).build();
+		return AnnotationSpec.builder(Table.class).addMember("name", "$S", Util.toTableName(getTableName())).build();
 	}
 
 	public void build(Builder builder) {

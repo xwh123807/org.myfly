@@ -23,16 +23,16 @@ public class FlyEntity implements IFlyEntity {
 	@Column
 	private Timestamp created;
 
-	@Column(length = 32)
+	@Column(name = "CreatedBy", length = 32)
 	private String createdBy;
 
 	@Column
 	private Timestamp updated;
 
-	@Column(length = 32)
+	@Column(name = "UpdatedBy", length = 32)
 	private String updatedBy;
 
-	@Column
+	@Column(name = "IsActive")
 	private Boolean isActive;
 
 	@Column(length = 32)

@@ -11,23 +11,23 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 @Entity
 @Table(
-    name = "AD_Field"
+    name = "PT_Field"
 )
 @FlyTable(
     name = "Field",
     description = "Field on a database table",
     help = ""
 )
-public class AD_Field {
+public class PField {
   @Column(
       length = 32
   )
-  private String aD_Org_ID;
+  private String orgID;
 
   @Column(
       length = 32
   )
-  private String aD_Client_ID;
+  private String clientID;
 
   @Column
   private Boolean isActive;
@@ -38,7 +38,7 @@ public class AD_Field {
   @Column(
       length = 32
   )
-  private String aD_Field_ID;
+  private String fieldID;
 
   @Column
   private Timestamp updated;
@@ -100,7 +100,7 @@ public class AD_Field {
   @Column(
       length = 32
   )
-  private String aD_FieldGroup_ID;
+  private String fieldGroupID;
 
   @Column(
       length = 255
@@ -110,7 +110,7 @@ public class AD_Field {
   @Column(
       length = 32
   )
-  private String aD_Column_ID;
+  private String columnID;
 
   @Column(
       length = 2000
@@ -120,7 +120,7 @@ public class AD_Field {
   @Column(
       length = 32
   )
-  private String aD_Reference_ID;
+  private String referenceID;
 
   @Column(
       length = 32
@@ -130,7 +130,7 @@ public class AD_Field {
   @Column(
       length = 32
   )
-  private String aD_Reference_Value_ID;
+  private String referenceValueID;
 
   @Column
   private BigDecimal preferredWidth;
@@ -153,7 +153,7 @@ public class AD_Field {
   @Column(
       length = 32
   )
-  private String aD_Tab_ID;
+  private String tabID;
 
   @Column(
       length = 32
@@ -163,7 +163,7 @@ public class AD_Field {
   @Column(
       length = 32
   )
-  private String aD_Val_Rule_ID;
+  private String valRuleID;
 
   @Column(
       length = 2000
@@ -173,7 +173,7 @@ public class AD_Field {
   @Column(
       length = 32
   )
-  private String included_Tab_ID;
+  private String includedTabID;
 
   @Column
   private Boolean isEncrypted;

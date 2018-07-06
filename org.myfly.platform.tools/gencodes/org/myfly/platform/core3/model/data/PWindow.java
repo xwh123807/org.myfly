@@ -11,18 +11,18 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 @Entity
 @Table(
-    name = "AD_Window"
+    name = "PT_Window"
 )
 @FlyTable(
     name = "Window",
     description = "Data entry or display window",
     help = ""
 )
-public class AD_Window {
+public class PWindow {
   @Column(
       length = 32
   )
-  private String aD_Window_ID;
+  private String windowID;
 
   @Column
   private Timestamp updated;
@@ -36,12 +36,12 @@ public class AD_Window {
   @Column(
       length = 32
   )
-  private String aD_Org_ID;
+  private String orgID;
 
   @Column(
       length = 32
   )
-  private String aD_Client_ID;
+  private String clientID;
 
   @Column(
       length = 32
@@ -69,7 +69,7 @@ public class AD_Window {
   @Column(
       length = 32
   )
-  private String aD_Color_ID;
+  private String colorID;
 
   @Column(
       length = 2000
@@ -90,7 +90,7 @@ public class AD_Window {
   @Column(
       length = 32
   )
-  private String aD_Image_ID;
+  private String imageID;
 
   @Column
   private Boolean isBetaFunctionality;

@@ -31,7 +31,7 @@ public class ADColumn extends ADElement {
 
 	@Override
 	public String getApiName() {
-		return getColumnName().substring(0, 1).toLowerCase() + getColumnName().substring(1);
+		return Util.toFieldApiName(getColumnName());
 	}
 
 	public void setFieldLength(int value) {

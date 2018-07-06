@@ -10,18 +10,18 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 @Entity
 @Table(
-    name = "AD_OrgInfo"
+    name = "PT_OrgInfo"
 )
 @FlyTable(
     name = "Organization Info",
     description = "",
     help = ""
 )
-public class AD_OrgInfo {
+public class POrgInfo {
   @Column(
       length = 22
   )
-  private String c_Location_ID;
+  private String cLocationID;
 
   @Column
   private Timestamp created;
@@ -32,12 +32,12 @@ public class AD_OrgInfo {
   @Column(
       length = 32
   )
-  private String aD_Org_ID;
+  private String orgID;
 
   @Column(
       length = 32
   )
-  private String aD_Client_ID;
+  private String clientID;
 
   @Column
   private Timestamp updated;
@@ -45,7 +45,7 @@ public class AD_OrgInfo {
   @Column(
       length = 32
   )
-  private String parent_Org_ID;
+  private String parentOrgID;
 
   @Column(
       length = 32
@@ -60,12 +60,12 @@ public class AD_OrgInfo {
   @Column(
       length = 32
   )
-  private String m_Warehouse_ID;
+  private String mWarehouseID;
 
   @Column(
       length = 32
   )
-  private String dropShip_Warehouse_ID;
+  private String dropShipWarehouseID;
 
   @Column(
       length = 40
@@ -80,7 +80,7 @@ public class AD_OrgInfo {
   @Column(
       length = 32
   )
-  private String pA_Goal_ID;
+  private String pAGoalID;
 
   @Column(
       length = 11
@@ -95,22 +95,22 @@ public class AD_OrgInfo {
   @Column(
       length = 22
   )
-  private String supervisor_ID;
+  private String supervisorID;
 
   @Column(
       length = 32
   )
-  private String aD_OrgType_ID;
+  private String orgTypeID;
 
   @Column(
       length = 32
   )
-  private String transferBank_ID;
+  private String transferBankID;
 
   @Column(
       length = 32
   )
-  private String transferCashBook_ID;
+  private String transferCashBookID;
 
   @Column(
       length = 0
@@ -118,12 +118,12 @@ public class AD_OrgInfo {
   private String receiptFooterMsg;
 
   @Column
-  private byte[] logo_ID;
+  private byte[] logoID;
 
   @Column(
       length = 32
   )
-  private String c_Calendar_ID;
+  private String cCalendarID;
 
   @Column(
       length = 40
