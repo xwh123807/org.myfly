@@ -30,6 +30,8 @@ public class FlyDataModel extends PTable implements IDefinition {
 	 * 主键
 	 */
 	private FlyColumn primaryKey;
+	
+	private boolean isFromDB;
 
 	public FlyDataModel() {
 	}
@@ -105,6 +107,17 @@ public class FlyDataModel extends PTable implements IDefinition {
 	@Override
 	public String getUid() {
 		return getTableID();
+	}
+	
+
+	@Override
+	public boolean isFromDB() {
+		return isFromDB;
+	}
+
+	@Override
+	public void setFromDB(boolean value) {
+		this.isFromDB = value;
 	}
 
 	public PTable toTablePO() {

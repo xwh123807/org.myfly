@@ -11,6 +11,8 @@ public class FEntityType extends PEntityType implements IDefinition {
 	 * 
 	 */
 	private static final long serialVersionUID = -3348825959997859306L;
+	
+	private boolean isFromDB;
 
 	@Override
 	public void validate() {
@@ -42,6 +44,17 @@ public class FEntityType extends PEntityType implements IDefinition {
 	@Override
 	public String getUid() {
 		return getEntityTypeID();
+	}
+	
+
+	@Override
+	public boolean isFromDB() {
+		return isFromDB;
+	}
+
+	@Override
+	public void setFromDB(boolean value) {
+		this.isFromDB = value;
 	}
 
 	public PEntityType toEntityTypePO() {

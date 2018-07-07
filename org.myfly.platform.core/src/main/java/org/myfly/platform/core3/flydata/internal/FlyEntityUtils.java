@@ -286,12 +286,17 @@ public class FlyEntityUtils {
 	}
 
 	public static void copyFlyMetaFields(IFlyMetaEntity result, IFlyMetaEntity from) {
-		copyFlyFields((IFlyEntity)result, (IFlyEntity)from);
+		copyFlyFields((IFlyEntity) result, (IFlyEntity) from);
 		result.setName(from.getName());
 		result.setDescription(from.getDescription());
 		result.setHelp(from.getHelp());
 	}
 
+	/**
+	 * 设置实体固定属性值
+	 * 
+	 * @param result
+	 */
 	public static void updateFlyEntityForSystem(IFlyEntity result) {
 		result.setClientID(FlySystemResource.UID_SYSTEM_CLIENT);
 		result.setOrgID(FlySystemResource.UID_ALL_ORG);

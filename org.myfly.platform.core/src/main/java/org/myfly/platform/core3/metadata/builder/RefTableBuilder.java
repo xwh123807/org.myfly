@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.domain.IFlyEntity;
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
 import org.myfly.platform.core3.metadata.annotation.FlyReferences;
 import org.myfly.platform.core3.metadata.define.FRefTable;
@@ -31,7 +33,7 @@ public class RefTableBuilder extends AbstractBuilder<PReference, FRefTable> {
 			}
 		}
 		if (CollectionUtils.isEmpty(annos)) {
-			//FlyRefTable非必须
+			// FlyRefTable非必须
 			return null;
 		}
 		Assert.notEmpty(annos, "不是有效的@FlyRefTable, " + entityClass.getName());
@@ -54,6 +56,9 @@ public class RefTableBuilder extends AbstractBuilder<PReference, FRefTable> {
 			refTable.setOrderByClause(anno.orderByClause());
 			refTable.setWhereClause(anno.whereClause());
 			item.setRefTable(refTable);
+			item.setReferenceID(UUIDUtil.newUUID());
+			FlyEntityUtils.updateFlyEntityForSystem(item);
+			FlyEntityUtils.updateFlyEntityForSystem(refTable);
 			list.add(item);
 		});
 		return list;

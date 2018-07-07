@@ -21,6 +21,7 @@ import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.dbinit.resources.EntityType;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.IFlyEntity;
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
 import org.myfly.platform.core3.metadata.define.FlyColumn;
@@ -93,8 +94,12 @@ public class FlyDataModelBuilder extends AbstractBuilder<PTable, FlyDataModel> {
 			flyColumn.setGetter(fieldInfo.getGetter());
 			flyColumn.setSetter(fieldInfo.getSetter());
 			flyColumn.setValueHandler(ValueHandlerFactory.getValueHandler(flyColumn));
+			flyColumn.setColumnID(UUIDUtil.newUUID());
+			FlyEntityUtils.updateFlyEntityForSystem(flyColumn);
 			result.getColumnMap().put(flyColumn.getApiName(), flyColumn);
 		});
+		result.setTableID(UUIDUtil.newUUID());
+		FlyEntityUtils.updateFlyEntityForSystem(result);
 		return result;
 	}
 

@@ -2,13 +2,14 @@ package org.myfly.platform.core3.metadata.define;
 
 import java.lang.reflect.Method;
 
+import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.model.data.PColumn;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class FlyColumn extends PColumn {
+public class FlyColumn extends PColumn implements IDefinition {
 
 	/**
 	 * 
@@ -23,6 +24,8 @@ public class FlyColumn extends PColumn {
 
 	@JsonIgnore
 	private IValueHandler valueHandler;
+
+	private boolean isFromDB;
 
 	public IValueHandler getValueHandler() {
 		return valueHandler;
@@ -101,5 +104,40 @@ public class FlyColumn extends PColumn {
 		result.setvFormat(getvFormat());
 		FlyEntityUtils.copyFlyMetaFields(result, this);
 		return result;
+	}
+
+	@Override
+	public String getKey() {
+		return null;
+	}
+
+	@Override
+	public void setUid(String value) {
+		setColumnID(value);
+	}
+
+	@Override
+	public String getUid() {
+		return getColumnID();
+	}
+
+	@Override
+	public boolean isFromDB() {
+		return isFromDB;
+	}
+
+	@Override
+	public void setFromDB(boolean value) {
+		this.isFromDB = value;
+	}
+
+	@Override
+	public String toJson() {
+		return JSONUtil.toJSON(this);
+	}
+
+	@Override
+	public void printJson() {
+		System.out.println(toJson());
 	}
 }

@@ -13,6 +13,8 @@ public class FElement extends PElement implements IDefinition {
 	private static final long serialVersionUID = 6072480122577529080L;
 
 	private String referenceName;
+	
+	private boolean isFromDB;
 
 	@Override
 	public void validate() {
@@ -66,5 +68,16 @@ public class FElement extends PElement implements IDefinition {
 		result.setReferenceID(getReferenceID());
 		FlyEntityUtils.copyFlyMetaFields(result, this);
 		return result;
+	}
+	
+
+	@Override
+	public boolean isFromDB() {
+		return isFromDB;
+	}
+
+	@Override
+	public void setFromDB(boolean value) {
+		this.isFromDB = value;
 	}
 }

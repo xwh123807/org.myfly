@@ -55,12 +55,12 @@ public class FlyMemoryDataModelRestService {
 		return getFlyMemoryDataModel().getRefLists();
 	}
 
-	@GetMapping("datamodel/{entityName}")
+	@GetMapping("dm/{entityName}")
 	public FlyDataModel getFlyDataModelByName(@PathVariable("entityName") String entityName) {
 		return getFlyMemoryDataModel().getFlyDataModel(entityName);
 	}
 
-	@GetMapping("datamodel")
+	@GetMapping("dm")
 	public Set<String> getFlyDataModelNames() {
 		return getFlyMemoryDataModel().getFlyDataModels().keySet();
 	}

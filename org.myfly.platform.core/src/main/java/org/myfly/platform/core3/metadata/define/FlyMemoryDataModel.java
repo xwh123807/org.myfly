@@ -9,7 +9,7 @@ import org.apache.commons.lang.ClassUtils;
 
 /**
  * 内存数据模型 <br>
- * 1、系统启动后，在内存构建数据模型 <br>
+ * 1、系统启动后，在内存构建数据模型：先从数据库中加载，再从代码级加载 <br>
  * 2、访问数据模型时，必须从内存数据模型中获取 <br>
  * 
  * @author xiangwanhong
@@ -106,8 +106,9 @@ public class FlyMemoryDataModel {
 	}
 
 	/**
-	 * 添加列表到目标map中
-	 * 
+	 * 添加列表到目标map中 <br>
+	 * 1、先从数据库中加载，再从代码级加载 <br>
+	 * TODO 重复兼容处理
 	 * @param list
 	 * @param target
 	 */

@@ -2,6 +2,8 @@ package org.myfly.platform.core3.metadata.builder;
 
 import java.lang.reflect.Field;
 
+import org.myfly.platform.core.utils.UUIDUtil;
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.define.FDataType;
 import org.myfly.platform.core3.model.dict.PDataType;
@@ -25,6 +27,8 @@ public class DataTypeBuilder extends AbstractBuilder<PDataType, FDataType> {
 		result.setName(anno.name());
 		result.setDescription(anno.description());
 		result.setHelp(anno.help());
+		result.setDataTypeID(UUIDUtil.newUUID());
+		FlyEntityUtils.updateFlyEntityForSystem(result);
 		return result;
 	}
 }
