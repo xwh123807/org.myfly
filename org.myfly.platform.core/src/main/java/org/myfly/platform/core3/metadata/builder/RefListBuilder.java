@@ -4,6 +4,8 @@ import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 import java.util.stream.Stream;
 
+import org.myfly.platform.core.utils.UUIDUtil;
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.annotation.FlyRefList;
 import org.myfly.platform.core3.metadata.define.FRefList;
 import org.myfly.platform.core3.model.data.ValidationType;
@@ -41,6 +43,8 @@ public class RefListBuilder extends AbstractBuilder<PReference, FRefList> {
 			refList.setValidTo(item.validTo());
 			result.getItems().put(refList.getValue(), refList);
 		});
+		result.setReferenceID(UUIDUtil.newUUID());
+		FlyEntityUtils.updateFlyEntityForSystem(result);
 		return result;
 	}
 }

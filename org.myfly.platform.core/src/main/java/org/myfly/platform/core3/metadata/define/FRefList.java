@@ -18,7 +18,12 @@ public class FRefList extends PReference implements IDefinition {
 	 */
 	private static final long serialVersionUID = 3727588422555872027L;
 
+	/**
+	 * 列表项
+	 */
 	private Map<String, PRefList> items;
+	
+	private boolean isFromDB;
 
 	@Override
 	public String getKey() {
@@ -64,6 +69,17 @@ public class FRefList extends PReference implements IDefinition {
 	@Override
 	public String getUid() {
 		return getReferenceID();
+	}
+	
+
+	@Override
+	public boolean isFromDB() {
+		return isFromDB;
+	}
+
+	@Override
+	public void setFromDB(boolean value) {
+		this.isFromDB = value;
 	}
 
 	public PReference toReferencePO() {

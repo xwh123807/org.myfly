@@ -17,6 +17,8 @@ public class FRefTable extends PReference implements IDefinition {
 
 	private String tableClassName;
 
+	private boolean isFromDB;
+
 	@Override
 	public String getKey() {
 		return getName();
@@ -65,6 +67,16 @@ public class FRefTable extends PReference implements IDefinition {
 	@Override
 	public String getUid() {
 		return getReferenceID();
+	}
+
+	@Override
+	public boolean isFromDB() {
+		return isFromDB;
+	}
+
+	@Override
+	public void setFromDB(boolean value) {
+		this.isFromDB = value;
 	}
 
 	public PReference toReferencePO() {

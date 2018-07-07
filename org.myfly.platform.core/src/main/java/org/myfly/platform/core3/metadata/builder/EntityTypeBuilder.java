@@ -2,6 +2,8 @@ package org.myfly.platform.core3.metadata.builder;
 
 import java.lang.reflect.Field;
 
+import org.myfly.platform.core.utils.UUIDUtil;
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.annotation.FlyEntityType;
 import org.myfly.platform.core3.metadata.define.FEntityType;
 import org.myfly.platform.core3.model.dict.PEntityType;
@@ -33,6 +35,8 @@ public class EntityTypeBuilder extends AbstractBuilder<PEntityType, FEntityType>
 		result.setModelPackage(anno.modelPackage());
 		result.setClassPath(anno.classPath());
 		result.setProcessing(false);
+		result.setEntityTypeID(UUIDUtil.newUUID());
+		FlyEntityUtils.updateFlyEntityForSystem(result);
 		return result;
 	}
 }

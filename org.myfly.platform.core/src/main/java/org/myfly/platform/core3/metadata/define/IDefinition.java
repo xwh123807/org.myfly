@@ -6,6 +6,18 @@ public interface IDefinition {
 	void setUid(String value);
 
 	String getUid();
+	
+	/**
+	 * 从DB加载
+	 * @return
+	 */
+	boolean isFromDB();
+	
+	/**
+	 * 设置从DB加载
+	 * @param value
+	 */
+	void setFromDB(boolean value);
 
 	void validate();
 

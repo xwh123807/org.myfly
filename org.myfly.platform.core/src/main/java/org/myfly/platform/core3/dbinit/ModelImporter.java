@@ -14,4 +14,7 @@ public abstract class ModelImporter {
 	public void setDataService(IJpaDataAccessService dataService) {
 		this.dataService = dataService;
 	}
+	
+	
+	public abstract void importAll();
 }

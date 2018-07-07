@@ -11,6 +11,8 @@ public class FDataType extends PDataType implements IDefinition {
 	 * 
 	 */
 	private static final long serialVersionUID = 7760900680553503319L;
+	
+	private boolean isFromDB;
 
 	@Override
 	public String getKey() {
@@ -51,5 +53,15 @@ public class FDataType extends PDataType implements IDefinition {
 		result.setEntityType(getEntityType());
 		FlyEntityUtils.copyFlyMetaFields(result, this);
 		return result;
+	}
+
+	@Override
+	public boolean isFromDB() {
+		return isFromDB;
+	}
+
+	@Override
+	public void setFromDB(boolean value) {
+		this.isFromDB = value;
 	}
 }
