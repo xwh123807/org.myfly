@@ -1,17 +1,20 @@
 package org.myfly.platform.core3.metadata.define;
 
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core3.model.data.PColumn;
 import org.myfly.platform.core3.model.data.PTable;
 import org.springframework.util.Assert;
 
 /**
- * 实体数据模型
+ * 实体数据模型 <br>
+ * 1、实体所有属性，需要先到Element中注册；PColumn.elementID不能为空; <br>
+ * 2、属性默认按属性名与Element中元素对应； <br>
+ * 3、属性从Element中引用后，使用Element中定义的dataType、fieldLength； <br>
+ * 4、属性可以通过@FlyField注解覆盖Name、Description、Help值；<br>
+ * 5、当数据类型为FlyDataType.Talbe，Element的Reference属性不能为空，指向其关联表RefTable；<br>
+ * 6、FlyDataType.List时
  * 
  * @author xiangwanhong
  *
@@ -30,7 +33,7 @@ public class FlyDataModel extends PTable implements IDefinition {
 	 * 主键
 	 */
 	private FlyColumn primaryKey;
-	
+
 	private boolean isFromDB;
 
 	public FlyDataModel() {
@@ -108,7 +111,6 @@ public class FlyDataModel extends PTable implements IDefinition {
 	public String getUid() {
 		return getTableID();
 	}
-	
 
 	@Override
 	public boolean isFromDB() {
@@ -142,9 +144,5 @@ public class FlyDataModel extends PTable implements IDefinition {
 		result.setWindowID(getWindowID());
 		FlyEntityUtils.copyFlyMetaFields(result, this);
 		return result;
-	}
-
-	public List<PColumn> toColumnPOs() {
-		return getColumnMap().values().stream().map(item -> item.toColumnPO()).collect(Collectors.toList());
 	}
 }

@@ -12,7 +12,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 @Entity
 @Table(name = "PT_Ref_List")
 @FlyTable(name = "Reference List", description = "Reference List based on Table")
-@FlyRefTable(name = "PRefList_value", keyColumn = "refListID", displayColumn = "name")
+@FlyRefTable(apiName = "refListID", name = "PRefList ID", keyColumn = "refListID", displayColumn = "name")
 public class PRefList extends FlyMetaEntity {
 
 	/**

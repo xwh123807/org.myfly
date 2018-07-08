@@ -26,7 +26,12 @@ public class FlyColumn extends PColumn implements IDefinition {
 	private IValueHandler valueHandler;
 
 	private boolean isFromDB;
-
+	
+	/**
+	 * 对应Element
+	 */
+	private FElement element;
+	
 	public IValueHandler getValueHandler() {
 		return valueHandler;
 	}
@@ -108,7 +113,7 @@ public class FlyColumn extends PColumn implements IDefinition {
 
 	@Override
 	public String getKey() {
-		return null;
+		return getColumnID();
 	}
 
 	@Override
@@ -139,5 +144,13 @@ public class FlyColumn extends PColumn implements IDefinition {
 	@Override
 	public void printJson() {
 		System.out.println(toJson());
+	}
+
+	public FElement getElement() {
+		return element;
+	}
+
+	public void setElement(FElement element) {
+		this.element = element;
 	}
 }

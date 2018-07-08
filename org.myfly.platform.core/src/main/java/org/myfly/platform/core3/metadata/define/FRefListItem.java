@@ -54,11 +54,18 @@ public class FRefListItem extends PRefList implements IDefinition {
 
 	public PRefList toRefListPO() {
 		PRefList result = new PRefList();
+		result.setRefListID(getRefListID());
+		result.setReferenceID(getReferenceID());
 		result.setEntityType(getEntityType());
 		result.setValidFrom(getValidFrom());
 		result.setValidTo(getValidTo());
 		result.setValue(getValue());
 		FlyEntityUtils.copyFlyMetaFields(result, this);
 		return result;
+	}
+	
+	@Override
+	public String toString() {
+		return "name: " + getName() + ", value: " + getValue();
 	}
 }

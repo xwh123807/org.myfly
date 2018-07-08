@@ -20,7 +20,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 @Entity
 @Table(name = "PT_DataType")
 @FlyTable()
-@FlyRefTable(displayColumn = "name", keyColumn = "dataType", name = "DataType")
+@FlyRefTable(apiName = "dataType", name = "数据类型", displayColumn = "name", keyColumn = "dataType")
 public class PDataType extends FlyMetaEntity {
 	/**
 	 * 

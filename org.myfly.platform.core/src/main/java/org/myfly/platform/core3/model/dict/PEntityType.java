@@ -22,7 +22,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 @FlyTable(name = "Entity Type", description = "Dictionary Entity Type; Determines ownership and synchronization", //
 		help = "The Entity Types \"Dictionary\", \"Adempiere\" and \"Application\" might be automatically synchronized and customizations deleted or overwritten.  n\"\n"
 				+ "			+ \"n\" + \"For customizations, copy the entity and select \"User\"!")
-@FlyRefTable(keyColumn = "entityType", displayColumn = "name", name = "Entity Type")
+@FlyRefTable(apiName = "entityType", keyColumn = "entityType", displayColumn = "name", name = "实体类型")
 public class PEntityType extends FlyMetaEntity {
 	/**
 	 * 
@@ -40,7 +40,7 @@ public class PEntityType extends FlyMetaEntity {
 	private String modelPackage;
 
 	@Column(length = 255)
-	private String classPath;
+	private String classpath;
 
 	@Column
 	private Boolean processing;
@@ -61,14 +61,6 @@ public class PEntityType extends FlyMetaEntity {
 		this.modelPackage = modelPackage;
 	}
 
-	public String getClassPath() {
-		return classPath;
-	}
-
-	public void setClassPath(String classPath) {
-		this.classPath = classPath;
-	}
-
 	public Boolean getProcessing() {
 		return processing;
 	}
@@ -83,6 +75,14 @@ public class PEntityType extends FlyMetaEntity {
 
 	public void setEntityType(String entityType) {
 		this.entityType = entityType;
+	}
+
+	public String getClasspath() {
+		return classpath;
+	}
+
+	public void setClasspath(String classpath) {
+		this.classpath = classpath;
 	}
 
 }

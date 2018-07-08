@@ -16,9 +16,10 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 @Entity
 @Table(name = "PT_User")
 @FlyTable(name = "User/Contact", description = "User within the system - Internal or Business Partner Contact")
-@FlyReferences(references = { @FlyRefTable(name = "userID", keyColumn = "userID", displayColumn = "name"),
-		@FlyRefTable(name = "createdBy", keyColumn = "userID", displayColumn = "name"),
-		@FlyRefTable(name = "updatedBy", keyColumn = "userID", displayColumn = "name") })
+@FlyReferences(references = {
+		@FlyRefTable(apiName = "userID", name = "PUser ID", keyColumn = "userID", displayColumn = "name"),
+		@FlyRefTable(apiName = "createdBy", name = "创建人", keyColumn = "userID", displayColumn = "name"),
+		@FlyRefTable(apiName = "updatedBy", name = "修改人", keyColumn = "userID", displayColumn = "name") })
 public class PUser extends FlyEntity {
 	/**
 	 * 
@@ -39,7 +40,7 @@ public class PUser extends FlyEntity {
 	private String description;
 
 	@Column(length = 32)
-	private String emailConifgID;
+	private String emailConfigID;
 
 	@Column
 	private Date birthday;
@@ -77,8 +78,8 @@ public class PUser extends FlyEntity {
 	@Column(name = "IsSalesLead")
 	private Boolean isSalesLead;
 
-	@Column(name = "IsWebstoreUser")
-	private Boolean isWebstoreUser;
+	// @Column(name = "IsWebstoreUser")
+	// private Boolean isWebstoreUser;
 
 	@Column(name = "LastContact")
 	private Date lastContact;
@@ -93,10 +94,10 @@ public class PUser extends FlyEntity {
 	private String leadSource;
 
 	@Column(name = "LeadSourceDescription")
-	private String LeadSourceDescription;
+	private String leadSourceDescription;
 
 	@Column(name = "LeadStatus")
-	private LeadStatus LeadStatus;
+	private String leadStatus;
 
 	@Column(name = "LeadStatusDescription")
 	private String leadStatusDescription;
@@ -233,14 +234,6 @@ public class PUser extends FlyEntity {
 		this.isSalesLead = isSalesLead;
 	}
 
-	public Boolean getIsWebstoreUser() {
-		return isWebstoreUser;
-	}
-
-	public void setIsWebstoreUser(Boolean isWebstoreUser) {
-		this.isWebstoreUser = isWebstoreUser;
-	}
-
 	public Date getLastContact() {
 		return lastContact;
 	}
@@ -274,19 +267,19 @@ public class PUser extends FlyEntity {
 	}
 
 	public String getLeadSourceDescription() {
-		return LeadSourceDescription;
+		return leadSourceDescription;
 	}
 
 	public void setLeadSourceDescription(String leadSourceDescription) {
-		LeadSourceDescription = leadSourceDescription;
+		this.leadSourceDescription = leadSourceDescription;
 	}
 
-	public LeadStatus getLeadStatus() {
-		return LeadStatus;
+	public String getLeadStatus() {
+		return leadStatus;
 	}
 
-	public void setLeadStatus(LeadStatus leadStatus) {
-		LeadStatus = leadStatus;
+	public void setLeadStatus(String leadStatus) {
+		this.leadStatus = leadStatus;
 	}
 
 	public String getLeadStatusDescription() {
@@ -337,11 +330,11 @@ public class PUser extends FlyEntity {
 		this.userID = userID;
 	}
 
-	public String getEmailConifgID() {
-		return emailConifgID;
+	public String getEmailConfigID() {
+		return emailConfigID;
 	}
 
-	public void setEmailConifgID(String emailConifgID) {
-		this.emailConifgID = emailConifgID;
+	public void setEmailConfigID(String emailConfigID) {
+		this.emailConfigID = emailConfigID;
 	}
 }

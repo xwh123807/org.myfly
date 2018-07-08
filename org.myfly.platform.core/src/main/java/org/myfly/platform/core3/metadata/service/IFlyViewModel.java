@@ -29,9 +29,9 @@ public interface IFlyViewModel extends IFlyEntity, IFlyMetaEntity {
 
 	void setHelp(String help);
 
-	String getIsBetaFunctionality();
+	Boolean getIsBetaFunctionality();
 
-	void setIsBetaFunctionality(String isBetaFunctionality);
+	void setIsBetaFunctionality(Boolean isBetaFunctionality);
 
 	Boolean getIsDefault();
 

@@ -1,13 +1,10 @@
 package org.myfly.platform.core3.metadata.define;
 
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.apache.commons.collections.MapUtils;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core3.model.dict.PRefList;
 import org.myfly.platform.core3.model.dict.PReference;
 import org.springframework.util.Assert;
 
@@ -21,18 +18,19 @@ public class FRefList extends PReference implements IDefinition {
 	/**
 	 * 列表项
 	 */
-	private Map<String, PRefList> items;
-	
+	private Map<String, FRefListItem> items;
+
 	private boolean isFromDB;
 
 	@Override
 	public String getKey() {
-		return getName();
+		return getApiName();
 	}
 
 	@Override
 	public void validate() {
 		Assert.hasLength(getKey(), "属性[Key]不能为空");
+		Assert.hasLength(getApiName(), "属性[ApiName]不能为空");
 		Assert.hasLength(getEntityType(), "属性[EntityType]不能为空");
 		Assert.hasLength(getName(), "属性[Name]不能为空");
 		if (MapUtils.isNotEmpty(getItems())) {
@@ -53,11 +51,11 @@ public class FRefList extends PReference implements IDefinition {
 		System.out.println(toJson());
 	}
 
-	public Map<String, PRefList> getItems() {
+	public Map<String, FRefListItem> getItems() {
 		return items;
 	}
 
-	public void setItems(Map<String, PRefList> items) {
+	public void setItems(Map<String, FRefListItem> items) {
 		this.items = items;
 	}
 
@@ -70,7 +68,6 @@ public class FRefList extends PReference implements IDefinition {
 	public String getUid() {
 		return getReferenceID();
 	}
-	
 
 	@Override
 	public boolean isFromDB() {
@@ -85,6 +82,7 @@ public class FRefList extends PReference implements IDefinition {
 	public PReference toReferencePO() {
 		PReference result = new PReference();
 		result.setReferenceID(getReferenceID());
+		result.setApiName(getApiName());
 		result.setEntityType(getEntityType());
 		result.setIsOrderByValue(getIsOrderByValue());
 		result.setValidationType(getValidationType());
@@ -93,7 +91,8 @@ public class FRefList extends PReference implements IDefinition {
 		return result;
 	}
 
-	public List<PRefList> toRefListPOs() {
-		return getItems().values().stream().collect(Collectors.toList());
+	@Override
+	public String toString() {
+		return "apiName: " + getApiName() + ", name: " + getName();
 	}
 }

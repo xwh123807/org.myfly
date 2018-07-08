@@ -38,6 +38,9 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="EMailConfig_ID", name="EMail Configuration", dataType=FlyDataType.TableDirect, entityType="D", printName="EMail Configuration", fieldLength=10)
 	eMailConfigID,
 	//
+	@FlyElement(columnName="EntityType_ID", name="Entity Type", description="System Entity Type", help="The entity type determines the ownership of Application Dictionary entries.  The types 'Dictionary' and 'Adempiere' should not be used and are maintained by Adempiere (i.e. all changes are reversed during migration to the current definition).", dataType=FlyDataType.ID, entityType="D", printName="Entity Type", fieldLength=10)
+	entityTypeID,
+	//
 	@FlyElement(columnName="FieldGroup_ID", name="字段组", description="字段的合乎逻辑的配列", help="The Field Group indicates the logical group that this field belongs to (History, Amounts, Quantities)", dataType=FlyDataType.TableDirect, entityType="D", printName="字段组", fieldLength=22)
 	fieldGroupID,
 	//
@@ -49,6 +52,12 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="Key", name="主键列", description="记录的唯一标识符", help="主键列标明了它是这个表的一条记录的唯一标示符。", dataType=FlyDataType.Table, entityType="D", printName="主键列", fieldLength=22)
 	key,
+	//
+	@FlyElement(columnName="Language", name="语言", description="本客户使用的语言", help="The Language identifies the language to use for display", dataType=FlyDataType.Table, entityType="D", printName="语言", fieldLength=6)
+	language,
+	//
+	@FlyElement(columnName="Language_ID", name="语言ID", dataType=FlyDataType.ID, entityType="D", printName="语言ID", fieldLength=22)
+	languageID,
 	//
 	@FlyElement(columnName="Org_ID", name="机构", description="客户内的机构实体。", help="An organization is a unit of your client or legal entity - examples are store, department. You can share data between organizations.", dataType=FlyDataType.TableDirect, entityType="D", printName="机构", fieldLength=22)
 	orgID,
@@ -137,11 +146,29 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="Allow_XLS_View", name="Allow XLS View", dataType=FlyDataType.YesNo, entityType="D", printName="Allow XLS View", fieldLength=1)
 	allowXLSView,
 	//
+	@FlyElement(columnName="Alpha", name="Alpha", description="颜色Alpha值 0-255", dataType=FlyDataType.Integer, entityType="D", printName="Alpha", fieldLength=22)
+	alpha,
+	//
+	@FlyElement(columnName="Alpha_1", name="第二个Alpha", description="第二个颜色Alpha值", dataType=FlyDataType.Integer, entityType="D", printName="第二个Alpha", fieldLength=22)
+	alpha1,
+	//
 	@FlyElement(columnName="AmtApproval", name="批准金额", description="The approval amount limit for this role", help="The Approval Amount field indicates the amount limit this Role has for approval of documents.", dataType=FlyDataType.Amount, entityType="D", printName="批准金额", fieldLength=22)
 	amtApproval,
 	//
+	@FlyElement(columnName="AutoArchive", name="Auto Archive", description="Enable and level of automatic Archive of documents", help="Adempiere allows to automatically create archives of Documents (e.g. Invoices) or Reports. You view the archived material with the Archive Viewer", dataType=FlyDataType.List, entityType="D", printName="Auto Archive", fieldLength=1)
+	autoArchive,
+	//
+	@FlyElement(columnName="BinaryData", name="二进制数据", description="二进制数据", help="The Binary field stores binary data.", dataType=FlyDataType.Binary, entityType="D", printName="二进制", fieldLength=4000)
+	binaryData,
+	//
 	@FlyElement(columnName="Birthday", name="生日", description="生日或周年日", help="生日或周年日", dataType=FlyDataType.Date, entityType="D", printName="生日", fieldLength=7)
 	birthday,
+	//
+	@FlyElement(columnName="Blue", name="蓝色", description="蓝色的RGB值", dataType=FlyDataType.Integer, entityType="D", printName="蓝色", fieldLength=22)
+	blue,
+	//
+	@FlyElement(columnName="Blue_1", name="第二个蓝色", description="RGB 第二颜色值", dataType=FlyDataType.Integer, entityType="D", printName="第二个蓝色", fieldLength=22)
+	blue1,
 	//
 	@FlyElement(columnName="BP_Location_ID", name="BP Address", description="Address of the Business Partner", dataType=FlyDataType.NONE, entityType="D", printName="BP Address", fieldLength=0)
 	bPLocationID,
@@ -173,8 +200,14 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="C_Job_ID", name="Position", description="Job Position", dataType=FlyDataType.ID, entityType="D", printName="Position", fieldLength=10)
 	cJobID,
 	//
+	@FlyElement(columnName="Classpath", name="Classpath", description="Extension Classpath", help="If your application requires additional jar files, enter them here. The jar files must be located in the $ADEMPIERE_HOME/lib directory.", dataType=FlyDataType.String, entityType="D", printName="Classpath", fieldLength=255)
+	classpath,
+	//
 	@FlyElement(columnName="C_Location_ID", name="地址", description="位置或地址", help="The Location   Address field defines the location of an entity.", dataType=FlyDataType.ID, entityType="D", printName="地址", fieldLength=22)
 	cLocationID,
+	//
+	@FlyElement(columnName="ColorType", name="颜色类型", description="Color presentation for this color", dataType=FlyDataType.List, entityType="D", printName="颜色类型", fieldLength=1)
+	colorType,
 	//
 	@FlyElement(columnName="ColumnName", name="数据库列名", description="Name of the column in the database", help="The Column Name indicates the name of a column on a table as defined in the database.", dataType=FlyDataType.String, entityType="D", printName="数据库列名", fieldLength=30)
 	columnName,
@@ -197,11 +230,17 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="CopyColumnsFromTable", name="Copy Columns From Table", dataType=FlyDataType.Button, entityType="D", printName="Copy Columns From Table", fieldLength=1)
 	copyColumnsFromTable,
 	//
+	@FlyElement(columnName="CountryCode", name="ISO国家代码", description="Upper-case two-letter alphanumeric ISO Country code according to ISO 3166-1 - http:  www.chemie.fu-berlin.de diverse doc ISO_3166.html", help="For details - http:  www.din.de gremien nas nabd iso3166ma codlstp1.html or - http:  www.unece.org trade rec rec03en.htm", dataType=FlyDataType.String, entityType="D", printName="ISO 国家", fieldLength=2)
+	countryCode,
+	//
 	@FlyElement(columnName="Created", name="创建日期", description="本记录产生日期", help="The Created field indicates the date that this record was created.", dataType=FlyDataType.DateTime, entityType="D", printName="创建日期", fieldLength=7)
 	created,
 	//
 	@FlyElement(columnName="CreatedBy", name="创建人", description="产生该记录用户", help="The Created By field indicates the user who created this record.", dataType=FlyDataType.Table, entityType="D", printName="创建人", fieldLength=22)
 	createdBy,
+	//
+	@FlyElement(columnName="DatePattern", name="Date Pattern", description="Java Date Pattern", help="Option Date pattern in Java notation. Examples: dd.MM.yyyy - dd/MM/yyyy If the pattern for your language is not correct, please create a Adempiere support request with the correct information", dataType=FlyDataType.String, entityType="D", printName="Date Pattern", fieldLength=20)
+	datePattern,
 	//
 	@FlyElement(columnName="DefaultValue", name="缺省逻辑", description="Default value hierarchy, separated by ;", help="The defaults are evaluated in the order of definition, the first not null value becomes the default value of the column. The values are separated by comma or semicolon. a) Literals:. 'Text' or 123 b) Variables - in format @Variable@ - Login e.g. #Date, #AD_Org_ID, #AD_Client_ID - Accounting Schema: e.g. $C_AcctSchema_ID, $C_Calendar_ID - Global defaults: e.g. DateFormat - Window values (all Picks, CheckBoxes, RadioButtons, and DateDoc DateAcct) c) SQL code with the tag: @SQL=SELECT something AS DefaultValue FROM ... The SQL statement can contain variables.  There can be no other value other than the SQL statement. The default is only evaluated, if no user preference is defined.  Default definitions are ignored for record columns as Key, Parent, Client as well as Buttons.", dataType=FlyDataType.Text, entityType="D", printName="缺省逻辑", fieldLength=2000)
 	defaultValue,
@@ -218,6 +257,9 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="DisplaySQL", name="Display SQL", description="SQL for display of lookup value", help="Fully qualified subquery SQL", dataType=FlyDataType.NONE, entityType="D", printName="Display SQL", fieldLength=0)
 	displaySQL,
 	//
+	@FlyElement(columnName="DocumentDir", name="文档目录", description="Directory for documents from the application server", help="Directory to store documents by the application server.  The path directory is accessed by the application server and may not be accessible to clients.", dataType=FlyDataType.String, entityType="D", printName="文档目录", fieldLength=60)
+	documentDir,
+	//
 	@FlyElement(columnName="DropShip_Warehouse_ID", name="Drop Ship Warehouse", description="The (logical) warehouse to use for recording drop ship receipts and shipments.", help="The drop ship warehouse will be used for recording material transactions relating to drop shipments to and from this organization.", dataType=FlyDataType.Table, entityType="D", printName="Drop Ship Warehouse", fieldLength=22)
 	dropShipWarehouseID,
 	//
@@ -226,6 +268,9 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="EMail", name="电邮", description="电子邮件地址", help="The Email Address is the Electronic Mail ID for this User and should be fully qualified (e.g. joe.smith@company.com). The Email Address is used to access the self service application functionality from the web.", dataType=FlyDataType.String, entityType="D", printName="电邮", fieldLength=60)
 	eMail,
+	//
+	@FlyElement(columnName="EMailTest", name="EMail Test", description="Test EMail", dataType=FlyDataType.Button, entityType="D", printName="EMail Test", fieldLength=1)
+	eMailTest,
 	//
 	@FlyElement(columnName="EMailUser", name="电子邮件用户", description="User Name (ID) in the Mail System", help="The user name in the mail system is usually the string before the @ of your email address.  Required if the mail server requires authentification to send emails.", dataType=FlyDataType.String, entityType="D", printName="发电子邮件给用户", fieldLength=60)
 	eMailUser,
@@ -254,6 +299,12 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="FormatPattern", name="Format Pattern", description="The pattern used to format a number or date.", help="A string complying with either Java SimpleDateFormat or DecimalFormat pattern syntax used to override the default presentation format of a date or number type field.", dataType=FlyDataType.String, entityType="D", printName="Format Pattern", fieldLength=22)
 	formatPattern,
 	//
+	@FlyElement(columnName="Green", name="绿色", description="RGB 值 ", dataType=FlyDataType.Integer, entityType="D", printName="绿色", fieldLength=22)
+	green,
+	//
+	@FlyElement(columnName="Green_1", name="第二个绿色", description="RGB 第二颜色值", dataType=FlyDataType.Integer, entityType="D", printName="第二个绿色", fieldLength=22)
+	green1,
+	//
 	@FlyElement(columnName="HasRole", name="HasRole", description="Has Role Y/N", dataType=FlyDataType.List, entityType="D", printName="Has Role Y/N", fieldLength=1)
 	hasRole,
 	//
@@ -262,6 +313,12 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="Help", name="注释/帮助", description="注释或提示", help="The Help field contains a hint, comment or help about the use of this item.", dataType=FlyDataType.Text, entityType="D", printName="注释", fieldLength=2000)
 	help,
+	//
+	@FlyElement(columnName="ImageAlpha", name="图像阿尔发 ", description="图像织法含有种种要素的阿尔发", help="Composite Alpha factor for taint color.", dataType=FlyDataType.Number, entityType="D", printName="图像阿尔发 ", fieldLength=22)
+	imageAlpha,
+	//
+	@FlyElement(columnName="ImageURL", name="图像网址", description="图像的网址", help="URL of image; The image is not stored in the database, but retrieved at runtime. The image can be a gif, jpeg or png.", dataType=FlyDataType.URL, entityType="D", printName="图像网址", fieldLength=120)
+	imageURL,
 	//
 	@FlyElement(columnName="ImportFields", name="导入字段", description="Create Fields from Table Columns", dataType=FlyDataType.Button, entityType="D", printName="导入字段", fieldLength=1)
 	importFields,
@@ -299,6 +356,9 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="IsAutocomplete", name="Autocomplete", description="Automatic completion for textfields", help="The autocompletion uses all existing values (from the same client and organization) of the field.", dataType=FlyDataType.YesNo, entityType="D", printName="Autocomplete", fieldLength=1)
 	isAutocomplete,
 	//
+	@FlyElement(columnName="IsBaseLanguage", name="基本语言", description="The system information is maintained in this language", dataType=FlyDataType.YesNo, entityType="D", printName="基本语言", fieldLength=1)
+	isBaseLanguage,
+	//
 	@FlyElement(columnName="IsBetaFunctionality", name="Beta 功能", description="This functionality is considered Beta", help="Beta functionality is not fully tested or completed.", dataType=FlyDataType.YesNo, entityType="D", printName="Beta 功能", fieldLength=1)
 	isBetaFunctionality,
 	//
@@ -322,6 +382,12 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="IsCollapsedByDefault", name="Collapsed By Default", description="Flag to set the initial state of collapsible field group.", dataType=FlyDataType.YesNo, entityType="D", printName="Collapsed By Default", fieldLength=1)
 	isCollapsedByDefault,
+	//
+	@FlyElement(columnName="IsCostImmediate", name="Cost Immediately", description="Update Costs immediately for testing", help="If selected, costs are updated immediately when a Cost Detail record is created (by matching or shipping).  Otherwise the costs are updated by batch or when the costs are needed for posting. You should select this only if you are testing,", dataType=FlyDataType.YesNo, entityType="D", printName="Cost Immediate", fieldLength=1)
+	isCostImmediate,
+	//
+	@FlyElement(columnName="IsDecimalPoint", name="Decimal Point", description="The number notation has a decimal point (no decimal comma)", help="If selected, Numbers are printed with a decimal point '.' - otherwise with a decimal comma ','.  The thousand separator is the opposite.	If the pattern for your language is not correct, please create a Adempiere support request with the correct information", dataType=FlyDataType.YesNo, entityType="D", printName="Decimal Point", fieldLength=1)
+	isDecimalPoint,
 	//
 	@FlyElement(columnName="IsDefault", name="缺省值", description="缺省值", help="The Default Checkbox indicates if this record will be used as a default value.", dataType=FlyDataType.YesNo, entityType="D", printName="缺省值", fieldLength=1)
 	isDefault,
@@ -386,6 +452,9 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="IsManual", name="手工", description="这是手工的程序", help="The Manual check box indicates if the process will done manually.", dataType=FlyDataType.YesNo, entityType="D", printName="手工", fieldLength=1)
 	isManual,
 	//
+	@FlyElement(columnName="IsMultiLingualDocument", name="多语言文件", description="多语言文件", help="If selected, you enable multi lingual documents and need to maintain translations for entities used in documents (examples: Products, Payment Terms, ...).<br>	Please note, that the base language is always English.", dataType=FlyDataType.YesNo, entityType="D", printName="多语言文件", fieldLength=1)
+	isMultiLingualDocument,
+	//
 	@FlyElement(columnName="IsOrderByValue", name="Order By Value", description="Order list using the value column instead of the name column", help="Order list using the value column instead of the name column", dataType=FlyDataType.YesNo, entityType="D", printName="Order By Value", fieldLength=1)
 	isOrderByValue,
 	//
@@ -397,6 +466,9 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="IsPersonalLock", name="个人数据加锁", description="Allow users with role to lock access to personal records", help="If enabled, the user with the role can prevent access of others to personal records.  If a record is locked, only the user or people who can read personal locked records can see the record.", dataType=FlyDataType.YesNo, entityType="D", printName="Personal Lock", fieldLength=1)
 	isPersonalLock,
+	//
+	@FlyElement(columnName="IsPostImmediate", name="Post Immediately (Deprecated)", description="Post the accounting immediately for testing (Deprecated)", help="If selected, the accounting consequences are immediately generated when completing a document.  Otherwise the document is posted by a batch process.  You should select this only if you are testing.	Deprecated column - use instead the functionality Client Accounting.", dataType=FlyDataType.YesNo, entityType="D", printName="Post Immediate", fieldLength=1)
+	isPostImmediate,
 	//
 	@FlyElement(columnName="IsRange", name="范围", description="The parameter is a range of values", help="The Range checkbox indicates that this parameter is a range of values.", dataType=FlyDataType.YesNo, entityType="D", printName="范围", fieldLength=1)
 	isRange,
@@ -416,6 +488,9 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="IsSelectionColumn", name="选择列", description="Is this column used for finding rows in windows", help="If selected, the column is listed in the first find window tab and in the selection part of the window", dataType=FlyDataType.YesNo, entityType="D", printName="选择", fieldLength=1)
 	isSelectionColumn,
 	//
+	@FlyElement(columnName="IsServerEMail", name="Server EMail", description="Send EMail from Server", help="When selected, mail is sent from the server rather then the client.  This decreases availability.  You would select this when you do not want to enable email relay for the client addresses in your mail server.", dataType=FlyDataType.YesNo, entityType="D", printName="Server EMail", fieldLength=1)
+	isServerEMail,
+	//
 	@FlyElement(columnName="IsShowAcct", name="显示财务", description="Users with this role can see accounting information", help="This allows to prevent access to any accounting information.", dataType=FlyDataType.YesNo, entityType="D", printName="显示财务", fieldLength=1)
 	isShowAcct,
 	//
@@ -434,6 +509,9 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="IsSyncDatabase", name="同步数据库", description="Change database table definition when changing dictionary definition", help="When selected, the database column definition is updated based on your entries in the Column definition of the Application Dictionary.", dataType=FlyDataType.Button, entityType="D", printName="同步数据库", fieldLength=1)
 	isSyncDatabase,
 	//
+	@FlyElement(columnName="IsSystemLanguage", name="系统语言", description="The screens, etc. are maintained in this Language", help="Select, if you want to have translated screens available in this language.  Please notify your system administrator to run the language maintenance scripts to enable the use of this language.  If the language is not supplied, you can translate the terms yourself. ", dataType=FlyDataType.YesNo, entityType="D", printName="系统语言", fieldLength=1)
+	isSystemLanguage,
+	//
 	@FlyElement(columnName="IsTranslated", name="已翻译", description="列被翻译", help="The Translated checkbox indicates if this column is translated.", dataType=FlyDataType.YesNo, entityType="D", printName="已翻译", fieldLength=1)
 	isTranslated,
 	//
@@ -442,6 +520,12 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="IsUpdateable", name="可更新的", description="Determines, if the field can be updated", help="The Updateable checkbox indicates if a field can be updated by the user.", dataType=FlyDataType.YesNo, entityType="D", printName="可更新的", fieldLength=1)
 	isUpdateable,
+	//
+	@FlyElement(columnName="IsUseASP", name="IsUseASP", dataType=FlyDataType.YesNo, entityType="D", printName="IsUseASP", fieldLength=1)
+	isUseASP,
+	//
+	@FlyElement(columnName="IsUseBetaFunctions", name="使用Beta功能", description="Enable the use of Beta Functionality", help="The exact scope of Beta Functionality is listed in the release note.  It is usually not recommended to enable Beta functionality in production environments.", dataType=FlyDataType.YesNo, entityType="D", printName="使用Beta", fieldLength=1)
+	isUseBetaFunctions,
 	//
 	@FlyElement(columnName="IsUseUserOrgAccess", name="Use User Org Access", description="Use Org Access defined by user instead of Role Org Access", help="You can define the access to Organization either by Role or by User.  You would select this, if you have many organizations.", dataType=FlyDataType.YesNo, entityType="D", printName="Use User Org Access", fieldLength=1)
 	isUseUserOrgAccess,
@@ -452,11 +536,17 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="IsView", name="视图", description="这是视图", help="This is a view rather than a table.  A view is always treated as read only in the system.", dataType=FlyDataType.YesNo, entityType="D", printName="视图", fieldLength=1)
 	isView,
 	//
+	@FlyElement(columnName="LanguageISO", name="ISO 语言编码", description="Lower-case two-letter ISO-3166 code - http:  www.ics.uci.edu pub ietf http related iso639.txt ", help="The ISO Language Code indicates the standard ISO code for a language in lower case.  Information can be found at http:  www.ics.uci.edu pub ietf http related iso639.txt ", dataType=FlyDataType.String, entityType="D", printName="ISO 语言编码", fieldLength=2)
+	languageISO,
+	//
 	@FlyElement(columnName="LastContact", name="最近联系人", description="Date this individual was last contacted", help="The Last Contact indicates the date that this Business Partner Contact was last contacted.", dataType=FlyDataType.Date, entityType="D", printName="最近联系人", fieldLength=7)
 	lastContact,
 	//
 	@FlyElement(columnName="LastResult", name="最近结果", description="最后的联系人结果", help="The Last Result identifies the result of the last contact made.", dataType=FlyDataType.String, entityType="D", printName="最近结果", fieldLength=2000)
 	lastResult,
+	//
+	@FlyElement(columnName="LDAPQuery", name="LDAP Query", dataType=FlyDataType.String, entityType="D", printName="LDAP Query", fieldLength=255)
+	lDAPQuery,
 	//
 	@FlyElement(columnName="LDAPUser", name="通过LDAP认证", description="Authorize via LDAP (directory) services", help="The user is authorized via LDAP. If LDAP authorization cannot be obtained, access is refused - the password is ignored for local access.", dataType=FlyDataType.String, entityType="D", printName="LDAP认证", fieldLength=60)
 	lDAPUser,
@@ -473,6 +563,12 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="LeadStatusDescription", name="Lead Status Description", description="Additional information on the status of this lead/opportunity", dataType=FlyDataType.NONE, entityType="D", printName="Lead Status Description", fieldLength=0)
 	leadStatusDescription,
 	//
+	@FlyElement(columnName="LineDistance", name="行距离", description="在线之间的距离", dataType=FlyDataType.Integer, entityType="D", printName="距离", fieldLength=22)
+	lineDistance,
+	//
+	@FlyElement(columnName="LineWidth", name="线宽度", description="线的宽度", dataType=FlyDataType.Integer, entityType="D", printName="线宽度", fieldLength=22)
+	lineWidth,
+	//
 	@FlyElement(columnName="LoadSeq", name="序列", dataType=FlyDataType.Integer, entityType="D", printName="序列", fieldLength=22)
 	loadSeq,
 	//
@@ -484,6 +580,15 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="MaxQueryRecords", name="Max Query Records", description="If defined, you cannot query more records as defined - the query criteria needs to be changed to query less records", help="Enter the number of records a user will be able to query to avoid unnecessary system load.  If 0, no restrictions are imposed.", dataType=FlyDataType.Integer, entityType="D", printName="Max Query Records", fieldLength=10)
 	maxQueryRecords,
+	//
+	@FlyElement(columnName="MMPolicy", name="Material Policy", description="Material Movement Policy", help="The Material Movement Policy determines how the stock is flowing (FiFo or LiFo) if a specific Product Instance was not selected.  The policy can not contradict the costing method (e.g. FiFo movement policy and LiFo costing method).", dataType=FlyDataType.List, entityType="D", printName="Mat Policy", fieldLength=1)
+	mMPolicy,
+	//
+	@FlyElement(columnName="ModelPackage", name="ModelPackage", description="Java Package of the model classes", help="By default, the Java model classes for extensions are in the compiere.model package.  If you provide a jar file in the classpath, you can define here your specific model package.  The model classes are used to save/modify/delete entries and as well as in Workflow.  Refer to the Compiere naming convention to make sure that your class is used rather then the base classes.", dataType=FlyDataType.String, entityType="D", printName="ModelPackage", fieldLength=255)
+	modelPackage,
+	//
+	@FlyElement(columnName="ModelValidationClasses", name="Model Validation Classes", description="List of data model validation classes separated by ;", help="List of classes implementing the interface org.compiere.model.ModelValidator, separated by semicolon.	The class is called for the client and allows to validate documents in the prepare stage and monitor model changes.", dataType=FlyDataType.String, entityType="D", printName="Model Validation Classes", fieldLength=255)
+	modelValidationClasses,
 	//
 	@FlyElement(columnName="M_Warehouse_ID", name="仓库或服务位置", description="Storage Warehouse and Service Point", help="The Warehouse identifies a unique Warehouse where products are stored or Services are provided.", dataType=FlyDataType.ID, entityType="D", printName="仓库", fieldLength=22)
 	mWarehouseID,
@@ -521,6 +626,18 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="Phone2", name="可选电话", description="Identifies an alternate telephone number.", help="The 2nd Phone field identifies an alternate telephone number.", dataType=FlyDataType.String, entityType="D", printName="可选电话", fieldLength=40)
 	phone2,
 	//
+	@FlyElement(columnName="PO_Description", name="采购定单描述", description="在采购定单屏幕中的描述", dataType=FlyDataType.String, entityType="D", printName="采购定单描述", fieldLength=255)
+	pODescription,
+	//
+	@FlyElement(columnName="PO_Help", name="采购定单帮助", description="帮助为采购定单审查", dataType=FlyDataType.Text, entityType="D", printName="采购定单帮助", fieldLength=2000)
+	pOHelp,
+	//
+	@FlyElement(columnName="PO_Name", name="采购定单名字", description="采购定单屏幕上的名字", dataType=FlyDataType.String, entityType="D", printName="采购定单名字", fieldLength=60)
+	pOName,
+	//
+	@FlyElement(columnName="PO_PrintName", name="采购定单打印名字", description="Print name on PO Screens Reports", dataType=FlyDataType.String, entityType="D", printName="采购定单打印", fieldLength=60)
+	pOPrintName,
+	//
 	@FlyElement(columnName="PO_Window_ID", name="采购定单视窗", description="采购定单视窗", help="Window for Purchase Order (AP) Zooms", dataType=FlyDataType.Table, entityType="D", printName="采购定单视窗", fieldLength=22)
 	pOWindowID,
 	//
@@ -529,6 +646,9 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="PreferredWidth", name="Preferred Width", description="Preferred width in pixels", dataType=FlyDataType.Integer, entityType="D", printName="Preferred Width", fieldLength=10)
 	preferredWidth,
+	//
+	@FlyElement(columnName="PrintName", name="打印文本", description="The label text to be printed on a document or correspondence.", help="The Label to be printed indicates the name that will be printed on a document or correspondence. The max length is 2000 characters.", dataType=FlyDataType.String, entityType="D", printName="文本", fieldLength=60)
+	printName,
 	//
 	@FlyElement(columnName="Processing", name="现在处理", dataType=FlyDataType.Button, entityType="D", printName="现在处理", fieldLength=1)
 	processing,
@@ -539,8 +659,29 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="ReceiptFooterMsg", name="Receipt Footer Msg", description="This message will be displayed at the bottom of a receipt when doing a sales or purchase", dataType=FlyDataType.LongText, entityType="D", printName="Receipt Footer Msg", fieldLength=0)
 	receiptFooterMsg,
 	//
+	@FlyElement(columnName="Red", name="红色", description="RGB 值 ", dataType=FlyDataType.Integer, entityType="D", printName="红色", fieldLength=22)
+	red,
+	//
+	@FlyElement(columnName="Red_1", name="2nd Red", description="RGB 第二颜色值", dataType=FlyDataType.Integer, entityType="D", printName="第二个红色", fieldLength=22)
+	red1,
+	//
+	@FlyElement(columnName="RepeatDistance", name="重复距离", description="Distance in points to repeat gradient color - or zero", help="The gradient color is not repeated, if the value is zero. The distance is added to (or subtracted from) the starting point of the gradient.", dataType=FlyDataType.Integer, entityType="D", printName="重复距离", fieldLength=22)
+	repeatDistance,
+	//
 	@FlyElement(columnName="ReplicationType", name="复制类型", description="数据复制的类型", help="The Type of data Replication determines the directon of the data replication.  <br>	Reference means that the data in this system is read only -> <br>	Local means that the data in this system is not replicated to other systems - <br>	Merge means that the data in this system is synchronized with the other system <-> <br>	", dataType=FlyDataType.List, entityType="D", printName="复制类型", fieldLength=1)
 	replicationType,
+	//
+	@FlyElement(columnName="RequestEMail", name="请求电子邮件", description="EMail address to send automated mails from or receive mails for automated processing (fully qualified)", help="EMails for requests, alerts and escalation are sent from this email address as well as delivery information if the sales rep does not have an email account. The address must be filly qualified (e.g. joe.smith@company.com) and should be a valid address.", dataType=FlyDataType.String, entityType="D", printName="请求电子邮件", fieldLength=60)
+	requestEMail,
+	//
+	@FlyElement(columnName="RequestFolder", name="请求文件夹", description="EMail folder to process incoming emails; if empty INBOX is used", help="Email folder used to read emails to process as requests, If left empty the default mailbox (INBOX) will be used. Requires IMAP services.", dataType=FlyDataType.String, entityType="D", printName="请求文件夹", fieldLength=20)
+	requestFolder,
+	//
+	@FlyElement(columnName="RequestUser", name="请求用户", description="User Name (ID) of the email owner", help="EMail user name for requests, alerts and escalation are sent from this email address as well as delivery information if the sales rep does not have an email account. Required, if your mail server requires authentification as well as for processing incoming mails.", dataType=FlyDataType.String, entityType="D", printName="请求用户", fieldLength=60)
+	requestUser,
+	//
+	@FlyElement(columnName="RequestUserPW", name="请求用户密码", description="Password of the user name (ID) for mail processing", dataType=FlyDataType.String, entityType="D", printName="请求用户密码", fieldLength=20)
+	requestUserPW,
 	//
 	@FlyElement(columnName="SalesRep_ID", name="销售代表", description="Sales Representative or Company Agent", help="The Sales Representative indicates the Sales Rep for this Region.  Any Sales Rep must be a valid internal user.", dataType=FlyDataType.Table, entityType="D", printName="销售代表", fieldLength=22)
 	salesRepID,
@@ -557,6 +698,15 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="SortNo", name="记录排序号", description="决定记录按怎样的顺序显示。", help="The Record Sort No indicates the ascending sort sequence of the records", dataType=FlyDataType.Number, entityType="D", printName="记录排序号", fieldLength=22)
 	sortNo,
 	//
+	@FlyElement(columnName="StartPoint", name="开始点", description="Start point of the gradient colors", help="The gradient starts at the start point (e.g. North). The repeat distance determines if and how often the gradient colors are repeated.  If starting from southern points, the upper color is actually at the button.", dataType=FlyDataType.List, entityType="D", printName="开始点", fieldLength=22)
+	startPoint,
+	//
+	@FlyElement(columnName="StoreArchiveOnFileSystem", name="Store Archive On File System", dataType=FlyDataType.YesNo, entityType="D", printName="Store Archive On File System", fieldLength=1)
+	storeArchiveOnFileSystem,
+	//
+	@FlyElement(columnName="StoreAttachmentsOnFileSystem", name="Store Attachments On File System", dataType=FlyDataType.YesNo, entityType="D", printName="Store Attachments On File System", fieldLength=1)
+	storeAttachmentsOnFileSystem,
+	//
 	@FlyElement(columnName="Supervisor_ID", name="管理者", description="Supervisor for this user - used for escalation", help="The Supervisor indicates who will be used for forwarding and escalating issues for this user.", dataType=FlyDataType.Search, entityType="D", printName="管理者", fieldLength=22)
 	supervisorID,
 	//
@@ -569,6 +719,9 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="TaxID", name="税号", description="税务号", help="The Tax ID field identifies the legal Identification number of this Entity.", dataType=FlyDataType.String, entityType="D", printName="税号", fieldLength=20)
 	taxID,
 	//
+	@FlyElement(columnName="TimePattern", name="Time Pattern", description="Java Time Pattern", help="Option Time pattern in Java notation. Examples: 'hh:mm:ss aaa z' - 'HH:mm:ss'	If the pattern for your language is not correct, please create a Adempiere support request with the correct information", dataType=FlyDataType.String, entityType="D", printName="Time Pattern", fieldLength=20)
+	timePattern,
+	//
 	@FlyElement(columnName="Title", name="名称", description="Name this entity is referred to as", help="The Title indicates the name that an entity is referred to as.", dataType=FlyDataType.String, entityType="D", printName="名称", fieldLength=60)
 	title,
 	//
@@ -577,6 +730,12 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="TransferCashBook_ID", name="CashBook for transfers", dataType=FlyDataType.Table, entityType="D", printName="CashBook for transfers", fieldLength=22)
 	transferCashBookID,
+	//
+	@FlyElement(columnName="UnixArchivePath", name="Unix Archive Path", dataType=FlyDataType.String, entityType="D", printName="Unix Archive Path", fieldLength=255)
+	unixArchivePath,
+	//
+	@FlyElement(columnName="UnixAttachmentPath", name="Unix Attachment Path", dataType=FlyDataType.String, entityType="D", printName="Unix Attachment Path", fieldLength=255)
+	unixAttachmentPath,
 	//
 	@FlyElement(columnName="Updated", name="已更新", description="本记录更新日期", help="The Updated field indicates the date that this record was updated.", dataType=FlyDataType.DateTime, entityType="D", printName="已更新", fieldLength=7)
 	updated,
@@ -622,6 +781,12 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="WhereClause", name="SQL的Where子句", description="Fully qualified WHERE clause", help="The Where Clause indicates the SQL WHERE clause to use for record selection. The WHERE clause is added to the query. Fully qualified means 'tablename.columnname'.", dataType=FlyDataType.Text, entityType="D", printName="SQL的Where子句", fieldLength=2000)
 	whereClause,
+	//
+	@FlyElement(columnName="WindowsArchivePath", name="Windows Archive Path", dataType=FlyDataType.String, entityType="D", printName="Windows Archive Path", fieldLength=255)
+	windowsArchivePath,
+	//
+	@FlyElement(columnName="WindowsAttachmentPath", name="Windows Attachment Path", dataType=FlyDataType.String, entityType="D", printName="Windows Attachment Path", fieldLength=255)
+	windowsAttachmentPath,
 	//
 	@FlyElement(columnName="WindowType", name="窗口类型", description="Type or classification of a Window", help="The Window Type indicates the type of window being defined (Maintain, Transaction or Query)", dataType=FlyDataType.List, entityType="D", printName="窗口类型", fieldLength=1)
 	windowType,

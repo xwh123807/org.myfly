@@ -12,7 +12,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 @Entity
 @Table(name = "PT_FieldGroup")
 @FlyTable(name = "Field Group", description = "Logical grouping of fields")
-@FlyRefTable(name = "fieldGroupID", keyColumn = "fieldGroupID", displayColumn = "name")
+@FlyRefTable(apiName = "fieldGroupID", name = "字段组", keyColumn = "fieldGroupID", displayColumn = "name")
 public class PFieldGroup extends FlyEntity {
 	/**
 	 * 

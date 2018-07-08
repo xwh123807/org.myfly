@@ -12,7 +12,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 @Entity
 @Table(name = "PT_EmailConfig")
 @FlyTable(name = "EMail Configuration")
-@FlyRefTable(name = "emailConfigID", keyColumn = "emailConfigID", displayColumn = "name")
+@FlyRefTable(apiName = "emailConfigID", name="邮箱配置", keyColumn = "emailConfigID", displayColumn = "name")
 public class PEmailConfig extends FlyEntity {
 
 	/**

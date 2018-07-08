@@ -6,11 +6,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.myfly.platform.core3.domain.FlyMetaEntity;
+import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 @Entity
 @Table(name = "PT_ReplicationStrategy")
-@FlyTable(name = "Replication Strategy", description = "Data Replication Strategy", help = "The Data Replication Strategy determines what and how tables are replicated ")
+@FlyTable(name = "Replication Strategy", description = "Data Replication Strategy", //
+		help = "The Data Replication Strategy determines what and how tables are replicated ")
+@FlyRefTable(apiName = "replicationStrategyID", name = "Replication Strategy", keyColumn = "replicationStrategyID", displayColumn = "name")
 public class PReplicationStrategy extends FlyMetaEntity {
 	/**
 	 * 

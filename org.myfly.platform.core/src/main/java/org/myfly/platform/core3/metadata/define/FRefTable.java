@@ -17,19 +17,26 @@ public class FRefTable extends PReference implements IDefinition {
 
 	private String tableClassName;
 
+	private String keyColumnName;
+
+	private String displayColumnName;
+
 	private boolean isFromDB;
 
 	@Override
 	public String getKey() {
-		return getName();
+		return getApiName();
 	}
 
 	@Override
 	public void validate() {
 		Assert.hasLength(getKey(), "属性[Key]不能为空");
+		Assert.hasLength(getApiName(), "属性[ApiName]不能为空");
 		Assert.hasLength(getEntityType(), "属性[EntityType]不能为空");
 		Assert.hasLength(getName(), "属性[Name]不能为空");
 		Assert.hasLength(getTableClassName(), "属性[TableClassName]不能为空");
+		Assert.hasLength(getKeyColumnName(), "属性[KeyColumnName]不能为空");
+		Assert.hasLength(getDisplayColumnName(), "属性[DisplayColumnName]不能为空");
 		Assert.notNull(getRefTable(), "属性[RefTable]不能为空");
 	}
 
@@ -82,6 +89,7 @@ public class FRefTable extends PReference implements IDefinition {
 	public PReference toReferencePO() {
 		PReference result = new PReference();
 		result.setReferenceID(getReferenceID());
+		result.setApiName(getApiName());
 		result.setEntityType(getEntityType());
 		result.setIsOrderByValue(getIsOrderByValue());
 		result.setValidationType(getValidationType());
@@ -92,5 +100,27 @@ public class FRefTable extends PReference implements IDefinition {
 
 	public PRefTable toRefTablePO() {
 		return getRefTable();
+	}
+
+	public String getKeyColumnName() {
+		return keyColumnName;
+	}
+
+	public void setKeyColumnName(String keyColumnName) {
+		this.keyColumnName = keyColumnName;
+	}
+
+	public String getDisplayColumnName() {
+		return displayColumnName;
+	}
+
+	public void setDisplayColumnName(String displayColumnName) {
+		this.displayColumnName = displayColumnName;
+	}
+
+	@Override
+	public String toString() {
+		return "apiName:" + getApiName() + ", name: " + getName() + ", table: " + getTableClassName() + ", keyColumn:"
+				+ getKeyColumnName() + ", displayColumn: " + getDisplayColumnName();
 	}
 }

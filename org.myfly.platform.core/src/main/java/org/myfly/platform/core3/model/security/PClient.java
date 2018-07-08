@@ -20,7 +20,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 @Table(name = "PT_Client", uniqueConstraints = @UniqueConstraint(columnNames = "clientID"))
 @Entity
 @FlyTable(name = "Client", description = "Client/Tenant for this installation.")
-@FlyRefTable(name = "clientID", keyColumn = "clientID", displayColumn = "name")
+@FlyRefTable(apiName = "clientID", name = "PClient ID", keyColumn = "clientID", displayColumn = "name")
 public class PClient implements IFlyEntity {
 	/**
 	 * 
@@ -30,7 +30,7 @@ public class PClient implements IFlyEntity {
 	@Id
 	@Column(length = 32)
 	private String clientID;
-	
+
 	@Column
 	private Timestamp created;
 

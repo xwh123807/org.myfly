@@ -21,7 +21,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 @Entity
 @Table(name = "PT_Element")
 @FlyTable(name = "System Element", description = "System Element enables the central maintenance of column description and help.")
-@FlyRefTable(displayColumn = "name", keyColumn = "elementID", name = "elementID")
+@FlyRefTable(apiName = "elementID", displayColumn = "name", keyColumn = "elementID", name = "元素ID")
 public class PElement extends FlyMetaEntity {
 	/**
 	 * 
@@ -30,6 +30,9 @@ public class PElement extends FlyMetaEntity {
 	@Id
 	@Column(length = 32)
 	private String elementID;
+	
+	@Column(length = 40)
+	private String apiName;
 
 	@Column(length = 60)
 	private String printName;
@@ -39,8 +42,8 @@ public class PElement extends FlyMetaEntity {
 
 	@Column()
 	private FlyDataType dataType;
-	
-	@Column(length=32)
+
+	@Column(length = 32)
 	private String entityType;
 
 	/**
@@ -106,5 +109,13 @@ public class PElement extends FlyMetaEntity {
 
 	public void setEntityType(String entityType) {
 		this.entityType = entityType;
+	}
+
+	public String getApiName() {
+		return apiName;
+	}
+
+	public void setApiName(String apiName) {
+		this.apiName = apiName;
 	}
 }

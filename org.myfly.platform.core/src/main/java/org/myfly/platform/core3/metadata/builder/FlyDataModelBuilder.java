@@ -51,6 +51,7 @@ public class FlyDataModelBuilder extends AbstractBuilder<PTable, FlyDataModel> {
 	 */
 	private FlyDataModel buildTable(Class<? extends IFlyEntity> entityClass) {
 		FlyDataModel result = new FlyDataModel();
+		result.setTableID(UUIDUtil.newUUID());
 		result.setApiName(entityClass.getName());
 		Table anno = entityClass.getAnnotation(Table.class);
 		if (anno != null) {
@@ -95,10 +96,10 @@ public class FlyDataModelBuilder extends AbstractBuilder<PTable, FlyDataModel> {
 			flyColumn.setSetter(fieldInfo.getSetter());
 			flyColumn.setValueHandler(ValueHandlerFactory.getValueHandler(flyColumn));
 			flyColumn.setColumnID(UUIDUtil.newUUID());
+			flyColumn.setTableID(result.getTableID());
 			FlyEntityUtils.updateFlyEntityForSystem(flyColumn);
 			result.getColumnMap().put(flyColumn.getApiName(), flyColumn);
 		});
-		result.setTableID(UUIDUtil.newUUID());
 		FlyEntityUtils.updateFlyEntityForSystem(result);
 		return result;
 	}

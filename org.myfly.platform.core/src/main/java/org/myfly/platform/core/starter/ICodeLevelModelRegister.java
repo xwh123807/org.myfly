@@ -11,9 +11,9 @@ import org.myfly.platform.core3.metadata.define.FRefTable;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
 
 public interface ICodeLevelModelRegister {
-	void registerElements(List<FElement> elements);
+	void registerElements(List<FElement> elements, boolean override);
 
-	void registerElementsFromEnumClass(Class<? extends Enum<?>> enumClass);
+	void registerElementsFromEnumClass(Class<? extends Enum<?>> enumClass, boolean override);
 
 	void registerEntityTypes(List<FEntityType> entityTypes);
 
@@ -21,11 +21,11 @@ public interface ICodeLevelModelRegister {
 
 	void registerRefListsFromEnumClass(Class<? extends Enum<?>> enumClass);
 
-	void registerFlyDataModelFromPackage(String packageName);
+	List<String> registerFlyDataModelFromPackage(String packageName);
 
-	void registerFlyDataModelFromEntityClass(Class<? extends IFlyEntity> entityClass);
+	List<String> registerFlyDataModelFromEntityClass(Class<? extends IFlyEntity> entityClass);
 
-	void registerFlyDataModels(List<FlyDataModel> flyDataModels);
+	List<String> registerFlyDataModels(List<FlyDataModel> flyDataModels);
 
 	void registerRefTablesFromEntityClass(Class<? extends IFlyEntity> entityClass);
 

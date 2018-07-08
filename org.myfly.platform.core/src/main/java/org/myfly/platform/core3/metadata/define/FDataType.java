@@ -64,4 +64,9 @@ public class FDataType extends PDataType implements IDefinition {
 	public void setFromDB(boolean value) {
 		this.isFromDB = value;
 	}
+	
+	@Override
+	public String toString() {
+		return "dataType: " + getDataType() + ", name: " + getName();
+	}
 }

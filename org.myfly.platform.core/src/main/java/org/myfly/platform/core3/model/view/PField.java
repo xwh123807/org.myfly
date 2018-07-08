@@ -7,12 +7,14 @@ import javax.persistence.Table;
 
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.FlyMetaEntity;
+import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
 import org.myfly.platform.core3.metadata.service.IFlyViewField;
 
 @Entity
 @Table(name = "PT_Field")
 @FlyTable(name = "Field", description = "Field on a database table")
+@FlyRefTable(apiName = "fieldID", name = "Field Name", displayColumn = "name", keyColumn = "fieldID")
 public class PField extends FlyMetaEntity implements IFlyViewField {
 	/**
 	 * 
@@ -78,7 +80,7 @@ public class PField extends FlyMetaEntity implements IFlyViewField {
 	private Boolean isFieldOnly;
 
 	@Column(name = "IsHeading")
-	private Boolean IsHeading;
+	private Boolean isHeading;
 
 	@Column(name = "IsMandatory")
 	private Boolean isMandatory;
@@ -93,7 +95,7 @@ public class PField extends FlyMetaEntity implements IFlyViewField {
 	private String obscureType;
 
 	@Column(name = "PreferredWidth")
-	private Boolean PreferredWidth;
+	private Boolean preferredWidth;
 
 	@Column(name = "SeqNo")
 	private Integer seqNo;
@@ -102,7 +104,7 @@ public class PField extends FlyMetaEntity implements IFlyViewField {
 	private Integer seqNoGrid;
 
 	@Column(name = "SortNo")
-	private Integer SortNo;
+	private Integer sortNo;
 
 	/*
 	 * (non-Javadoc)
@@ -310,7 +312,7 @@ public class PField extends FlyMetaEntity implements IFlyViewField {
 	 */
 	@Override
 	public Boolean getIsHeading() {
-		return IsHeading;
+		return isHeading;
 	}
 
 	/*
@@ -322,7 +324,7 @@ public class PField extends FlyMetaEntity implements IFlyViewField {
 	 */
 	@Override
 	public void setIsHeading(Boolean isHeading) {
-		IsHeading = isHeading;
+		this.isHeading = isHeading;
 	}
 
 	/*
@@ -398,7 +400,7 @@ public class PField extends FlyMetaEntity implements IFlyViewField {
 	 */
 	@Override
 	public Boolean getPreferredWidth() {
-		return PreferredWidth;
+		return preferredWidth;
 	}
 
 	/*
@@ -410,7 +412,7 @@ public class PField extends FlyMetaEntity implements IFlyViewField {
 	 */
 	@Override
 	public void setPreferredWidth(Boolean preferredWidth) {
-		PreferredWidth = preferredWidth;
+		this.preferredWidth = preferredWidth;
 	}
 
 	/*
@@ -463,7 +465,7 @@ public class PField extends FlyMetaEntity implements IFlyViewField {
 	 */
 	@Override
 	public Integer getSortNo() {
-		return SortNo;
+		return sortNo;
 	}
 
 	/*
@@ -474,7 +476,7 @@ public class PField extends FlyMetaEntity implements IFlyViewField {
 	 */
 	@Override
 	public void setSortNo(Integer sortNo) {
-		SortNo = sortNo;
+		this.sortNo = sortNo;
 	}
 
 	/*

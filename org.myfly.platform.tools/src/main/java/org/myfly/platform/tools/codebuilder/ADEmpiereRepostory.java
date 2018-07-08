@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -53,11 +54,13 @@ public class ADEmpiereRepostory {
 	 * @return
 	 */
 	public ADTable getTable(String tableName) {
-		Map<String, Object> item = jdbcTemplate.queryForMap("select * from ad_table where tablename = ?", tableName);
-		if (MapUtils.isEmpty(item)) {
-			throw new IllegalArgumentException("表[" + tableName + "]不存在");
+		try {
+			Map<String, Object> item = jdbcTemplate.queryForMap("select * from ad_table where tablename = ?",
+					tableName);
+			return new ADTable(item);
+		} catch (EmptyResultDataAccessException e) {
+			throw new IllegalArgumentException("tablename=[" + tableName + "]记录不存在");
 		}
-		return new ADTable(item);
 	}
 
 	/**

@@ -14,8 +14,9 @@ import org.myfly.platform.core3.metadata.service.IFlyViewTab;
 @Entity
 @Table
 @FlyTable(name = "Tab", description = "Tab within a Window")
-@FlyReferences(references = { @FlyRefTable(name = "tabID", keyColumn = "tabID", displayColumn = "name"),
-		@FlyRefTable(name = "includedTab", keyColumn = "tabID", displayColumn = "name") })
+@FlyReferences(references = {
+		@FlyRefTable(apiName = "tabID", name = "PTab ID", keyColumn = "tabID", displayColumn = "name"),
+		@FlyRefTable(apiName = "includedTab", name = "包含页", keyColumn = "tabID", displayColumn = "name") })
 public class PTab extends FlyMetaEntity implements IFlyViewTab {
 	/**
 	 * 

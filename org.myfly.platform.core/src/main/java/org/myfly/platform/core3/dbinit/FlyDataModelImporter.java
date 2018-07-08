@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.myfly.platform.core.utils.UUIDUtil;
-import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.define.FlyMemoryDataModel;
 import org.myfly.platform.core3.model.data.PColumn;
 import org.myfly.platform.core3.model.data.PRefTable;
@@ -17,7 +15,6 @@ import org.myfly.platform.core3.model.dict.PEntityType;
 import org.myfly.platform.core3.model.dict.PRefList;
 import org.myfly.platform.core3.model.dict.PReference;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 /**
  * 保存数据模型中没有报存到数据的<br>
@@ -47,11 +44,7 @@ public class FlyDataModelImporter extends ModelImporter {
 		List<PDataType> list = new ArrayList<>();
 		getFlyMemoryDataModel().getDataTypes().values().stream().filter(p -> !p.isFromDB()).forEach(item -> {
 			PDataType result = item.toDataTypePO();
-			if (!StringUtils.hasLength(result.getDataTypeID())) {
-				result.setDataTypeID(UUIDUtil.newUUID());
-				FlyEntityUtils.updateFlyEntityForSystem(result);
-				list.add(result);
-			}
+			list.add(result);
 		});
 		getDataService().batchSaveEntity(list);
 	}
@@ -61,15 +54,9 @@ public class FlyDataModelImporter extends ModelImporter {
 		List<PRefTable> refList = new ArrayList<>();
 		getFlyMemoryDataModel().getRefTables().values().stream().filter(p -> !p.isFromDB()).forEach(item -> {
 			PReference result = item.toReferencePO();
-			if (!StringUtils.hasLength(result.getReferenceID())) {
-				result.setReferenceID(UUIDUtil.newUUID());
-				FlyEntityUtils.updateFlyEntityForSystem(result);
-				list.add(result);
-				PRefTable refTable = item.toRefTablePO();
-				refTable.setReferenceID(result.getReferenceID());
-				FlyEntityUtils.updateFlyEntityForSystem(refTable);
-				refList.add(refTable);
-			}
+			list.add(result);
+			PRefTable refTable = item.toRefTablePO();
+			refList.add(refTable);
 		});
 		getDataService().batchSaveEntity(list);
 		getDataService().batchSaveEntity(refList);
@@ -79,11 +66,7 @@ public class FlyDataModelImporter extends ModelImporter {
 		List<PEntityType> list = new ArrayList<>();
 		getFlyMemoryDataModel().getEntityTypes().values().stream().filter(p -> !p.isFromDB()).forEach(item -> {
 			PEntityType result = item.toEntityTypePO();
-			if (!StringUtils.hasLength(result.getEntityTypeID())) {
-				result.setEntityTypeID(UUIDUtil.newUUID());
-				FlyEntityUtils.updateFlyEntityForSystem(result);
-				list.add(result);
-			}
+			list.add(result);
 		});
 		getDataService().batchSaveEntity(list);
 	}
@@ -92,11 +75,7 @@ public class FlyDataModelImporter extends ModelImporter {
 		List<PElement> list = new ArrayList<>();
 		getFlyMemoryDataModel().getElements().values().stream().filter(p -> !p.isFromDB()).forEach(item -> {
 			PElement result = item.toElementPO();
-			if (!StringUtils.hasLength(result.getElementID())) {
-				result.setElementID(UUIDUtil.newUUID());
-				FlyEntityUtils.updateFlyEntityForSystem(result);
-				list.add(result);
-			}
+			list.add(result);
 		});
 		getDataService().batchSaveEntity(list);
 	}
@@ -106,20 +85,11 @@ public class FlyDataModelImporter extends ModelImporter {
 		List<PRefList> refList = new ArrayList<>();
 		getFlyMemoryDataModel().getRefLists().values().stream().forEach(item -> {
 			PReference result = item.toReferencePO();
-			if (!StringUtils.hasLength(result.getReferenceID())) {
-				result.setReferenceID(UUIDUtil.newUUID());
-				FlyEntityUtils.updateFlyEntityForSystem(result);
-				if (!item.isFromDB()) {
-					list.add(result);
-				}
-				List<PRefList> items = item.toRefListPOs();
-				items.forEach(refItem -> {
-					refItem.setReferenceID(result.getReferenceID());
-					refItem.setRefListID(UUIDUtil.newUUID());
-					FlyEntityUtils.updateFlyEntityForSystem(refItem);
-					refList.add(refItem);
-				});
+			if (!item.isFromDB()) {
+				list.add(result);
 			}
+			item.getItems().values().stream().filter(p -> !p.isFromDB()).map(listItem -> listItem.toRefListPO())
+					.forEach(refListPO -> refList.add(refListPO));
 		});
 		getDataService().batchSaveEntity(list);
 		getDataService().batchSaveEntity(refList);
@@ -130,20 +100,11 @@ public class FlyDataModelImporter extends ModelImporter {
 		List<PColumn> colList = new ArrayList<>();
 		getFlyMemoryDataModel().getFlyDataModels().values().forEach(item -> {
 			PTable result = item.toTablePO();
-			if (!StringUtils.hasLength(result.getTableID())) {
-				result.setTableID(UUIDUtil.newUUID());
-				FlyEntityUtils.updateFlyEntityForSystem(result);
-				if (!item.isFromDB()) {
-					list.add(result);
-				}
-				List<PColumn> items = item.toColumnPOs();
-				items.forEach(colItem -> {
-					colItem.setTableID(result.getTableID());
-					colItem.setColumnID(UUIDUtil.newUUID());
-					FlyEntityUtils.updateFlyEntityForSystem(colItem);
-					colList.add(colItem);
-				});
+			if (!item.isFromDB()) {
+				list.add(result);
 			}
+			item.getColumnMap().values().stream().filter(p -> !p.isFromDB()).map(column -> column.toColumnPO())
+					.forEach(columnPO -> colList.add(columnPO));
 		});
 		getDataService().batchSaveEntity(list);
 		getDataService().batchSaveEntity(colList);

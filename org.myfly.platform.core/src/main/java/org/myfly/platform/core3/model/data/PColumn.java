@@ -22,9 +22,10 @@ import org.myfly.platform.core3.metadata.service.IFlyColumn;
 @Entity
 @Table(name = "PT_Column")
 @FlyTable(name = "Column", description = "Column in the table")
-@FlyReferences(references = { @FlyRefTable(name = "columnID", keyColumn = "columnID", displayColumn = "name"),
-		@FlyRefTable(name = "PColumn_name", displayColumn = "name", keyColumn = "columnName"),
-		@FlyRefTable(name = "parentColumn", keyColumn = "columnID", displayColumn = "name") })
+@FlyReferences(references = {
+		@FlyRefTable(apiName = "columnID", name = "PColumn ID", keyColumn = "columnID", displayColumn = "name"),
+		@FlyRefTable(apiName = "columnName", name = "PColumn name", displayColumn = "name", keyColumn = "columnName"),
+		@FlyRefTable(apiName = "parentColumn", name = "Parent Column", keyColumn = "columnID", displayColumn = "name") })
 public class PColumn extends FlyMetaEntity implements IFlyColumn {
 	/**
 	 * 

@@ -56,7 +56,7 @@ public class RefListCodeBuilder extends AbstractCodeBuilder<ADReference> {
 			item.getRefLists().forEach(refItem -> {
 				buffer.append("\t").append("@FlyRefItem(");
 				buffer.append("name=\"").append(refItem.getName()).append("\"");
-				buffer.append(", value=\"").append(refItem.getName()).append("\")").append(",").append("\n");
+				buffer.append(", value=\"").append(refItem.getValue()).append("\")").append(",").append("\n");
 			});
 			buffer.append("})").append("\n");
 			buffer.append("\t").append(convertName(item.getApiName())).append(",").append("\n");

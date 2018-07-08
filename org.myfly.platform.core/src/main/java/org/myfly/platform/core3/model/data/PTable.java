@@ -21,8 +21,9 @@ import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 @Entity
 @Table(name = "PT_TABLE")
 @FlyTable(name = "Table", description = "Table for the Fields", isHighVolume = true)
-@FlyReferences(references = { @FlyRefTable(name = "tableID", keyColumn = "tableID", displayColumn = "name"),
-		@FlyRefTable(name = "PTable_name", displayColumn = "name", keyColumn = "name") })
+@FlyReferences(references = {
+		@FlyRefTable(apiName = "tableID", name = "PTable ID", keyColumn = "tableID", displayColumn = "name"),
+		@FlyRefTable(apiName = "tableName", name = "PTable name", displayColumn = "name", keyColumn = "tableName") })
 public class PTable extends FlyMetaEntity implements IFlyDataModel {
 	/**
 	 * 

@@ -6,12 +6,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.myfly.platform.core3.domain.FlyMetaEntity;
+import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
 import org.myfly.platform.core3.metadata.service.IFlyViewModel;
 
 @Entity
 @Table(name = "PT_WINDOW")
 @FlyTable(name = "Window", description = "Data entry or display window", isHighVolume = true, isCentrallyMaintained = true)
+@FlyRefTable(apiName = "windowID", name = "Window", keyColumn = "windowID", displayColumn = "name")
 public class PWindow extends FlyMetaEntity implements IFlyViewModel {
 
 	/**
@@ -27,7 +29,7 @@ public class PWindow extends FlyMetaEntity implements IFlyViewModel {
 	private String entityType;
 
 	@Column(name = "IsBetaFunctionality")
-	private String IsBetaFunctionality;
+	private Boolean isBetaFunctionality;
 
 	@Column(name = "IsDefault")
 	private Boolean isDefault;
@@ -103,8 +105,8 @@ public class PWindow extends FlyMetaEntity implements IFlyViewModel {
 	 * org.myfly.platform.core3.model.view.IFlyViewModel#getIsBetaFunctionality()
 	 */
 	@Override
-	public String getIsBetaFunctionality() {
-		return IsBetaFunctionality;
+	public Boolean getIsBetaFunctionality() {
+		return isBetaFunctionality;
 	}
 
 	/*
@@ -115,8 +117,8 @@ public class PWindow extends FlyMetaEntity implements IFlyViewModel {
 	 * .lang.String)
 	 */
 	@Override
-	public void setIsBetaFunctionality(String isBetaFunctionality) {
-		IsBetaFunctionality = isBetaFunctionality;
+	public void setIsBetaFunctionality(Boolean isBetaFunctionality) {
+		this.isBetaFunctionality = isBetaFunctionality;
 	}
 
 	/*

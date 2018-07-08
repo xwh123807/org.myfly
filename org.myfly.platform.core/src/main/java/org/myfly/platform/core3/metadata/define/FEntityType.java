@@ -11,7 +11,7 @@ public class FEntityType extends PEntityType implements IDefinition {
 	 * 
 	 */
 	private static final long serialVersionUID = -3348825959997859306L;
-	
+
 	private boolean isFromDB;
 
 	@Override
@@ -45,7 +45,6 @@ public class FEntityType extends PEntityType implements IDefinition {
 	public String getUid() {
 		return getEntityTypeID();
 	}
-	
 
 	@Override
 	public boolean isFromDB() {
@@ -59,12 +58,17 @@ public class FEntityType extends PEntityType implements IDefinition {
 
 	public PEntityType toEntityTypePO() {
 		PEntityType result = new PEntityType();
-		result.setClassPath(getClassPath());
+		result.setClasspath(getClasspath());
 		result.setEntityType(getEntityType());
 		result.setEntityTypeID(getEntityTypeID());
 		result.setModelPackage(getModelPackage());
 		result.setProcessing(getProcessing());
 		FlyEntityUtils.copyFlyMetaFields(result, this);
 		return result;
+	}
+
+	@Override
+	public String toString() {
+		return "entityType: " + getEntityType() + ", name: " + getName();
 	}
 }

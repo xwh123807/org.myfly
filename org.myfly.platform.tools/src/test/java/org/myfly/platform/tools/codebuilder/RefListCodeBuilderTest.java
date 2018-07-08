@@ -18,7 +18,8 @@ public class RefListCodeBuilderTest {
 		builder.setPath("/gencodes/");
 		builder.setPackageName("org.myfly.platform.core3.model.data");
 		builder.setClassName("RefLists_ALL");
-		builder.setLanguage("");
+		builder.setLanguage("EN");
+		builder.setTables(null);
 		builder.parareData();
 		builder.generateCodes();
 	}
@@ -29,6 +30,7 @@ public class RefListCodeBuilderTest {
 		builder.setPackageName("org.myfly.platform.core3.model.data");
 		builder.setClassName("RefLists_ALL");
 		builder.setLanguage("zh_CN");
+		builder.setTables(null);
 		builder.parareData();
 		builder.generateCodes();
 	}

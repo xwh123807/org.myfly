@@ -14,7 +14,7 @@ public class EntityTypeBuilder extends AbstractBuilder<PEntityType, FEntityType>
 	public FEntityType convert(PEntityType builder) {
 		FEntityType result = new FEntityType();
 		copyFlyMetaFields(result, builder);
-		result.setClassPath(builder.getClassPath());
+		result.setClasspath(builder.getClasspath());
 		result.setEntityType(builder.getEntityType());
 		result.setEntityTypeID(builder.getEntityTypeID());
 		result.setModelPackage(builder.getModelPackage());
@@ -33,7 +33,7 @@ public class EntityTypeBuilder extends AbstractBuilder<PEntityType, FEntityType>
 		result.setDescription(anno.description());
 		result.setHelp(anno.help());
 		result.setModelPackage(anno.modelPackage());
-		result.setClassPath(anno.classPath());
+		result.setClasspath(anno.classPath());
 		result.setProcessing(false);
 		result.setEntityTypeID(UUIDUtil.newUUID());
 		FlyEntityUtils.updateFlyEntityForSystem(result);

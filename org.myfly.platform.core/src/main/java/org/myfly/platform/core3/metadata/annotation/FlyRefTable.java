@@ -15,6 +15,8 @@ import java.lang.annotation.Target;
 @Target({ ElementType.TYPE, ElementType.ANNOTATION_TYPE })
 @Retention(RUNTIME)
 public @interface FlyRefTable {
+	String apiName();
+	
 	String name();
 
 	String description() default "";

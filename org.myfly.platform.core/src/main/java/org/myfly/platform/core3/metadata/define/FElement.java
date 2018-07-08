@@ -5,6 +5,8 @@ import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.model.dict.PElement;
 import org.springframework.util.Assert;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class FElement extends PElement implements IDefinition {
 
 	/**
@@ -13,8 +15,14 @@ public class FElement extends PElement implements IDefinition {
 	private static final long serialVersionUID = 6072480122577529080L;
 
 	private String referenceName;
-	
+
 	private boolean isFromDB;
+
+	@JsonIgnore
+	private FRefList refList;
+
+	@JsonIgnore
+	private FRefTable refTable;
 
 	@Override
 	public void validate() {
@@ -36,7 +44,7 @@ public class FElement extends PElement implements IDefinition {
 
 	@Override
 	public String getKey() {
-		return getColumnName();
+		return getApiName();
 	}
 
 	public String getReferenceName() {
@@ -59,6 +67,7 @@ public class FElement extends PElement implements IDefinition {
 
 	public PElement toElementPO() {
 		PElement result = new PElement();
+		result.setApiName(getApiName());
 		result.setElementID(getElementID());
 		result.setColumnName(getColumnName());
 		result.setDataType(getDataType());
@@ -69,7 +78,6 @@ public class FElement extends PElement implements IDefinition {
 		FlyEntityUtils.copyFlyMetaFields(result, this);
 		return result;
 	}
-	
 
 	@Override
 	public boolean isFromDB() {
@@ -79,5 +87,27 @@ public class FElement extends PElement implements IDefinition {
 	@Override
 	public void setFromDB(boolean value) {
 		this.isFromDB = value;
+	}
+
+	public FRefList getRefList() {
+		return refList;
+	}
+
+	public void setRefList(FRefList refList) {
+		this.refList = refList;
+	}
+
+	public FRefTable getRefTable() {
+		return refTable;
+	}
+
+	public void setRefTable(FRefTable refTable) {
+		this.refTable = refTable;
+	}
+
+	@Override
+	public String toString() {
+		return "apiName: " + getApiName() + ", name: " + getName() + ", dataType: " + getDataType() + ", columnName: "
+				+ getColumnName() + ", fieldLength: " + getFieldLength();
 	}
 }

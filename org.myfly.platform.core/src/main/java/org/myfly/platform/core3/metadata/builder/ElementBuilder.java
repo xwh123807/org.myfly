@@ -22,12 +22,13 @@ public class ElementBuilder extends AbstractBuilder<PElement, FElement> {
 		Assert.notNull(anno, "不是有效的@FlyElement, " + field.toString());
 
 		FElement result = new FElement();
+		result.setApiName(field.getName());
 		result.setName(anno.name());
 		result.setDescription(anno.description());
 		result.setHelp(anno.help());
 		result.setEntityType(anno.entityType());
 		result.setDataType(anno.dataType());
-		result.setColumnName(field.getName());
+		result.setColumnName(anno.columnName());
 		result.setPrintName(anno.printName());
 		result.setFieldLength(anno.fieldLength());
 		result.setReferenceName(anno.referenceName());

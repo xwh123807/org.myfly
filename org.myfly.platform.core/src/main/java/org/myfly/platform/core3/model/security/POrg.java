@@ -19,7 +19,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 @Entity
 @Table(name = "PT_Org")
 @FlyTable(name = "Organization", description = "Organizational entity within client")
-@FlyRefTable(name = "orgID", keyColumn = "orgID", displayColumn = "name")
+@FlyRefTable(apiName = "orgID", name = "Org ID", keyColumn = "orgID", displayColumn = "name")
 public class POrg implements IFlyEntity {
 	/**
 	 * 
@@ -29,7 +29,7 @@ public class POrg implements IFlyEntity {
 	@Id
 	@Column(length = 32)
 	private String orgID;
-	
+
 	@Column
 	private Timestamp created;
 

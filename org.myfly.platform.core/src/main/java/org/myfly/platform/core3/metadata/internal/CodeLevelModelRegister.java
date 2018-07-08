@@ -1,5 +1,6 @@
 package org.myfly.platform.core3.metadata.internal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -33,16 +34,16 @@ public class CodeLevelModelRegister implements ICodeLevelModelRegister {
 	}
 
 	@Override
-	public void registerElements(List<FElement> elements) {
-		getFlyMemoryDataModel().addElements(elements);
+	public void registerElements(List<FElement> elements, boolean override) {
+		getFlyMemoryDataModel().addElements(elements, override);
 	}
 
 	@Override
-	public void registerElementsFromEnumClass(Class<? extends Enum<?>> enumClass) {
+	public void registerElementsFromEnumClass(Class<? extends Enum<?>> enumClass, boolean override) {
 		log.info("注册Element，" + enumClass.getName());
 		ElementBuilder builder = new ElementBuilder();
 		List<FElement> list = builder.loadFromEnumClass(enumClass);
-		registerElements(list);
+		registerElements(list, override);
 	}
 
 	@Override
@@ -72,24 +73,27 @@ public class CodeLevelModelRegister implements ICodeLevelModelRegister {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void registerFlyDataModelFromPackage(String packageName) {
+	public List<String> registerFlyDataModelFromPackage(String packageName) {
+		List<String> errors = new ArrayList<>();
 		List<Class<?>> classes = EntityClassUtil.getEntityClasses(packageName);
 		if (CollectionUtils.isNotEmpty(classes)) {
-			classes.forEach(item -> registerFlyDataModelFromEntityClass((Class<? extends IFlyEntity>) item));
+			classes.forEach(
+					item -> errors.addAll(registerFlyDataModelFromEntityClass((Class<? extends IFlyEntity>) item)));
 		}
+		return errors;
 	}
 
 	@Override
-	public void registerFlyDataModelFromEntityClass(Class<? extends IFlyEntity> entityClass) {
+	public List<String> registerFlyDataModelFromEntityClass(Class<? extends IFlyEntity> entityClass) {
 		log.info("注册FlyDataModel，" + entityClass.getName());
 		FlyDataModelBuilder builder = new FlyDataModelBuilder();
 		List<FlyDataModel> list = builder.loadFromEntityClass(entityClass);
-		registerFlyDataModels(list);
+		return registerFlyDataModels(list);
 	}
 
 	@Override
-	public void registerFlyDataModels(List<FlyDataModel> flyDataModels) {
-		getFlyMemoryDataModel().addFlyDataModels(flyDataModels);
+	public List<String> registerFlyDataModels(List<FlyDataModel> flyDataModels) {
+		return getFlyMemoryDataModel().addFlyDataModels(flyDataModels);
 	}
 
 	@SuppressWarnings("unchecked")

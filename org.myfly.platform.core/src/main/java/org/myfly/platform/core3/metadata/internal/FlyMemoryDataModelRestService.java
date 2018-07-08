@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.myfly.platform.core.domain.RestApiInfo;
 import org.myfly.platform.core.domain.RestControllerInfo;
+import org.myfly.platform.core3.metadata.define.FDataType;
 import org.myfly.platform.core3.metadata.define.FElement;
 import org.myfly.platform.core3.metadata.define.FEntityType;
 import org.myfly.platform.core3.metadata.define.FRefList;
@@ -24,20 +25,40 @@ public class FlyMemoryDataModelRestService {
 	public RestControllerInfo help() {
 		return new RestControllerInfo("mdm", "模型服务",
 				new RestApiInfo[] { new RestApiInfo("elements", "getElements", HttpMethod.GET),
+						new RestApiInfo("elements/{apiName}", "getElementByApiName", HttpMethod.GET),
+						new RestApiInfo("datatypes/{apiName}", "getDataTypeByApiName", HttpMethod.GET),
+						new RestApiInfo("datatypes", "getDataTypes", HttpMethod.GET),
 						new RestApiInfo("entitytypes", "getEntityTypes", HttpMethod.GET),
 						new RestApiInfo("reftables", "getRefTables", HttpMethod.GET),
+						new RestApiInfo("reftables/{apiName}", "getRefTables", HttpMethod.GET),
 						new RestApiInfo("reflists", "getRefLists", HttpMethod.GET),
-						new RestApiInfo("datamodel", "getFlyDataModelNames", HttpMethod.GET),
-						new RestApiInfo("datamodel/{entityName}", "getFlyDataModelByName", HttpMethod.GET) });
+						new RestApiInfo("reflists/{apiName}", "getRefTables", HttpMethod.GET),
+						new RestApiInfo("dm", "getFlyDataModelNames", HttpMethod.GET),
+						new RestApiInfo("dm/{entityName}", "getFlyDataModelByName", HttpMethod.GET) });
 	}
 
 	private FlyMemoryDataModel getFlyMemoryDataModel() {
 		return FlyMemoryDataModel.getInstance();
 	}
 
+	@GetMapping("datatypes")
+	public Map<String, FDataType> getDataTypes() {
+		return getFlyMemoryDataModel().getDataTypes();
+	}
+
+	@GetMapping("datatypes/{apiName}")
+	public FDataType getDataTypeByApiName(@PathVariable("apiName") String apiName) {
+		return getDataTypes().get(apiName);
+	}
+
 	@GetMapping("elements")
 	public Map<String, FElement> getElements() {
 		return getFlyMemoryDataModel().getElements();
+	}
+
+	@GetMapping("elements/{apiName}")
+	public FElement getElementByApiName(@PathVariable("apiName") String apiName) {
+		return getElements().get(apiName);
 	}
 
 	@GetMapping("entitytypes")
@@ -50,9 +71,19 @@ public class FlyMemoryDataModelRestService {
 		return getFlyMemoryDataModel().getRefTables();
 	}
 
+	@GetMapping("reftables/{apiName}")
+	public FRefTable getRefTableByApiName(@PathVariable("apiName") String apiName) {
+		return getRefTables().get(apiName);
+	}
+
 	@GetMapping("reflists")
 	public Map<String, FRefList> getRefLists() {
 		return getFlyMemoryDataModel().getRefLists();
+	}
+
+	@GetMapping("reflists/{apiName}")
+	public FRefList getRefListByApiName(@PathVariable("apiName") String apiName) {
+		return getRefLists().get(apiName);
 	}
 
 	@GetMapping("dm/{entityName}")
