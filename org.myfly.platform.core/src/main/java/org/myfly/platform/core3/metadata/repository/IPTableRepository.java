@@ -2,7 +2,7 @@ package org.myfly.platform.core3.metadata.repository;
 
 import javax.annotation.Resource;
 
-import org.myfly.platform.core3.model.data.PTable;
+import org.myfly.platform.core3.model.PTable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 @Resource

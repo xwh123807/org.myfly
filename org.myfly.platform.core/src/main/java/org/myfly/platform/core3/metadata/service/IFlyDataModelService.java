@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
-import org.myfly.platform.core3.model.data.PColumn;
-import org.myfly.platform.core3.model.data.PTable;
+import org.myfly.platform.core3.model.PColumn;
+import org.myfly.platform.core3.model.PTable;
 
 /**
  * 数据模型服务 <br>

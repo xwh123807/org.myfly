@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.myfly.platform.core.starter.ICodeLevelModelRegister;
+import org.myfly.platform.core.starter.ICodeLevelDataModelRegister;
 import org.myfly.platform.core.utils.EntityClassUtil;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.IFlyEntity;
@@ -26,14 +26,13 @@ import org.myfly.platform.core3.metadata.define.FlyMemoryDataModel;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CodeLevelModelRegister implements ICodeLevelModelRegister {
+public class CodeLevelModelRegister implements ICodeLevelDataModelRegister {
 	private static Log log = LogFactory.getLog(CodeLevelModelRegister.class);
 
 	private FlyMemoryDataModel getFlyMemoryDataModel() {
 		return FlyMemoryDataModel.getInstance();
 	}
 
-	@Override
 	public void registerElements(List<FElement> elements, boolean override) {
 		getFlyMemoryDataModel().addElements(elements, override);
 	}
@@ -46,7 +45,6 @@ public class CodeLevelModelRegister implements ICodeLevelModelRegister {
 		registerElements(list, override);
 	}
 
-	@Override
 	public void registerEntityTypes(List<FEntityType> entityTypes) {
 		getFlyMemoryDataModel().addEntityTypes(entityTypes);
 	}
@@ -73,31 +71,30 @@ public class CodeLevelModelRegister implements ICodeLevelModelRegister {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<String> registerFlyDataModelFromPackage(String packageName) {
+	public List<String> registerRefTableAndFlyDataModelFromPackage(String packageName) {
+		registerRefTablesFromPackage(packageName);
+		
 		List<String> errors = new ArrayList<>();
 		List<Class<?>> classes = EntityClassUtil.getEntityClasses(packageName);
 		if (CollectionUtils.isNotEmpty(classes)) {
 			classes.forEach(
-					item -> errors.addAll(registerFlyDataModelFromEntityClass((Class<? extends IFlyEntity>) item)));
+					item -> errors.addAll(registerRefTableAndFlyDataModelFromEntityClass((Class<? extends IFlyEntity>) item)));
 		}
 		return errors;
 	}
 
-	@Override
-	public List<String> registerFlyDataModelFromEntityClass(Class<? extends IFlyEntity> entityClass) {
+	public List<String> registerRefTableAndFlyDataModelFromEntityClass(Class<? extends IFlyEntity> entityClass) {
 		log.info("注册FlyDataModel，" + entityClass.getName());
 		FlyDataModelBuilder builder = new FlyDataModelBuilder();
 		List<FlyDataModel> list = builder.loadFromEntityClass(entityClass);
 		return registerFlyDataModels(list);
 	}
 
-	@Override
 	public List<String> registerFlyDataModels(List<FlyDataModel> flyDataModels) {
 		return getFlyMemoryDataModel().addFlyDataModels(flyDataModels);
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public void registerRefTablesFromPackage(String packageName) {
 		List<Class<?>> classes = EntityClassUtil.getEntityClasses(packageName);
 		if (CollectionUtils.isNotEmpty(classes)) {
@@ -105,12 +102,10 @@ public class CodeLevelModelRegister implements ICodeLevelModelRegister {
 		}
 	}
 
-	@Override
 	public void registerRefTables(List<FRefTable> refTables) {
 		getFlyMemoryDataModel().addRefTables(refTables);
 	}
 
-	@Override
 	public void registerRefTablesFromEntityClass(Class<? extends IFlyEntity> entityClass) {
 		log.info("注册FlyRefTable，" + entityClass.getName());
 		RefTableBuilder builder = new RefTableBuilder();
@@ -126,7 +121,6 @@ public class CodeLevelModelRegister implements ICodeLevelModelRegister {
 		registerDataTypes(list);
 	}
 
-	@Override
 	public void registerDataTypes(List<FDataType> dataTypes) {
 		getFlyMemoryDataModel().addDataTypes(dataTypes);
 	}

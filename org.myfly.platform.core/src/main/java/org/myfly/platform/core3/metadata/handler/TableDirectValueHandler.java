@@ -6,7 +6,6 @@ import org.myfly.platform.core3.flydata.service.FlyEntityMap;
 import org.myfly.platform.core3.metadata.define.FRefTable;
 import org.myfly.platform.core3.metadata.define.FlyColumn;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
-import org.springframework.util.Assert;
 
 public class TableDirectValueHandler extends DefaultValueHandler {
 	private FRefTable refTable;
@@ -32,14 +31,15 @@ public class TableDirectValueHandler extends DefaultValueHandler {
 	public TableDirectValueHandler(FlyColumn column) {
 		super(column);
 		refTable = column.getElement().getRefTable();
-		Assert.notNull(getRefTable());
-		isSelf = getRefTable().getTableClassName().equals(column.getParent().getApiName());
+		if (refTable != null) {
+			isSelf = getRefTable().getTableClassName().equals(column.getParent().getApiName());
+		}
 	}
 
 	@Override
 	public Object getFieldValueForEntity(Object entity) {
 		String keyValue = (String) super.getFieldValueForEntity(entity);
-		if (!isSelf() && StringUtils.isNotBlank(keyValue)) {
+		if (refTable != null && !isSelf() && StringUtils.isNotBlank(keyValue)) {
 			FlyEntityMap result = new FlyEntityMap();
 			result.put(getRefTable().getKeyColumnName(), keyValue);
 			Object value = AppUtil.getIDNameService().getNameValue(getRefDataModel().getTableName(),

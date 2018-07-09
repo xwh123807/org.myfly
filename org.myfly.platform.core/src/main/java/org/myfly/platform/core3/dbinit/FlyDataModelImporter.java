@@ -6,14 +6,14 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.myfly.platform.core3.metadata.define.FlyMemoryDataModel;
-import org.myfly.platform.core3.model.data.PColumn;
-import org.myfly.platform.core3.model.data.PRefTable;
-import org.myfly.platform.core3.model.data.PTable;
-import org.myfly.platform.core3.model.dict.PDataType;
-import org.myfly.platform.core3.model.dict.PElement;
-import org.myfly.platform.core3.model.dict.PEntityType;
-import org.myfly.platform.core3.model.dict.PRefList;
-import org.myfly.platform.core3.model.dict.PReference;
+import org.myfly.platform.core3.model.PColumn;
+import org.myfly.platform.core3.model.PDataType;
+import org.myfly.platform.core3.model.PElement;
+import org.myfly.platform.core3.model.PEntityType;
+import org.myfly.platform.core3.model.PRefList;
+import org.myfly.platform.core3.model.PRefTable;
+import org.myfly.platform.core3.model.PReference;
+import org.myfly.platform.core3.model.PTable;
 import org.springframework.stereotype.Component;
 
 /**

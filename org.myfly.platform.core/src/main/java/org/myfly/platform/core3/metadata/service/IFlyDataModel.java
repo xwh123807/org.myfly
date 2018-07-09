@@ -2,7 +2,7 @@ package org.myfly.platform.core3.metadata.service;
 
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.domain.IFlyMetaEntity;
-import org.myfly.platform.core3.model.data.AccessLevel;
+import org.myfly.platform.core3.model.AccessLevel;
 
 public interface IFlyDataModel extends IFlyEntity, IFlyMetaEntity {
 	String getTableID();

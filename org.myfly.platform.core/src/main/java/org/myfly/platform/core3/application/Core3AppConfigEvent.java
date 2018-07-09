@@ -7,7 +7,8 @@ import org.apache.commons.collections.CollectionUtils;
 import org.myfly.platform.core.domain.AppStartLevel;
 import org.myfly.platform.core.metadata.service.IMetaDataRegister;
 import org.myfly.platform.core.starter.IAppConfigEvent;
-import org.myfly.platform.core.starter.ICodeLevelModelRegister;
+import org.myfly.platform.core.starter.ICodeLevelDataModelRegister;
+import org.myfly.platform.core.starter.ICodeLevelViewModelRegister;
 import org.myfly.platform.core.system.service.IMenuService;
 import org.myfly.platform.core3.dbinit.Core3SystemData;
 import org.myfly.platform.core3.dbinit.FlyDataModelImporter;
@@ -62,7 +63,7 @@ public class Core3AppConfigEvent implements IAppConfigEvent {
 	}
 
 	@Override
-	public void loadCodeLevelModels(ICodeLevelModelRegister modelRegister) {
+	public void loadCodeLevelDataModels(ICodeLevelDataModelRegister modelRegister) {
 		List<String> errors = new ArrayList<>();
 		modelRegister.registerDataTypesFromEnumClass(FlyDataType.class);
 		modelRegister.registerEntityTypesFromEnumClass(EntityType.class);
@@ -71,12 +72,16 @@ public class Core3AppConfigEvent implements IAppConfigEvent {
 		modelRegister.registerElementsFromEnumClass(MyElement_RefList_zh_CN.class, true);
 		modelRegister.registerElementsFromEnumClass(MyElement_RefTable_zh_CN.class, true);
 		modelRegister.registerRefListsFromEnumClass(MyRefLists_zh_CN.class);
-		modelRegister.registerRefTablesFromPackage("org.myfly.platform.core3");
-		errors.addAll(modelRegister.registerFlyDataModelFromPackage("org.myfly.platform.core3"));
+		errors.addAll(modelRegister.registerRefTableAndFlyDataModelFromPackage("org.myfly.platform.core3"));
 		if (CollectionUtils.isNotEmpty(errors)) {
 			errors.forEach(item -> System.err.println(item));
 			throw new RuntimeException("数据模型校验失败");
 		}
+	}
+
+	@Override
+	public void loadCodeLevelViewModels(ICodeLevelViewModelRegister modelRegister) {
+		
 	}
 
 }

@@ -2,7 +2,7 @@ package org.myfly.platform.core3.metadata.define;
 
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core3.model.dict.PElement;
+import org.myfly.platform.core3.model.PElement;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

@@ -2,8 +2,8 @@ package org.myfly.platform.core3.metadata.define;
 
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core3.model.data.PRefTable;
-import org.myfly.platform.core3.model.dict.PReference;
+import org.myfly.platform.core3.model.PRefTable;
+import org.myfly.platform.core3.model.PReference;
 import org.springframework.util.Assert;
 
 public class FRefTable extends PReference implements IDefinition {

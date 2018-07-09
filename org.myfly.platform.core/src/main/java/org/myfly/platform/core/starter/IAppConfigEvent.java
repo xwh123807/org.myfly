@@ -38,7 +38,13 @@ public interface IAppConfigEvent {
 	void registerExternalMetaData(final IMetaDataRegister metaDataRegister);
 	
 	/**
-	 * 加载代码级模型
+	 * 加载代码级数据模型
 	 */
-	void loadCodeLevelModels(ICodeLevelModelRegister modelRegister);
+	void loadCodeLevelDataModels(ICodeLevelDataModelRegister modelRegister);
+	
+	/**
+	 * 加载代码级显示模型
+	 * @param modelRegister
+	 */
+	void loadCodeLevelViewModels(ICodeLevelViewModelRegister modelRegister);
 }

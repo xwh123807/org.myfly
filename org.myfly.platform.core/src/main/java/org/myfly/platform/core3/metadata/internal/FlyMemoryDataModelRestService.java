@@ -10,6 +10,7 @@ import org.myfly.platform.core3.metadata.define.FElement;
 import org.myfly.platform.core3.metadata.define.FEntityType;
 import org.myfly.platform.core3.metadata.define.FRefList;
 import org.myfly.platform.core3.metadata.define.FRefTable;
+import org.myfly.platform.core3.metadata.define.FlyColumn;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.core3.metadata.define.FlyMemoryDataModel;
 import org.springframework.http.HttpMethod;
@@ -34,7 +35,8 @@ public class FlyMemoryDataModelRestService {
 						new RestApiInfo("reflists", "getRefLists", HttpMethod.GET),
 						new RestApiInfo("reflists/{apiName}", "getRefTables", HttpMethod.GET),
 						new RestApiInfo("dm", "getFlyDataModelNames", HttpMethod.GET),
-						new RestApiInfo("dm/{entityName}", "getFlyDataModelByName", HttpMethod.GET) });
+						new RestApiInfo("dm/{entityName}", "getFlyDataModelByName", HttpMethod.GET),
+						new RestApiInfo("dm/{entityName}/{columnName}", "getFlyColumnByName", HttpMethod.GET) });
 	}
 
 	private FlyMemoryDataModel getFlyMemoryDataModel() {
@@ -89,6 +91,12 @@ public class FlyMemoryDataModelRestService {
 	@GetMapping("dm/{entityName}")
 	public FlyDataModel getFlyDataModelByName(@PathVariable("entityName") String entityName) {
 		return getFlyMemoryDataModel().getFlyDataModel(entityName);
+	}
+
+	@GetMapping("dm/{entityName}/{columnName}")
+	public FlyColumn getFlyColumnByName(@PathVariable("entityName") String entityName,
+			@PathVariable("columnName") String columnName) {
+		return getFlyMemoryDataModel().getFlyDataModel(entityName).getColumnMap().get(columnName);
 	}
 
 	@GetMapping("dm")

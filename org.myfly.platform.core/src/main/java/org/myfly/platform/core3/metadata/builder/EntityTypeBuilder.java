@@ -6,7 +6,7 @@ import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.annotation.FlyEntityType;
 import org.myfly.platform.core3.metadata.define.FEntityType;
-import org.myfly.platform.core3.model.dict.PEntityType;
+import org.myfly.platform.core3.model.PEntityType;
 import org.springframework.util.Assert;
 
 public class EntityTypeBuilder extends AbstractBuilder<PEntityType, FEntityType> {

@@ -8,6 +8,8 @@ import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.domain.AppStartLevel;
 import org.myfly.platform.core.metadata.service.IMetaDataRegister;
 import org.myfly.platform.core.starter.IAppConfigEvent;
+import org.myfly.platform.core.starter.ICodeLevelDataModelRegister;
+import org.myfly.platform.core.starter.ICodeLevelViewModelRegister;
 import org.myfly.platform.core.system.service.IMenuService;
 import org.myfly.platform.visualpage.config.FlyVPProperties;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +57,16 @@ public class VisualPageAppConfigEvent implements IAppConfigEvent {
 			}
 			FileUtils.deleteQuietly(new File(vpProperties.getWorkTemplatePath()));
 		}
+	}
+
+	@Override
+	public void loadCodeLevelDataModels(ICodeLevelDataModelRegister modelRegister) {
+		
+	}
+
+	@Override
+	public void loadCodeLevelViewModels(ICodeLevelViewModelRegister modelRegister) {
+		// TODO Auto-generated method stub
+		
 	}
 }

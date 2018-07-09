@@ -5,7 +5,7 @@ import java.util.Map;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core3.model.data.PTable;
+import org.myfly.platform.core3.model.PTable;
 import org.springframework.util.Assert;
 
 /**

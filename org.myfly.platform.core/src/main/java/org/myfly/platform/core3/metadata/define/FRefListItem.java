@@ -2,7 +2,7 @@ package org.myfly.platform.core3.metadata.define;
 
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core3.model.dict.PRefList;
+import org.myfly.platform.core3.model.PRefList;
 
 public class FRefListItem extends PRefList implements IDefinition {
 

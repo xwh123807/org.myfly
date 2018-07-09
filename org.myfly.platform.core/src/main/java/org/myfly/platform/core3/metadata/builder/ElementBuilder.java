@@ -7,7 +7,7 @@ import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.annotation.FlyElement;
 import org.myfly.platform.core3.metadata.define.FElement;
-import org.myfly.platform.core3.model.dict.PElement;
+import org.myfly.platform.core3.model.PElement;
 import org.springframework.util.Assert;
 
 public class ElementBuilder extends AbstractBuilder<PElement, FElement> {

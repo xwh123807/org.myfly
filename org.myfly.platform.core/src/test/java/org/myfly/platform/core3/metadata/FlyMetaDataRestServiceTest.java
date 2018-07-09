@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.myfly.platform.CoreApplication;
 import org.myfly.platform.core.domain.RestControllerInfo;
-import org.myfly.platform.core3.model.data.PTable;
+import org.myfly.platform.core3.model.PTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;

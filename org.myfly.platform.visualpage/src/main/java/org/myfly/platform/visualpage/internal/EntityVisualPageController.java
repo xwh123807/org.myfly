@@ -278,21 +278,4 @@ public class EntityVisualPageController extends BaseVisualPageController {
 				formViewName);
 	}
 
-	/**
-	 * 导出到pdf
-	 * 
-	 * @param table
-	 * @param uid
-	 * @param formViewName
-	 * @return
-	 */
-	@RequestMapping("pdf/{table}/{uid}")
-	public ModelAndView exportToPdf(@PathVariable("table") String table, @PathVariable("uid") String uid,
-			@RequestParam(name = "view", required = false) String formViewName, HttpServletRequest request) {
-		if (log.isDebugEnabled()) {
-			log.debug("exportToPdf, table=" + table);
-		}
-		AssertUtil.parameterEmpty(table, "table");
-		return processExportToPdf(table, uid, formViewName, request.getRequestURI());
-	}
 }

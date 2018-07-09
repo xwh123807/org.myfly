@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
-import org.myfly.platform.core3.model.data.PTable;
+import org.myfly.platform.core3.model.PTable;
 
 /**
  * 打印格式表<br>

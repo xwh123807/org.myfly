@@ -3,7 +3,8 @@ package org.myfly.platform.core.application;
 import org.myfly.platform.core.domain.AppStartLevel;
 import org.myfly.platform.core.metadata.service.IMetaDataRegister;
 import org.myfly.platform.core.starter.IAppConfigEvent;
-import org.myfly.platform.core.starter.ICodeLevelModelRegister;
+import org.myfly.platform.core.starter.ICodeLevelDataModelRegister;
+import org.myfly.platform.core.starter.ICodeLevelViewModelRegister;
 import org.myfly.platform.core.system.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -39,7 +40,13 @@ public class CoreAppConfigEvent implements IAppConfigEvent {
 	}
 
 	@Override
-	public void loadCodeLevelModels(ICodeLevelModelRegister modelRegister) {
+	public void loadCodeLevelDataModels(ICodeLevelDataModelRegister modelRegister) {
+	}
+
+	@Override
+	public void loadCodeLevelViewModels(ICodeLevelViewModelRegister modelRegister) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

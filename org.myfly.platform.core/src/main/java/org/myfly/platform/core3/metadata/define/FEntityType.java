@@ -2,7 +2,7 @@ package org.myfly.platform.core3.metadata.define;
 
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core3.model.dict.PEntityType;
+import org.myfly.platform.core3.model.PEntityType;
 import org.springframework.util.Assert;
 
 public class FEntityType extends PEntityType implements IDefinition {

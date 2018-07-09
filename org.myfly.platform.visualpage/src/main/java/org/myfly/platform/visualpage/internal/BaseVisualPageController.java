@@ -22,7 +22,6 @@ import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.EntityUrlUtil;
 import org.myfly.platform.core.utils.FileUtil;
-import org.myfly.platform.core.utils.PdfUtils;
 import org.myfly.platform.core.utils.StringUtil;
 import org.myfly.platform.visualpage.domain.PageInfo;
 import org.myfly.platform.visualpage.service.BaseViewController;
@@ -57,24 +56,6 @@ public abstract class BaseVisualPageController extends BaseViewController {
 	}
 
 	/**
-	 * 导出实体列表到PDF，导出完成后转到下载页
-	 * 
-	 * @param table
-	 * @param listViewName
-	 * @param request
-	 * @return
-	 */
-	public ModelAndView processExportToPdf(String table, String listViewName, String url) {
-		Assert.hasLength(table);
-		Assert.hasLength(url);
-		String pdfFile = getTempFileName(table, "pdf");
-		PdfUtils.exportToPdf(getBaseUrl(),
-				EntityUrlUtil.getEntityActionUrl(EntityAction.LISTPRINT, table, null, listViewName), pdfFile);
-		sendExportLogDataToQueue(url, pdfFile);
-		return forwardTo(EntityUrlUtil.getFileDownloadUrl(getDownloadFileName(pdfFile)));
-	}
-
-	/**
 	 * 导出实体列表到Excel，导出完成后转到下载页
 	 * 
 	 * @param table
@@ -90,47 +71,6 @@ public abstract class BaseVisualPageController extends BaseViewController {
 		getFlyDataAccessService(table).exportToExcel(table, listViewName, params, excelFile);
 		sendExportLogDataToQueue(url, excelFile);
 		return forwardTo(EntityUrlUtil.getFileDownloadUrl(getDownloadFileName(excelFile)));
-	}
-
-	/**
-	 * 导出指定实体到PDF，导出完成后转到下载页
-	 * 
-	 * @param table
-	 * @param uid
-	 * @param formViewName
-	 * @param request
-	 * @return
-	 */
-	public ModelAndView processExportToPdf(String table, String uid, String formViewName, String url) {
-		Assert.hasLength(table);
-		Assert.hasLength(uid);
-		Assert.hasLength(url);
-		String pdfFile = getTempFileName(table, "pdf");
-		PdfUtils.exportToPdf(getBaseUrl(),
-				EntityUrlUtil.getEntityActionUrl(EntityAction.PRINT, table, uid, formViewName), pdfFile);
-		sendExportLogDataToQueue(url, pdfFile);
-		return forwardTo(EntityUrlUtil.getFileDownloadUrl(getDownloadFileName(pdfFile)));
-	}
-
-	/**
-	 * 导出指定实体的子表到PDF，导出完成后转到下载页
-	 * 
-	 * @param table
-	 * @param uid
-	 * @param formViewName
-	 * @param request
-	 * @return
-	 */
-	public ModelAndView processExportToPdf(String table, String uid, String subTableAttr, String viewName, String url) {
-		Assert.hasLength(table);
-		Assert.hasLength(uid);
-		Assert.hasLength(url);
-		String pdfFile = getTempFileName(table, "pdf");
-		PdfUtils.exportToPdf(getBaseUrl(),
-				EntityUrlUtil.getSubEntityActionUrl(EntityAction.PRINT, table, uid, subTableAttr, null, viewName),
-				pdfFile);
-		sendExportLogDataToQueue(url, pdfFile);
-		return forwardTo(EntityUrlUtil.getFileDownloadUrl(getDownloadFileName(pdfFile)));
 	}
 
 	/**

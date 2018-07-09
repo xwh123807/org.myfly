@@ -23,7 +23,7 @@ public class AllEntityMetaDataTest {
 
 	@Test
 	public void PTable() {
-		assertEntityMetaData(org.myfly.platform.core3.model.data.PTable.class.getName());
+		assertEntityMetaData(org.myfly.platform.core3.model.PTable.class.getName());
 	}
 
 	private void assertEntityMetaData(String entityName) {

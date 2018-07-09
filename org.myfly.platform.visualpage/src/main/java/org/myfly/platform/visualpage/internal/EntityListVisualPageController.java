@@ -283,24 +283,6 @@ public class EntityListVisualPageController extends BaseVisualPageController {
 	}
 
 	/**
-	 * 导出到Pdf
-	 * 
-	 * @param table
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping(value = { "pdf/{table}" })
-	public ModelAndView exportToPdf(@PathVariable("table") String table,
-			@RequestParam(name = "view", required = false) String view, HttpServletRequest request,
-			HttpServletResponse response) {
-		if (log.isDebugEnabled()) {
-			log.debug("exportToPdf, table=" + table);
-		}
-		AssertUtil.parameterEmpty(table, "table");
-		return processExportToPdf(table, view, request.getRequestURI());
-	}
-
-	/**
 	 * 显示实体Excel导入界面，导入提交到/file/upload，之后转向到/vp/excelimport/{table}/{uploadDir}
 	 * 
 	 * @param table

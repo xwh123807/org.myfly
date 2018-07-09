@@ -9,8 +9,8 @@ import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.annotation.FlyRefList;
 import org.myfly.platform.core3.metadata.define.FRefList;
 import org.myfly.platform.core3.metadata.define.FRefListItem;
-import org.myfly.platform.core3.model.data.ValidationType;
-import org.myfly.platform.core3.model.dict.PReference;
+import org.myfly.platform.core3.model.PReference;
+import org.myfly.platform.core3.model.ValidationType;
 import org.springframework.util.Assert;
 
 public class RefListBuilder extends AbstractBuilder<PReference, FRefList> {

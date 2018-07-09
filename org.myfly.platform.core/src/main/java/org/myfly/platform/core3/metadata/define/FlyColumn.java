@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core3.model.data.PColumn;
+import org.myfly.platform.core3.model.PColumn;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

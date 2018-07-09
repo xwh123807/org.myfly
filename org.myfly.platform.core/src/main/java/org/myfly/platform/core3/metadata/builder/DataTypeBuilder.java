@@ -6,7 +6,7 @@ import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.define.FDataType;
-import org.myfly.platform.core3.model.dict.PDataType;
+import org.myfly.platform.core3.model.PDataType;
 import org.springframework.util.Assert;
 
 public class DataTypeBuilder extends AbstractBuilder<PDataType, FDataType> {

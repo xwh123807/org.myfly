@@ -2,7 +2,7 @@ package org.myfly.platform.core3.metadata.define;
 
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core3.model.dict.PDataType;
+import org.myfly.platform.core3.model.PDataType;
 import org.springframework.util.Assert;
 
 public class FDataType extends PDataType implements IDefinition {

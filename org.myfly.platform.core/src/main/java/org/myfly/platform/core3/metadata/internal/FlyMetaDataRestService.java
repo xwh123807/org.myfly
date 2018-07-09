@@ -8,7 +8,6 @@ import org.myfly.platform.core.domain.RestControllerInfo;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
 import org.myfly.platform.core3.flydata.service.IFlyDataService;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
-import org.myfly.platform.core3.metadata.service.IFlyViewModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,13 +49,4 @@ public class FlyMetaDataRestService {
 		return dataService.findOne(IFlyDataModelService.IMPLCLASS_FLY_DATA_MODEL.getName(), uid);
 	}
 
-	@GetMapping("view/list")
-	public List<FlyEntityMap> listFlyViewModel() {
-		return dataService.findAll(IFlyViewModelService.IMPLCLASS_FLY_VIEW_MODEL.getName(), false, null);
-	}
-
-	@GetMapping("view/{uid}")
-	public FlyEntityMap getFlyViewModelByUid(@PathVariable("uid") String uid) {
-		return dataService.findOne(IFlyViewModelService.IMPLCLASS_FLY_VIEW_MODEL.getName(), uid);
-	}
 }

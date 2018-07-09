@@ -1,9 +1,9 @@
 package org.myfly.platform.core3.metadata.internal;
 
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
-import org.myfly.platform.core3.model.security.PClient;
-import org.myfly.platform.core3.model.security.POrg;
-import org.myfly.platform.core3.model.security.PUser;
+import org.myfly.platform.core3.model.PClient;
+import org.myfly.platform.core3.model.POrg;
+import org.myfly.platform.core3.model.PUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

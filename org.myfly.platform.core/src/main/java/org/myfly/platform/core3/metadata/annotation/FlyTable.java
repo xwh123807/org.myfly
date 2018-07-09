@@ -7,7 +7,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 import org.myfly.platform.core3.dbinit.resources.EntityType;
-import org.myfly.platform.core3.model.data.AccessLevel;
+import org.myfly.platform.core3.model.AccessLevel;
 
 /**
  * 实体类表注解<br>

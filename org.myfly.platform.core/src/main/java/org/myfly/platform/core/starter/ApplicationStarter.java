@@ -7,7 +7,6 @@ import org.apache.commons.collections.CollectionUtils;
 import org.myfly.platform.core.domain.AppStartLevel;
 import org.myfly.platform.core.flydata.config.FlyDataProperties;
 import org.myfly.platform.core.metadata.internal.FileMetaDataRegister;
-import org.myfly.platform.core.metadata.service.IMetaDataRegister;
 import org.myfly.platform.core.spring.ExtendConvertersRegister;
 import org.myfly.platform.core.system.service.IMenuService;
 import org.myfly.platform.core.utils.AppUtil;
@@ -48,9 +47,12 @@ public class ApplicationStarter implements ApplicationRunner {
 
 	@Autowired(required = false)
 	private CacheManager cacheManager;
-	
-	@Autowired
-	private ICodeLevelModelRegister codeLevelModelRegister;
+
+	@Autowired(required = false)
+	private ICodeLevelDataModelRegister codeLevelDataModelRegister;
+
+	@Autowired(required = false)
+	private ICodeLevelViewModelRegister codeLevelViewModelRegister;
 
 	@Autowired
 	public void setApplicationContext(ApplicationContext applicationContext) {
@@ -129,7 +131,14 @@ public class ApplicationStarter implements ApplicationRunner {
 		processConfigEvent(new IAppConfigEventExecutor() {
 			@Override
 			public void execute(IAppConfigEvent appConfigEvent) {
-				appConfigEvent.loadCodeLevelModels(codeLevelModelRegister);
+				appConfigEvent.loadCodeLevelDataModels(codeLevelDataModelRegister);
+			}
+		});
+
+		processConfigEvent(new IAppConfigEventExecutor() {
+			@Override
+			public void execute(IAppConfigEvent appConfigEvent) {
+				appConfigEvent.loadCodeLevelViewModels(codeLevelViewModelRegister);
 			}
 		});
 

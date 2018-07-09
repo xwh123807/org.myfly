@@ -10,8 +10,8 @@ import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
 import org.myfly.platform.core3.metadata.annotation.FlyReferences;
 import org.myfly.platform.core3.metadata.define.FRefTable;
-import org.myfly.platform.core3.model.data.PRefTable;
-import org.myfly.platform.core3.model.dict.PReference;
+import org.myfly.platform.core3.model.PRefTable;
+import org.myfly.platform.core3.model.PReference;
 import org.springframework.util.Assert;
 
 public class RefTableBuilder extends AbstractBuilder<PReference, FRefTable> {

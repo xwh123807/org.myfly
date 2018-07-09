@@ -26,7 +26,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
 import org.myfly.platform.core3.metadata.define.FlyColumn;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
-import org.myfly.platform.core3.model.data.PTable;
+import org.myfly.platform.core3.model.PTable;
 
 public class FlyDataModelBuilder extends AbstractBuilder<PTable, FlyDataModel> {
 	private static Log log = LogFactory.getLog(FlyDataModelBuilder.class);

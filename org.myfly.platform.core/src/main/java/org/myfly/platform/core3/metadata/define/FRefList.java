@@ -5,7 +5,7 @@ import java.util.Map;
 import org.apache.commons.collections.MapUtils;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core3.model.dict.PReference;
+import org.myfly.platform.core3.model.PReference;
 import org.springframework.util.Assert;
 
 public class FRefList extends PReference implements IDefinition {

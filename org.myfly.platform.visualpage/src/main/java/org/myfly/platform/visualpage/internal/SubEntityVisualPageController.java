@@ -332,31 +332,6 @@ public class SubEntityVisualPageController extends BaseVisualPageController {
 	}
 
 	/**
-	 * 导出到Pdf
-	 * 
-	 * @param table
-	 * @param uid
-	 * @param subTableAttr
-	 * @param request
-	 * @param response
-	 * @return
-	 */
-	@RequestMapping(value = { "pdf/{table}/{uid}/{subTableAttr}" })
-	public ModelAndView exportToPdf(@PathVariable("table") String table, @PathVariable("uid") String uid,
-			@PathVariable("subTableAttr") String subTableAttr,
-			@RequestParam(name = "view", required = false) String view, HttpServletRequest request,
-			HttpServletResponse response) {
-		if (log.isDebugEnabled()) {
-			log.debug("exportToPdf，table=" + table + ", uid=" + uid + ", subTableAttr=" + subTableAttr);
-		}
-		AssertUtil.parameterEmpty(table, "table");
-		AssertUtil.parameterEmpty(uid, "uid");
-		AssertUtil.parameterEmpty(subTableAttr, "subTableAttr");
-
-		return processExportToPdf(table, uid, subTableAttr, view, request.getRequestURI());
-	}
-
-	/**
 	 * 显示实体Excel导入界面，导入提交到/file/upload，之后转向到/vp/excelimport/{table}/{uploadDir}
 	 * 
 	 * @param table

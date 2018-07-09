@@ -231,11 +231,11 @@ public class FlyMemoryDataModel {
 					}
 					column.setElement(element);
 					if (FlyDataType.List.equals(element.getDataType())) {
-						//列表类型
+						// 列表类型
 						updateElementRefList(item.getApiName(), column, errors);
 					} else if (FlyDataType.Table.equals(element.getDataType())
 							|| FlyDataType.TableDirect.equals(element.getDataType())) {
-						//表类型
+						// 表类型
 						updateElementRefTable(item.getApiName(), column, errors);
 					}
 					copyFieldPropertyFromElement(column);
@@ -356,8 +356,15 @@ public class FlyMemoryDataModel {
 			element.setReferenceID(refTable.getReferenceID());
 			element.setRefTable(refTable);
 		} else {
-			errors.add("实体[" + entityName + "]的属性[" + column.getApiName() + "]对应元素[" + element.getApiName()
+			// 找不到引用属性对应的引用表，可能是未正确定义或者引用表没有加载
+			element.setDataType(FlyDataType.ID);
+			element.setHelp("实体[" + entityName + "]的属性[" + column.getApiName() + "]对应元素[" + element.getApiName()
 					+ "]的属性[RefTable]不能为空");
+			System.err.println("实体[" + entityName + "]的属性[" + column.getApiName() + "]对应元素[" + element.getApiName()
+					+ "]的属性[RefTable]不能为空");
+			// errors.add("实体[" + entityName + "]的属性[" + column.getApiName() + "]对应元素[" +
+			// element.getApiName()
+			// + "]的属性[RefTable]不能为空");
 		}
 	}
 }

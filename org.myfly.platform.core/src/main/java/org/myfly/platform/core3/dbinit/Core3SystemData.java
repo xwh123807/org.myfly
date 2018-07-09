@@ -5,11 +5,11 @@ import javax.transaction.Transactional;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core3.metadata.internal.FlySystemResource;
-import org.myfly.platform.core3.model.security.ConnectionProfile;
-import org.myfly.platform.core3.model.security.NotificationType;
-import org.myfly.platform.core3.model.security.PClient;
-import org.myfly.platform.core3.model.security.POrg;
-import org.myfly.platform.core3.model.security.PUser;
+import org.myfly.platform.core3.model.ConnectionProfile;
+import org.myfly.platform.core3.model.NotificationType;
+import org.myfly.platform.core3.model.PClient;
+import org.myfly.platform.core3.model.POrg;
+import org.myfly.platform.core3.model.PUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
