@@ -28,7 +28,7 @@ public class PClient implements IFlyEntity {
 	private static final long serialVersionUID = -8452625601049940882L;
 
 	@Id
-	@Column(length = 32)
+	@Column(length = 32, name="ClientID")
 	private String clientID;
 
 	@Column

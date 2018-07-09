@@ -1,12 +1,13 @@
 package org.myfly.platform.core3.flydata.internal;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import org.myfly.platform.core.domain.RestApiInfo;
+import org.myfly.platform.core.domain.RestControllerInfo;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
 import org.myfly.platform.core3.flydata.service.IFlyDataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,15 +22,13 @@ public class FlyDataRestService {
 	private IFlyDataService flyDataService;
 
 	@RequestMapping(value = { "", "help" })
-	public Map<String, String> help() {
-		Map<String, String> map = new HashMap<>();
-		map.put("{entityName} [POST]", "保存实体");
-		map.put("{entityName} [PUT]", "修改实体");
-		map.put("{entityName} [PATCH]", "修改实体，覆盖");
-		map.put("{entityName}/{uid}", "查找单个实体");
-		map.put("{entityName}/{uid} [DELETE]", "删除单个实体");
-		map.put("{entityName}", "查找所有实体");
-		return map;
+	public RestControllerInfo help() {
+		return new RestControllerInfo("flydata3", "数据访问服务",
+				new RestApiInfo[] { new RestApiInfo("{entityName}", "saveEntity", HttpMethod.POST),
+						new RestApiInfo("{entityName}", "updateEntity", HttpMethod.PUT),
+						new RestApiInfo("{entityName}", "patchEntity", HttpMethod.PATCH),
+						new RestApiInfo("{entityName}/{uid}", "find", HttpMethod.GET),
+						new RestApiInfo("{entityName}/{uid}", "delOne", HttpMethod.DELETE) });
 	}
 
 	/**

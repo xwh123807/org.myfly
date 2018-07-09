@@ -25,6 +25,8 @@ import org.myfly.platform.core3.metadata.service.IFlyColumn;
 @FlyReferences(references = {
 		@FlyRefTable(apiName = "columnID", name = "PColumn ID", keyColumn = "columnID", displayColumn = "name"),
 		@FlyRefTable(apiName = "columnName", name = "PColumn name", displayColumn = "name", keyColumn = "columnName"),
+		@FlyRefTable(apiName = "keyColumn", name = "PColumn name", displayColumn = "name", keyColumn = "columnID"),
+		@FlyRefTable(apiName = "displayColumn", name = "PColumn name", displayColumn = "name", keyColumn = "columnID"),
 		@FlyRefTable(apiName = "parentColumn", name = "Parent Column", keyColumn = "columnID", displayColumn = "name") })
 public class PColumn extends FlyMetaEntity implements IFlyColumn {
 	/**
@@ -33,7 +35,7 @@ public class PColumn extends FlyMetaEntity implements IFlyColumn {
 	private static final long serialVersionUID = 4129803416173363683L;
 
 	@Id
-	@Column(length = 32)
+	@Column(length = 32, name="ColumnID")
 	private String columnID;
 
 	@Column(length = 50, name = "ApiName")
@@ -45,7 +47,7 @@ public class PColumn extends FlyMetaEntity implements IFlyColumn {
 	@Column(length = 255)
 	private String callout;
 
-	@Column(length = 30, name = "ColumnName")
+	@Column(length = 50, name = "ColumnName")
 	private String columnName;
 
 	@Column(length = 32)

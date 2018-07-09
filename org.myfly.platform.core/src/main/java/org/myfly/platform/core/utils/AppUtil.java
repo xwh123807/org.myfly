@@ -4,9 +4,11 @@ import javax.persistence.EntityManagerFactory;
 
 import org.hibernate.SessionFactory;
 import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
+import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.starter.ApplicationStarter;
+import org.myfly.platform.core3.flydata.service.IIDNameService;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.core3.metadata.define.FlyMemoryDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
@@ -138,6 +140,14 @@ public class AppUtil {
 	public static IFlyDataAccessService getJpaFlyDataAccessService() {
 		return getService("jpaFlyDataAccessService");
 	}
+	
+	/**
+	 * 获取Jpa数据访问服务
+	 * @return
+	 */
+	public static IJpaDataAccessService getJpaDataService() {
+		return getService(IJpaDataAccessService.class);
+	}
 
 	/**
 	 * 根据实体是否有实体类获取fly扩展数据访问服务。有实体类时，调用jpa实现，反之调用jdbc实现。
@@ -201,5 +211,13 @@ public class AppUtil {
 		}
 		Assert.notNull(metaData, "找不到名称为[" + entityName + "]的数据模型");
 		return metaData;
+	}
+
+	/**
+	 * 获取ID名称转换服务
+	 * @return
+	 */
+	public static IIDNameService getIDNameService() {
+		return getService(IIDNameService.class);
 	}
 }

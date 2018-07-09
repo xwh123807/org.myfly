@@ -5,6 +5,8 @@ import javax.transaction.Transactional;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core3.metadata.internal.FlySystemResource;
+import org.myfly.platform.core3.model.security.ConnectionProfile;
+import org.myfly.platform.core3.model.security.NotificationType;
 import org.myfly.platform.core3.model.security.PClient;
 import org.myfly.platform.core3.model.security.POrg;
 import org.myfly.platform.core3.model.security.PUser;
@@ -61,6 +63,8 @@ public class Core3SystemData {
 			system.setCreated(DateUtil.nowSqlTimestamp());
 			system.setClientID(client.getClientID());
 			system.setOrgID(org.getOrgID());
+			system.setConnectionProfile(ConnectionProfile.L.name());
+			system.setNotificationType(NotificationType.B.name());
 			dataService.saveEntity(system);
 		}
 		// 创建SuperUser用户
@@ -75,6 +79,8 @@ public class Core3SystemData {
 			superUser.setCreated(DateUtil.nowSqlTimestamp());
 			superUser.setClientID(client.getClientID());
 			superUser.setOrgID(org.getOrgID());
+			superUser.setConnectionProfile(ConnectionProfile.T.name());
+			superUser.setNotificationType(NotificationType.E.name());
 			dataService.saveEntity(superUser);
 		}
 		// 更新关联字段

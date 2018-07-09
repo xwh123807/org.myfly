@@ -35,7 +35,7 @@ public class FlyEntity implements IFlyEntity {
 	@Column(name = "IsActive")
 	private Boolean isActive;
 
-	@Column(length = 32)
+	@Column(length = 32, name="ClientID")
 	private String clientID;
 
 	@Column(length = 32)

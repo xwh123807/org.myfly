@@ -5,6 +5,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyElement;
 
 /**
  * 基本类型的Element
+ * 
  * @author xiangwanhong
  *
  */
@@ -19,11 +20,11 @@ public enum MyElement_zh_CN {
 	dataType,
 	//
 	@FlyElement(columnName = "DisplayColumn", name = "显示列", description = "显示列", //
-			dataType = FlyDataType.ID, entityType = "D", printName = "显示列", fieldLength = 32)
+			dataType = FlyDataType.Table, entityType = "D", printName = "显示列", fieldLength = 32)
 	displayColumn,
 	//
 	@FlyElement(columnName = "KeyColumn", name = "主键列", description = "主键列", //
-			dataType = FlyDataType.ID, entityType = "D", printName = "主键列", fieldLength = 32)
+			dataType = FlyDataType.Table, entityType = "D", printName = "主键列", fieldLength = 32)
 	keyColumn,
 	//
 	@FlyElement(columnName = "ParentColumn", name = "父列", description = "父列", //
@@ -49,5 +50,13 @@ public enum MyElement_zh_CN {
 	detailID,
 	//
 	@FlyElement(columnName = "IncludedTab", name = "包含页", dataType = FlyDataType.ID, fieldLength = 32)
-	includedTab
+	includedTab,
+	//
+	@FlyElement(columnName = "Reference_ID", name = "引用", description = "系统引用", help = "The Reference indicates the type of reference field", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "引用", fieldLength = 22)
+	referenceID,
+	//
+	@FlyElement(columnName = "Table_ID", name = "表", description = "字段所在表", help = "The Table indicates the table in which a field or fields reside.", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "表", fieldLength = 22)
+	tableID,
 }

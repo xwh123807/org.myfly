@@ -27,7 +27,7 @@ public class POrg implements IFlyEntity {
 	private static final long serialVersionUID = 4936038273008540694L;
 
 	@Id
-	@Column(length = 32)
+	@Column(length = 32, name="OrgID")
 	private String orgID;
 
 	@Column

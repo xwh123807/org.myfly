@@ -53,9 +53,9 @@ public enum MyRefLists_zh_CN {
 	userLevel,
 	//
 	@FlyRefList(name = "AD_Table 访问级别", description = "Table Access and Sharing Level list", items = {
-			@FlyRefItem(name = "系统+客户", value = "6"), @FlyRefItem(name = "机构", value = "1"),
-			@FlyRefItem(name = "客户+机构", value = "3"), @FlyRefItem(name = "仅系统级", value = "4"),
-			@FlyRefItem(name = "全部", value = "7"), @FlyRefItem(name = "仅客户级", value = "2"), })
+			@FlyRefItem(name = "系统+客户", value = "SYSTEMCLEINT"), @FlyRefItem(name = "机构", value = "ORGANIZATION"),
+			@FlyRefItem(name = "客户+机构", value = "CLIENTORGANIZATION"), @FlyRefItem(name = "仅系统级", value = "SYSTEM"),
+			@FlyRefItem(name = "全部", value = "ALL"), @FlyRefItem(name = "仅客户级", value = "CLIENT"), })
 	accessLevel,
 	//
 	@FlyRefList(name = "AD_Table 复制类型", description = "复制类型", items = { @FlyRefItem(name = "本地复制", value = "L"),

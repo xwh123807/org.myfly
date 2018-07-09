@@ -15,6 +15,9 @@ public class FlyColumn extends PColumn implements IDefinition {
 	 * 
 	 */
 	private static final long serialVersionUID = -8254426803835852767L;
+	
+	@JsonIgnore
+	private FlyDataModel parent;
 
 	@JsonIgnore
 	private Method getter;
@@ -68,7 +71,6 @@ public class FlyColumn extends PColumn implements IDefinition {
 		Assert.hasLength(getColumnName(), "属性[columnName]不能为空");
 		Assert.notNull(getGetter(), "属性[Getter]不能为空");
 		Assert.notNull(getSetter(), "属性[Setter]不能为空");
-		Assert.notNull(getValueHandler(), "属性[ValueHandler]不能为空");
 	}
 
 	public PColumn toColumnPO() {
@@ -152,5 +154,19 @@ public class FlyColumn extends PColumn implements IDefinition {
 
 	public void setElement(FElement element) {
 		this.element = element;
+	}
+
+	/**
+	 * @return the parent
+	 */
+	public FlyDataModel getParent() {
+		return parent;
+	}
+
+	/**
+	 * @param parent the parent to set
+	 */
+	public void setParent(FlyDataModel parent) {
+		this.parent = parent;
 	}
 }

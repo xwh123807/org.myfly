@@ -282,6 +282,7 @@ public class FlyMemoryDataModel {
 		column.setEntityType(element.getEntityType());
 		column.setFieldLength(element.getFieldLength());
 		column.setReferenceID(element.getReferenceID());
+		column.setValueHandler(ValueHandlerFactory.getValueHandler(column));
 	}
 
 	/**

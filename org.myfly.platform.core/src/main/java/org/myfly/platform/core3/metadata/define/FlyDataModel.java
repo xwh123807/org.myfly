@@ -2,6 +2,7 @@ package org.myfly.platform.core3.metadata.define;
 
 import java.util.Map;
 
+import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.model.data.PTable;
@@ -144,5 +145,9 @@ public class FlyDataModel extends PTable implements IDefinition {
 		result.setWindowID(getWindowID());
 		FlyEntityUtils.copyFlyMetaFields(result, this);
 		return result;
+	}
+
+	public Class<?> getEntityClass() {
+		return ClassUtil.getClass(getApiName());
 	}
 }

@@ -37,7 +37,7 @@ public class PElement extends FlyMetaEntity {
 	@Column(length = 60)
 	private String printName;
 
-	@Column(length = 30, unique = true)
+	@Column(length = 50, unique = true)
 	private String columnName;
 
 	@Column()

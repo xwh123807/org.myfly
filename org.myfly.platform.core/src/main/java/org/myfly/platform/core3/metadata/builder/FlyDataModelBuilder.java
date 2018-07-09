@@ -26,7 +26,6 @@ import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
 import org.myfly.platform.core3.metadata.define.FlyColumn;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
-import org.myfly.platform.core3.metadata.define.ValueHandlerFactory;
 import org.myfly.platform.core3.model.data.PTable;
 
 public class FlyDataModelBuilder extends AbstractBuilder<PTable, FlyDataModel> {
@@ -79,12 +78,15 @@ public class FlyDataModelBuilder extends AbstractBuilder<PTable, FlyDataModel> {
 		if (StringUtils.isBlank(result.getTableName())) {
 			result.setTableName(result.getName());
 		}
+		result.setTableName(StringUtil.addUnderscores(result.getTableName()));
 
 		// 构建字段
 		result.setColumnMap(new LinkedHashMap<>());
 		Map<String, FieldInfo> fieldInfos = EntityClassUtil.getEntityFieldInfo(entityClass);
 		fieldInfos.values().forEach(fieldInfo -> {
 			FlyColumn flyColumn = buildField(fieldInfo);
+			flyColumn.setColumnName(StringUtil.addUnderscores(flyColumn.getColumnName()));
+			flyColumn.setParent(result);
 			if (BooleanUtils.isTrue(flyColumn.getIsKey())) {
 				if (result.getPrimaryKey() == null) {
 					result.setPrimaryKey(flyColumn);
@@ -94,7 +96,6 @@ public class FlyDataModelBuilder extends AbstractBuilder<PTable, FlyDataModel> {
 			}
 			flyColumn.setGetter(fieldInfo.getGetter());
 			flyColumn.setSetter(fieldInfo.getSetter());
-			flyColumn.setValueHandler(ValueHandlerFactory.getValueHandler(flyColumn));
 			flyColumn.setColumnID(UUIDUtil.newUUID());
 			flyColumn.setTableID(result.getTableID());
 			FlyEntityUtils.updateFlyEntityForSystem(flyColumn);

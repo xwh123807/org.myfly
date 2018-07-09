@@ -27,7 +27,7 @@ public class PUser extends FlyEntity {
 	private static final long serialVersionUID = -8858288388188667995L;
 
 	@Id
-	@Column(length = 32)
+	@Column(length = 32, name="UserID")
 	private String userID;
 
 	@Column(name = "Value", length = 40, unique = true)
@@ -49,7 +49,7 @@ public class PUser extends FlyEntity {
 	private String comments;
 
 	@Column(name = "ConnectionProfile")
-	private ConnectionProfile connectionProfile;
+	private String connectionProfile;
 
 	@Column(name = "EMail", length = 60)
 	private String eMail;
@@ -103,7 +103,7 @@ public class PUser extends FlyEntity {
 	private String leadStatusDescription;
 
 	@Column(name = "NotificationType")
-	private NotificationType notificationType;
+	private String notificationType;
 
 	@Column(name = "Password", length = 1024)
 	private String password;
@@ -154,11 +154,11 @@ public class PUser extends FlyEntity {
 		this.comments = comments;
 	}
 
-	public ConnectionProfile getConnectionProfile() {
+	public String getConnectionProfile() {
 		return connectionProfile;
 	}
 
-	public void setConnectionProfile(ConnectionProfile connectionProfile) {
+	public void setConnectionProfile(String connectionProfile) {
 		this.connectionProfile = connectionProfile;
 	}
 
@@ -290,11 +290,11 @@ public class PUser extends FlyEntity {
 		this.leadStatusDescription = leadStatusDescription;
 	}
 
-	public NotificationType getNotificationType() {
+	public String getNotificationType() {
 		return notificationType;
 	}
 
-	public void setNotificationType(NotificationType notificationType) {
+	public void setNotificationType(String notificationType) {
 		this.notificationType = notificationType;
 	}
 

@@ -22,9 +22,9 @@ public class ValueHandlerFactory {
 		IValueHandler result = null;
 		switch (column.getDataType()) {
 		case List:
-		case Table:
 			result = new ListValueHandler(column);
 			break;
+		case Table:
 		case TableDirect:
 			result = new TableDirectValueHandler(column);
 			break;

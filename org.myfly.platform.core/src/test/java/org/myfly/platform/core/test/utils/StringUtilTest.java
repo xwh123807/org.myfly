@@ -3,9 +3,8 @@ package org.myfly.platform.core.test.utils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.utils.StringUtil;
-import org.myfly.platform.test.ServiceTestCase;
 
-public class StringUtilTest extends ServiceTestCase{
+public class StringUtilTest{
 	@Test
 	public void isEmptyForNull() {
 		Assert.assertTrue(StringUtil.isEmpty(null));
@@ -66,5 +65,11 @@ public class StringUtilTest extends ServiceTestCase{
 		String sql = "select * from suser where userid=? and name=?";
 		String fsql = StringUtil.formatSql(sql, new Object[] { 12, "xwh" });
 		Assert.assertEquals("select * from suser where userid=12 and name='xwh'", fsql);
+	}
+	
+	@Test
+	public void addUnderscores() {
+		Assert.assertEquals("pt_column", StringUtil.addUnderscores("PT_Column"));
+		Assert.assertEquals("pt_entity_type", StringUtil.addUnderscores("PT_EntityType"));
 	}
 }

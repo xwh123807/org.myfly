@@ -31,7 +31,7 @@ public class PTable extends FlyMetaEntity implements IFlyDataModel {
 	private static final long serialVersionUID = -9033044830736476897L;
 
 	@Id
-	@Column(length = 32)
+	@Column(length = 32, name="TableID")
 	private String tableID;
 
 	@Column(length = 255, name = "ApiName", unique = true)

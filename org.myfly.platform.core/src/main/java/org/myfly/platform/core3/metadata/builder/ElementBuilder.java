@@ -2,6 +2,7 @@ package org.myfly.platform.core3.metadata.builder;
 
 import java.lang.reflect.Field;
 
+import org.myfly.platform.core.utils.StringUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.annotation.FlyElement;
@@ -33,6 +34,7 @@ public class ElementBuilder extends AbstractBuilder<PElement, FElement> {
 		result.setFieldLength(anno.fieldLength());
 		result.setReferenceName(anno.referenceName());
 		result.setElementID(UUIDUtil.newUUID());
+		result.setColumnName(StringUtil.addUnderscores(result.getColumnName()));
 		FlyEntityUtils.updateFlyEntityForSystem(result);
 		return result;
 	}
