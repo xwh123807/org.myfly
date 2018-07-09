@@ -561,7 +561,7 @@ public class PField extends FlyMetaEntity implements IFlyViewField {
 	}
 
 	@Override
-	public void setColumn(String columnID) {
+	public void setColumnID(String columnID) {
 		this.columnID = columnID;
 	}
 
@@ -571,7 +571,7 @@ public class PField extends FlyMetaEntity implements IFlyViewField {
 	}
 
 	@Override
-	public void setFieldGroup(String fieldGroupID) {
+	public void setFieldGroupID(String fieldGroupID) {
 		this.fieldGroupID = fieldGroupID;
 	}
 
@@ -601,7 +601,7 @@ public class PField extends FlyMetaEntity implements IFlyViewField {
 	}
 
 	@Override
-	public void setTab(String tabID) {
+	public void setTabID(String tabID) {
 		this.tabID = tabID;
 	}
 

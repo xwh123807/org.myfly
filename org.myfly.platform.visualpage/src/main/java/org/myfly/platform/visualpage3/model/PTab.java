@@ -474,7 +474,7 @@ public class PTab extends FlyMetaEntity implements IFlyViewTab {
 	}
 
 	@Override
-	public void setWindow(String windowID) {
+	public void setWindowID(String windowID) {
 		this.windowID = windowID;
 	}
 

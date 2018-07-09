@@ -2,9 +2,13 @@ package org.myfly.platform.visualpage3.internal;
 
 import java.util.Map;
 
+import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.core3.metadata.define.IDefinition;
-import org.myfly.platform.core3.model.PTable;
 import org.myfly.platform.visualpage3.model.PTab;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class FTab extends PTab implements IDefinition {
 
@@ -15,52 +19,49 @@ public class FTab extends PTab implements IDefinition {
 
 	private Map<String, FField> fields;
 
+	private boolean isFromDB;
+	
+	@JsonIgnore
+	private FlyDataModel table;
+
 	@Override
 	public String getKey() {
-		// TODO Auto-generated method stub
-		return null;
+		return getTabID();
 	}
 
 	@Override
 	public void setUid(String value) {
-		// TODO Auto-generated method stub
-
+		setTabID(value);
 	}
 
 	@Override
 	public String getUid() {
-		// TODO Auto-generated method stub
-		return null;
+		return getTabID();
 	}
 
 	@Override
 	public boolean isFromDB() {
-		// TODO Auto-generated method stub
-		return false;
+		return isFromDB;
 	}
 
 	@Override
 	public void setFromDB(boolean value) {
-		// TODO Auto-generated method stub
-
+		isFromDB = value;
 	}
 
 	@Override
 	public void validate() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public String toJson() {
-		// TODO Auto-generated method stub
-		return null;
+		return JSONUtil.toJSON(this);
 	}
 
 	@Override
 	public void printJson() {
-		// TODO Auto-generated method stub
-
+		System.out.println(toJson());
 	}
 
 	/**
@@ -78,9 +79,20 @@ public class FTab extends PTab implements IDefinition {
 		this.fields = fields;
 	}
 
-	public PTable toTabPO() {
-		// TODO Auto-generated method stub
-		return null;
+	public FlyDataModel getTable() {
+		return table;
 	}
 
+	public void setTable(FlyDataModel table) {
+		this.table = table;
+	}
+
+	public PTab toTabPO() {
+		PTab result = new PTab();
+		result.setTabID(getTabID());
+		result.setTableID(getTableID());
+		result.setEntityType(getEntityType());
+		FlyEntityUtils.copyFlyMetaFields(result, this);
+		return result;
+	}
 }

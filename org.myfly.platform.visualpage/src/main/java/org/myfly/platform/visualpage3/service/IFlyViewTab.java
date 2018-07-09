@@ -10,7 +10,7 @@ public interface IFlyViewTab extends IFlyEntity, IFlyMetaEntity{
 
 	String getWindowID();
 
-	void setWindow(String windowID);
+	void setWindowID(String windowID);
 
 	String getTableID();
 

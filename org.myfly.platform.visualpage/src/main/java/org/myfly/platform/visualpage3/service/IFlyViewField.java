@@ -11,11 +11,11 @@ public interface IFlyViewField extends IFlyEntity, IFlyMetaEntity{
 
 	String getColumnID();
 
-	void setColumn(String columnID);
+	void setColumnID(String columnID);
 
 	String getFieldGroupID();
 
-	void setFieldGroup(String fieldGroupID);
+	void setFieldGroupID(String fieldGroupID);
 
 	FlyDataType getDataType();
 
@@ -27,7 +27,7 @@ public interface IFlyViewField extends IFlyEntity, IFlyMetaEntity{
 
 	String getTabID();
 
-	void setTab(String tabID);
+	void setTabID(String tabID);
 
 	String getDefaultValue();
 

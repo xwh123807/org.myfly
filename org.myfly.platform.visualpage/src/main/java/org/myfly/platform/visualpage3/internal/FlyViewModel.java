@@ -3,19 +3,19 @@ package org.myfly.platform.visualpage3.internal;
 import java.util.Map;
 
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.define.IDefinition;
-import org.myfly.platform.core3.model.PTable;
 import org.myfly.platform.visualpage3.model.PWindow;
 
-public class FlyViewModel extends PWindow implements IDefinition{
+public class FlyViewModel extends PWindow implements IDefinition {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6179348012308479009L;
-	
+
 	private boolean isFromDB;
-	
+
 	private Map<String, FTab> tabs;
 
 	@Override
@@ -45,7 +45,7 @@ public class FlyViewModel extends PWindow implements IDefinition{
 
 	@Override
 	public void validate() {
-		
+
 	}
 
 	@Override
@@ -66,15 +66,27 @@ public class FlyViewModel extends PWindow implements IDefinition{
 	}
 
 	/**
-	 * @param tabs the tabs to set
+	 * @param tabs
+	 *            the tabs to set
 	 */
 	public void setTabs(Map<String, FTab> tabs) {
 		this.tabs = tabs;
 	}
 
-	public PTable toTablePO() {
-		// TODO Auto-generated method stub
-		return null;
+	public PWindow toWindowPO() {
+		PWindow result = new PWindow();
+		result.setWindowID(getWindowID());
+		result.setApiName(getApiName());
+		result.setEntityType(getEntityType());
+		result.setIsBetaFunctionality(getIsBetaFunctionality());
+		result.setIsDefault(getIsDefault());
+		result.setIsSOTrx(getIsSOTrx());
+		result.setProcessing(getProcessing());
+		result.setWindowType(getWindowType());
+		result.setWinHeight(getWinHeight());
+		result.setWinWidth(getWinWidth());
+		FlyEntityUtils.copyFlyMetaFields(result, this);
+		return result;
 	}
 
 }
