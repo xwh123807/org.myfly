@@ -1,4 +1,4 @@
-package org.myfly.platform.visualpage3.builder;
+package org.myfly.platform.visualpage3.define;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -11,9 +11,6 @@ import org.myfly.platform.core3.metadata.define.FlyColumn;
 import org.myfly.platform.visualpage3.annotation.FlyFieldGroup;
 import org.myfly.platform.visualpage3.annotation.FlyTab;
 import org.myfly.platform.visualpage3.annotation.FlyWindow;
-import org.myfly.platform.visualpage3.internal.FField;
-import org.myfly.platform.visualpage3.internal.FTab;
-import org.myfly.platform.visualpage3.internal.FlyViewModel;
 import org.myfly.platform.visualpage3.model.PWindow;
 import org.springframework.util.Assert;
 

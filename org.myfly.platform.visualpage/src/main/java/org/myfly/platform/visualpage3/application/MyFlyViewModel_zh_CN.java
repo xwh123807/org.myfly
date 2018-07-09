@@ -7,5 +7,9 @@ public enum MyFlyViewModel_zh_CN {
 	//
 	@FlyWindow(name = "Table", description = "Table", help = "", tabs = {
 			@FlyTab(name = "Table", description = "Table", help = "", table = "PTable") })
-	Table
+	Table,
+	//
+	@FlyWindow(name = "Window", description = "Window", help = "", tabs = {
+			@FlyTab(table = "PWindow", name = "Window", description = "Window") })
+	Window
 }

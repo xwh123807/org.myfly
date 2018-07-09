@@ -1,4 +1,4 @@
-package org.myfly.platform.visualpage3.internal;
+package org.myfly.platform.visualpage3.define;
 
 import java.util.Map;
 

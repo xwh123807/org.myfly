@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.myfly.platform.core3.dbinit.ModelImporter;
-import org.myfly.platform.visualpage3.internal.FlyMemoryViewModel;
+import org.myfly.platform.visualpage3.define.FlyMemoryViewModel;
 import org.myfly.platform.visualpage3.model.PField;
 import org.myfly.platform.visualpage3.model.PTab;
 import org.myfly.platform.visualpage3.model.PWindow;

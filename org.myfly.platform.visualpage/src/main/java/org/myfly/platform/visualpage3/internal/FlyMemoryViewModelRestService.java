@@ -4,6 +4,8 @@ import java.util.Set;
 
 import org.myfly.platform.core.domain.RestApiInfo;
 import org.myfly.platform.core.domain.RestControllerInfo;
+import org.myfly.platform.visualpage3.define.FlyMemoryViewModel;
+import org.myfly.platform.visualpage3.define.FlyViewModel;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

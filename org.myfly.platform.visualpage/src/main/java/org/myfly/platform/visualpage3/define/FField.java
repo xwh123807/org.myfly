@@ -1,4 +1,4 @@
-package org.myfly.platform.visualpage3.internal;
+package org.myfly.platform.visualpage3.define;
 
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
