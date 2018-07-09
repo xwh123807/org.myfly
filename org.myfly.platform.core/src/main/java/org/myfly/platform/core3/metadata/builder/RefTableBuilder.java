@@ -3,7 +3,7 @@ package org.myfly.platform.core3.metadata.builder;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;

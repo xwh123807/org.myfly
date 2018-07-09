@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: org.myfly.platform.visualpage3
+Implementation-Version: 0.0.1
+Built-By: xiangwanhong
+Implementation-Vendor-Id: org.myfly.platform.microapps
+Build-Jdk: 1.8.0_40
+Implementation-URL: http://projects.spring.io/spring-boot/myfly.platfo
+ rm.parent/org.myfly.platform.visualpage3/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

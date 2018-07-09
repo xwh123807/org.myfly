@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import javax.transaction.Transactional;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

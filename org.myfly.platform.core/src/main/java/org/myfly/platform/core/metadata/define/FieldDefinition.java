@@ -2,7 +2,7 @@ package org.myfly.platform.core.metadata.define;
 
 import java.util.Map;
 
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 import org.hibernate.annotations.GenericGenerator;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.annotation.FieldView;
@@ -240,7 +240,7 @@ public class FieldDefinition extends BaseDenifition {
 				// UUID
 				entity.put(getName(), UUIDUtil.newUUID());
 			} else {
-				throw new NotImplementedException();
+				throw new NotImplementedException("");
 			}
 		} else {
 			throw new IllegalArgumentException("字段必须有@GenericGenerator注解，才能调用generateValue方法.");

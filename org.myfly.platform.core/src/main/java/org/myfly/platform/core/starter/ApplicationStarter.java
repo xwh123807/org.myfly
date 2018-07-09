@@ -3,7 +3,7 @@ package org.myfly.platform.core.starter;
 import java.util.List;
 import java.util.function.Consumer;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.myfly.platform.core.domain.AppStartLevel;
 import org.myfly.platform.core.flydata.config.FlyDataProperties;
 import org.myfly.platform.core.metadata.internal.FileMetaDataRegister;

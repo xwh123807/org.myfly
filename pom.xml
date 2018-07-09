@@ -92,17 +92,6 @@
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-hibernate5</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-velocity</artifactId>
-			<!-- <version>1.4.7.RELEASE</version> -->
-			<exclusions>
-				<exclusion>
-					<groupId>net.sf.ehcache</groupId>
-					<artifactId>ehcache-core</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 		<!-- 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -170,13 +159,14 @@
 		<module>org.myfly.apps.crm</module>
 		<module>org.myfly.apps.mdm</module>
 		<module>org.myfly.research</module>
-		<module>org.myfly.platform.system</module>
+		
 		<module>org.myfly.platform.metadata</module>
 		
 		<module>org.myfly.platform.visualpage</module>
 
 		<module>org.myfly.platform.report</module>
 		<module>org.myfly.platform.tools</module>
+		<module>org.myfly.platform.visualpage3</module>
 	</modules>
 
 	<!-- Add Spring repositories -->

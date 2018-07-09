@@ -1,6 +1,6 @@
 package org.myfly.platform.core.metadata.define;
 
-import org.apache.commons.lang.ClassUtils;
+import org.apache.commons.lang3.ClassUtils;
 import org.myfly.platform.core.domain.FieldDataType;
 import org.myfly.platform.core.metadata.annotation.CommonSubTableType;
 import org.myfly.platform.core.metadata.entity.RelationFieldDefinition;

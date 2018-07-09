@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.ClassUtils;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.ClassUtils;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;

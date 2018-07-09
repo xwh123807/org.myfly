@@ -3,7 +3,7 @@ package org.myfly.platform.core3.application;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.myfly.platform.core.domain.AppStartLevel;
 import org.myfly.platform.core.metadata.service.IMetaDataRegister;
 import org.myfly.platform.core.starter.IAppConfigEvent;

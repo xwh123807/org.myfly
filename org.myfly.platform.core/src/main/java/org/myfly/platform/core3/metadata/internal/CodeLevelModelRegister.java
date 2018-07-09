@@ -3,7 +3,7 @@ package org.myfly.platform.core3.metadata.internal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.starter.ICodeLevelDataModelRegister;

@@ -3,7 +3,7 @@ package org.myfly.platform.core.test;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.CoreApplication;
