@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.metadata.define.IDefinition;
+import org.myfly.platform.core3.model.PTable;
 import org.myfly.platform.visualpage3.model.PWindow;
 
 public class FlyViewModel extends PWindow implements IDefinition{
@@ -69,6 +70,11 @@ public class FlyViewModel extends PWindow implements IDefinition{
 	 */
 	public void setTabs(Map<String, FTab> tabs) {
 		this.tabs = tabs;
+	}
+
+	public PTable toTablePO() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

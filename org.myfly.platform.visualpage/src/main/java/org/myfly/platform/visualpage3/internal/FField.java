@@ -1,19 +1,14 @@
 package org.myfly.platform.visualpage3.internal;
 
-import java.util.Map;
-
 import org.myfly.platform.core3.metadata.define.IDefinition;
-import org.myfly.platform.core3.model.PTable;
-import org.myfly.platform.visualpage3.model.PTab;
+import org.myfly.platform.visualpage3.model.PField;
 
-public class FTab extends PTab implements IDefinition {
+public class FField extends PField implements IDefinition{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7339322643421118783L;
-
-	private Map<String, FField> fields;
+	private static final long serialVersionUID = 7304780919645810513L;
 
 	@Override
 	public String getKey() {
@@ -24,7 +19,7 @@ public class FTab extends PTab implements IDefinition {
 	@Override
 	public void setUid(String value) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -42,13 +37,13 @@ public class FTab extends PTab implements IDefinition {
 	@Override
 	public void setFromDB(boolean value) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void validate() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -60,25 +55,10 @@ public class FTab extends PTab implements IDefinition {
 	@Override
 	public void printJson() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
-	/**
-	 * @return the fields
-	 */
-	public Map<String, FField> getFields() {
-		return fields;
-	}
-
-	/**
-	 * @param fields
-	 *            the fields to set
-	 */
-	public void setFields(Map<String, FField> fields) {
-		this.fields = fields;
-	}
-
-	public PTable toTabPO() {
+	public PField toFieldPO() {
 		// TODO Auto-generated method stub
 		return null;
 	}
