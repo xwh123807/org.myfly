@@ -2,7 +2,7 @@ package org.myfly.platform.core.metadata.internal;
 
 import java.util.List;
 
-import org.apache.commons.lang.ClassUtils;
+import org.apache.commons.lang3.ClassUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

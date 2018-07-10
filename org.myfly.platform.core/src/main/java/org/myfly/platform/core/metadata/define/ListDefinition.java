@@ -263,4 +263,14 @@ public class ListDefinition extends BaseDenifition {
 		if (ArrayUtils.isNotEmpty(getOrders()))
 			Stream.of(getOrders()).forEach(item -> item.validate());
 	}
+
+	public String getEntityName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getParent() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

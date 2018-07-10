@@ -4,7 +4,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.hsqldb.lib.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.annotation.FieldSetView;
 import org.myfly.platform.core.metadata.annotation.SectionType;
 import org.myfly.platform.core.metadata.annotation.SectionView;
@@ -47,7 +47,7 @@ public class SectionDefinition extends BaseDenifition {
 		setType(view.type());
 		setFieldSetsFromView(view.fieldSets());
 		setSubTablesFromView(view.subTables());
-		if (StringUtil.isEmpty(getTitle())) {
+		if (StringUtils.isEmpty(getTitle())) {
 			if (getType() == SectionType.NOTE) {
 				setTitle(SectionType.NOTE.getTitle());
 			} else if (getType() == SectionType.ATTACHMENT) {

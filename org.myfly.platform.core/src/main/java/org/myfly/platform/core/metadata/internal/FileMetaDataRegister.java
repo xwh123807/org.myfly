@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.metadata.service.IMetaDataRegister;
-import org.myfly.platform.core.metadata.service.JsonEntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.springframework.stereotype.Component;
 
@@ -30,7 +29,7 @@ public class FileMetaDataRegister implements IMetaDataRegister {
 	@Override
 	public EntityMetaData getEntityMetaData(String entityName) {
 		AssertUtil.parameterEmpty(entityName, "entityName");
-		return JsonEntityMetaData.fromJson(metaUrls.get(entityName.toLowerCase()));
+		return null;
 	}
 
 	/**

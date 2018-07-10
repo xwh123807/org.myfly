@@ -167,6 +167,7 @@
 		<module>org.myfly.platform.report</module>
 		<module>org.myfly.platform.tools</module>
 		<module>org.myfly.platform.visualpage3</module>
+		<module>org.myfly.platform.webres</module>
 	</modules>
 
 	<!-- Add Spring repositories -->

@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Mon Jul 09 23:23:45 CST 2018:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0164-7fa4-34f1-00001e0a4528 
-on database directory memory:/Users/xiangwanhong/git/org.myfly/org.myfly.platform.visualpage3/myfly with class loader sun.misc.Launcher$AppClassLoader@6d06d69c 
+Tue Jul 10 10:08:40 CST 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0164-81f2-a764-000012233d48 
+on database directory memory:/xwh.work/git/org.myfly/org.myfly.platform.visualpage3/myfly with class loader sun.misc.Launcher$AppClassLoader@4e25154f 
 Loaded from file:/Users/xiangwanhong/.m2/repository/org/apache/derby/derby/10.12.1.1/derby-10.12.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_40-b27
-user.dir=/Users/xiangwanhong/git/org.myfly/org.myfly.platform.visualpage3
+java.runtime.version=1.8.0_112-b16
+user.dir=/xwh.work/git/org.myfly/org.myfly.platform.visualpage3
 os.name=Mac OS X
 os.arch=x86_64
-os.version=10.13.4
+os.version=10.13.1
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

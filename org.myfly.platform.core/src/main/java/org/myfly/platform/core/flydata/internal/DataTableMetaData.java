@@ -21,7 +21,7 @@ public class DataTableMetaData {
 	public DataTableMetaData(ListDefinition listDefinition, boolean printMode) {
 		this.setEntityName(listDefinition.getEntityName());
 		this.printMode = printMode;
-		buildFieldMetaDatas(listDefinition.getParent().getFields(listDefinition.getFields()));
+		//buildFieldMetaDatas(listDefinition.getFields(listDefinition.getFields()));
 	}
 
 	private void buildFieldMetaDatas(FieldDefinition[] fields) {

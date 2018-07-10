@@ -10,7 +10,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.apache.commons.collections.MapUtils;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.metadata.annotation.SQLOperator;
@@ -409,6 +409,11 @@ public class QuerySpecificationUtil {
 		} else {
 			return null;
 		}
+	}
+
+	public static String buildQueryWhereSql(FilterDefinition[] filters, List<Object> paramsValues) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

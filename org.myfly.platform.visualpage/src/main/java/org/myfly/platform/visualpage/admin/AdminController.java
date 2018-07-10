@@ -466,16 +466,16 @@ public class AdminController extends BaseViewController {
 	@Autowired(required=false)
 	private RedisServerInfo redis;
 	
-	@RequestMapping("redis")
-	@ObjectListView(title = "Redis信息", fields = { @PropertyView(name = "key", title = "属性"),
-			@PropertyView(name = "value", title = "值") })
-	public ModelAndView getRedisServerInfo(HttpServletRequest request){
-		PageInfo pageInfo = getAdminPageInfo("Redis");
-		pageInfo.setTemplate(getVisualPageService().getObjectTemplateFile("admin.redis", getClass(), "getRedisServerInfo",
-				ObjectListView.class, VisualPageType.OLIST));
-		ModelAndView mv = getBaseModelAndView(VisualPageType.OLIST, request);
-		mv.addObject("pageInfo", pageInfo);
-		mv.addObject("objlist", redis.getRedisServerInfo().entrySet());
-		return mv;
-	}
+//	@RequestMapping("redis")
+//	@ObjectListView(title = "Redis信息", fields = { @PropertyView(name = "key", title = "属性"),
+//			@PropertyView(name = "value", title = "值") })
+//	public ModelAndView getRedisServerInfo(HttpServletRequest request){
+//		PageInfo pageInfo = getAdminPageInfo("Redis");
+//		pageInfo.setTemplate(getVisualPageService().getObjectTemplateFile("admin.redis", getClass(), "getRedisServerInfo",
+//				ObjectListView.class, VisualPageType.OLIST));
+//		ModelAndView mv = getBaseModelAndView(VisualPageType.OLIST, request);
+//		mv.addObject("pageInfo", pageInfo);
+//		mv.addObject("objlist", redis.getRedisServerInfo().entrySet());
+//		return mv;
+//	}
 }

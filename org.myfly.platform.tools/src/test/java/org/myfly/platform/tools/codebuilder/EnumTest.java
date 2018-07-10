@@ -1,11 +1,8 @@
 package org.myfly.platform.tools.codebuilder;
 
-import java.io.IOException;
-import java.io.StringBufferInputStream;
-import java.io.StringReader;
 import java.net.URL;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.utils.JaxbUtil;
