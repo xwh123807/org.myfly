@@ -2,7 +2,7 @@ package org.myfly.platform.core.metadata.entity;
 
 import java.util.Map;
 
-import org.apache.commons.collections.map.HashedMap;
+import org.apache.commons.collections4.map.HashedMap;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.testmodel.Master;

@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
-import org.apache.commons.collections.map.HashedMap;
+import org.apache.commons.collections4.map.HashedMap;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

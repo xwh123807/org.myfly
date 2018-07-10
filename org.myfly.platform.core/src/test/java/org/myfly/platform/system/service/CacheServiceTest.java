@@ -9,10 +9,10 @@ import org.myfly.platform.core.cache.service.CacheInfo;
 import org.myfly.platform.core.cache.service.ICacheService;
 import org.myfly.platform.test.ServiceTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
 
-@SpringApplicationConfiguration(classes=CoreApplication.class)
+@SpringBootTest(classes=CoreApplication.class)
 public class CacheServiceTest extends ServiceTestCase{
 	@Autowired
 	private ICacheService cacheService;

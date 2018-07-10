@@ -277,7 +277,10 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	@Override
 	public <T> void batchSaveEntity(List<T> batchList) {
 		if (CollectionUtils.isNotEmpty(batchList)) {
-			getSimpleJpaRepository(batchList.get(0).getClass()).save(batchList);
+			//getSimpleJpaRepository(batchList.get(0).getClass()).save(batchList);
+			batchList.forEach(item -> {
+				entityManager.persist(item);
+			});
 		}
 	}
 

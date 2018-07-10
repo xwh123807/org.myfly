@@ -3,9 +3,9 @@ package org.myfly.platform.system.service;
 import org.junit.Test;
 import org.myfly.platform.CoreApplication;
 import org.myfly.platform.test.ServiceTestCase;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringApplicationConfiguration(classes=CoreApplication.class)
+@SpringBootTest(classes=CoreApplication.class)
 public class MessageQueueServiceTest extends ServiceTestCase{
 	@Test
 	public void test(){
