@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title th:text="|${pageInfo.title} - ${pageInfo.subTitle}|">${pageInfo.title}
+	- ${pageInfo.subTitle}</title>
+
+<meta name="description" content="overview &amp; stats" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+<!-- bootstrap & fontawesome -->
+<link rel="stylesheet"
+	th:href="@{|${webresPath}assets/css/bootstrap.min.css|}"
+	href="/assets/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	th:href="@{|${webresPath}assets/font-awesome/4.0.3/css/font-awesome.min.css|}"
+	href="/assets/font-awesome/4.0.3/css/font-awesome.min.css" />
+
+<!-- page specific plugin styles -->
+
+<!-- text fonts -->
+<!--
+		<link rel="stylesheet" href="@{|${webresPath}assets/fonts/fonts.googleapis.com.css|}" />
+	-->
+
+<!-- ace styles -->
+<link rel="stylesheet"
+	th:href="@{|${webresPath}assets/css/ace.min.css|}"
+	href="/assets/css/ace.min.css" />
+
+<!--[if lte IE 9]>
+			<link rel="stylesheet" href="@{|${webresPath}assets/css/ace-part2.min.css|}" />
+		<![endif]-->
+<link rel="stylesheet"
+	th:href="@{|${webresPath}assets/css/ace-skins.min.css|}"
+	href="/assets/css/ace-skins.min.css" />
+<link rel="stylesheet"
+	th:href="@{|${webresPath}assets/css/ace-rtl.min.css|}"
+	href="/assets/css/ace-rtl.min.css|}" />
+
+<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="@{|${webresPath}assets/css/ace-ie.min.css|}" />
+		<![endif]-->
+
+<!-- inline styles related to this page -->
+<link rel="stylesheet"
+	th:href="@{|${webresPath}assets/css/select2/select2.css|}"
+	href="/assets/css/select2/select2.css">
+<link rel="stylesheet"
+	th:href="@{|${webresPath}assets/css/datepicker.css|}"
+	href="/assets/css/datepicker.css">
+<link rel="stylesheet"
+	th:href="@{|${webresPath}assets/css/bootstrap-timepicker.css|}"
+	href="/assets/css/bootstrap-timepicker.css">
+<link rel="stylesheet"
+	th:href="@{|${webresPath}assets/css/bootstrap-datetimepicker.css|}"
+	href="/assets/css/bootstrap-datetimepicker.css">
+<link rel="stylesheet"
+	th:href="@{|${webresPath}assets/css/dataTable/dataTables.bootstrap.css|}"
+	href="/assets/css/dataTable/dataTables.bootstrap.css">
+<link rel="stylesheet"
+	th:href="@{|${webresPath}assets/css/dataTable/responsive.bootstrap.min.css|}"
+	href="/assets/css/dataTable/responsive.bootstrap.min.css">
+
+<!-- ace settings handler -->
+<script th:src="@{|${webresPath}assets/js/jquery.min.js|}"
+	src="/assets/js/jquery.min.js"></script>
+<script th:src="@{|${webresPath}assets/js/bootstrap.min.js|}"
+	src="/assets/js/bootstrap.min.js"></script>
+<script th:src="@{|${webresPath}assets/js/ace-extra.min.js|}"
+	src="/assets/js/ace-extra.min.js"></script>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+<!--[if lte IE 8]>
+		<script th:src="@{|${webresPath}assets/js/html5shiv.js|}" src="/assets/js/html5shiv.js"></script>
+		<script th:src="@{|${webresPath}assets/js/respond.min.js|}" src="/assets/js/respond.min.js"></script>
+		<![endif]-->
+</head>
+
+<body class="no-skin">
+	<div class="main-container" id="main-container">
+		<div class="page-content" th:include="${subPage}"></div>
+		<!-- /.main-content -->
+	</div>
+	<!-- /.main-container -->
+	<!-- INPUT控件 -->
+	<script th:src="@{|${webresPath}assets/js/select2/select2.min.js|}"
+		src="/assets/js/select2/select2.min.js"></script>
+	<script th:src="@{|${webresPath}assets/js/date-time/moment.min.js|}"
+		src="/assets/js/date-time/moment.min.js"></script>
+	<script
+		th:src="@{|${webresPath}assets/js/date-time/bootstrap-datepicker.min.js|}"
+		src="/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+	<script
+		th:src="@{|${webresPath}assets/js/date-time/daterangepicker.min.js|}"
+		src="/assets/js/date-time/daterangepicker.min.js"></script>
+	<script
+		th:src="@{|${webresPath}assets/js/date-time/bootstrap-timepicker.min.js|}"
+		src="/assets/js/date-time/bootstrap-timepicker.min.js"></script>
+	<script
+		th:src="@{|${webresPath}assets/js/date-time/bootstrap-datetimepicker.min.js|}"
+		src="/assets/js/date-time/bootstrap-datetimepicker.min.js"></script>
+	<script th:src="@{|${webresPath}assets/js/jquery.maskedinput.min.js|}"
+		src="/assets/js/jquery.maskedinput.min.js"></script>
+	<script th:src="@{|${webresPath}assets/js/jquery.validate.min.js|}"
+		src="/assets/js/jquery.validate.min.js"></script>
+
+	<!-- 表格控件 -->
+	<script
+		th:src="@{|${webresPath}assets/js/dataTable/jquery.dataTables.min.js|}"
+		src="/assets/js/dataTable/jquery.dataTables.min.js"></script>
+	<script
+		th:src="@{|${webresPath}assets/js/dataTable/dataTables.bootstrap.min.js|}"
+		src="/assets/js/dataTable/dataTables.bootstrap.min.js"></script>
+	<script
+		th:src="@{|${webresPath}assets/js/dataTable/dataTables.responsive.js|}"
+		src="/assets/js/dataTable/dataTables.responsive.js"></script>
+	<script
+		th:src="@{|${webresPath}assets/js/dataTable/responsive.bootstrap.js|}"
+		src="/assets/js/dataTable/responsive.bootstrap.js"></script>
+
+	<script th:src="@{|${webresPath}js/myflyapp.js|}"
+		src="/js/myflyapp.js"></script>
+	<script th:src="@{|${webresPath}js/myflybind.js|}"
+		src="/js/myflybind.js"></script>
+	<script>
+		bindAll("#main-container");
+	</script>
+</body>
+</html>
