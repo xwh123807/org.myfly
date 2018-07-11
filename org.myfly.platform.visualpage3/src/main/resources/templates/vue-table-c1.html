@@ -1,0 +1,21 @@
+<div id="app">
+	<el-table :data="tableData" stripe border style="width: 100%"> <el-table-column
+		prop="apiName" fixed="left" label="标识"> </el-table-column> 
+		<el-table-column prop="name" label="名称" > </el-table-column> 
+		<el-table-column prop="description" label="描述"> </el-table-column>
+		<el-table-column prop="accessLevel.name" label="访问级别"> </el-table-column>
+		<el-table-column prop="created" label="创建时间"> </el-table-column>
+		<el-table-column prop="createdBy.name" label="创建人"> </el-table-column>
+	 </el-table>
+</div>
+<script>
+	var vm = new Vue({
+		el : "#app",
+		data : {
+			tableData : []
+		}
+	})
+	$.get("/flydata3/ptable", function(data){
+		vm.$data.tableData = data;
+	});
+</script>

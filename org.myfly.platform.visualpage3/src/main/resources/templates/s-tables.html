@@ -1,0 +1,29 @@
+<div class="row">
+	<h1>Tables</h1>
+	<table
+		class="dataTable table table-bordered table-striped el-table el-table--fit el-table--enable-row-hover el-table--enable-row-transition">
+		<thead>
+			<th>apiName</th>
+			<th>tableName</th>
+			<th>name</th>
+			<th>created</th>
+			<th>client</th>
+		</thead>
+		<tbody>
+			<tr th:each="obj : ${objList}">
+				<td th:text="${obj.apiName}">apiName</td>
+				<td th:text="${obj.tableName}">tableName</td>
+				<td th:text="${obj.name}">Name</td>
+				<td th:text="${obj.createdBy.name}">Name</td>
+				<td th:text="${obj.clientID.name}">Name</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<th>apiName</th>
+			<th>tableName</th>
+			<th>name</th>
+			<th>created</th>
+			<th>client</th>
+		</tfoot>
+	</table>
+</div>
