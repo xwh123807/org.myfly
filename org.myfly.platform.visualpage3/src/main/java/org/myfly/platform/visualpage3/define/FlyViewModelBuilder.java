@@ -25,7 +25,7 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 	public FlyViewModel convertEnum(Field field) {
 		FlyViewModel result = new FlyViewModel();
 		FlyWindow anno = field.getAnnotation(FlyWindow.class);
-		Assert.notNull(anno);
+		Assert.notNull(anno, "没有注解@FlyWindow， " + field.toString());
 		result.setApiName(field.getName());
 		result.setWindowID(UUIDUtil.newUUID());
 		result.setName(anno.name());
@@ -58,7 +58,7 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 	}
 
 	private void buildFields(FTab result, FlyFieldGroup[] fieldGroup) {
-		Assert.notNull(result.getTable());
+		Assert.notNull(result.getTable(), "属性[table]不能为空");
 		result.getTable().getColumnMap().values().forEach(column -> {
 			FField field = buildField(column);
 			field.setTabID(result.getTabID());
@@ -76,6 +76,7 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 		result.setDataType(column.getDataType());
 		result.setEntityType(column.getEntityType());
 		result.setReferenceID(column.getReferenceID());
+		result.setFlyColumn(column);
 		FlyEntityUtils.updateFlyEntityForSystem(result);
 		return result;
 	}

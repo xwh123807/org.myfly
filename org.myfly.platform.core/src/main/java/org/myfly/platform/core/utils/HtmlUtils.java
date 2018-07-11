@@ -1,5 +1,9 @@
 package org.myfly.platform.core.utils;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -40,5 +44,25 @@ public class HtmlUtils {
 	 */
 	public static String addIdProperty() {
 		return addProperty("id", UUIDUtil.newHtmlID());
+	}
+
+	/**
+	 * 
+	 * @param attrs
+	 * @return
+	 */
+	public static String addAttrs(Map<String, String> attrs) {
+		String buffer = "";
+		if (MapUtils.isEmpty(attrs)) {
+			buffer = "";
+		} else {
+			for (Entry<String, String> item : attrs.entrySet()) {
+				buffer += item.getKey();
+				if (StringUtils.isNotBlank(item.getValue())) {
+					buffer += "=\"" + item.getValue() + "\"";
+				}
+			}
+		}
+		return buffer;
 	}
 }
