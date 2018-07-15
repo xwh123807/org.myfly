@@ -1,4 +1,4 @@
-package org.myfly.platform.visualpage3.application;
+package org.myfly.platform.visualpage3.internal;
 
 import java.util.ArrayList;
 import java.util.List;

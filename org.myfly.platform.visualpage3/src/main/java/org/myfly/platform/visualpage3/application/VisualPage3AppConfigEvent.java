@@ -6,6 +6,7 @@ import org.myfly.platform.core.starter.IAppConfigEvent;
 import org.myfly.platform.core.starter.ICodeLevelDataModelRegister;
 import org.myfly.platform.core.starter.ICodeLevelViewModelRegister;
 import org.myfly.platform.core.system.service.IMenuService;
+import org.myfly.platform.visualpage3.internal.FlyViewModelImporter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

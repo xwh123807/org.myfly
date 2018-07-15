@@ -1,2 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_HOzocIgcEeidk_4ESs1ygQ" name="tools"/>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_HOzocIgcEeidk_4ESs1ygQ" name="tools">
+  <packagedElement xmi:type="uml:Package" xmi:id="_jEHIIIgsEeiVOfuwFtjBNw" name="define">
+    <packagedElement xmi:type="uml:Class" xmi:id="_rK0JgIgsEeiVOfuwFtjBNw" name="FlyViewModel" visibility="public">
+      <generalization xmi:id="_UVxZgIguEeiVOfuwFtjBNw" general="_4yTdcIgtEeiVOfuwFtjBNw"/>
+      <ownedOperation xmi:id="_gfEtoIguEeiVOfuwFtjBNw" name="toWindowPO"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1v9jQIgsEeiVOfuwFtjBNw" name="FTab" visibility="public">
+      <generalization xmi:id="_W9EL4IguEeiVOfuwFtjBNw" general="_6iN74IgtEeiVOfuwFtjBNw"/>
+      <ownedOperation xmi:id="_h-vwoIguEeiVOfuwFtjBNw" name="toTabPO"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_3T1JwIgsEeiVOfuwFtjBNw" name="FField" visibility="public">
+      <generalization xmi:id="_YcR74IguEeiVOfuwFtjBNw" general="_8U4zYIgtEeiVOfuwFtjBNw"/>
+      <ownedOperation xmi:id="_j2XZkIguEeiVOfuwFtjBNw" name="toFieldPO"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_7XnIQIgsEeiVOfuwFtjBNw" name="flyViewModelsToFTabs" memberEnd="_7XnIQYgsEeiVOfuwFtjBNw _7XnvUogsEeiVOfuwFtjBNw" navigableOwnedEnd="_7XnvUogsEeiVOfuwFtjBNw">
+      <ownedEnd xmi:id="_7XnIQYgsEeiVOfuwFtjBNw" name="flyViewModels" type="_rK0JgIgsEeiVOfuwFtjBNw" association="_7XnIQIgsEeiVOfuwFtjBNw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7XnvUIgsEeiVOfuwFtjBNw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7XnvUYgsEeiVOfuwFtjBNw" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_7XnvUogsEeiVOfuwFtjBNw" name="fTabs" type="_1v9jQIgsEeiVOfuwFtjBNw" aggregation="shared" association="_7XnIQIgsEeiVOfuwFtjBNw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7XnvU4gsEeiVOfuwFtjBNw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7XnvVIgsEeiVOfuwFtjBNw" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_8EUdQIgsEeiVOfuwFtjBNw" name="fTabsToFFields" memberEnd="_8EUdQYgsEeiVOfuwFtjBNw _8EUdRIgsEeiVOfuwFtjBNw" navigableOwnedEnd="_8EUdRIgsEeiVOfuwFtjBNw">
+      <ownedEnd xmi:id="_8EUdQYgsEeiVOfuwFtjBNw" name="fTabs" type="_1v9jQIgsEeiVOfuwFtjBNw" association="_8EUdQIgsEeiVOfuwFtjBNw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8EUdQogsEeiVOfuwFtjBNw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8EUdQ4gsEeiVOfuwFtjBNw" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_8EUdRIgsEeiVOfuwFtjBNw" name="fFields" type="_3T1JwIgsEeiVOfuwFtjBNw" aggregation="shared" association="_8EUdQIgsEeiVOfuwFtjBNw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8EUdRYgsEeiVOfuwFtjBNw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8EUdRogsEeiVOfuwFtjBNw" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Cyu2AIgtEeiVOfuwFtjBNw" name="FlyMemoryViewModel" visibility="public">
+      <ownedOperation xmi:id="_JxQuYIgtEeiVOfuwFtjBNw" name="addViewModels"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_GVjcgIgtEeiVOfuwFtjBNw" name="flyMemoryViewModelsToFlyViewModels" memberEnd="_GVjcgYgtEeiVOfuwFtjBNw _GVkDkogtEeiVOfuwFtjBNw" navigableOwnedEnd="_GVkDkogtEeiVOfuwFtjBNw">
+      <ownedEnd xmi:id="_GVjcgYgtEeiVOfuwFtjBNw" name="flyMemoryViewModels" type="_Cyu2AIgtEeiVOfuwFtjBNw" association="_GVjcgIgtEeiVOfuwFtjBNw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GVkDkIgtEeiVOfuwFtjBNw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GVkDkYgtEeiVOfuwFtjBNw" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_GVkDkogtEeiVOfuwFtjBNw" name="flyViewModels" type="_rK0JgIgsEeiVOfuwFtjBNw" aggregation="shared" association="_GVjcgIgtEeiVOfuwFtjBNw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GVkDk4gtEeiVOfuwFtjBNw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GVkDlIgtEeiVOfuwFtjBNw" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_NXvF0IgtEeiVOfuwFtjBNw" name="FlyViewModelBuilder" visibility="public">
+      <ownedOperation xmi:id="_RtWbMIgtEeiVOfuwFtjBNw" name="loadFromEnumClass"/>
+      <ownedOperation xmi:id="_TMpqwIgtEeiVOfuwFtjBNw" name="convertEnum"/>
+      <ownedOperation xmi:id="_XpMukIgtEeiVOfuwFtjBNw" name="buildTab"/>
+      <ownedOperation xmi:id="_Y3QdIIgtEeiVOfuwFtjBNw" name="buildField"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_0TFgIIgtEeiVOfuwFtjBNw" client="_jEHIIIgsEeiVOfuwFtjBNw" supplier="_yNBykIgtEeiVOfuwFtjBNw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lFz6IIgsEeiVOfuwFtjBNw" name="use-cases">
+    <packagedElement xmi:type="uml:Actor" xmi:id="_vhkccIguEeiVOfuwFtjBNw" name="Actor1">
+      <eAnnotations xmi:id="_vhkccYguEeiVOfuwFtjBNw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details xmi:id="_vhkccoguEeiVOfuwFtjBNw" key="Human"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_xI18QIguEeiVOfuwFtjBNw" name="加载界面模型到内存">
+      <include xmi:id="_ChBJAIgvEeiVOfuwFtjBNw" addition="_7QF5EIguEeiVOfuwFtjBNw"/>
+      <include xmi:id="_DU0kgIgvEeiVOfuwFtjBNw" addition="_9k8QkIguEeiVOfuwFtjBNw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_5R2DsIguEeiVOfuwFtjBNw" memberEnd="_5R2DsYguEeiVOfuwFtjBNw _5R2qwIguEeiVOfuwFtjBNw">
+      <ownedEnd xmi:id="_5R2DsYguEeiVOfuwFtjBNw" type="_vhkccIguEeiVOfuwFtjBNw" association="_5R2DsIguEeiVOfuwFtjBNw"/>
+      <ownedEnd xmi:id="_5R2qwIguEeiVOfuwFtjBNw" type="_xI18QIguEeiVOfuwFtjBNw" association="_5R2DsIguEeiVOfuwFtjBNw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_7QF5EIguEeiVOfuwFtjBNw" name="从数据库加载"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_9k8QkIguEeiVOfuwFtjBNw" name="从代码中加载"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_JH-O4IgvEeiVOfuwFtjBNw" memberEnd="_JH-O4YgvEeiVOfuwFtjBNw _JH-O4ogvEeiVOfuwFtjBNw">
+      <ownedEnd xmi:id="_JH-O4YgvEeiVOfuwFtjBNw" type="_xI18QIguEeiVOfuwFtjBNw" association="_JH-O4IgvEeiVOfuwFtjBNw"/>
+      <ownedEnd xmi:id="_JH-O4ogvEeiVOfuwFtjBNw" type="_Cyu2AIgtEeiVOfuwFtjBNw" association="_JH-O4IgvEeiVOfuwFtjBNw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_PlxYwIgvEeiVOfuwFtjBNw" memberEnd="_PlxYwYgvEeiVOfuwFtjBNw _PlxYwogvEeiVOfuwFtjBNw">
+      <ownedEnd xmi:id="_PlxYwYgvEeiVOfuwFtjBNw" type="_9k8QkIguEeiVOfuwFtjBNw" association="_PlxYwIgvEeiVOfuwFtjBNw"/>
+      <ownedEnd xmi:id="_PlxYwogvEeiVOfuwFtjBNw" association="_PlxYwIgvEeiVOfuwFtjBNw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_Sqg8IIgvEeiVOfuwFtjBNw" name="将代码级界面模型保存到数据库中"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Ve8yoIgvEeiVOfuwFtjBNw" memberEnd="_Ve8yoYgvEeiVOfuwFtjBNw _Ve8yoogvEeiVOfuwFtjBNw">
+      <ownedEnd xmi:id="_Ve8yoYgvEeiVOfuwFtjBNw" type="_vhkccIguEeiVOfuwFtjBNw" association="_Ve8yoIgvEeiVOfuwFtjBNw"/>
+      <ownedEnd xmi:id="_Ve8yoogvEeiVOfuwFtjBNw" type="_Sqg8IIgvEeiVOfuwFtjBNw" association="_Ve8yoIgvEeiVOfuwFtjBNw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_6aw-IIgvEeiVOfuwFtjBNw" memberEnd="_6aw-IYgvEeiVOfuwFtjBNw _6aw-IogvEeiVOfuwFtjBNw">
+      <ownedEnd xmi:id="_6aw-IYgvEeiVOfuwFtjBNw" type="_Sqg8IIgvEeiVOfuwFtjBNw" association="_6aw-IIgvEeiVOfuwFtjBNw"/>
+      <ownedEnd xmi:id="_6aw-IogvEeiVOfuwFtjBNw" type="_z36VIIgvEeiVOfuwFtjBNw" association="_6aw-IIgvEeiVOfuwFtjBNw"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_yNBykIgtEeiVOfuwFtjBNw" name="model">
+    <packagedElement xmi:type="uml:Class" xmi:id="_4yTdcIgtEeiVOfuwFtjBNw" name="PWindow" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_6iN74IgtEeiVOfuwFtjBNw" name="PTab" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_8U4zYIgtEeiVOfuwFtjBNw" name="PField" visibility="public"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_BP5U0IguEeiVOfuwFtjBNw" name="pWindowsToPTabs" memberEnd="_BP574IguEeiVOfuwFtjBNw _BP5744guEeiVOfuwFtjBNw" navigableOwnedEnd="_BP5744guEeiVOfuwFtjBNw">
+      <ownedEnd xmi:id="_BP574IguEeiVOfuwFtjBNw" name="pWindows" type="_4yTdcIgtEeiVOfuwFtjBNw" association="_BP5U0IguEeiVOfuwFtjBNw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BP574YguEeiVOfuwFtjBNw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BP574oguEeiVOfuwFtjBNw" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_BP5744guEeiVOfuwFtjBNw" name="pTabs" type="_6iN74IgtEeiVOfuwFtjBNw" aggregation="shared" association="_BP5U0IguEeiVOfuwFtjBNw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BP575IguEeiVOfuwFtjBNw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BP575YguEeiVOfuwFtjBNw" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Bw2s0IguEeiVOfuwFtjBNw" name="pTabsToPFields" memberEnd="_Bw3T4IguEeiVOfuwFtjBNw _Bw3T44guEeiVOfuwFtjBNw" navigableOwnedEnd="_Bw3T44guEeiVOfuwFtjBNw">
+      <ownedEnd xmi:id="_Bw3T4IguEeiVOfuwFtjBNw" name="pTabs" type="_6iN74IgtEeiVOfuwFtjBNw" association="_Bw2s0IguEeiVOfuwFtjBNw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Bw3T4YguEeiVOfuwFtjBNw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Bw3T4oguEeiVOfuwFtjBNw" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_Bw3T44guEeiVOfuwFtjBNw" name="pFields" type="_8U4zYIgtEeiVOfuwFtjBNw" aggregation="shared" association="_Bw2s0IguEeiVOfuwFtjBNw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Bw3T5IguEeiVOfuwFtjBNw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Bw3T5YguEeiVOfuwFtjBNw" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_DmjqMIguEeiVOfuwFtjBNw" name="PFieldGroup" visibility="public"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_FUDGwIguEeiVOfuwFtjBNw" memberEnd="_FUDGwYguEeiVOfuwFtjBNw _FUDGxIguEeiVOfuwFtjBNw" navigableOwnedEnd="_FUDGxIguEeiVOfuwFtjBNw">
+      <ownedEnd xmi:id="_FUDGwYguEeiVOfuwFtjBNw" name="pFields" type="_8U4zYIgtEeiVOfuwFtjBNw" association="_FUDGwIguEeiVOfuwFtjBNw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FUDGwoguEeiVOfuwFtjBNw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FUDGw4guEeiVOfuwFtjBNw" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_FUDGxIguEeiVOfuwFtjBNw" name="pFieldGroups" type="_DmjqMIguEeiVOfuwFtjBNw" association="_FUDGwIguEeiVOfuwFtjBNw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FUDGxYguEeiVOfuwFtjBNw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FUDGxoguEeiVOfuwFtjBNw" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_p7bd4IgvEeiVOfuwFtjBNw" name="internal">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_sCKg4IgvEeiVOfuwFtjBNw" client="_p7bd4IgvEeiVOfuwFtjBNw" supplier="_jEHIIIgsEeiVOfuwFtjBNw"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_st9P4IgvEeiVOfuwFtjBNw" client="_p7bd4IgvEeiVOfuwFtjBNw" supplier="_yNBykIgtEeiVOfuwFtjBNw"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_z36VIIgvEeiVOfuwFtjBNw" name="FlyViewModelImporter" visibility="public">
+      <ownedOperation xmi:id="_1orIIIgvEeiVOfuwFtjBNw" name="importViewModels"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_D5I9EIgwEeiVOfuwFtjBNw" name="CodeLevelViewModelRegister" visibility="public">
+      <ownedOperation xmi:id="_D5I9EYgwEeiVOfuwFtjBNw" name="registerFlyViewModelsFromEnumClass"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_esMv4IgwEeiVOfuwFtjBNw" memberEnd="_esMv4YgwEeiVOfuwFtjBNw _esMv5IgwEeiVOfuwFtjBNw" navigableOwnedEnd="_esMv5IgwEeiVOfuwFtjBNw">
+      <ownedEnd xmi:id="_esMv4YgwEeiVOfuwFtjBNw" name="codeLevelViewModelRegisters" type="_D5I9EIgwEeiVOfuwFtjBNw" association="_esMv4IgwEeiVOfuwFtjBNw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_esMv4ogwEeiVOfuwFtjBNw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_esMv44gwEeiVOfuwFtjBNw" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_esMv5IgwEeiVOfuwFtjBNw" name="flyViewModelBuilders" type="_NXvF0IgtEeiVOfuwFtjBNw" association="_esMv4IgwEeiVOfuwFtjBNw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_esMv5YgwEeiVOfuwFtjBNw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_esMv5ogwEeiVOfuwFtjBNw" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_iGJuQIgwEeiVOfuwFtjBNw" memberEnd="_iGKVUIgwEeiVOfuwFtjBNw _iGKVU4gwEeiVOfuwFtjBNw" navigableOwnedEnd="_iGKVU4gwEeiVOfuwFtjBNw">
+      <ownedEnd xmi:id="_iGKVUIgwEeiVOfuwFtjBNw" name="codeLevelViewModelRegisters" type="_D5I9EIgwEeiVOfuwFtjBNw" association="_iGJuQIgwEeiVOfuwFtjBNw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iGKVUYgwEeiVOfuwFtjBNw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iGKVUogwEeiVOfuwFtjBNw" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_iGKVU4gwEeiVOfuwFtjBNw" name="flyMemoryViewModels" type="_Cyu2AIgtEeiVOfuwFtjBNw" association="_iGJuQIgwEeiVOfuwFtjBNw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iGKVVIgwEeiVOfuwFtjBNw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iGKVVYgwEeiVOfuwFtjBNw" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_zWcKUIgwEeiVOfuwFtjBNw" name="webui.control"/>
+</uml:Model>
