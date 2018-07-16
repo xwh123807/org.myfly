@@ -52,11 +52,19 @@ public enum MyElement_zh_CN {
 	@FlyElement(columnName = "IncludedTab", name = "包含页", dataType = FlyDataType.ID, fieldLength = 32)
 	includedTab,
 	//
-	@FlyElement(columnName = "Reference_ID", name = "引用", description = "系统引用", help = "The Reference indicates the type of reference field", //
-			dataType = FlyDataType.Table, entityType = "D", printName = "引用", fieldLength = 22)
+	@FlyElement(columnName = "ReferenceID", name = "引用", description = "系统引用", help = "The Reference indicates the type of reference field", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "引用", fieldLength = 32)
 	referenceID,
 	//
-	@FlyElement(columnName = "Table_ID", name = "表", description = "字段所在表", help = "The Table indicates the table in which a field or fields reside.", //
-			dataType = FlyDataType.Table, entityType = "D", printName = "表", fieldLength = 22)
+	@FlyElement(columnName = "TableID", name = "表", description = "字段所在表", help = "The Table indicates the table in which a field or fields reside.", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "表", fieldLength = 32)
 	tableID,
+	//
+	@FlyElement(columnName = "WindowID", name = "窗口", description = "窗口", help = "", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "窗口", fieldLength = 32)
+	windowID,
+	//
+	@FlyElement(columnName = "TableStyle", name = "表格样式", description = "", help = "", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "表格样式", fieldLength = 40)
+	tableStyle
 }

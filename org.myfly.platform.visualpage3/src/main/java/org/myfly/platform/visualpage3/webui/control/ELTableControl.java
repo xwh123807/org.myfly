@@ -17,21 +17,8 @@ public class ELTableControl extends BaseTableControl{
 		super(tab);
 	}
 
-	/**
-	 * 
-	 */
-	private String model = "tableData";
-
-
-	public String getModel() {
-		return model;
-	}
-
-	public void setModel(String model) {
-		this.model = model;
-	}
-
-	public String html() {
+	@Override
+	public String htmlForView() {
 		String html = MessageFormat.format(VueConstants.EL_TABLE_VIEW_HTML, getModel(),
 				HtmlUtils.addAttrs(getTableAttrs()), getBodyHtml());
 		return html;
@@ -42,6 +29,11 @@ public class ELTableControl extends BaseTableControl{
 		getTab().getFields().values().forEach(item -> {
 			String label = item.getName();
 			String model = item.getFlyColumn().getApiName();
+			if (item.getFlyColumn().isRefTableColumn()) {
+				model += "." + item.getFlyColumn().getRefDisplayColumn();
+			}else if (item.getFlyColumn().isRefListColumn()) {
+				model += ".name";
+			}
 			result.append(MessageFormat.format(VueConstants.EL_COLUMN_VIEW_HTML, model, label)).append("\n");
 		});
 		return result.toString();

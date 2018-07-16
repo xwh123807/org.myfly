@@ -154,5 +154,116 @@
       </ownedEnd>
     </packagedElement>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_zWcKUIgwEeiVOfuwFtjBNw" name="webui.control"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_zWcKUIgwEeiVOfuwFtjBNw" name="webui.control">
+    <packagedElement xmi:type="uml:Class" xmi:id="_aRV5cIjFEei6ztRrT-EcAQ" name="BaseControl" visibility="public" isAbstract="true">
+      <ownedOperation xmi:id="_v2Ks0IjFEei6ztRrT-EcAQ" name="html"/>
+      <ownedOperation xmi:id="_beOt4IjGEei6ztRrT-EcAQ" name="htmlForEdit" isAbstract="true"/>
+      <ownedOperation xmi:id="_eFXvQIjGEei6ztRrT-EcAQ" name="htmlForView" isAbstract="true"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_c1GPoIjFEei6ztRrT-EcAQ" name="BaseFieldControl" visibility="public" isAbstract="true">
+      <generalization xmi:id="_yw9C8IjFEei6ztRrT-EcAQ" general="_aRV5cIjFEei6ztRrT-EcAQ"/>
+      <ownedOperation xmi:id="_j2sNoIjGEei6ztRrT-EcAQ" name="getModel"/>
+      <ownedOperation xmi:id="_lGMtsIjGEei6ztRrT-EcAQ" name="getPlaceholder"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ftGXgIjFEei6ztRrT-EcAQ" name="BaseTableControl" visibility="public">
+      <generalization xmi:id="_8UGNIIjFEei6ztRrT-EcAQ" general="_aRV5cIjFEei6ztRrT-EcAQ"/>
+      <ownedOperation xmi:id="_V2iTUIjLEei6ztRrT-EcAQ" name="htmlForEdit"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_pZEtkIjFEei6ztRrT-EcAQ" name="ViewMode" visibility="public">
+      <ownedLiteral xmi:id="_rA0HcIjFEei6ztRrT-EcAQ" name="EDIT">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_rA3KwIjFEei6ztRrT-EcAQ"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_sH1Z4IjFEei6ztRrT-EcAQ" name="VIEW">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_sH1Z4YjFEei6ztRrT-EcAQ" value="1"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_s66coIjFEei6ztRrT-EcAQ" name="PRINT">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_s67DsIjFEei6ztRrT-EcAQ" value="2"/>
+      </ownedLiteral>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_u5N8YIjFEei6ztRrT-EcAQ" memberEnd="_u5N8YYjFEei6ztRrT-EcAQ _u5OjcojFEei6ztRrT-EcAQ" navigableOwnedEnd="_u5OjcojFEei6ztRrT-EcAQ">
+      <ownedEnd xmi:id="_u5N8YYjFEei6ztRrT-EcAQ" name="baseControls" type="_aRV5cIjFEei6ztRrT-EcAQ" association="_u5N8YIjFEei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_u5OjcIjFEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_u5OjcYjFEei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_u5OjcojFEei6ztRrT-EcAQ" name="viewModes" type="_pZEtkIjFEei6ztRrT-EcAQ" association="_u5N8YIjFEei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_u5PKgIjFEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_u5PKgYjFEei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_15rHYIjFEei6ztRrT-EcAQ" name="FField" visibility="public"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_4c4rAIjFEei6ztRrT-EcAQ" memberEnd="_4c4rAYjFEei6ztRrT-EcAQ _4c5SEojFEei6ztRrT-EcAQ" navigableOwnedEnd="_4c5SEojFEei6ztRrT-EcAQ">
+      <ownedEnd xmi:id="_4c4rAYjFEei6ztRrT-EcAQ" name="baseFieldControls" type="_c1GPoIjFEei6ztRrT-EcAQ" association="_4c4rAIjFEei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4c5SEIjFEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4c5SEYjFEei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_4c5SEojFEei6ztRrT-EcAQ" name="fFields" type="_15rHYIjFEei6ztRrT-EcAQ" association="_4c4rAIjFEei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4c5SE4jFEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4c5SFIjFEei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_6l_skIjFEei6ztRrT-EcAQ" name="FTab" visibility="public"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_71jP8IjFEei6ztRrT-EcAQ" memberEnd="_71j3AIjFEei6ztRrT-EcAQ _71keEIjFEei6ztRrT-EcAQ" navigableOwnedEnd="_71keEIjFEei6ztRrT-EcAQ">
+      <ownedEnd xmi:id="_71j3AIjFEei6ztRrT-EcAQ" name="baseTableControls" type="_ftGXgIjFEei6ztRrT-EcAQ" association="_71jP8IjFEei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_71j3AYjFEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_71j3AojFEei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_71keEIjFEei6ztRrT-EcAQ" name="fTabs" type="_6l_skIjFEei6ztRrT-EcAQ" association="_71jP8IjFEei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_71keEYjFEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_71keEojFEei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_j3AyMIjQEei6ztRrT-EcAQ" name="ELTableControl" visibility="public">
+      <generalization xmi:id="_oR-hoIjQEei6ztRrT-EcAQ" general="_ftGXgIjFEei6ztRrT-EcAQ"/>
+      <ownedOperation xmi:id="_zCQ0YIjQEei6ztRrT-EcAQ" name="htmlForView" isAbstract="true"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_mJPTgIjQEei6ztRrT-EcAQ" name="DTTableControl" visibility="public">
+      <generalization xmi:id="_owPK8IjQEei6ztRrT-EcAQ" general="_ftGXgIjFEei6ztRrT-EcAQ"/>
+      <ownedOperation xmi:id="_zPNrQIjQEei6ztRrT-EcAQ" name="htmlForView" isAbstract="true"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_qvzO8IjQEei6ztRrT-EcAQ" name="TableStyle" visibility="public">
+      <ownedLiteral xmi:id="_tvEccIjQEei6ztRrT-EcAQ" name="ELTable">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_tvEccYjQEei6ztRrT-EcAQ"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_u0d-QIjQEei6ztRrT-EcAQ" name="DTTable">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_u0elUIjQEei6ztRrT-EcAQ" value="1"/>
+      </ownedLiteral>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_sxZ6UIjQEei6ztRrT-EcAQ" memberEnd="_sxahYIjQEei6ztRrT-EcAQ _sxahY4jQEei6ztRrT-EcAQ" navigableOwnedEnd="_sxahY4jQEei6ztRrT-EcAQ">
+      <ownedEnd xmi:id="_sxahYIjQEei6ztRrT-EcAQ" name="baseTableControls" type="_ftGXgIjFEei6ztRrT-EcAQ" association="_sxZ6UIjQEei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sxahYYjQEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sxahYojQEei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_sxahY4jQEei6ztRrT-EcAQ" name="tableStyles" type="_qvzO8IjQEei6ztRrT-EcAQ" association="_sxZ6UIjQEei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sxbIcIjQEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sxbIcYjQEei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_5dImEIjQEei6ztRrT-EcAQ" name="webui.view">
+    <packagedElement xmi:type="uml:Class" xmi:id="_94DSMIjQEei6ztRrT-EcAQ" name="BaseView" visibility="public" isAbstract="true">
+      <ownedAttribute xmi:id="_y9TmcIjREei6ztRrT-EcAQ" name="viewName" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y9TmcYjREei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_y9TmcojREei6ztRrT-EcAQ" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_kqK4AIjREei6ztRrT-EcAQ" name="html" isAbstract="true"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="__8q1UIjQEei6ztRrT-EcAQ" name="ListView" visibility="public">
+      <generalization xmi:id="_DFckIIjREei6ztRrT-EcAQ" general="_94DSMIjQEei6ztRrT-EcAQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Bka2QIjREei6ztRrT-EcAQ" name="FormView" visibility="public">
+      <generalization xmi:id="_D-7w4IjREei6ztRrT-EcAQ" general="_94DSMIjQEei6ztRrT-EcAQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_VZxQEIjREei6ztRrT-EcAQ" name="FlyViewModel" visibility="public"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_X2o7IIjREei6ztRrT-EcAQ" memberEnd="_X2o7IYjREei6ztRrT-EcAQ _X2o7JIjREei6ztRrT-EcAQ" navigableOwnedEnd="_X2o7JIjREei6ztRrT-EcAQ">
+      <ownedEnd xmi:id="_X2o7IYjREei6ztRrT-EcAQ" name="baseViews" type="_94DSMIjQEei6ztRrT-EcAQ" association="_X2o7IIjREei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_X2o7IojREei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_X2o7I4jREei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_X2o7JIjREei6ztRrT-EcAQ" name="flyViewModels" type="_VZxQEIjREei6ztRrT-EcAQ" association="_X2o7IIjREei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_X2piMIjREei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_X2piMYjREei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
 </uml:Model>

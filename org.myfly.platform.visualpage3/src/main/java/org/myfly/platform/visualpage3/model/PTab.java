@@ -10,6 +10,7 @@ import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
 import org.myfly.platform.core3.metadata.annotation.FlyReferences;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
 import org.myfly.platform.visualpage3.service.IFlyViewTab;
+import org.myfly.platform.visualpage3.webui.TableStyle;
 
 @Entity
 @Table
@@ -95,6 +96,9 @@ public class PTab extends FlyMetaEntity implements IFlyViewTab {
 
 	@Column(name = "WhereClause")
 	private String whereClause;
+	
+	@Column(name="TableStyle")
+	private TableStyle tableStyle;
 
 	/*
 	 * (non-Javadoc)
@@ -526,6 +530,14 @@ public class PTab extends FlyMetaEntity implements IFlyViewTab {
 	@Override
 	public void setTabID(String tabID) {
 		this.tabID = tabID;
+	}
+
+	public TableStyle getTableStyle() {
+		return tableStyle;
+	}
+
+	public void setTableStyle(TableStyle tableStyle) {
+		this.tableStyle = tableStyle;
 	}
 
 }

@@ -154,9 +154,6 @@ public class FlyDataModelBuilder extends AbstractBuilder<PTable, FlyDataModel> {
 			column.setFieldLength(col.length());
 			column.setIsMandatory(col.nullable());
 		}
-		if (StringUtils.isBlank(column.getName())) {
-			column.setName(column.getApiName());
-		}
 		if (StringUtils.isBlank(column.getColumnName())) {
 			column.setColumnName(StringUtil.getHibernateName(column.getApiName()));
 		}

@@ -1,7 +1,7 @@
 package org.myfly.platform.visualpage3.define;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
@@ -34,7 +34,7 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 		result.setEntityType(anno.entityTpye());
 		result.setWindowType(anno.windowType());
 		FlyEntityUtils.updateFlyEntityForSystem(result);
-		result.setTabs(new HashMap<>());
+		result.setTabs(new LinkedHashMap<>());
 		FlyTab[] tabAnnos = anno.tabs();
 		for (FlyTab tabAnno : tabAnnos) {
 			FTab tab = buildTab(tabAnno);
@@ -51,8 +51,9 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 		result.setDescription(anno.description());
 		result.setHelp(anno.help());
 		result.setTable(AppUtil.getFlyDataModel(anno.table()));
+		result.setTableStyle(anno.tableStyle());
 		FlyEntityUtils.updateFlyEntityForSystem(result);
-		result.setFields(new HashMap<>());
+		result.setFields(new LinkedHashMap<>());
 		buildFields(result, anno.fieldGroup());
 		return result;
 	}

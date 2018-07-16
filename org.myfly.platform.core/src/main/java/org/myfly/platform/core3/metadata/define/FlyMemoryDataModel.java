@@ -1,9 +1,9 @@
 package org.myfly.platform.core3.metadata.define;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ClassUtils;
@@ -54,12 +54,12 @@ public class FlyMemoryDataModel {
 	private Map<String, FlyDataModel> flyDataModels;
 
 	private FlyMemoryDataModel() {
-		flyDataModels = new ConcurrentHashMap<>();
-		entityTypes = new ConcurrentHashMap<>();
-		elements = new ConcurrentHashMap<>();
-		refTables = new ConcurrentHashMap<>();
-		refLists = new ConcurrentHashMap<>();
-		dataTypes = new ConcurrentHashMap<>();
+		flyDataModels = new LinkedHashMap<>();
+		entityTypes = new LinkedHashMap<>();
+		elements = new LinkedHashMap<>();
+		refTables = new LinkedHashMap<>();
+		refLists = new LinkedHashMap<>();
+		dataTypes = new LinkedHashMap<>();
 	}
 
 	public static FlyMemoryDataModel getInstance() {
@@ -209,7 +209,7 @@ public class FlyMemoryDataModel {
 
 	/**
 	 * 更新数据模型关联属性 <br>
-	 * 1、PColumn.element和elementID <br>
+	 * 1、获取列对应的系统元素，PColumn.element和elementID <br>
 	 * 
 	 * @param item
 	 * @return
@@ -238,7 +238,15 @@ public class FlyMemoryDataModel {
 						// 表类型
 						updateElementRefTable(item.getApiName(), column, errors);
 					}
+					//从系统元素复制元素的属性
 					copyFieldPropertyFromElement(column);
+					//引用表类型为当前实体，则将类型值为ID
+					if (column.isRefTableColumn()) {
+						if (column.getElement().getRefTable().getTableClassName().equals(item.getApiName())) {
+							column.setDataType(FlyDataType.ID);
+							column.setValueHandler(ValueHandlerFactory.getValueHandler(column));
+						}
+					}
 				} else {
 					errors.add("实体[" + item.getApiName() + "]的列[" + column.getApiName() + "]没有对应的element");
 				}
@@ -247,6 +255,11 @@ public class FlyMemoryDataModel {
 		return errors;
 	}
 
+	/**
+	 * 更新引用表定义
+	 * @param dataModel
+	 * @param errors
+	 */
 	private void updateRefTable(FlyDataModel dataModel, List<String> errors) {
 		FRefTable refTable = getRefTableByTable(dataModel.getApiName());
 		if (refTable != null) {
@@ -266,6 +279,10 @@ public class FlyMemoryDataModel {
 		}
 	}
 
+	/**
+	 * 从系统元素复制属性到字段
+	 * @param column
+	 */
 	private void copyFieldPropertyFromElement(FlyColumn column) {
 		FElement element = column.getElement();
 		Assert.notNull(element);

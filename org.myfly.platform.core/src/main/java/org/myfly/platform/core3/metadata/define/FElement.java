@@ -104,7 +104,7 @@ public class FElement extends PElement implements IDefinition {
 	public void setRefTable(FRefTable refTable) {
 		this.refTable = refTable;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "apiName: " + getApiName() + ", name: " + getName() + ", dataType: " + getDataType() + ", columnName: "

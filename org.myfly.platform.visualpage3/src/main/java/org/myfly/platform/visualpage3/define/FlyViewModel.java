@@ -7,6 +7,8 @@ import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.define.IDefinition;
 import org.myfly.platform.visualpage3.model.PWindow;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class FlyViewModel extends PWindow implements IDefinition {
 
 	/**
@@ -17,7 +19,7 @@ public class FlyViewModel extends PWindow implements IDefinition {
 	private boolean isFromDB;
 
 	private Map<String, FTab> tabs;
-
+	
 	@Override
 	public String getKey() {
 		return getApiName();
@@ -89,4 +91,9 @@ public class FlyViewModel extends PWindow implements IDefinition {
 		return result;
 	}
 
+	@JsonIgnore
+	public FTab getMainTab() {
+		String firtTabName = getTabs().keySet().toArray(new String[] {})[0];
+		return getTabs().get(firtTabName);
+	}
 }

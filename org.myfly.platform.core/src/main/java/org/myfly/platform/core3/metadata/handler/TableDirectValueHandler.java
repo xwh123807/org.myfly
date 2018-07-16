@@ -9,16 +9,10 @@ import org.myfly.platform.core3.metadata.define.FlyDataModel;
 
 public class TableDirectValueHandler extends DefaultValueHandler {
 	private FRefTable refTable;
-	// 指向当前实体
-	private boolean isSelf;
 	private FlyDataModel refDataModel;
 
 	private FRefTable getRefTable() {
 		return this.refTable;
-	}
-
-	private boolean isSelf() {
-		return this.isSelf;
 	}
 
 	private FlyDataModel getRefDataModel() {
@@ -31,15 +25,12 @@ public class TableDirectValueHandler extends DefaultValueHandler {
 	public TableDirectValueHandler(FlyColumn column) {
 		super(column);
 		refTable = column.getElement().getRefTable();
-		if (refTable != null) {
-			isSelf = getRefTable().getTableClassName().equals(column.getParent().getApiName());
-		}
 	}
 
 	@Override
 	public Object getFieldValueForEntity(Object entity) {
 		String keyValue = (String) super.getFieldValueForEntity(entity);
-		if (refTable != null && !isSelf() && StringUtils.isNotBlank(keyValue)) {
+		if (refTable != null && StringUtils.isNotBlank(keyValue)) {
 			FlyEntityMap result = new FlyEntityMap();
 			result.put(getRefTable().getKeyColumnName(), keyValue);
 			Object value = AppUtil.getIDNameService().getNameValue(getRefDataModel().getTableName(),

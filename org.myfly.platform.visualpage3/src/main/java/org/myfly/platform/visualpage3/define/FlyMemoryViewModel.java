@@ -1,8 +1,8 @@
 package org.myfly.platform.visualpage3.define;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.myfly.platform.core3.metadata.define.IDefinition;
@@ -13,7 +13,7 @@ public class FlyMemoryViewModel {
 	private Map<String, FlyViewModel> viewModels;
 
 	private FlyMemoryViewModel() {
-		viewModels = new ConcurrentHashMap<>();
+		viewModels = new LinkedHashMap<>();
 	}
 
 	public static FlyMemoryViewModel getInstance() {

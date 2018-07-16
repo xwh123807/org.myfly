@@ -3,6 +3,7 @@ package org.myfly.platform.core3.metadata.define;
 import java.lang.reflect.Method;
 
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.model.PColumn;
 import org.springframework.util.Assert;
@@ -67,7 +68,6 @@ public class FlyColumn extends PColumn implements IDefinition {
 
 	public void validate() {
 		Assert.hasLength(getApiName(), "属性[apiName]不能为空");
-		Assert.hasLength(getName(), "属性[name]不能为空");
 		Assert.hasLength(getColumnName(), "属性[columnName]不能为空");
 		Assert.notNull(getGetter(), "属性[Getter]不能为空");
 		Assert.notNull(getSetter(), "属性[Setter]不能为空");
@@ -168,5 +168,37 @@ public class FlyColumn extends PColumn implements IDefinition {
 	 */
 	public void setParent(FlyDataModel parent) {
 		this.parent = parent;
+	}
+	
+	/**
+	 * 获取引用表关联列
+	 * @return
+	 */
+	public String getRefKeyColumn() {
+		return (getElement().getRefTable() != null) ? getElement().getRefTable().getKeyColumnName() : "";
+	}
+	
+	/**
+	 * 获取引用表显示列
+	 * @return
+	 */
+	public String getRefDisplayColumn() {
+		return (getElement().getRefTable() != null) ? getElement().getRefTable().getDisplayColumnName() : "";
+	}
+
+	/**
+	 * 判断列是否为引用表列类型
+	 * @return
+	 */
+	public boolean isRefTableColumn() {
+		return FlyDataType.Table.equals(getDataType()) || FlyDataType.TableDirect.equals(getDataType());
+	}
+
+	/**
+	 * 判断是否为引用值列类型
+	 * @return
+	 */
+	public boolean isRefListColumn() {
+		return FlyDataType.List.equals(getDataType());
 	}
 }

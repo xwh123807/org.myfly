@@ -92,6 +92,7 @@ public class FTab extends PTab implements IDefinition {
 		result.setTabID(getTabID());
 		result.setTableID(getTableID());
 		result.setEntityType(getEntityType());
+		result.setTableStyle(getTableStyle());
 		FlyEntityUtils.copyFlyMetaFields(result, this);
 		return result;
 	}
