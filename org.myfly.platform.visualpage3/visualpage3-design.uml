@@ -250,6 +250,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="__8q1UIjQEei6ztRrT-EcAQ" name="ListView" visibility="public">
       <generalization xmi:id="_DFckIIjREei6ztRrT-EcAQ" general="_94DSMIjQEei6ztRrT-EcAQ"/>
+      <ownedOperation xmi:id="_3BctUIj9EeiVOfuwFtjBNw" name="html" isAbstract="true"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_Bka2QIjREei6ztRrT-EcAQ" name="FormView" visibility="public">
       <generalization xmi:id="_D-7w4IjREei6ztRrT-EcAQ" general="_94DSMIjQEei6ztRrT-EcAQ"/>

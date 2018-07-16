@@ -14,12 +14,11 @@ public class CheckBoxControl extends BaseFieldControl{
 
 	@Override
 	public String htmlForEdit() {
-		return MessageFormat.format(VueConstants.CHECKBOX_EDIT_HTML, getPlaceholder(), getModel());
+		return MessageFormat.format(VueConstants.CHECKBOX_EDIT_HTML, getPlaceholder(), getModel(), getField().getName());
 	}
 
 	@Override
 	public String htmlForView() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

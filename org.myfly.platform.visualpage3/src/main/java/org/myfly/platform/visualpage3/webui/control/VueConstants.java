@@ -16,7 +16,7 @@ public class VueConstants {
 	
 	public static final String TEXTAREA_EDIT_HTML = "<el-input type=\"textarea\" placeholder=\"{0}\" v-model=\"{1}\"></el-input>";
 	
-	public static final String CHECKBOX_EDIT_HTML = "<el-switch placeholder=\"{0}\" v-model=\"{1}\"></el-switch>";
+	public static final String CHECKBOX_EDIT_HTML = "<el-switch placeholder=\"{0}\" v-model=\"{1}\" active-text=\"{2}\"></el-switch>";
 	
 	public static final String EMAIL_EDIT_HTML = "<el-input type=\"email\" placeholder=\"{0}\" v-model=\"{1}\"></el-input>";
 	

@@ -1,4 +1,4 @@
-package org.myfly.platform.visualpage3.webui;
+package org.myfly.platform.visualpage3.internal;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +7,7 @@ import java.util.Map;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
 import org.myfly.platform.core3.flydata.service.IFlyDataService;
 import org.myfly.platform.visualpage3.service.ITemplateService;
+import org.myfly.platform.visualpage3.webui.ViewMode;
 import org.myfly.platform.visualpage3.webui.view.Window;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -105,7 +106,7 @@ public class VisualPage3Controller {
 		return view;
 	}
 	
-	@GetMapping("form/{windowName}")
+	@GetMapping("list/{windowName}")
 	public ModelAndView vueListView(@PathVariable(name = "windowName") String windowName) {
 		String viewName = templateService.getListViewTempalte(windowName, ViewMode.VIEW);
 		ModelAndView result = getModelAndView(windowName, "新增", viewName);

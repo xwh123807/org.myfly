@@ -28,4 +28,6 @@ public abstract class BaseView {
 	public void setViewMode(ViewMode viewMode) {
 		this.viewMode = viewMode;
 	}
+	
+	public abstract String html();
 }

@@ -70,7 +70,7 @@ public class Window {
 	public String toFile() {
 		String viewName = "windows/" + getViewModel().getApiName() + ".html";
 		File file = new File(
-				"/xwh.work/git/org.myfly/org.myfly.platform.visualpage3/target/classes/templates/" + viewName);
+				System.getProperty("user.dir") + "/target/classes/templates/" + viewName);
 		try {
 			FileUtils.writeStringToFile(file, html());
 		} catch (IOException e) {

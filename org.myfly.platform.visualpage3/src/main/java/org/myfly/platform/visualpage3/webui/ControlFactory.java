@@ -32,9 +32,6 @@ public class ControlFactory {
 		case DateTime:
 			result = new DateTimeControl(field, viewMode);
 			break;
-		case String:
-			result = new TextControl(field, viewMode);
-			break;
 		case Text:
 		case LongText:
 			result = new TextAreaControl(field, viewMode);
@@ -48,14 +45,17 @@ public class ControlFactory {
 		case URL:
 			result = new UrlControl(field, viewMode);
 			break;
+		case String:
 		default:
+			result = new TextControl(field, viewMode);
 			break;
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 获取表格控件
+	 * 
 	 * @param tab
 	 * @return
 	 */
