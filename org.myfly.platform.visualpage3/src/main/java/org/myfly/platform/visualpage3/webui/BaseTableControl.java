@@ -20,7 +20,8 @@ public abstract class BaseTableControl extends BaseControl{
 	 */
 	private String model = "tableData";
 
-	public BaseTableControl(FTab tab) {
+	public BaseTableControl(FTab tab, ViewMode viewMode) {
+		super(viewMode);
 		this.setTab(tab);
 	}
 

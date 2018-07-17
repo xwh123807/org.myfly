@@ -5,6 +5,7 @@ import java.text.MessageFormat;
 import org.myfly.platform.core.utils.HtmlUtils;
 import org.myfly.platform.visualpage3.define.FTab;
 import org.myfly.platform.visualpage3.webui.BaseTableControl;
+import org.myfly.platform.visualpage3.webui.ViewMode;
 
 /**
  * el-table表格控件
@@ -14,7 +15,7 @@ import org.myfly.platform.visualpage3.webui.BaseTableControl;
  */
 public class ELTableControl extends BaseTableControl{
 	public ELTableControl(FTab tab) {
-		super(tab);
+		super(tab, ViewMode.EDIT);
 	}
 
 	@Override

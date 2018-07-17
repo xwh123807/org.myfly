@@ -87,6 +87,62 @@
       <ownedEnd xmi:id="_6aw-IYgvEeiVOfuwFtjBNw" type="_Sqg8IIgvEeiVOfuwFtjBNw" association="_6aw-IIgvEeiVOfuwFtjBNw"/>
       <ownedEnd xmi:id="_6aw-IogvEeiVOfuwFtjBNw" type="_z36VIIgvEeiVOfuwFtjBNw" association="_6aw-IIgvEeiVOfuwFtjBNw"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_JiF1AIlhEei6ztRrT-EcAQ" name="实体列表窗口">
+      <include xmi:id="_Bu5JAIliEei6ztRrT-EcAQ" addition="_TgxEoIlhEei6ztRrT-EcAQ"/>
+      <include xmi:id="_egqOwIljEei6ztRrT-EcAQ" addition="_Y3tpQIljEei6ztRrT-EcAQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_OynTcIlhEei6ztRrT-EcAQ" memberEnd="_Oyn6gIlhEei6ztRrT-EcAQ _Oyn6gYlhEei6ztRrT-EcAQ">
+      <ownedEnd xmi:id="_Oyn6gIlhEei6ztRrT-EcAQ" type="_vhkccIguEeiVOfuwFtjBNw" association="_OynTcIlhEei6ztRrT-EcAQ"/>
+      <ownedEnd xmi:id="_Oyn6gYlhEei6ztRrT-EcAQ" type="_JiF1AIlhEei6ztRrT-EcAQ" association="_OynTcIlhEei6ztRrT-EcAQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_TgxEoIlhEei6ztRrT-EcAQ" name="实体单屏窗口，用于新增、修改、查看">
+      <include xmi:id="_XCDvMIljEei6ztRrT-EcAQ" addition="_Q2AcoIljEei6ztRrT-EcAQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_XWSksIlhEei6ztRrT-EcAQ" memberEnd="_XWSksYlhEei6ztRrT-EcAQ _XWSksolhEei6ztRrT-EcAQ">
+      <ownedEnd xmi:id="_XWSksYlhEei6ztRrT-EcAQ" type="_vhkccIguEeiVOfuwFtjBNw" association="_XWSksIlhEei6ztRrT-EcAQ"/>
+      <ownedEnd xmi:id="_XWSksolhEei6ztRrT-EcAQ" type="_TgxEoIlhEei6ztRrT-EcAQ" association="_XWSksIlhEei6ztRrT-EcAQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_Yyj48IliEei6ztRrT-EcAQ" name="列表工具栏">
+      <include xmi:id="_zoqYsIliEei6ztRrT-EcAQ" addition="_euE1IIliEei6ztRrT-EcAQ"/>
+      <include xmi:id="_0QktQIliEei6ztRrT-EcAQ" addition="_uvki0IliEei6ztRrT-EcAQ"/>
+      <include xmi:id="_06TmwIliEei6ztRrT-EcAQ" addition="_f4FxMIliEei6ztRrT-EcAQ"/>
+      <include xmi:id="_3WjmwIliEei6ztRrT-EcAQ" addition="_iFuGYIliEei6ztRrT-EcAQ"/>
+      <include xmi:id="_4ATHUIliEei6ztRrT-EcAQ" addition="_jopRsIliEei6ztRrT-EcAQ"/>
+      <include xmi:id="_66j5AIliEei6ztRrT-EcAQ" addition="_4o8bsIliEei6ztRrT-EcAQ"/>
+      <include xmi:id="_EGHpoIljEei6ztRrT-EcAQ" addition="__C4ZQIliEei6ztRrT-EcAQ"/>
+      <include xmi:id="_Epe1YIljEei6ztRrT-EcAQ" addition="_Ab724IljEei6ztRrT-EcAQ"/>
+      <include xmi:id="_LZBPgIljEei6ztRrT-EcAQ" addition="_IT4DgIljEei6ztRrT-EcAQ"/>
+      <include xmi:id="_tcAMsIljEei6ztRrT-EcAQ" addition="_pl2agIljEei6ztRrT-EcAQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_euE1IIliEei6ztRrT-EcAQ" name="新增"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_f4FxMIliEei6ztRrT-EcAQ" name="复制新增"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_iFuGYIliEei6ztRrT-EcAQ" name="删除"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_jopRsIliEei6ztRrT-EcAQ" name="批量删除"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_nVYCIIliEei6ztRrT-EcAQ" memberEnd="_nVYpMIliEei6ztRrT-EcAQ _nVYpMYliEei6ztRrT-EcAQ">
+      <ownedEnd xmi:id="_nVYpMIliEei6ztRrT-EcAQ" type="_JiF1AIlhEei6ztRrT-EcAQ" association="_nVYCIIliEei6ztRrT-EcAQ"/>
+      <ownedEnd xmi:id="_nVYpMYliEei6ztRrT-EcAQ" type="_Yyj48IliEei6ztRrT-EcAQ" association="_nVYCIIliEei6ztRrT-EcAQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_uvki0IliEei6ztRrT-EcAQ" name="附件"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_4o8bsIliEei6ztRrT-EcAQ" name="讨论"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="__C4ZQIliEei6ztRrT-EcAQ" name="报告"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_Ab724IljEei6ztRrT-EcAQ" name="归档"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_IT4DgIljEei6ztRrT-EcAQ" name="刷新"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_Q2AcoIljEei6ztRrT-EcAQ" name="单屏工具栏">
+      <include xmi:id="_yn_wcIljEei6ztRrT-EcAQ" addition="_g5ixsIljEei6ztRrT-EcAQ"/>
+      <include xmi:id="_zLSqwIljEei6ztRrT-EcAQ" addition="_iUTfgIljEei6ztRrT-EcAQ"/>
+      <include xmi:id="__ODSAIljEei6ztRrT-EcAQ" addition="_0DJf0IljEei6ztRrT-EcAQ"/>
+      <include xmi:id="__zh9oIljEei6ztRrT-EcAQ" addition="_2WHoAIljEei6ztRrT-EcAQ"/>
+      <include xmi:id="_AasrUIlkEei6ztRrT-EcAQ" addition="_4wgm0IljEei6ztRrT-EcAQ"/>
+      <include xmi:id="_BJV6AIlkEei6ztRrT-EcAQ" addition="_8JlbcIljEei6ztRrT-EcAQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_Y3tpQIljEei6ztRrT-EcAQ" name="条件查询"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_g5ixsIljEei6ztRrT-EcAQ" name="撤销"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_iUTfgIljEei6ztRrT-EcAQ" name="保存"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_pl2agIljEei6ztRrT-EcAQ" name="帮助"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_0DJf0IljEei6ztRrT-EcAQ" name="上张"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_2WHoAIljEei6ztRrT-EcAQ" name="下张"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_4wgm0IljEei6ztRrT-EcAQ" name="首张"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_8JlbcIljEei6ztRrT-EcAQ" name="尾张"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_yNBykIgtEeiVOfuwFtjBNw" name="model">
     <packagedElement xmi:type="uml:Class" xmi:id="_4yTdcIgtEeiVOfuwFtjBNw" name="PWindow" visibility="public"/>
@@ -227,6 +283,9 @@
       <ownedLiteral xmi:id="_u0d-QIjQEei6ztRrT-EcAQ" name="DTTable">
         <specification xmi:type="uml:LiteralInteger" xmi:id="_u0elUIjQEei6ztRrT-EcAQ" value="1"/>
       </ownedLiteral>
+      <ownedLiteral xmi:id="_mBKEYIlmEei6ztRrT-EcAQ" name="Card">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_mBKEYYlmEei6ztRrT-EcAQ" value="2"/>
+      </ownedLiteral>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_sxZ6UIjQEei6ztRrT-EcAQ" memberEnd="_sxahYIjQEei6ztRrT-EcAQ _sxahY4jQEei6ztRrT-EcAQ" navigableOwnedEnd="_sxahY4jQEei6ztRrT-EcAQ">
       <ownedEnd xmi:id="_sxahYIjQEei6ztRrT-EcAQ" name="baseTableControls" type="_ftGXgIjFEei6ztRrT-EcAQ" association="_sxZ6UIjQEei6ztRrT-EcAQ">
@@ -237,6 +296,12 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sxbIcIjQEei6ztRrT-EcAQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sxbIcYjQEei6ztRrT-EcAQ" value="*"/>
       </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_x36P8IlmEei6ztRrT-EcAQ" name="ToolbarControl" visibility="public">
+      <generalization xmi:id="_03-HoIlmEei6ztRrT-EcAQ" general="_aRV5cIjFEei6ztRrT-EcAQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_53-BUIlnEei6ztRrT-EcAQ" name="Panel" visibility="public">
+      <generalization xmi:id="_9P3KMIlnEei6ztRrT-EcAQ" general="_aRV5cIjFEei6ztRrT-EcAQ"/>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_5dImEIjQEei6ztRrT-EcAQ" name="webui.view">
@@ -264,6 +329,70 @@
       <ownedEnd xmi:id="_X2o7JIjREei6ztRrT-EcAQ" name="flyViewModels" type="_VZxQEIjREei6ztRrT-EcAQ" association="_X2o7IIjREei6ztRrT-EcAQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_X2piMIjREei6ztRrT-EcAQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_X2piMYjREei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_D70wEIlhEei6ztRrT-EcAQ" name="webui.window">
+    <packagedElement xmi:type="uml:Class" xmi:id="_Iht1wIlkEei6ztRrT-EcAQ" name="ListWindowToolbar" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_LqXowIlkEei6ztRrT-EcAQ" name="ListWindow" visibility="public">
+      <generalization xmi:id="_GN-moIlmEei6ztRrT-EcAQ" general="_Aa2xcIlmEei6ztRrT-EcAQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_TesgsIlkEei6ztRrT-EcAQ" memberEnd="_TesgsYlkEei6ztRrT-EcAQ _TetHwIlkEei6ztRrT-EcAQ" navigableOwnedEnd="_TetHwIlkEei6ztRrT-EcAQ">
+      <ownedEnd xmi:id="_TesgsYlkEei6ztRrT-EcAQ" name="listWindows" type="_LqXowIlkEei6ztRrT-EcAQ" association="_TesgsIlkEei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TesgsolkEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Tesgs4lkEei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_TetHwIlkEei6ztRrT-EcAQ" name="listWindowToolbars" type="_Iht1wIlkEei6ztRrT-EcAQ" association="_TesgsIlkEei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TetHwYlkEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TetHwolkEei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Aa2xcIlmEei6ztRrT-EcAQ" name="BaseWindow" visibility="public" isAbstract="true">
+      <ownedAttribute xmi:id="_Y12rQIlnEei6ztRrT-EcAQ" name="viewName" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Y13SUIlnEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Y13SUYlnEei6ztRrT-EcAQ" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_7xLqEImFEei6ztRrT-EcAQ" name="elementID" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7xLqEYmFEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7xLqEomFEei6ztRrT-EcAQ" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_NBx1sIlmEei6ztRrT-EcAQ" name="html" isAbstract="true"/>
+      <ownedOperation xmi:id="_yPLPsImCEei6ztRrT-EcAQ" name="getToolbar"/>
+      <ownedOperation xmi:id="_ZZNmQImDEei6ztRrT-EcAQ" name="getContent"/>
+      <ownedOperation xmi:id="_kpbEUImFEei6ztRrT-EcAQ" name="getExtAttrs"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_I7JiEIlnEei6ztRrT-EcAQ" name="FilterPanel" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_K7PxkIlnEei6ztRrT-EcAQ" name="ListViewPanel" visibility="public"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_QAdX4IlnEei6ztRrT-EcAQ" memberEnd="_QAdX4YlnEei6ztRrT-EcAQ _QAd-8YlnEei6ztRrT-EcAQ" navigableOwnedEnd="_QAd-8YlnEei6ztRrT-EcAQ">
+      <ownedEnd xmi:id="_QAdX4YlnEei6ztRrT-EcAQ" name="listWindows" type="_LqXowIlkEei6ztRrT-EcAQ" association="_QAdX4IlnEei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QAdX4olnEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QAd-8IlnEei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_QAd-8YlnEei6ztRrT-EcAQ" name="filterPanels" type="_I7JiEIlnEei6ztRrT-EcAQ" association="_QAdX4IlnEei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QAd-8olnEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QAd-84lnEei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_QpwzkIlnEei6ztRrT-EcAQ" memberEnd="_QpwzkYlnEei6ztRrT-EcAQ _QpwzlIlnEei6ztRrT-EcAQ" navigableOwnedEnd="_QpwzlIlnEei6ztRrT-EcAQ">
+      <ownedEnd xmi:id="_QpwzkYlnEei6ztRrT-EcAQ" name="listWindows" type="_LqXowIlkEei6ztRrT-EcAQ" association="_QpwzkIlnEei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QpwzkolnEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Qpwzk4lnEei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_QpwzlIlnEei6ztRrT-EcAQ" name="listViewPanels" type="_K7PxkIlnEei6ztRrT-EcAQ" association="_QpwzkIlnEei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QpxaoIlnEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QpxaoYlnEei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_hJBwcIlpEei6ztRrT-EcAQ" memberEnd="_hJBwcYlpEei6ztRrT-EcAQ _hJBwdIlpEei6ztRrT-EcAQ" navigableOwnedEnd="_hJBwdIlpEei6ztRrT-EcAQ">
+      <ownedEnd xmi:id="_hJBwcYlpEei6ztRrT-EcAQ" name="listWindows" type="_LqXowIlkEei6ztRrT-EcAQ" association="_hJBwcIlpEei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hJBwcolpEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hJBwc4lpEei6ztRrT-EcAQ" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_hJBwdIlpEei6ztRrT-EcAQ" name="flyViewModels" type="_rK0JgIgsEeiVOfuwFtjBNw" association="_hJBwcIlpEei6ztRrT-EcAQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hJBwdYlpEei6ztRrT-EcAQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hJBwdolpEei6ztRrT-EcAQ" value="*"/>
       </ownedEnd>
     </packagedElement>
   </packagedElement>

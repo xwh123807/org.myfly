@@ -44,4 +44,9 @@ public @interface FlyTable {
 	boolean isView() default false;
 	
 	boolean isCentrallyMaintained() default false;
+	/**
+	 * 显示列
+	 * @return
+	 */
+	String displayColumn() default "name";
 }

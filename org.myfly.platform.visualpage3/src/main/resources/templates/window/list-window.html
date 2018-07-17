@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title th:text="|${pageInfo.title} - ${pageInfo.subTitle}|">list window
+	template</title>
+<link rel="stylesheet" th:href="@{/assets/css/element-ui-2.4.3.css}"
+	href="/assets/css/element-ui-2.4.3.css">
+<script th:src="@{/assets/js/vue-2.5.16.js}"
+	src="/assets/js/vue-2.5.16.js"></script>
+<script th:src="@{/assets/js/element-ui-2.4.3.js}"
+	src="/assets/js/element-ui-2.4.3.js"></script>
+<script th:src="@{/assets/js/jquery-3.3.1.js}"
+	src="/assets/js/jquery-3.3.1.js"></script>
+<script th:src="@{/assets/appjs/list-window.js}"
+	src="/assets/appjs/list-window.js"></script>	
+</head>
+<body>
+	<div id="container" th:include="${subPage}"></div>
+	<script>
+		
+	</script>
+</body>
+</html>

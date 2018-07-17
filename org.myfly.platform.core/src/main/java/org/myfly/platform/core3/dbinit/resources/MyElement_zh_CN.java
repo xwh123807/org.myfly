@@ -28,28 +28,36 @@ public enum MyElement_zh_CN {
 	keyColumn,
 	//
 	@FlyElement(columnName = "ParentColumn", name = "父列", description = "父列", //
-			dataType = FlyDataType.ID, entityType = "D", printName = "父列", fieldLength = 32)
+			dataType = FlyDataType.Table, entityType = "D", printName = "父列", fieldLength = 32)
 	parentColumn,
 	//
 	@FlyElement(columnName = "DataTypeID", name = "数据类型", description = "数据类型", //
-			dataType = FlyDataType.ID, entityType = "D", printName = "数据类型", fieldLength = 32)
+			dataType = FlyDataType.Table, entityType = "D", printName = "数据类型", fieldLength = 32)
 	dataTypeID,
 	//
+	@FlyElement(columnName = "ElementID", name = "系统元素", description = "系统元素", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "系统元素", fieldLength = 32)
+	elementID,
+	//
+	@FlyElement(columnName = "EntityTypeID", name = "实体类型", description = "实体类型", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "实体类型", fieldLength = 32)
+	entityTypeID,
+	//
 	@FlyElement(columnName = "EmailConfigID", name = "邮箱配置", description = "邮箱配置", //
-			dataType = FlyDataType.ID, entityType = "D", printName = "邮箱配置", fieldLength = 32)
+			dataType = FlyDataType.Table, entityType = "D", printName = "邮箱配置", fieldLength = 32)
 	emailConfigID,
 	//
 	@FlyElement(columnName = "ExpProcessorID", name = "导出进程", description = "导出进程", //
-			dataType = FlyDataType.ID, entityType = "D", printName = "导出进程", fieldLength = 32)
+			dataType = FlyDataType.Table, entityType = "D", printName = "导出进程", fieldLength = 32)
 	expProcessorID,
 	//
-	@FlyElement(columnName = "MasterID", name = "Master", dataType = FlyDataType.ID, fieldLength = 32)
+	@FlyElement(columnName = "MasterID", name = "Master", dataType = FlyDataType.Table, fieldLength = 32)
 	masterID,
 	//
-	@FlyElement(columnName = "DetailID", name = "Detail", dataType = FlyDataType.ID, fieldLength = 32)
+	@FlyElement(columnName = "DetailID", name = "Detail", dataType = FlyDataType.Table, fieldLength = 32)
 	detailID,
 	//
-	@FlyElement(columnName = "IncludedTab", name = "包含页", dataType = FlyDataType.ID, fieldLength = 32)
+	@FlyElement(columnName = "IncludedTab", name = "包含页", dataType = FlyDataType.Table, fieldLength = 32)
 	includedTab,
 	//
 	@FlyElement(columnName = "ReferenceID", name = "引用", description = "系统引用", help = "The Reference indicates the type of reference field", //

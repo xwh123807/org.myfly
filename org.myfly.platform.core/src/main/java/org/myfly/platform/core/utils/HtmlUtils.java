@@ -57,7 +57,7 @@ public class HtmlUtils {
 			buffer = "";
 		} else {
 			for (Entry<String, String> item : attrs.entrySet()) {
-				buffer += item.getKey();
+				buffer += " " + item.getKey();
 				if (StringUtils.isNotBlank(item.getValue())) {
 					buffer += "=\"" + item.getValue() + "\"";
 				}

@@ -77,4 +77,7 @@ public interface IFlyDataModel extends IFlyEntity, IFlyMetaEntity {
 
 	void setWindowID(String windowID);
 
+	String getDisplayColumn();
+	
+	void setDisplayColumn(String displayColumn);
 }

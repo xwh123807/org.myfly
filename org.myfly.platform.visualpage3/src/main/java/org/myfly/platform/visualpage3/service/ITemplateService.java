@@ -14,4 +14,6 @@ public interface ITemplateService {
 
 	String getListViewTempalte(String windowName, ViewMode view);
 
+	String getListWindowTempalte(String windowName, ViewMode view);
+
 }

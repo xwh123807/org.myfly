@@ -84,6 +84,9 @@ public class PTable extends FlyMetaEntity implements IFlyDataModel {
 
 	@Column(length = 32)
 	private String windowID;
+	
+	@Column(length = 32)
+	private String displayColumn;
 
 	/*
 	 * (non-Javadoc)
@@ -437,5 +440,15 @@ public class PTable extends FlyMetaEntity implements IFlyDataModel {
 
 	public void setWindowID(String windowID) {
 		this.windowID = windowID;
+	}
+
+	@Override
+	public String getDisplayColumn() {
+		return displayColumn;
+	}
+
+	@Override
+	public void setDisplayColumn(String displayColumn) {
+		this.displayColumn = displayColumn;
 	}
 }

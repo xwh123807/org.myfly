@@ -12,6 +12,7 @@ import org.myfly.platform.visualpage3.service.ITemplateService;
 import org.myfly.platform.visualpage3.webui.ViewMode;
 import org.myfly.platform.visualpage3.webui.view.FormView;
 import org.myfly.platform.visualpage3.webui.view.ListView;
+import org.myfly.platform.visualpage3.webui.window.ListWindow;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -65,6 +66,14 @@ public class TemplateService implements ITemplateService {
 		String viewName = "windows/" + windowName + "_" + viewMode.name() + ".html";
 		ListView result = new ListView(getFlyViewModel(windowName), viewMode);
 		saveTemplateFile(viewName, result.html());
+		return viewName;
+	}
+
+	@Override
+	public String getListWindowTempalte(String windowName, ViewMode viewMode) {
+		ListWindow window = new ListWindow(getFlyViewModel(windowName), viewMode);
+		String viewName = "windows/" + window.getViewName();
+		saveTemplateFile(viewName, window.html());
 		return viewName;
 	}
 }

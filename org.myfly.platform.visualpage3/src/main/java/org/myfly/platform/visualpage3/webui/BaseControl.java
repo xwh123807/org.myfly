@@ -5,6 +5,10 @@ public abstract class BaseControl {
 	 * 显示模式
 	 */
 	private ViewMode viewMode = ViewMode.EDIT;
+	
+	public BaseControl(ViewMode viewMode) {
+		setViewMode(viewMode);
+	}
 
 	public ViewMode getViewMode() {
 		return viewMode;

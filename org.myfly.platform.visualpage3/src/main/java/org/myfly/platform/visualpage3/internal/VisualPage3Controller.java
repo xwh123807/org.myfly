@@ -88,7 +88,7 @@ public class VisualPage3Controller {
 		return view;
 	}
 
-	@GetMapping("window/{windowName}")
+	@GetMapping("window1/{windowName}")
 	public ModelAndView vueForWindow(@PathVariable(name = "windowName") String windowName) {
 		Window window = new Window(windowName, ViewMode.VIEW);
 		ModelAndView view = getModelAndView("窗口", windowName, window.toFile());
@@ -96,7 +96,11 @@ public class VisualPage3Controller {
 	}
 
 	private ModelAndView getModelAndView(String title, String subTitlte, String viewName) {
-		ModelAndView view = new ModelAndView("vue-empty");
+		return getModelAndView("vue-empty", title, subTitlte, viewName);
+	}
+	
+	private ModelAndView getModelAndView(String layout, String title, String subTitlte, String viewName) {
+		ModelAndView view = new ModelAndView(layout);
 		Map<String, String> pageInfo = new HashMap<>();
 		pageInfo.put("title", title);
 		pageInfo.put("subTitle", subTitlte);
@@ -117,6 +121,13 @@ public class VisualPage3Controller {
 	public ModelAndView vueFormViewForNew(@PathVariable(name = "windowName") String windowName) {
 		String viewName = templateService.getFormViewTempalte(windowName, ViewMode.EDIT);
 		ModelAndView result = getModelAndView(windowName, "新增", viewName);
+		return result;
+	}
+	
+	@GetMapping("window/{windowName}")
+	public ModelAndView vueListWindow(@PathVariable(name = "windowName") String windowName) {
+		String viewName = templateService.getListWindowTempalte(windowName, ViewMode.VIEW);
+		ModelAndView result = getModelAndView("window/list-window", windowName, "新增", viewName);
 		return result;
 	}
 }

@@ -28,7 +28,7 @@ public class FormView extends BaseView {
 		StringBuffer buffer = new StringBuffer();
 		String id = UUIDUtil.newHtmlID();
 		buffer.append("<div id=\""+id+"\">\n");
-		buffer.append("<el-form ref=\"obj\" :model=\"obj\" label-width=\"160px\">\n");
+		buffer.append("<el-form ref=\"obj\" :model=\"obj\" size=\"mini\" label-width=\"160px\">\n");
 		List<List<String>> groups = buildFieldGroup(getViewModel().getMainTab().getFields().values());
 		for (List<String> group : groups) {
 			buffer.append("<el-row>\n");

@@ -2,6 +2,7 @@ package org.myfly.platform.visualpage3.webui.control;
 
 import org.myfly.platform.visualpage3.define.FTab;
 import org.myfly.platform.visualpage3.webui.BaseTableControl;
+import org.myfly.platform.visualpage3.webui.ViewMode;
 
 /**
  * DataTable表格控件
@@ -12,7 +13,7 @@ import org.myfly.platform.visualpage3.webui.BaseTableControl;
 public class DTTableControl extends BaseTableControl {
 
 	public DTTableControl(FTab tab) {
-		super(tab);
+		super(tab, ViewMode.EDIT);
 	}
 
 	@Override

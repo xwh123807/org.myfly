@@ -10,7 +10,7 @@ public abstract class BaseFieldControl extends BaseControl{
 	private FField field;
 
 	public BaseFieldControl(FField field, ViewMode viewMode) {
-		this.setViewMode(viewMode);
+		super(viewMode);
 		this.setField(field);
 	}
 
