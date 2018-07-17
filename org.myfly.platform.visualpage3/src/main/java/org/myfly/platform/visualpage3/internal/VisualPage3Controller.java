@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class VisualPage3Controller {
 	@Autowired
 	private IFlyDataService dataService;
-	
+
 	@Autowired
 	private ITemplateService templateService;
 
@@ -98,7 +98,7 @@ public class VisualPage3Controller {
 	private ModelAndView getModelAndView(String title, String subTitlte, String viewName) {
 		return getModelAndView("vue-empty", title, subTitlte, viewName);
 	}
-	
+
 	private ModelAndView getModelAndView(String layout, String title, String subTitlte, String viewName) {
 		ModelAndView view = new ModelAndView(layout);
 		Map<String, String> pageInfo = new HashMap<>();
@@ -109,25 +109,33 @@ public class VisualPage3Controller {
 		view.addObject("subPage", viewName);
 		return view;
 	}
-	
+
 	@GetMapping("list/{windowName}")
 	public ModelAndView vueListView(@PathVariable(name = "windowName") String windowName) {
 		String viewName = templateService.getListViewTempalte(windowName, ViewMode.VIEW);
 		ModelAndView result = getModelAndView(windowName, "新增", viewName);
 		return result;
 	}
-	
+
 	@GetMapping("form/{windowName}")
 	public ModelAndView vueFormViewForNew(@PathVariable(name = "windowName") String windowName) {
 		String viewName = templateService.getFormViewTempalte(windowName, ViewMode.EDIT);
 		ModelAndView result = getModelAndView(windowName, "新增", viewName);
 		return result;
 	}
-	
+
 	@GetMapping("window/{windowName}")
 	public ModelAndView vueListWindow(@PathVariable(name = "windowName") String windowName) {
 		String viewName = templateService.getListWindowTempalte(windowName, ViewMode.VIEW);
-		ModelAndView result = getModelAndView("window/list-window", windowName, "新增", viewName);
+		ModelAndView result = getModelAndView("window/list-window", windowName, "查看", viewName);
+		return result;
+	}
+
+	@GetMapping("window/{windowName}/{uid}")
+	public ModelAndView vueFormWindowForView(@PathVariable(name = "windowName") String windowName,
+			@PathVariable("uid") String uid) {
+		String viewName = templateService.getFormWindowTempalte(windowName, ViewMode.EDIT, uid);
+		ModelAndView result = getModelAndView("window/form-window", windowName, "新增", viewName);
 		return result;
 	}
 }

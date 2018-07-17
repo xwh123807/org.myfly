@@ -73,6 +73,6 @@ public enum MyElement_zh_CN {
 	windowID,
 	//
 	@FlyElement(columnName = "TableStyle", name = "表格样式", description = "", help = "", //
-			dataType = FlyDataType.Table, entityType = "D", printName = "表格样式", fieldLength = 40)
+			dataType = FlyDataType.List, entityType = "D", printName = "表格样式", fieldLength = 40)
 	tableStyle
 }

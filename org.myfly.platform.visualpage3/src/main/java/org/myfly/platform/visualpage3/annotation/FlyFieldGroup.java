@@ -17,5 +17,9 @@ public @interface FlyFieldGroup {
 
 	FlyField[] fields() default {};
 
+	/**
+	 * 直接使用字段列表，指向字段apiName
+	 * @return
+	 */
 	String[] columnNames() default {};
 }

@@ -19,7 +19,11 @@ public abstract class BaseFieldControl extends BaseControl{
 	}
 
 	public String getModel() {
-		return getBindObjectVariableName() + "." + getField().getFlyColumn().getApiName();
+		String model = getBindObjectVariableName() + "." + getField().getFlyColumn().getApiName();
+		if (getField().getFlyColumn().isRefTableColumn()) {
+			model += "." + getField().getFlyColumn().getRefDisplayColumn();
+		}
+		return model;
 	}
 
 	public String getPlaceholder() {

@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.visualpage3.define.FlyViewModel;
-import org.myfly.platform.visualpage3.webui.BaseControl;
 import org.myfly.platform.visualpage3.webui.ViewMode;
 import org.myfly.platform.visualpage3.webui.control.ToolbarControl;
 
@@ -36,12 +35,13 @@ public class ListWindow extends BaseWindow {
 
 	@Override
 	public String getExtScript() {
-		return "bindListWindow(\"" + getElementID() + "\");";
+		return "bindListWindow(\"" + getElementID() + "\", \"" + getFlyViewModel().getMainTab().getTable().getApiName()
+				+ "\");";
 	}
 
 	@Override
-	public BaseControl getContent() {
-		return getListViewPanel();
+	public String getContentHtml() {
+		return getListViewPanel().html();
 	}
 
 	public ListViewPanel getListViewPanel() {

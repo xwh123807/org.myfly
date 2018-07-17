@@ -17,26 +17,35 @@ public abstract class BasePanel extends BaseControl {
 	@Override
 	public String htmlForView() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append("<el-container>").append("\n");
+		buffer.append("<el-row>").append("\n");
 		buildHead(buffer);
 		buildContent(buffer);
-		buffer.append("</el-container>").append("\n");
+		buffer.append("</el-row>").append("\n");
 		return buffer.toString();
 	}
 
 	private void buildContent(StringBuffer buffer) {
-		buffer.append("<el-main>").append("\n");
-		buffer.append(getContent().html());
-		buffer.append("</el-main>").append("\n");
+		BaseControl content = getContent();
+		buffer.append("<el-row>").append("\n");
+		if (content != null) {
+			buffer.append(content.html());
+		} else {
+			buffer.append(getContentHtml());
+		}
+		buffer.append("</el-row>").append("\n");
 	}
 
 	private void buildHead(StringBuffer buffer) {
-		buffer.append("<el-header>").append("\n");
+		buffer.append("<el-row>").append("\n");
 		buffer.append(getTitle());
-		buffer.append("</el-header>").append("\n");
+		buffer.append("</el-row>").append("\n");
 	}
 
 	public abstract String getTitle();
 
 	public abstract BaseControl getContent();
+
+	public String getContentHtml() {
+		return null;
+	}
 }

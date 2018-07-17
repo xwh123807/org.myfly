@@ -23,5 +23,4 @@ public @interface FlyWindow {
 	String entityTpye() default "D";
 
 	FlyTab[] tabs();
-
 }

@@ -18,7 +18,7 @@ public abstract class BaseWindow extends BaseControl {
 	 * 元素ID，唯一
 	 */
 	private String elementID;
-	
+
 	public BaseWindow(ViewMode viewMode) {
 		super(viewMode);
 		setElementID(UUIDUtil.newHtmlID());
@@ -44,20 +44,20 @@ public abstract class BaseWindow extends BaseControl {
 	 */
 	public abstract ToolbarControl getToolbar();
 
-	public abstract BaseControl getContent();
+	public abstract String getContentHtml();
 
 	public abstract String getExtScript();
-	
+
 	public abstract Map<String, String> getExtAttrs();
 
 	@Override
 	public String htmlForEdit() {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("<div").append(HtmlUtils.addAttrs(getAttrs())).append(">");
-		buffer.append("<el-container>").append("\n");
+		buffer.append("<el-row>").append("\n");
 		buildHeader(buffer);
 		buildMain(buffer);
-		buffer.append("</el-container>").append("\n");
+		buffer.append("</el-row>").append("\n");
 		buffer.append("</div>");
 		buffer.append(getScript(getExtScript()));
 		return buffer.toString();
@@ -71,20 +71,20 @@ public abstract class BaseWindow extends BaseControl {
 	}
 
 	private void buildMain(StringBuffer buffer) {
-		BaseControl main = getContent();
+		String main = getContentHtml();
 		if (main != null) {
-			buffer.append("<el-main>").append("\n");
-			buffer.append(main.html());
-			buffer.append("</el-main>").append("\n");
+			buffer.append("<el-row>").append("\n");
+			buffer.append(main);
+			buffer.append("</el-row>").append("\n");
 		}
 	}
 
 	private void buildHeader(StringBuffer buffer) {
 		ToolbarControl toolbar = getToolbar();
 		if (toolbar != null) {
-			buffer.append("<el-header>").append("\n");
+			buffer.append("<el-row>").append("\n");
 			buffer.append(toolbar.html());
-			buffer.append("</el-header>").append("\n");
+			buffer.append("</el-row>").append("\n");
 		}
 	}
 
