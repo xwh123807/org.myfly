@@ -6,16 +6,10 @@ const menus = [
     label: '组件',
     submenu: [
       {
-        id: 'test',
-        label: '二级测试',
+        id: 't1',
+        label: 'ListWindow',
         icon: 'fa fa-hand-o-up',
-        submenu: [
-          {
-            id: 'test',
-            label: '二级测试',
-            icon: 'fa fa-hand-o-up'
-          }
-        ]
+        path: '/listwindow'
       },
       ['Form 表单', [
         {id: 'f1', name: 'c-button', label: 'Button 按钮', icon: 'fa fa-hand-o-up'},

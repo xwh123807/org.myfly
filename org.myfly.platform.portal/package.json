@@ -1,11 +1,11 @@
 {
-  "name": "vue-element-admin-tpl",
+  "name": "Portal",
   "version": "1.0.5",
-  "description": "A template for Vue",
-  "author": "lanyue <lanyueos@qq.com>",
+  "description": "Portal",
+  "author": "xiangwanhong xwh123807@aliyun.com",
   "private": true,
   "app": {
-    "name": "基于Vue的后台管理系统模板"
+    "name": "myfly Portal"
   },
   "license": "MIT",
   "scripts": {

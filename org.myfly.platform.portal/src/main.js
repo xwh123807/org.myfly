@@ -76,6 +76,7 @@ router.afterEach(transition => {
 
 window.APP_INFO = process.env.APP_INFO
 
+Axios.defaults.baseURL = 'http://localhost:9080'
 // status < 500 不会抛错误
 Axios.defaults.validateStatus = status => {
   return status < 500
