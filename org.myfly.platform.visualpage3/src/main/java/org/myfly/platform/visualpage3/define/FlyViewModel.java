@@ -96,4 +96,8 @@ public class FlyViewModel extends PWindow implements IDefinition {
 		String firtTabName = getTabs().keySet().toArray(new String[] {})[0];
 		return getTabs().get(firtTabName);
 	}
+	
+	public String getMainTabName() {
+		return getMainTab().getName();
+	}
 }

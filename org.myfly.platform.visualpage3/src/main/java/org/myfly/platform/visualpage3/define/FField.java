@@ -20,6 +20,10 @@ public class FField extends PField implements IDefinition {
 	 */
 	@JsonIgnore
 	private FlyColumn flyColumn;
+	/**
+	 * 用于vue绑定名
+	 */
+	private String model;
 
 	@Override
 	public String getKey() {
@@ -78,6 +82,14 @@ public class FField extends PField implements IDefinition {
 
 	public void setFlyColumn(FlyColumn flyColumn) {
 		this.flyColumn = flyColumn;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
 	}
 
 }

@@ -1,5 +1,6 @@
 package org.myfly.platform.visualpage3.define;
 
+import java.util.Collection;
 import java.util.Map;
 
 import org.myfly.platform.core.utils.JSONUtil;
@@ -17,6 +18,7 @@ public class FTab extends PTab implements IDefinition {
 	 */
 	private static final long serialVersionUID = 7339322643421118783L;
 
+	@JsonIgnore
 	private Map<String, FField> fields;
 
 	private boolean isFromDB;
@@ -86,7 +88,15 @@ public class FTab extends PTab implements IDefinition {
 	public void setTable(FlyDataModel table) {
 		this.table = table;
 	}
-
+	
+	public Collection<FField> getFieldList(){
+		return getFields().values();
+	}
+	
+	public String getTableApiName() {
+		return getTable().getApiName();
+	}
+	
 	public PTab toTabPO() {
 		PTab result = new PTab();
 		result.setTabID(getTabID());
