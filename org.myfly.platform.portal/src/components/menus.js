@@ -12,6 +12,12 @@ const menus = [
         path: '/dynamicTest'
       },
       {
+        id: 't11',
+        label: '动态表格-Use Store',
+        icon: 'fa fa-hand-o-up',
+        path: '/dynamicTable2/dataType'
+      },
+      {
         id: 't2',
         label: '动态表格',
         icon: 'fa fa-hand-o-up',

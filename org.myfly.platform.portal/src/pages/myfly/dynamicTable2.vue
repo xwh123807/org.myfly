@@ -1,53 +1,70 @@
 <template>
     <el-row>
         <h1>动态表格: {{windowName}}</h1>
-        <el-table :data="tableData" @row-click="rowClickHandler">
+        <el-table :data="tableData" @row-click="rowClickHandler" @row-dblclick="rowDoubleClickHandler" height=500>
             <el-table-column v-for="column in columns" :prop="column.model" :label="column.name" v-bind:key="column.fieldID"></el-table-column>
         </el-table>
+        <el-dialog title="明细表单" :visible.sync="dialogVisible">
+          <dynamic-form></dynamic-form>
+        </el-dialog>
     </el-row>
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
+import { DynamicForm } from "./dynamic-form";
 export default {
+  components: {
+    "dynamic-form": DynamicForm
+  },
   data() {
     return {
-      //viewModel: {},
-      columns: [],
       tableData: [],
-      mainTab: {}
+      viewModel: null,
+      mainTab: null,
+      tableApiName: null,
+      columns: [],
+      dialogVisible: false
     };
   },
-  beforeCreate() {
-    // //读取显示模型配置数据
-    // this.$http.get("/mvm/" + this.$route.params.windowName).then(data => {
-    //   this.viewModel = data;
-    //   this.mainTab = data.tabs[data.mainTabName];
-    //   this.columns = this.mainTab.fieldList;
-    //   var tableApiName = this.mainTab.tableApiName;
-    //   //读取表数据
-    //   this.$http.get("/flydata3/" + tableApiName).then(data => {
-    //     this.tableData = data;
-    //   });
-    // });
-  },
+  beforeCreate() {},
   created() {
-      this.getViewModel({windowName: this.$route.params.windowName});
+    this.getViewModel({
+      windowName: this.windowName,
+      callback: () => {
+        this.viewModel = this.viewModels[this.windowName];
+        this.mainTab = this.viewModel.tabs[this.viewModel.mainTabName];
+        this.tableApiName = this.mainTab.tableApiName;
+        this.columns = this.mainTab.fieldList;
+        this.getData(this.tableApiName);
+      }
+    });
   },
   deactivated() {
     this.$destroy(true);
   },
   computed: {
-    ...mapState({ viewModels: ({viewModel}) => viewModel.viewModels }),
+    ...mapState({
+      viewModels: ({ viewModel }) => viewModel.viewModels
+    }),
     windowName() {
-      return this.viewModel ? this.viewModel.name : "";
-    },
-    viewModel() {
-        return this.viewModels[this.windowName.toLowerCase()];
+      return this.$route.params.windowName.toLowerCase();
     }
   },
   methods: {
     ...mapActions(["getViewModel"]),
-    rowClickHandler(row, event, column) {}
+    rowClickHandler(row, event, column) {},
+    rowDoubleClickHandler(row, event) {
+      this.dialogVisible = true;
+    },
+    getData(tableApiName) {
+      if (tableApiName) {
+        this.$http.get("/flydata3/" + tableApiName).then(data => {
+          this.tableData = data;
+        });
+      } else {
+        this.$message.error("tableApiName参数不能为空.");
+      }
+    }
   }
 };
 </script>

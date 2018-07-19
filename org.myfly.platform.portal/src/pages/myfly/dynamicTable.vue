@@ -1,13 +1,12 @@
 <template>
     <el-row>
         <h1>动态表格: {{windowName}}</h1>
-        <el-table :data="tableData" @row-click="rowClickHandler">
+        <el-table :data="tableData" @row-click="rowClickHandler" height="500">
             <el-table-column v-for="column in columns" :prop="column.model" :label="column.name" v-bind:key="column.fieldID"></el-table-column>
         </el-table>
     </el-row>
 </template>
 <script>
-import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -30,20 +29,12 @@ export default {
       });
     });
   },
-  created() {
-      //this.getViewModel({windowName: this.$route.params.windowName});
-  },
-  deactivated() {
-    this.$destroy(true);
-  },
   computed: {
-    ...mapState({ viewModels: ({viewModel}) => viewModel.viewModels }),
     windowName() {
       return this.viewModel ? this.viewModel.name : "";
     }
   },
   methods: {
-    ...mapActions(["getViewModel"]),
     rowClickHandler(row, event, column) {}
   }
 };
