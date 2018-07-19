@@ -28,7 +28,7 @@ public class PElement extends FlyMetaEntity {
 	 */
 	private static final long serialVersionUID = 7185405877356633362L;
 	@Id
-	@Column(length = 32)
+	@Column(length = 32, name="ElementID")
 	private String elementID;
 	
 	@Column(length = 40)

@@ -1,6 +1,7 @@
 package org.myfly.platform.visualpage3.define;
 
 import java.lang.reflect.Field;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 
 import org.myfly.platform.core.utils.AppUtil;
@@ -8,10 +9,15 @@ import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.builder.AbstractBuilder;
 import org.myfly.platform.core3.metadata.define.FlyColumn;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.visualpage3.annotation.FlyFieldGroup;
 import org.myfly.platform.visualpage3.annotation.FlyTab;
 import org.myfly.platform.visualpage3.annotation.FlyWindow;
 import org.myfly.platform.visualpage3.model.PWindow;
+import org.myfly.platform.visualpage3.model.WindowType;
+import org.myfly.platform.visualpage3.service.IFlyViewModel;
+import org.myfly.platform.visualpage3.webui.TableStyle;
 import org.springframework.util.Assert;
 
 public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> {
@@ -81,11 +87,51 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 		FlyEntityUtils.updateFlyEntityForSystem(result);
 		String model = column.getApiName();
 		if (column.isRefListColumn()) {
-			model += ".name";
-		}else if (column.isRefTableColumn()) {
-			model += "." + column.getRefDisplayColumn();
+			model += "__name";
+		} else if (column.isRefTableColumn()) {
+			model += "__" + column.getRefDisplayColumn();
 		}
 		result.setModel(model);
 		return result;
+	}
+
+	public IFlyViewModel loadFromFlyDataModel(FlyDataModel dataModel) {
+		FlyViewModel result = new FlyViewModel();
+		result.setApiName(dataModel.getApiName());
+		result.setWindowID(UUIDUtil.newUUID());
+		result.setName(dataModel.getName());
+		result.setDescription(dataModel.getDescription());
+		result.setHelp(dataModel.getHelp());
+		result.setEntityType(dataModel.getEntityType());
+		result.setWindowType(WindowType.M);
+		FlyEntityUtils.updateFlyEntityForSystem(result);
+		result.setTabs(new LinkedHashMap<>());
+		FTab tab = buildTab(dataModel);
+		tab.setWindowID(result.getWindowID());
+		result.getTabs().put(tab.getName(), tab);
+		return result;
+	}
+
+	private FTab buildTab(FlyDataModel dataModel) {
+		FTab result = new FTab();
+		result.setUid(UUIDUtil.newUUID());
+		result.setName(dataModel.getName());
+		result.setDescription(dataModel.getDescription());
+		result.setHelp(dataModel.getHelp());
+		result.setTable((FlyDataModel) dataModel);
+		result.setTableStyle(TableStyle.ELTable);
+		FlyEntityUtils.updateFlyEntityForSystem(result);
+		result.setFields(new LinkedHashMap<>());
+		buildFields(result);
+		return result;
+	}
+
+	private void buildFields(FTab result) {
+		Assert.notNull(result.getTable(), "属性[table]不能为空");
+		result.getTable().getColumnMap().values().forEach(column -> {
+			FField field = buildField(column);
+			field.setTabID(result.getTabID());
+			result.getFields().put(field.getKey(), field);
+		});
 	}
 }

@@ -180,7 +180,7 @@ public class FlyEntityUtils {
 			}
 			// 是子表类型，且hasSubTable=false或者hasSubTable=true且不需要处理
 			if (isNeed) {
-				result.put(field.getApiName(), field.getValueHandler().getFieldValue(entityObj));
+				processFieldValue(entityObj, result, field);
 			}
 		}
 		return result;
@@ -199,9 +199,22 @@ public class FlyEntityUtils {
 		}
 		FlyEntityMap result = new FlyEntityMap();
 		for (FlyColumn field : dataModel.getColumnMap().values()) {
-			result.put(field.getApiName(), field.getValueHandler().getFieldValue(entityObj));
+			processFieldValue(entityObj, result, field);
 		}
 		return result;
+	}
+
+	private static void processFieldValue(Object entityObj, FlyEntityMap result, FlyColumn field) {
+		Object value = field.getValueHandler().getFieldValue(entityObj);
+		if (value instanceof Map) {
+			if (field.isRefListColumn()) {
+				result.put(field.getApiName() + "__name", ((FlyEntityMap) value).get("name"));
+			} else if (field.isRefTableColumn()) {
+				String dsipalyColumn = field.getRefDisplayColumn();
+				result.put(field.getApiName() + "__" + dsipalyColumn, ((FlyEntityMap) value).get(dsipalyColumn));
+			}
+		}
+		result.put(field.getApiName(), value);
 	}
 
 	/**

@@ -6,6 +6,18 @@ const menus = [
     label: '组件',
     submenu: [
       {
+        id: 't00',
+        label: '表',
+        icon: 'fa fa-hand-o-up',
+        path: '/dynamicTable2/table'
+      },
+      {
+        id: 't01',
+        label: '窗口',
+        icon: 'fa fa-hand-o-up',
+        path: '/dynamicTable2/window'
+      },
+      {
         id: 't1',
         label: '动态创建测试',
         icon: 'fa fa-hand-o-up',
@@ -22,6 +34,12 @@ const menus = [
         label: '动态表格',
         icon: 'fa fa-hand-o-up',
         path: '/dynamicTable/dataType'
+      },
+      {
+        id: 't12',
+        label: '动态表单',
+        icon: 'fa fa-hand-o-up',
+        path: '/dynamicForm/dataType'
       },
       {
         id: 't3',

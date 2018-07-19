@@ -35,7 +35,7 @@ public class PColumn extends FlyMetaEntity implements IFlyColumn {
 	private static final long serialVersionUID = 4129803416173363683L;
 
 	@Id
-	@Column(length = 32, name="ColumnID")
+	@Column(length = 32, name = "ColumnID")
 	private String columnID;
 
 	@Column(length = 50, name = "ApiName")
@@ -50,7 +50,7 @@ public class PColumn extends FlyMetaEntity implements IFlyColumn {
 	@Column(length = 50, name = "ColumnName")
 	private String columnName;
 
-	@Column(length = 32)
+	@Column(length = 32, name = "ElementID")
 	private String elementID;
 
 	@Column(name = "DataType")

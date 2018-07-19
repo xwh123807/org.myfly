@@ -34,7 +34,7 @@ public class ListValueHandler extends DefaultValueHandler implements IValueHandl
 			}
 			if (StringUtils.isNotBlank(keyValue)) {
 				FRefListItem listItem = refList.getItems().get(keyValue);
-				Assert.notNull(listItem);
+				Assert.notNull(listItem, "在refList[" + refList.getName() + "]中找不到项目[" + keyValue + "]");
 				FlyEntityMap result = new FlyEntityMap();
 				result.put("refListID", listItem.getRefListID());
 				result.put("value", listItem.getValue());

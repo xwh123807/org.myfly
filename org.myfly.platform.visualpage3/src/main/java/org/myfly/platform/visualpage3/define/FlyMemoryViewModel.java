@@ -1,5 +1,6 @@
 package org.myfly.platform.visualpage3.define;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,12 @@ public class FlyMemoryViewModel {
 
 	public void addViewModels(List<FlyViewModel> list) {
 		addList(list, getFlyViewModels(), true);
+	}
+	
+	public void addViewModel(FlyViewModel item) {
+		List<FlyViewModel> list = new ArrayList<>();
+		list.add(item);
+		addViewModels(list);
 	}
 
 	/**

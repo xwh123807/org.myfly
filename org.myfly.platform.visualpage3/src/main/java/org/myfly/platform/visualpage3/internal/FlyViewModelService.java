@@ -1,16 +1,14 @@
 package org.myfly.platform.visualpage3.internal;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
-import org.myfly.platform.core.utils.DateUtil;
-import org.myfly.platform.core3.domain.IFlyEntity;
-import org.myfly.platform.core3.metadata.internal.FlySystemResource;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
+import org.myfly.platform.visualpage3.define.FlyMemoryViewModel;
+import org.myfly.platform.visualpage3.define.FlyViewModel;
+import org.myfly.platform.visualpage3.define.FlyViewModelBuilder;
 import org.myfly.platform.visualpage3.service.IFlyViewModel;
 import org.myfly.platform.visualpage3.service.IFlyViewModelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +23,9 @@ public class FlyViewModelService implements IFlyViewModelService {
 	@Autowired
 	private IJpaDataAccessService dataService;
 
-	@Autowired
-	private FlySystemResource systemResource;
+	private FlyMemoryViewModel getFlyMemoryViewModel() {
+		return FlyMemoryViewModel.getInstance();
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -35,8 +34,8 @@ public class FlyViewModelService implements IFlyViewModelService {
 	 * getFlyViewModel(java.lang.String)
 	 */
 	@Override
-	public IFlyViewModel getFlyViewModel(String entityName) {
-		return null;
+	public IFlyViewModel getFlyViewModel(String windowName) {
+		return getFlyMemoryViewModel().getFlyViewModel(windowName);
 	}
 
 	/*
@@ -47,8 +46,15 @@ public class FlyViewModelService implements IFlyViewModelService {
 	 */
 	@Override
 	public IFlyViewModel getFlyViewModelFromBuildIn(String entityName) {
-		IFlyDataModel dataModel = dataModelService.getFlyDataModel(entityName);
-		IFlyViewModel viewModel = null;
+		IFlyViewModel viewModel = getFlyViewModel(entityName);
+		if (viewModel == null) {
+			IFlyDataModel dataModel = dataModelService.getFlyDataModel(entityName);
+			if (dataModel != null) {
+				FlyViewModelBuilder builder = new FlyViewModelBuilder();
+				viewModel = builder.loadFromFlyDataModel((FlyDataModel) dataModel);
+				getFlyMemoryViewModel().addViewModel((FlyViewModel) viewModel);
+			}
+		}
 		return viewModel;
 	}
 
@@ -62,44 +68,4 @@ public class FlyViewModelService implements IFlyViewModelService {
 	public IFlyViewModel getFlyViewModelByUid(String uid) {
 		return dataService.findOne(IFlyViewModelService.IMPLCLASS_FLY_VIEW_MODEL, uid);
 	}
-
-	private void updateFlyEntity(IFlyEntity flyEntity) {
-		flyEntity.setIsActive(true);
-		flyEntity.setCreated(DateUtil.nowSqlTimestamp());
-		flyEntity.setCreatedBy(systemResource.getSystemUserID());
-		flyEntity.setUpdated(DateUtil.nowSqlTimestamp());
-		flyEntity.setUpdatedBy(systemResource.getSystemUserID());
-		flyEntity.setClientID(systemResource.getSystemClientID());
-		flyEntity.setOrgID(systemResource.getAllOrgID());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.myfly.platform.core3.metadata.service.IFlyViewModelService#
-	 * importBuildInViewModelFromAllDataModels()
-	 */
-	@Override
-	public List<String> importBuildInViewModelFromAllDataModels() {
-		List<String> list = new ArrayList<>();
-//		dataModelService.getAllEntityClasses().stream().map(entityClass -> entityClass.getName())
-//				.forEach(entityName -> {
-//					String info = "导入显示模型：" + entityName;
-//					if (log.isInfoEnabled()) {
-//						log.info(info);
-//					}
-//					list.add(info);
-//					IFlyViewModel viewModel = getFlyViewModelFromBuildIn(entityName);
-//					updateFlyEntity(viewModel);
-//					viewModel.getTabs().forEach(tab -> {
-//						updateFlyEntity(tab);
-//						tab.getFields().forEach(field -> {
-//							updateFlyEntity(field);
-//						});
-//					});
-//					dataService.saveEntity(viewModel);
-//				});
-		return list;
-	}
-
 }

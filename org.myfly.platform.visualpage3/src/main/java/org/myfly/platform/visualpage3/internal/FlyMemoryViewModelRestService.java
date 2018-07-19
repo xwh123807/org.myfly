@@ -6,6 +6,9 @@ import org.myfly.platform.core.domain.RestApiInfo;
 import org.myfly.platform.core.domain.RestControllerInfo;
 import org.myfly.platform.visualpage3.define.FlyMemoryViewModel;
 import org.myfly.platform.visualpage3.define.FlyViewModel;
+import org.myfly.platform.visualpage3.service.IFlyViewModel;
+import org.myfly.platform.visualpage3.service.IFlyViewModelService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("mvm")
 public class FlyMemoryViewModelRestService {
+	@Autowired
+	private IFlyViewModelService viewModelService;
+
+	public IFlyViewModelService getViewModelService() {
+		return viewModelService;
+	}
+
+	public void setViewModelService(IFlyViewModelService viewModelService) {
+		this.viewModelService = viewModelService;
+	}
+
 	@GetMapping({ "", "help" })
 	public RestControllerInfo help() {
 		return new RestControllerInfo("mvm", "显示模型服务",
@@ -34,6 +48,19 @@ public class FlyMemoryViewModelRestService {
 
 	@GetMapping("{windowName}")
 	public FlyViewModel getFlyViewModelByName(@PathVariable("windowName") String windowName) {
-		return getFlyMemoryViewModel().getFlyViewModel(windowName);
+		return (FlyViewModel) getFlyViewModelFromTable(windowName);
+		//return getFlyMemoryViewModel().getFlyViewModel(windowName);
 	}
+
+	/**
+	 * 直接从表构建实体的显示模型
+	 * 
+	 * @param entityName
+	 * @return
+	 */
+	@GetMapping("entity/{entityName}")
+	public IFlyViewModel getFlyViewModelFromTable(@PathVariable("entityName") String entityName) {
+		return getViewModelService().getFlyViewModelFromBuildIn(entityName);
+	}
+
 }

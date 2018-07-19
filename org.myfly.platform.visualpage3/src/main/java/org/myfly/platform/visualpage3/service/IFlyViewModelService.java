@@ -34,7 +34,7 @@ public interface IFlyViewModelService {
 	 * @param entityName
 	 * @return
 	 */
-	public IFlyViewModel getFlyViewModel(String entityName);
+	public IFlyViewModel getFlyViewModel(String windowName);
 
 	/**
 	 * 
@@ -50,9 +50,4 @@ public interface IFlyViewModelService {
 	 * @return
 	 */
 	public IFlyViewModel getFlyViewModelFromBuildIn(String entityName);
-
-	/**
-	 * 从实体数据模型构建实体显示模型，并导入到数据库中
-	 */
-	public List<String> importBuildInViewModelFromAllDataModels();
 }
