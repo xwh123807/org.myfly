@@ -484,7 +484,7 @@ public class PTab extends FlyMetaEntity implements IFlyViewTab {
 
 	@Override
 	public String getTableID() {
-		return tabID;
+		return tableID;
 	}
 
 	@Override
@@ -532,10 +532,12 @@ public class PTab extends FlyMetaEntity implements IFlyViewTab {
 		this.tabID = tabID;
 	}
 
+	@Override
 	public TableStyle getTableStyle() {
 		return tableStyle;
 	}
 
+	@Override
 	public void setTableStyle(TableStyle tableStyle) {
 		this.tableStyle = tableStyle;
 	}

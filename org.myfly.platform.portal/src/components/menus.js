@@ -18,6 +18,12 @@ const menus = [
         path: '/dynamicTable2/window'
       },
       {
+        id: 't02',
+        label: '动态组件测试',
+        icon: 'fa fa-hand-o-up',
+        path: '/dynamicComponent/dataType'
+      },
+      {
         id: 't1',
         label: '动态创建测试',
         icon: 'fa fa-hand-o-up',

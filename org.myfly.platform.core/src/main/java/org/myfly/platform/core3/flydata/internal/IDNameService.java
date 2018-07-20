@@ -17,12 +17,17 @@ public class IDNameService implements IIDNameService {
 	private JdbcTemplate JdbcTemplate;
 
 	@Override
-	@Cacheable(cacheNames="id-names")
+	@Cacheable(cacheNames = "id-names")
 	public String getNameValue(String tableName, String keyColumn, String displayColumn, Object keyValue) {
 		String sql = "select " + displayColumn + " value from " + tableName + " where " + keyColumn + " = ?";
 		log.info(sql);
-		Map<String, Object> result = JdbcTemplate.queryForMap(sql, keyValue);
-		return (String) result.get("value");
+		try {
+			Map<String, Object> result = JdbcTemplate.queryForMap(sql, keyValue);
+			return (String) result.get("value");
+		} catch (Exception e) {
+			log.error("ID名称转换失败: " + sql + "[" + keyValue + "]");
+			return "ID名称转换失败";
+		}
 	}
 
 }

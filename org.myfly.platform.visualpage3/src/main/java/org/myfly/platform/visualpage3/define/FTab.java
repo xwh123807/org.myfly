@@ -23,8 +23,16 @@ public class FTab extends PTab implements IDefinition {
 
 	private boolean isFromDB;
 	
+	/**
+	 * 指向实体的数据模型
+	 */
 	@JsonIgnore
 	private FlyDataModel table;
+	
+	/**
+	 * 主键列
+	 */
+	private String keyColumn;
 
 	@Override
 	public String getKey() {
@@ -105,5 +113,13 @@ public class FTab extends PTab implements IDefinition {
 		result.setTableStyle(getTableStyle());
 		FlyEntityUtils.copyFlyMetaFields(result, this);
 		return result;
+	}
+
+	public String getKeyColumn() {
+		return keyColumn;
+	}
+
+	public void setKeyColumn(String keyColumn) {
+		this.keyColumn = keyColumn;
 	}
 }

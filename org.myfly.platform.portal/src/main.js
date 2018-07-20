@@ -36,6 +36,10 @@ import MLoader from '@/m/loader'
 import MContainer from '@/m/container'
 
 
+// import myfly components
+import FlyELTable from '@/pages/myfly/fly-eltable/index.js'
+import FlyForm from '@/pages/myfly/fly-form/index.js'
+
 Vue.use(ElementUI)
 
 Vue.use(DropdownPlugin)
@@ -53,6 +57,10 @@ Vue.use(MBox)
 Vue.use(MBackTop)
 Vue.use(MLoader)
 Vue.use(MContainer)
+
+// registger myfly components
+Vue.use(FlyELTable)
+Vue.use(FlyForm)
 
 
 var whiteList = ['demo', 'login']

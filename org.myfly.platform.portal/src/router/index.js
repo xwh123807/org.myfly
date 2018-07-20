@@ -19,6 +19,7 @@ export default new Router({
         { path: '/dynamicTest', name: 'dynamicTest', component: page('myfly/dynamicTest') },
         { path: '/dynamicTable/:windowName', name: 'dynamicTable', component: page('myfly/dynamicTable') },
         { path: '/dynamicTable2/:windowName', name: 'dynamicTable2', component: page('myfly/dynamicTable2') },
+        { path: '/dynamicComponent/:windowName', name: 'dynamicComponent', component: page('myfly/dynamic-component') },
         { path: '/dynamicForm/:windowName', name: 'dynamicForm', component: page('myfly/dynamic-form') },
         { path: '/button', name: 'c-button', component: page('c-button') },
         { path: '/switch', name: 'c-switch', component: page('c-switch') },

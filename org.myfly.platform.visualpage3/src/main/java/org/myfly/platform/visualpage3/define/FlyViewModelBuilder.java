@@ -1,7 +1,6 @@
 package org.myfly.platform.visualpage3.define;
 
 import java.lang.reflect.Field;
-import java.util.Collection;
 import java.util.LinkedHashMap;
 
 import org.myfly.platform.core.utils.AppUtil;
@@ -10,7 +9,6 @@ import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core3.metadata.builder.AbstractBuilder;
 import org.myfly.platform.core3.metadata.define.FlyColumn;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
-import org.myfly.platform.core3.metadata.service.IFlyDataModel;
 import org.myfly.platform.visualpage3.annotation.FlyFieldGroup;
 import org.myfly.platform.visualpage3.annotation.FlyTab;
 import org.myfly.platform.visualpage3.annotation.FlyWindow;
@@ -57,6 +55,8 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 		result.setDescription(anno.description());
 		result.setHelp(anno.help());
 		result.setTable(AppUtil.getFlyDataModel(anno.table()));
+		result.setKeyColumn(result.getTable().getPrimaryKey().getApiName());
+		result.setTableID(result.getTable().getTableID());
 		result.setTableStyle(anno.tableStyle());
 		FlyEntityUtils.updateFlyEntityForSystem(result);
 		result.setFields(new LinkedHashMap<>());
@@ -95,6 +95,11 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 		return result;
 	}
 
+	/**
+	 * 从数据模型构建显示模型
+	 * @param dataModel
+	 * @return
+	 */
 	public IFlyViewModel loadFromFlyDataModel(FlyDataModel dataModel) {
 		FlyViewModel result = new FlyViewModel();
 		result.setApiName(dataModel.getApiName());
@@ -119,6 +124,8 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 		result.setDescription(dataModel.getDescription());
 		result.setHelp(dataModel.getHelp());
 		result.setTable((FlyDataModel) dataModel);
+		result.setTableID(dataModel.getTableID());
+		result.setKeyColumn(result.getTable().getPrimaryKey().getApiName());
 		result.setTableStyle(TableStyle.ELTable);
 		FlyEntityUtils.updateFlyEntityForSystem(result);
 		result.setFields(new LinkedHashMap<>());

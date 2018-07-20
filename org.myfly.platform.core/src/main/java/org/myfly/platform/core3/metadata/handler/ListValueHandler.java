@@ -25,7 +25,7 @@ public class ListValueHandler extends DefaultValueHandler implements IValueHandl
 	@Override
 	public Object getFieldValueForEntity(Object entity) {
 		Object value = super.getFieldValueForEntity(entity);
-		if (value != null) {
+		if (value != null && refList != null) {
 			String keyValue = null;
 			if (value instanceof Enum) {
 				keyValue = ((Enum<?>) value).name();

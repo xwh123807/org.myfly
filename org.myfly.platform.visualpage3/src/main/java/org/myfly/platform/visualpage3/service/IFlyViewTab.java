@@ -2,6 +2,7 @@ package org.myfly.platform.visualpage3.service;
 
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.domain.IFlyMetaEntity;
+import org.myfly.platform.visualpage3.webui.TableStyle;
 
 public interface IFlyViewTab extends IFlyEntity, IFlyMetaEntity{
 	String getTabID();
@@ -99,5 +100,9 @@ public interface IFlyViewTab extends IFlyEntity, IFlyMetaEntity{
 	String getWhereClause();
 
 	void setWhereClause(String whereClause);
+	
+	TableStyle getTableStyle();
+	
+	void setTableStyle(TableStyle tableStyle);
 
 }
