@@ -334,7 +334,7 @@
             <styles xmi:type="notation:SortingStyle" xmi:id="_f2doxYgeEeidk_4ESs1ygQ"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_f2doxogeEeidk_4ESs1ygQ"/>
           </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_f2dowYgeEeidk_4ESs1ygQ" fontName=".AppleSystemUIFont" bold="true"/>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_f2dowYgeEeidk_4ESs1ygQ" fontName=".AppleSystemUIFont" bold="true" fillColor="8047085"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_f2dowogeEeidk_4ESs1ygQ" x="328" y="16" width="120" height="100"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_lD3hwIgeEeidk_4ESs1ygQ" type="2003" element="_lD0ecIgeEeidk_4ESs1ygQ">
@@ -347,7 +347,7 @@
             <styles xmi:type="notation:SortingStyle" xmi:id="_lD3hxYgeEeidk_4ESs1ygQ"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_lD3hxogeEeidk_4ESs1ygQ"/>
           </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_lD3hwYgeEeidk_4ESs1ygQ" fontName=".AppleSystemUIFont" bold="true"/>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_lD3hwYgeEeidk_4ESs1ygQ" fontName=".AppleSystemUIFont" bold="true" fillColor="8047085"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_lD3hwogeEeidk_4ESs1ygQ" x="328" y="148" width="120" height="100"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_n_rLkIgeEeidk_4ESs1ygQ" type="2003" element="_n_nhMIgeEeidk_4ESs1ygQ">
@@ -360,7 +360,7 @@
             <styles xmi:type="notation:SortingStyle" xmi:id="_n_rLlYgeEeidk_4ESs1ygQ"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_n_rLlogeEeidk_4ESs1ygQ"/>
           </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_n_rLkYgeEeidk_4ESs1ygQ" fontName=".AppleSystemUIFont" bold="true"/>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_n_rLkYgeEeidk_4ESs1ygQ" fontName=".AppleSystemUIFont" bold="true" fillColor="8047085"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_n_rLkogeEeidk_4ESs1ygQ" x="106" y="8" width="120" height="100"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_ud4lIIgeEeidk_4ESs1ygQ" type="2003" element="_ud0TsIgeEeidk_4ESs1ygQ">
@@ -373,7 +373,7 @@
             <styles xmi:type="notation:SortingStyle" xmi:id="_ud4lJYgeEeidk_4ESs1ygQ"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_ud4lJogeEeidk_4ESs1ygQ"/>
           </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_ud4lIYgeEeidk_4ESs1ygQ" fontName=".AppleSystemUIFont" bold="true"/>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_ud4lIYgeEeidk_4ESs1ygQ" fontName=".AppleSystemUIFont" bold="true" fillColor="8047085"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ud4lIogeEeidk_4ESs1ygQ" x="328" y="280" width="120" height="100"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_xaijgIgeEeidk_4ESs1ygQ" type="2003" element="_xadrAIgeEeidk_4ESs1ygQ">
@@ -394,7 +394,7 @@
             <styles xmi:type="notation:SortingStyle" xmi:id="_xaijhYgeEeidk_4ESs1ygQ"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_xaijhogeEeidk_4ESs1ygQ"/>
           </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_xaijgYgeEeidk_4ESs1ygQ" fontName=".AppleSystemUIFont" bold="true"/>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_xaijgYgeEeidk_4ESs1ygQ" fontName=".AppleSystemUIFont" bold="true" fillColor="8047085"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xaijgogeEeidk_4ESs1ygQ" x="328" y="416" width="147" height="100"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_36RnEIgeEeidk_4ESs1ygQ" type="2003" element="_36MHgIgeEeidk_4ESs1ygQ">
@@ -407,7 +407,7 @@
             <styles xmi:type="notation:SortingStyle" xmi:id="_36RnFYgeEeidk_4ESs1ygQ"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_36RnFogeEeidk_4ESs1ygQ"/>
           </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_36RnEYgeEeidk_4ESs1ygQ" fontName=".AppleSystemUIFont" bold="true" fillColor="10265827"/>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_36RnEYgeEeidk_4ESs1ygQ" fontName=".AppleSystemUIFont" bold="true" fillColor="8047085"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_36RnEogeEeidk_4ESs1ygQ" x="106" y="384" width="120" height="100"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_-rNvYIgeEeidk_4ESs1ygQ" type="2003" element="_-rHowIgeEeidk_4ESs1ygQ">
@@ -428,7 +428,7 @@
             <styles xmi:type="notation:SortingStyle" xmi:id="_-rNvZYgeEeidk_4ESs1ygQ"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_-rNvZogeEeidk_4ESs1ygQ"/>
           </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_-rNvYYgeEeidk_4ESs1ygQ" fontName=".AppleSystemUIFont" bold="true"/>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_-rNvYYgeEeidk_4ESs1ygQ" fontName=".AppleSystemUIFont" bold="true" fillColor="8047085"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-rNvYogeEeidk_4ESs1ygQ" x="106" y="544" width="120" height="100"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_yQJgYIgfEeidk_4ESs1ygQ" type="2003" element="_yP-hQIgfEeidk_4ESs1ygQ">
@@ -441,7 +441,7 @@
             <styles xmi:type="notation:SortingStyle" xmi:id="_yQKHcYgfEeidk_4ESs1ygQ"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_yQKHcogfEeidk_4ESs1ygQ"/>
           </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_yQJgYYgfEeidk_4ESs1ygQ" fontName=".AppleSystemUIFont" bold="true"/>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_yQJgYYgfEeidk_4ESs1ygQ" fontName=".AppleSystemUIFont" bold="true" fillColor="8047085"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yQJgYogfEeidk_4ESs1ygQ" x="512" y="280" width="120" height="100"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_MEm88IggEeidk_4ESs1ygQ" type="2003" element="_MEbWwIggEeidk_4ESs1ygQ">
@@ -1026,7 +1026,9 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_f2bMgYgeEeidk_4ESs1ygQ" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" foregroundColor="232,239,247">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_f2bMgYgeEeidk_4ESs1ygQ" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" backgroundColor="237,201,122" foregroundColor="237,201,122">
+        <customFeatures>backgroundColor</customFeatures>
+        <customFeatures>foregroundColor</customFeatures>
         <labelFormat>bold</labelFormat>
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_Class']/@style"/>
       </ownedStyle>
@@ -1056,7 +1058,9 @@
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_lD0ecIgeEeidk_4ESs1ygQ" name="FElement" tooltipText="core::metadata.define::FElement" outgoingEdges="_RPAasIgfEeidk_4ESs1ygQ _SQP1QIgfEeidk_4ESs1ygQ _uIL2YIgoEeiVOfuwFtjBNw" incomingEdges="_l0tI0IgeEeidk_4ESs1ygQ _Q074YIggEeidk_4ESs1ygQ" width="12" height="10">
       <target xmi:type="uml:Class" href="core-design.uml#_kgwNoIgeEeidk_4ESs1ygQ"/>
       <semanticElements xmi:type="uml:Class" href="core-design.uml#_kgwNoIgeEeidk_4ESs1ygQ"/>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_lD1FgIgeEeidk_4ESs1ygQ" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" foregroundColor="232,239,247">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_lD1FgIgeEeidk_4ESs1ygQ" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" backgroundColor="237,201,122" foregroundColor="237,201,122">
+        <customFeatures>backgroundColor</customFeatures>
+        <customFeatures>foregroundColor</customFeatures>
         <labelFormat>bold</labelFormat>
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_Class']/@style"/>
       </ownedStyle>
@@ -1089,7 +1093,9 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_n_nhMYgeEeidk_4ESs1ygQ" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" foregroundColor="232,239,247">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_n_nhMYgeEeidk_4ESs1ygQ" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" backgroundColor="237,201,122" foregroundColor="237,201,122">
+        <customFeatures>backgroundColor</customFeatures>
+        <customFeatures>foregroundColor</customFeatures>
         <labelFormat>bold</labelFormat>
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_Class']/@style"/>
       </ownedStyle>
@@ -1119,7 +1125,9 @@
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_ud0TsIgeEeidk_4ESs1ygQ" name="FRefList" tooltipText="core::metadata.define::FRefList" outgoingEdges="_zeSugIgfEeidk_4ESs1ygQ _6E-_kIgoEeiVOfuwFtjBNw" incomingEdges="_vtYeIIgeEeidk_4ESs1ygQ _RPAasIgfEeidk_4ESs1ygQ" width="12" height="10">
       <target xmi:type="uml:Class" href="core-design.uml#_uFmA8IgeEeidk_4ESs1ygQ"/>
       <semanticElements xmi:type="uml:Class" href="core-design.uml#_uFmA8IgeEeidk_4ESs1ygQ"/>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_ud06wIgeEeidk_4ESs1ygQ" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" foregroundColor="232,239,247">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_ud06wIgeEeidk_4ESs1ygQ" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" backgroundColor="237,201,122" foregroundColor="237,201,122">
+        <customFeatures>backgroundColor</customFeatures>
+        <customFeatures>foregroundColor</customFeatures>
         <labelFormat>bold</labelFormat>
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_Class']/@style"/>
       </ownedStyle>
@@ -1152,7 +1160,9 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_xaeSEIgeEeidk_4ESs1ygQ" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" foregroundColor="232,239,247">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_xaeSEIgeEeidk_4ESs1ygQ" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" backgroundColor="237,201,122" foregroundColor="237,201,122">
+        <customFeatures>backgroundColor</customFeatures>
+        <customFeatures>foregroundColor</customFeatures>
         <labelFormat>bold</labelFormat>
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_Class']/@style"/>
       </ownedStyle>
@@ -1201,7 +1211,7 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_36MukIgeEeidk_4ESs1ygQ" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" backgroundColor="227,164,156" foregroundColor="227,164,156">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_36MukIgeEeidk_4ESs1ygQ" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" backgroundColor="237,201,122" foregroundColor="237,201,122">
         <customFeatures>backgroundColor</customFeatures>
         <customFeatures>foregroundColor</customFeatures>
         <labelFormat>bold</labelFormat>
@@ -1233,7 +1243,9 @@
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_-rHowIgeEeidk_4ESs1ygQ" name="FlyColumn" tooltipText="core::metadata.define::FlyColumn" outgoingEdges="_NUtS4IggEeidk_4ESs1ygQ _Q074YIggEeidk_4ESs1ygQ" incomingEdges="__h1OUIgeEeidk_4ESs1ygQ" width="12" height="10">
       <target xmi:type="uml:Class" href="core-design.uml#_-PA7kIgeEeidk_4ESs1ygQ"/>
       <semanticElements xmi:type="uml:Class" href="core-design.uml#_-PA7kIgeEeidk_4ESs1ygQ"/>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_-rHowYgeEeidk_4ESs1ygQ" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" foregroundColor="232,239,247">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_-rHowYgeEeidk_4ESs1ygQ" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" backgroundColor="237,201,122" foregroundColor="237,201,122">
+        <customFeatures>backgroundColor</customFeatures>
+        <customFeatures>foregroundColor</customFeatures>
         <labelFormat>bold</labelFormat>
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_Class']/@style"/>
       </ownedStyle>
@@ -1305,7 +1317,9 @@
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_yP-hQIgfEeidk_4ESs1ygQ" name="FRefListItem" tooltipText="core::metadata.define::FRefListItem" outgoingEdges="_xgJ3wIgoEeiVOfuwFtjBNw" incomingEdges="_zeSugIgfEeidk_4ESs1ygQ" width="12" height="10">
       <target xmi:type="uml:Class" href="core-design.uml#_xZF8kIgfEeidk_4ESs1ygQ"/>
       <semanticElements xmi:type="uml:Class" href="core-design.uml#_xZF8kIgfEeidk_4ESs1ygQ"/>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_yP-hQYgfEeidk_4ESs1ygQ" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" foregroundColor="232,239,247">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_yP-hQYgfEeidk_4ESs1ygQ" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" backgroundColor="237,201,122" foregroundColor="237,201,122">
+        <customFeatures>backgroundColor</customFeatures>
+        <customFeatures>foregroundColor</customFeatures>
         <labelFormat>bold</labelFormat>
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_Class']/@style"/>
       </ownedStyle>

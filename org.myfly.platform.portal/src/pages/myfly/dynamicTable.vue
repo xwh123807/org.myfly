@@ -16,18 +16,12 @@ export default {
       mainTab: {}
     };
   },
-  beforeCreate() {
-    //读取显示模型配置数据
-    this.$http.get("/mvm/" + this.$route.params.windowName).then(data => {
-      this.viewModel = data;
-      this.mainTab = data.tabs[data.mainTabName];
-      this.columns = this.mainTab.fieldList;
-      var tableApiName = this.mainTab.tableApiName;
-      //读取表数据
-      this.$http.get("/flydata3/" + tableApiName).then(data => {
-        this.tableData = data;
-      });
-    });
+  created() {
+    this.searchHandler(this.$route.params.windowName);
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.searchHandler(to.params.windowName);
+    next();
   },
   computed: {
     windowName() {
@@ -35,7 +29,20 @@ export default {
     }
   },
   methods: {
-    rowClickHandler(row, event, column) {}
+    rowClickHandler(row, event, column) {},
+    searchHandler(windowName) {
+      //读取显示模型配置数据
+      this.$http.get("/mvm/" + windowName).then(data => {
+        this.viewModel = data;
+        this.mainTab = data.tabs[data.mainTabName];
+        this.columns = this.mainTab.fieldList;
+        var tableApiName = this.mainTab.tableApiName;
+        //读取表数据
+        this.$http.get("/flydata3/" + tableApiName).then(data => {
+          this.tableData = data;
+        });
+      });
+    }
   }
 };
 </script>

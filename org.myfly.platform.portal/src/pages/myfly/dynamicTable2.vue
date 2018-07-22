@@ -27,19 +27,7 @@ export default {
   },
   beforeCreate() {},
   created() {
-    this.getViewModel({
-      windowName: this.windowName,
-      callback: () => {
-        this.viewModel = this.viewModels[this.windowName];
-        this.mainTab = this.viewModel.tabs[this.viewModel.mainTabName];
-        this.tableApiName = this.mainTab.tableApiName;
-        this.columns = this.mainTab.fieldList;
-        this.getData(this.tableApiName);
-      }
-    });
-  },
-  deactivated() {
-    this.$destroy(true);
+    this.prepareViewModel(this.windowName);
   },
   computed: {
     ...mapState({
@@ -49,11 +37,27 @@ export default {
       return this.$route.params.windowName.toLowerCase();
     }
   },
+  beforeRouteUpdate(to, from, next) {
+    this.prepareViewModel(to.params.windowName);
+    next(); //走到下一个钩子
+  },
   methods: {
     ...mapActions(["getViewModel"]),
     rowClickHandler(row, event, column) {},
     rowDoubleClickHandler(row, event) {
       this.dialogVisible = true;
+    },
+    prepareViewModel(windowName) {
+      this.getViewModel({
+        windowName: windowName,
+        callback: () => {
+          this.viewModel = this.viewModels[windowName];
+          this.mainTab = this.viewModel.tabs[this.viewModel.mainTabName];
+          this.tableApiName = this.mainTab.tableApiName;
+          this.columns = this.mainTab.fieldList;
+          this.getData(this.tableApiName);
+        }
+      });
     },
     getData(tableApiName) {
       if (tableApiName) {

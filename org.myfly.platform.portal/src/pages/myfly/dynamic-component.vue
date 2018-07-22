@@ -26,12 +26,21 @@ export default {
       }
     });
   },
+  beforeRouteUpdate(to, from, next) {
+    console.info("to: " + to + ", from: " + from);
+    next(); //走到下一个钩子
+  },
   computed: {
     ...mapState({
       viewModels: ({ viewModel }) => viewModel.viewModels
     }),
     windowName() {
       return this.$route.params.windowName.toLowerCase();
+    }
+  },
+  watch: {
+    $route(to, from) {
+      console.info("to: " + to + ", from: " + from);
     }
   },
   methods: {

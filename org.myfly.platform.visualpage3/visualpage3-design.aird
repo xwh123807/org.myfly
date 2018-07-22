@@ -2,6 +2,15 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
   <viewpoint:DAnalysis xmi:id="_QTgGoIgdEeidk_4ESs1ygQ" selectedViews="_QVwwcIgdEeidk_4ESs1ygQ _QWGusIgdEeidk_4ESs1ygQ _QWLnMIgdEeidk_4ESs1ygQ _QWQfsIgdEeidk_4ESs1ygQ _QWUxIIgdEeidk_4ESs1ygQ" version="12.0.0.201704271200">
     <semanticResources>visualpage3-design.uml</semanticResources>
+    <semanticResources>pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml</semanticResources>
+    <semanticResources>pathmap://UML_PROFILES/Ecore.profile.uml</semanticResources>
+    <semanticResources>pathmap://UML_PROFILES/Standard.profile.uml</semanticResources>
+    <semanticResources>http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard</semanticResources>
+    <semanticResources>http://www.eclipse.org/uml2/5.0.0/UML</semanticResources>
+    <semanticResources>http://www.eclipse.org/emf/2002/Ecore</semanticResources>
+    <semanticResources>pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml</semanticResources>
+    <semanticResources>pathmap://UML_METAMODELS/UML.metamodel.uml</semanticResources>
+    <semanticResources>pathmap://UML_METAMODELS/Ecore.metamodel.uml</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_QVwwcIgdEeidk_4ESs1ygQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Reused']"/>
     </ownedViews>
@@ -1692,7 +1701,7 @@
             <styles xmi:type="notation:SortingStyle" xmi:id="_rmYrNYgsEeiVOfuwFtjBNw"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_rmYrNogsEeiVOfuwFtjBNw"/>
           </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_rmYrMYgsEeiVOfuwFtjBNw" fontName=".AppleSystemUIFont" bold="true"/>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_rmYrMYgsEeiVOfuwFtjBNw" fontName=".AppleSystemUIFont" bold="true" fillColor="8047085"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rmYrMogsEeiVOfuwFtjBNw" x="168" y="144" width="120" height="100"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_2Iew8IgsEeiVOfuwFtjBNw" type="2003" element="_2IcUsIgsEeiVOfuwFtjBNw">
@@ -1705,7 +1714,7 @@
             <styles xmi:type="notation:SortingStyle" xmi:id="_2Iew9YgsEeiVOfuwFtjBNw"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_2Iew9ogsEeiVOfuwFtjBNw"/>
           </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_2Iew8YgsEeiVOfuwFtjBNw" fontName=".AppleSystemUIFont" bold="true"/>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_2Iew8YgsEeiVOfuwFtjBNw" fontName=".AppleSystemUIFont" bold="true" fillColor="8047085"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2Iew8ogsEeiVOfuwFtjBNw" x="168" y="300" width="120" height="100"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_3xlcwIgsEeiVOfuwFtjBNw" type="2003" element="_3xjAgIgsEeiVOfuwFtjBNw">
@@ -1718,7 +1727,7 @@
             <styles xmi:type="notation:SortingStyle" xmi:id="_3xmD0ogsEeiVOfuwFtjBNw"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_3xmD04gsEeiVOfuwFtjBNw"/>
           </children>
-          <styles xmi:type="notation:ShapeStyle" xmi:id="_3xlcwYgsEeiVOfuwFtjBNw" fontName=".AppleSystemUIFont" bold="true"/>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_3xlcwYgsEeiVOfuwFtjBNw" fontName=".AppleSystemUIFont" bold="true" fillColor="8047085"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3xlcwogsEeiVOfuwFtjBNw" x="168" y="456" width="120" height="100"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_DIzzsIgtEeiVOfuwFtjBNw" type="2003" element="_DIwJUIgtEeiVOfuwFtjBNw">
@@ -1968,7 +1977,9 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_rmVn4IgsEeiVOfuwFtjBNw" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" foregroundColor="232,239,247">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_rmVn4IgsEeiVOfuwFtjBNw" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" backgroundColor="237,201,122" foregroundColor="237,201,122">
+        <customFeatures>backgroundColor</customFeatures>
+        <customFeatures>foregroundColor</customFeatures>
         <labelFormat>bold</labelFormat>
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_Class']/@style"/>
       </ownedStyle>
@@ -1988,7 +1999,9 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_2IcUsYgsEeiVOfuwFtjBNw" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" foregroundColor="232,239,247">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_2IcUsYgsEeiVOfuwFtjBNw" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" backgroundColor="237,201,122" foregroundColor="237,201,122">
+        <customFeatures>backgroundColor</customFeatures>
+        <customFeatures>foregroundColor</customFeatures>
         <labelFormat>bold</labelFormat>
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_Class']/@style"/>
       </ownedStyle>
@@ -2008,7 +2021,9 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_3xjAgYgsEeiVOfuwFtjBNw" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" foregroundColor="232,239,247">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_3xjAgYgsEeiVOfuwFtjBNw" labelSize="9" borderSize="1" borderSizeComputationExpression="1" borderColor="39,76,114" backgroundStyle="Liquid" backgroundColor="237,201,122" foregroundColor="237,201,122">
+        <customFeatures>backgroundColor</customFeatures>
+        <customFeatures>foregroundColor</customFeatures>
         <labelFormat>bold</labelFormat>
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Class%20Diagram']/@defaultLayer/@containerMappings[name='CD_Class']/@style"/>
       </ownedStyle>

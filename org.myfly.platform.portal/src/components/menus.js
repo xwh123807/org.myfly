@@ -6,16 +6,28 @@ const menus = [
     label: '组件',
     submenu: [
       {
-        id: 't00',
-        label: '表',
+        id: 't001',
+        label: '动态表单-Client',
         icon: 'fa fa-hand-o-up',
-        path: '/dynamicTable2/table'
+        path: '/dynamicFormWindow/pclient/40289f65642bc6b401642bc6b6160000'
       },
       {
-        id: 't01',
-        label: '窗口',
+        id: 't002',
+        label: '动态表单-User',
         icon: 'fa fa-hand-o-up',
-        path: '/dynamicTable2/window'
+        path: '/dynamicFormWindow/puser/40289f65642bc6b401642bc6b6160002'
+      },
+      {
+        id: 't010',
+        label: '动态窗口-窗口',
+        icon: 'fa fa-hand-o-up',
+        path: '/dynamicListWindow/window'
+      },
+      {
+        id: 't011',
+        label: '动态窗口-表',
+        icon: 'fa fa-hand-o-up',
+        path: '/dynamicListWindow/table'
       },
       {
         id: 't02',
@@ -45,19 +57,19 @@ const menus = [
         id: 't12',
         label: '动态表单',
         icon: 'fa fa-hand-o-up',
-        path: '/dynamicForm/dataType'
+        path: '/dynamicWindow/dataType'
       },
       {
         id: 't3',
         label: '系统元素',
         icon: 'fa fa-hand-o-up',
-        path: '/dynamicTable/element'
+        path: '/dynamicWindow/element'
       },
       {
         id: 't4',
         label: '实体类型',
         icon: 'fa fa-hand-o-up',
-        path: '/dynamicTable/entityType'
+        path: '/dynamicWindow/entityType'
       },
       ['Form 表单', [
         { id: 'f1', name: 'c-button', label: 'Button 按钮', icon: 'fa fa-hand-o-up' },

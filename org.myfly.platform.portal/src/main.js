@@ -37,8 +37,10 @@ import MContainer from '@/m/container'
 
 
 // import myfly components
-import FlyELTable from '@/pages/myfly/fly-eltable/index.js'
-import FlyForm from '@/pages/myfly/fly-form/index.js'
+import FlyELTable from '@/myfly/fly-eltable/index.js'
+import FlyForm from '@/myfly/fly-form/index.js'
+import FlyListWindow from '@/myfly/fly-listwindow/index.js';
+import FlyFormWindow from '@/myfly/fly-formwindow/index.js';
 
 Vue.use(ElementUI)
 
@@ -61,6 +63,8 @@ Vue.use(MContainer)
 // registger myfly components
 Vue.use(FlyELTable)
 Vue.use(FlyForm)
+Vue.use(FlyListWindow)
+Vue.use(FlyFormWindow)
 
 
 var whiteList = ['demo', 'login']
