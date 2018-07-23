@@ -3,20 +3,20 @@
       <h2>fly-listwindow: {{mainTabModel.name}}</h2>
       <div>
         <el-button-group>
-          <el-button icon="fa fa-undo">撤销</el-button>
-          <el-button icon="fa fa-file">新增</el-button>
-          <el-button icon="fa fa-copy">复制</el-button>
-          <el-button type="primary" icon="fa fa-save" :disabled="saveDisabled" @click="saveHandler">保存</el-button>
-          <el-button icon="fa fa-refresh">刷新</el-button>
-          <el-button icon="fa fa-search">查找</el-button>
-          <el-button icon="fa fa-print">打印</el-button>
-          <el-button icon="fa fa-print" @click="switchMode">单屏/表格</el-button>
-          <el-button type="primary" icon="el-icon-d-arrow-left" :disabled="firstDisabled" @click="toFirstHandler">首张</el-button>
-          <el-button type="primary" icon="el-icon-arrow-left" :disabled="priorDisabled" @click="toPriorHandler">上张</el-button>
-          <el-button type="primary" icon="el-icon-arrow-right" :disabled="nextDisabled" @click="toNextHandler">下张</el-button>
-          <el-button type="primary" icon="el-icon-d-arrow-right" :disabled="lastDisabled" @click="toLastHandler">尾张</el-button>
-          <el-button icon="fa fa-paperclip">附件</el-button>
-          <el-button icon="fa fa-close" @click="backHandler()">关闭</el-button>
+          <el-button icon="fa fa-undo" size="medium"></el-button>
+          <el-button icon="fa fa-file" size="medium"></el-button>
+          <el-button icon="fa fa-copy" size="medium"></el-button>
+          <el-button type="primary" icon="fa fa-save" :disabled="saveDisabled" @click="saveHandler" size="medium"></el-button>
+          <el-button icon="fa fa-refresh" size="medium"></el-button>
+          <el-button icon="fa fa-search" size="medium"></el-button>
+          <el-button icon="fa fa-print" size="medium"></el-button>
+          <el-button :icon="viewMode === 'form' ? 'fa fa-table' : 'fa fa-server'" @click="switchMode" size="medium"></el-button>
+          <el-button type="primary" icon="el-icon-d-arrow-left" :disabled="firstDisabled" @click="toFirstHandler" size="medium"></el-button>
+          <el-button type="primary" icon="el-icon-arrow-left" :disabled="priorDisabled" @click="toPriorHandler" size="medium"></el-button>
+          <el-button type="primary" icon="el-icon-arrow-right" :disabled="nextDisabled" @click="toNextHandler" size="medium"></el-button>
+          <el-button type="primary" icon="el-icon-d-arrow-right" :disabled="lastDisabled" @click="toLastHandler" size="medium"></el-button>
+          <el-button icon="fa fa-paperclip" size="medium"></el-button>
+          <el-button icon="fa fa-close" @click="backHandler()" size="medium"></el-button>
         </el-button-group>
       </div>
       <hr/>
@@ -109,6 +109,8 @@ export default {
   watch: {
     windowName() {
       this.prepareViewModel(this.windowName);
+      this.viewMode = "list";
+      this.currentRowIndex = 0;
     }
   },
   methods: {
@@ -142,7 +144,13 @@ export default {
     /**
      * 切换单屏/表格模式
      */
-    switchMode() {},
+    switchMode() {
+      if (this.viewMode === "list") {
+        this.viewMode = "form";
+      } else if (this.viewMode === "form") {
+        this.viewMode = "list";
+      }
+    },
     /**
      * 设置记录索引号，并更新按钮状态
      */
@@ -197,19 +205,27 @@ export default {
      * 返回按钮
      */
     backHandler() {
-      app._router.push({name: "home"});
+      app._router.push({ name: "home" });
     },
     /**
      * 表格单击事件
      */
-    rowClickHandler(row, event, column){
-      this.currentRowIndex = this.getRowIndex(this.mainTableData, row, this.keyColumn);
+    rowClickHandler(row, event, column) {
+      this.currentRowIndex = this.getRowIndex(
+        this.mainTableData,
+        row,
+        this.keyColumn
+      );
     },
     /**
      * 表格双击事件
      */
     rowDoubleClickHandler(row, event) {
-      this.currentRowIndex = this.getRowIndex(this.mainTableData, row, this.keyColumn);
+      this.currentRowIndex = this.getRowIndex(
+        this.mainTableData,
+        row,
+        this.keyColumn
+      );
       this.viewMode = "form";
     },
     /**
@@ -223,7 +239,7 @@ export default {
         }
       }
       return 0;
-    },
+    }
   }
 };
 </script>
