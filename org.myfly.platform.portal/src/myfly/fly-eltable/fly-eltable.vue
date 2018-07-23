@@ -1,7 +1,7 @@
 <template>
     <div>
-        <el-table :data="data" @row-click="rowClickHandler" @row-dblclick="rowDblClick" 
-          height="500" border :row-key="keyColumn">
+        <el-table ref="table" :data="data" @row-click="rowClickHandler" @row-dblclick="rowDoubleClickHandler" 
+          height="500" border :row-key="keyColumn" :highlight-current-row="true" @scroll.native="scrollHandler">
             <template v-for="column in columns">
               <el-table-column v-if="column.dataType === 'YesNo'" :label="column.name" v-bind:key="column.fieldID">
                 <template slot-scope="scope">
@@ -11,7 +11,7 @@
               <el-table-column v-else :prop="column.model" :label="column.name" 
                 v-bind:key="column.fieldID" sortable></el-table-column>
             </template>
-            <el-table-column fixed="right" label="操作" width="75">
+            <!-- <el-table-column fixed="right" label="操作" width="75">
               <template slot-scope="scope">
                 <el-button-group>
                   <a @click="viewHandler(scope.row)"><i class="el-icon-edit"></i></a>
@@ -19,10 +19,10 @@
                   <a @click="deleteHandler(scope.row)"><i class="el-icon-delete"></i></a>
                 </el-button-group>
               </template>
-            </el-table-column>
+            </el-table-column> -->
         </el-table>
         <el-dialog title="明细表单" :visible.sync="dialogVisible" width="100%">
-          <fly-form :tabModel="tabModel" :data="data" :index="selectedRowIndex" :isSingleRow="false"></fly-form>
+          <fly-form :tabModel="tabModel" :data="data" :index="currentRowIndex" :isSingleRow="false"></fly-form>
         </el-dialog>
     </div>
 </template>
@@ -38,15 +38,31 @@ export default {
      * 数据
      */
     data: { type: Array, default: () => [] },
-    rowDblClick: {tpye: Function}
+    /**
+     * 表格当前选中行
+     */
+    currentRowIndex: { type: Number, default: () => 0 }
   },
   data() {
     return {
       // 明细窗口是否显示
-      dialogVisible: false,
-      // 表格中选中行索引
-      selectedRowIndex: -1
+      dialogVisible: false
     };
+  },
+  created() {},
+  mounted() {},
+  watch: {
+    /**
+     * 监听当前选中行，表格同步高亮显示当前行
+     */
+    currentRowIndex(to) {
+      var row = this.data[to];
+      if (row) {
+        this.$refs.table.setCurrentRow(row);
+        if (to == 0) {
+        }
+      }
+    }
   },
   computed: {
     /**
@@ -63,29 +79,17 @@ export default {
     }
   },
   methods: {
-    rowClickHandler() {},
+    /**
+     * 表格单击事件
+     */
+    rowClickHandler(row, event, column) {
+      this.$emit("row-click", row, event, column);
+    },
     /**
      * 表格双击事件
      */
     rowDoubleClickHandler(row, event) {
-      this.selectedRowIndex = this.getIndex(
-        this.data,
-        row,
-        this.tabModel.keyColumn
-      );
-      this.dialogVisible = true;
-    },
-    /**
-     * 获取row在data中的顺序
-     */
-    getIndex(data, row, keyColumn) {
-      for (var i = 0; i < data.length; i++) {
-        var item = data[i];
-        if (item[keyColumn] === row[keyColumn]) {
-          return i;
-        }
-      }
-      return 0;
+      this.$emit("row-dblclick", row, event);
     },
     viewHandler(row) {
       //this.rowDoubleClickHandler(row);
@@ -102,6 +106,24 @@ export default {
     },
     deleteHandler(row) {
       this.rowDoubleClickHandler(row);
+    },
+    /**
+     * 监听表格滚动事件，可用于加载下一批数据
+     * 代码异常，报addEventListener不是有效的方法
+     */
+    listenScroll() {
+      var table = this.$refs.table;
+      table.addEventListener("scroll", e => {
+        // console.log(e.target, e.target.offsetTop)
+        var scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollHeight =
+          document.documentElement.scrollHeight || document.body.scrollHeight;
+        var scrollViewHeight = document.documentElement.clientHeight;
+      });
+    },
+    scrollHandler(event) {
+      console.info(event);
     }
   }
 };

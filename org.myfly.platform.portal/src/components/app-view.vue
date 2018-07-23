@@ -23,7 +23,9 @@
     </el-header>
     <el-main class="app-body">
       <el-container style="height: 100%;min-height: 100%;overflow: auto" id="appBody">
-        <el-main class="app-page-body"><router-view></router-view></el-main>
+        <el-main class="app-page-body">
+          <router-view></router-view>
+        </el-main>
         <el-footer class="app-footer" :height="footerHeight + 'px'">
           <app-footer></app-footer>
         </el-footer>

@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h2>fly-listwindow: {{mainTab.name}}</h2>
+      <h2>fly-listwindow: {{mainTabModel.name}}</h2>
       <div>
         <el-button-group>
           <el-button icon="fa fa-undo">撤销</el-button>
@@ -22,10 +22,12 @@
       <hr/>
       <el-tabs v-model="viewMode">
          <el-tab-pane label="列表" name="list">
-           <fly-eltable :tabModel="mainTab" :data="mainTableData" :rowDblClick="rowDoubleClickHandler"></fly-eltable>
+           <fly-eltable :tabModel="mainTabModel" :data="mainTableData" @row-dblclick="rowDoubleClickHandler" 
+            @row-click="rowClickHandler" :currentRowIndex="currentRowIndex">
+           </fly-eltable>
          </el-tab-pane>
          <el-tab-pane label="表单" name="form">
-           <fly-form :tabModel="mainTab" :data="currentRow"></fly-form>
+           <fly-form :tabModel="mainTabModel" :data="currentRow"></fly-form>
          </el-tab-pane>
       </el-tabs>
     </div>
@@ -49,7 +51,7 @@ export default {
       /**
        * 主Tab模型定义
        */
-      mainTab: null,
+      mainTabModel: null,
       /**
        * 主Tab数据
        */
@@ -95,7 +97,7 @@ export default {
      * 实体主键
      */
     keyColumn() {
-      return this.tabModel ? this.tabModel.keyColumn : null;
+      return this.mainTabModel ? this.mainTabModel.keyColumn : null;
     },
     /**
      * 当前行数据
@@ -120,8 +122,8 @@ export default {
         windowName: windowName,
         callback: () => {
           self.viewModel = self.viewModels[windowName];
-          self.mainTab = self.viewModel.tabs[this.viewModel.mainTabName];
-          self.searchHandler(self.mainTab.tableApiName);
+          self.mainTabModel = self.viewModel.tabs[this.viewModel.mainTabName];
+          self.searchHandler(self.mainTabModel.tableApiName);
         }
       });
     },
@@ -145,15 +147,12 @@ export default {
      * 设置记录索引号，并更新按钮状态
      */
     setRowIndex(index) {
-      if (this.isSingleRow) {
-        return;
-      }
       if (index < 0) {
         index = 0;
-      } else if (index > this.length - 1) {
-        index = this.length - 1;
+      } else if (index > this.mainTableData.length - 1) {
+        index = this.mainTableData.length - 1;
       }
-      this.rowIndex = index;
+      this.currentRowIndex = index;
       this.controlButtonState(index);
     },
     /**
@@ -162,9 +161,9 @@ export default {
     controlButtonState(index) {
       var isEmpty = this.length === 0;
       this.firstDisabled = isEmpty || index === 0;
-      this.lastDisabled = isEmpty || this.length - 1 === index;
+      this.lastDisabled = isEmpty || this.mainTableData.length - 1 === index;
       this.priorDisabled = isEmpty || index === 0;
-      this.nextDisabled = isEmpty || this.length - 1 === index;
+      this.nextDisabled = isEmpty || this.mainTableData.length - 1 === index;
     },
     /**
      * 首张
@@ -176,19 +175,19 @@ export default {
      * 下张
      */
     toLastHandler() {
-      this.setRowIndex(this.length - 1);
+      this.setRowIndex(this.mainTableData.length - 1);
     },
     /**
      * 上张
      */
     toPriorHandler() {
-      this.setRowIndex(this.rowIndex - 1);
+      this.setRowIndex(this.currentRowIndex - 1);
     },
     /**
      * 下张
      */
     toNextHandler() {
-      this.setRowIndex(this.rowIndex + 1);
+      this.setRowIndex(this.currentRowIndex + 1);
     },
     /**
      * 保存
@@ -199,6 +198,12 @@ export default {
      */
     backHandler() {
       app._router.push({name: "home"});
+    },
+    /**
+     * 表格单击事件
+     */
+    rowClickHandler(row, event, column){
+      this.currentRowIndex = this.getRowIndex(this.mainTableData, row, this.keyColumn);
     },
     /**
      * 表格双击事件
