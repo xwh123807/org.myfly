@@ -31,13 +31,16 @@ public class TableDirectValueHandler extends DefaultValueHandler {
 	public Object getFieldValueForEntity(Object entity) {
 		String keyValue = (String) super.getFieldValueForEntity(entity);
 		if (refTable != null && StringUtils.isNotBlank(keyValue)) {
-			FlyEntityMap result = new FlyEntityMap();
-			result.put(getRefTable().getKeyColumnName(), keyValue);
-			Object value = AppUtil.getIDNameService().getNameValue(getRefDataModel().getTableName(),
+			// FlyEntityMap result = new FlyEntityMap();
+			// result.put(getRefTable().getKeyColumnName(), keyValue);
+			RefObject result = new RefObject();
+			result.setUid(keyValue);
+			String value = AppUtil.getIDNameService().getNameValue(getRefDataModel().getTableName(),
 					getRefDataModel().getColumnMap().get(getRefTable().getKeyColumnName()).getColumnName(),
 					getRefDataModel().getColumnMap().get(getRefTable().getDisplayColumnName()).getColumnName(),
 					keyValue);
-			result.put(getRefTable().getDisplayColumnName(), value);
+			result.setLabel(value);
+			// result.put(getRefTable().getDisplayColumnName(), value);
 			return result;
 		}
 		return keyValue;

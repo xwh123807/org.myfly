@@ -88,13 +88,14 @@ public class FlyDataTypeUtils {
 			}
 		}
 	}
-	
+
 	/**
 	 * 获取类的Java类型
+	 * 
 	 * @param column
 	 * @return
 	 */
-	public static Class<?> getJavaType(FlyDataType dataType){
+	public static Class<?> getJavaType(FlyDataType dataType) {
 		Class<?> result = null;
 		switch (dataType) {
 		case Date:
@@ -155,5 +156,15 @@ public class FlyDataTypeUtils {
 			result = String.class;
 		}
 		return result;
+	}
+
+	/**
+	 * 判断是否为引用列
+	 * 
+	 * @return
+	 */
+	public static boolean isRefColumn(FlyDataType dataType) {
+		return FlyDataType.List.equals(dataType) || FlyDataType.Table.equals(dataType)
+				|| FlyDataType.TableDirect.equals(dataType);
 	}
 }

@@ -8,7 +8,7 @@
                   <el-switch v-model="scope.row[column.model]" disabled></el-switch>
                 </template>
               </el-table-column>
-              <el-table-column v-else :prop="column.model" :label="column.name" 
+              <el-table-column v-else :prop="column.refColumn === false ? column.model : column.model  + '__label'" :label="column.name" 
                 v-bind:key="column.fieldID" sortable></el-table-column>
             </template>
             <!-- <el-table-column fixed="right" label="操作" width="75">

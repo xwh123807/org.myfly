@@ -7,6 +7,7 @@ import javax.persistence.Table;
 
 import org.myfly.platform.core3.domain.FlyMetaEntity;
 import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
+import org.myfly.platform.core3.metadata.annotation.FlyReferences;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 /**
@@ -20,7 +21,9 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 @Entity
 @Table(name = "PT_DataType")
 @FlyTable()
-@FlyRefTable(apiName = "dataType", name = "数据类型", displayColumn = "name", keyColumn = "dataType")
+@FlyReferences(references = {
+		@FlyRefTable(apiName = "dataTypeID", name = "数据类型", displayColumn = "name", keyColumn = "dataTypeID"),
+		@FlyRefTable(apiName = "dataType", name = "数据类型", displayColumn = "name", keyColumn = "dataType") })
 public class PDataType extends FlyMetaEntity {
 	/**
 	 * 

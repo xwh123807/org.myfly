@@ -16,7 +16,7 @@ public class FlyColumn extends PColumn implements IDefinition {
 	 * 
 	 */
 	private static final long serialVersionUID = -8254426803835852767L;
-	
+
 	@JsonIgnore
 	private FlyDataModel parent;
 
@@ -30,12 +30,12 @@ public class FlyColumn extends PColumn implements IDefinition {
 	private IValueHandler valueHandler;
 
 	private boolean isFromDB;
-	
+
 	/**
 	 * 对应Element
 	 */
 	private FElement element;
-	
+
 	public IValueHandler getValueHandler() {
 		return valueHandler;
 	}
@@ -164,30 +164,46 @@ public class FlyColumn extends PColumn implements IDefinition {
 	}
 
 	/**
-	 * @param parent the parent to set
+	 * @param parent
+	 *            the parent to set
 	 */
 	public void setParent(FlyDataModel parent) {
 		this.parent = parent;
 	}
-	
+
 	/**
 	 * 获取引用表关联列
+	 * 
 	 * @return
 	 */
 	public String getRefKeyColumn() {
-		return (getElement().getRefTable() != null) ? getElement().getRefTable().getKeyColumnName() : "";
+		if (isRefTableColumn()) {
+			return (getElement().getRefTable() != null) ? getElement().getRefTable().getKeyColumnName() : "";
+		} else if (isRefListColumn()) {
+			return "refListID";
+		} else {
+			return "";
+		}
 	}
-	
+
 	/**
 	 * 获取引用表显示列
+	 * 
 	 * @return
 	 */
 	public String getRefDisplayColumn() {
-		return (getElement().getRefTable() != null) ? getElement().getRefTable().getDisplayColumnName() : "";
+		if (isRefTableColumn()) {
+			return (getElement().getRefTable() != null) ? getElement().getRefTable().getDisplayColumnName() : "";
+		} else if (isRefListColumn()) {
+			return "name";
+		} else {
+			return "";
+		}
 	}
 
 	/**
 	 * 判断列是否为引用表列类型
+	 * 
 	 * @return
 	 */
 	public boolean isRefTableColumn() {
@@ -196,6 +212,7 @@ public class FlyColumn extends PColumn implements IDefinition {
 
 	/**
 	 * 判断是否为引用值列类型
+	 * 
 	 * @return
 	 */
 	public boolean isRefListColumn() {

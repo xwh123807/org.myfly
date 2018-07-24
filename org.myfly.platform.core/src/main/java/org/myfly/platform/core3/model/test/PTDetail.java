@@ -6,9 +6,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.myfly.platform.core3.domain.FlyEntity;
+import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
 
 @Entity
 @Table(name="PT_Detail")
+@FlyRefTable(apiName = "detailID", displayColumn = "name", keyColumn = "detailID", name = "Detail")
 public class PTDetail extends FlyEntity {
 	/**
 	 * 

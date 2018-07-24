@@ -13,6 +13,7 @@ import org.myfly.platform.core3.domain.IFlyMetaEntity;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
 import org.myfly.platform.core3.metadata.define.FlyColumn;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.metadata.handler.RefObject;
 import org.myfly.platform.core3.metadata.internal.FlySystemResource;
 
 public class FlyEntityUtils {
@@ -206,15 +207,22 @@ public class FlyEntityUtils {
 
 	private static void processFieldValue(Object entityObj, FlyEntityMap result, FlyColumn field) {
 		Object value = field.getValueHandler().getFieldValue(entityObj);
-		if (value instanceof Map) {
-			if (field.isRefListColumn()) {
-				result.put(field.getApiName() + "__name", ((FlyEntityMap) value).get("name"));
-			} else if (field.isRefTableColumn()) {
-				String dsipalyColumn = field.getRefDisplayColumn();
-				result.put(field.getApiName() + "__" + dsipalyColumn, ((FlyEntityMap) value).get(dsipalyColumn));
-			}
+		// if (value instanceof Map) {
+		// if (field.isRefListColumn() || field.isRefTableColumn()) {
+		// String keyColumn = field.getRefKeyColumn();
+		// String dsipalyColumn = field.getRefDisplayColumn();
+		// result.put(field.getApiName() + "__" + keyColumn, ((FlyEntityMap)
+		// value).get(keyColumn));
+		// result.put(field.getApiName() + "__" + dsipalyColumn, ((FlyEntityMap)
+		// value).get(dsipalyColumn));
+		// }
+		// }
+		if (value instanceof RefObject) {
+			result.put(field.getApiName(), ((RefObject) value).getUid());
+			result.put(field.getApiName() + RefObject.LABEL, ((RefObject) value).getLabel());
+		} else {
+			result.put(field.getApiName(), value);
 		}
-		result.put(field.getApiName(), value);
 	}
 
 	/**

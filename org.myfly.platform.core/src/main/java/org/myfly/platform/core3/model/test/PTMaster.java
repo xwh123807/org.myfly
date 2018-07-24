@@ -6,11 +6,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.myfly.platform.core3.domain.FlyEntity;
+import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 @Entity
 @Table(name = "PT_Master")
 @FlyTable(name = "Master", description = "测试主表，用于测试所有数据类型和特性")
+@FlyRefTable(apiName = "masterID", displayColumn = "name", keyColumn = "masterID", name = "Master")
 public class PTMaster extends FlyEntity {
 	/**
 	 * 

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
+import org.myfly.platform.core3.metadata.builder.FlyDataTypeUtils;
 import org.myfly.platform.core3.metadata.define.FElement;
 import org.myfly.platform.core3.metadata.define.FRefListItem;
 import org.myfly.platform.core3.metadata.define.FlyColumn;
@@ -108,7 +109,7 @@ public class FField extends PField implements IDefinition {
 
 	public void setFlyColumn(FlyColumn flyColumn) {
 		this.flyColumn = flyColumn;
-		updateRelationInfo(flyColumn.getElement());
+		updateRelationInfo();
 	}
 
 	/**
@@ -116,23 +117,29 @@ public class FField extends PField implements IDefinition {
 	 * 
 	 * @param element
 	 */
-	private void updateRelationInfo(FElement element) {
+	private void updateRelationInfo() {
+		FElement element = getFlyColumn().getElement();
 		setColumnName(element.getApiName());
-		switch (element.getDataType()) {
+		switch (getFlyColumn().getDataType()) {
 		case Table:
 		case TableDirect:
 			setRelationTable(element.getRefTable().getTableApiName());
 			setRelationKeyColumn(element.getRefTable().getKeyColumnName());
 			setRelationDisplayColumn(element.getRefTable().getDisplayColumnName());
+			setModel(element.getApiName());
 			break;
 		case List:
 			setRelationTable(PRefList.class.getName());
 			setRelationKeyColumn("refListID");
 			setRelationDisplayColumn("name");
-			List<FRefListItem> items = new ArrayList<>(element.getRefList().getItems().values());
-			setRefListItems(items);
+			if (element.getRefList() != null) {
+				List<FRefListItem> items = new ArrayList<>(element.getRefList().getItems().values());
+				setRefListItems(items);
+			}
+			setModel(element.getApiName());
 			break;
 		default:
+			setModel(element.getApiName());
 			break;
 		}
 	}
@@ -185,4 +192,11 @@ public class FField extends PField implements IDefinition {
 		this.refListItems = refListItems;
 	}
 
+	/**
+	 * 判断是否为引用列
+	 * @return
+	 */
+	public boolean isRefColumn() {
+		return FlyDataTypeUtils.isRefColumn(getDataType());
+	}
 }

@@ -7,6 +7,7 @@ import javax.persistence.Table;
 
 import org.myfly.platform.core3.domain.FlyMetaEntity;
 import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
+import org.myfly.platform.core3.metadata.annotation.FlyReferences;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 /**
@@ -22,7 +23,9 @@ import org.myfly.platform.core3.metadata.annotation.FlyTable;
 @FlyTable(name = "Entity Type", description = "Dictionary Entity Type; Determines ownership and synchronization", //
 		help = "The Entity Types \"Dictionary\", \"Adempiere\" and \"Application\" might be automatically synchronized and customizations deleted or overwritten.  n\"\n"
 				+ "			+ \"n\" + \"For customizations, copy the entity and select \"User\"!")
-@FlyRefTable(apiName = "entityType", keyColumn = "entityType", displayColumn = "name", name = "实体类型")
+@FlyReferences(references = {
+		@FlyRefTable(apiName = "entityTypeID", keyColumn = "entityTypeID", displayColumn = "name", name = "实体类型"),
+		@FlyRefTable(apiName = "entityType", keyColumn = "entityType", displayColumn = "name", name = "实体类型") })
 public class PEntityType extends FlyMetaEntity {
 	/**
 	 * 

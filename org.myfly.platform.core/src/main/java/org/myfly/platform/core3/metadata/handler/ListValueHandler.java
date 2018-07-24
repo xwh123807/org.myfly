@@ -35,12 +35,15 @@ public class ListValueHandler extends DefaultValueHandler implements IValueHandl
 			if (StringUtils.isNotBlank(keyValue)) {
 				FRefListItem listItem = refList.getItems().get(keyValue);
 				Assert.notNull(listItem, "在refList[" + refList.getName() + "]中找不到项目[" + keyValue + "]");
-				FlyEntityMap result = new FlyEntityMap();
-				result.put("refListID", listItem.getRefListID());
-				result.put("value", listItem.getValue());
-				result.put("name", listItem.getName());
-				result.put("description", listItem.getDescription());
-				result.put("help", listItem.getHelp());
+				RefObject result = new RefObject();
+				result.setUid(listItem.getRefListID());
+				result.setLabel(listItem.getName());
+				// FlyEntityMap result = new FlyEntityMap();
+				// result.put("refListID", listItem.getRefListID());
+				// result.put("value", listItem.getValue());
+				// result.put("name", listItem.getName());
+				// result.put("description", listItem.getDescription());
+				// result.put("help", listItem.getHelp());
 				return result;
 			}
 		}

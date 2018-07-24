@@ -85,18 +85,19 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 		result.setReferenceID(column.getReferenceID());
 		result.setFlyColumn(column);
 		FlyEntityUtils.updateFlyEntityForSystem(result);
-		String model = column.getApiName();
-		if (column.isRefListColumn()) {
-			model += "__name";
-		} else if (column.isRefTableColumn()) {
-			model += "__" + column.getRefDisplayColumn();
-		}
-		result.setModel(model);
+		// String model = column.getApiName();
+		// if (column.isRefListColumn()) {
+		// model += "__name";
+		// } else if (column.isRefTableColumn()) {
+		// model += "__" + column.getRefDisplayColumn();
+		// }
+		// result.setModel(model);
 		return result;
 	}
 
 	/**
 	 * 从数据模型构建显示模型
+	 * 
 	 * @param dataModel
 	 * @return
 	 */
