@@ -46,7 +46,7 @@ public class RefTableBuilder extends AbstractBuilder<PReference, FRefTable> {
 			item.setDescription(anno.description());
 			item.setHelp(anno.help());
 			item.setEntityType(anno.entityType());
-			item.setTableClassName(entityClass.getName());
+			item.setTableApiName(entityClass.getName());
 			item.setKeyColumnName(anno.keyColumn());
 			item.setDisplayColumnName(anno.displayColumn());
 			FlyEntityUtils.updateFlyEntityForSystem(item);

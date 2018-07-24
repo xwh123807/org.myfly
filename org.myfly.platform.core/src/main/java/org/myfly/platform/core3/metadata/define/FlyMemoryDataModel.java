@@ -132,7 +132,7 @@ public class FlyMemoryDataModel {
 	 */
 	public FRefTable getRefTableByTable(String tableApiName) {
 		for (FRefTable item : getRefTables().values()) {
-			if (item.getTableClassName().equals(tableApiName)) {
+			if (item.getTableApiName().equals(tableApiName)) {
 				return item;
 			}
 		}
@@ -242,7 +242,7 @@ public class FlyMemoryDataModel {
 					copyFieldPropertyFromElement(column);
 					//引用表类型为当前实体，则将类型值为ID
 					if (column.isRefTableColumn()) {
-						if (column.getElement().getRefTable().getTableClassName().equals(item.getApiName())) {
+						if (column.getElement().getRefTable().getTableApiName().equals(item.getApiName())) {
 							column.setDataType(FlyDataType.ID);
 							column.setValueHandler(ValueHandlerFactory.getValueHandler(column));
 						}

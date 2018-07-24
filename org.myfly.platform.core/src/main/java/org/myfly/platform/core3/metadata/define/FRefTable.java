@@ -15,7 +15,7 @@ public class FRefTable extends PReference implements IDefinition {
 
 	private PRefTable refTable;
 
-	private String tableClassName;
+	private String tableApiName;
 
 	private String keyColumnName;
 
@@ -34,7 +34,7 @@ public class FRefTable extends PReference implements IDefinition {
 		Assert.hasLength(getApiName(), "属性[ApiName]不能为空");
 		Assert.hasLength(getEntityType(), "属性[EntityType]不能为空");
 		Assert.hasLength(getName(), "属性[Name]不能为空");
-		Assert.hasLength(getTableClassName(), "属性[TableClassName]不能为空");
+		Assert.hasLength(getTableApiName(), "属性[getTableApiName]不能为空");
 		Assert.hasLength(getKeyColumnName(), "属性[KeyColumnName]不能为空");
 		Assert.hasLength(getDisplayColumnName(), "属性[DisplayColumnName]不能为空");
 		Assert.notNull(getRefTable(), "属性[RefTable]不能为空");
@@ -56,14 +56,6 @@ public class FRefTable extends PReference implements IDefinition {
 
 	public void setRefTable(PRefTable refTable) {
 		this.refTable = refTable;
-	}
-
-	public String getTableClassName() {
-		return tableClassName;
-	}
-
-	public void setTableClassName(String tableClassName) {
-		this.tableClassName = tableClassName;
 	}
 
 	@Override
@@ -120,7 +112,15 @@ public class FRefTable extends PReference implements IDefinition {
 
 	@Override
 	public String toString() {
-		return "apiName:" + getApiName() + ", name: " + getName() + ", table: " + getTableClassName() + ", keyColumn:"
+		return "apiName:" + getApiName() + ", name: " + getName() + ", table: " + getTableApiName() + ", keyColumn:"
 				+ getKeyColumnName() + ", displayColumn: " + getDisplayColumnName();
+	}
+
+	public String getTableApiName() {
+		return tableApiName;
+	}
+
+	public void setTableApiName(String tableApiName) {
+		this.tableApiName = tableApiName;
 	}
 }

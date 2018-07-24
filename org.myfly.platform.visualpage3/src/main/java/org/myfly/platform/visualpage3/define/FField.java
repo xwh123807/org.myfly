@@ -1,9 +1,15 @@
 package org.myfly.platform.visualpage3.define;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
+import org.myfly.platform.core3.metadata.define.FElement;
+import org.myfly.platform.core3.metadata.define.FRefListItem;
 import org.myfly.platform.core3.metadata.define.FlyColumn;
 import org.myfly.platform.core3.metadata.define.IDefinition;
+import org.myfly.platform.core3.model.PRefList;
 import org.myfly.platform.visualpage3.model.PField;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,6 +30,26 @@ public class FField extends PField implements IDefinition {
 	 * 用于vue绑定名
 	 */
 	private String model;
+	/**
+	 * 字段名称
+	 */
+	private String columnName;
+	/**
+	 * 引用表名称
+	 */
+	private String relationTable;
+	/**
+	 * 引用表健值字段名
+	 */
+	private String relationKeyColumn;
+	/**
+	 * 引用表显示字段名
+	 */
+	private String relationDisplayColumn;
+	/**
+	 * 引用值列表值
+	 */
+	private List<FRefListItem> refListItems;
 
 	@Override
 	public String getKey() {
@@ -82,6 +108,33 @@ public class FField extends PField implements IDefinition {
 
 	public void setFlyColumn(FlyColumn flyColumn) {
 		this.flyColumn = flyColumn;
+		updateRelationInfo(flyColumn.getElement());
+	}
+
+	/**
+	 * 更新引用类型信息
+	 * 
+	 * @param element
+	 */
+	private void updateRelationInfo(FElement element) {
+		setColumnName(element.getApiName());
+		switch (element.getDataType()) {
+		case Table:
+		case TableDirect:
+			setRelationTable(element.getRefTable().getTableApiName());
+			setRelationKeyColumn(element.getRefTable().getKeyColumnName());
+			setRelationDisplayColumn(element.getRefTable().getDisplayColumnName());
+			break;
+		case List:
+			setRelationTable(PRefList.class.getName());
+			setRelationKeyColumn("refListID");
+			setRelationDisplayColumn("name");
+			List<FRefListItem> items = new ArrayList<>(element.getRefList().getItems().values());
+			setRefListItems(items);
+			break;
+		default:
+			break;
+		}
 	}
 
 	public String getModel() {
@@ -90,6 +143,46 @@ public class FField extends PField implements IDefinition {
 
 	public void setModel(String model) {
 		this.model = model;
+	}
+
+	public String getRelationTable() {
+		return relationTable;
+	}
+
+	public void setRelationTable(String relationTable) {
+		this.relationTable = relationTable;
+	}
+
+	public String getRelationKeyColumn() {
+		return relationKeyColumn;
+	}
+
+	public void setRelationKeyColumn(String relationKeyColumn) {
+		this.relationKeyColumn = relationKeyColumn;
+	}
+
+	public String getRelationDisplayColumn() {
+		return relationDisplayColumn;
+	}
+
+	public void setRelationDisplayColumn(String relationDisplayColumn) {
+		this.relationDisplayColumn = relationDisplayColumn;
+	}
+
+	public String getColumnName() {
+		return columnName;
+	}
+
+	public void setColumnName(String columnName) {
+		this.columnName = columnName;
+	}
+
+	public List<FRefListItem> getRefListItems() {
+		return refListItems;
+	}
+
+	public void setRefListItems(List<FRefListItem> refListItems) {
+		this.refListItems = refListItems;
 	}
 
 }

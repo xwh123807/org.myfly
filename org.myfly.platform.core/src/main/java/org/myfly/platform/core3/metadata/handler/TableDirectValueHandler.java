@@ -17,7 +17,7 @@ public class TableDirectValueHandler extends DefaultValueHandler {
 
 	private FlyDataModel getRefDataModel() {
 		if (refDataModel == null) {
-			refDataModel = AppUtil.getFlyDataModel(getRefTable().getTableClassName());
+			refDataModel = AppUtil.getFlyDataModel(getRefTable().getTableApiName());
 		}
 		return refDataModel;
 	}
