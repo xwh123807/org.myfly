@@ -18,7 +18,7 @@ public class EntityCodeBuilderTest {
 	public void genCodes() {
 		builder.setPath("/gencodes/");
 		PackageTable[] packages = new PackageTable[] {
-				new PackageTable("org.myfly.platform.core3.model.data", ExportConstants.EXPORT_TABLES) };
+				new PackageTable("org.myfly.platform.core3.model", ExportConstants.EXPORT_CORE_TABLES) };
 		builder.setPackages(packages);
 		builder.parareData();
 		builder.generateCodes();

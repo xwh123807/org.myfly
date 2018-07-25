@@ -38,10 +38,10 @@ public class ElementCodeBuilderTest {
 	@Test
 	public void genCodesForCNWithTables() {
 		builder.setPath("/gencodes/");
-		builder.setPackageName("org.myfly.platform.core3.model.data");
+		builder.setPackageName("org.myfly.platform.core3.dbinit.resources");
 		builder.setClassName("Element");
 		builder.setLanguage("zh_CN");
-		builder.setTables(ExportConstants.EXPORT_TABLES);
+		builder.setTables(ExportConstants.getElementTables());
 		builder.parareData();
 		builder.generateCodes();
 	}

@@ -41,7 +41,7 @@ public class RefListCodeBuilderTest {
 		builder.setPackageName("org.myfly.platform.core3.model.data");
 		builder.setClassName("RefLists");
 		builder.setLanguage("zh_CN");
-		builder.setTables(ExportConstants.EXPORT_TABLES);
+		builder.setTables(ExportConstants.EXPORT_CORE_TABLES);
 		builder.parareData();
 		builder.generateCodes();
 	}

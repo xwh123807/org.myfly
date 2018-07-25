@@ -47,6 +47,9 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="Field_ID", name="字段", description="一张数据库表上的字段", help="字段标识了数据库表的字段。", dataType=FlyDataType.ID, entityType="D", printName="字段", fieldLength=22)
 	fieldID,
 	//
+	@FlyElement(columnName="Form_ID", name="特别的窗体", description="特别的窗体", help="The Special Form field identifies a unique Special Form in the system.", dataType=FlyDataType.ID, entityType="D", printName="特别的窗体", fieldLength=22)
+	formID,
+	//
 	@FlyElement(columnName="Image_ID", name="图像", description="系统图像或图标", dataType=FlyDataType.TableDirect, entityType="D", printName="图像", fieldLength=22)
 	imageID,
 	//
@@ -68,8 +71,14 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="OrgType_ID", name="机构类型", description="Organization Type allows you to categorize your organizations", help="Organization Type allows you to categorize your organizations for reporting purposes", dataType=FlyDataType.TableDirect, entityType="D", printName="机构类型", fieldLength=22)
 	orgTypeID,
 	//
+	@FlyElement(columnName="PrintFormat_ID", name="打印格式", description="数据打印格式", help="The print format determines how data is rendered for print.", dataType=FlyDataType.TableDirect, entityType="D", printName="打印格式", fieldLength=22)
+	printFormatID,
+	//
 	@FlyElement(columnName="Process_ID", name="进程", description="程序或报表", help="The Process field identifies a unique Process or Report in the system.", dataType=FlyDataType.TableDirect, entityType="D", printName="进程", fieldLength=22)
 	processID,
+	//
+	@FlyElement(columnName="Process_Para_ID", name="参数处理", dataType=FlyDataType.ID, entityType="D", printName="参数处理", fieldLength=22)
+	processParaID,
 	//
 	@FlyElement(columnName="Reference_ID", name="引用", description="系统引用", help="The Reference indicates the type of reference field", dataType=FlyDataType.ID, entityType="D", printName="引用", fieldLength=22)
 	referenceID,
@@ -82,6 +91,9 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="ReplicationStrategy_ID", name="复制策略", description="数据复制策略", help="The Data Replication Strategy determines what and how tables are replicated ", dataType=FlyDataType.TableDirect, entityType="D", printName="复制策略", fieldLength=22)
 	replicationStrategyID,
+	//
+	@FlyElement(columnName="ReportView_ID", name="报表视图", description="View used to generate this report", help="The Report View indicates the view used to generate this report.", dataType=FlyDataType.TableDirect, entityType="D", printName="报表视图", fieldLength=22)
+	reportViewID,
 	//
 	@FlyElement(columnName="Role_ID", name="角色", description="职责角色", help="The Role determines security and access a user who has this Role will have in the System.", dataType=FlyDataType.ID, entityType="D", printName="角色", fieldLength=22)
 	roleID,
@@ -106,6 +118,9 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="Window_ID", name="窗口 ", description="数据输入或显示视窗", help="The Window field identifies a unique Window in the system.", dataType=FlyDataType.TableDirect, entityType="D", printName="窗口 ", fieldLength=22)
 	windowID,
+	//
+	@FlyElement(columnName="Workflow_ID", name="工作流", description="Workflow or combination of tasks", help="The Workflow field identifies a unique Workflow in the system.", dataType=FlyDataType.TableDirect, entityType="D", printName="工作流", fieldLength=22)
+	workflowID,
 	//
 	@FlyElement(columnName="Allow_HTML_View", name="Allow HTML View", dataType=FlyDataType.YesNo, entityType="D", printName="Allow HTML View", fieldLength=1)
 	allowHTMLView,
@@ -155,6 +170,9 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="AmtApproval", name="批准金额", description="The approval amount limit for this role", help="The Approval Amount field indicates the amount limit this Role has for approval of documents.", dataType=FlyDataType.Amount, entityType="D", printName="批准金额", fieldLength=22)
 	amtApproval,
 	//
+	@FlyElement(columnName="AuthMechanism", name="Authentication Mechanism", dataType=FlyDataType.List, entityType="D", printName="Authentication Mechanism", fieldLength=1)
+	authMechanism,
+	//
 	@FlyElement(columnName="AutoArchive", name="Auto Archive", description="Enable and level of automatic Archive of documents", help="Adempiere allows to automatically create archives of Documents (e.g. Invoices) or Reports. You view the archived material with the Archive Viewer", dataType=FlyDataType.List, entityType="D", printName="Auto Archive", fieldLength=1)
 	autoArchive,
 	//
@@ -200,6 +218,9 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="C_Job_ID", name="Position", description="Job Position", dataType=FlyDataType.ID, entityType="D", printName="Position", fieldLength=10)
 	cJobID,
 	//
+	@FlyElement(columnName="Classname", name="类名", description="Java 类名", help="The Classname identifies the Java classname used by this report or process.", dataType=FlyDataType.String, entityType="D", printName="类名", fieldLength=60)
+	classname,
+	//
 	@FlyElement(columnName="Classpath", name="Classpath", description="Extension Classpath", help="If your application requires additional jar files, enter them here. The jar files must be located in the $ADEMPIERE_HOME/lib directory.", dataType=FlyDataType.String, entityType="D", printName="Classpath", fieldLength=255)
 	classpath,
 	//
@@ -227,8 +248,14 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="ConnectionProfile", name="Connection Profile", description="How a Java Client connects to the server(s)", help="Depending on the connection profile, different protocols are used and tasks are performed on the server rather then the client. Usually the user can select different profiles, unless it is enforced by the User or Role definition. The User level profile overwrites the Role based profile.", dataType=FlyDataType.List, entityType="D", printName="Connection Profile", fieldLength=1)
 	connectionProfile,
 	//
+	@FlyElement(columnName="ConnectionTimeout", name="Connection Timeout", description="Is Timeout (In milliseconds) for establishing connection", dataType=FlyDataType.Integer, entityType="D", printName="Connection Timeout", fieldLength=0)
+	connectionTimeout,
+	//
 	@FlyElement(columnName="CopyColumnsFromTable", name="Copy Columns From Table", dataType=FlyDataType.Button, entityType="D", printName="Copy Columns From Table", fieldLength=1)
 	copyColumnsFromTable,
+	//
+	@FlyElement(columnName="CopyFromProcess", name="Copy From Report and Process", description="Copy settings from one report and process to another.", help="Copy the settings from the selected report and process to the current one.  This overwrites existing settings and translations.", dataType=FlyDataType.Button, entityType="D", printName="Copy From Report and Process", fieldLength=1)
+	copyFromProcess,
 	//
 	@FlyElement(columnName="CountryCode", name="ISO国家代码", description="Upper-case two-letter alphanumeric ISO Country code according to ISO 3166-1 - http:  www.chemie.fu-berlin.de diverse doc ISO_3166.html", help="For details - http:  www.din.de gremien nas nabd iso3166ma codlstp1.html or - http:  www.unece.org trade rec rec03en.htm", dataType=FlyDataType.String, entityType="D", printName="ISO 国家", fieldLength=2)
 	countryCode,
@@ -244,6 +271,9 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="DefaultValue", name="缺省逻辑", description="Default value hierarchy, separated by ;", help="The defaults are evaluated in the order of definition, the first not null value becomes the default value of the column. The values are separated by comma or semicolon. a) Literals:. 'Text' or 123 b) Variables - in format @Variable@ - Login e.g. #Date, #AD_Org_ID, #AD_Client_ID - Accounting Schema: e.g. $C_AcctSchema_ID, $C_Calendar_ID - Global defaults: e.g. DateFormat - Window values (all Picks, CheckBoxes, RadioButtons, and DateDoc DateAcct) c) SQL code with the tag: @SQL=SELECT something AS DefaultValue FROM ... The SQL statement can contain variables.  There can be no other value other than the SQL statement. The default is only evaluated, if no user preference is defined.  Default definitions are ignored for record columns as Key, Parent, Client as well as Buttons.", dataType=FlyDataType.Text, entityType="D", printName="缺省逻辑", fieldLength=2000)
 	defaultValue,
+	//
+	@FlyElement(columnName="DefaultValue2", name="缺省逻辑 2", description="Default value hierarchy, separated by ;", help="The defaults are evaluated in the order of definition, the first not null value becomes the default value of the column. The values are separated by comma or semicolon. a) Literals:. 'Text' or 123 b) Variables - in format @Variable@ - Login e.g. #Date, #AD_Org_ID, #AD_Client_ID - Accounting Schema: e.g. $C_AcctSchema_ID, $C_Calendar_ID - Global defaults: e.g. DateFormat - Window values (all Picks, CheckBoxes, RadioButtons, and DateDoc DateAcct) c) SQL code with the tag: @SQL=SELECT something AS DefaultValue FROM ... The SQL statement can contain variables.  There can be no other value other than the SQL statement. The default is only evaluated, if no user preference is defined.  Default definitions are ignored for record columns as Key, Parent, Client as well as Buttons.", dataType=FlyDataType.String, entityType="D", printName="缺省逻辑 2", fieldLength=2000)
+	defaultValue2,
 	//
 	@FlyElement(columnName="Description", name="描述", description="该记录的可选描述", help="描述最多为 255 个字符。", dataType=FlyDataType.Text, entityType="D", printName="描述", fieldLength=255)
 	description,
@@ -284,6 +314,9 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="EMailVerifyDate", name="EMail Verify", description="Date Email was verified", dataType=FlyDataType.DateTime, entityType="D", printName="EMail Verify", fieldLength=7)
 	eMailVerifyDate,
 	//
+	@FlyElement(columnName="EncryptionType", name="Encryption Type", description="Encryption Type used for securing data content", dataType=FlyDataType.List, entityType="D", printName="Encryption Type", fieldLength=1)
+	encryptionType,
+	//
 	@FlyElement(columnName="EntityType", name="实体类型", description="字典实体类型; 确定所有者和同步性", help="实体类型'字典/Dictionary', 'Adempiere' 和 '应用/Application' 能够自动的同步因此客户化的工作将被删除或覆盖  		要客户化,请复制实体并选择'用户/User'!", dataType=FlyDataType.Table, entityType="D", printName="实体类型", fieldLength=40)
 	entityType,
 	//
@@ -298,6 +331,9 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="FormatPattern", name="Format Pattern", description="The pattern used to format a number or date.", help="A string complying with either Java SimpleDateFormat or DecimalFormat pattern syntax used to override the default presentation format of a date or number type field.", dataType=FlyDataType.String, entityType="D", printName="Format Pattern", fieldLength=22)
 	formatPattern,
+	//
+	@FlyElement(columnName="GenerateClass", name="Generate Class", description="Generate Class Button", dataType=FlyDataType.Button, entityType="D", printName="Generate Class", fieldLength=1)
+	generateClass,
 	//
 	@FlyElement(columnName="Green", name="绿色", description="RGB 值 ", dataType=FlyDataType.Integer, entityType="D", printName="绿色", fieldLength=22)
 	green,
@@ -395,6 +431,9 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="IsDeleteable", name="可删除的记录", description="Indicates if records can be deleted from the database", help="The Records Deleteable checkbox indicates if a record can be deleted from the database.  If records cannot be deleted, you can only deselect the Active flag", dataType=FlyDataType.YesNo, entityType="D", printName="可删除的记录", fieldLength=1)
 	isDeleteable,
 	//
+	@FlyElement(columnName="IsDirectPrint", name="直接打印", description="没有对话框的打印", help="The Direct Print checkbox indicates that this report will print without a print dialog box being displayed.", dataType=FlyDataType.YesNo, entityType="D", printName="直接打印", fieldLength=1)
+	isDirectPrint,
+	//
 	@FlyElement(columnName="IsDiscountAllowedOnTotal", name="IsDiscountAllowedOnTotal", dataType=FlyDataType.YesNo, entityType="D", printName="IsDiscountAllowedOnTotal", fieldLength=1)
 	isDiscountAllowedOnTotal,
 	//
@@ -437,6 +476,9 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="IsIgnoreMigration", name="Ignore Migration", description="Ignore this record in log migration", dataType=FlyDataType.YesNo, entityType="D", printName="Ignore Migration", fieldLength=1)
 	isIgnoreMigration,
 	//
+	@FlyElement(columnName="IsInfoOnly", name="Is Information Only", description="When a Parameter is Information Only", dataType=FlyDataType.YesNo, entityType="D", printName="Is Information Only", fieldLength=1)
+	isInfoOnly,
+	//
 	@FlyElement(columnName="IsInfoTab", name="会计页签", description="This tab contain accounting information", help="The Accounting Tab checkbox indicates if this window contains accounting information.", dataType=FlyDataType.YesNo, entityType="D", printName="会计页签", fieldLength=1)
 	isInfoTab,
 	//
@@ -476,6 +518,12 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="IsReadOnly", name="只读", description="字段被只有读", help="The Read Only indicates that this field may only be Read.  It may not be updated.", dataType=FlyDataType.YesNo, entityType="D", printName="只读", fieldLength=1)
 	isReadOnly,
 	//
+	@FlyElement(columnName="IsReadWrite", name="读写", description="Field is read   write", help="The Read Write indicates that this field may be read and updated.", dataType=FlyDataType.YesNo, entityType="D", printName="读写", fieldLength=1)
+	isReadWrite,
+	//
+	@FlyElement(columnName="IsReport", name="报表", description="指示一笔报表记录", help="The Report checkbox indicates that this record is a report as opposed to a process", dataType=FlyDataType.YesNo, entityType="D", printName="报表", fieldLength=1)
+	isReport,
+	//
 	@FlyElement(columnName="IsSalesLead", name="Sales Lead", description="This contact is a sales lead", help="Sales leads can be converted into full contacts with Business Partners.", dataType=FlyDataType.NONE, entityType="D", printName="Sales Lead", fieldLength=0)
 	isSalesLead,
 	//
@@ -491,11 +539,17 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="IsServerEMail", name="Server EMail", description="Send EMail from Server", help="When selected, mail is sent from the server rather then the client.  This decreases availability.  You would select this when you do not want to enable email relay for the client addresses in your mail server.", dataType=FlyDataType.YesNo, entityType="D", printName="Server EMail", fieldLength=1)
 	isServerEMail,
 	//
+	@FlyElement(columnName="IsServerProcess", name="Server Process", description="Run this Process on Server only", help="Enabling this flag disables to run the process on the client.  This potentially decreases the availability.", dataType=FlyDataType.YesNo, entityType="D", printName="Server Process", fieldLength=1)
+	isServerProcess,
+	//
 	@FlyElement(columnName="IsShowAcct", name="显示财务", description="Users with this role can see accounting information", help="This allows to prevent access to any accounting information.", dataType=FlyDataType.YesNo, entityType="D", printName="显示财务", fieldLength=1)
 	isShowAcct,
 	//
 	@FlyElement(columnName="IsSingleRow", name="单记录排列", description="Default for toggle between Single- and Multi-Row (Grid) Layout", help="The Single Row Layout checkbox indicates if the default display type for this window is a single row as opposed to multi row.", dataType=FlyDataType.YesNo, entityType="D", printName="单记录排列", fieldLength=1)
 	isSingleRow,
+	//
+	@FlyElement(columnName="IsSmtpAuthorization", name="SMTP验证", description="Your mail server requires Authentification", help="Some email servers require authentification before sending emails.  If yes, users are required to define their email user name and password.  If authentification is required and no user name and password is required, delivery will fail.", dataType=FlyDataType.YesNo, entityType="D", printName="SMTP验证", fieldLength=1)
+	isSmtpAuthorization,
 	//
 	@FlyElement(columnName="IsSortTab", name="定单页签", description="页签定单", dataType=FlyDataType.YesNo, entityType="D", printName="定单页签", fieldLength=1)
 	isSortTab,
@@ -536,6 +590,9 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="IsView", name="视图", description="这是视图", help="This is a view rather than a table.  A view is always treated as read only in the system.", dataType=FlyDataType.YesNo, entityType="D", printName="视图", fieldLength=1)
 	isView,
 	//
+	@FlyElement(columnName="JasperReport", name="Jasper Report", dataType=FlyDataType.String, entityType="D", printName="Jasper Report", fieldLength=255)
+	jasperReport,
+	//
 	@FlyElement(columnName="LanguageISO", name="ISO 语言编码", description="Lower-case two-letter ISO-3166 code - http:  www.ics.uci.edu pub ietf http related iso639.txt ", help="The ISO Language Code indicates the standard ISO code for a language in lower case.  Information can be found at http:  www.ics.uci.edu pub ietf http related iso639.txt ", dataType=FlyDataType.String, entityType="D", printName="ISO 语言编码", fieldLength=2)
 	languageISO,
 	//
@@ -544,6 +601,9 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="LastResult", name="最近结果", description="最后的联系人结果", help="The Last Result identifies the result of the last contact made.", dataType=FlyDataType.String, entityType="D", printName="最近结果", fieldLength=2000)
 	lastResult,
+	//
+	@FlyElement(columnName="LDAPDomain", name="LDAP查询", description="Directory service query string", dataType=FlyDataType.String, entityType="D", printName="LDAP查询", fieldLength=255)
+	lDAPDomain,
 	//
 	@FlyElement(columnName="LDAPQuery", name="LDAP Query", dataType=FlyDataType.String, entityType="D", printName="LDAP Query", fieldLength=255)
 	lDAPQuery,
@@ -650,8 +710,14 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="PrintName", name="打印文本", description="The label text to be printed on a document or correspondence.", help="The Label to be printed indicates the name that will be printed on a document or correspondence. The max length is 2000 characters.", dataType=FlyDataType.String, entityType="D", printName="文本", fieldLength=60)
 	printName,
 	//
+	@FlyElement(columnName="ProcedureName", name="过程", description="Name of the Database Procedure", help="The Procedure indicates the name of the database procedure called by this report or process.", dataType=FlyDataType.String, entityType="D", printName="过程", fieldLength=60)
+	procedureName,
+	//
 	@FlyElement(columnName="Processing", name="现在处理", dataType=FlyDataType.Button, entityType="D", printName="现在处理", fieldLength=1)
 	processing,
+	//
+	@FlyElement(columnName="Protocol", name="Protocol", description="Protocol", dataType=FlyDataType.String, entityType="D", printName="Protocol", fieldLength=20)
+	protocol,
 	//
 	@FlyElement(columnName="ReadOnlyLogic", name="只读逻辑", description="Logic to determine if field is read only (applies only when field is read-write)", help="format := {expression} [{logic} {expression}]<br> 	expression := @{context}@{operand}{value} or @{context}@{operand}{value}<br> 	logic := {|}|{&}<br>	context := any global or window context <br>	value := strings or numbers<br>	logic operators	:= AND or OR with the previous result from left to right <br>	operand := eq{=}, gt{&gt;}, le{&lt;}, not{~^!} <br>	Examples: <br>	@AD_Table_ID@=14 | @Language@!GERGER <br>	@PriceLimit@>10 | @PriceList@>@PriceActual@<br>	@Name@>J<br>	Strings may be in single quotes (optional)", dataType=FlyDataType.Text, entityType="D", printName="只读逻辑", fieldLength=2000)
 	readOnlyLogic,
@@ -695,11 +761,23 @@ public enum Element_zh_CN{
 	@FlyElement(columnName="SeqNoGrid", name="Grid Sequence", description="Method of ordering records; lowest number comes first", help="The Sequence indicates the order of columns in grid view", dataType=FlyDataType.NONE, entityType="D", printName="Grid Sequence", fieldLength=0)
 	seqNoGrid,
 	//
+	@FlyElement(columnName="ShowHelp", name="Show Help", dataType=FlyDataType.List, entityType="D", printName="Show Help", fieldLength=1)
+	showHelp,
+	//
+	@FlyElement(columnName="SMTPHost", name="邮件主机", description="Hostname of Mail Server for SMTP and IMAP", help="The host name of the Mail Server for this client with SMTP services to send mail, and IMAP to process incoming mail.", dataType=FlyDataType.String, entityType="D", printName="邮件主机", fieldLength=60)
+	sMTPHost,
+	//
 	@FlyElement(columnName="SortNo", name="记录排序号", description="决定记录按怎样的顺序显示。", help="The Record Sort No indicates the ascending sort sequence of the records", dataType=FlyDataType.Number, entityType="D", printName="记录排序号", fieldLength=22)
 	sortNo,
 	//
 	@FlyElement(columnName="StartPoint", name="开始点", description="Start point of the gradient colors", help="The gradient starts at the start point (e.g. North). The repeat distance determines if and how often the gradient colors are repeated.  If starting from southern points, the upper color is actually at the button.", dataType=FlyDataType.List, entityType="D", printName="开始点", fieldLength=22)
 	startPoint,
+	//
+	@FlyElement(columnName="Statistic_Count", name="统计计数", description="Internal statistics how often the entity was used", help="For internal use.", dataType=FlyDataType.Integer, entityType="D", printName="统计计数", fieldLength=22)
+	statisticCount,
+	//
+	@FlyElement(columnName="Statistic_Seconds", name="统计数值秒", description="Internal statistics how many seconds a process took", help="对于内在的使用", dataType=FlyDataType.Integer, entityType="D", printName="统计数值秒", fieldLength=22)
+	statisticSeconds,
 	//
 	@FlyElement(columnName="StoreArchiveOnFileSystem", name="Store Archive On File System", dataType=FlyDataType.YesNo, entityType="D", printName="Store Archive On File System", fieldLength=1)
 	storeArchiveOnFileSystem,
@@ -718,6 +796,9 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="TaxID", name="税号", description="税务号", help="The Tax ID field identifies the legal Identification number of this Entity.", dataType=FlyDataType.String, entityType="D", printName="税号", fieldLength=20)
 	taxID,
+	//
+	@FlyElement(columnName="Timeout", name="Timeout", description="Is Timeout (In milliseconds) for sending or receive data", dataType=FlyDataType.Integer, entityType="D", printName="Timeout", fieldLength=0)
+	timeout,
 	//
 	@FlyElement(columnName="TimePattern", name="Time Pattern", description="Java Time Pattern", help="Option Time pattern in Java notation. Examples: 'hh:mm:ss aaa z' - 'HH:mm:ss'	If the pattern for your language is not correct, please create a Adempiere support request with the correct information", dataType=FlyDataType.String, entityType="D", printName="Time Pattern", fieldLength=20)
 	timePattern,
@@ -796,4 +877,7 @@ public enum Element_zh_CN{
 	//
 	@FlyElement(columnName="WinWidth", name="Window Width", dataType=FlyDataType.Integer, entityType="D", printName="Win Width", fieldLength=22)
 	winWidth,
+	//
+	@FlyElement(columnName="WorkflowValue", name="Workflow Key", description="Key of the Workflow to start", dataType=FlyDataType.String, entityType="D", printName="Workflow", fieldLength=40)
+	workflowValue,
 }
