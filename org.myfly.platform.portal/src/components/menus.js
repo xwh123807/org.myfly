@@ -9,7 +9,7 @@ const menus = [
         id: 't001',
         label: '动态表单-Client',
         icon: 'fa fa-hand-o-up',
-        path: '/dynamicFormWindow/pclient/40289f65642bc6b401642bc6b6160000'
+        path: '/dynamicFormWindow/client/40289f65642bc6b401642bc6b6160000'
       },
       {
         id: 't002',

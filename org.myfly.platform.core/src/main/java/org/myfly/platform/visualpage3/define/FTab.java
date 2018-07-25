@@ -33,6 +33,11 @@ public class FTab extends PTab implements IDefinition {
 	 * 主键列
 	 */
 	private String keyColumn;
+	
+	/**
+	 * 子Tab
+	 */
+	private String[] subTabs;
 
 	@Override
 	public String getKey() {
@@ -121,5 +126,13 @@ public class FTab extends PTab implements IDefinition {
 
 	public void setKeyColumn(String keyColumn) {
 		this.keyColumn = keyColumn;
+	}
+
+	public String[] getSubTabs() {
+		return subTabs;
+	}
+
+	public void setSubTabs(String[] subTabs) {
+		this.subTabs = subTabs;
 	}
 }

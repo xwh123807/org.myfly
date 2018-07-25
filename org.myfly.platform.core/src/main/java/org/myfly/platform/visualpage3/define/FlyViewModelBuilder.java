@@ -3,6 +3,7 @@ package org.myfly.platform.visualpage3.define;
 import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
@@ -45,7 +46,29 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 			tab.setWindowID(result.getWindowID());
 			result.getTabs().put(tab.getName(), tab);
 		}
+		updateSubTabs(result);
 		return result;
+	}
+
+	private void updateSubTabs(FlyViewModel result) {
+		//上一次访问节点
+		FTab last = result.getMainTab();
+		//上一层节点
+		FTab prior = null;
+		last.setSubTabs(new String[] {});
+		for (FTab item : result.getTabs().values()) {
+			if (!item.getTabID().equals(last.getTabID())) {
+				if (item.getTabLevel().intValue() > last.getTabLevel().intValue()) {
+					//下一级
+					last.setSubTabs(ArrayUtils.add(last.getSubTabs(), item.getName()));
+					prior = last;
+				}else {
+					//平级
+					prior.setSubTabs(ArrayUtils.add(last.getSubTabs(), item.getName()));
+				}
+				last = item;
+			}
+		};
 	}
 
 	private FTab buildTab(FlyTab anno) {
@@ -58,6 +81,7 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 		result.setKeyColumn(result.getTable().getPrimaryKey().getApiName());
 		result.setTableID(result.getTable().getTableID());
 		result.setTableStyle(anno.tableStyle());
+		result.setTabLevel(anno.tabLevel());
 		FlyEntityUtils.updateFlyEntityForSystem(result);
 		result.setFields(new LinkedHashMap<>());
 		buildFields(result, anno.fieldGroup());
@@ -128,6 +152,7 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 		result.setTableID(dataModel.getTableID());
 		result.setKeyColumn(result.getTable().getPrimaryKey().getApiName());
 		result.setTableStyle(TableStyle.ELTable);
+		result.setTabLevel(0);
 		FlyEntityUtils.updateFlyEntityForSystem(result);
 		result.setFields(new LinkedHashMap<>());
 		buildFields(result);

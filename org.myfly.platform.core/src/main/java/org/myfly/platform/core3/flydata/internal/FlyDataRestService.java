@@ -84,6 +84,12 @@ public class FlyDataRestService {
 		return flyDataService.find(entityName, uid, hasSubTable, subTableAttrs);
 	}
 
+	@RequestMapping(value = "{entityName}/{fieldName}/{fieldValue}", method = RequestMethod.GET)
+	public List<FlyEntityMap> find(@PathVariable("entityName") String entityName,
+			@PathVariable("fieldName") String fieldName, @PathVariable("fieldValue") String fieldValue) {
+		return flyDataService.findAll(entityName);
+	}
+
 	/**
 	 * 查询所有实体
 	 * 

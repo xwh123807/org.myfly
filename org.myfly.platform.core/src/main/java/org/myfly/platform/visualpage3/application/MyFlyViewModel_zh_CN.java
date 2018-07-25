@@ -18,7 +18,8 @@ public enum MyFlyViewModel_zh_CN {
 	Element,
 	//
 	@FlyWindow(name = "客户", description = "客户", help = "", tabs = {
-			@FlyTab(name = "客户", description = "客户", help = "", table = "PClient") })
+			@FlyTab(name = "客户", description = "客户", help = "", table = "PClient"),
+			@FlyTab(name = "用户", description = "用户", help = "", table = "PUser", tabLevel = 1) })
 	Client,
 	//
 	@FlyWindow(name = "Table", description = "Table", help = "", tabs = {

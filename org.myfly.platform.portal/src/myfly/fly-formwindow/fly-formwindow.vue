@@ -10,6 +10,11 @@
             </el-button-group>
         </el-row>
         <fly-form :tabModel="mainTab" :data="data"></fly-form>
+        <el-row v-for="subTabName in mainTab.subTabs" v-bind:key="subTabName">
+          <fly-subtable :windowName="windowName" :tabName="subTabName" :parentKeyColumn="mainTab.keyColumn" 
+            :parentUid="keyValue">
+          </fly-subtable>
+        </el-row>
     </div>
 </template>
 
@@ -32,11 +37,11 @@ export default {
       /**
        * 显示模型
        */
-      viewModel: null,
+      viewModel: {},
       /**
        * 主Tab模型定义
        */
-      mainTab: null,
+      mainTab: {},
       /**
        * 数据
        */
@@ -57,7 +62,10 @@ export default {
   computed: {
     ...mapState({
       viewModels: ({ viewModel }) => viewModel.viewModels
-    })
+    }),
+    keyValue() {
+      return this.data[this.mainTab.keyColumn];
+    }
   },
   watch: {
     /**
@@ -71,7 +79,7 @@ export default {
      * 监听主键变化，重新取数
      */
     uid() {
-      this.searchHandler(this.windowName, this.uid);
+      this.searchHandler(this.mainTab.tableApiName, this.uid);
     }
   },
   methods: {
