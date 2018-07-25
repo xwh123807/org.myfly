@@ -1,4 +1,4 @@
-package org.myfly.platform.visualpage3.webui;
+package org.myfly.platform.visualpage3.annotation;
 
 public enum TableStyle {
 	// EL-Table 表格

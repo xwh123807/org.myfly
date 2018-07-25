@@ -12,10 +12,10 @@ import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.visualpage3.annotation.FlyFieldGroup;
 import org.myfly.platform.visualpage3.annotation.FlyTab;
 import org.myfly.platform.visualpage3.annotation.FlyWindow;
+import org.myfly.platform.visualpage3.annotation.TableStyle;
 import org.myfly.platform.visualpage3.model.PWindow;
 import org.myfly.platform.visualpage3.model.WindowType;
 import org.myfly.platform.visualpage3.service.IFlyViewModel;
-import org.myfly.platform.visualpage3.webui.TableStyle;
 import org.springframework.util.Assert;
 
 public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> {

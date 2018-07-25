@@ -6,6 +6,12 @@ import org.myfly.platform.core3.model.PRefTable;
 import org.myfly.platform.core3.model.PReference;
 import org.springframework.util.Assert;
 
+/**
+ * 引用表定义
+ * 
+ * @author xiangwanhong
+ *
+ */
 public class FRefTable extends PReference implements IDefinition {
 
 	/**
@@ -14,11 +20,18 @@ public class FRefTable extends PReference implements IDefinition {
 	private static final long serialVersionUID = -5324066959139355161L;
 
 	private PRefTable refTable;
-
+	/**
+	 * 实体名
+	 */
 	private String tableApiName;
 
+	/**
+	 * 主键字段名
+	 */
 	private String keyColumnName;
-
+	/**
+	 * 显示字段名
+	 */
 	private String displayColumnName;
 
 	private boolean isFromDB;
@@ -30,6 +43,7 @@ public class FRefTable extends PReference implements IDefinition {
 
 	@Override
 	public void validate() {
+		Assert.hasLength(getReferenceID(), "属性[ReferenceID]不能为空");
 		Assert.hasLength(getKey(), "属性[Key]不能为空");
 		Assert.hasLength(getApiName(), "属性[ApiName]不能为空");
 		Assert.hasLength(getEntityType(), "属性[EntityType]不能为空");
@@ -38,6 +52,14 @@ public class FRefTable extends PReference implements IDefinition {
 		Assert.hasLength(getKeyColumnName(), "属性[KeyColumnName]不能为空");
 		Assert.hasLength(getDisplayColumnName(), "属性[DisplayColumnName]不能为空");
 		Assert.notNull(getRefTable(), "属性[RefTable]不能为空");
+		validatePRefTable(getRefTable());
+	}
+
+	private void validatePRefTable(PRefTable entity) {
+		Assert.hasLength(entity.getReferenceID(), "属性[ReferenceID]不能为空");
+		Assert.hasLength(entity.getTableID(), "属性[TableID]不能为空");
+		Assert.hasLength(entity.getKeyColumn(), "属性[KeyColumn]不能为空");
+		Assert.hasLength(entity.getDisplayColumn(), "属性[DisplayColumn]不能为空");
 	}
 
 	@Override

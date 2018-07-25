@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ClassUtils;
@@ -110,7 +111,7 @@ public class FlyMemoryDataModel {
 	}
 
 	/**
-	 * 查找指定的FRefTable
+	 * 查找指定的FRefTable，可能存在多条记录
 	 * 
 	 * @param referenceID
 	 * @return
@@ -130,13 +131,9 @@ public class FlyMemoryDataModel {
 	 * @param tableApiName
 	 * @return
 	 */
-	public FRefTable getRefTableByTable(String tableApiName) {
-		for (FRefTable item : getRefTables().values()) {
-			if (item.getTableApiName().equals(tableApiName)) {
-				return item;
-			}
-		}
-		return null;
+	public List<FRefTable> getRefTableByTable(String tableApiName) {
+		return getRefTables().values().stream().filter(item -> item.getTableApiName().equals(tableApiName))
+				.collect(Collectors.toList());
 	}
 
 	/**
@@ -171,7 +168,9 @@ public class FlyMemoryDataModel {
 	public void addList(List<? extends IDefinition> list, Map target, boolean forceOverride) {
 		if (CollectionUtils.isNotEmpty(list)) {
 			list.forEach((IDefinition item) -> {
-				item.validate();
+				if (item.isFromDB()) {
+					item.validate();
+				}
 				if (!target.containsKey(item.getKey()) || forceOverride) {
 					target.put(item.getKey(), item);
 				} else {
@@ -209,7 +208,7 @@ public class FlyMemoryDataModel {
 
 	/**
 	 * 更新数据模型关联属性 <br>
-	 * 1、获取列对应的系统元素，PColumn.element和elementID <br>
+	 * 1、更新引用表，将 2、获取列对应的系统元素，PColumn.element和elementID <br>
 	 * 
 	 * @param item
 	 * @return
@@ -217,6 +216,7 @@ public class FlyMemoryDataModel {
 	public List<String> updateReferences(List<FlyDataModel> list) {
 		List<String> errors = new ArrayList<>();
 		list.forEach(item -> {
+			// 更新引用表
 			updateRefTable(item, errors);
 			item.getColumnMap().values().stream().forEach(column -> {
 				FElement element = getElements().get(column.getApiName());
@@ -238,11 +238,12 @@ public class FlyMemoryDataModel {
 						// 表类型
 						updateElementRefTable(item.getApiName(), column, errors);
 					}
-					//从系统元素复制元素的属性
+					// 从系统元素复制元素的属性
 					copyFieldPropertyFromElement(column);
-					//引用表类型为当前实体，则将类型值为ID
+					// 引用表类型为当前实体，则将类型值为ID
 					if (column.isRefTableColumn()) {
-						if (column.getElement().getRefTable().getTableApiName().equals(item.getApiName())) {
+						if (column.getElement().getRefTable() != null
+								&& column.getElement().getRefTable().getTableApiName().equals(item.getApiName())) {
 							column.setDataType(FlyDataType.ID);
 							column.setValueHandler(ValueHandlerFactory.getValueHandler(column));
 						}
@@ -256,31 +257,41 @@ public class FlyMemoryDataModel {
 	}
 
 	/**
-	 * 更新引用表定义
+	 * 更新引用表定义，根据keyColumnName、displayColumnName更新对应的columnID
+	 * 
 	 * @param dataModel
 	 * @param errors
 	 */
 	private void updateRefTable(FlyDataModel dataModel, List<String> errors) {
-		FRefTable refTable = getRefTableByTable(dataModel.getApiName());
-		if (refTable != null) {
-			refTable.getRefTable().setTableID(dataModel.getTableID());
-			FlyColumn keyColumn = dataModel.getColumnMap().get(refTable.getKeyColumnName());
-			if (keyColumn != null) {
-				refTable.getRefTable().setKeyColumn(keyColumn.getColumnID());
-			} else {
-				errors.add("实体[" + dataModel.getApiName() + "]没有名称为[" + refTable.getKeyColumnName() + "]的属性");
-			}
-			FlyColumn displayColumn = dataModel.getColumnMap().get(refTable.getDisplayColumnName());
-			if (displayColumn != null) {
-				refTable.getRefTable().setDisplayColumn(displayColumn.getColumnID());
-			} else {
-				errors.add("实体[" + dataModel.getApiName() + "]没有名称为[" + refTable.getDisplayColumnName() + "]的属性");
-			}
+		List<FRefTable> refTables = getRefTableByTable(dataModel.getApiName());
+		if (CollectionUtils.isNotEmpty(refTables)) {
+			refTables.forEach(refTable -> {
+				if (!StringUtils.hasLength(refTable.getRefTable().getTableID())) {
+					refTable.getRefTable().setTableID(dataModel.getTableID());
+					FlyColumn keyColumn = dataModel.getColumnMap().get(refTable.getKeyColumnName());
+					if (keyColumn != null) {
+						refTable.getRefTable().setKeyColumn(keyColumn.getColumnID());
+					} else {
+						errors.add("实体[" + dataModel.getApiName() + "]没有名称为[" + refTable.getKeyColumnName() + "]的属性");
+					}
+					FlyColumn displayColumn = dataModel.getColumnMap().get(refTable.getDisplayColumnName());
+					if (displayColumn != null) {
+						refTable.getRefTable().setDisplayColumn(displayColumn.getColumnID());
+					} else {
+						errors.add(
+								"实体[" + dataModel.getApiName() + "]没有名称为[" + refTable.getDisplayColumnName() + "]的属性");
+					}
+				} else if (!refTable.getRefTable().getTableID().equals(dataModel.getTableID())) {
+					errors.add("引用表[" + refTable.getApiName() + "]与实体[" + dataModel.getApiName() + "]的tableID属性不一致");
+				}
+				refTable.validate();
+			});
 		}
 	}
 
 	/**
 	 * 从系统元素复制属性到字段
+	 * 
 	 * @param column
 	 */
 	private void copyFieldPropertyFromElement(FlyColumn column) {
@@ -374,7 +385,6 @@ public class FlyMemoryDataModel {
 			element.setRefTable(refTable);
 		} else {
 			// 找不到引用属性对应的引用表，可能是未正确定义或者引用表没有加载
-			element.setDataType(FlyDataType.ID);
 			element.setHelp("实体[" + entityName + "]的属性[" + column.getApiName() + "]对应元素[" + element.getApiName()
 					+ "]的属性[RefTable]不能为空");
 			System.err.println("实体[" + entityName + "]的属性[" + column.getApiName() + "]对应元素[" + element.getApiName()

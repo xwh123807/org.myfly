@@ -6,8 +6,6 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import org.myfly.platform.visualpage3.webui.TableStyle;
-
 @Target({ ElementType.FIELD, ElementType.ANNOTATION_TYPE })
 @Retention(RUNTIME)
 public @interface FlyTab {

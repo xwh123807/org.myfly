@@ -47,11 +47,11 @@ export default {
       /**
        * 显示模型
        */
-      viewModel: null,
+      viewModel: {},
       /**
        * 主Tab模型定义
        */
-      mainTabModel: null,
+      mainTabModel: {},
       /**
        * 主Tab数据
        */
@@ -103,7 +103,8 @@ export default {
      * 当前行数据
      */
     currentRow() {
-      return this.mainTableData[this.currentRowIndex];
+      var data = this.mainTableData[this.currentRowIndex];
+      return data ? data : {};
     }
   },
   watch: {

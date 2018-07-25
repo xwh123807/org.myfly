@@ -2,7 +2,7 @@ package org.myfly.platform.visualpage3.service;
 
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.domain.IFlyMetaEntity;
-import org.myfly.platform.visualpage3.webui.TableStyle;
+import org.myfly.platform.visualpage3.annotation.TableStyle;
 
 public interface IFlyViewTab extends IFlyEntity, IFlyMetaEntity{
 	String getTabID();

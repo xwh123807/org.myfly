@@ -9,8 +9,8 @@ import org.myfly.platform.core3.domain.FlyMetaEntity;
 import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
 import org.myfly.platform.core3.metadata.annotation.FlyReferences;
 import org.myfly.platform.core3.metadata.annotation.FlyTable;
+import org.myfly.platform.visualpage3.annotation.TableStyle;
 import org.myfly.platform.visualpage3.service.IFlyViewTab;
-import org.myfly.platform.visualpage3.webui.TableStyle;
 
 @Entity
 @Table
