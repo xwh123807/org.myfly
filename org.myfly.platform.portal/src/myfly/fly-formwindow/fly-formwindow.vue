@@ -55,10 +55,6 @@ export default {
   created() {
     this.prepareViewModel(this.windowName, true);
   },
-  beforeRouteUpdate(to, from, next) {
-    console.info("fly-formwindow: " + to.params);
-    next();
-  },
   computed: {
     ...mapState({
       viewModels: ({ viewModel }) => viewModel.viewModels
@@ -68,18 +64,8 @@ export default {
     }
   },
   watch: {
-    /**
-     * 监听窗口名称改变，重新构建窗口
-     */
-    windowName() {
-      this.data = {};
-      this.prepareViewModel(this.windowName, false);
-    },
-    /**
-     * 监听主键变化，重新取数
-     */
-    uid() {
-      this.searchHandler(this.mainTab.tableApiName, this.uid);
+    $route(to, from) {
+      this.prepareViewModel(to.params.windowName, true);
     }
   },
   methods: {
@@ -94,7 +80,9 @@ export default {
         callback: () => {
           self.viewModel = self.viewModels[windowName];
           self.mainTab = self.viewModel.tabs[self.viewModel.mainTabName];
-          isSearch & self.searchHandler(self.mainTab.tableApiName, self.uid);
+          if (isSearch) {
+            self.searchHandler(self.mainTab.tableApiName, self.uid);
+          }
         }
       });
     },

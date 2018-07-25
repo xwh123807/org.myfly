@@ -21,7 +21,7 @@ export default {
     };
   },
   created() {
-    this.prepareViewModel(this.windowName, false);
+    this.prepareViewModel(this.windowName, true);
   },
   computed: {
     ...mapState({
@@ -30,7 +30,13 @@ export default {
   },
   watch: {
     parentUid(to) {
-      this.searchHandler(this.tabModel.tableApiName, this.parentKeyColumn, to);
+      if (to) {
+        this.searchHandler(
+          this.tabModel.tableApiName,
+          this.parentKeyColumn,
+          to
+        );
+      }
     }
   },
   methods: {
@@ -45,6 +51,13 @@ export default {
         callback: () => {
           var viewModel = self.viewModels[windowName];
           self.tabModel = viewModel.tabs[self.tabName];
+          if (isSearch) {
+            this.searchHandler(
+              self.tabModel.tableApiName,
+              self.parentKeyColumn,
+              self.parentUid
+            );
+          }
         }
       });
     },
@@ -66,10 +79,6 @@ export default {
           .then(data => {
             self.data = data;
           });
-      } else {
-        this.$message.error(
-          "tableApiName或parentKeyColumn或parentUid参数不能为空."
-        );
       }
     }
   }

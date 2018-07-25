@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.ClassUtils;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.springframework.util.Assert;
@@ -240,14 +241,18 @@ public class FlyMemoryDataModel {
 					}
 					// 从系统元素复制元素的属性
 					copyFieldPropertyFromElement(column);
-					// 引用表类型为当前实体，则将类型值为ID
-					if (column.isRefTableColumn()) {
-						if (column.getElement().getRefTable() != null
-								&& column.getElement().getRefTable().getTableApiName().equals(item.getApiName())) {
-							column.setDataType(FlyDataType.ID);
-							column.setValueHandler(ValueHandlerFactory.getValueHandler(column));
-						}
+					// 主键列，则将类型值为ID
+					if (BooleanUtils.isTrue(column.getIsKey())) {
+						column.setDataType(FlyDataType.ID);
+						column.setValueHandler(ValueHandlerFactory.getValueHandler(column));
 					}
+//					if (column.isRefTableColumn()) {
+//						if (!BooleanUtils.isTrue(column.getIsKey()) && column.getElement().getRefTable() != null
+//								&& column.getElement().getRefTable().getTableApiName().equals(item.getApiName())) {
+//							column.setDataType(FlyDataType.ID);
+//							column.setValueHandler(ValueHandlerFactory.getValueHandler(column));
+//						}
+//					}
 				} else {
 					errors.add("实体[" + item.getApiName() + "]的列[" + column.getApiName() + "]没有对应的element");
 				}
