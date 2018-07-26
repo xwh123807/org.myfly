@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <h2>fly-listwindow: {{mainTabModel.name}}</h2>
+    <div class="fly-listwindow">
+      <h2>fly-listwindow: {{tabModel.name}}</h2>
       <div>
         <el-button-group>
           <el-button icon="fa fa-undo" size="medium"></el-button>
@@ -22,12 +22,14 @@
       <hr/>
       <el-tabs v-model="viewMode">
          <el-tab-pane label="列表" name="list">
-           <fly-eltable :tabModel="mainTabModel" :data="mainTableData" @row-dblclick="rowDoubleClickHandler" 
+           <span slot="label"><i class="fa fa-table"></i> 列表</span>
+           <fly-eltable :tabModel="tabModel" :data="tabData" @row-dblclick="rowDoubleClickHandler" 
             @row-click="rowClickHandler" :currentRowIndex="currentRowIndex">
            </fly-eltable>
          </el-tab-pane>
          <el-tab-pane label="表单" name="form">
-           <fly-form :tabModel="mainTabModel" :data="currentRow"></fly-form>
+           <span slot="label"><i class="fa fa-server"></i> 表单</span>
+           <fly-form :tabModel="tabModel" :data="currentRow"></fly-form>
          </el-tab-pane>
       </el-tabs>
     </div>
@@ -51,11 +53,11 @@ export default {
       /**
        * 主Tab模型定义
        */
-      mainTabModel: {},
+      tabModel: {},
       /**
        * 主Tab数据
        */
-      mainTableData: [],
+      tabData: [],
       /**
        * 显示模型，单屏form还是列表list
        */
@@ -97,13 +99,13 @@ export default {
      * 实体主键
      */
     keyColumn() {
-      return this.mainTabModel ? this.mainTabModel.keyColumn : null;
+      return this.tabModel ? this.tabModel.keyColumn : null;
     },
     /**
      * 当前行数据
      */
     currentRow() {
-      var data = this.mainTableData[this.currentRowIndex];
+      var data = this.tabData[this.currentRowIndex];
       return data ? data : {};
     }
   },
@@ -125,8 +127,8 @@ export default {
         windowName: windowName,
         callback: () => {
           self.viewModel = self.viewModels[windowName];
-          self.mainTabModel = self.viewModel.tabs[this.viewModel.mainTabName];
-          self.searchHandler(self.mainTabModel.tableApiName);
+          self.tabModel = self.viewModel.tabs[this.viewModel.mainTabName];
+          self.searchHandler(self.tabModel.tableApiName);
         }
       });
     },
@@ -136,7 +138,7 @@ export default {
     searchHandler(tableApiName) {
       if (tableApiName) {
         this.$http.get("/flydata3/" + tableApiName).then(data => {
-          this.mainTableData = data;
+          this.tabData = data;
         });
       } else {
         this.$message.error("tableApiName参数不能为空.");
@@ -158,8 +160,8 @@ export default {
     setRowIndex(index) {
       if (index < 0) {
         index = 0;
-      } else if (index > this.mainTableData.length - 1) {
-        index = this.mainTableData.length - 1;
+      } else if (index > this.tabData.length - 1) {
+        index = this.tabData.length - 1;
       }
       this.currentRowIndex = index;
       this.controlButtonState(index);
@@ -170,9 +172,9 @@ export default {
     controlButtonState(index) {
       var isEmpty = this.length === 0;
       this.firstDisabled = isEmpty || index === 0;
-      this.lastDisabled = isEmpty || this.mainTableData.length - 1 === index;
+      this.lastDisabled = isEmpty || this.tabData.length - 1 === index;
       this.priorDisabled = isEmpty || index === 0;
-      this.nextDisabled = isEmpty || this.mainTableData.length - 1 === index;
+      this.nextDisabled = isEmpty || this.tabData.length - 1 === index;
     },
     /**
      * 首张
@@ -184,7 +186,7 @@ export default {
      * 下张
      */
     toLastHandler() {
-      this.setRowIndex(this.mainTableData.length - 1);
+      this.setRowIndex(this.tabData.length - 1);
     },
     /**
      * 上张
@@ -213,7 +215,7 @@ export default {
      */
     rowClickHandler(row, event, column) {
       this.currentRowIndex = this.getRowIndex(
-        this.mainTableData,
+        this.tabData,
         row,
         this.keyColumn
       );
@@ -223,7 +225,7 @@ export default {
      */
     rowDoubleClickHandler(row, event) {
       this.currentRowIndex = this.getRowIndex(
-        this.mainTableData,
+        this.tabData,
         row,
         this.keyColumn
       );
@@ -244,3 +246,8 @@ export default {
   }
 };
 </script>
+<style type="text/css">
+.fly-listwindow .el-button{
+  padding: 10px;
+}
+</style>

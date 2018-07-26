@@ -1,17 +1,17 @@
 <template>
-    <div>
+    <div class="fly-formwindow">
         <h2>fly-formwindow: {{windowName}}</h2>
         <el-row>
             <el-button-group>
-                <el-button icon="fa fa-undo" @click="undoHandler">撤销</el-button>
-                <el-button type="primary" icon="fa fa-save" :disabled="saveDisabled" @click="saveHandler">保存</el-button>
-                <el-button icon="fa fa-paperclip">附件</el-button>
-                <el-button icon="fa fa-close" @click="backHandler()">关闭</el-button>
+                <el-button icon="fa fa-undo" @click="undoHandler"></el-button>
+                <el-button type="primary" icon="fa fa-save" :disabled="saveDisabled" @click="saveHandler"></el-button>
+                <el-button icon="fa fa-paperclip"></el-button>
+                <el-button icon="fa fa-close" @click="backHandler()"></el-button>
             </el-button-group>
         </el-row>
-        <fly-form :tabModel="mainTab" :data="data"></fly-form>
-        <el-row v-for="subTabName in mainTab.subTabs" v-bind:key="subTabName">
-          <fly-subtable :windowName="windowName" :tabName="subTabName" :parentKeyColumn="mainTab.keyColumn" 
+        <fly-form :tabModel="tabModel" :data="data"></fly-form>
+        <el-row v-for="subTabName in tabModel.subTabs" v-bind:key="subTabName">
+          <fly-subtable :windowName="windowName" :tabName="subTabName" :parentKeyColumn="tabModel.keyColumn" 
             :parentUid="keyValue" :needLoaded="loaded">
           </fly-subtable>
         </el-row>
@@ -41,7 +41,7 @@ export default {
       /**
        * 主Tab模型定义
        */
-      mainTab: {},
+      tabModel: {},
       /**
        * 数据
        */
@@ -64,7 +64,7 @@ export default {
       viewModels: ({ viewModel }) => viewModel.viewModels
     }),
     keyValue() {
-      return this.data[this.mainTab.keyColumn];
+      return this.data[this.tabModel.keyColumn];
     }
   },
   watch: {
@@ -84,9 +84,9 @@ export default {
         windowName: windowName,
         callback: () => {
           self.viewModel = self.viewModels[windowName];
-          self.mainTab = self.viewModel.tabs[self.viewModel.mainTabName];
+          self.tabModel = self.viewModel.tabs[self.viewModel.mainTabName];
           if (isSearch) {
-            self.searchHandler(self.mainTab.tableApiName, self.uid);
+            self.searchHandler(self.tabModel.tableApiName, self.uid);
           }
         }
       });
@@ -124,3 +124,8 @@ export default {
   }
 };
 </script>
+<style type="text/css">
+.fly-formwindow .el-button{
+  padding: 10px;
+}
+</style>

@@ -1,6 +1,26 @@
 const menus = [
   { id: '0', label: '控制面板', path: '/', icon: 'fa fa-dashboard' },
   {
+    id: 'x1', icon: 'fa fa-server', label: '字典', submenu: [
+      { id: 'x101', label: '数据类型', icon: '', path: '/dynamicListWindow/datatype' },
+      { id: 'x102', label: '实体类型', icon: '', path: '/dynamicListWindow/entitytype' },
+      { id: 'x103', label: '系统元素', icon: '', path: '/dynamicListWindow/element' },
+      { id: 'x104', label: '引用表', icon: '', path: '/dynamicListWindow/reference' },
+      { id: 'x105', label: '表', icon: '', path: '/dynamicListWindow/table' },
+      { id: 'x106', label: '窗口', icon: '', path: '/dynamicListWindow/window' }
+    ]
+  },
+  {
+    id: 'x2', icon: 'fa fa-compass', label: '组织', submenu: [
+      { id: 'x2101', label: '客户', icon: 'fa fa-address-card-o', path: '/dynamicListWindow/client' },
+      { id: 'x2102', label: '组织', icon: 'fa fa-american-sign-language-interpreting', path: '/dynamicListWindow/org' },
+      { id: 'x2103', label: '用户', icon: 'fa fa-user-circle', path: '/dynamicListWindow/user' },
+      { id: 'x2104', label: '客户:System', icon: 'fa fa-user-o', path: '/dynamicFormWindow/client/40289f65642bc6b401642bc6b6160000' },
+      { id: 'x2105', label: '用户:System', icon: 'fa fa-user-o', path: '/dynamicFormWindow/user/40289f65642bc6b401642bc6b6160002' },
+      { id: 'x2106', label: '用户:SuperUser', icon: 'fa fa-user-o', path: '/dynamicFormWindow/user/40289f65642bc6b401642bc6b6160003' }
+    ]
+  },
+  {
     id: 'components',
     icon: 'fa fa-microchip',
     label: '组件',
@@ -102,14 +122,6 @@ const menus = [
       { id: 'p3', name: 'p-register', label: 'Register 注册' },
       { id: '400', path: '/404', label: '404' },
       { id: '500', path: '/500', label: '500' }
-    ]
-  },
-  {
-    id: 'examples',
-    icon: 'fa fa-paper-plane',
-    label: 'Examples',
-    submenu: [
-      { id: 'e1', path: '/500', label: 'Vuex 例子' }
     ]
   },
   {

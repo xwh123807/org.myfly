@@ -64,7 +64,7 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 					prior = last;
 				}else {
 					//平级
-					prior.setSubTabs(ArrayUtils.add(last.getSubTabs(), item.getName()));
+					prior.setSubTabs(ArrayUtils.add(prior.getSubTabs(), item.getName()));
 				}
 				last = item;
 			}
