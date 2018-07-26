@@ -12,7 +12,7 @@
         <fly-form :tabModel="mainTab" :data="data"></fly-form>
         <el-row v-for="subTabName in mainTab.subTabs" v-bind:key="subTabName">
           <fly-subtable :windowName="windowName" :tabName="subTabName" :parentKeyColumn="mainTab.keyColumn" 
-            :parentUid="keyValue">
+            :parentUid="keyValue" :needLoaded="loaded">
           </fly-subtable>
         </el-row>
     </div>
@@ -47,6 +47,10 @@ export default {
        */
       data: {},
       /**
+       * 数据是否已经加载
+       */
+      loaded: false,
+      /**
        * 保存按钮状态
        */
       saveDisabled: false
@@ -64,7 +68,7 @@ export default {
     }
   },
   watch: {
-    $route(to, from) {
+    "$route"(to, from) {
       this.prepareViewModel(to.params.windowName, true);
     }
   },
@@ -75,6 +79,7 @@ export default {
      */
     prepareViewModel(windowName, isSearch) {
       var self = this;
+      self.loaded = false;
       this.getViewModel({
         windowName: windowName,
         callback: () => {
@@ -96,6 +101,7 @@ export default {
         var self = this;
         this.$http.get("/flydata3/" + tableApiName + "/" + uid).then(data => {
           self.data = data;
+          self.loaded = true;
         });
       } else {
         this.$message.error("tableApiName或uid参数不能为空.");
