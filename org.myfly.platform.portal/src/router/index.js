@@ -22,6 +22,7 @@ export default new Router({
         { path: '/dynamicComponent/:windowName', name: 'dynamicComponent', component: page('myfly/dynamic-component') },
         { path: '/dynamicForm/:windowName', name: 'dynamicForm', component: page('myfly/dynamic-form') },
         { path: '/dynamicListWindow/:windowName', name: 'dynamicListWindow', component: page('myfly/dynamic-listwindow') },
+        { path: '/dynamicRichListWindow/:windowName', name: 'dynamicRichListWindow', component: page('myfly/dynamic-richlistwindow') },
         { path: '/dynamicFormWindow/:windowName/:uid', name: 'dynamicFormWindow', component: page('myfly/dynamic-formwindow') },
         { path: '/button', name: 'c-button', component: page('c-button') },
         { path: '/switch', name: 'c-switch', component: page('c-switch') },

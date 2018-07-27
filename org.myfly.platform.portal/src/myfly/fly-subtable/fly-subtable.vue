@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="fly-subtable">
         <hr/>
         <el-row>
           <el-col :span="4">
@@ -21,24 +21,19 @@
           </el-col>
         </el-row>
 
-        <el-row class="table" :style="{display: viewMode==='list' ? '' : 'none'}">
+        <el-row class="table" v-show="viewMode === 'list'">
           <fly-eltable :tabModel="tabModel" :data="tabData" @row-dblclick="rowDoubleClickHandler" 
               @row-click="rowClickHandler" :currentRowIndex="currentRowIndex">
           </fly-eltable>
         </el-row>
-        <el-row class="form"  :style="{display: viewMode==='form' ? '' : 'none'}">
+        <el-row class="form" v-show="viewMode === 'form'">
           <fly-form :tabModel="tabModel" :data="currentRow"></fly-form>
+          <el-row v-for="subTabName in tabModel.subTabs" v-bind:key="subTabName">
+            <fly-subtable :windowName="windowName" :tabName="subTabName" :parentKeyColumn="keyColumn" 
+              :parentUid="currentRow[keyColumn]" :needLoaded="loaded">
+            </fly-subtable>
+          </el-row>
         </el-row>
-        <!-- <el-tabs v-model="viewMode">
-         <el-tab-pane :label="tabName + '- 列表'" name="list">
-           <fly-eltable :tabModel="tabModel" :data="tabData" @row-dblclick="rowDoubleClickHandler" 
-            @row-click="rowClickHandler" :currentRowIndex="currentRowIndex">
-           </fly-eltable>
-         </el-tab-pane>
-         <el-tab-pane :label="tabName + '- 表单'" name="form">
-           <fly-form :tabModel="tabModel" :data="currentRow"></fly-form>
-         </el-tab-pane>
-      </el-tabs> -->
     </div>
 </template>
 <script>
@@ -63,7 +58,7 @@ export default {
      */
     parentUid: { type: String },
     /**
-     * 是否需要加载数据
+     * 父模型已准备好
      */
     needLoaded: { type: Boolean }
   },
@@ -100,11 +95,15 @@ export default {
       /**
        * 禁用尾张按钮
        */
-      lastDisabled: false
+      lastDisabled: false,
+      /**
+       * 
+       */
+      loaded: false
     };
   },
   created() {
-    this.prepareViewModel(this.windowName, false);
+    this.prepareViewModel(this.windowName, true);
   },
   computed: {
     ...mapState({
@@ -147,7 +146,7 @@ export default {
         callback: () => {
           var viewModel = self.viewModels[windowName];
           self.tabModel = viewModel.tabs[self.tabName];
-          if (isSearch) {
+          if (isSearch && self.needLoaded) {
             this.searchHandler(
               self.tabModel.tableApiName,
               self.parentKeyColumn,
@@ -161,8 +160,9 @@ export default {
      * 查询子表数据
      */
     searchHandler(tableApiName, parentKeyColumn, parentUid) {
+      var self = this;
+      self.loaded = false;
       if (tableApiName && parentKeyColumn && parentUid) {
-        var self = this;
         this.$http
           .get(
             "/flydata3/" +
@@ -174,7 +174,13 @@ export default {
           )
           .then(data => {
             self.tabData = data;
+            self.loaded = true;
           });
+      } else if (tableApiName && !parentKeyColumn && !parentUid) {
+        this.$http.get("/flydata3/" + tableApiName).then(data => {
+          self.tabData = data;
+          self.loaded = true;
+        });
       }
     },
     /**
@@ -269,3 +275,8 @@ export default {
   }
 };
 </script>
+<style type="text/css">
+.fly-richlistwindow .el-button{
+  padding: 10px;
+}
+</style>

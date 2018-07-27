@@ -40,6 +40,7 @@ import MContainer from '@/m/container'
 import FlyELTable from '@/myfly/fly-eltable/index.js'
 import FlyForm from '@/myfly/fly-form/index.js'
 import FlyListWindow from '@/myfly/fly-listwindow/index.js'
+import FlyRichListWindow from '@/myfly/fly-richlistwindow/index.js'
 import FlyFormWindow from '@/myfly/fly-formwindow/index.js'
 import FlySubTable from '@/myfly/fly-subtable/index.js'
 
@@ -65,6 +66,7 @@ Vue.use(MContainer)
 Vue.use(FlyELTable)
 Vue.use(FlyForm)
 Vue.use(FlyListWindow)
+Vue.use(FlyRichListWindow)
 Vue.use(FlyFormWindow)
 Vue.use(FlySubTable)
 
@@ -78,6 +80,7 @@ router.beforeEach((to, from, next) => {
     NProgress.done()
     return next({name: 'login'})
   }
+  router.routers.addRoute(to)
   return next()
 })
 

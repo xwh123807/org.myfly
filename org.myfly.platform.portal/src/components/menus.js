@@ -7,7 +7,8 @@ const menus = [
       { id: 'x103', label: '系统元素', icon: '', path: '/dynamicListWindow/element' },
       { id: 'x104', label: '引用表', icon: '', path: '/dynamicListWindow/reference' },
       { id: 'x105', label: '表', icon: '', path: '/dynamicListWindow/table' },
-      { id: 'x106', label: '窗口', icon: '', path: '/dynamicListWindow/window' }
+      { id: 'x106', label: '窗口', icon: '', path: '/dynamicListWindow/window' },
+      { id: 'x107', label: '窗口2', icon: '', path: '/dynamicRichListWindow/window' }
     ]
   },
   {

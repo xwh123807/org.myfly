@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import cnode from './cnode'
 import user from './user'
 import viewModel from './viewModel'
+import routers from './router'
 
 Vue.use(Vuex)
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
   modules: {
     cnode,
     user,
-    viewModel
+    viewModel,
+    routers
   }
 })
