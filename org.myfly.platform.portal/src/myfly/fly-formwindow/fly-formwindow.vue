@@ -68,8 +68,11 @@ export default {
     }
   },
   watch: {
-    "$route"(to, from) {
-      this.prepareViewModel(to.params.windowName, true);
+    windowName(to) {
+      to && this.prepareViewModel(to, false);
+    },
+    uid(to) {
+      to && this.searchHandler(this.tabModel.tableApiName, to);
     }
   },
   methods: {
@@ -85,7 +88,7 @@ export default {
         callback: () => {
           self.viewModel = self.viewModels[windowName];
           self.tabModel = self.viewModel.tabs[self.viewModel.mainTabName];
-          if (isSearch) {
+          if (isSearch && self.uid) {
             self.searchHandler(self.tabModel.tableApiName, self.uid);
           }
         }
@@ -104,7 +107,9 @@ export default {
           self.loaded = true;
         });
       } else {
-        this.$message.error("tableApiName或uid参数不能为空.");
+        this.$message.error(
+          "组件[fly-formwindow]tableApiName或uid参数不能为空."
+        );
       }
     },
     /**
@@ -125,7 +130,7 @@ export default {
 };
 </script>
 <style type="text/css">
-.fly-formwindow .el-button{
+.fly-formwindow .el-button {
   padding: 10px;
 }
 </style>

@@ -14,6 +14,7 @@ const menus = [
   {
     id: 'x2', icon: 'fa fa-compass', label: '组织', submenu: [
       { id: 'x2101', label: '客户', icon: 'fa fa-address-card-o', path: '/dynamicListWindow/client' },
+      { id: 'x21011', label: '客户2', icon: 'fa fa-address-card-o', path: '/dynamicRichListWindow/client' },
       { id: 'x2102', label: '组织', icon: 'fa fa-american-sign-language-interpreting', path: '/dynamicListWindow/org' },
       { id: 'x2103', label: '用户', icon: 'fa fa-user-circle', path: '/dynamicListWindow/user' },
       { id: 'x2104', label: '客户:System', icon: 'fa fa-user-o', path: '/dynamicFormWindow/client/40289f65642bc6b401642bc6b6160000' },
@@ -128,7 +129,8 @@ const menus = [
   {
     id: 'version',
     icon: 'fa fa-meetup',
-    label: '应用'
+    label: '应用',
+    path: "/client"
   }
 ]
 export default menus

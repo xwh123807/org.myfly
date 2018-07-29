@@ -24,8 +24,8 @@
     <el-main class="app-body">
       <el-container style="height: 100%;min-height: 100%;overflow: auto" id="appBody">
         <el-main class="app-page-body">
-          <app-router></app-router>
-          <router-view></router-view>
+          <fly-tabrouter></fly-tabrouter>
+          <!-- <router-view></router-view> -->
         </el-main>
         <el-footer class="app-footer" :height="footerHeight + 'px'">
           <app-footer></app-footer>
@@ -42,7 +42,6 @@
 import AppHeader from '@/components/app-header'
 import AppFooter from '@/components/app-footer'
 import AppSide from '@/components/app-side'
-import AppRouter from '@/components/app-router'
 export default {
   name: 'app-view',
   data () {

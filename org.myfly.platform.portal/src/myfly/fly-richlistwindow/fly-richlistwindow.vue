@@ -42,7 +42,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions(["getViewModel"]),
+    ...mapActions(["getViewModel", "setTabTitle"]),
     /**
      * 准备窗口显示模型
      */
@@ -53,6 +53,10 @@ export default {
         windowName: windowName,
         callback: () => {
           self.viewModel = self.viewModels[windowName];
+          self.setTabTitle({
+            route: self.$route.path,
+            name: self.viewModel.name
+          });
           self.loaded = true;
         }
       });

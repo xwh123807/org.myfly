@@ -37,6 +37,7 @@ import MContainer from '@/m/container'
 
 
 // import myfly components
+import FlyTabRouter from '@/myfly/fly-tabrouter/index.js'
 import FlyELTable from '@/myfly/fly-eltable/index.js'
 import FlyForm from '@/myfly/fly-form/index.js'
 import FlyListWindow from '@/myfly/fly-listwindow/index.js'
@@ -63,6 +64,7 @@ Vue.use(MLoader)
 Vue.use(MContainer)
 
 // registger myfly components
+Vue.use(FlyTabRouter)
 Vue.use(FlyELTable)
 Vue.use(FlyForm)
 Vue.use(FlyListWindow)
@@ -78,9 +80,8 @@ router.beforeEach((to, from, next) => {
   if (!token && whiteList.indexOf(to.name) === -1) {
     app && app.$message.warning('未授权，请登陆授权后继续')
     NProgress.done()
-    return next({name: 'login'})
+    return next({ name: 'login' })
   }
-  router.routers.addRoute(to)
   return next()
 })
 
@@ -116,7 +117,7 @@ Axios.interceptors.response.use(res => {
     })
     sessionStorage.removeItem('token')
     sessionStorage.removeItem('user')
-    router.push({name: 'login'})
+    router.push({ name: 'login' })
     return Promise.reject(new Error('身份过期'))
   } else {
     return res.data
@@ -135,6 +136,18 @@ Vue.http = Axios
 
 
 Vue.config.productionTip = false
+
+Vue.component(
+  "ClientListWindow",
+  () => import("@/myfly/fly-listwindow/index.js")
+)
+
+router.addRoutes([{
+  path: "/window/client", name: "client", props: { windowName: "client" },
+  component: () => import("@/myfly/fly-listwindow/index.js")
+}]);
+
+console.info(router.options);
 
 /* eslint-disable no-new */
 var app = new Vue({

@@ -110,14 +110,14 @@ export default {
     }
   },
   watch: {
-    windowName() {
-      this.prepareViewModel(this.windowName);
+    windowName(to, from) {
+      to && this.prepareViewModel(to);
       this.viewMode = "list";
       this.currentRowIndex = 0;
     }
   },
   methods: {
-    ...mapActions(["getViewModel"]),
+    ...mapActions(["getViewModel", "setTabTitle"]),
     /**
      * 准备窗口显示模型
      */
@@ -127,7 +127,11 @@ export default {
         windowName: windowName,
         callback: () => {
           self.viewModel = self.viewModels[windowName];
-          self.tabModel = self.viewModel.tabs[this.viewModel.mainTabName];
+          self.setTabTitle({
+            route: self.$route.path,
+            name: self.viewModel.name
+          });
+          self.tabModel = self.viewModel.tabs[self.viewModel.mainTabName];
           self.searchHandler(self.tabModel.tableApiName);
         }
       });
@@ -141,7 +145,7 @@ export default {
           this.tabData = data;
         });
       } else {
-        this.$message.error("tableApiName参数不能为空.");
+        this.$message.error("组件[fly-listwindow]tableApiName参数不能为空.");
       }
     },
     /**
@@ -247,7 +251,7 @@ export default {
 };
 </script>
 <style type="text/css">
-.fly-listwindow .el-button{
+.fly-listwindow .el-button {
   padding: 10px;
 }
 </style>
