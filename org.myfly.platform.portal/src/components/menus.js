@@ -2,6 +2,10 @@ const menus = [
   { id: '0', label: '控制面板', path: '/', icon: 'fa fa-dashboard' },
   {
     id: 'x1', icon: 'fa fa-server', label: '字典', submenu: [
+      { id: 'x1010', label: '数据类型', icon: '', path: '/dynamic/list/datatype' },
+      { id: 'x1020', label: '实体类型', icon: '', path: '/dynamic/list/entitytype' },
+      { id: 'x1030', label: '系统元素', icon: '', path: '/dynamic/list/element' },
+      { id: 'x1040', label: '引用表', icon: '', path: '/dynamic/list/reference' },
       { id: 'x101', label: '数据类型', icon: '', path: '/dynamicListWindow/datatype' },
       { id: 'x102', label: '实体类型', icon: '', path: '/dynamicListWindow/entitytype' },
       { id: 'x103', label: '系统元素', icon: '', path: '/dynamicListWindow/element' },

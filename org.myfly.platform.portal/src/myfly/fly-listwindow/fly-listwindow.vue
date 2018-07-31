@@ -1,6 +1,6 @@
 <template>
     <div class="fly-listwindow">
-      <h2>fly-listwindow: {{tabModel.name}}</h2>
+      <!-- <h2>fly-listwindow: {{tabModel.name}}</h2> -->
       <div>
         <el-button-group>
           <el-button icon="fa fa-undo" size="medium"></el-button>
@@ -89,6 +89,7 @@ export default {
     };
   },
   created() {
+    console.info(this.windowName + " created.");
     this.prepareViewModel(this.windowName);
   },
   computed: {
@@ -110,7 +111,7 @@ export default {
     }
   },
   watch: {
-    windowName(to, from) {
+    windowName1(to, from) {
       to && this.prepareViewModel(to);
       this.viewMode = "list";
       this.currentRowIndex = 0;
@@ -122,6 +123,9 @@ export default {
      * 准备窗口显示模型
      */
     prepareViewModel(windowName) {
+      if (!windowName){
+        this.$message.error("组件[fly-listwindow]windowName参数不能为空.");
+      }
       var self = this;
       this.getViewModel({
         windowName: windowName,

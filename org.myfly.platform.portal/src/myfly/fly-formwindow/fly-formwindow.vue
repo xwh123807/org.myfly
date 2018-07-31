@@ -1,6 +1,6 @@
 <template>
     <div class="fly-formwindow">
-        <h2>fly-formwindow: {{windowName}}</h2>
+        <!-- <h2>fly-formwindow: {{windowName}}</h2> -->
         <el-row>
             <el-button-group>
                 <el-button icon="fa fa-undo" @click="undoHandler"></el-button>

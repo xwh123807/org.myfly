@@ -66,8 +66,9 @@ export default {
      */
     viewRelationFieldHandler(column, data) {
       var route = {
-        name: "dynamicFormWindow",
+        name: "dynamic-form",
         params: {
+          dynamicType: "form",
           windowName: column.relationTable,
           uid: data[column.model]
         }

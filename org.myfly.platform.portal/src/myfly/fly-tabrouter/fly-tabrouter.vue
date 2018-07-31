@@ -42,7 +42,7 @@ export default {
         }
       }
       if (!flag) {
-        this.addTab({ route: path, name: "加载中..." });
+        this.addTab({ route: path, name: to.name });
         this.setActiveRoute(path);
       }
     }

@@ -44,6 +44,7 @@ import FlyListWindow from '@/myfly/fly-listwindow/index.js'
 import FlyRichListWindow from '@/myfly/fly-richlistwindow/index.js'
 import FlyFormWindow from '@/myfly/fly-formwindow/index.js'
 import FlySubTable from '@/myfly/fly-subtable/index.js'
+import FlyKeepAlive from '@/myfly/fly-keepalive/index.js'
 
 Vue.use(ElementUI)
 
@@ -71,7 +72,7 @@ Vue.use(FlyListWindow)
 Vue.use(FlyRichListWindow)
 Vue.use(FlyFormWindow)
 Vue.use(FlySubTable)
-
+Vue.use(FlyKeepAlive)
 
 var whiteList = ['demo', 'login']
 router.beforeEach((to, from, next) => {
@@ -136,18 +137,6 @@ Vue.http = Axios
 
 
 Vue.config.productionTip = false
-
-Vue.component(
-  "ClientListWindow",
-  () => import("@/myfly/fly-listwindow/index.js")
-)
-
-router.addRoutes([{
-  path: "/window/client", name: "client", props: { windowName: "client" },
-  component: () => import("@/myfly/fly-listwindow/index.js")
-}]);
-
-console.info(router.options);
 
 /* eslint-disable no-new */
 var app = new Vue({

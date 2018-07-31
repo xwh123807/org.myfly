@@ -1,6 +1,6 @@
 <template>
      <div class="fly-richlistwindow">
-      <h2>fly-richlistwindow: {{viewModel.name}}</h2>
+      <!-- <h2>fly-richlistwindow: {{viewModel.name}}</h2> -->
       <div>
         <el-button-group>
           <el-button icon="fa fa-refresh" size="medium"></el-button>
