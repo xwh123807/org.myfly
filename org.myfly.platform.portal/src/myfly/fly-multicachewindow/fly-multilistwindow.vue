@@ -1,17 +1,13 @@
 <template>
     <div>
-        <div>{{routes}}</div>
-        <div v-for="route in listRoutes" :key="route.path">
+        <div v-for="route in routes" :key="route.path">
           <fly-listwindow v-show="route.path === current" :windowName="route.params.windowName"></fly-listwindow>
-        </div>
-        <div v-for="route in formRoutes" :key="route.path">
-          <fly-formwindow v-show="route.path === current" :windowName="route.params.windowName" :uid="route.params.uid"></fly-formwindow>
         </div>
     </div>
 </template>
 <script>
 export default {
-  name: "fly-multicachewindow",
+  name: "fly-multilistwindow",
   data() {
     return {
       /**
@@ -53,12 +49,6 @@ export default {
      */
     dynamicType() {
       return this.$route.params.dynamicType;
-    },
-    listRoutes() {
-      return this.routes.filter(item => item.params.dynamicType === "list");
-    },
-    formRoutes() {
-      return this.routes.filter(item => item.params.dynamicType === "form");
     }
   },
   methods: {

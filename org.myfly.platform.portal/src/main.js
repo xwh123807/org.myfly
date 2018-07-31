@@ -45,6 +45,7 @@ import FlyRichListWindow from '@/myfly/fly-richlistwindow/index.js'
 import FlyFormWindow from '@/myfly/fly-formwindow/index.js'
 import FlySubTable from '@/myfly/fly-subtable/index.js'
 import FlyKeepAlive from '@/myfly/fly-keepalive/index.js'
+import FlyMultiCacheWindow from '@/myfly/fly-multicachewindow/index.js'
 
 Vue.use(ElementUI)
 
@@ -73,6 +74,7 @@ Vue.use(FlyRichListWindow)
 Vue.use(FlyFormWindow)
 Vue.use(FlySubTable)
 Vue.use(FlyKeepAlive)
+Vue.use(FlyMultiCacheWindow)
 
 var whiteList = ['demo', 'login']
 router.beforeEach((to, from, next) => {
