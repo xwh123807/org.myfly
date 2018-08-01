@@ -54,7 +54,7 @@ export default {
         callback: () => {
           self.viewModel = self.viewModels[windowName];
           self.setTabTitle({
-            route: self.$route.path,
+            path: self.$route.path,
             name: self.viewModel.name
           });
           self.loaded = true;

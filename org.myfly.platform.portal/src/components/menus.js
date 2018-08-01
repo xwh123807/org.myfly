@@ -6,24 +6,20 @@ const menus = [
       { id: 'x1020', label: '实体类型', icon: '', path: '/dynamic/list/entitytype' },
       { id: 'x1030', label: '系统元素', icon: '', path: '/dynamic/list/element' },
       { id: 'x1040', label: '引用表', icon: '', path: '/dynamic/list/reference' },
-      { id: 'x101', label: '数据类型', icon: '', path: '/dynamicListWindow/datatype' },
-      { id: 'x102', label: '实体类型', icon: '', path: '/dynamicListWindow/entitytype' },
-      { id: 'x103', label: '系统元素', icon: '', path: '/dynamicListWindow/element' },
-      { id: 'x104', label: '引用表', icon: '', path: '/dynamicListWindow/reference' },
-      { id: 'x105', label: '表', icon: '', path: '/dynamicListWindow/table' },
-      { id: 'x106', label: '窗口', icon: '', path: '/dynamicListWindow/window' },
-      { id: 'x107', label: '窗口2', icon: '', path: '/dynamicRichListWindow/window' }
+      { id: 'x1050', label: '表', icon: '', path: '/dynamic/list/table' },
+      { id: 'x1051', label: '表2', icon: '', path: '/dynamic/richlist/table' },
+      { id: 'x1060', label: '窗口', icon: '', path: '/dynamic/list/window' },
+      { id: 'x107', label: '窗口2', icon: '', path: '/dynamic/richlist/window' }
     ]
   },
   {
     id: 'x2', icon: 'fa fa-compass', label: '组织', submenu: [
-      { id: 'x2101', label: '客户', icon: 'fa fa-address-card-o', path: '/dynamicListWindow/client' },
-      { id: 'x21011', label: '客户2', icon: 'fa fa-address-card-o', path: '/dynamicRichListWindow/client' },
-      { id: 'x2102', label: '组织', icon: 'fa fa-american-sign-language-interpreting', path: '/dynamicListWindow/org' },
-      { id: 'x2103', label: '用户', icon: 'fa fa-user-circle', path: '/dynamicListWindow/user' },
-      { id: 'x2104', label: '客户:System', icon: 'fa fa-user-o', path: '/dynamicFormWindow/client/40289f65642bc6b401642bc6b6160000' },
-      { id: 'x2105', label: '用户:System', icon: 'fa fa-user-o', path: '/dynamicFormWindow/user/40289f65642bc6b401642bc6b6160002' },
-      { id: 'x2106', label: '用户:SuperUser', icon: 'fa fa-user-o', path: '/dynamicFormWindow/user/40289f65642bc6b401642bc6b6160003' }
+      { id: 'x21012', label: '客户', icon: 'fa fa-address-card-o', path: '/dynamic/richlist/client' },
+      { id: 'x2102', label: '组织', icon: 'fa fa-american-sign-language-interpreting', path: '/dynamic/list/org' },
+      { id: 'x2103', label: '用户', icon: 'fa fa-user-circle', path: '/dynamic/list/user' },
+      { id: 'x2104', label: '客户:System', icon: 'fa fa-user-o', path: '/dynamic/form/client/40289f65642bc6b401642bc6b6160000' },
+      { id: 'x2105', label: '用户:System', icon: 'fa fa-user-o', path: '/dynamic/form/user/40289f65642bc6b401642bc6b6160002' },
+      { id: 'x2106', label: '用户:SuperUser', icon: 'fa fa-user-o', path: '/dynamic/form/user/40289f65642bc6b401642bc6b6160003' }
     ]
   },
   {
@@ -133,8 +129,7 @@ const menus = [
   {
     id: 'version',
     icon: 'fa fa-meetup',
-    label: '应用',
-    path: "/client"
+    label: '应用'
   }
 ]
 export default menus

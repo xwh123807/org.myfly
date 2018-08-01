@@ -22,18 +22,18 @@ public class FTab extends PTab implements IDefinition {
 	private Map<String, FField> fields;
 
 	private boolean isFromDB;
-	
+
 	/**
 	 * 指向实体的数据模型
 	 */
 	@JsonIgnore
 	private FlyDataModel table;
-	
+
 	/**
 	 * 主键列
 	 */
 	private String keyColumn;
-	
+
 	/**
 	 * 子Tab
 	 */
@@ -101,15 +101,15 @@ public class FTab extends PTab implements IDefinition {
 	public void setTable(FlyDataModel table) {
 		this.table = table;
 	}
-	
-	public Collection<FField> getFieldList(){
+
+	public Collection<FField> getFieldList() {
 		return getFields().values();
 	}
-	
+
 	public String getTableApiName() {
 		return getTable().getApiName();
 	}
-	
+
 	public PTab toTabPO() {
 		PTab result = new PTab();
 		result.setTabID(getTabID());
@@ -134,5 +134,14 @@ public class FTab extends PTab implements IDefinition {
 
 	public void setSubTabs(String[] subTabs) {
 		this.subTabs = subTabs;
+	}
+
+	/**
+	 * 获取显示列
+	 * 
+	 * @return
+	 */
+	public String getDisplayColumn() {
+		return getTable().getPrimaryKey().getRefDisplayColumn();
 	}
 }

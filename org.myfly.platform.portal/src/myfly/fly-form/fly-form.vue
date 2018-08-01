@@ -2,7 +2,7 @@
     <div>
         <hr/>
         <el-row>
-            <el-form :model="data" size="mini" label-width="10px" style="width:100%">
+            <el-form ref="flyForm" :model="data" size="mini" label-width="10px" style="width:100%">
                 <el-col :span="column.dataType === 'Text' ? 22 : 11" v-for="column in columns" v-bind:key="column.fieldID">
                     <el-form-item>
                         <el-row>
@@ -78,6 +78,18 @@ export default {
       } else {
         this.$message("没有选中值.");
       }
+    },
+    /**
+     * 对整个表单进行重置，将所有字段值重置为初始值并移除校验结果
+     */
+    resetFields() {
+      this.$refs.flyForm.resetFields();
+    },
+    /**
+     * 对整个表单进行校验的方法,返回一个 promise
+     */
+    validate(){
+      return this.$refs.flyForm.validate();
     }
   }
 };

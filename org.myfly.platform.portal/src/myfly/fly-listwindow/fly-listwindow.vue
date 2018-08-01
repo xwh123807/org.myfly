@@ -89,7 +89,7 @@ export default {
     };
   },
   created() {
-    console.info(this.windowName + " created.");
+    // console.info(this.windowName + " created.");
     this.prepareViewModel(this.windowName);
   },
   computed: {
@@ -132,7 +132,7 @@ export default {
         callback: () => {
           self.viewModel = self.viewModels[windowName];
           self.setTabTitle({
-            route: self.$route.path,
+            path: self.$route.path,
             name: self.viewModel.name
           });
           self.tabModel = self.viewModel.tabs[self.viewModel.mainTabName];

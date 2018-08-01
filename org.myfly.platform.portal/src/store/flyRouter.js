@@ -2,13 +2,28 @@ import Vue from 'vue'
 
 const state = {
     /**
-     * 所有打开的路由
+     * 所有打开的路由，路由对象{path: String, name: String, params: Object}
      */
     routes: [],
     /**
      * 当前打开路由
      */
-    activeIndex: "/home"
+    activeRoutePath: "/home"
+}
+
+const getters = {
+    /**
+     * 获取动态列表路由
+     */
+    dynamicListRoutes: state => {
+        return state.routes.filter(item => item.path.startsWith("/dynamic/list/") || item.path.startsWith("/dynamic/richlist/"));
+    },
+    /**
+     * 获取动态表单路由
+     */
+    dynamicFormRoutes: state => {
+        return state.routes.filter(item => item.path.startsWith("/dynamic/form/"));
+    }
 }
 
 const actions = {
@@ -17,18 +32,23 @@ const actions = {
      * @param {*} param0 
      * @param {*} data 
      */
-    addTab({ commit }, data) {
+    addTab({
+        commit
+    }, data) {
         commit("ADD_TAB", data);
     },
     /**
      * 删除tab
      * @param {*} param0 
-     * @param {*} route 
+     * @param {*} path 
      */
-    delTab({ state, commit }, route) {
+    delTab({
+        state,
+        commit
+    }, path) {
         let index = 0;
         for (let item of state.routes) {
-            if (item.route === route) {
+            if (item.path === path) {
                 break;
             }
             index++;
@@ -40,19 +60,23 @@ const actions = {
      * @param {*} param0 
      * @param {*} index 
      */
-    setActiveRoute({ commit }, index) {
+    setActiveRoute({
+        commit
+    }, index) {
         commit("SET_ACTIVE_INDEX", index);
     },
 
     /**
      * 设置路由标题
-     * @param {*} param0 
-     * @param {*} title 
+     * @param {*} commit 
+     * @param {*} data 
      */
-    setTabTitle({ commit }, data) {
+    setTabTitle({
+        commit
+    }, data) {
         let index = 0;
         for (let item of state.routes) {
-            if (item.route === data.route) {
+            if (item.path === data.path) {
                 break;
             }
             index++;
@@ -69,8 +93,8 @@ const mutations = {
     DEL_TAB(state, index) {
         state.routes.splice(index, 1);
     },
-    SET_ACTIVE_INDEX(state, index) {
-        state.activeIndex = index;
+    SET_ACTIVE_INDEX(state, path) {
+        state.activeRoutePath = path;
     },
     SET_TAB_TITLE(state, data) {
         if (state.routes.length === 0) {
@@ -83,6 +107,7 @@ const mutations = {
 
 export default {
     state,
+    getters,
     actions,
     mutations
 }

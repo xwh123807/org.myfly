@@ -26,7 +26,6 @@ export default new Router({
         { path: '/dynamic/:dynamicType/:windowName/:uid', name: 'dynamic-form', component:  ()=>import("@/myfly/fly-multicachewindow/fly-multiformwindow") },
         { path: '/dynamicRichListWindow/:windowName', name: 'dynamicRichListWindow', component: page('myfly/dynamic-richlistwindow') },
         { path: '/dynamicFormWindow/:windowName/:uid', name: 'dynamicFormWindow', component: page('myfly/dynamic-formwindow') },
-        { path: '/keyboard', name: 'c-keyboard', component: page('c-keyboard') },
         { path: '/404', name: '404', component: page('404') },
         { path: '/500', name: '500', component: page('500') }
       ]
@@ -36,7 +35,7 @@ export default new Router({
     // pages
     { path: '/home-login', name: 'p-login', component: page('home-login') },
     { path: '/register', name: 'p-register', component: page('register') },
-    { path: '/keyboard', name: 'p-keyboard', component: page('c-keyboard') },
+    { path: '/keyboard', name: 'p-keyboard', component: page('c-keyboard') }
     // { path: '*', redirect: { name: '404' } }
   ]
 })

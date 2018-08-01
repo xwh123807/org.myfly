@@ -64,9 +64,17 @@ public enum MyElement_zh_CN {
 			dataType = FlyDataType.Table, entityType = "D", printName = "引用", fieldLength = 32)
 	referenceID,
 	//
+	@FlyElement(columnName = "RefListID", name = "引用值", description = "系统引用", help = "The Reference indicates the type of reference field", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "引用值", fieldLength = 32)
+	refListID,
+	//
 	@FlyElement(columnName = "TableID", name = "表", description = "字段所在表", help = "The Table indicates the table in which a field or fields reside.", //
 			dataType = FlyDataType.Table, entityType = "D", printName = "表", fieldLength = 32)
 	tableID,
+	//
+	@FlyElement(columnName = "UserID", name = "用户", description = "用户", help = "", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "用户", fieldLength = 32)
+	userID,
 	//
 	@FlyElement(columnName = "WindowID", name = "窗口", description = "窗口", help = "", //
 			dataType = FlyDataType.Table, entityType = "D", printName = "窗口", fieldLength = 32)

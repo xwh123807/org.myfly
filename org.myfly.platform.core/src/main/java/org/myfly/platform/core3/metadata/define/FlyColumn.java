@@ -2,6 +2,7 @@ package org.myfly.platform.core3.metadata.define;
 
 import java.lang.reflect.Method;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
@@ -196,6 +197,8 @@ public class FlyColumn extends PColumn implements IDefinition {
 			return (getElement().getRefTable() != null) ? getElement().getRefTable().getDisplayColumnName() : "";
 		} else if (isRefListColumn()) {
 			return "name";
+		} else if (BooleanUtils.isTrue(getIsKey()) && getElement().getRefTable() != null) {
+			return getElement().getRefTable().getDisplayColumnName();
 		} else {
 			return "";
 		}

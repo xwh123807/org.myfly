@@ -9,7 +9,7 @@
                 <el-button icon="fa fa-close" @click="backHandler()"></el-button>
             </el-button-group>
         </el-row>
-        <fly-form :tabModel="tabModel" :data="data"></fly-form>
+        <fly-form ref="flyForm" :tabModel="tabModel" :data="data"></fly-form>
         <el-row v-for="subTabName in tabModel.subTabs" v-bind:key="subTabName">
           <fly-subtable :windowName="windowName" :tabName="subTabName" :parentKeyColumn="tabModel.keyColumn" 
             :parentUid="keyValue" :needLoaded="loaded">
@@ -76,7 +76,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["getViewModel"]),
+    ...mapActions(["getViewModel", "setTabTitle"]),
     /**
      * 准备窗口显示模型
      */
@@ -105,6 +105,10 @@ export default {
         this.$http.get("/flydata3/" + tableApiName + "/" + uid).then(data => {
           self.data = data;
           self.loaded = true;
+          self.setTabTitle({
+            path: self.$route.path,
+            name: self.tabModel.name + ":" + self.data[self.tabModel.displayColumn]
+          });
         });
       } else {
         this.$message.error(
@@ -115,7 +119,9 @@ export default {
     /**
      * 撤销操作
      */
-    undoHandler() {},
+    undoHandler() {
+      this.$refs.flyForm.resetFields();
+    },
     /**
      * 保存操作
      */
