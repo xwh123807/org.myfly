@@ -122,6 +122,14 @@ Axios.interceptors.response.use(res => {
     sessionStorage.removeItem('user')
     router.push({ name: 'login' })
     return Promise.reject(new Error('身份过期'))
+  } else if (res.status === 405) {
+    //console.info(res.data);
+    var message = "错误：" + res.data.message + "，请求：" + res.data.path;
+    app && app.$message({
+      type: "error",
+      message: message
+    });
+    return Promise.reject(new Error(message))
   } else {
     return res.data
   }

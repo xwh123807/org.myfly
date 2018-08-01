@@ -107,7 +107,8 @@ export default {
           self.loaded = true;
           self.setTabTitle({
             path: self.$route.path,
-            name: self.tabModel.name + ":" + self.data[self.tabModel.displayColumn]
+            name:
+              self.tabModel.name + ":" + self.data[self.tabModel.displayColumn]
           });
         });
       } else {
@@ -121,11 +122,27 @@ export default {
      */
     undoHandler() {
       this.$refs.flyForm.resetFields();
+      this.$message.info("撤销完成.");
     },
     /**
      * 保存操作
      */
-    saveHandler() {},
+    saveHandler() {
+      var result = this.$refs.flyForm.validate();
+      result.then(val => {
+        if (val === true) {
+          console.info("校验成功.");
+          this.$http
+            .put(
+              "/flydata3/" + this.tabModel.tableApiName + "/" + this.keyValue,
+              this.data
+            )
+            .then(result => {
+              console.info(result);
+            });
+        }
+      });
+    },
     /**
      * 关闭或返回操作
      */
