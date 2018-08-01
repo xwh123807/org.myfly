@@ -4,7 +4,7 @@
         <el-row>
             <el-form ref="flyForm" :model="data" size="mini" label-width="10px" style="width:100%">
                 <el-col :span="column.dataType === 'Text' ? 22 : 11" v-for="column in columns" v-bind:key="column.fieldID">
-                    <el-form-item>
+                    <el-form-item :prop="column.model">
                         <el-row>
                             <el-col :span="column.dataType === 'Text' ? 3 : 6" style="text-align:right">
                                 <span v-if="column.dataType === 'Table' || column.dataType === 'TableDirect' || column.dataType === 'List'">
