@@ -26,7 +26,7 @@ public class TestModelFlyDataRestServiceTest {
 	@Autowired
 	private TestRestTemplate service;
 
-	private TestModel model = new TestModel();
+	private TestModel model;
 
 	private String entityName = PTMaster.class.getName();
 
@@ -42,6 +42,7 @@ public class TestModelFlyDataRestServiceTest {
 
 	@Before
 	public void before() {
+		model = new TestModel();
 		HttpEntity<FlyEntityMap> request = new HttpEntity<FlyEntityMap>(model.getFlyTestEntity());
 		ResponseEntity<String> result = service.postForEntity(getUri("{entityName}", entityName), request,
 				String.class);

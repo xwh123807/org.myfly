@@ -23,6 +23,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 通用数据访问服务
@@ -32,6 +33,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
+@Transactional(readOnly = true)
 public class JpaDataAccessService implements IJpaDataAccessService {
 	@Autowired
 	private EntityManager entityManager;
@@ -42,6 +44,20 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	public <T> SimpleJpaRepository getSimpleJpaRepository(final Class<T> entityClass) {
 		AssertUtil.parameterEmpty(entityClass, "entityClass");
 		return new SimpleJpaRepository<>(entityClass, entityManager);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core.flydata.service.IJpaDataAccessService#existsById(java
+	 * .lang.Class, java.io.Serializable)
+	 */
+	@Override
+	public <T> boolean existsById(Class<T> entityClass, Serializable uid) {
+		AssertUtil.parameterEmpty(entityClass, "entityClass");
+		AssertUtil.parameterEmpty(uid, "uid");
+		return getSimpleJpaRepository(entityClass).existsById(uid);
 	}
 
 	/*
@@ -87,7 +103,8 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	public <T> void delOne(Class<T> entityClass, Serializable uid) {
 		AssertUtil.parameterEmpty(entityClass, "entityClass");
 		AssertUtil.parameterEmpty(uid, "uid");
-		getSimpleJpaRepository(entityClass).delete(uid);
+		entityManager.remove(null);
+		// getSimpleJpaRepository(entityClass).delete(uid);
 	}
 
 	/*
@@ -99,6 +116,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	@Override
 	public <T> void delOne(T entity) {
 		AssertUtil.parameterEmpty(entity, "entity");
+		// getSimpleJpaRepository(entity.getClass()).delete(entity);
 		entityManager.remove(entity);
 	}
 
@@ -123,6 +141,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 * .platform.system.domain.IKeyEntity)
 	 */
 	@Override
+	@Transactional
 	public <T> T saveEntity(final T entity) {
 		AssertUtil.parameterEmpty(entity, "entity");
 		beforeInsertFlyEntity(entity);
@@ -280,7 +299,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 			//getSimpleJpaRepository(batchList.get(0).getClass()).save(batchList);
 			batchList.forEach(item -> {
 				entityManager.persist(item);
-			});
+			 });
 		}
 	}
 

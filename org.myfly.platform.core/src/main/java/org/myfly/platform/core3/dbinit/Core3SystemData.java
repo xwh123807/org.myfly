@@ -102,5 +102,6 @@ public class Core3SystemData {
 		superUser.setUpdated(DateUtil.nowSqlTimestamp());
 		superUser.setUpdatedBy(system.getUserID());
 		dataService.saveEntity(superUser);
+		dataService.flush();
 	}
 }

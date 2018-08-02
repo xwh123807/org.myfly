@@ -21,6 +21,7 @@ import org.myfly.platform.core3.dbinit.resources.MyRefLists_zh_CN;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class Core3AppConfigEvent implements IAppConfigEvent {

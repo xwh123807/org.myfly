@@ -31,6 +31,14 @@ public interface IJpaDataAccessService {
 	<T> T findOne(Class<T> entityClass, Serializable uid);
 	
 	/**
+	 * 
+	 * @param entityClass
+	 * @param uid
+	 * @return
+	 */
+	<T> boolean existsById(Class<T> entityClass, Serializable uid);
+	
+	/**
 	 * 刷新实体
 	 * @param entity
 	 */

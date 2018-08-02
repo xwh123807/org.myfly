@@ -1,7 +1,5 @@
 package org.myfly.platform.core3.flydata;
 
-import javax.transaction.Transactional;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +18,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = CoreApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
-@Transactional
 public class TestModelFlyDataServiceTest {
 	@Autowired
 	private IFlyDataService dataService;
@@ -65,7 +62,7 @@ public class TestModelFlyDataServiceTest {
 		dataService.updateEntity(entityName, model.getUid(), model.getFlyChangedEntity());
 		FlyEntityMap entity = dataService.find(entityName, model.getUid(), false, null);
 		Assert.assertNotNull(entity);
-		AssertEntity.assertFlyEntityAllFields(model.getFlyTestEntity(), entity);
+		AssertEntity.assertFlyEntityAllFields(model.getFlyChangedEntity(), entity);
 	}
 
 	@Test
@@ -74,7 +71,7 @@ public class TestModelFlyDataServiceTest {
 		FlyEntityMap entity = dataService.updateEntityAndReturn(entityName, model.getUid(),
 				model.getFlyChangedEntity());
 		Assert.assertNotNull(entity);
-		AssertEntity.assertFlyEntityAllFields(model.getFlyTestEntity(), entity);
+		AssertEntity.assertFlyEntityAllFields(model.getFlyChangedEntity(), entity);
 	}
 
 	@Test
@@ -84,6 +81,16 @@ public class TestModelFlyDataServiceTest {
 		mergeEntity.put("name", UUIDUtil.newHtmlID());
 		dataService.mergeEntity(entityName, model.getUid(), mergeEntity);
 		FlyEntityMap entity = dataService.find(entityName, model.getUid(), false, null);
+		Assert.assertNotNull(entity);
+		AssertEntity.assertFlyEntityAllFields(model.getFlyTestEntity().merge(mergeEntity), entity);
+	}
+
+	@Test
+	public void mergeEntityAndReturn() {
+		save();
+		FlyEntityMap mergeEntity = new FlyEntityMap();
+		mergeEntity.put("name", UUIDUtil.newHtmlID());
+		FlyEntityMap entity = dataService.mergeEntityAndReturn(entityName, model.getUid(), mergeEntity);
 		Assert.assertNotNull(entity);
 		AssertEntity.assertFlyEntityAllFields(model.getFlyTestEntity().merge(mergeEntity), entity);
 	}
