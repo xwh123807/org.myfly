@@ -1,4 +1,4 @@
-package org.myfly.platform.core.test.utils;
+package org.myfly.platform.core.utils;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,7 +14,7 @@ public class EntityUrlUtilTest {
 		String uid = "40289f3b51baf0dd0151bd0e76816a71";
 		// new
 		String url = EntityUrlUtil.getEntityActionUrl(EntityAction.NEW, tableName, null, null);
-		Assert.assertEquals("/vp/stdtesttable", url);
+		Assert.assertEquals("/vp/stdtesttable/", url);
 		// del
 		url = EntityUrlUtil.getEntityActionUrl(EntityAction.DEL, tableName, uid, null);
 		Assert.assertEquals("/vp/stdtesttable/40289f3b51baf0dd0151bd0e76816a71", url);
@@ -23,7 +23,7 @@ public class EntityUrlUtilTest {
 		Assert.assertEquals("/vp/stdtesttable/40289f3b51baf0dd0151bd0e76816a71?form", url);
 		// list
 		url = EntityUrlUtil.getEntityActionUrl(EntityAction.LIST, tableName, null, null);
-		Assert.assertEquals("/vp/list/stdtesttable", url);
+		Assert.assertEquals("/vp/list/stdtesttable/", url);
 		// listoutline
 		url = EntityUrlUtil.getEntityActionUrl(EntityAction.OUTLINE, tableName, uid, null);
 		Assert.assertEquals("/vp/outline/stdtesttable/40289f3b51baf0dd0151bd0e76816a71", url);
@@ -32,7 +32,7 @@ public class EntityUrlUtilTest {
 		Assert.assertEquals("/vp/outline/stdtesttable/40289f3b51baf0dd0151bd0e76816a71?view=default", url);
 		// listprint
 		url = EntityUrlUtil.getEntityActionUrl(EntityAction.LISTPRINT, tableName, null, null);
-		Assert.assertEquals("/vp/listprint/stdtesttable", url);
+		Assert.assertEquals("/vp/listprint/stdtesttable/", url);
 		// print
 		url = EntityUrlUtil.getEntityActionUrl(EntityAction.PRINT, tableName, uid, "default");
 		Assert.assertEquals("/vp/print/stdtesttable/40289f3b51baf0dd0151bd0e76816a71?view=default", url);

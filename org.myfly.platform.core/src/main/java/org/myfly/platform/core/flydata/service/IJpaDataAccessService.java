@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specifications;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
 public interface IJpaDataAccessService {
@@ -138,7 +138,7 @@ public interface IJpaDataAccessService {
 	 * @param specifications
 	 * @return
 	 */
-	long count(Class entityClass, Specifications specifications);
+	long count(Class<?> entityClass, Specification<?> specifications);
 
 	/**
 	 * 分页查询实体数据
@@ -150,7 +150,7 @@ public interface IJpaDataAccessService {
 	 * @param pageable
 	 * @return
 	 */
-	<T> Page<T> findAll(Class<T> entityClass, Specifications<?> spec, Pageable pageable);
+	<T> Page<T> findAll(Class<T> entityClass, Specification<?> spec, Pageable pageable);
 
 	/**
 	 * 实体数据查询，返回满足条件的所有记录
@@ -159,7 +159,7 @@ public interface IJpaDataAccessService {
 	 * @param spec
 	 * @return
 	 */
-	<T> List<T> findAll(Class<T> entityClass, Specifications<?> spec, Sort sort);
+	<T> List<T> findAll(Class<T> entityClass, Specification<?> spec, Sort sort);
 
 	/**
 	 * 实体数据查询

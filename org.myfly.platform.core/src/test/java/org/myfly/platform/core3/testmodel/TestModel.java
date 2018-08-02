@@ -1,5 +1,6 @@
 package org.myfly.platform.core3.testmodel;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
@@ -102,13 +103,20 @@ public class TestModel {
 		return entity;
 	}
 
-	private PTMaster newChangedEntity() {
+	private PTMaster newTestEntity() {
 		PTMaster entity = new PTMaster();
-		entity.setUpdated(DateUtil.nowSqlTimestamp());
+		entity.setMasterID(getUid());
+		entity.setName(UUIDUtil.newHtmlID());
 		return entity;
 	}
 
-	private PTMaster newTestEntity() {
-		return changedEntity;
+	private PTMaster newChangedEntity() {
+		PTMaster entity = new PTMaster();
+		entity.setMasterID(getUid());
+		entity.setName(UUIDUtil.newHtmlID());
+		
+		entity.setName(entity.getName() + " changed");
+		entity.setUpdated(DateUtil.nowSqlTimestamp());
+		return entity;
 	}
 }

@@ -27,7 +27,7 @@ public class FlyEntityMap extends HashMap<String, Object> implements IFlyEntity 
 	/**
 	 * @param from
 	 */
-	public FlyEntityMap(HashMap<String, Object> from) {
+	public FlyEntityMap(Map<String, Object> from) {
 		putAll(from);
 	}
 

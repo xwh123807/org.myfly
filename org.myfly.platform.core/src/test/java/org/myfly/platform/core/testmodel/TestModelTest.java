@@ -41,4 +41,9 @@ public class TestModelTest {
 		}
 		Assert.assertNull(entity2);
 	}
+	
+	public void testClone() {
+		TestModel model = new TestModel();
+		model.buildTestModelEntities();
+	}
 }

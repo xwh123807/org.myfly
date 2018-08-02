@@ -68,6 +68,11 @@ public class FlyMemoryDataModelRestService {
 		return getFlyMemoryDataModel().getEntityTypes();
 	}
 
+	@GetMapping("entitytypes/{apiName}")
+	public FEntityType getEntityTypeByApiName(@PathVariable("apiName") String apiName) {
+		return getFlyMemoryDataModel().getEntityTypes().get(apiName);
+	}
+
 	@GetMapping("reftables")
 	public Map<String, FRefTable> getRefTables() {
 		return getFlyMemoryDataModel().getRefTables();

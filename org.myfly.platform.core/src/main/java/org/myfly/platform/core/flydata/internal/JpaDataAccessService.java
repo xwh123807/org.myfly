@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specifications;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -198,7 +198,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 * .Class, org.springframework.data.jpa.domain.Specifications)
 	 */
 	@Override
-	public long count(Class entityClass, Specifications specifications) {
+	public long count(Class<?> entityClass, Specification<?> specifications) {
 		AssertUtil.parameterEmpty(entityClass, "entityClass");
 		return getSimpleJpaRepository(entityClass).count(specifications);
 	}
@@ -218,7 +218,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> List<T> findAll(Class<T> entityClass, Specifications<?> spec, Sort sort) {
+	public <T> List<T> findAll(Class<T> entityClass, Specification<?> spec, Sort sort) {
 		return getSimpleJpaRepository(entityClass).findAll(spec, sort);
 	}
 
@@ -245,7 +245,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> Page<T> findAll(Class<T> entityClass, Specifications<?> spec, Pageable pageable) {
+	public <T> Page<T> findAll(Class<T> entityClass, Specification<?> spec, Pageable pageable) {
 		AssertUtil.parameterEmpty(entityClass, "entityClass");
 		return getSimpleJpaRepository(entityClass).findAll(spec, pageable);
 	}

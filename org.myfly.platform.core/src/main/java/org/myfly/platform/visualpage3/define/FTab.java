@@ -1,6 +1,7 @@
 package org.myfly.platform.visualpage3.define;
 
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.myfly.platform.core.utils.JSONUtil;
@@ -104,6 +105,13 @@ public class FTab extends PTab implements IDefinition {
 
 	public Collection<FField> getFieldList() {
 		return getFields().values();
+	}
+
+	public void setFieldList(Collection<FField> list) {
+		fields = new LinkedHashMap<>();
+		list.forEach(item -> {
+			fields.put(item.getColumnID(), item);
+		});
 	}
 
 	public String getTableApiName() {

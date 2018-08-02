@@ -1,4 +1,4 @@
-package org.myfly.platform.core.test.utils;
+package org.myfly.platform.core.utils;
 
 import java.util.Map;
 

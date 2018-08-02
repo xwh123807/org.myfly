@@ -1,6 +1,7 @@
 package org.myfly.platform.core3.flydata.internal;
 
 import java.util.List;
+import java.util.Map;
 
 import org.myfly.platform.core.domain.RestApiInfo;
 import org.myfly.platform.core.domain.RestControllerInfo;
@@ -8,7 +9,9 @@ import org.myfly.platform.core3.flydata.service.FlyEntityMap;
 import org.myfly.platform.core3.flydata.service.IFlyDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +27,8 @@ public class FlyDataRestService {
 	@RequestMapping(value = { "", "help" })
 	public RestControllerInfo help() {
 		return new RestControllerInfo("flydata3", "数据访问服务",
-				new RestApiInfo[] { new RestApiInfo("{entityName}", "saveEntity", HttpMethod.POST),
+				new RestApiInfo[] { new RestApiInfo("save/{entityName}", "saveEntity", HttpMethod.POST),
+						new RestApiInfo("{entityName}", "saveAndFindEntity", HttpMethod.POST),
 						new RestApiInfo("{entityName}", "updateEntity", HttpMethod.PUT),
 						new RestApiInfo("{entityName}", "patchEntity", HttpMethod.PATCH),
 						new RestApiInfo("{entityName}/{uid}", "find", HttpMethod.GET),
@@ -32,14 +36,27 @@ public class FlyDataRestService {
 	}
 
 	/**
-	 * 保存实体
+	 * 保存实体，返回实体主键
 	 * 
 	 * @param entityName
 	 * @param flyEntity
 	 */
-	@RequestMapping(value = "{entityName}", method = RequestMethod.POST)
+	@RequestMapping(value = "save/{entityName}", method = RequestMethod.POST)
 	public String saveEntity(@PathVariable("entityName") String entityName, @RequestBody FlyEntityMap flyEntity) {
 		return flyDataService.saveEntity(entityName, flyEntity);
+	}
+
+	/**
+	 * 保存并查询返回实体
+	 * 
+	 * @param entityName
+	 * @param flyEntity
+	 * @return
+	 */
+	@PostMapping("{entityName}")
+	public FlyEntityMap saveAndFindEntity(@PathVariable("entityName") String entityName,
+			@RequestBody FlyEntityMap flyEntity) {
+		return flyDataService.saveEntityAndReturn(entityName, flyEntity);
 	}
 
 	/**
@@ -84,10 +101,18 @@ public class FlyDataRestService {
 		return flyDataService.find(entityName, uid, hasSubTable, subTableAttrs);
 	}
 
-	@RequestMapping(value = "{entityName}/{fieldName}/{fieldValue}", method = RequestMethod.GET)
-	public List<FlyEntityMap> find(@PathVariable("entityName") String entityName,
-			@PathVariable("fieldName") String fieldName, @PathVariable("fieldValue") String fieldValue) {
-		return flyDataService.findAll(entityName);
+	/**
+	 * 过滤
+	 * 
+	 * @param entityName
+	 * @param fieldName
+	 * @param fieldValue
+	 * @return
+	 */
+	@GetMapping("findByExample/{entityName}")
+	public List<FlyEntityMap> findByExample(@PathVariable("entityName") String entityName,
+			@RequestParam Map<String, Object> example) {
+		return flyDataService.findByExample(entityName, new FlyEntityMap(example));
 	}
 
 	/**

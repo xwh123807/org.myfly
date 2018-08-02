@@ -63,18 +63,14 @@ export default {
     ...mapState({
       viewModels: ({ viewModel }) => viewModel.viewModels
     }),
+    /**
+     * 获取主键值
+     */
     keyValue() {
       return this.data[this.tabModel.keyColumn];
     }
   },
-  watch: {
-    windowName(to) {
-      to && this.prepareViewModel(to, false);
-    },
-    uid(to) {
-      to && this.searchHandler(this.tabModel.tableApiName, to);
-    }
-  },
+  watch: {},
   methods: {
     ...mapActions(["getViewModel", "setTabTitle"]),
     /**

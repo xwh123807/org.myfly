@@ -9,7 +9,6 @@ import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.myfly.platform.visualpage3.define.FlyMemoryViewModel;
 import org.myfly.platform.visualpage3.define.FlyViewModel;
 import org.myfly.platform.visualpage3.define.FlyViewModelBuilder;
-import org.myfly.platform.visualpage3.service.IFlyViewModel;
 import org.myfly.platform.visualpage3.service.IFlyViewModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +33,7 @@ public class FlyViewModelService implements IFlyViewModelService {
 	 * getFlyViewModel(java.lang.String)
 	 */
 	@Override
-	public IFlyViewModel getFlyViewModel(String windowName) {
+	public FlyViewModel getFlyViewModel(String windowName) {
 		return getFlyMemoryViewModel().getFlyViewModel(windowName);
 	}
 
@@ -45,8 +44,8 @@ public class FlyViewModelService implements IFlyViewModelService {
 	 * getFlyViewModelFromBuildIn(java.lang.String)
 	 */
 	@Override
-	public IFlyViewModel getFlyViewModelFromBuildIn(String entityName) {
-		IFlyViewModel viewModel = getFlyViewModel(entityName);
+	public FlyViewModel getFlyViewModelFromBuildIn(String entityName) {
+		FlyViewModel viewModel = getFlyViewModel(entityName);
 		if (viewModel == null) {
 			IFlyDataModel dataModel = dataModelService.getFlyDataModel(entityName);
 			if (dataModel != null) {
@@ -65,7 +64,7 @@ public class FlyViewModelService implements IFlyViewModelService {
 	 * getFlyViewModelByUid(java.lang.String)
 	 */
 	@Override
-	public IFlyViewModel getFlyViewModelByUid(String uid) {
-		return dataService.findOne(IFlyViewModelService.IMPLCLASS_FLY_VIEW_MODEL, uid);
+	public FlyViewModel getFlyViewModelByUid(String uid) {
+		return null;
 	}
 }

@@ -21,7 +21,6 @@ import org.myfly.platform.core.metadata.entity.EntityMetaData;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.jpa.domain.Specifications;
 
 /**
  * 查询过滤条件工具类
@@ -39,8 +38,8 @@ public class QuerySpecificationUtil {
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	public static Specifications buildQuerySpecifications(EntityMetaData metaData, final FilterDefinition[] filterDefinitions,
-			final Map<String, String[]> params) {
+	public static Specification buildQuerySpecifications(EntityMetaData metaData,
+			final FilterDefinition[] filterDefinitions, final Map<String, String[]> params) {
 		if (params == null || params.size() == 0) {
 			return null;
 		}
@@ -76,7 +75,8 @@ public class QuerySpecificationUtil {
 	 * @param reurnArgs
 	 * @return
 	 */
-	public static String buildQueryWhereSql(EntityMetaData metaData, final FilterDefinition[] filters, List<Object> paramValues) {
+	public static String buildQueryWhereSql(EntityMetaData metaData, final FilterDefinition[] filters,
+			List<Object> paramValues) {
 		if (ArrayUtils.isEmpty(filters)) {
 			return "";
 		}
@@ -181,11 +181,11 @@ public class QuerySpecificationUtil {
 	 * @return
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static Specifications buildQuerySpecifications(final FilterDefinition[] filters) {
+	public static Specification buildQuerySpecifications(final FilterDefinition[] filters) {
 		if (ArrayUtils.isEmpty(filters)) {
 			return null;
 		}
-		return Specifications.where(new Specification() {
+		return new Specification() {
 
 			@Override
 			public Predicate toPredicate(Root root, CriteriaQuery query, CriteriaBuilder cb) {
@@ -245,8 +245,8 @@ public class QuerySpecificationUtil {
 						break;
 					case BETWEEN:
 						if (filter.getMultiValues()[0] instanceof Date) {
-							predicates.add(cb.between(root.get(filter.getName()),
-									(Date) filter.getMultiValues()[0], (Date) filter.getMultiValues()[1]));
+							predicates.add(cb.between(root.get(filter.getName()), (Date) filter.getMultiValues()[0],
+									(Date) filter.getMultiValues()[1]));
 						} else if (filter.getMultiValues()[0] instanceof Number) {
 							predicates.add(cb.ge(root.get(filter.getName()), (Number) filter.getMultiValues()[0]));
 							predicates.add(cb.le(root.get(filter.getName()), (Number) filter.getMultiValues()[1]));
@@ -258,23 +258,22 @@ public class QuerySpecificationUtil {
 						if (filter.getValue() instanceof Number) {
 							predicates.add(cb.ge(root.get(filter.getName()), (Number) filter.getValue()));
 						} else if (filter.getValue() instanceof Date) {
-							predicates.add(
-									cb.greaterThanOrEqualTo(root.get(filter.getName()), (Date) filter.getValue()));
+							predicates
+									.add(cb.greaterThanOrEqualTo(root.get(filter.getName()), (Date) filter.getValue()));
 						}
 						break;
 					case LESSTHANOREQUALTO:
 						if (filter.getValue() instanceof Number) {
 							predicates.add(cb.le(root.get(filter.getName()), (Number) filter.getValue()));
 						} else if (filter.getValue() instanceof Date) {
-							predicates.add(
-									cb.lessThanOrEqualTo(root.get(filter.getName()), (Date) filter.getValue()));
+							predicates.add(cb.lessThanOrEqualTo(root.get(filter.getName()), (Date) filter.getValue()));
 						}
 						break;
 					}
 				}
 				return query.where(predicates.toArray(new Predicate[] {})).getRestriction();
 			}
-		});
+		};
 	}
 
 	/**
@@ -287,8 +286,8 @@ public class QuerySpecificationUtil {
 	 *            过滤参数值
 	 * @return
 	 */
-	public static FilterDefinition[] buildFilterDefinition(EntityMetaData metaData, final FilterDefinition[] filterDefinitions,
-			final Map<String, String[]> params) {
+	public static FilterDefinition[] buildFilterDefinition(EntityMetaData metaData,
+			final FilterDefinition[] filterDefinitions, final Map<String, String[]> params) {
 		List<FilterDefinition> result = new ArrayList<>();
 		if (ArrayUtils.isNotEmpty(filterDefinitions)) {
 			// 遍历过滤器定义，处理有赋值的过滤器
@@ -354,7 +353,8 @@ public class QuerySpecificationUtil {
 			for (FieldDefinition fieldDefinition : fieldDefinitions) {
 				Object value = params.get(fieldDefinition.getName());
 				if (value != null) {
-					FilterDefinition filterDefinition = new FilterDefinition(fieldDefinition.getName(), SQLOperator.EQUAL);
+					FilterDefinition filterDefinition = new FilterDefinition(fieldDefinition.getName(),
+							SQLOperator.EQUAL);
 					filterDefinition.setValue(value);
 					filters.add(filterDefinition);
 				}
@@ -365,6 +365,7 @@ public class QuerySpecificationUtil {
 
 	/**
 	 * 构建过滤条件，赋条件时会将值转换属性对应的数据类型
+	 * 
 	 * @param fieldDefinitions
 	 * @param params
 	 * @return
@@ -377,7 +378,8 @@ public class QuerySpecificationUtil {
 			for (FieldDefinition fieldDefinition : fieldDefinitions) {
 				String value = params.get(fieldDefinition.getName());
 				if (StringUtils.isNotBlank(value)) {
-					FilterDefinition filterDefinition = new FilterDefinition(fieldDefinition.getName(), SQLOperator.EQUAL);
+					FilterDefinition filterDefinition = new FilterDefinition(fieldDefinition.getName(),
+							SQLOperator.EQUAL);
 					filterDefinition.setValue(ClassUtil.convert(value, fieldDefinition.getType()));
 					filters.add(filterDefinition);
 				}
@@ -392,10 +394,10 @@ public class QuerySpecificationUtil {
 	 * @param params
 	 * @return
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static Specifications<?> buildQuerySpecifications(final Map<String, Object> params) {
+	@SuppressWarnings({ "rawtypes" })
+	public static Specification<?> buildQuerySpecifications(final Map<String, Object> params) {
 		if (MapUtils.isNotEmpty(params)) {
-			return Specifications.where(new Specification() {
+			return new Specification() {
 				@Override
 				public Predicate toPredicate(Root root, CriteriaQuery query, CriteriaBuilder cb) {
 					List<Predicate> predicates = new ArrayList<>();
@@ -405,7 +407,7 @@ public class QuerySpecificationUtil {
 					return query.where(predicates.toArray(new Predicate[] {})).getRestriction();
 				}
 
-			});
+			};
 		} else {
 			return null;
 		}

@@ -90,7 +90,7 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public long count(String entityName, String listViewName, EntityQueryMap params) {
-		Specifications specifications = getEntityQuerySpecifications(entityName, listViewName, params);
+		Specification specifications = getEntityQuerySpecifications(entityName, listViewName, params);
 		return getJpaDataAccessService().count(getEntityClass(entityName), specifications);
 	}
 
@@ -118,7 +118,7 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	private Specifications getEntityQuerySpecifications(String entityName, String view, EntityQueryMap params) {
+	private Specification getEntityQuerySpecifications(String entityName, String view, EntityQueryMap params) {
 		AssertUtil.parameterEmpty(entityName, "entityName");
 		EntityMetaData metaData = getEntityMetaData(entityName);
 		FilterDefinition[] filterDefinitions = metaData.getListDefinition(view).getFilters();
@@ -133,7 +133,7 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 				}
 			}
 		}
-		Specifications specifications = QuerySpecificationUtil.buildQuerySpecifications(metaData, filterDefinitions,
+		Specification specifications = QuerySpecificationUtil.buildQuerySpecifications(metaData, filterDefinitions,
 				params);
 		return specifications;
 	}
@@ -145,7 +145,7 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 		AssertUtil.parameterEmpty(entityName, "entityName");
 		EntityMetaData metaData = getEntityMetaData(entityName);
 		EntityListDefinition listDefinition = metaData.getListDefinition(listViewName);
-		Specifications specifications = getEntityQuerySpecifications(entityName, listViewName, params);
+		Specification specifications = getEntityQuerySpecifications(entityName, listViewName, params);
 		Page<Object> pageData1 = (Page<Object>) getJpaDataAccessService().findAll(metaData.getEntityClass(),
 				specifications, pageable);
 		List list = new ArrayList<>();
@@ -216,7 +216,7 @@ public class JpaFlyDataAccessService extends AbstractFlyDataAccessService {
 		if (FieldDataType.FLYMDRELATION.equals(subField.getDataType())) {
 			params.put(subField.getRelationField(), new String[] { uid });
 		}
-		Specifications specifications = getEntityQuerySpecifications(subentityName, formViewName, params);
+		Specification specifications = getEntityQuerySpecifications(subentityName, formViewName, params);
 		if (FieldDataType.MDRELATION.equals(subField.getDataType())) {
 			try {
 				final Object entity = entityMetaData.newEntityInstance(uid);

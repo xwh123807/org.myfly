@@ -193,12 +193,16 @@ public class FlyColumn extends PColumn implements IDefinition {
 	 * @return
 	 */
 	public String getRefDisplayColumn() {
-		if (isRefTableColumn()) {
-			return (getElement().getRefTable() != null) ? getElement().getRefTable().getDisplayColumnName() : "";
-		} else if (isRefListColumn()) {
-			return "name";
-		} else if (BooleanUtils.isTrue(getIsKey()) && getElement().getRefTable() != null) {
-			return getElement().getRefTable().getDisplayColumnName();
+		if (getElement() != null) {
+			if (isRefTableColumn()) {
+				return (getElement().getRefTable() != null) ? getElement().getRefTable().getDisplayColumnName() : "";
+			} else if (isRefListColumn()) {
+				return "name";
+			} else if (BooleanUtils.isTrue(getIsKey()) && getElement().getRefTable() != null) {
+				return getElement().getRefTable().getDisplayColumnName();
+			} else {
+				return "";
+			}
 		} else {
 			return "";
 		}

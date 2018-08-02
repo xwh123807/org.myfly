@@ -97,7 +97,7 @@ export default {
        */
       lastDisabled: false,
       /**
-       * 
+       *
        */
       loaded: false
     };
@@ -163,15 +163,10 @@ export default {
       var self = this;
       self.loaded = false;
       if (tableApiName && parentKeyColumn && parentUid) {
+        var example = {};
+        example[parentKeyColumn] = parentUid;
         this.$http
-          .get(
-            "/flydata3/" +
-              tableApiName +
-              "/" +
-              parentKeyColumn +
-              "/" +
-              parentUid
-          )
+          .get("/flydata3/findByExample/" + tableApiName, {params: example})
           .then(data => {
             self.tabData = data;
             self.loaded = true;
@@ -276,7 +271,7 @@ export default {
 };
 </script>
 <style type="text/css">
-.fly-richlistwindow .el-button{
+.fly-richlistwindow .el-button {
   padding: 10px;
 }
 </style>

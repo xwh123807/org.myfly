@@ -4,9 +4,9 @@ import java.util.Set;
 
 import org.myfly.platform.core.domain.RestApiInfo;
 import org.myfly.platform.core.domain.RestControllerInfo;
+import org.myfly.platform.visualpage3.define.FTab;
 import org.myfly.platform.visualpage3.define.FlyMemoryViewModel;
 import org.myfly.platform.visualpage3.define.FlyViewModel;
-import org.myfly.platform.visualpage3.service.IFlyViewModel;
 import org.myfly.platform.visualpage3.service.IFlyViewModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -48,19 +48,12 @@ public class FlyMemoryViewModelRestService {
 
 	@GetMapping("{windowName}")
 	public FlyViewModel getFlyViewModelByName(@PathVariable("windowName") String windowName) {
-		return (FlyViewModel) getFlyViewModelFromTable(windowName);
-		//return getFlyMemoryViewModel().getFlyViewModel(windowName);
+		return getViewModelService().getFlyViewModelFromBuildIn(windowName);
 	}
 
-	/**
-	 * 直接从表构建实体的显示模型
-	 * 
-	 * @param entityName
-	 * @return
-	 */
-	@GetMapping("entity/{entityName}")
-	public IFlyViewModel getFlyViewModelFromTable(@PathVariable("entityName") String entityName) {
-		return getViewModelService().getFlyViewModelFromBuildIn(entityName);
+	@GetMapping("{windowName}/{tabName}")
+	public FTab getFlyColumnByName(@PathVariable("windowName") String windowName,
+			@PathVariable("tabName") String tabName) {
+		return getFlyViewModelByName(windowName).getTabs().get(tabName);
 	}
-
 }

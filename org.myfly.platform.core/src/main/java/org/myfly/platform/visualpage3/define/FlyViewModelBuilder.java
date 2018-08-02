@@ -16,7 +16,6 @@ import org.myfly.platform.visualpage3.annotation.FlyWindow;
 import org.myfly.platform.visualpage3.annotation.TableStyle;
 import org.myfly.platform.visualpage3.model.PWindow;
 import org.myfly.platform.visualpage3.model.WindowType;
-import org.myfly.platform.visualpage3.service.IFlyViewModel;
 import org.springframework.util.Assert;
 
 public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> {
@@ -125,7 +124,7 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 	 * @param dataModel
 	 * @return
 	 */
-	public IFlyViewModel loadFromFlyDataModel(FlyDataModel dataModel) {
+	public FlyViewModel loadFromFlyDataModel(FlyDataModel dataModel) {
 		FlyViewModel result = new FlyViewModel();
 		result.setApiName(dataModel.getApiName());
 		result.setWindowID(UUIDUtil.newUUID());

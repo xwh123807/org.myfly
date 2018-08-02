@@ -1,4 +1,4 @@
-package org.myfly.platform.core.test.utils;
+package org.myfly.platform.core.utils;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

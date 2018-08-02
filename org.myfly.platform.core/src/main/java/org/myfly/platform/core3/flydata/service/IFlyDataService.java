@@ -2,8 +2,6 @@ package org.myfly.platform.core3.flydata.service;
 
 import java.util.List;
 
-import org.myfly.platform.core3.metadata.service.IFlyDataModel;
-
 /**
  * FlyData服务<br>
  * 1、entityName，实体名，值在系统中唯一，没有特别指定则为实体类名<br>
@@ -57,7 +55,7 @@ public interface IFlyDataService {
 	FlyEntityMap saveEntityAndReturn(String entityName, FlyEntityMap flyEntity);
 
 	/**
-	 * 修改实体
+	 * 修改实体，用flyEntity替换旧实体所有属性
 	 * 
 	 * @param entityName
 	 *            实体名
@@ -67,9 +65,17 @@ public interface IFlyDataService {
 	 *            实体
 	 */
 	public void updateEntity(String entityName, String uid, FlyEntityMap flyEntity);
+	
+	/**
+	 * 修改并返回实体
+	 * @param entityName
+	 * @param uid
+	 * @param flyEntity
+	 */
+	public FlyEntityMap updateEntityAndReturn(String entityName, String uid, FlyEntityMap flyEntity);
 
 	/**
-	 * 合并实体
+	 * 合并实体，用flyEntity的属性覆盖原有实体
 	 * 
 	 * @param entityName
 	 *            实体名
@@ -79,6 +85,14 @@ public interface IFlyDataService {
 	 *            覆盖属性
 	 */
 	public void mergeEntity(String entityName, String uid, FlyEntityMap flyEntity);
+	
+	/**
+	 * 合并并返回实体
+	 * @param entityName
+	 * @param uid
+	 * @param flyEntity
+	 */
+	public FlyEntityMap mergeEntityAndReturn(String entityName, String uid, FlyEntityMap flyEntity);
 
 	/**
 	 * 查询所有实体
@@ -105,4 +119,12 @@ public interface IFlyDataService {
 	public FlyEntityMap find(String entityName, String uid, boolean hasSubTable, String[] subTableAttrs);
 
 	public List<FlyEntityMap> findAll(String entityName, boolean hasSubTable, String[] subTableAttrs);
+	
+	/**
+	 * 按params过滤查询实体
+	 * @param entityName
+	 * @param params
+	 * @return
+	 */
+	public List<FlyEntityMap> findByExample(String entityName, FlyEntityMap example);
 }

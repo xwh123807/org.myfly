@@ -24,7 +24,6 @@ public class RefTableBuilderTest {
 	public void load() {
 		List<FRefTable> list = builder.loadFromEntityClass(PTable.class);
 		Assert.assertTrue(list.size() > 0);
-		list.forEach(item -> item.validate());
 		System.out.println(JSONUtil.toJSON(list));
 	}
 
@@ -36,7 +35,6 @@ public class RefTableBuilderTest {
 		classes.forEach(item -> {
 			List<FRefTable> list = builder.loadFromEntityClass((Class<? extends IFlyEntity>) item);
 			if (CollectionUtils.isNotEmpty(list)) {
-				list.forEach(item2 -> item2.validate());
 				System.out.println(JSONUtil.toJSON(list));
 			}
 		});

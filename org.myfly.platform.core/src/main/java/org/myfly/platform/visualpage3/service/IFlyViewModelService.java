@@ -1,7 +1,6 @@
 package org.myfly.platform.visualpage3.service;
 
-import java.util.List;
-
+import org.myfly.platform.visualpage3.define.FlyViewModel;
 import org.myfly.platform.visualpage3.model.PField;
 import org.myfly.platform.visualpage3.model.PTab;
 import org.myfly.platform.visualpage3.model.PWindow;
@@ -34,14 +33,14 @@ public interface IFlyViewModelService {
 	 * @param entityName
 	 * @return
 	 */
-	public IFlyViewModel getFlyViewModel(String windowName);
+	public FlyViewModel getFlyViewModel(String windowName);
 
 	/**
 	 * 
 	 * @param uid
 	 * @return
 	 */
-	public IFlyViewModel getFlyViewModelByUid(String uid);
+	public FlyViewModel getFlyViewModelByUid(String uid);
 
 	/**
 	 * 获取系统按默认规则自动构建的实体显示模型
@@ -49,5 +48,5 @@ public interface IFlyViewModelService {
 	 * @param entityName
 	 * @return
 	 */
-	public IFlyViewModel getFlyViewModelFromBuildIn(String entityName);
+	public FlyViewModel getFlyViewModelFromBuildIn(String entityName);
 }

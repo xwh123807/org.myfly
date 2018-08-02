@@ -116,6 +116,19 @@ public class FlyDataService implements IFlyDataService {
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see org.myfly.platform.core3.flydata.service.IFlyDataService#
+	 * updateEntityAndReturn(java.lang.String, java.lang.String,
+	 * org.myfly.platform.core3.flydata.service.FlyEntityMap)
+	 */
+	@Override
+	public FlyEntityMap updateEntityAndReturn(String entityName, String uid, FlyEntityMap flyEntity) {
+		updateEntity(entityName, uid, flyEntity);
+		return find(entityName, uid, true, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * org.myfly.platform.core3.flydata.service.IFlyDataService#mergeEntity(java.
 	 * lang.String, java.lang.String,
@@ -127,6 +140,20 @@ public class FlyDataService implements IFlyDataService {
 		// 合并实体，只覆盖部分属性
 		Object mergedObj = FlyEntityUtils.mergeEntity(getFlyDataModel(entityName), (IFlyEntity) obj, flyEntity, false);
 		jpaService.updateEntity(mergedObj);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.flydata.service.IFlyDataService#mergeEntityAndReturn
+	 * (java.lang.String, java.lang.String,
+	 * org.myfly.platform.core3.flydata.service.FlyEntityMap)
+	 */
+	@Override
+	public FlyEntityMap mergeEntityAndReturn(String entityName, String uid, FlyEntityMap flyEntity) {
+		mergeEntity(entityName, uid, flyEntity);
+		return find(entityName, uid, true, null);
 	}
 
 	/*
@@ -177,14 +204,24 @@ public class FlyDataService implements IFlyDataService {
 	public List<FlyEntityMap> findAll(String entityName, boolean hasSubTable, String[] subTableAttrs) {
 		FlyDataModel dataModel = getFlyDataModel(entityName);
 		List<?> list = jpaService.findAll(getEntityClass(entityName));
+		return toFlyEntityMapList(dataModel, list, hasSubTable, subTableAttrs);
+	}
+
+	private List<FlyEntityMap> toFlyEntityMapList(FlyDataModel dataModel, List<?> list, boolean hasSubTable,
+			String[] subTableAttrs) {
+		List<FlyEntityMap> results = new ArrayList<>();
 		if (CollectionUtils.isNotEmpty(list)) {
-			List<FlyEntityMap> results = new ArrayList<>();
 			list.forEach(item -> {
-				results.add(FlyEntityUtils.fromEntity(dataModel, item, hasSubTable, subTableAttrs));
+				results.add(FlyEntityUtils.fromEntity(dataModel, item));
 			});
-			return results;
 		}
-		return null;
+		return results;
+	}
+
+	@Override
+	public List<FlyEntityMap> findByExample(String entityName, FlyEntityMap example) {
+		List<?> list = jpaService.findAll(getEntityClass(entityName), example);
+		return toFlyEntityMapList(getFlyDataModel(entityName), list, false, null);
 	}
 
 }
