@@ -8,9 +8,6 @@ import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.myfly.platform.core.domain.FieldDataType;
-import org.myfly.platform.core.utils.ClassUtil;
-import org.myfly.platform.core.utils.DateUtil;
 import org.springframework.core.convert.ConversionFailedException;
 public class ClassUtilTest{
 	@Test
@@ -104,20 +101,6 @@ public class ClassUtilTest{
 		Class<?> type = Date.class;
 		Object result = ClassUtil.convert(value, type);
 		Assert.assertNull(result);
-	}
-	
-	@Test
-	public void enumToString(){
-		FieldDataType dataType = FieldDataType.SYSENUM;
-		String value = ClassUtil.convertValueToString(dataType);
-		Assert.assertEquals("SYSENUM", value);
-	}
-	
-	@Test
-	public void stringToEnum(){
-		String value = "SYSENUM";
-		FieldDataType value2 = ClassUtil.convert(value, FieldDataType.class);
-		Assert.assertEquals(FieldDataType.SYSENUM, value2);
 	}
 	
 	@Test

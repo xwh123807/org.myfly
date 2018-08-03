@@ -3,12 +3,12 @@ package org.myfly.platform.core.utils;
 import javax.persistence.EntityManagerFactory;
 
 import org.hibernate.SessionFactory;
+import org.myfly.platform.core.datamodel.define.FlyDataModel;
+import org.myfly.platform.core.datamodel.define.FlyMemoryDataModel;
+import org.myfly.platform.core.datamodel.service.IFlyDataModelService;
+import org.myfly.platform.core.flydata.service.IIDNameService;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.starter.ApplicationStarter;
-import org.myfly.platform.core3.datamodel.define.FlyDataModel;
-import org.myfly.platform.core3.datamodel.define.FlyMemoryDataModel;
-import org.myfly.platform.core3.datamodel.service.IFlyDataModelService;
-import org.myfly.platform.core3.flydata.service.IIDNameService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.GenericConversionService;

@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.myfly.platform.core3.datamodel.annotation.FlyTable;
-import org.myfly.platform.core3.domain.FlyEntity;
+import org.myfly.platform.core.datamodel.annotation.FlyTable;
+import org.myfly.platform.core.domain.FlyEntity;
 
 @Entity
 @Table(name = "PT_ReportView")

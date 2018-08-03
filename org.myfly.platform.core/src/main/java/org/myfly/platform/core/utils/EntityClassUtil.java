@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import org.myfly.platform.core3.datamodel.annotation.FlyField;
+import org.myfly.platform.core.datamodel.annotation.FlyField;
 
 public class EntityClassUtil {
 

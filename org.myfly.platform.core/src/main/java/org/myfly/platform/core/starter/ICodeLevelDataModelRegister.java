@@ -2,7 +2,7 @@ package org.myfly.platform.core.starter;
 
 import java.util.List;
 
-import org.myfly.platform.core3.domain.FlyDataType;
+import org.myfly.platform.core.domain.FlyDataType;
 
 public interface ICodeLevelDataModelRegister {
 	/**

@@ -3,8 +3,6 @@ package org.myfly.platform.core.context;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.myfly.platform.core.domain.AlertInfo;
-
 /**
  * 用户会话信息，成功登录后登记
  * 
@@ -28,10 +26,6 @@ public class UserSession implements Serializable {
 	 * 会话安全标示
 	 */
 	private String tokenuid;
-	/**
-	 * 最后一次警告信息
-	 */
-	private AlertInfo alertInfo;
 
 	public Date getLoginTime() {
 		return loginTime;
@@ -55,14 +49,6 @@ public class UserSession implements Serializable {
 
 	public void setTokenuid(String tokenuid) {
 		this.tokenuid = tokenuid;
-	}
-
-	public AlertInfo getAlertInfo() {
-		return alertInfo;
-	}
-
-	public void setAlertInfo(AlertInfo alertInfo) {
-		this.alertInfo = alertInfo;
 	}
 
 }

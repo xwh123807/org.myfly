@@ -12,16 +12,13 @@ import java.net.URLDecoder;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.myfly.platform.core.domain.BaseEnum;
 
 public class ClassUtil {
 	private static final Log log = LogFactory.getLog(ClassUtil.class);
@@ -118,47 +115,6 @@ public class ClassUtil {
 	 */
 	public static <T> T convert(Object source, Class<T> targetType) {
 		return AppUtil.getConversionService().convert(source, targetType);
-	}
-
-	private static final Map<String, BaseEnum> baseEnums = new HashMap<>();
-
-	/**
-	 * 根据枚举值获取枚举类
-	 * 
-	 * @param title
-	 * @return
-	 */
-	public static BaseEnum getEnumByTitle(Class enumClass, String title) {
-		String key = enumClass.getName() + "-" + title;
-		BaseEnum result = baseEnums.get(key);
-		if (result == null) {
-			List<BaseEnum> list = EnumUtils.getEnumList(enumClass);
-			for (BaseEnum item : list) {
-				if (item.getTitle().equals(title)) {
-					result = item;
-					baseEnums.put(key, item);
-					break;
-				}
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * 根据枚举名称转换为枚举值
-	 * 
-	 * @param enumClassName
-	 * @param name
-	 * @return
-	 */
-	public static String getEnumTitleByName(final String enumClassName, final String name) {
-		try {
-			Class enumClass = Class.forName(enumClassName);
-			BaseEnum baseEnum = (BaseEnum) Enum.valueOf(enumClass, name);
-			return baseEnum.getTitle();
-		} catch (Exception e) {
-			return name;
-		}
 	}
 
 	/**
