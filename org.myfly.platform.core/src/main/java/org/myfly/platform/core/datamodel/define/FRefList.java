@@ -3,8 +3,8 @@ package org.myfly.platform.core.datamodel.define;
 import java.util.Map;
 
 import org.apache.commons.collections4.MapUtils;
+import org.myfly.platform.core.datamodel.model.PReference;
 import org.myfly.platform.core.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core.model.PReference;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.springframework.util.Assert;
 

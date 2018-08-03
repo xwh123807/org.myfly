@@ -3,9 +3,9 @@ package org.myfly.platform.core.datamodel.service;
 import java.util.List;
 
 import org.myfly.platform.core.datamodel.define.FlyDataModel;
+import org.myfly.platform.core.datamodel.model.PColumn;
+import org.myfly.platform.core.datamodel.model.PTable;
 import org.myfly.platform.core.domain.IFlyEntity;
-import org.myfly.platform.core.model.PColumn;
-import org.myfly.platform.core.model.PTable;
 
 /**
  * 数据模型服务 <br>

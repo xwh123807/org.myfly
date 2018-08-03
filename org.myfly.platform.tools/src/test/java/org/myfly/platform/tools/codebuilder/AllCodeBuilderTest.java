@@ -22,7 +22,7 @@ public class AllCodeBuilderTest {
 	@Test
 	public void genElementsCode() {
 		builder.setPath("/gencodes/");
-		builder.setPackageName("org.myfly.platform.core3.dbinit.resources");
+		builder.setPackageName("org.myfly.platform.core.dbinit.resources");
 		builder.setClassName("Element");
 		builder.setLanguage("zh_CN");
 		builder.setTables(ExportConstants.getElementTables());
@@ -33,7 +33,7 @@ public class AllCodeBuilderTest {
 	@Test
 	public void genRefListsCode() {
 		refListBuilder.setPath("/gencodes/");
-		refListBuilder.setPackageName("org.myfly.platform.core3.dbinit.resources");
+		refListBuilder.setPackageName("org.myfly.platform.core.dbinit.resources");
 		refListBuilder.setClassName("RefLists");
 		refListBuilder.setLanguage("zh_CN");
 		refListBuilder.setTables(ExportConstants.getElementTables());

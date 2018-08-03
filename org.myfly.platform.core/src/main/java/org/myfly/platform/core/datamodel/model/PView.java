@@ -1,4 +1,4 @@
-package org.myfly.platform.core.model;
+package org.myfly.platform.core.datamodel.model;
 
 import java.lang.String;
 import javax.persistence.Column;
@@ -6,12 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.myfly.platform.core.datamodel.annotation.FlyRefTable;
 import org.myfly.platform.core.datamodel.annotation.FlyTable;
 import org.myfly.platform.core.domain.FlyEntity;
 
 @Entity
 @Table(name = "PT_View")
 @FlyTable(name = "View", description = "", help = "")
+@FlyRefTable(apiName = "viewID", name = "View", keyColumn = "viewID", displayColumn = "name")
 public class PView extends FlyEntity {
 	/**
 	 * 

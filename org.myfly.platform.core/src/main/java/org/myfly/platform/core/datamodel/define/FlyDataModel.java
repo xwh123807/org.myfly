@@ -2,8 +2,8 @@ package org.myfly.platform.core.datamodel.define;
 
 import java.util.Map;
 
+import org.myfly.platform.core.datamodel.model.PTable;
 import org.myfly.platform.core.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core.model.PTable;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.springframework.util.Assert;

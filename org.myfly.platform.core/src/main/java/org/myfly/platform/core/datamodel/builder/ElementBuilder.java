@@ -4,8 +4,8 @@ import java.lang.reflect.Field;
 
 import org.myfly.platform.core.datamodel.annotation.FlyElement;
 import org.myfly.platform.core.datamodel.define.FElement;
+import org.myfly.platform.core.datamodel.model.PElement;
 import org.myfly.platform.core.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core.model.PElement;
 import org.myfly.platform.core.utils.StringUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.springframework.util.Assert;

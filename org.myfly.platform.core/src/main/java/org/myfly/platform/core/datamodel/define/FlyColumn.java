@@ -3,9 +3,9 @@ package org.myfly.platform.core.datamodel.define;
 import java.lang.reflect.Method;
 
 import org.apache.commons.lang3.BooleanUtils;
+import org.myfly.platform.core.datamodel.model.PColumn;
 import org.myfly.platform.core.domain.FlyDataType;
 import org.myfly.platform.core.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core.model.PColumn;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.springframework.util.Assert;
 

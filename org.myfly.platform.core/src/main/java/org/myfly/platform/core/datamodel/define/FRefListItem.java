@@ -1,7 +1,7 @@
 package org.myfly.platform.core.datamodel.define;
 
+import org.myfly.platform.core.datamodel.model.PRefList;
 import org.myfly.platform.core.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core.model.PRefList;
 import org.myfly.platform.core.utils.JSONUtil;
 
 public class FRefListItem extends PRefList implements IDefinition {

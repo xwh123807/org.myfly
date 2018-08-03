@@ -4,8 +4,8 @@ import java.lang.reflect.Field;
 
 import org.myfly.platform.core.datamodel.annotation.FlyEntityType;
 import org.myfly.platform.core.datamodel.define.FEntityType;
+import org.myfly.platform.core.datamodel.model.PEntityType;
 import org.myfly.platform.core.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core.model.PEntityType;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.springframework.util.Assert;
 

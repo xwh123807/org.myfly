@@ -8,7 +8,7 @@ import javax.lang.model.element.Modifier;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.myfly.platform.core3.datamodel.annotation.FlyTable;
+import org.myfly.platform.core.datamodel.annotation.FlyTable;
 
 import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.TypeSpec.Builder;

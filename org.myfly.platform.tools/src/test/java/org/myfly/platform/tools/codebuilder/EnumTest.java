@@ -6,16 +6,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.myfly.platform.core.utils.JaxbUtil;
-import org.myfly.platform.core3.domain.FlyDataType;
 import org.springframework.util.StreamUtils;
 
 public class EnumTest {
-	@Test
-	public void enumTest() {
-		Class cls = FlyDataType.class;
-		System.out.println(cls);
-	}
-
 	@Test
 	public void userDir() {
 		String userDir = System.getProperty("user.dir");

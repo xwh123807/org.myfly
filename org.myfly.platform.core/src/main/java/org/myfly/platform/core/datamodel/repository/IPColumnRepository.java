@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.myfly.platform.core.model.PColumn;
+import org.myfly.platform.core.datamodel.model.PColumn;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 @Resource

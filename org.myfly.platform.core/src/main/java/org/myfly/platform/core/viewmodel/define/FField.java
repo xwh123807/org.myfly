@@ -8,8 +8,8 @@ import org.myfly.platform.core.datamodel.define.FElement;
 import org.myfly.platform.core.datamodel.define.FRefListItem;
 import org.myfly.platform.core.datamodel.define.FlyColumn;
 import org.myfly.platform.core.datamodel.define.IDefinition;
+import org.myfly.platform.core.datamodel.model.PRefList;
 import org.myfly.platform.core.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core.model.PRefList;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core.viewmodel.model.PField;
 

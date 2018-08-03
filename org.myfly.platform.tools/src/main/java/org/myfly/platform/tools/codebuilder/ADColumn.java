@@ -7,9 +7,9 @@ import javax.lang.model.element.Modifier;
 import javax.persistence.Column;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.myfly.platform.core3.datamodel.annotation.FlyField;
-import org.myfly.platform.core3.datamodel.builder.FlyDataTypeUtils;
-import org.myfly.platform.core3.domain.FlyDataType;
+import org.myfly.platform.core.datamodel.annotation.FlyField;
+import org.myfly.platform.core.datamodel.builder.FlyDataTypeUtils;
+import org.myfly.platform.core.domain.FlyDataType;
 
 import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.FieldSpec;

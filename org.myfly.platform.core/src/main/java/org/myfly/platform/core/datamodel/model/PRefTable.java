@@ -1,4 +1,4 @@
-package org.myfly.platform.core.model;
+package org.myfly.platform.core.datamodel.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

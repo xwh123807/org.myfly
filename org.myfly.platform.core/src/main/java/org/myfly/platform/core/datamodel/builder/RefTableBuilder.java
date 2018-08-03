@@ -7,10 +7,10 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.myfly.platform.core.datamodel.annotation.FlyRefTable;
 import org.myfly.platform.core.datamodel.annotation.FlyReferences;
 import org.myfly.platform.core.datamodel.define.FRefTable;
+import org.myfly.platform.core.datamodel.model.PRefTable;
+import org.myfly.platform.core.datamodel.model.PReference;
 import org.myfly.platform.core.domain.IFlyEntity;
 import org.myfly.platform.core.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core.model.PRefTable;
-import org.myfly.platform.core.model.PReference;
 import org.myfly.platform.core.utils.UUIDUtil;
 import org.springframework.util.Assert;
 

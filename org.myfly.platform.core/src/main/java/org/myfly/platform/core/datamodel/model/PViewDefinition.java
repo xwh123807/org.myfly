@@ -1,4 +1,4 @@
-package org.myfly.platform.core.model;
+package org.myfly.platform.core.datamodel.model;
 
 import java.lang.String;
 import java.math.BigDecimal;
@@ -7,12 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.myfly.platform.core.datamodel.annotation.FlyRefTable;
 import org.myfly.platform.core.datamodel.annotation.FlyTable;
 import org.myfly.platform.core.domain.FlyEntity;
 
 @Entity
 @Table(name = "PT_View_Definition")
 @FlyTable(name = "View Definition", description = "", help = "")
+@FlyRefTable(apiName = "viewDefinitionID", name = "View Definition", keyColumn = "viewDefinitionID", displayColumn = "tableAlias")
 public class PViewDefinition extends FlyEntity {
 	/**
 	 * 

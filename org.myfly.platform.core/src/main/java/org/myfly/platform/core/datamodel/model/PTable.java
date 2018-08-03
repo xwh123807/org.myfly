@@ -1,4 +1,4 @@
-package org.myfly.platform.core.model;
+package org.myfly.platform.core.datamodel.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +10,7 @@ import org.myfly.platform.core.datamodel.annotation.FlyReferences;
 import org.myfly.platform.core.datamodel.annotation.FlyTable;
 import org.myfly.platform.core.datamodel.service.IFlyDataModel;
 import org.myfly.platform.core.domain.FlyMetaEntity;
+import org.myfly.platform.core.model.AccessLevel;
 
 /**
  * 表定义 <br>

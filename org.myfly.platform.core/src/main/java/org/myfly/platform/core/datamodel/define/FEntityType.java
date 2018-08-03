@@ -1,7 +1,7 @@
 package org.myfly.platform.core.datamodel.define;
 
+import org.myfly.platform.core.datamodel.model.PEntityType;
 import org.myfly.platform.core.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core.model.PEntityType;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.springframework.util.Assert;
 

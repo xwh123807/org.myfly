@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.myfly.platform.core3.domain.FlyDataType;
+import org.myfly.platform.core.domain.FlyDataType;
 
 import com.squareup.javapoet.TypeSpec.Builder;
 
