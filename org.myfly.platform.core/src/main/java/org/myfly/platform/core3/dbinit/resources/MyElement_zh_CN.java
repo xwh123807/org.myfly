@@ -82,5 +82,41 @@ public enum MyElement_zh_CN {
 	//
 	@FlyElement(columnName = "TableStyle", name = "表格样式", description = "", help = "", //
 			dataType = FlyDataType.List, entityType = "D", printName = "表格样式", fieldLength = 40)
-	tableStyle
+	tableStyle,
+	//
+	@FlyElement(columnName = "ProcessID", name = "进程", description = "进程", help = "", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "进程", fieldLength = 32)
+	processID,
+	//
+	@FlyElement(columnName = "ProcessParaID", name = "进程参数", description = "进程参数", help = "", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "进程参数", fieldLength = 32)
+	processParaID,
+	//
+	@FlyElement(columnName = "uid", name = "UID", description = "唯一标示，用于无单一主键表", //
+			dataType = FlyDataType.ID, entityType = "D", printName = "UID", fieldLength = 60)
+	uid,
+	//
+	@FlyElement(columnName = "BrowseID", name = "Browse ID", description = "", help = "", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "Browse ID", fieldLength = 32)
+	browseID,
+	//
+	@FlyElement(columnName = "ViewID", name = "View ID", description = "", help = "", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "View ID", fieldLength = 32)
+	viewID,
+	//
+	@FlyElement(columnName = "ViewDefinitionID", name = "View Definition ID", description = "", help = "", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "View Definition ID", fieldLength = 32)
+	viewDefinitionID,
+	//
+	@FlyElement(columnName = "ViewColumnID", name = "View Column ID", description = "", help = "", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "View Column ID", fieldLength = 32)
+	viewColumnID,
+	//
+	@FlyElement(columnName = "TableAlias", name = "Table Alias", description = "", //
+			dataType = FlyDataType.String, entityType = "D", printName = "TableAlias", fieldLength = 20)
+	tableAlias,
+	//
+	@FlyElement(columnName = "JoinClause", name = "Join Clause", description = "", //
+			dataType = FlyDataType.String, entityType = "D", printName = "Join Clause", fieldLength = 255)
+	joinClause
 }

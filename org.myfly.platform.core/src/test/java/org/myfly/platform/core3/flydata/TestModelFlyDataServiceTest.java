@@ -1,5 +1,6 @@
 package org.myfly.platform.core3.flydata;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,6 +31,11 @@ public class TestModelFlyDataServiceTest {
 	public void before() {
 		model = new TestModel();
 	}
+	
+	@After
+	public void after() {
+		//del();
+	}
 
 	private void save() {
 		String uid = dataService.saveEntity(entityName, model.getFlyTestEntity());
@@ -38,7 +44,7 @@ public class TestModelFlyDataServiceTest {
 	}
 
 	private void del() {
-		// dataService.delOne(entityName, model.getUid());
+		dataService.delOne(entityName, model.getUid());
 	}
 
 	@Test

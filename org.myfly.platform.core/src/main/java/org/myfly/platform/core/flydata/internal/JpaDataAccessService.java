@@ -53,6 +53,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 * org.myfly.platform.core.flydata.service.IJpaDataAccessService#existsById(java
 	 * .lang.Class, java.io.Serializable)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> boolean existsById(Class<T> entityClass, Serializable uid) {
 		AssertUtil.parameterEmpty(entityClass, "entityClass");
@@ -98,7 +99,6 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 * @see org.myfly.platform.system.service.IDataAccessService#delOne(java.lang.
 	 * Class, java.io.Serializable)
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public <T> void delOne(Class<T> entityClass, Serializable uid) {
 		AssertUtil.parameterEmpty(entityClass, "entityClass");
@@ -171,7 +171,6 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 * @param metaData
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	private <T> T internalSaveEntity(final String tableName, final Map<String, Object> values,
 			EntityMetaData metaData) {
 		T entity = null;
@@ -216,6 +215,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 * org.myfly.platform.core.flydata.service.IJpaDataAccessService#count(java.lang
 	 * .Class, org.springframework.data.jpa.domain.Specifications)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public long count(Class<?> entityClass, Specification<?> specifications) {
 		AssertUtil.parameterEmpty(entityClass, "entityClass");
@@ -233,6 +233,19 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	public <T> List<T> findAll(Class<T> entityClass) {
 		AssertUtil.parameterEmpty(entityClass, "entityClass");
 		return getSimpleJpaRepository(entityClass).findAll();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core.flydata.service.IJpaDataAccessService#findAll(java.
+	 * lang.Class, org.springframework.data.jpa.domain.Specification)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> List<T> findAll(Class<T> entityClass, Specification<?> spec) {
+		return getSimpleJpaRepository(entityClass).findAll(spec);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -278,7 +291,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 */
 	@Override
 	public <T> List<T> findAll(Class<T> entityClass, Map<String, Object> params) {
-		return findAll(entityClass, QuerySpecificationUtil.buildQuerySpecifications(params), (Sort) null);
+		return findAll(entityClass, QuerySpecificationUtil.buildQuerySpecifications(params));
 	}
 
 	/*
@@ -296,10 +309,10 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	@Override
 	public <T> void batchSaveEntity(List<T> batchList) {
 		if (CollectionUtils.isNotEmpty(batchList)) {
-			//getSimpleJpaRepository(batchList.get(0).getClass()).save(batchList);
+			// getSimpleJpaRepository(batchList.get(0).getClass()).save(batchList);
 			batchList.forEach(item -> {
 				entityManager.persist(item);
-			 });
+			});
 		}
 	}
 
@@ -310,6 +323,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 	 * org.myfly.platform.system.service.IDataAccessService#transNameToUID(java.
 	 * lang.String, java.lang.String)
 	 */
+	@SuppressWarnings("null")
 	@Override
 	public String transNameToUID(final String tableName, final String name) {
 		AssertUtil.parameterEmpty(tableName, "tableName");

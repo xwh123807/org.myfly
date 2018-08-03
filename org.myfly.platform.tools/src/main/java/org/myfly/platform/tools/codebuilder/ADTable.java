@@ -74,7 +74,9 @@ public class ADTable extends ADElement {
 		builder.addModifiers(Modifier.PUBLIC).addAnnotation(Entity.class).addAnnotation(getTableAnnotation())
 				.addAnnotation(getFlyTableAnnotaion());
 		getColumns().forEach(column -> {
-			column.build(builder);
+			if (!column.isFlyEntityField()) {
+				column.build(builder);
+			}
 		});
 	}
 

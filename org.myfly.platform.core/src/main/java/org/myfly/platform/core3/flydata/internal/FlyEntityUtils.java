@@ -3,8 +3,13 @@ package org.myfly.platform.core3.flydata.internal;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.ClassUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.utils.AppUtil;
+import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.JSONUtil;
 import org.myfly.platform.core3.domain.FlyDataType;
@@ -17,6 +22,8 @@ import org.myfly.platform.core3.metadata.handler.RefObject;
 import org.myfly.platform.core3.metadata.internal.FlySystemResource;
 
 public class FlyEntityUtils {
+	private static Log log = LogFactory.getLog(FlyEntityUtils.class);
+
 	/**
 	 * 将实体json反序列化为实体对象
 	 * 
@@ -205,18 +212,38 @@ public class FlyEntityUtils {
 		return result;
 	}
 
+	/**
+	 * 从Map构建FlyEntityMap
+	 * 
+	 * @param dataModel
+	 * @param map
+	 * @return
+	 */
+	public static FlyEntityMap fromMap(FlyDataModel dataModel, Map<String, Object> map) {
+		if (MapUtils.isEmpty(map)) {
+			return null;
+		}
+		FlyEntityMap result = new FlyEntityMap();
+		map.forEach((key, value) -> {
+			FlyColumn field = dataModel.getColumnMap().get(key);
+			if (field == null) {
+				if (log.isWarnEnabled()) {
+					log.warn("map中属性[" + key + "]在实体[" + dataModel.getApiName() + "]中不存在，将忽略.");
+				}
+			} else {
+				if (value != null) {
+					if (value.getClass() != field.getGetter().getReturnType()) {
+						value = ClassUtil.convert(value, field.getGetter().getReturnType());
+					}
+				}
+				result.put(key, value);
+			}
+		});
+		return result;
+	}
+
 	private static void processFieldValue(Object entityObj, FlyEntityMap result, FlyColumn field) {
 		Object value = field.getValueHandler().getFieldValue(entityObj);
-		// if (value instanceof Map) {
-		// if (field.isRefListColumn() || field.isRefTableColumn()) {
-		// String keyColumn = field.getRefKeyColumn();
-		// String dsipalyColumn = field.getRefDisplayColumn();
-		// result.put(field.getApiName() + "__" + keyColumn, ((FlyEntityMap)
-		// value).get(keyColumn));
-		// result.put(field.getApiName() + "__" + dsipalyColumn, ((FlyEntityMap)
-		// value).get(dsipalyColumn));
-		// }
-		// }
 		if (value instanceof RefObject) {
 			result.put(field.getApiName(), ((RefObject) value).getUid());
 			result.put(field.getApiName() + RefObject.LABEL, ((RefObject) value).getLabel());

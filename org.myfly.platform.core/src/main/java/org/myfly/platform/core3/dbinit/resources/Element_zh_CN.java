@@ -47,11 +47,20 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "Field_ID", name = "字段", description = "一张数据库表上的字段", help = "字段标识了数据库表的字段。", dataType = FlyDataType.ID, entityType = "D", printName = "字段", fieldLength = 22)
 	fieldID,
 	//
+	@FlyElement(columnName = "Form_ID", name = "特别的窗体", description = "特别的窗体", help = "The Special Form field identifies a unique Special Form in the system.", dataType = FlyDataType.ID, entityType = "D", printName = "特别的窗体", fieldLength = 22)
+	formID,
+	//
 	@FlyElement(columnName = "Image_ID", name = "图像", description = "系统图像或图标", dataType = FlyDataType.TableDirect, entityType = "D", printName = "图像", fieldLength = 22)
 	imageID,
 	//
 	@FlyElement(columnName = "Key", name = "主键列", description = "记录的唯一标识符", help = "主键列标明了它是这个表的一条记录的唯一标示符。", dataType = FlyDataType.Table, entityType = "D", printName = "主键列", fieldLength = 22)
 	key,
+	//
+	@FlyElement(columnName = "LabelPrinterFunction_ID", name = "Label printer Function", description = "Function of Label Printer", dataType = FlyDataType.TableDirect, entityType = "D", printName = "Label printer Function", fieldLength = 22)
+	labelPrinterFunctionID,
+	//
+	@FlyElement(columnName = "LabelPrinter_ID", name = "Label printer", description = "Label Printer Definition", dataType = FlyDataType.ID, entityType = "D", printName = "Label printer", fieldLength = 22)
+	labelPrinterID,
 	//
 	@FlyElement(columnName = "Language", name = "语言", description = "本客户使用的语言", help = "The Language identifies the language to use for display", dataType = FlyDataType.Table, entityType = "D", printName = "语言", fieldLength = 6)
 	language,
@@ -68,8 +77,44 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "OrgType_ID", name = "机构类型", description = "Organization Type allows you to categorize your organizations", help = "Organization Type allows you to categorize your organizations for reporting purposes", dataType = FlyDataType.TableDirect, entityType = "D", printName = "机构类型", fieldLength = 22)
 	orgTypeID,
 	//
+	@FlyElement(columnName = "PrintColor_ID", name = "打印颜色", description = "打印用的颜色", help = "打印用的颜色", dataType = FlyDataType.TableDirect, entityType = "D", printName = "打印颜色", fieldLength = 22)
+	printColorID,
+	//
+	@FlyElement(columnName = "PrintFont_ID", name = "打印字型", description = "维护打印字型", help = "打印用的字型", dataType = FlyDataType.TableDirect, entityType = "D", printName = "打印字型", fieldLength = 22)
+	printFontID,
+	//
+	@FlyElement(columnName = "PrintFormatChild_ID", name = "已包括打印格式", description = "Print format that is included here.", help = "Included Print formats allow to e.g. Lines to Header records. The Column provides the parent link.", dataType = FlyDataType.Table, entityType = "D", printName = "已包括打印格式", fieldLength = 22)
+	printFormatChildID,
+	//
+	@FlyElement(columnName = "PrintFormat_ID", name = "打印格式", description = "数据打印格式", help = "The print format determines how data is rendered for print.", dataType = FlyDataType.TableDirect, entityType = "D", printName = "打印格式", fieldLength = 22)
+	printFormatID,
+	//
+	@FlyElement(columnName = "PrintFormatItem_ID", name = "打印格式项目", description = "Item Column in the Print format", help = "Item Column in the print format maintaining layout information", dataType = FlyDataType.ID, entityType = "D", printName = "打印格式项目", fieldLength = 22)
+	printFormatItemID,
+	//
+	@FlyElement(columnName = "PrintForm_ID", name = "打印表单", description = "表单", dataType = FlyDataType.ID, entityType = "D", printName = "打印表单", fieldLength = 22)
+	printFormID,
+	//
+	@FlyElement(columnName = "PrintGraph_ID", name = "图表", description = "在报表中包括图表", help = "Pie Line Graph to be printed in Reports", dataType = FlyDataType.ID, entityType = "D", printName = "图表", fieldLength = 22)
+	printGraphID,
+	//
+	@FlyElement(columnName = "PrintLabel_ID", name = "打印标签 ", description = "打印标签格式类型", help = "打印分类格式", dataType = FlyDataType.TableDirect, entityType = "D", printName = "打印标签 ", fieldLength = 22)
+	printLabelID,
+	//
+	@FlyElement(columnName = "PrintLabelLine_ID", name = "打印标签行", description = "打印标签线格式", help = "标签上的明细格式", dataType = FlyDataType.TableDirect, entityType = "D", printName = "标签线", fieldLength = 22)
+	printLabelLineID,
+	//
+	@FlyElement(columnName = "PrintPaper_ID", name = "打印纸", description = "打印机纸定义", help = "Printer Paper Size, Orientation and Margins", dataType = FlyDataType.ID, entityType = "D", printName = "打印纸", fieldLength = 22)
+	printPaperID,
+	//
+	@FlyElement(columnName = "PrintTableFormat_ID", name = "打印表格式", description = "在报表中的表格式", help = "Print Table Format determines Fonts, Colors of  the printed Table", dataType = FlyDataType.ID, entityType = "D", printName = "表格式", fieldLength = 22)
+	printTableFormatID,
+	//
 	@FlyElement(columnName = "Process_ID", name = "进程", description = "程序或报表", help = "The Process field identifies a unique Process or Report in the system.", dataType = FlyDataType.TableDirect, entityType = "D", printName = "进程", fieldLength = 22)
 	processID,
+	//
+	@FlyElement(columnName = "Process_Para_ID", name = "参数处理", dataType = FlyDataType.ID, entityType = "D", printName = "参数处理", fieldLength = 22)
+	processParaID,
 	//
 	@FlyElement(columnName = "Reference_ID", name = "引用", description = "系统引用", help = "The Reference indicates the type of reference field", dataType = FlyDataType.ID, entityType = "D", printName = "引用", fieldLength = 22)
 	referenceID,
@@ -82,6 +127,12 @@ public enum Element_zh_CN {
 	//
 	@FlyElement(columnName = "ReplicationStrategy_ID", name = "复制策略", description = "数据复制策略", help = "The Data Replication Strategy determines what and how tables are replicated ", dataType = FlyDataType.TableDirect, entityType = "D", printName = "复制策略", fieldLength = 22)
 	replicationStrategyID,
+	//
+	@FlyElement(columnName = "ReportView_Col_ID", name = "报表视图列", dataType = FlyDataType.ID, entityType = "D", printName = "报表视图列", fieldLength = 22)
+	reportViewColID,
+	//
+	@FlyElement(columnName = "ReportView_ID", name = "报表视图", description = "View used to generate this report", help = "The Report View indicates the view used to generate this report.", dataType = FlyDataType.TableDirect, entityType = "D", printName = "报表视图", fieldLength = 22)
+	reportViewID,
 	//
 	@FlyElement(columnName = "Role_ID", name = "角色", description = "职责角色", help = "The Role determines security and access a user who has this Role will have in the System.", dataType = FlyDataType.ID, entityType = "D", printName = "角色", fieldLength = 22)
 	roleID,
@@ -106,6 +157,9 @@ public enum Element_zh_CN {
 	//
 	@FlyElement(columnName = "Window_ID", name = "窗口 ", description = "数据输入或显示视窗", help = "The Window field identifies a unique Window in the system.", dataType = FlyDataType.TableDirect, entityType = "D", printName = "窗口 ", fieldLength = 22)
 	windowID,
+	//
+	@FlyElement(columnName = "Workflow_ID", name = "工作流", description = "Workflow or combination of tasks", help = "The Workflow field identifies a unique Workflow in the system.", dataType = FlyDataType.TableDirect, entityType = "D", printName = "工作流", fieldLength = 22)
+	workflowID,
 	//
 	@FlyElement(columnName = "Allow_HTML_View", name = "Allow HTML View", dataType = FlyDataType.YesNo, entityType = "D", printName = "Allow HTML View", fieldLength = 1)
 	allowHTMLView,
@@ -155,8 +209,23 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "AmtApproval", name = "批准金额", description = "The approval amount limit for this role", help = "The Approval Amount field indicates the amount limit this Role has for approval of documents.", dataType = FlyDataType.Amount, entityType = "D", printName = "批准金额", fieldLength = 22)
 	amtApproval,
 	//
+	@FlyElement(columnName = "ArcDiameter", name = "Arc Diameter", description = "Arc Diameter for rounded Rectangles", help = "Width of the horizontal/vertical diameter of the arc at the four corners", dataType = FlyDataType.Integer, entityType = "D", printName = "Arc Diameter", fieldLength = 22)
+	arcDiameter,
+	//
+	@FlyElement(columnName = "Args", name = "Args", dataType = FlyDataType.String, entityType = "D", printName = "Args", fieldLength = 510)
+	args,
+	//
+	@FlyElement(columnName = "AuthMechanism", name = "Authentication Mechanism", dataType = FlyDataType.List, entityType = "D", printName = "Authentication Mechanism", fieldLength = 1)
+	authMechanism,
+	//
 	@FlyElement(columnName = "AutoArchive", name = "Auto Archive", description = "Enable and level of automatic Archive of documents", help = "Adempiere allows to automatically create archives of Documents (e.g. Invoices) or Reports. You view the archived material with the Archive Viewer", dataType = FlyDataType.List, entityType = "D", printName = "Auto Archive", fieldLength = 1)
 	autoArchive,
+	//
+	@FlyElement(columnName = "BarcodeType", name = "Barcode Type", description = "Type of barcode", dataType = FlyDataType.List, entityType = "D", printName = "Barcode", fieldLength = 3)
+	barcodeType,
+	//
+	@FlyElement(columnName = "BelowColumn", name = "下面列", description = "Print this column below the column index entered", help = "This column is printed in a second line below the content of the first line identified. Please be aware, that this is depends on the actual sequence. Enter a 1 to add the info below the first column.", dataType = FlyDataType.Integer, entityType = "D", printName = "下面列", fieldLength = 22)
+	belowColumn,
 	//
 	@FlyElement(columnName = "BinaryData", name = "二进制数据", description = "二进制数据", help = "The Binary field stores binary data.", dataType = FlyDataType.Binary, entityType = "D", printName = "二进制", fieldLength = 4000)
 	binaryData,
@@ -200,11 +269,17 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "C_Job_ID", name = "Position", description = "Job Position", dataType = FlyDataType.ID, entityType = "D", printName = "Position", fieldLength = 10)
 	cJobID,
 	//
+	@FlyElement(columnName = "Classname", name = "类名", description = "Java 类名", help = "The Classname identifies the Java classname used by this report or process.", dataType = FlyDataType.String, entityType = "D", printName = "类名", fieldLength = 60)
+	classname,
+	//
 	@FlyElement(columnName = "Classpath", name = "Classpath", description = "Extension Classpath", help = "If your application requires additional jar files, enter them here. The jar files must be located in the $ADEMPIERE_HOME/lib directory.", dataType = FlyDataType.String, entityType = "D", printName = "Classpath", fieldLength = 255)
 	classpath,
 	//
 	@FlyElement(columnName = "C_Location_ID", name = "地址", description = "位置或地址", help = "The Location   Address field defines the location of an entity.", dataType = FlyDataType.ID, entityType = "D", printName = "地址", fieldLength = 22)
 	cLocationID,
+	//
+	@FlyElement(columnName = "Code", name = "错误信息", description = "Validation Code 错误信息", help = "The Validation Code displays the date, time and message of the error.", dataType = FlyDataType.Text, entityType = "D", printName = "错误信息", fieldLength = 2000)
+	code,
 	//
 	@FlyElement(columnName = "ColorType", name = "颜色类型", description = "Color presentation for this color", dataType = FlyDataType.List, entityType = "D", printName = "颜色类型", fieldLength = 1)
 	colorType,
@@ -227,11 +302,23 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "ConnectionProfile", name = "Connection Profile", description = "How a Java Client connects to the server(s)", help = "Depending on the connection profile, different protocols are used and tasks are performed on the server rather then the client. Usually the user can select different profiles, unless it is enforced by the User or Role definition. The User level profile overwrites the Role based profile.", dataType = FlyDataType.List, entityType = "D", printName = "Connection Profile", fieldLength = 1)
 	connectionProfile,
 	//
+	@FlyElement(columnName = "ConnectionTimeout", name = "Connection Timeout", description = "Is Timeout (In milliseconds) for establishing connection", dataType = FlyDataType.Integer, entityType = "D", printName = "Connection Timeout", fieldLength = 0)
+	connectionTimeout,
+	//
 	@FlyElement(columnName = "CopyColumnsFromTable", name = "Copy Columns From Table", dataType = FlyDataType.Button, entityType = "D", printName = "Copy Columns From Table", fieldLength = 1)
 	copyColumnsFromTable,
 	//
+	@FlyElement(columnName = "CopyFrom", name = "复制从", description = "来自记录的复制", help = "来自记录的复制", dataType = FlyDataType.Button, entityType = "D", printName = "复制从", fieldLength = 1)
+	copyFrom,
+	//
+	@FlyElement(columnName = "CopyFromProcess", name = "Copy From Report and Process", description = "Copy settings from one report and process to another.", help = "Copy the settings from the selected report and process to the current one.  This overwrites existing settings and translations.", dataType = FlyDataType.Button, entityType = "D", printName = "Copy From Report and Process", fieldLength = 1)
+	copyFromProcess,
+	//
 	@FlyElement(columnName = "CountryCode", name = "ISO国家代码", description = "Upper-case two-letter alphanumeric ISO Country code according to ISO 3166-1 - http:  www.chemie.fu-berlin.de diverse doc ISO_3166.html", help = "For details - http:  www.din.de gremien nas nabd iso3166ma codlstp1.html or - http:  www.unece.org trade rec rec03en.htm", dataType = FlyDataType.String, entityType = "D", printName = "ISO 国家", fieldLength = 2)
 	countryCode,
+	//
+	@FlyElement(columnName = "CreateCopy", name = "产生复制", dataType = FlyDataType.Button, entityType = "D", printName = "产生复制", fieldLength = 1)
+	createCopy,
 	//
 	@FlyElement(columnName = "Created", name = "创建日期", description = "本记录产生日期", help = "The Created field indicates the date that this record was created.", dataType = FlyDataType.DateTime, entityType = "D", printName = "创建日期", fieldLength = 7)
 	created,
@@ -239,14 +326,38 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "CreatedBy", name = "创建人", description = "产生该记录用户", help = "The Created By field indicates the user who created this record.", dataType = FlyDataType.Table, entityType = "D", printName = "创建人", fieldLength = 22)
 	createdBy,
 	//
+	@FlyElement(columnName = "Data1_PrintFormatItem_ID", name = "数据列 2", description = "数据列为线制成图表", help = "Additional Graph Data Column for Line Bar Charts", dataType = FlyDataType.Table, entityType = "D", printName = "数据列 2", fieldLength = 22)
+	data1PrintFormatItemID,
+	//
+	@FlyElement(columnName = "Data2_PrintFormatItem_ID", name = "数据列 3", description = "数据列为线制成图表", help = "Additional Graph Data Column for Line Bar Charts", dataType = FlyDataType.Table, entityType = "D", printName = "数据列 3", fieldLength = 22)
+	data2PrintFormatItemID,
+	//
+	@FlyElement(columnName = "Data3_PrintFormatItem_ID", name = "数据列 4", description = "数据列为线制成图表", help = "Additional Graph Data Column for Line Bar Charts", dataType = FlyDataType.Table, entityType = "D", printName = "数据列 4", fieldLength = 22)
+	data3PrintFormatItemID,
+	//
+	@FlyElement(columnName = "Data4_PrintFormatItem_ID", name = "数据列 5", description = "数据列为线制成图表", help = "Additional Graph Data Column for Line Bar Charts", dataType = FlyDataType.Table, entityType = "D", printName = "数据列 5", fieldLength = 22)
+	data4PrintFormatItemID,
+	//
+	@FlyElement(columnName = "Data_PrintFormatItem_ID", name = "数据列", description = "Data Column for Pie and Line Charts", help = "Graph Data Column for Pie and Line Bar Charts", dataType = FlyDataType.Table, entityType = "D", printName = "数据列", fieldLength = 22)
+	dataPrintFormatItemID,
+	//
 	@FlyElement(columnName = "DatePattern", name = "Date Pattern", description = "Java Date Pattern", help = "Option Date pattern in Java notation. Examples: dd.MM.yyyy - dd/MM/yyyy If the pattern for your language is not correct, please create a Adempiere support request with the correct information", dataType = FlyDataType.String, entityType = "D", printName = "Date Pattern", fieldLength = 20)
 	datePattern,
 	//
 	@FlyElement(columnName = "DefaultValue", name = "缺省逻辑", description = "Default value hierarchy, separated by ;", help = "The defaults are evaluated in the order of definition, the first not null value becomes the default value of the column. The values are separated by comma or semicolon. a) Literals:. 'Text' or 123 b) Variables - in format @Variable@ - Login e.g. #Date, #AD_Org_ID, #AD_Client_ID - Accounting Schema: e.g. $C_AcctSchema_ID, $C_Calendar_ID - Global defaults: e.g. DateFormat - Window values (all Picks, CheckBoxes, RadioButtons, and DateDoc DateAcct) c) SQL code with the tag: @SQL=SELECT something AS DefaultValue FROM ... The SQL statement can contain variables.  There can be no other value other than the SQL statement. The default is only evaluated, if no user preference is defined.  Default definitions are ignored for record columns as Key, Parent, Client as well as Buttons.", dataType = FlyDataType.Text, entityType = "D", printName = "缺省逻辑", fieldLength = 2000)
 	defaultValue,
 	//
+	@FlyElement(columnName = "DefaultValue2", name = "缺省逻辑 2", description = "Default value hierarchy, separated by ;", help = "The defaults are evaluated in the order of definition, the first not null value becomes the default value of the column. The values are separated by comma or semicolon. a) Literals:. 'Text' or 123 b) Variables - in format @Variable@ - Login e.g. #Date, #AD_Org_ID, #AD_Client_ID - Accounting Schema: e.g. $C_AcctSchema_ID, $C_Calendar_ID - Global defaults: e.g. DateFormat - Window values (all Picks, CheckBoxes, RadioButtons, and DateDoc DateAcct) c) SQL code with the tag: @SQL=SELECT something AS DefaultValue FROM ... The SQL statement can contain variables.  There can be no other value other than the SQL statement. The default is only evaluated, if no user preference is defined.  Default definitions are ignored for record columns as Key, Parent, Client as well as Buttons.", dataType = FlyDataType.String, entityType = "D", printName = "缺省逻辑 2", fieldLength = 2000)
+	defaultValue2,
+	//
 	@FlyElement(columnName = "Description", name = "描述", description = "该记录的可选描述", help = "描述最多为 255 个字符。", dataType = FlyDataType.Text, entityType = "D", printName = "描述", fieldLength = 255)
 	description,
+	//
+	@FlyElement(columnName = "Description_PrintFormatItem_ID", name = "描述列", description = "Description Column for Pie Line Bar Charts", help = "Graph Description Column for Pie and Line Bar Charts", dataType = FlyDataType.Table, entityType = "D", printName = "描述列", fieldLength = 22)
+	descriptionPrintFormatItemID,
+	//
+	@FlyElement(columnName = "DimensionUnits", name = "Dimension Units", description = "Units of Dimension", dataType = FlyDataType.List, entityType = "D", printName = "Units", fieldLength = 1)
+	dimensionUnits,
 	//
 	@FlyElement(columnName = "DisplayLength", name = "显示长度", description = "Length of the display in characters", help = "The display length is mainly for String fields. The length has no impact, if the data type of the field is - Integer, Number, Amount	(length determined by the system) - YesNo	(Checkbox) - List, Table, TableDir	(length of combo boxes are determined by their content at runtime)", dataType = FlyDataType.Integer, entityType = "D", printName = "显示长度", fieldLength = 22)
 	displayLength,
@@ -284,11 +395,17 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "EMailVerifyDate", name = "EMail Verify", description = "Date Email was verified", dataType = FlyDataType.DateTime, entityType = "D", printName = "EMail Verify", fieldLength = 7)
 	eMailVerifyDate,
 	//
+	@FlyElement(columnName = "EncryptionType", name = "Encryption Type", description = "Encryption Type used for securing data content", dataType = FlyDataType.List, entityType = "D", printName = "Encryption Type", fieldLength = 1)
+	encryptionType,
+	//
 	@FlyElement(columnName = "EntityType", name = "实体类型", description = "字典实体类型; 确定所有者和同步性", help = "实体类型'字典/Dictionary', 'Adempiere' 和 '应用/Application' 能够自动的同步因此客户化的工作将被删除或覆盖  		要客户化,请复制实体并选择'用户/User'!", dataType = FlyDataType.Table, entityType = "D", printName = "实体类型", fieldLength = 40)
 	entityType,
 	//
 	@FlyElement(columnName = "Fax", name = "传真", description = "传真号", help = "The Fax identifies a facsimile number for this Business Partner or  Location", dataType = FlyDataType.String, entityType = "D", printName = "传真", fieldLength = 40)
 	fax,
+	//
+	@FlyElement(columnName = "FieldAlignmentType", name = "字段对准", description = "字段本文对准", help = "Alignment of field text. The default is determined by the data display type: Numbers are right aligned, other data is left aligned", dataType = FlyDataType.List, entityType = "D", printName = "字段对准", fieldLength = 1)
+	fieldAlignmentType,
 	//
 	@FlyElement(columnName = "FieldGroupType", name = "Field Group Type", dataType = FlyDataType.List, entityType = "D", printName = "Field Group Type", fieldLength = 10)
 	fieldGroupType,
@@ -296,8 +413,38 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "FieldLength", name = "长度", description = "Length of the column in the database", help = "The Length indicates the length of a column as defined in the database.", dataType = FlyDataType.Integer, entityType = "D", printName = "长度", fieldLength = 22)
 	fieldLength,
 	//
+	@FlyElement(columnName = "FooterCenter", name = "Footer Center", description = "Content of the center portion of the footer.", dataType = FlyDataType.String, entityType = "D", printName = "Footer Center", fieldLength = 255)
+	footerCenter,
+	//
+	@FlyElement(columnName = "FooterLeft", name = "Footer Left", description = "Content of the left portion of the footer.", dataType = FlyDataType.String, entityType = "D", printName = "Footer Left", fieldLength = 255)
+	footerLeft,
+	//
+	@FlyElement(columnName = "FooterMargin", name = "脚边距", description = "Margin of the Footer in 1 72 of an inch", help = "Distance from the bottom of the main content to the end of the printable page in 1 72 of an inch (point)", dataType = FlyDataType.Integer, entityType = "D", printName = "脚边距", fieldLength = 22)
+	footerMargin,
+	//
+	@FlyElement(columnName = "FooterRight", name = "Footer Right", description = "Content of the right portion of the footer.", dataType = FlyDataType.String, entityType = "D", printName = "Footer Right", fieldLength = 255)
+	footerRight,
+	//
 	@FlyElement(columnName = "FormatPattern", name = "Format Pattern", description = "The pattern used to format a number or date.", help = "A string complying with either Java SimpleDateFormat or DecimalFormat pattern syntax used to override the default presentation format of a date or number type field.", dataType = FlyDataType.String, entityType = "D", printName = "Format Pattern", fieldLength = 22)
 	formatPattern,
+	//
+	@FlyElement(columnName = "FunctBG_PrintColor_ID", name = "函数背景颜色", description = "函数背景颜色", help = "Background color of a function row", dataType = FlyDataType.Table, entityType = "D", printName = "函数背景颜色", fieldLength = 22)
+	functBGPrintColorID,
+	//
+	@FlyElement(columnName = "FunctFG_PrintColor_ID", name = "函数颜色", description = "函数前景颜色", help = "Foreground color of a function row", dataType = FlyDataType.Table, entityType = "D", printName = "函数颜色", fieldLength = 22)
+	functFGPrintColorID,
+	//
+	@FlyElement(columnName = "FunctionColumn", name = "函数列", description = "Overwrite Column with Function ", help = "The Function Column indicates that the column will be overridden with a function", dataType = FlyDataType.String, entityType = "D", printName = "函数列", fieldLength = 60)
+	functionColumn,
+	//
+	@FlyElement(columnName = "Funct_PrintFont_ID", name = "函数字体", description = "函数行字体", help = "函数行字体", dataType = FlyDataType.Table, entityType = "D", printName = "函数字体", fieldLength = 22)
+	functPrintFontID,
+	//
+	@FlyElement(columnName = "GenerateClass", name = "Generate Class", description = "Generate Class Button", dataType = FlyDataType.Button, entityType = "D", printName = "Generate Class", fieldLength = 1)
+	generateClass,
+	//
+	@FlyElement(columnName = "GraphType", name = "图表类型", description = "图表类型", help = "图表类型", dataType = FlyDataType.List, entityType = "D", printName = "图表类型", fieldLength = 1)
+	graphType,
 	//
 	@FlyElement(columnName = "Green", name = "绿色", description = "RGB 值 ", dataType = FlyDataType.Integer, entityType = "D", printName = "绿色", fieldLength = 22)
 	green,
@@ -311,11 +458,44 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "HasTree", name = "有树", description = "窗口有树", help = "The Has Tree checkbox indicates if this window displays a tree metaphor.", dataType = FlyDataType.YesNo, entityType = "D", printName = "有树", fieldLength = 1)
 	hasTree,
 	//
+	@FlyElement(columnName = "HdrLine_PrintColor_ID", name = "头明细颜色", description = "表抬头线颜色", help = "Color of the table header row lines", dataType = FlyDataType.Table, entityType = "D", printName = "头明细颜色", fieldLength = 22)
+	hdrLinePrintColorID,
+	//
+	@FlyElement(columnName = "Hdr_PrintFont_ID", name = "抬头字型", description = "抬头字型", help = "表抬头的字型", dataType = FlyDataType.Table, entityType = "D", printName = "抬头字型", fieldLength = 22)
+	hdrPrintFontID,
+	//
+	@FlyElement(columnName = "HdrStroke", name = "Header Stroke", description = "Width of the Header Line Stroke", help = "The width of the header line stroke (line thickness) in Points.", dataType = FlyDataType.Number, entityType = "D", printName = "Hdr Stroke", fieldLength = 22)
+	hdrStroke,
+	//
+	@FlyElement(columnName = "HdrStrokeType", name = "Header Stroke Type", description = "Type of the Header Line Stroke", help = "Type of the line printed", dataType = FlyDataType.List, entityType = "D", printName = "Hdr Stroke Type", fieldLength = 1)
+	hdrStrokeType,
+	//
+	@FlyElement(columnName = "HdrTextBG_PrintColor_ID", name = "抬头 BG 颜色", description = "Background color of header row", help = "Table header row background color", dataType = FlyDataType.Table, entityType = "D", printName = "抬头亿位元组颜色", fieldLength = 22)
+	hdrTextBGPrintColorID,
+	//
+	@FlyElement(columnName = "HdrTextFG_PrintColor_ID", name = "抬头颜色", description = "Foreground color if the table header row", help = "Table header row foreground color", dataType = FlyDataType.Table, entityType = "D", printName = "抬头颜色", fieldLength = 22)
+	hdrTextFGPrintColorID,
+	//
+	@FlyElement(columnName = "HeaderCenter", name = "Header Center", description = "Content of the center portion of the header.", dataType = FlyDataType.String, entityType = "D", printName = "Header Center", fieldLength = 255)
+	headerCenter,
+	//
+	@FlyElement(columnName = "HeaderLeft", name = "Header Left", description = "Content of the left portion of the header.", dataType = FlyDataType.String, entityType = "D", printName = "Header Left", fieldLength = 255)
+	headerLeft,
+	//
+	@FlyElement(columnName = "HeaderMargin", name = "抬头边距", description = "Margin of the Header in 1 72 of an inch", help = "Distance from the top of the printable page to the start of the main content in 1 72 of an inch (point)", dataType = FlyDataType.Integer, entityType = "D", printName = "抬头边距", fieldLength = 22)
+	headerMargin,
+	//
+	@FlyElement(columnName = "HeaderRight", name = "Header Right", description = "Content of the right portion of the header.", dataType = FlyDataType.String, entityType = "D", printName = "Header Right", fieldLength = 255)
+	headerRight,
+	//
 	@FlyElement(columnName = "Help", name = "注释/帮助", description = "注释或提示", help = "The Help field contains a hint, comment or help about the use of this item.", dataType = FlyDataType.Text, entityType = "D", printName = "注释", fieldLength = 2000)
 	help,
 	//
 	@FlyElement(columnName = "ImageAlpha", name = "图像阿尔发 ", description = "图像织法含有种种要素的阿尔发", help = "Composite Alpha factor for taint color.", dataType = FlyDataType.Number, entityType = "D", printName = "图像阿尔发 ", fieldLength = 22)
 	imageAlpha,
+	//
+	@FlyElement(columnName = "ImageIsAttached", name = "图像附件", description = "The image to be printed is attached to the record", help = "The image to be printed is stored in the database as attachment to this record. The image can be a gif, jpeg or png.", dataType = FlyDataType.YesNo, entityType = "D", printName = "图像附件", fieldLength = 1)
+	imageIsAttached,
 	//
 	@FlyElement(columnName = "ImageURL", name = "图像网址", description = "图像的网址", help = "URL of image; The image is not stored in the database, but retrieved at runtime. The image can be a gif, jpeg or png.", dataType = FlyDataType.URL, entityType = "D", printName = "图像网址", fieldLength = 120)
 	imageURL,
@@ -331,6 +511,12 @@ public enum Element_zh_CN {
 	//
 	@FlyElement(columnName = "InfoFactoryClass", name = "Info Factory Class", description = "Fully qualified class name that implements the InfoFactory interface", help = "Fully qualified class name that implements the InfoFactory interface. This can be use to provide custom Info class for column.", dataType = FlyDataType.String, entityType = "D", printName = "Info Factory Class", fieldLength = 255)
 	infoFactoryClass,
+	//
+	@FlyElement(columnName = "Invoice_MailText_ID", name = "发票邮件本文", description = "Email text used for sending invoices", help = "Standard email template used to send invoices as attachments.", dataType = FlyDataType.Table, entityType = "D", printName = "Invoice Mail Text", fieldLength = 22)
+	invoiceMailTextID,
+	//
+	@FlyElement(columnName = "Invoice_PrintFormat_ID", name = "发票打印格式", description = "Print Format for printing Invoices", help = "You need to define a Print Format to print the document.", dataType = FlyDataType.Table, entityType = "D", printName = "发票打印格式", fieldLength = 22)
+	invoicePrintFormatID,
 	//
 	@FlyElement(columnName = "IsAccessAllOrgs", name = "Access all Orgs", description = "Access all Organizations (no org access control) of the client", help = "When selected, the role has access to all organizations of the client automatically. This also increases performance where you have many organizations.", dataType = FlyDataType.YesNo, entityType = "D", printName = "Access all Orgs", fieldLength = 1)
 	isAccessAllOrgs,
@@ -355,6 +541,9 @@ public enum Element_zh_CN {
 	//
 	@FlyElement(columnName = "IsAutocomplete", name = "Autocomplete", description = "Automatic completion for textfields", help = "The autocompletion uses all existing values (from the same client and organization) of the field.", dataType = FlyDataType.YesNo, entityType = "D", printName = "Autocomplete", fieldLength = 1)
 	isAutocomplete,
+	//
+	@FlyElement(columnName = "IsAveraged", name = "计算 Mean (μ)", description = "Calculate Average of numeric content or length", help = "Calculate the average of the data if the field is numeric, otherwise calculate the average length of the field.", dataType = FlyDataType.YesNo, entityType = "D", printName = "平均", fieldLength = 1)
+	isAveraged,
 	//
 	@FlyElement(columnName = "IsBaseLanguage", name = "基本语言", description = "The system information is maintained in this language", dataType = FlyDataType.YesNo, entityType = "D", printName = "基本语言", fieldLength = 1)
 	isBaseLanguage,
@@ -386,6 +575,9 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "IsCostImmediate", name = "Cost Immediately", description = "Update Costs immediately for testing", help = "If selected, costs are updated immediately when a Cost Detail record is created (by matching or shipping).  Otherwise the costs are updated by batch or when the costs are needed for posting. You should select this only if you are testing,", dataType = FlyDataType.YesNo, entityType = "D", printName = "Cost Immediate", fieldLength = 1)
 	isCostImmediate,
 	//
+	@FlyElement(columnName = "IsCounted", name = "Calculate Count", description = "Count number of not empty elements", help = "Calculate the total number of not empty (NULL) elements (maximum is the number of lines).", dataType = FlyDataType.YesNo, entityType = "D", printName = "计数", fieldLength = 1)
+	isCounted,
+	//
 	@FlyElement(columnName = "IsDecimalPoint", name = "Decimal Point", description = "The number notation has a decimal point (no decimal comma)", help = "If selected, Numbers are printed with a decimal point '.' - otherwise with a decimal comma ','.  The thousand separator is the opposite.	If the pattern for your language is not correct, please create a Adempiere support request with the correct information", dataType = FlyDataType.YesNo, entityType = "D", printName = "Decimal Point", fieldLength = 1)
 	isDecimalPoint,
 	//
@@ -394,6 +586,15 @@ public enum Element_zh_CN {
 	//
 	@FlyElement(columnName = "IsDeleteable", name = "可删除的记录", description = "Indicates if records can be deleted from the database", help = "The Records Deleteable checkbox indicates if a record can be deleted from the database.  If records cannot be deleted, you can only deselect the Active flag", dataType = FlyDataType.YesNo, entityType = "D", printName = "可删除的记录", fieldLength = 1)
 	isDeleteable,
+	//
+	@FlyElement(columnName = "IsDesc", name = "Descending", description = "Sort your data using a SQL Desc Order By statement", dataType = FlyDataType.NONE, entityType = "D", printName = "Descending", fieldLength = 0)
+	isDesc,
+	//
+	@FlyElement(columnName = "IsDeviationCalc", name = "Calculate Deviation (σ)", description = "Calculate Standard Deviation", help = "The Standard Deviation (σ) is the a measure of dispersion - used in combination with the Mean (μ)", dataType = FlyDataType.YesNo, entityType = "D", printName = "Deviation", fieldLength = 1)
+	isDeviationCalc,
+	//
+	@FlyElement(columnName = "IsDirectPrint", name = "直接打印", description = "没有对话框的打印", help = "The Direct Print checkbox indicates that this report will print without a print dialog box being displayed.", dataType = FlyDataType.YesNo, entityType = "D", printName = "直接打印", fieldLength = 1)
+	isDirectPrint,
 	//
 	@FlyElement(columnName = "IsDiscountAllowedOnTotal", name = "IsDiscountAllowedOnTotal", dataType = FlyDataType.YesNo, entityType = "D", printName = "IsDiscountAllowedOnTotal", fieldLength = 1)
 	isDiscountAllowedOnTotal,
@@ -422,11 +623,29 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "IsFieldOnly", name = "仅显示字段", description = "不显示标签", help = "The Field Only checkbox indicates that the column will display without a label.", dataType = FlyDataType.YesNo, entityType = "D", printName = "仅显示字段", fieldLength = 1)
 	isFieldOnly,
 	//
+	@FlyElement(columnName = "IsFilledRectangle", name = "Fill Shape", description = "Fill the shape with the color selected", dataType = FlyDataType.YesNo, entityType = "D", printName = "Fill Shape", fieldLength = 1)
+	isFilledRectangle,
+	//
+	@FlyElement(columnName = "IsFixedWidth", name = "固定的宽度", description = "列有固定的宽度", help = "The Column has a fixed width, independent from the content", dataType = FlyDataType.YesNo, entityType = "D", printName = "固定的宽度", fieldLength = 1)
+	isFixedWidth,
+	//
+	@FlyElement(columnName = "IsForm", name = "表单", description = "If Selected, a Form is printed, if not selected a columnar List report", help = "A form has individual elements with layout information (example: invoice, check)	<br>	A columnar list report has individual columns (example: list of invoices)", dataType = FlyDataType.YesNo, entityType = "D", printName = "表单", fieldLength = 1)
+	isForm,
+	//
 	@FlyElement(columnName = "IsFullBPAccess", name = "Full BP Access", description = "The user/contact has full access to Business Partner information and resources", help = "If selected, the user has full access to the Business Partner (BP) information (Business Documents like Orders, Invoices - Requests) or resources (Assets, Downloads). If you deselect it, the user has no access rights unless, you explicitly grant it in tab 'BP Access'", dataType = FlyDataType.YesNo, entityType = "D", printName = "Full BP Access", fieldLength = 1)
 	isFullBPAccess,
 	//
+	@FlyElement(columnName = "IsGroupBy", name = "分组", description = "After a group change, totals, etc. are printed", help = "Grouping allows to print sub-totals. If a group changes, the totals are printed.  Group by columns need to be included in the sort order.", dataType = FlyDataType.YesNo, entityType = "D", printName = "Groupby", fieldLength = 1)
+	isGroupBy,
+	//
+	@FlyElement(columnName = "IsGroupFunction", name = "SQL组函数", description = "此函数将产生一个Group By子句", help = "The SQL Group Function checkbox indicates that this function will generate a Group by Clause in the resulting SQL.", dataType = FlyDataType.YesNo, entityType = "D", printName = "SQL组函数", fieldLength = 1)
+	isGroupFunction,
+	//
 	@FlyElement(columnName = "IsHeading", name = "仅显示标题", description = "Field without Column - Only label is displayed", help = "The Heading Only checkbox indicates if just the label will display on the screen", dataType = FlyDataType.YesNo, entityType = "D", printName = "仅显示标题", fieldLength = 1)
 	isHeading,
+	//
+	@FlyElement(columnName = "IsHeightOneLine", name = "仅一行", description = "If selected, only one line is printed", help = "If the column has a width restriction, the text is broken into multiple lines. If One Line is selected, only the first line is printed.", dataType = FlyDataType.YesNo, entityType = "D", printName = "仅一行", fieldLength = 1)
+	isHeightOneLine,
 	//
 	@FlyElement(columnName = "IsHighVolume", name = "大量数据", description = "Use Search instead of Pick list", help = "那 High Volume Checkbox indicates if a search screen will display as opposed to a pick list for selecting records from this table.", dataType = FlyDataType.YesNo, entityType = "D", printName = "大量数据", fieldLength = 1)
 	isHighVolume,
@@ -437,6 +656,12 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "IsIgnoreMigration", name = "Ignore Migration", description = "Ignore this record in log migration", dataType = FlyDataType.YesNo, entityType = "D", printName = "Ignore Migration", fieldLength = 1)
 	isIgnoreMigration,
 	//
+	@FlyElement(columnName = "IsImageField", name = "Image Field", description = "The image is retrieved from the data column", help = "The Image URL is retrieved from the data column", dataType = FlyDataType.YesNo, entityType = "D", printName = "Image Field", fieldLength = 1)
+	isImageField,
+	//
+	@FlyElement(columnName = "IsInfoOnly", name = "Is Information Only", description = "When a Parameter is Information Only", dataType = FlyDataType.YesNo, entityType = "D", printName = "Is Information Only", fieldLength = 1)
+	isInfoOnly,
+	//
 	@FlyElement(columnName = "IsInfoTab", name = "会计页签", description = "This tab contain accounting information", help = "The Accounting Tab checkbox indicates if this window contains accounting information.", dataType = FlyDataType.YesNo, entityType = "D", printName = "会计页签", fieldLength = 1)
 	isInfoTab,
 	//
@@ -446,17 +671,53 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "IsKey", name = "关键列", description = "This column is the key in this table", help = "The key column must also be display sequence 0 in the field definition and may be hidden.", dataType = FlyDataType.YesNo, entityType = "D", printName = "关键列", fieldLength = 1)
 	isKey,
 	//
+	@FlyElement(columnName = "IsLandscape", name = "水平", description = "水平方向", dataType = FlyDataType.YesNo, entityType = "D", printName = "水平", fieldLength = 1)
+	isLandscape,
+	//
 	@FlyElement(columnName = "IsMandatory", name = "强制性的", description = "Data entry is required in this column", help = "The Mandatory checkbox indicates if the field is required for a record to be save to the database.", dataType = FlyDataType.YesNo, entityType = "D", printName = "强制性的", fieldLength = 1)
 	isMandatory,
 	//
 	@FlyElement(columnName = "IsManual", name = "手工", description = "这是手工的程序", help = "The Manual check box indicates if the process will done manually.", dataType = FlyDataType.YesNo, entityType = "D", printName = "手工", fieldLength = 1)
 	isManual,
 	//
+	@FlyElement(columnName = "IsMaxCalc", name = "Calculate Maximim (↑)", description = "Calculate the maximim amount", help = "Calculate the Maximum (↑)  of the data if the field is numeric, otherwise maximum length of the field.", dataType = FlyDataType.YesNo, entityType = "D", printName = "Calc Max", fieldLength = 1)
+	isMaxCalc,
+	//
+	@FlyElement(columnName = "IsMinCalc", name = "Calculate Minimum (↓)", description = "Calculate the minimum amount", help = "Calculate the Minimum (↓) of the data if the field is numeric, otherwise minimum length of the field.", dataType = FlyDataType.YesNo, entityType = "D", printName = "Calc Min", fieldLength = 1)
+	isMinCalc,
+	//
+	@FlyElement(columnName = "IsMultiLineHeader", name = "Multi Line Header", description = "Print column headers on mutliple lines if necessary.", help = "If selected, column header text will wrap onto the next line -- otherwise the text will be truncated.", dataType = FlyDataType.YesNo, entityType = "D", printName = "Multi Line Header", fieldLength = 1)
+	isMultiLineHeader,
+	//
 	@FlyElement(columnName = "IsMultiLingualDocument", name = "多语言文件", description = "多语言文件", help = "If selected, you enable multi lingual documents and need to maintain translations for entities used in documents (examples: Products, Payment Terms, ...).<br>	Please note, that the base language is always English.", dataType = FlyDataType.YesNo, entityType = "D", printName = "多语言文件", fieldLength = 1)
 	isMultiLingualDocument,
 	//
+	@FlyElement(columnName = "IsNextLine", name = "下一行", description = "Print item on next line", help = "If not selected, the item is printed on the same line", dataType = FlyDataType.YesNo, entityType = "D", printName = "下一行", fieldLength = 1)
+	isNextLine,
+	//
+	@FlyElement(columnName = "IsNextPage", name = "下一页", description = "The column is printed on the next page", help = "Before printing this column, there will be a page break.", dataType = FlyDataType.YesNo, entityType = "D", printName = "下一页", fieldLength = 1)
+	isNextPage,
+	//
+	@FlyElement(columnName = "IsOrderBy", name = "Order by", description = "Include in sort order", help = "The records are ordered by the value of this column. If a column is used for grouping, it needs to be included in the sort order as well.", dataType = FlyDataType.YesNo, entityType = "D", printName = "Order by", fieldLength = 1)
+	isOrderBy,
+	//
 	@FlyElement(columnName = "IsOrderByValue", name = "Order By Value", description = "Order list using the value column instead of the name column", help = "Order list using the value column instead of the name column", dataType = FlyDataType.YesNo, entityType = "D", printName = "Order By Value", fieldLength = 1)
 	isOrderByValue,
+	//
+	@FlyElement(columnName = "IsPageBreak", name = "新的页", description = "有新的页开始", help = "Before printing this item, create a new page", dataType = FlyDataType.YesNo, entityType = "D", printName = "新的页", fieldLength = 1)
+	isPageBreak,
+	//
+	@FlyElement(columnName = "IsPaintBoundaryLines", name = "绘图边界线", description = "绘图表边界线", help = "在表的周围绘图线", dataType = FlyDataType.YesNo, entityType = "D", printName = "绘图边界线", fieldLength = 1)
+	isPaintBoundaryLines,
+	//
+	@FlyElement(columnName = "IsPaintHeaderLines", name = "Paint Header Lines", description = "Paint Lines over/under the Header Line ", help = "If selected, a line is painted above and below the header line using the stroke information", dataType = FlyDataType.YesNo, entityType = "D", printName = "Header Lines", fieldLength = 1)
+	isPaintHeaderLines,
+	//
+	@FlyElement(columnName = "IsPaintHLines", name = "绘图 H 线", description = "Paint horizontal lines", help = "绘图水平线表", dataType = FlyDataType.YesNo, entityType = "D", printName = "绘图 H 线", fieldLength = 1)
+	isPaintHLines,
+	//
+	@FlyElement(columnName = "IsPaintVLines", name = "绘图 V 线", description = "垂直的线绘图", help = "绘图垂直的表", dataType = FlyDataType.YesNo, entityType = "D", printName = "绘图 V 线", fieldLength = 1)
+	isPaintVLines,
 	//
 	@FlyElement(columnName = "IsParent", name = "父表连接列", description = "This column is a link to the parent table (e.g. header from lines) - incl. Association key columns", help = "The Parent checkbox indicates if this column is a link to the parent table.", dataType = FlyDataType.YesNo, entityType = "D", printName = "父表连接列", fieldLength = 1)
 	isParent,
@@ -470,11 +731,35 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "IsPostImmediate", name = "Post Immediately (Deprecated)", description = "Post the accounting immediately for testing (Deprecated)", help = "If selected, the accounting consequences are immediately generated when completing a document.  Otherwise the document is posted by a batch process.  You should select this only if you are testing.	Deprecated column - use instead the functionality Client Accounting.", dataType = FlyDataType.YesNo, entityType = "D", printName = "Post Immediate", fieldLength = 1)
 	isPostImmediate,
 	//
+	@FlyElement(columnName = "IsPrintBarcodeText", name = "Print Barcode Text", description = "Print barcode text beneath symbol", dataType = FlyDataType.NONE, entityType = "D", printName = "Print Barcode Text", fieldLength = 0)
+	isPrintBarcodeText,
+	//
+	@FlyElement(columnName = "IsPrinted", name = "已打印", description = "Indicates if this document is printed", help = "The Printed checkbox indicates if this document will be printed.", dataType = FlyDataType.YesNo, entityType = "D", printName = "已打印", fieldLength = 1)
+	isPrinted,
+	//
+	@FlyElement(columnName = "IsPrintFunctionSymbols", name = "打印功能符号", description = "Print Symbols for Functions (Sum, Average, Count)", help = "If selected, print symbols - otherwise print names of the function", dataType = FlyDataType.YesNo, entityType = "D", printName = "打印功能符号", fieldLength = 1)
+	isPrintFunctionSymbols,
+	//
+	@FlyElement(columnName = "IsPrintParameters", name = "Print Parameters", description = "Print query parameters on list report", help = "If selected, query parameters will be printed at the start of the report.", dataType = FlyDataType.YesNo, entityType = "D", printName = "Print Parameters", fieldLength = 1)
+	isPrintParameters,
+	//
 	@FlyElement(columnName = "IsRange", name = "范围", description = "The parameter is a range of values", help = "The Range checkbox indicates that this parameter is a range of values.", dataType = FlyDataType.YesNo, entityType = "D", printName = "范围", fieldLength = 1)
 	isRange,
 	//
 	@FlyElement(columnName = "IsReadOnly", name = "只读", description = "字段被只有读", help = "The Read Only indicates that this field may only be Read.  It may not be updated.", dataType = FlyDataType.YesNo, entityType = "D", printName = "只读", fieldLength = 1)
 	isReadOnly,
+	//
+	@FlyElement(columnName = "IsReadWrite", name = "读写", description = "Field is read   write", help = "The Read Write indicates that this field may be read and updated.", dataType = FlyDataType.YesNo, entityType = "D", printName = "读写", fieldLength = 1)
+	isReadWrite,
+	//
+	@FlyElement(columnName = "IsRelativePosition", name = "相对位置", description = "The item is relative positioned (not absolute)", help = "The relative positioning of the item is determined by X-Z space and next line", dataType = FlyDataType.YesNo, entityType = "D", printName = "相对位置", fieldLength = 1)
+	isRelativePosition,
+	//
+	@FlyElement(columnName = "IsReport", name = "报表", description = "指示一笔报表记录", help = "The Report checkbox indicates that this record is a report as opposed to a process", dataType = FlyDataType.YesNo, entityType = "D", printName = "报表", fieldLength = 1)
+	isReport,
+	//
+	@FlyElement(columnName = "IsRunningTotal", name = "Running Total", description = "Create a running total (sum)", help = "A running total creates a sum at the end of a page and on the top of the next page for all colums, which have a Sum function.  You should define running total only once per format.", dataType = FlyDataType.YesNo, entityType = "D", printName = "Running Total", fieldLength = 1)
+	isRunningTotal,
 	//
 	@FlyElement(columnName = "IsSalesLead", name = "Sales Lead", description = "This contact is a sales lead", help = "Sales leads can be converted into full contacts with Business Partners.", dataType = FlyDataType.NONE, entityType = "D", printName = "Sales Lead", fieldLength = 0)
 	isSalesLead,
@@ -491,11 +776,20 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "IsServerEMail", name = "Server EMail", description = "Send EMail from Server", help = "When selected, mail is sent from the server rather then the client.  This decreases availability.  You would select this when you do not want to enable email relay for the client addresses in your mail server.", dataType = FlyDataType.YesNo, entityType = "D", printName = "Server EMail", fieldLength = 1)
 	isServerEMail,
 	//
+	@FlyElement(columnName = "IsServerProcess", name = "Server Process", description = "Run this Process on Server only", help = "Enabling this flag disables to run the process on the client.  This potentially decreases the availability.", dataType = FlyDataType.YesNo, entityType = "D", printName = "Server Process", fieldLength = 1)
+	isServerProcess,
+	//
+	@FlyElement(columnName = "IsSetNLPosition", name = "设定 NL 位置", description = "设定新的线位置", help = "When enabled, the current x (horizontal) Position before printing the item is saved. The next New Line will use the saved x (horizontal) Position, enabling to print data in columns.	The setting is not restricted to an area (header, content, footer), allowing to align information also with Header and Footer with the Content.", dataType = FlyDataType.YesNo, entityType = "D", printName = "设定 NL 位置", fieldLength = 1)
+	isSetNLPosition,
+	//
 	@FlyElement(columnName = "IsShowAcct", name = "显示财务", description = "Users with this role can see accounting information", help = "This allows to prevent access to any accounting information.", dataType = FlyDataType.YesNo, entityType = "D", printName = "显示财务", fieldLength = 1)
 	isShowAcct,
 	//
 	@FlyElement(columnName = "IsSingleRow", name = "单记录排列", description = "Default for toggle between Single- and Multi-Row (Grid) Layout", help = "The Single Row Layout checkbox indicates if the default display type for this window is a single row as opposed to multi row.", dataType = FlyDataType.YesNo, entityType = "D", printName = "单记录排列", fieldLength = 1)
 	isSingleRow,
+	//
+	@FlyElement(columnName = "IsSmtpAuthorization", name = "SMTP验证", description = "Your mail server requires Authentification", help = "Some email servers require authentification before sending emails.  If yes, users are required to define their email user name and password.  If authentification is required and no user name and password is required, delivery will fail.", dataType = FlyDataType.YesNo, entityType = "D", printName = "SMTP验证", fieldLength = 1)
+	isSmtpAuthorization,
 	//
 	@FlyElement(columnName = "IsSortTab", name = "定单页签", description = "页签定单", dataType = FlyDataType.YesNo, entityType = "D", printName = "定单页签", fieldLength = 1)
 	isSortTab,
@@ -503,14 +797,29 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "IsSOTrx", name = "销售交易", description = "这是销售交易", help = "The Sales Transaction checkbox indicates if this item is a Sales Transaction.", dataType = FlyDataType.YesNo, entityType = "D", printName = "销售交易", fieldLength = 1)
 	isSOTrx,
 	//
+	@FlyElement(columnName = "IsStandardHeaderFooter", name = "Standard Header Footer", description = "The standard Header and Footer is used", help = "If the standard header is not used, it must be explicitly defined.", dataType = FlyDataType.YesNo, entityType = "D", printName = "Standard Header Footer", fieldLength = 1)
+	isStandardHeaderFooter,
+	//
+	@FlyElement(columnName = "IsSummarized", name = "计算总数", description = "Calculate the total sum of numeric content or length", help = "Calculate the total sum of the data if the field is numeric, otherwise total sum length of the field.", dataType = FlyDataType.YesNo, entityType = "D", printName = "总数", fieldLength = 1)
+	isSummarized,
+	//
 	@FlyElement(columnName = "IsSummary", name = "汇总级别", description = "这是父类实体", help = "A summary entity represents a branch in a tree rather than an end-node. Summary entities are used for reporting and do not have own values.", dataType = FlyDataType.YesNo, entityType = "D", printName = "汇总级别", fieldLength = 1)
 	isSummary,
+	//
+	@FlyElement(columnName = "IsSuppressNull", name = "压缩空值", description = "Suppress columns or elements with NULL value", help = "If a Form entry is NULL and if selected, the field (including label) is not printed. <br>	If all elements in a table column are NULL and if selected, the column is not printed.", dataType = FlyDataType.YesNo, entityType = "D", printName = "压缩空值", fieldLength = 1)
+	isSuppressNull,
+	//
+	@FlyElement(columnName = "IsSuppressRepeats", name = "Suppress Repeats", description = "Suppress repeated elements in column.", help = "Determines whether repeated elements in a column are repeated in a printed table.", dataType = FlyDataType.YesNo, entityType = "D", printName = "Suppress Repeats", fieldLength = 1)
+	isSuppressRepeats,
 	//
 	@FlyElement(columnName = "IsSyncDatabase", name = "同步数据库", description = "Change database table definition when changing dictionary definition", help = "When selected, the database column definition is updated based on your entries in the Column definition of the Application Dictionary.", dataType = FlyDataType.Button, entityType = "D", printName = "同步数据库", fieldLength = 1)
 	isSyncDatabase,
 	//
 	@FlyElement(columnName = "IsSystemLanguage", name = "系统语言", description = "The screens, etc. are maintained in this Language", help = "Select, if you want to have translated screens available in this language.  Please notify your system administrator to run the language maintenance scripts to enable the use of this language.  If the language is not supplied, you can translate the terms yourself. ", dataType = FlyDataType.YesNo, entityType = "D", printName = "系统语言", fieldLength = 1)
 	isSystemLanguage,
+	//
+	@FlyElement(columnName = "IsTableBased", name = "基于表", description = "表立基于了目录报表", help = "Table based columnar list reporting is invoked from the Window Report button", dataType = FlyDataType.YesNo, entityType = "D", printName = "基于表", fieldLength = 1)
+	isTableBased,
 	//
 	@FlyElement(columnName = "IsTranslated", name = "已翻译", description = "列被翻译", help = "The Translated checkbox indicates if this column is translated.", dataType = FlyDataType.YesNo, entityType = "D", printName = "已翻译", fieldLength = 1)
 	isTranslated,
@@ -533,8 +842,26 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "IsValueDisplayed", name = "显示值", description = "Displays Value column with the Display column", help = "The Display Value checkbox indicates if the value column will display with the display column.", dataType = FlyDataType.YesNo, entityType = "D", printName = "显示值", fieldLength = 1)
 	isValueDisplayed,
 	//
+	@FlyElement(columnName = "IsVarianceCalc", name = "Calculate Variance (σ²)", description = "Calculate Variance", help = "The Variance (σ²) is the a measure of dispersion - used in combination with the Mean (μ)", dataType = FlyDataType.YesNo, entityType = "D", printName = "Variance", fieldLength = 1)
+	isVarianceCalc,
+	//
 	@FlyElement(columnName = "IsView", name = "视图", description = "这是视图", help = "This is a view rather than a table.  A view is always treated as read only in the system.", dataType = FlyDataType.YesNo, entityType = "D", printName = "视图", fieldLength = 1)
 	isView,
+	//
+	@FlyElement(columnName = "JasperProcess_ID", name = "Jasper Process", description = "The Jasper Process used by the printengine if any process defined", dataType = FlyDataType.Table, entityType = "D", printName = "Jasper Process", fieldLength = 22)
+	jasperProcessID,
+	//
+	@FlyElement(columnName = "JasperReport", name = "Jasper Report", dataType = FlyDataType.String, entityType = "D", printName = "Jasper Report", fieldLength = 255)
+	jasperReport,
+	//
+	@FlyElement(columnName = "LabelFormatType", name = "标签格式类型", description = "标签格式类型", dataType = FlyDataType.List, entityType = "D", printName = "标签格式类型", fieldLength = 1)
+	labelFormatType,
+	//
+	@FlyElement(columnName = "LabelHeight", name = "标签高度", description = "标签的高度", help = "标签的实际高度", dataType = FlyDataType.Integer, entityType = "D", printName = "标签高度", fieldLength = 22)
+	labelHeight,
+	//
+	@FlyElement(columnName = "LabelWidth", name = "标签宽度", description = "标签的宽度", help = "标签的实际宽度", dataType = FlyDataType.Integer, entityType = "D", printName = "标签宽度", fieldLength = 22)
+	labelWidth,
 	//
 	@FlyElement(columnName = "LanguageISO", name = "ISO 语言编码", description = "Lower-case two-letter ISO-3166 code - http:  www.ics.uci.edu pub ietf http related iso639.txt ", help = "The ISO Language Code indicates the standard ISO code for a language in lower case.  Information can be found at http:  www.ics.uci.edu pub ietf http related iso639.txt ", dataType = FlyDataType.String, entityType = "D", printName = "ISO 语言编码", fieldLength = 2)
 	languageISO,
@@ -544,6 +871,9 @@ public enum Element_zh_CN {
 	//
 	@FlyElement(columnName = "LastResult", name = "最近结果", description = "最后的联系人结果", help = "The Last Result identifies the result of the last contact made.", dataType = FlyDataType.String, entityType = "D", printName = "最近结果", fieldLength = 2000)
 	lastResult,
+	//
+	@FlyElement(columnName = "LDAPDomain", name = "LDAP查询", description = "Directory service query string", dataType = FlyDataType.String, entityType = "D", printName = "LDAP查询", fieldLength = 255)
+	lDAPDomain,
 	//
 	@FlyElement(columnName = "LDAPQuery", name = "LDAP Query", dataType = FlyDataType.String, entityType = "D", printName = "LDAP Query", fieldLength = 255)
 	lDAPQuery,
@@ -563,8 +893,20 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "LeadStatusDescription", name = "Lead Status Description", description = "Additional information on the status of this lead/opportunity", dataType = FlyDataType.NONE, entityType = "D", printName = "Lead Status Description", fieldLength = 0)
 	leadStatusDescription,
 	//
+	@FlyElement(columnName = "LineAlignmentType", name = "线对准", description = "线对准", help = "For relative positioning, the line alignment", dataType = FlyDataType.List, entityType = "D", printName = "线对准", fieldLength = 1)
+	lineAlignmentType,
+	//
 	@FlyElement(columnName = "LineDistance", name = "行距离", description = "在线之间的距离", dataType = FlyDataType.Integer, entityType = "D", printName = "距离", fieldLength = 22)
 	lineDistance,
+	//
+	@FlyElement(columnName = "Line_PrintColor_ID", name = "线颜色", description = "表线颜色", dataType = FlyDataType.Table, entityType = "D", printName = "线颜色", fieldLength = 22)
+	linePrintColorID,
+	//
+	@FlyElement(columnName = "LineStroke", name = "Line Stroke", description = "Width of the Line Stroke", help = "The width of the line stroke (line thickness) in Points.", dataType = FlyDataType.Number, entityType = "D", printName = "Line Stroke", fieldLength = 22)
+	lineStroke,
+	//
+	@FlyElement(columnName = "LineStrokeType", name = "Line Stroke Type", description = "Type of the Line Stroke", help = "Type of the line printed", dataType = FlyDataType.List, entityType = "D", printName = "Line Stroke Type", fieldLength = 1)
+	lineStrokeType,
 	//
 	@FlyElement(columnName = "LineWidth", name = "线宽度", description = "线的宽度", dataType = FlyDataType.Integer, entityType = "D", printName = "线宽度", fieldLength = 22)
 	lineWidth,
@@ -578,8 +920,26 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "MandatoryLogic", name = "Mandatory Logic", dataType = FlyDataType.Text, entityType = "D", printName = "Mandatory Logic", fieldLength = 2000)
 	mandatoryLogic,
 	//
+	@FlyElement(columnName = "MarginBottom", name = "底部边距", description = "Bottom Space in 1 72 inch", help = "Space on bottom of a page in 1 72 inch", dataType = FlyDataType.Integer, entityType = "D", printName = "底部", fieldLength = 22)
+	marginBottom,
+	//
+	@FlyElement(columnName = "MarginLeft", name = "左边边距", description = "Left Space in 1 72 inch", help = "Space on left side of a page in 1 72 inch", dataType = FlyDataType.Integer, entityType = "D", printName = "离开", fieldLength = 22)
+	marginLeft,
+	//
+	@FlyElement(columnName = "MarginRight", name = "右边距", description = "Right Space in 1 72 inch", help = "Space on right side of a page in 1 72 inch", dataType = FlyDataType.Integer, entityType = "D", printName = "右", fieldLength = 22)
+	marginRight,
+	//
+	@FlyElement(columnName = "MarginTop", name = "上边距", description = "Top Space in 1 72 inch", help = "Space on top of a page in 1 72 inch", dataType = FlyDataType.Integer, entityType = "D", printName = "顶端", fieldLength = 22)
+	marginTop,
+	//
+	@FlyElement(columnName = "MaxHeight", name = "最大高度", description = "Maximum Height in 1 72 if an inch - 0 = no restriction", help = "Maximum height of the element in 1 72 of an inch (point). If zero (0), there is no height restriction.", dataType = FlyDataType.Integer, entityType = "D", printName = "最大高度", fieldLength = 22)
+	maxHeight,
+	//
 	@FlyElement(columnName = "MaxQueryRecords", name = "Max Query Records", description = "If defined, you cannot query more records as defined - the query criteria needs to be changed to query less records", help = "Enter the number of records a user will be able to query to avoid unnecessary system load.  If 0, no restrictions are imposed.", dataType = FlyDataType.Integer, entityType = "D", printName = "Max Query Records", fieldLength = 10)
 	maxQueryRecords,
+	//
+	@FlyElement(columnName = "MaxWidth", name = "最大宽度", description = "Maximum Width in 1 72 if an inch - 0 = no restriction", help = "Maximum width of the element in 1 72 of an inch (point). If zero (0), there is no width restriction.", dataType = FlyDataType.Integer, entityType = "D", printName = "最大宽度", fieldLength = 22)
+	maxWidth,
 	//
 	@FlyElement(columnName = "MMPolicy", name = "Material Policy", description = "Material Movement Policy", help = "The Material Movement Policy determines how the stock is flowing (FiFo or LiFo) if a specific Product Instance was not selected.  The policy can not contradict the costing method (e.g. FiFo movement policy and LiFo costing method).", dataType = FlyDataType.List, entityType = "D", printName = "Mat Policy", fieldLength = 1)
 	mMPolicy,
@@ -604,6 +964,12 @@ public enum Element_zh_CN {
 	//
 	@FlyElement(columnName = "OrderByClause", name = "SQL的Order By子句", description = "Fully qualified ORDER BY clause", help = "The ORDER BY Clause indicates the SQL ORDER BY clause to use for record selection", dataType = FlyDataType.Text, entityType = "D", printName = "SQL的Order By子句", fieldLength = 2000)
 	orderByClause,
+	//
+	@FlyElement(columnName = "Order_MailText_ID", name = "定单邮件本文", description = "Email text used for sending order acknowledgements or quotations", help = "Standard email template used to send acknowledgements or quotations as attachments.", dataType = FlyDataType.Table, entityType = "D", printName = "定单邮件本文", fieldLength = 22)
+	orderMailTextID,
+	//
+	@FlyElement(columnName = "Order_PrintFormat_ID", name = "定单打印格式", description = "Print Format for Orders, Quotes, Offers", help = "You need to define a Print Format to print the document.", dataType = FlyDataType.Table, entityType = "D", printName = "定单打印格式", fieldLength = 22)
+	orderPrintFormatID,
 	//
 	@FlyElement(columnName = "OverwritePriceLimit", name = "Overwrite Price Limit", description = "Overwrite Price Limit if the Price List  enforces the Price Limit", help = "The Price List allows to enforce the Price Limit. If set, a user with this role can overwrite the price limit (i.e. enter any price).", dataType = FlyDataType.YesNo, entityType = "D", printName = "Overwrite Price Limit", fieldLength = 1)
 	overwritePriceLimit,
@@ -647,11 +1013,35 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "PreferredWidth", name = "Preferred Width", description = "Preferred width in pixels", dataType = FlyDataType.Integer, entityType = "D", printName = "Preferred Width", fieldLength = 10)
 	preferredWidth,
 	//
+	@FlyElement(columnName = "PrintAreaType", name = "区域", description = "打印区域", help = "打印该项目的区域", dataType = FlyDataType.List, entityType = "D", printName = "区域", fieldLength = 1)
+	printAreaType,
+	//
+	@FlyElement(columnName = "PrinterName", name = "打印机名", description = "打印机的名字", help = "Internal (Opereating System) Name of the Printer; Please mote that the printer name may be different on different clients. Enter a printer name, which applies to ALL clients (e.g. printer on a server). <p>	If none is entered, the default printer is used. You specify your default printer when you log in. You can also change the default printer in Preferences.", dataType = FlyDataType.String, entityType = "D", printName = "打印机名", fieldLength = 40)
+	printerName,
+	//
+	@FlyElement(columnName = "PrintFormatType", name = "格式类型", description = "打印格式类型", help = "The print format type determines what will be printed.", dataType = FlyDataType.List, entityType = "D", printName = "格式类型", fieldLength = 1)
+	printFormatType,
+	//
 	@FlyElement(columnName = "PrintName", name = "打印文本", description = "The label text to be printed on a document or correspondence.", help = "The Label to be printed indicates the name that will be printed on a document or correspondence. The max length is 2000 characters.", dataType = FlyDataType.String, entityType = "D", printName = "文本", fieldLength = 60)
 	printName,
 	//
+	@FlyElement(columnName = "PrintNameSuffix", name = "打印标签后缀", description = "The label text to be printed on a document or correspondence after the field", help = "The Label to be printed indicates the name that will be printed on a document or correspondence after the field. The max length is 60 characters.", dataType = FlyDataType.String, entityType = "D", printName = "标签后缀", fieldLength = 60)
+	printNameSuffix,
+	//
+	@FlyElement(columnName = "ProcedureName", name = "过程", description = "Name of the Database Procedure", help = "The Procedure indicates the name of the database procedure called by this report or process.", dataType = FlyDataType.String, entityType = "D", printName = "过程", fieldLength = 60)
+	procedureName,
+	//
 	@FlyElement(columnName = "Processing", name = "现在处理", dataType = FlyDataType.Button, entityType = "D", printName = "现在处理", fieldLength = 1)
 	processing,
+	//
+	@FlyElement(columnName = "Project_MailText_ID", name = "项目邮件本文", description = "Standard text for Project EMails", help = "Standard text for Project EMails", dataType = FlyDataType.Table, entityType = "D", printName = "项目邮件本文", fieldLength = 22)
+	projectMailTextID,
+	//
+	@FlyElement(columnName = "Project_PrintFormat_ID", name = "项目打印格式", description = "标准项目打印格式", help = "标准项目打印格式", dataType = FlyDataType.Table, entityType = "D", printName = "项目打印格式", fieldLength = 22)
+	projectPrintFormatID,
+	//
+	@FlyElement(columnName = "Protocol", name = "Protocol", description = "Protocol", dataType = FlyDataType.String, entityType = "D", printName = "Protocol", fieldLength = 20)
+	protocol,
 	//
 	@FlyElement(columnName = "ReadOnlyLogic", name = "只读逻辑", description = "Logic to determine if field is read only (applies only when field is read-write)", help = "format := {expression} [{logic} {expression}]<br> 	expression := @{context}@{operand}{value} or @{context}@{operand}{value}<br> 	logic := {|}|{&}<br>	context := any global or window context <br>	value := strings or numbers<br>	logic operators	:= AND or OR with the previous result from left to right <br>	operand := eq{=}, gt{&gt;}, le{&lt;}, not{~^!} <br>	Examples: <br>	@AD_Table_ID@=14 | @Language@!GERGER <br>	@PriceLimit@>10 | @PriceList@>@PriceActual@<br>	@Name@>J<br>	Strings may be in single quotes (optional)", dataType = FlyDataType.Text, entityType = "D", printName = "只读逻辑", fieldLength = 2000)
 	readOnlyLogic,
@@ -664,6 +1054,12 @@ public enum Element_zh_CN {
 	//
 	@FlyElement(columnName = "Red_1", name = "2nd Red", description = "RGB 第二颜色值", dataType = FlyDataType.Integer, entityType = "D", printName = "第二个红色", fieldLength = 22)
 	red1,
+	//
+	@FlyElement(columnName = "Remittance_MailText_ID", name = "汇款邮件本文", description = "Email text used for sending payment remittances", help = "Standard email template used to send remittances as attachments.", dataType = FlyDataType.Table, entityType = "D", printName = "汇款邮件本文", fieldLength = 22)
+	remittanceMailTextID,
+	//
+	@FlyElement(columnName = "Remittance_PrintFormat_ID", name = "汇款打印格式", description = "Print Format for separate Remittances", help = "You need to define a Print Format to print the document.", dataType = FlyDataType.Table, entityType = "D", printName = "汇款打印格式", fieldLength = 22)
+	remittancePrintFormatID,
 	//
 	@FlyElement(columnName = "RepeatDistance", name = "重复距离", description = "Distance in points to repeat gradient color - or zero", help = "The gradient color is not repeated, if the value is zero. The distance is added to (or subtracted from) the starting point of the gradient.", dataType = FlyDataType.Integer, entityType = "D", printName = "重复距离", fieldLength = 22)
 	repeatDistance,
@@ -683,6 +1079,9 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "RequestUserPW", name = "请求用户密码", description = "Password of the user name (ID) for mail processing", dataType = FlyDataType.String, entityType = "D", printName = "请求用户密码", fieldLength = 20)
 	requestUserPW,
 	//
+	@FlyElement(columnName = "RunningTotalLines", name = "Running Total Lines", description = "Create Running Total Lines (page break) every x lines", help = "When you want to print running totals, enter the number of lines per page after you want to create a running total line and page break. You should define running total only once per format.", dataType = FlyDataType.Integer, entityType = "D", printName = "RT Lines", fieldLength = 22)
+	runningTotalLines,
+	//
 	@FlyElement(columnName = "SalesRep_ID", name = "销售代表", description = "Sales Representative or Company Agent", help = "The Sales Representative indicates the Sales Rep for this Region.  Any Sales Rep must be a valid internal user.", dataType = FlyDataType.Table, entityType = "D", printName = "销售代表", fieldLength = 22)
 	salesRepID,
 	//
@@ -695,11 +1094,38 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "SeqNoGrid", name = "Grid Sequence", description = "Method of ordering records; lowest number comes first", help = "The Sequence indicates the order of columns in grid view", dataType = FlyDataType.NONE, entityType = "D", printName = "Grid Sequence", fieldLength = 0)
 	seqNoGrid,
 	//
+	@FlyElement(columnName = "ShapeType", name = "Shape Type", description = "Type of the shape to be painted", dataType = FlyDataType.List, entityType = "D", printName = "Shape Type", fieldLength = 1)
+	shapeType,
+	//
+	@FlyElement(columnName = "Shipment_MailText_ID", name = "物料出货邮件本文", description = "Email text used for sending delivery notes", help = "Standard email template used to send delivery notes as attachments.", dataType = FlyDataType.Table, entityType = "D", printName = "物料出货邮件本文", fieldLength = 22)
+	shipmentMailTextID,
+	//
+	@FlyElement(columnName = "Shipment_PrintFormat_ID", name = "物料出货打印格式", description = "Print Format for Shipments, Receipts, Pick Lists", help = "You need to define a Print Format to print the document.", dataType = FlyDataType.Table, entityType = "D", printName = "物料出货打印格式", fieldLength = 22)
+	shipmentPrintFormatID,
+	//
+	@FlyElement(columnName = "ShowHelp", name = "Show Help", dataType = FlyDataType.List, entityType = "D", printName = "Show Help", fieldLength = 1)
+	showHelp,
+	//
+	@FlyElement(columnName = "SizeX", name = "Size X", description = "X (horizontal) dimension size", help = "Size of X (horizontal) dimension in Units", dataType = FlyDataType.Number, entityType = "D", printName = "Size X", fieldLength = 5)
+	sizeX,
+	//
+	@FlyElement(columnName = "SizeY", name = "Size Y", description = "Y (vertical) dimension size", help = "Size of Y (vertical) dimension in Units", dataType = FlyDataType.Number, entityType = "D", printName = "Size Y", fieldLength = 5)
+	sizeY,
+	//
+	@FlyElement(columnName = "SMTPHost", name = "邮件主机", description = "Hostname of Mail Server for SMTP and IMAP", help = "The host name of the Mail Server for this client with SMTP services to send mail, and IMAP to process incoming mail.", dataType = FlyDataType.String, entityType = "D", printName = "邮件主机", fieldLength = 60)
+	sMTPHost,
+	//
 	@FlyElement(columnName = "SortNo", name = "记录排序号", description = "决定记录按怎样的顺序显示。", help = "The Record Sort No indicates the ascending sort sequence of the records", dataType = FlyDataType.Number, entityType = "D", printName = "记录排序号", fieldLength = 22)
 	sortNo,
 	//
 	@FlyElement(columnName = "StartPoint", name = "开始点", description = "Start point of the gradient colors", help = "The gradient starts at the start point (e.g. North). The repeat distance determines if and how often the gradient colors are repeated.  If starting from southern points, the upper color is actually at the button.", dataType = FlyDataType.List, entityType = "D", printName = "开始点", fieldLength = 22)
 	startPoint,
+	//
+	@FlyElement(columnName = "Statistic_Count", name = "统计计数", description = "Internal statistics how often the entity was used", help = "For internal use.", dataType = FlyDataType.Integer, entityType = "D", printName = "统计计数", fieldLength = 22)
+	statisticCount,
+	//
+	@FlyElement(columnName = "Statistic_Seconds", name = "统计数值秒", description = "Internal statistics how many seconds a process took", help = "对于内在的使用", dataType = FlyDataType.Integer, entityType = "D", printName = "统计数值秒", fieldLength = 22)
+	statisticSeconds,
 	//
 	@FlyElement(columnName = "StoreArchiveOnFileSystem", name = "Store Archive On File System", dataType = FlyDataType.YesNo, entityType = "D", printName = "Store Archive On File System", fieldLength = 1)
 	storeArchiveOnFileSystem,
@@ -718,6 +1144,9 @@ public enum Element_zh_CN {
 	//
 	@FlyElement(columnName = "TaxID", name = "税号", description = "税务号", help = "The Tax ID field identifies the legal Identification number of this Entity.", dataType = FlyDataType.String, entityType = "D", printName = "税号", fieldLength = 20)
 	taxID,
+	//
+	@FlyElement(columnName = "Timeout", name = "Timeout", description = "Is Timeout (In milliseconds) for sending or receive data", dataType = FlyDataType.Integer, entityType = "D", printName = "Timeout", fieldLength = 0)
+	timeout,
 	//
 	@FlyElement(columnName = "TimePattern", name = "Time Pattern", description = "Java Time Pattern", help = "Option Time pattern in Java notation. Examples: 'hh:mm:ss aaa z' - 'HH:mm:ss'	If the pattern for your language is not correct, please create a Adempiere support request with the correct information", dataType = FlyDataType.String, entityType = "D", printName = "Time Pattern", fieldLength = 20)
 	timePattern,
@@ -796,4 +1225,19 @@ public enum Element_zh_CN {
 	//
 	@FlyElement(columnName = "WinWidth", name = "Window Width", dataType = FlyDataType.Integer, entityType = "D", printName = "Win Width", fieldLength = 22)
 	winWidth,
+	//
+	@FlyElement(columnName = "WorkflowValue", name = "Workflow Key", description = "Key of the Workflow to start", dataType = FlyDataType.String, entityType = "D", printName = "Workflow", fieldLength = 40)
+	workflowValue,
+	//
+	@FlyElement(columnName = "XPosition", name = "X 位置", description = "Absolute X (horizontal) position in 1 72 of an inch", help = "Absolute X (horizontal) position in 1 72 of an inch", dataType = FlyDataType.Integer, entityType = "D", printName = "X 位置", fieldLength = 22)
+	xPosition,
+	//
+	@FlyElement(columnName = "XSpace", name = "X 空间", description = "Relative X (horizontal) space in 1 72 of an inch", help = "Relative X (horizontal) space in 1 72 of an inch in relation to the end of the previous item.", dataType = FlyDataType.Integer, entityType = "D", printName = "X 空间", fieldLength = 22)
+	xSpace,
+	//
+	@FlyElement(columnName = "YPosition", name = "Y 位置", description = "Absolute Y (vertical) position in 1 72 of an inch", help = "Absolute Y (vertical) position in 1 72 of an inch", dataType = FlyDataType.Integer, entityType = "D", printName = "Y 位置", fieldLength = 22)
+	yPosition,
+	//
+	@FlyElement(columnName = "YSpace", name = "Y 空间", description = "Relative Y (vertical) space in 1 72 of an inch", help = "Relative Y (vertical) space in 1 72 of an inch in relation to the end of the previous item.", dataType = FlyDataType.Integer, entityType = "D", printName = "Y 空间", fieldLength = 22)
+	ySpace,
 }

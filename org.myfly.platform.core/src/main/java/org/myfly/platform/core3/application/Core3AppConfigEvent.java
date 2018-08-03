@@ -14,14 +14,11 @@ import org.myfly.platform.core3.dbinit.Core3SystemData;
 import org.myfly.platform.core3.dbinit.FlyDataModelImporter;
 import org.myfly.platform.core3.dbinit.resources.Element_zh_CN;
 import org.myfly.platform.core3.dbinit.resources.EntityType;
-import org.myfly.platform.core3.dbinit.resources.MyElement_RefList_zh_CN;
-import org.myfly.platform.core3.dbinit.resources.MyElement_RefTable_zh_CN;
 import org.myfly.platform.core3.dbinit.resources.MyElement_zh_CN;
 import org.myfly.platform.core3.dbinit.resources.MyRefLists_zh_CN;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class Core3AppConfigEvent implements IAppConfigEvent {
@@ -70,8 +67,6 @@ public class Core3AppConfigEvent implements IAppConfigEvent {
 		modelRegister.registerEntityTypesFromEnumClass(EntityType.class);
 		modelRegister.registerElementsFromEnumClass(Element_zh_CN.class, false);
 		modelRegister.registerElementsFromEnumClass(MyElement_zh_CN.class, true);
-		modelRegister.registerElementsFromEnumClass(MyElement_RefList_zh_CN.class, true);
-		modelRegister.registerElementsFromEnumClass(MyElement_RefTable_zh_CN.class, true);
 		modelRegister.registerRefListsFromEnumClass(MyRefLists_zh_CN.class);
 		errors.addAll(modelRegister.registerRefTableAndFlyDataModelFromPackage("org.myfly.platform.core3"));
 		if (CollectionUtils.isNotEmpty(errors)) {
@@ -82,7 +77,7 @@ public class Core3AppConfigEvent implements IAppConfigEvent {
 
 	@Override
 	public void loadCodeLevelViewModels(ICodeLevelViewModelRegister modelRegister) {
-		
+
 	}
 
 }

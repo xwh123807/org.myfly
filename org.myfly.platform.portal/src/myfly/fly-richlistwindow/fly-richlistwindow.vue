@@ -1,13 +1,12 @@
 <template>
      <div class="fly-richlistwindow">
-      <!-- <h2>fly-richlistwindow: {{viewModel.name}}</h2> -->
       <div>
         <el-button-group>
-          <el-button icon="fa fa-refresh" size="medium"></el-button>
+          <el-button icon="fa fa-refresh" size="medium" @click="refreshHandler"></el-button>
           <el-button icon="fa fa-search" size="medium"></el-button>
         </el-button-group>
       </div>
-      <fly-subtable :windowName="windowName" :tabName="viewModel.mainTabName" :needLoaded="loaded">
+      <fly-subtable ref="flySubTable" :windowName="windowName" :tabName="viewModel.mainTabName" :needLoaded="loaded">
       </fly-subtable>
      </div>
 </template>
@@ -60,6 +59,12 @@ export default {
           self.loaded = true;
         }
       });
+    },
+    /**
+     * 刷新，重新装载数据
+     */
+    refreshHandler(){
+      this.$refs.flySubTable.refreshHandler();
     }
   }
 };

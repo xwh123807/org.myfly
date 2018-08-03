@@ -13,6 +13,10 @@ import org.myfly.platform.core3.flydata.service.IFlyDataService;
 import org.myfly.platform.core3.metadata.define.FlyDataModel;
 import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -69,7 +73,11 @@ public class FlyDataService implements IFlyDataService {
 	 */
 	@Override
 	public void delOne(String entityName, String uid) {
-		jpaService.delOne(getEntityClass(entityName), uid);
+		FlyDataModel dataModel = getFlyDataModel(entityName);
+		Object entity = FlyEntityUtils.newInstance(dataModel.getApiName());
+		dataModel.setPKValue(entity, uid);
+		jpaService.delOne(entity);
+		// jpaService.delOne(getEntityClass(entityName), uid);
 	}
 
 	/*
@@ -218,10 +226,34 @@ public class FlyDataService implements IFlyDataService {
 		return results;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.flydata.service.IFlyDataService#findByExample(java.
+	 * lang.String, org.myfly.platform.core3.flydata.service.FlyEntityMap)
+	 */
 	@Override
 	public List<FlyEntityMap> findByExample(String entityName, FlyEntityMap example) {
-		List<?> list = jpaService.findAll(getEntityClass(entityName), example);
-		return toFlyEntityMapList(getFlyDataModel(entityName), list, false, null);
+		FlyDataModel dataModel = getFlyDataModel(entityName);
+		List<?> list = jpaService.findAll(getEntityClass(entityName),
+				SpecificationUtils.toSpecification(dataModel, example));
+		return toFlyEntityMapList(dataModel, list, false, null);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core3.flydata.service.IFlyDataService#findAll(java.lang.
+	 * String, org.springframework.data.jpa.domain.Specification,
+	 * org.springframework.data.domain.Pageable)
+	 */
+	@Override
+	public Page<FlyEntityMap> findAll(String entityName, Specification<?> spec, Pageable pageable) {
+		FlyDataModel dataModel = getFlyDataModel(entityName);
+		Page<?> page = jpaService.findAll(dataModel.getEntityClass(), spec, pageable);
+		List<FlyEntityMap> list = toFlyEntityMapList(dataModel, page.getContent(), false, null);
+		return new PageImpl<>(list, page.getPageable(), page.getTotalElements());
+	}
 }

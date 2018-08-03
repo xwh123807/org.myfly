@@ -98,4 +98,11 @@ public enum MyRefLists_zh_CN {
 	@FlyRefList(name = "Yes/No", items = { @FlyRefItem(name = "是", value = "Y"),
 			@FlyRefItem(name = "否", value = "N"), })
 	YesNo,
+	//
+	@FlyRefList(name = "ShowHelp List", items = {
+			@FlyRefItem(name = "Run silently - Take Defaults", value = "Run silently - Take Defaults"),
+			@FlyRefItem(name = "Ask user (for future use)", value = "Ask user (for future use)"),
+			@FlyRefItem(name = "Don't show help", value = "Don't show help"),
+			@FlyRefItem(name = "Show Help", value = "Show Help"), })
+	showHelp,
 }

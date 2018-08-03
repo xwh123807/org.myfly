@@ -7,6 +7,8 @@ import org.myfly.platform.core.domain.RestApiInfo;
 import org.myfly.platform.core.domain.RestControllerInfo;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
 import org.myfly.platform.core3.flydata.service.IFlyDataService;
+import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class FlyDataRestService {
 	@Autowired
 	private IFlyDataService flyDataService;
+	@Autowired
+	private IFlyDataModelService dataModelService;
+
+	private FlyDataModel getFlyDataModel(String entityName) {
+		return dataModelService.getFlyDataModel(entityName);
+	}
 
 	@RequestMapping(value = { "", "help" })
 	public RestControllerInfo help() {
@@ -112,7 +120,7 @@ public class FlyDataRestService {
 	@GetMapping("findByExample/{entityName}")
 	public List<FlyEntityMap> findByExample(@PathVariable("entityName") String entityName,
 			@RequestParam Map<String, Object> example) {
-		return flyDataService.findByExample(entityName, new FlyEntityMap(example));
+		return flyDataService.findByExample(entityName, FlyEntityUtils.fromMap(getFlyDataModel(entityName), example));
 	}
 
 	/**

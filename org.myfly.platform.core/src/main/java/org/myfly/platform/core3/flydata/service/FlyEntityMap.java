@@ -23,6 +23,13 @@ import org.myfly.platform.core3.metadata.define.FlyDataModel;
  *
  */
 public class FlyEntityMap extends HashMap<String, Object> implements IFlyEntity {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2325038605071598391L;
+
+	public FlyEntityMap() {
+	}
 
 	/**
 	 * @param from
@@ -30,14 +37,6 @@ public class FlyEntityMap extends HashMap<String, Object> implements IFlyEntity 
 	public FlyEntityMap(Map<String, Object> from) {
 		putAll(from);
 	}
-
-	public FlyEntityMap() {
-	}
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2325038605071598391L;
 
 	/**
 	 * 序列化为json
@@ -81,7 +80,7 @@ public class FlyEntityMap extends HashMap<String, Object> implements IFlyEntity 
 	 * @param entityb
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public FlyEntityMap merge(Map entityb) {
 		entityb.keySet().forEach(name -> {
 			if (entityb.get(name) instanceof Collection) {

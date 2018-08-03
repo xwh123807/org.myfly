@@ -37,6 +37,74 @@ public enum RefLists_zh_CN {
 			@FlyRefItem(name = "Obscure AlphaNumeric but last 4", value = "A04"), })
 	AD_Field_ObscureType,
 	//
+	@FlyRefList(name = "AD_Print 区域", items = { @FlyRefItem(name = "内容", value = "C"),
+			@FlyRefItem(name = "头", value = "H"), @FlyRefItem(name = "脚", value = "F"), })
+	AD_Print_Area,
+	//
+	@FlyRefList(name = "AD_Print 字段对准", items = { @FlyRefItem(name = "缺省值", value = "D"),
+			@FlyRefItem(name = "领先", value = "L"), @FlyRefItem(name = "拖", value = "T"),
+			@FlyRefItem(name = "块", value = "B"), @FlyRefItem(name = "中心", value = "C"), })
+	AD_Print_Field_Alignment,
+	//
+	@FlyRefList(name = "AD_PrintFormatItem BarcodeType", items = {
+			@FlyRefItem(name = "Code 39 USD3 w/o Checksum", value = "us3"),
+			@FlyRefItem(name = "Code 39  3 of 9 linear with Checksum", value = "3O9"),
+			@FlyRefItem(name = "Code 39 linear w/o Checksum", value = "c39"),
+			@FlyRefItem(name = "EAN 13", value = "E13"), @FlyRefItem(name = "Codabar 2 of 7 linear", value = "2o9"),
+			@FlyRefItem(name = "Code 39  3 of 9 linear w/o Checksum", value = "3o9"),
+			@FlyRefItem(name = "Codeabar linear", value = "COD"),
+			@FlyRefItem(name = "Code 128 dynamically switching", value = "C28"),
+			@FlyRefItem(name = "Code 128 A character set", value = "28A"),
+			@FlyRefItem(name = "Code 128 B character set", value = "28B"),
+			@FlyRefItem(name = "Code 128 C character set", value = "28C"),
+			@FlyRefItem(name = "Code 39 linear with Checksum", value = "C39"),
+			@FlyRefItem(name = "EAN 128", value = "E28"),
+			@FlyRefItem(name = "Global Trade Item No GTIN UCC/EAN 128", value = "GTN"),
+			@FlyRefItem(name = "Codabar Monarch linear", value = "MON"),
+			@FlyRefItem(name = "Codabar NW-7 linear", value = "NW7"),
+			@FlyRefItem(name = "PDF417 two dimensional", value = "417"),
+			@FlyRefItem(name = "SCC-14 shipping code UCC/EAN 128", value = "C14"),
+			@FlyRefItem(name = "Shipment ID number UCC/EAN 128", value = "SID"),
+			@FlyRefItem(name = "UCC 128", value = "U28"),
+			@FlyRefItem(name = "Code 39 USD3 with Checksum", value = "US3"),
+			@FlyRefItem(name = "Codabar USD-4 linear", value = "US4"),
+			@FlyRefItem(name = "US Postal Service UCC/EAN 128", value = "USP"),
+			@FlyRefItem(name = "SSCC-18 number UCC/EAN 128", value = "C18"), })
+	AD_PrintFormatItem_BarcodeType,
+	//
+	@FlyRefList(name = "AD_PrintFormatItem ShapeType", items = { @FlyRefItem(name = "3D Rectangle", value = "3"),
+			@FlyRefItem(name = "Oval", value = "O"), @FlyRefItem(name = "Round Rectangle", value = "R"),
+			@FlyRefItem(name = "Normal Rectangle", value = "N"), })
+	AD_PrintFormatItem_ShapeType,
+	//
+	@FlyRefList(name = "AD_Print 格式类型", items = { @FlyRefItem(name = "图像", value = "I"),
+			@FlyRefItem(name = "字段", value = "F"), @FlyRefItem(name = "文本", value = "T"),
+			@FlyRefItem(name = "打印格式", value = "P"), @FlyRefItem(name = "Rectangle", value = "R"),
+			@FlyRefItem(name = "Line", value = "L"), })
+	AD_Print_Format_Type,
+	//
+	@FlyRefList(name = "AD_Print 曲线图类型", items = { @FlyRefItem(name = "饼图", value = "P"),
+			@FlyRefItem(name = "线图", value = "L"), @FlyRefItem(name = "直条图", value = "B"), })
+	AD_Print_Graph_Type,
+	//
+	@FlyRefList(name = "AD_Print 标签线类型", items = { @FlyRefItem(name = "字段", value = "F"),
+			@FlyRefItem(name = "文本", value = "T"), })
+	AD_Print_Label_Line_Type,
+	//
+	@FlyRefList(name = "AD_Print 线对准", items = { @FlyRefItem(name = "没有", value = "X"),
+			@FlyRefItem(name = "领先", value = "L"), @FlyRefItem(name = "中心", value = "C"),
+			@FlyRefItem(name = "拖", value = "T"), })
+	AD_Print_Line_Alignment,
+	//
+	@FlyRefList(name = "AD_PrintPaper Units", items = { @FlyRefItem(name = "MM", value = "M"),
+			@FlyRefItem(name = "Inch", value = "I"), })
+	AD_PrintPaper_Units,
+	//
+	@FlyRefList(name = "AD_PrintTableFormat Stroke", description = "Stroke Type", items = {
+			@FlyRefItem(name = "实线", value = "S"), @FlyRefItem(name = "虚线", value = "D"),
+			@FlyRefItem(name = "点线", value = "d"), @FlyRefItem(name = "点划线", value = "2"), })
+	AD_PrintTableFormat_Stroke,
+	//
 	@FlyRefList(name = "AD_Reference 验证类型", description = "Reference Validation Type list", help = "e.g. I - Independent ", items = {
 			@FlyRefItem(name = "列表验证", value = "L"), @FlyRefItem(name = "数据类型", value = "D"),
 			@FlyRefItem(name = "表验证", value = "T"), })
@@ -78,6 +146,15 @@ public enum RefLists_zh_CN {
 			@FlyRefItem(name = "交易", value = "T"), @FlyRefItem(name = "只有查询", value = "Q"), })
 	AD_Window_Types,
 	//
+	@FlyRefList(name = "AuthMechanisms List", items = { @FlyRefItem(name = "Login", value = "L"),
+			@FlyRefItem(name = "Plain", value = "P"), @FlyRefItem(name = "Digest-MD5", value = "D"),
+			@FlyRefItem(name = "NTLM", value = "N"), @FlyRefItem(name = "oAuth", value = "O"), })
+	AuthMechanisms_List,
+	//
+	@FlyRefList(name = "EncryptionType List", items = { @FlyRefItem(name = "None", value = "N"),
+			@FlyRefItem(name = "SSL", value = "S"), @FlyRefItem(name = "TLS", value = "T"), })
+	EncryptionType_List,
+	//
 	@FlyRefList(name = "Lead Source", description = "Lead Source", help = "The source of a lead", items = {
 			@FlyRefItem(name = "Cold Call", value = "CC"), @FlyRefItem(name = "Existing Customer", value = "EC"),
 			@FlyRefItem(name = "Employee", value = "EM"), @FlyRefItem(name = "Partner", value = "PT"),
@@ -94,6 +171,15 @@ public enum RefLists_zh_CN {
 	@FlyRefList(name = "_MMPolicy", description = "Material Movement Policy", items = {
 			@FlyRefItem(name = "LiFo", value = "L"), @FlyRefItem(name = "FiFo", value = "F"), })
 	_MMPolicy,
+	//
+	@FlyRefList(name = "Protocol List", items = { @FlyRefItem(name = "SMTP", value = "S"),
+			@FlyRefItem(name = "POP3", value = "P"), @FlyRefItem(name = "IMAP", value = "I"), })
+	Protocol_List,
+	//
+	@FlyRefList(name = "ShowHelp List", items = { @FlyRefItem(name = "Run silently - Take Defaults", value = "S"),
+			@FlyRefItem(name = "Ask user (for future use)", value = "A"),
+			@FlyRefItem(name = "Don't show help", value = "N"), @FlyRefItem(name = "Show Help", value = "Y"), })
+	ShowHelp_List,
 	//
 	@FlyRefList(name = "_YesNo", items = { @FlyRefItem(name = "是", value = "Y"),
 			@FlyRefItem(name = "否", value = "N"), })

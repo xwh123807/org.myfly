@@ -168,6 +168,14 @@ public interface IJpaDataAccessService {
 	 * @return
 	 */
 	<T> List<T> findAll(Class<T> entityClass, Specification<?> spec, Sort sort);
+	
+	/**
+	 * 实体数据查询
+	 * @param entityClass
+	 * @param spec
+	 * @return
+	 */
+	<T> List<T> findAll(Class<T> entityClass, Specification<?> spec);
 
 	/**
 	 * 实体数据查询

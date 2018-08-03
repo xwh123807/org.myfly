@@ -9,6 +9,7 @@
           </el-col>
           <el-col  :span="20">
             <el-button-group>
+              <el-button icon="fa fa-refresh" size="medium" @click="refreshHandler"></el-button>
               <el-button icon="fa fa-undo" size=""></el-button>
               <el-button icon="fa fa-file" size="medium"></el-button>
               <el-button icon="fa fa-copy" size="medium"></el-button>
@@ -132,6 +133,13 @@ export default {
           this.parentUid
         );
       }
+    },
+    currentRowIndex(to) {
+      this.searchHandler(
+        this.tabModel.tableApiName,
+        this.parentKeyColumn,
+        this.parentUid
+      );
     }
   },
   methods: {
@@ -156,6 +164,9 @@ export default {
         }
       });
     },
+    refreshHandler(){
+      this.searchHandler(this.tabModel.tableApiName, this.parentKeyColumn, this.parentUid);
+    },
     /**
      * 查询子表数据
      */
@@ -166,7 +177,7 @@ export default {
         var example = {};
         example[parentKeyColumn] = parentUid;
         this.$http
-          .get("/flydata3/findByExample/" + tableApiName, {params: example})
+          .get("/flydata3/findByExample/" + tableApiName, { params: example })
           .then(data => {
             self.tabData = data;
             self.loaded = true;

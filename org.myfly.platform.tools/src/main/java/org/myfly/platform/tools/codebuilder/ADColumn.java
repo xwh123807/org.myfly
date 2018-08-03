@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.lang.model.element.Modifier;
 import javax.persistence.Column;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.metadata.annotation.FlyField;
 import org.myfly.platform.core3.metadata.builder.FlyDataTypeUtils;
@@ -78,8 +79,9 @@ public class ADColumn extends ADElement {
 	}
 
 	public FieldSpec getFieldSpec() {
-		return FieldSpec.builder(getJavaType(), getApiName(), Modifier.PRIVATE).addAnnotation(getColumnAnnotation()).build();
-				//.addAnnotation(getFlyFieldAnnotationSpec2()).build();
+		return FieldSpec.builder(getJavaType(), getApiName(), Modifier.PRIVATE).addAnnotation(getColumnAnnotation())
+				.build();
+		// .addAnnotation(getFlyFieldAnnotationSpec2()).build();
 	}
 
 	public MethodSpec getGetterMethodSpec() {
@@ -96,5 +98,12 @@ public class ADColumn extends ADElement {
 	public void build(Builder builder) {
 		builder.addField(getFieldSpec());
 		// .addMethod(getGetterMethodSpec()).addMethod(getSetterMethodSpec());
+	}
+
+	private static String[] flyFields = { "created", "createdBy", "updated", "updatedBy", "isActive", "clientID",
+			"orgID", "uUID" };
+
+	public boolean isFlyEntityField() {
+		return ArrayUtils.contains(flyFields, getApiName());
 	}
 }

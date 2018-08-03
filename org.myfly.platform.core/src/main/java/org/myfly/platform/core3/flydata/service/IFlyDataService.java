@@ -2,6 +2,10 @@ package org.myfly.platform.core3.flydata.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
+
 /**
  * FlyData服务<br>
  * 1、entityName，实体名，值在系统中唯一，没有特别指定则为实体类名<br>
@@ -118,6 +122,13 @@ public interface IFlyDataService {
 	 */
 	public FlyEntityMap find(String entityName, String uid, boolean hasSubTable, String[] subTableAttrs);
 
+	/**
+	 * 查找全部数据
+	 * @param entityName
+	 * @param hasSubTable
+	 * @param subTableAttrs
+	 * @return
+	 */
 	public List<FlyEntityMap> findAll(String entityName, boolean hasSubTable, String[] subTableAttrs);
 	
 	/**
@@ -127,4 +138,13 @@ public interface IFlyDataService {
 	 * @return
 	 */
 	public List<FlyEntityMap> findByExample(String entityName, FlyEntityMap example);
+	
+	/**
+	 * 
+	 * @param entityName
+	 * @param spec
+	 * @param pageable
+	 * @return
+	 */
+	public Page<FlyEntityMap> findAll(String entityName, Specification<?> spec, Pageable pageable);
 }
