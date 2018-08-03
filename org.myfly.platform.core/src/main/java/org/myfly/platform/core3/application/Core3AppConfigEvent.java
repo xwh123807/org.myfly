@@ -5,11 +5,9 @@ import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.myfly.platform.core.domain.AppStartLevel;
-import org.myfly.platform.core.metadata.service.IMetaDataRegister;
 import org.myfly.platform.core.starter.IAppConfigEvent;
 import org.myfly.platform.core.starter.ICodeLevelDataModelRegister;
 import org.myfly.platform.core.starter.ICodeLevelViewModelRegister;
-import org.myfly.platform.core.system.service.IMenuService;
 import org.myfly.platform.core3.dbinit.Core3SystemData;
 import org.myfly.platform.core3.dbinit.FlyDataModelImporter;
 import org.myfly.platform.core3.dbinit.resources.Element_zh_CN;
@@ -39,11 +37,6 @@ public class Core3AppConfigEvent implements IAppConfigEvent {
 	}
 
 	@Override
-	public void registerMenus(IMenuService menuService) {
-
-	}
-
-	@Override
 	public void initSysData() {
 		if (initDB) {
 			systemData.initCore3SystemData();
@@ -54,10 +47,6 @@ public class Core3AppConfigEvent implements IAppConfigEvent {
 	@Override
 	public void initSampleData() {
 
-	}
-
-	@Override
-	public void registerExternalMetaData(IMetaDataRegister metaDataRegister) {
 	}
 
 	@Override

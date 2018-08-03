@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.myfly.platform.core3.metadata.define.FlyMemoryDataModel;
+import org.myfly.platform.core3.datamodel.define.FlyMemoryDataModel;
 import org.myfly.platform.core3.model.PColumn;
 import org.myfly.platform.core3.model.PDataType;
 import org.myfly.platform.core3.model.PElement;

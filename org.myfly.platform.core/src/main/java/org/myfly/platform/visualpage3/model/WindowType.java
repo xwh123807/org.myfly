@@ -1,6 +1,6 @@
 package org.myfly.platform.visualpage3.model;
 
-import org.myfly.platform.core3.metadata.annotation.FlyField;
+import org.myfly.platform.core3.datamodel.annotation.FlyField;
 
 public enum WindowType {
 	//

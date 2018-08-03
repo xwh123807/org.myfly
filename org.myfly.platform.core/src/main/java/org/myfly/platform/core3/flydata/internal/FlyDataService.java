@@ -7,11 +7,11 @@ import javax.transaction.Transactional;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
+import org.myfly.platform.core3.datamodel.define.FlyDataModel;
+import org.myfly.platform.core3.datamodel.service.IFlyDataModelService;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
 import org.myfly.platform.core3.flydata.service.IFlyDataService;
-import org.myfly.platform.core3.metadata.define.FlyDataModel;
-import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

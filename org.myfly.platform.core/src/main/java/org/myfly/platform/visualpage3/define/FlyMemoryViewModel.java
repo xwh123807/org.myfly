@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.myfly.platform.core3.metadata.define.IDefinition;
+import org.myfly.platform.core3.datamodel.define.IDefinition;
 
 public class FlyMemoryViewModel {
 	private static FlyMemoryViewModel instance = new FlyMemoryViewModel();

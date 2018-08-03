@@ -4,7 +4,7 @@ import javax.transaction.Transactional;
 
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
 import org.myfly.platform.core.utils.DateUtil;
-import org.myfly.platform.core3.metadata.internal.FlySystemResource;
+import org.myfly.platform.core3.datamodel.internal.FlySystemResource;
 import org.myfly.platform.core3.model.ConnectionProfile;
 import org.myfly.platform.core3.model.NotificationType;
 import org.myfly.platform.core3.model.PClient;

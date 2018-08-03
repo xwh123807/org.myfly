@@ -3,8 +3,8 @@ package org.myfly.platform.visualpage3.define;
 import java.util.Map;
 
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core3.datamodel.define.IDefinition;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core3.metadata.define.IDefinition;
 import org.myfly.platform.visualpage3.model.PWindow;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

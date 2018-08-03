@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.persistence.criteria.Predicate;
 
 import org.apache.commons.collections4.MapUtils;
-import org.myfly.platform.core3.metadata.define.FlyDataModel;
+import org.myfly.platform.core3.datamodel.define.FlyDataModel;
 import org.springframework.data.jpa.domain.Specification;
 
 public class SpecificationUtils {

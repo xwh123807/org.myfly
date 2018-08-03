@@ -8,9 +8,9 @@ import java.util.Map;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core3.datamodel.define.FlyDataModel;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core3.metadata.define.FlyDataModel;
 
 /**
  * 数据查询结果集<br>

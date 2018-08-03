@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core3.datamodel.builder.FlyDataTypeUtils;
+import org.myfly.platform.core3.datamodel.define.FElement;
+import org.myfly.platform.core3.datamodel.define.FRefListItem;
+import org.myfly.platform.core3.datamodel.define.FlyColumn;
+import org.myfly.platform.core3.datamodel.define.IDefinition;
 import org.myfly.platform.core3.flydata.internal.FlyEntityUtils;
-import org.myfly.platform.core3.metadata.builder.FlyDataTypeUtils;
-import org.myfly.platform.core3.metadata.define.FElement;
-import org.myfly.platform.core3.metadata.define.FRefListItem;
-import org.myfly.platform.core3.metadata.define.FlyColumn;
-import org.myfly.platform.core3.metadata.define.IDefinition;
 import org.myfly.platform.core3.model.PRefList;
 import org.myfly.platform.visualpage3.model.PField;
 

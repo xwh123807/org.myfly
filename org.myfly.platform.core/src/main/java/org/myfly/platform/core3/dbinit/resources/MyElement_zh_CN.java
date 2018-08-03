@@ -1,7 +1,7 @@
 package org.myfly.platform.core3.dbinit.resources;
 
+import org.myfly.platform.core3.datamodel.annotation.FlyElement;
 import org.myfly.platform.core3.domain.FlyDataType;
-import org.myfly.platform.core3.metadata.annotation.FlyElement;
 
 /**
  * 基本类型的Element

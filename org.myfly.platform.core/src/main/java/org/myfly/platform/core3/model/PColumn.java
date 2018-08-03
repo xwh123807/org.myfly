@@ -5,12 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.myfly.platform.core3.datamodel.annotation.FlyRefTable;
+import org.myfly.platform.core3.datamodel.annotation.FlyReferences;
+import org.myfly.platform.core3.datamodel.annotation.FlyTable;
+import org.myfly.platform.core3.datamodel.service.IFlyColumn;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.FlyMetaEntity;
-import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
-import org.myfly.platform.core3.metadata.annotation.FlyReferences;
-import org.myfly.platform.core3.metadata.annotation.FlyTable;
-import org.myfly.platform.core3.metadata.service.IFlyColumn;
 
 /**
  * 字段定义 <br>

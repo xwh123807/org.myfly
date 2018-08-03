@@ -6,8 +6,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core3.datamodel.builder.DataTypeBuilder;
+import org.myfly.platform.core3.datamodel.define.FDataType;
 import org.myfly.platform.core3.domain.FlyDataType;
-import org.myfly.platform.core3.metadata.define.FDataType;
 
 public class DataTypeBuilderTest {
 	private DataTypeBuilder builder;

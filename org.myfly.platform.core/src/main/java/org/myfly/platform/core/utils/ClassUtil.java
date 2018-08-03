@@ -22,8 +22,6 @@ import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.myfly.platform.core.domain.BaseEnum;
-import org.myfly.platform.core.system.domain.KeyEntity;
-import org.myfly.platform.core3.domain.IFlyEntity;
 
 public class ClassUtil {
 	private static final Log log = LogFactory.getLog(ClassUtil.class);
@@ -119,16 +117,6 @@ public class ClassUtil {
 	 * @return
 	 */
 	public static <T> T convert(Object source, Class<T> targetType) {
-		if (targetType.getSuperclass() == KeyEntity.class && source instanceof String) {
-			// 为实体查找关系
-			try {
-				KeyEntity entity = (KeyEntity) targetType.newInstance();
-				entity.setUid((String) source);
-				return (T) entity;
-			} catch (Exception e) {
-				AssertUtil.parameterInvalide((String) source, e.getMessage());
-			}
-		}
 		return AppUtil.getConversionService().convert(source, targetType);
 	}
 

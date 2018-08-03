@@ -8,8 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.myfly.platform.core.utils.EntityClassUtil;
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core3.datamodel.builder.RefTableBuilder;
+import org.myfly.platform.core3.datamodel.define.FRefTable;
 import org.myfly.platform.core3.domain.IFlyEntity;
-import org.myfly.platform.core3.metadata.define.FRefTable;
 import org.myfly.platform.core3.model.PTable;
 
 public class RefTableBuilderTest {

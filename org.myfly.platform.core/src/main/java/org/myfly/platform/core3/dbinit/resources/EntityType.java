@@ -1,7 +1,7 @@
 package org.myfly.platform.core3.dbinit.resources;
 
+import org.myfly.platform.core3.datamodel.annotation.FlyEntityType;
 import org.myfly.platform.core3.domain.IRefList;
-import org.myfly.platform.core3.metadata.annotation.FlyEntityType;
 
 /**
  * 实体类型

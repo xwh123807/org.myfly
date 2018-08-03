@@ -10,7 +10,7 @@ import org.myfly.platform.core3.process.annotation.FlyProcessParam;
  *
  */
 @FlyProcess
-public class ChangePassword {
+public class ChangePassword extends SvrProcess {
 	@FlyProcessParam
 	private String userID;
 
@@ -21,5 +21,22 @@ public class ChangePassword {
 	private String newPassword;
 
 	@FlyProcessParam
-	private String confirmPassword;
+	private String newEMail;
+
+	@FlyProcessParam
+	private String newEMailUser;
+
+	@FlyProcessParam
+	private String newEMailUserPW;
+
+	@Override
+	protected void prepare() {
+
+	}
+
+	@Override
+	protected String doIt() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

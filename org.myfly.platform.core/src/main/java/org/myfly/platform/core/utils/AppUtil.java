@@ -3,15 +3,12 @@ package org.myfly.platform.core.utils;
 import javax.persistence.EntityManagerFactory;
 
 import org.hibernate.SessionFactory;
-import org.myfly.platform.core.flydata.service.IFlyDataAccessService;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
-import org.myfly.platform.core.metadata.entity.EntityMetaData;
-import org.myfly.platform.core.metadata.service.IEntityMetaDataService;
 import org.myfly.platform.core.starter.ApplicationStarter;
+import org.myfly.platform.core3.datamodel.define.FlyDataModel;
+import org.myfly.platform.core3.datamodel.define.FlyMemoryDataModel;
+import org.myfly.platform.core3.datamodel.service.IFlyDataModelService;
 import org.myfly.platform.core3.flydata.service.IIDNameService;
-import org.myfly.platform.core3.metadata.define.FlyDataModel;
-import org.myfly.platform.core3.metadata.define.FlyMemoryDataModel;
-import org.myfly.platform.core3.metadata.service.IFlyDataModelService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.GenericConversionService;
@@ -86,91 +83,12 @@ public class AppUtil {
 	}
 
 	/**
-	 * 获取实体元模型服务
-	 * 
-	 * @return
-	 */
-	public static IEntityMetaDataService getEntityMataDataService() {
-		return getService(IEntityMetaDataService.class);
-	}
-
-	/**
-	 * 获取实体元模型
-	 * 
-	 * @param entityClassOrName
-	 * @return
-	 */
-	public static EntityMetaData getEntityMetaData(String entityClassOrName) {
-		Assert.hasLength(entityClassOrName);
-		EntityMetaData metaData = null;
-		try {
-			IEntityMetaDataService emService = null;
-			try {
-				emService = getEntityMataDataService();
-			} catch (Exception e) {
-			}
-			if (emService == null) {
-				Class<?> entityClass = Class.forName(entityClassOrName);
-				metaData = new EntityMetaData(entityClass);
-			} else {
-				metaData = getEntityMataDataService().getEntityMetaData(entityClassOrName);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException("查找元模型[" + entityClassOrName + "]失败，" + e.getMessage());
-		}
-		Assert.notNull(metaData, "找不到名称为[" + entityClassOrName + "]的元模型");
-		return metaData;
-	}
-
-	/**
-	 * 获取Fly数据访问服务Jdbc实现
-	 * 
-	 * @return
-	 */
-	public static IFlyDataAccessService getJdbcFlyDataAccessService() {
-		return getService("jdbcFlyDataAccessService");
-	}
-
-	/**
-	 * 获取Fly数据访问服务Jpa实现
-	 * 
-	 * @return
-	 */
-	public static IFlyDataAccessService getJpaFlyDataAccessService() {
-		return getService("jpaFlyDataAccessService");
-	}
-	
-	/**
 	 * 获取Jpa数据访问服务
+	 * 
 	 * @return
 	 */
 	public static IJpaDataAccessService getJpaDataService() {
 		return getService(IJpaDataAccessService.class);
-	}
-
-	/**
-	 * 根据实体是否有实体类获取fly扩展数据访问服务。有实体类时，调用jpa实现，反之调用jdbc实现。
-	 * 
-	 * @param entityName
-	 * @return
-	 */
-	public static IFlyDataAccessService getFlyDataAccessService(String entityName) {
-		if (isJpaEntity(entityName)) {
-			return getJpaFlyDataAccessService();
-		} else {
-			return getJdbcFlyDataAccessService();
-		}
-	}
-
-	/**
-	 * 判断实体是否有对应实体类
-	 * 
-	 * @param entityName
-	 * @return
-	 */
-	private static boolean isJpaEntity(String entityName) {
-		return getEntityMetaData(entityName).isJpaEntity();
 	}
 
 	/**
@@ -215,6 +133,7 @@ public class AppUtil {
 
 	/**
 	 * 获取ID名称转换服务
+	 * 
 	 * @return
 	 */
 	public static IIDNameService getIDNameService() {

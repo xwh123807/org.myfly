@@ -8,10 +8,6 @@ import org.apache.commons.lang3.StringUtils;
  *
  */
 public class Utils {
-	public DataUtil getDataUtil(){
-		return new DataUtil();
-	}
-	
 	public StringUtils getStringUtils(){
 		return new StringUtils();
 	}

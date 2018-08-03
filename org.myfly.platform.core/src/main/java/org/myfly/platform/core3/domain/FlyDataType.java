@@ -1,6 +1,6 @@
 package org.myfly.platform.core3.domain;
 
-import org.myfly.platform.core3.metadata.annotation.FlyField;
+import org.myfly.platform.core3.datamodel.annotation.FlyField;
 
 /**
  * 数据类型，包含基本和扩展 <br>

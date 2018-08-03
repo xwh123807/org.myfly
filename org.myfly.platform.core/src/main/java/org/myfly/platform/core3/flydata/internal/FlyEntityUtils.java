@@ -12,14 +12,14 @@ import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.DateUtil;
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core3.datamodel.define.FlyColumn;
+import org.myfly.platform.core3.datamodel.define.FlyDataModel;
+import org.myfly.platform.core3.datamodel.handler.RefObject;
+import org.myfly.platform.core3.datamodel.internal.FlySystemResource;
 import org.myfly.platform.core3.domain.FlyDataType;
 import org.myfly.platform.core3.domain.IFlyEntity;
 import org.myfly.platform.core3.domain.IFlyMetaEntity;
 import org.myfly.platform.core3.flydata.service.FlyEntityMap;
-import org.myfly.platform.core3.metadata.define.FlyColumn;
-import org.myfly.platform.core3.metadata.define.FlyDataModel;
-import org.myfly.platform.core3.metadata.handler.RefObject;
-import org.myfly.platform.core3.metadata.internal.FlySystemResource;
 
 public class FlyEntityUtils {
 	private static Log log = LogFactory.getLog(FlyEntityUtils.class);

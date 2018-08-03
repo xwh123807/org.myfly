@@ -197,24 +197,6 @@ public interface IJpaDataAccessService {
 	<T> Page<T> findAll(Class<T> entityClass, Map<String, Object> params, Pageable pageable);
 
 	/**
-	 * 根据名称获取对应实体的UID，实体Name字段必须唯一
-	 * 
-	 * @param tableName
-	 * @param name
-	 * @return
-	 */
-	String transNameToUID(String tableName, String name);
-
-	/**
-	 * 根据UID获取对应实体的名称
-	 * 
-	 * @param tableName
-	 * @param uid
-	 * @return
-	 */
-	String transUIDToName(String tableName, String uid);
-
-	/**
 	 * 刷新数据，将事务提交
 	 */
 	void flush();

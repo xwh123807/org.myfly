@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.myfly.platform.core.metadata.define.FilterDefinition;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -84,7 +83,7 @@ public interface IJdbcDataAccessService {
 	 * @param sort
 	 * @return
 	 */
-	List<Map<String, Object>> findAll(String dataSourceId, String tableName, FilterDefinition[] filters, int page, int size, Sort sort);
+	List<Map<String, Object>> findAll(String dataSourceId, String tableName, int page, int size, Sort sort);
 
 	/**
 	 * 查询记录总数
@@ -93,7 +92,7 @@ public interface IJdbcDataAccessService {
 	 * @param filters
 	 * @return
 	 */
-	long count(String dataSourceId, String tableName, FilterDefinition[] filters);
+	long count(String dataSourceId, String tableName);
 
 	/**
 	 * 按主键删除记录，成功时删除一条数据，当记录不存时，返回异常

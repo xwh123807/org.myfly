@@ -6,8 +6,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core3.datamodel.builder.RefListBuilder;
+import org.myfly.platform.core3.datamodel.define.FRefList;
 import org.myfly.platform.core3.dbinit.resources.MyRefLists_zh_CN;
-import org.myfly.platform.core3.metadata.define.FRefList;
 
 public class RefListBuilderTest {
 

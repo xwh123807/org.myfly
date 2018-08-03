@@ -6,9 +6,7 @@ import java.util.function.Consumer;
 import org.apache.commons.collections4.CollectionUtils;
 import org.myfly.platform.core.domain.AppStartLevel;
 import org.myfly.platform.core.flydata.config.FlyDataProperties;
-import org.myfly.platform.core.metadata.internal.FileMetaDataRegister;
 import org.myfly.platform.core.spring.ExtendConvertersRegister;
-import org.myfly.platform.core.system.service.IMenuService;
 import org.myfly.platform.core.utils.AppUtil;
 import org.myfly.platform.core.utils.AssertUtil;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -38,12 +36,6 @@ public class ApplicationStarter implements ApplicationRunner {
 
 	@Autowired(required = false)
 	private List<IAppConfigEvent> appConfigEvents;
-
-	@Autowired
-	private FileMetaDataRegister fileMetaDataRegister;
-
-	@Autowired(required = false)
-	private IMenuService menuService;
 
 	@Autowired(required = false)
 	private CacheManager cacheManager;
@@ -152,18 +144,10 @@ public class ApplicationStarter implements ApplicationRunner {
 			});
 		}
 
-		// 注册微应用扩展元数据模型
-		processConfigEvent(new IAppConfigEventExecutor() {
-			@Override
-			public void execute(IAppConfigEvent appConfigEvent) {
-				appConfigEvent.registerExternalMetaData(fileMetaDataRegister);
-			}
-		});
 		// 注册菜单
 		processConfigEvent(new IAppConfigEventExecutor() {
 			@Override
 			public void execute(IAppConfigEvent appConfigEvent) {
-				appConfigEvent.registerMenus(menuService);
 			}
 		});
 

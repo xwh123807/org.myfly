@@ -1,7 +1,7 @@
 package org.myfly.platform.core3.model;
 
-import org.myfly.platform.core3.metadata.annotation.FlyField;
-import org.myfly.platform.core3.metadata.annotation.FlyTable;
+import org.myfly.platform.core3.datamodel.annotation.FlyField;
+import org.myfly.platform.core3.datamodel.annotation.FlyTable;
 
 @FlyTable(name="Notification Type", description="Type of Notifications", help="Emails or Notification sent out for Request Updates, etc.")
 public enum NotificationType {

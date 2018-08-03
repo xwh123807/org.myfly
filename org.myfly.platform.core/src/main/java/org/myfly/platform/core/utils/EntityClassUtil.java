@@ -17,8 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import org.myfly.platform.core.metadata.annotation.FieldView;
-import org.myfly.platform.core3.metadata.annotation.FlyField;
+import org.myfly.platform.core3.datamodel.annotation.FlyField;
 
 public class EntityClassUtil {
 
@@ -42,10 +41,10 @@ public class EntityClassUtil {
 	public static List<Field> getAllEntityFields(Class<?> entityClass) {
 		List<Field> list = new ArrayList<>();
 		FuncUtil.forEach(entityClass.getDeclaredFields(), field -> {
-			if (field.getAnnotation(Column.class) != null || field.getAnnotation(FieldView.class) != null
-					|| field.getAnnotation(FlyField.class) != null || field.getAnnotation(Id.class) != null
-					|| field.getAnnotation(OneToMany.class) != null || field.getAnnotation(ManyToOne.class) != null
-					|| field.getAnnotation(OneToOne.class) != null || field.getAnnotation(EmbeddedId.class) != null) {
+			if (field.getAnnotation(Column.class) != null || field.getAnnotation(FlyField.class) != null
+					|| field.getAnnotation(Id.class) != null || field.getAnnotation(OneToMany.class) != null
+					|| field.getAnnotation(ManyToOne.class) != null || field.getAnnotation(OneToOne.class) != null
+					|| field.getAnnotation(EmbeddedId.class) != null) {
 				list.add(field);
 			}
 		});
@@ -57,6 +56,7 @@ public class EntityClassUtil {
 
 	/**
 	 * 获取实体类属性，包含超类重定义的实体属性
+	 * 
 	 * @param entityClass
 	 * @return
 	 */

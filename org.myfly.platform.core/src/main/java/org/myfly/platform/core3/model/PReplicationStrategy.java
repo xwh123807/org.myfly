@@ -5,9 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.myfly.platform.core3.datamodel.annotation.FlyRefTable;
+import org.myfly.platform.core3.datamodel.annotation.FlyTable;
 import org.myfly.platform.core3.domain.FlyMetaEntity;
-import org.myfly.platform.core3.metadata.annotation.FlyRefTable;
-import org.myfly.platform.core3.metadata.annotation.FlyTable;
 
 @Entity
 @Table(name = "PT_ReplicationStrategy")

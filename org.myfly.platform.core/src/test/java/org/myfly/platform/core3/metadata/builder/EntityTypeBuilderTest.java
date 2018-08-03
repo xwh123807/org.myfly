@@ -6,8 +6,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.myfly.platform.core.utils.JSONUtil;
+import org.myfly.platform.core3.datamodel.builder.EntityTypeBuilder;
+import org.myfly.platform.core3.datamodel.define.FEntityType;
 import org.myfly.platform.core3.dbinit.resources.EntityType;
-import org.myfly.platform.core3.metadata.define.FEntityType;
 
 public class EntityTypeBuilderTest {
 	private EntityTypeBuilder builder;

@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.myfly.platform.CoreApplication;
-import org.myfly.platform.core3.metadata.define.FlyMemoryDataModel;
+import org.myfly.platform.core3.datamodel.define.FlyMemoryDataModel;
 import org.myfly.platform.visualpage3.application.MyFlyViewModel_zh_CN;
 import org.myfly.platform.visualpage3.define.FlyViewModel;
 import org.myfly.platform.visualpage3.define.FlyViewModelBuilder;
