@@ -35,8 +35,8 @@ public class ElementCodeBuilder extends AbstractCodeBuilder<ADElement> {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("package " + getPackageName() + ";").append("\n");
 		buffer.append("\n");
-		buffer.append("import org.myfly.platform.core3.domain.FlyDataType;").append("\n");
-		buffer.append("import org.myfly.platform.core3.metadata.annotation.FlyElement;").append("\n");
+		buffer.append("import org.myfly.platform.core.domain.FlyDataType;").append("\n");
+		buffer.append("import org.myfly.platform.core.datamodel.annotation.FlyElement;").append("\n");
 		buffer.append("\n");
 		buffer.append("public enum " + getClassNameWithLanguage() + "{").append("\n");
 		getSources().forEach(item -> {

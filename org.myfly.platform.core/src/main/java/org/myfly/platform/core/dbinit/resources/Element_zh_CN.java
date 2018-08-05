@@ -1,7 +1,7 @@
 package org.myfly.platform.core.dbinit.resources;
 
-import org.myfly.platform.core.datamodel.annotation.FlyElement;
 import org.myfly.platform.core.domain.FlyDataType;
+import org.myfly.platform.core.datamodel.annotation.FlyElement;
 
 public enum Element_zh_CN {
 	//
@@ -76,6 +76,12 @@ public enum Element_zh_CN {
 	//
 	@FlyElement(columnName = "OrgType_ID", name = "机构类型", description = "Organization Type allows you to categorize your organizations", help = "Organization Type allows you to categorize your organizations for reporting purposes", dataType = FlyDataType.TableDirect, entityType = "D", printName = "机构类型", fieldLength = 22)
 	orgTypeID,
+	//
+	@FlyElement(columnName = "PInstance_ID", name = "进程实例", dataType = FlyDataType.ID, entityType = "D", printName = "进程实例", fieldLength = 22)
+	pInstanceID,
+	//
+	@FlyElement(columnName = "PInstance_Log_ID", name = "日志", dataType = FlyDataType.ID, entityType = "D", printName = "日志", fieldLength = 22)
+	pInstanceLogID,
 	//
 	@FlyElement(columnName = "PrintColor_ID", name = "打印颜色", description = "打印用的颜色", help = "打印用的颜色", dataType = FlyDataType.TableDirect, entityType = "D", printName = "打印颜色", fieldLength = 22)
 	printColorID,
@@ -401,6 +407,9 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "EntityType", name = "实体类型", description = "字典实体类型; 确定所有者和同步性", help = "实体类型'字典/Dictionary', 'Adempiere' 和 '应用/Application' 能够自动的同步因此客户化的工作将被删除或覆盖  		要客户化,请复制实体并选择'用户/User'!", dataType = FlyDataType.Table, entityType = "D", printName = "实体类型", fieldLength = 40)
 	entityType,
 	//
+	@FlyElement(columnName = "ErrorMsg", name = "错误 Msg", dataType = FlyDataType.String, entityType = "D", printName = "错误 Msg", fieldLength = 2000)
+	errorMsg,
+	//
 	@FlyElement(columnName = "Fax", name = "传真", description = "传真号", help = "The Fax identifies a facsimile number for this Business Partner or  Location", dataType = FlyDataType.String, entityType = "D", printName = "传真", fieldLength = 40)
 	fax,
 	//
@@ -509,8 +518,14 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "Included_Tab_ID", name = "已包括定位键", description = "Included Tab in this Tab (Master Dateail)", help = "You can include a Tab in a Tab. If displayed in single row record, the included tab is displayed as multi-row table.", dataType = FlyDataType.Table, entityType = "D", printName = "已包括定位键", fieldLength = 22)
 	includedTabID,
 	//
+	@FlyElement(columnName = "Info", name = "信息", description = "数据", help = "The Information displays data from the source document line.", dataType = FlyDataType.Text, entityType = "D", printName = "信息", fieldLength = 4000)
+	info,
+	//
 	@FlyElement(columnName = "InfoFactoryClass", name = "Info Factory Class", description = "Fully qualified class name that implements the InfoFactory interface", help = "Fully qualified class name that implements the InfoFactory interface. This can be use to provide custom Info class for column.", dataType = FlyDataType.String, entityType = "D", printName = "Info Factory Class", fieldLength = 255)
 	infoFactoryClass,
+	//
+	@FlyElement(columnName = "Info_To", name = "信息到", dataType = FlyDataType.String, entityType = "D", printName = "信息到", fieldLength = 60)
+	infoTo,
 	//
 	@FlyElement(columnName = "Invoice_MailText_ID", name = "发票邮件本文", description = "Email text used for sending invoices", help = "Standard email template used to send invoices as attachments.", dataType = FlyDataType.Table, entityType = "D", printName = "Invoice Mail Text", fieldLength = 22)
 	invoiceMailTextID,
@@ -742,6 +757,9 @@ public enum Element_zh_CN {
 	//
 	@FlyElement(columnName = "IsPrintParameters", name = "Print Parameters", description = "Print query parameters on list report", help = "If selected, query parameters will be printed at the start of the report.", dataType = FlyDataType.YesNo, entityType = "D", printName = "Print Parameters", fieldLength = 1)
 	isPrintParameters,
+	//
+	@FlyElement(columnName = "IsProcessing", name = "正在处理", dataType = FlyDataType.YesNo, entityType = "D", printName = "正在处理", fieldLength = 1)
+	isProcessing,
 	//
 	@FlyElement(columnName = "IsRange", name = "范围", description = "The parameter is a range of values", help = "The Range checkbox indicates that this parameter is a range of values.", dataType = FlyDataType.YesNo, entityType = "D", printName = "范围", fieldLength = 1)
 	isRange,
@@ -977,6 +995,9 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "PA_Goal_ID", name = "目标", description = "经营目标", help = "The Performance Goal indicates what this users performance will be measured against.", dataType = FlyDataType.ID, entityType = "D", printName = "目标", fieldLength = 22)
 	pAGoalID,
 	//
+	@FlyElement(columnName = "ParameterName", name = "参数名字", dataType = FlyDataType.String, entityType = "D", printName = "参数名字", fieldLength = 60)
+	parameterName,
+	//
 	@FlyElement(columnName = "Parent_Column_ID", name = "Parent Column", description = "The link column on the parent tab.", dataType = FlyDataType.Table, entityType = "D", printName = "Parent Column", fieldLength = 22)
 	parentColumnID,
 	//
@@ -986,11 +1007,29 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "Password", name = "口令", description = "任意长度的口令(区分大小写)", help = "The Password indicates the Password for this User Id.  Passwords are required to identify authorized users.", dataType = FlyDataType.String, entityType = "D", printName = "口令", fieldLength = 1024)
 	password,
 	//
+	@FlyElement(columnName = "P_Date", name = "处理日期", dataType = FlyDataType.DateTime, entityType = "D", printName = "处理日期", fieldLength = 7)
+	pDate,
+	//
+	@FlyElement(columnName = "P_Date_To", name = "处理日期到", dataType = FlyDataType.DateTime, entityType = "D", printName = "P 约会到", fieldLength = 7)
+	pDateTo,
+	//
 	@FlyElement(columnName = "Phone", name = "电话", description = "电话号码", help = "The Phone field identifies a telephone number", dataType = FlyDataType.String, entityType = "D", printName = "电话", fieldLength = 40)
 	phone,
 	//
 	@FlyElement(columnName = "Phone2", name = "可选电话", description = "Identifies an alternate telephone number.", help = "The 2nd Phone field identifies an alternate telephone number.", dataType = FlyDataType.String, entityType = "D", printName = "可选电话", fieldLength = 40)
 	phone2,
+	//
+	@FlyElement(columnName = "P_ID", name = "处理ID", dataType = FlyDataType.ID, entityType = "D", printName = "P ID", fieldLength = 22)
+	pID,
+	//
+	@FlyElement(columnName = "P_Msg", name = "信息处理", dataType = FlyDataType.String, entityType = "D", printName = "P Msg", fieldLength = 2000)
+	pMsg,
+	//
+	@FlyElement(columnName = "P_Number", name = "程序号", dataType = FlyDataType.Number, entityType = "D", printName = "程序号", fieldLength = 22)
+	pNumber,
+	//
+	@FlyElement(columnName = "P_Number_To", name = "程序数字到", dataType = FlyDataType.Number, entityType = "D", printName = "目标程序号", fieldLength = 22)
+	pNumberTo,
 	//
 	@FlyElement(columnName = "PO_Description", name = "采购定单描述", description = "在采购定单屏幕中的描述", dataType = FlyDataType.String, entityType = "D", printName = "采购定单描述", fieldLength = 255)
 	pODescription,
@@ -1043,11 +1082,20 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "Protocol", name = "Protocol", description = "Protocol", dataType = FlyDataType.String, entityType = "D", printName = "Protocol", fieldLength = 20)
 	protocol,
 	//
+	@FlyElement(columnName = "P_String", name = "Process String", dataType = FlyDataType.String, entityType = "D", printName = "P String", fieldLength = 255)
+	pString,
+	//
+	@FlyElement(columnName = "P_String_To", name = "Process String To", dataType = FlyDataType.String, entityType = "D", printName = "P_String_To", fieldLength = 255)
+	pStringTo,
+	//
 	@FlyElement(columnName = "ReadOnlyLogic", name = "只读逻辑", description = "Logic to determine if field is read only (applies only when field is read-write)", help = "format := {expression} [{logic} {expression}]<br> 	expression := @{context}@{operand}{value} or @{context}@{operand}{value}<br> 	logic := {|}|{&}<br>	context := any global or window context <br>	value := strings or numbers<br>	logic operators	:= AND or OR with the previous result from left to right <br>	operand := eq{=}, gt{&gt;}, le{&lt;}, not{~^!} <br>	Examples: <br>	@AD_Table_ID@=14 | @Language@!GERGER <br>	@PriceLimit@>10 | @PriceList@>@PriceActual@<br>	@Name@>J<br>	Strings may be in single quotes (optional)", dataType = FlyDataType.Text, entityType = "D", printName = "只读逻辑", fieldLength = 2000)
 	readOnlyLogic,
 	//
 	@FlyElement(columnName = "ReceiptFooterMsg", name = "Receipt Footer Msg", description = "This message will be displayed at the bottom of a receipt when doing a sales or purchase", dataType = FlyDataType.LongText, entityType = "D", printName = "Receipt Footer Msg", fieldLength = 0)
 	receiptFooterMsg,
+	//
+	@FlyElement(columnName = "Record_ID", name = "记录ID", description = "记录的内部ID", help = "The Record ID is the internal unique identifier of a record", dataType = FlyDataType.Button, entityType = "D", printName = "记录ID", fieldLength = 22)
+	recordID,
 	//
 	@FlyElement(columnName = "Red", name = "红色", description = "RGB 值 ", dataType = FlyDataType.Integer, entityType = "D", printName = "红色", fieldLength = 22)
 	red,
@@ -1067,6 +1115,9 @@ public enum Element_zh_CN {
 	@FlyElement(columnName = "ReplicationType", name = "复制类型", description = "数据复制的类型", help = "The Type of data Replication determines the directon of the data replication.  <br>	Reference means that the data in this system is read only -> <br>	Local means that the data in this system is not replicated to other systems - <br>	Merge means that the data in this system is synchronized with the other system <-> <br>	", dataType = FlyDataType.List, entityType = "D", printName = "复制类型", fieldLength = 1)
 	replicationType,
 	//
+	@FlyElement(columnName = "ReportType", name = "Report Type", dataType = FlyDataType.NONE, entityType = "D", printName = "Report Type", fieldLength = 0)
+	reportType,
+	//
 	@FlyElement(columnName = "RequestEMail", name = "请求电子邮件", description = "EMail address to send automated mails from or receive mails for automated processing (fully qualified)", help = "EMails for requests, alerts and escalation are sent from this email address as well as delivery information if the sales rep does not have an email account. The address must be filly qualified (e.g. joe.smith@company.com) and should be a valid address.", dataType = FlyDataType.String, entityType = "D", printName = "请求电子邮件", fieldLength = 60)
 	requestEMail,
 	//
@@ -1078,6 +1129,9 @@ public enum Element_zh_CN {
 	//
 	@FlyElement(columnName = "RequestUserPW", name = "请求用户密码", description = "Password of the user name (ID) for mail processing", dataType = FlyDataType.String, entityType = "D", printName = "请求用户密码", fieldLength = 20)
 	requestUserPW,
+	//
+	@FlyElement(columnName = "Result", name = "结果", description = "采取的动作结果", help = "The Result indicates the result of any action taken on this request.", dataType = FlyDataType.Integer, entityType = "D", printName = "结果", fieldLength = 22)
+	result,
 	//
 	@FlyElement(columnName = "RunningTotalLines", name = "Running Total Lines", description = "Create Running Total Lines (page break) every x lines", help = "When you want to print running totals, enter the number of lines per page after you want to create a running total line and page break. You should define running total only once per format.", dataType = FlyDataType.Integer, entityType = "D", printName = "RT Lines", fieldLength = 22)
 	runningTotalLines,

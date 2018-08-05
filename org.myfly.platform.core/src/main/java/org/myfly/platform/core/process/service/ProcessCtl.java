@@ -1,4 +1,4 @@
-package org.myfly.platform.core.process.internal;
+package org.myfly.platform.core.process.service;
 
 /**
  * Process Interface Controller.

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_HOzocIgcEeidk_4ESs1ygQ" name="core">
-  <packagedElement xmi:type="uml:Package" xmi:id="_WrqGEIgeEeidk_4ESs1ygQ" name="metadata.define">
+  <packagedElement xmi:type="uml:Package" xmi:id="_WrqGEIgeEeidk_4ESs1ygQ" name="datamodel.define">
     <packagedElement xmi:type="uml:Class" xmi:id="_cAmKcIgeEeidk_4ESs1ygQ" name="FlyMemoryDataModel" visibility="public">
       <ownedOperation xmi:id="_zOYNwIggEeidk_4ESs1ygQ" name="updateReferences"/>
       <ownedOperation xmi:id="_CoH3kIgkEeiVOfuwFtjBNw" name="addDataTypes"/>
@@ -192,7 +192,7 @@
       </ownedEnd>
     </packagedElement>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_ii_ZEIghEeiVOfuwFtjBNw" name="metadata.builder">
+  <packagedElement xmi:type="uml:Package" xmi:id="_ii_ZEIghEeiVOfuwFtjBNw" name="datamodel.builder">
     <packagedElement xmi:type="uml:Dependency" xmi:id="_oUNJwIghEeiVOfuwFtjBNw" client="_ii_ZEIghEeiVOfuwFtjBNw" supplier="_WrqGEIgeEeidk_4ESs1ygQ"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_rKTNIIghEeiVOfuwFtjBNw" name="DataTypeBuilder" visibility="public">
       <generalization xmi:id="_9ZjL0IghEeiVOfuwFtjBNw" general="_spDDEIghEeiVOfuwFtjBNw"/>
@@ -318,7 +318,7 @@
       <ownedEnd xmi:id="_QfvcwogmEeiVOfuwFtjBNw" type="_yH_QoIgkEeiVOfuwFtjBNw" association="_QfvcwIgmEeiVOfuwFtjBNw"/>
     </packagedElement>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_hk94UIgmEeiVOfuwFtjBNw" name="metadata.model">
+  <packagedElement xmi:type="uml:Package" xmi:id="_hk94UIgmEeiVOfuwFtjBNw" name="datamodel.model">
     <packagedElement xmi:type="uml:Class" xmi:id="_pL7psIgmEeiVOfuwFtjBNw" name="PTable" visibility="public"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_s2XUEIgmEeiVOfuwFtjBNw" name="PColumn" visibility="public"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_wko8oIgmEeiVOfuwFtjBNw" memberEnd="_wko8oYgmEeiVOfuwFtjBNw _wkpjsIgmEeiVOfuwFtjBNw" navigableOwnedEnd="_wkpjsIgmEeiVOfuwFtjBNw">
@@ -422,5 +422,326 @@
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_n2sfpognEeiVOfuwFtjBNw" value="*"/>
       </ownedEnd>
     </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_IuYYYJfAEeiMqIXZA29iGg" name="viewmodel">
+    <packagedElement xmi:type="uml:Class" xmi:id="_b5KyQJfAEeiMqIXZA29iGg" name="FlyMemoryViewModel" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_fRmtsJfAEeiMqIXZA29iGg" name="FlyViewModel" visibility="public">
+      <generalization xmi:id="_C632wJfCEeiMqIXZA29iGg" general="_9NtVEJfAEeiMqIXZA29iGg"/>
+      <ownedAttribute xmi:id="_vMdn4JfAEeiMqIXZA29iGg" name="isFromDB" visibility="public">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vMdn4ZfAEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vMdn4pfAEeiMqIXZA29iGg" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_sQKj8JfCEeiMqIXZA29iGg" name="toWindowPO"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_h3JzoJfAEeiMqIXZA29iGg" name="FTab" visibility="public">
+      <generalization xmi:id="_Dd0LwJfCEeiMqIXZA29iGg" general="__Px6gJfAEeiMqIXZA29iGg"/>
+      <ownedAttribute xmi:id="_fu4NoJfCEeiMqIXZA29iGg" name="isFromDB" visibility="public">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fu4NoZfCEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fu4NopfCEeiMqIXZA29iGg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_iOVSoJfCEeiMqIXZA29iGg" name="keyColumn" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iOVSoZfCEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iOVSopfCEeiMqIXZA29iGg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_lS7sEJfCEeiMqIXZA29iGg" name="subTabs" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lS7sEZfCEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lS7sEpfCEeiMqIXZA29iGg" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_pEnN8JfCEeiMqIXZA29iGg" name="toTabPO"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_kAPnEJfAEeiMqIXZA29iGg" name="FField" visibility="public">
+      <generalization xmi:id="_EIT6QJfCEeiMqIXZA29iGg" general="_ATTNAJfBEeiMqIXZA29iGg"/>
+      <ownedAttribute xmi:id="_f_mxQJfCEeiMqIXZA29iGg" name="isFromDB" visibility="public">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_f_mxQZfCEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_f_mxQpfCEeiMqIXZA29iGg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_m7OxgJfAEeiMqIXZA29iGg" name="FlyViewModelBuilder" visibility="public">
+      <generalization xmi:id="_e3iycJfBEeiMqIXZA29iGg" general="_spDDEIghEeiVOfuwFtjBNw"/>
+      <ownedOperation xmi:id="_MJq-EJfBEeiMqIXZA29iGg" name="loadFromFlyDataModel"/>
+      <ownedOperation xmi:id="_jTuC0JfBEeiMqIXZA29iGg" name="buildTab"/>
+      <ownedOperation xmi:id="_lny-QJfBEeiMqIXZA29iGg" name="buildFields"/>
+      <ownedOperation xmi:id="_oB0wsJfBEeiMqIXZA29iGg" name="buildField"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_xv-GcJfAEeiMqIXZA29iGg" name="flyViewModelsToFTabs" memberEnd="_xv-GcZfAEeiMqIXZA29iGg _xv-tgpfAEeiMqIXZA29iGg" navigableOwnedEnd="_xv-tgpfAEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_xv-GcZfAEeiMqIXZA29iGg" name="flyViewModels" type="_fRmtsJfAEeiMqIXZA29iGg" association="_xv-GcJfAEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xv-tgJfAEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xv-tgZfAEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_xv-tgpfAEeiMqIXZA29iGg" name="fTabs" type="_h3JzoJfAEeiMqIXZA29iGg" aggregation="shared" association="_xv-GcJfAEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xv-tg5fAEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xv-thJfAEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_yuhZYJfAEeiMqIXZA29iGg" name="fTabsToFFields" memberEnd="_yuhZYZfAEeiMqIXZA29iGg _yuiAcJfAEeiMqIXZA29iGg" navigableOwnedEnd="_yuiAcJfAEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_yuhZYZfAEeiMqIXZA29iGg" name="fTabs" type="_h3JzoJfAEeiMqIXZA29iGg" association="_yuhZYJfAEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yuhZYpfAEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yuhZY5fAEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_yuiAcJfAEeiMqIXZA29iGg" name="fFields" type="_kAPnEJfAEeiMqIXZA29iGg" aggregation="shared" association="_yuhZYJfAEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yuiAcZfAEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yuiAcpfAEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_9NtVEJfAEeiMqIXZA29iGg" name="PWindow" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="__Px6gJfAEeiMqIXZA29iGg" name="PTab" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ATTNAJfBEeiMqIXZA29iGg" name="PField" visibility="public"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_GAD7gJfBEeiMqIXZA29iGg" name="flyMemoryViewModelsToFlyViewModels" memberEnd="_GAD7gZfBEeiMqIXZA29iGg _GAEikJfBEeiMqIXZA29iGg" navigableOwnedEnd="_GAEikJfBEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_GAD7gZfBEeiMqIXZA29iGg" name="flyMemoryViewModels" type="_b5KyQJfAEeiMqIXZA29iGg" association="_GAD7gJfBEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GAD7gpfBEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GAD7g5fBEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_GAEikJfBEeiMqIXZA29iGg" name="flyViewModels" type="_fRmtsJfAEeiMqIXZA29iGg" aggregation="shared" association="_GAD7gJfBEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GAEikZfBEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GAEikpfBEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_qyYMwJfBEeiMqIXZA29iGg" client="_m7OxgJfAEeiMqIXZA29iGg" supplier="_fRmtsJfAEeiMqIXZA29iGg"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_deuI4JfCEeiMqIXZA29iGg" memberEnd="_deuI4ZfCEeiMqIXZA29iGg _deuI5JfCEeiMqIXZA29iGg" navigableOwnedEnd="_deuI5JfCEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_deuI4ZfCEeiMqIXZA29iGg" name="fTabs" type="_h3JzoJfAEeiMqIXZA29iGg" association="_deuI4JfCEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_deuI4pfCEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_deuI45fCEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_deuI5JfCEeiMqIXZA29iGg" name="flyDataModels" type="_3gXSQIgeEeidk_4ESs1ygQ" association="_deuI4JfCEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_deuI5ZfCEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_deuv8JfCEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_6FTHwJfCEeiMqIXZA29iGg" memberEnd="_6FTHwZfCEeiMqIXZA29iGg _6FTHxJfCEeiMqIXZA29iGg" navigableOwnedEnd="_6FTHxJfCEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_6FTHwZfCEeiMqIXZA29iGg" name="fFields" type="_kAPnEJfAEeiMqIXZA29iGg" association="_6FTHwJfCEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6FTHwpfCEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6FTHw5fCEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_6FTHxJfCEeiMqIXZA29iGg" name="flyColumns" type="_-PA7kIgeEeidk_4ESs1ygQ" association="_6FTHwJfCEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6FTHxZfCEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6FTu0JfCEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_B2oWEJfDEeiMqIXZA29iGg" name="fFieldsToFRefListItems" memberEnd="_B2oWEZfDEeiMqIXZA29iGg _B2oWFJfDEeiMqIXZA29iGg" navigableOwnedEnd="_B2oWFJfDEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_B2oWEZfDEeiMqIXZA29iGg" name="fFields" type="_kAPnEJfAEeiMqIXZA29iGg" association="_B2oWEJfDEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_B2oWEpfDEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_B2oWE5fDEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_B2oWFJfDEeiMqIXZA29iGg" name="fRefListItems" type="_xZF8kIgfEeidk_4ESs1ygQ" aggregation="shared" association="_B2oWEJfDEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_B2o9IJfDEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_B2o9IZfDEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ZO0kgJfDEeiMqIXZA29iGg" name="FlyMemoryViewModelRestService" visibility="public">
+      <ownedOperation xmi:id="_jMJwUJfDEeiMqIXZA29iGg" name="getFlyViewModelNames"/>
+      <ownedOperation xmi:id="_mJRowJfDEeiMqIXZA29iGg" name="getFlyViewModelByName"/>
+      <ownedOperation xmi:id="_tgEQIJfDEeiMqIXZA29iGg" name="getTabByName"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_gjV7AJfDEeiMqIXZA29iGg" memberEnd="_gjV7AZfDEeiMqIXZA29iGg _gjV7BJfDEeiMqIXZA29iGg" navigableOwnedEnd="_gjV7BJfDEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_gjV7AZfDEeiMqIXZA29iGg" name="flyMemoryViewModelRestServices" type="_ZO0kgJfDEeiMqIXZA29iGg" association="_gjV7AJfDEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gjV7ApfDEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gjV7A5fDEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_gjV7BJfDEeiMqIXZA29iGg" name="flyMemoryViewModels" type="_b5KyQJfAEeiMqIXZA29iGg" association="_gjV7AJfDEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gjV7BZfDEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gjV7BpfDEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_nr7uUJfDEeiMqIXZA29iGg" client="_ZO0kgJfDEeiMqIXZA29iGg" supplier="_fRmtsJfAEeiMqIXZA29iGg"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_87vT8JfDEeiMqIXZA29iGg" name="CodeLevelViewModelRegister" visibility="public">
+      <ownedOperation xmi:id="_B7JNMJfEEeiMqIXZA29iGg" name="registerFlyViewModelsFromEnumClass"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_EfCGQJfEEeiMqIXZA29iGg" memberEnd="_EfCGQZfEEeiMqIXZA29iGg _EfCGRJfEEeiMqIXZA29iGg" navigableOwnedEnd="_EfCGRJfEEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_EfCGQZfEEeiMqIXZA29iGg" name="codeLevelViewModelRegisters" type="_87vT8JfDEeiMqIXZA29iGg" association="_EfCGQJfEEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EfCGQpfEEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EfCGQ5fEEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_EfCGRJfEEeiMqIXZA29iGg" name="flyViewModelBuilders" type="_m7OxgJfAEeiMqIXZA29iGg" association="_EfCGQJfEEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EfCtUJfEEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EfCtUZfEEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Hb448JfEEeiMqIXZA29iGg" name="FlyViewModelImporter" visibility="public">
+      <ownedOperation xmi:id="_MO1DgJfEEeiMqIXZA29iGg" name="importAll"/>
+      <ownedOperation xmi:id="_N-0acJfEEeiMqIXZA29iGg" name="importViewModels"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_J_znMJfEEeiMqIXZA29iGg" memberEnd="_J_znMZfEEeiMqIXZA29iGg _J_znNJfEEeiMqIXZA29iGg" navigableOwnedEnd="_J_znNJfEEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_J_znMZfEEeiMqIXZA29iGg" name="flyViewModelImporters" type="_Hb448JfEEeiMqIXZA29iGg" association="_J_znMJfEEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_J_znMpfEEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_J_znM5fEEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_J_znNJfEEeiMqIXZA29iGg" name="flyMemoryViewModels" type="_b5KyQJfAEeiMqIXZA29iGg" association="_J_znMJfEEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_J_znNZfEEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_J_znNpfEEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Pnm6AJfAEeiMqIXZA29iGg" name="process">
+    <packagedElement xmi:type="uml:Class" xmi:id="_dq4DoJfEEeiMqIXZA29iGg" name="FlyMemoryProcessModel" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_n3PJ8JfEEeiMqIXZA29iGg" name="ProcessModel" visibility="public">
+      <generalization xmi:id="_zbWGUJfEEeiMqIXZA29iGg" general="_yDrIwJfEEeiMqIXZA29iGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_qb4Q8JfEEeiMqIXZA29iGg" name="FProcessPara" visibility="public">
+      <generalization xmi:id="_25qAQJfEEeiMqIXZA29iGg" general="_1r5MoJfEEeiMqIXZA29iGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_teRq8JfEEeiMqIXZA29iGg" name="flyMemoryProcessModelsToProcessModels" memberEnd="_teRq8ZfEEeiMqIXZA29iGg _teRq9JfEEeiMqIXZA29iGg" navigableOwnedEnd="_teRq9JfEEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_teRq8ZfEEeiMqIXZA29iGg" name="flyMemoryProcessModels" type="_dq4DoJfEEeiMqIXZA29iGg" association="_teRq8JfEEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_teRq8pfEEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_teRq85fEEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_teRq9JfEEeiMqIXZA29iGg" name="processModels" type="_n3PJ8JfEEeiMqIXZA29iGg" aggregation="shared" association="_teRq8JfEEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_teSSAJfEEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_teSSAZfEEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_uJAC8JfEEeiMqIXZA29iGg" name="processModelsToFProcessParas" memberEnd="_uJAC8ZfEEeiMqIXZA29iGg _uJAC9JfEEeiMqIXZA29iGg" navigableOwnedEnd="_uJAC9JfEEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_uJAC8ZfEEeiMqIXZA29iGg" name="processModels" type="_n3PJ8JfEEeiMqIXZA29iGg" association="_uJAC8JfEEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uJAC8pfEEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uJAC85fEEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_uJAC9JfEEeiMqIXZA29iGg" name="fProcessParas" type="_qb4Q8JfEEeiMqIXZA29iGg" aggregation="shared" association="_uJAC8JfEEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uJAC9ZfEEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uJAC9pfEEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_yDrIwJfEEeiMqIXZA29iGg" name="PProcess" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1r5MoJfEEeiMqIXZA29iGg" name="PProcessPara" visibility="public"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_W0_7gJfFEeiMqIXZA29iGg" memberEnd="_W1AikJfFEeiMqIXZA29iGg _W1Aik5fFEeiMqIXZA29iGg" navigableOwnedEnd="_W1Aik5fFEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_W1AikJfFEeiMqIXZA29iGg" name="fProcessParas" type="_qb4Q8JfEEeiMqIXZA29iGg" association="_W0_7gJfFEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_W1AikZfFEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_W1AikpfFEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_W1Aik5fFEeiMqIXZA29iGg" name="fElements" type="_kgwNoIgeEeidk_4ESs1ygQ" association="_W0_7gJfFEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_W1AilJfFEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_W1AilZfFEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_j6P6gJfFEeiMqIXZA29iGg" name="PPInstance" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_mbXzcJfFEeiMqIXZA29iGg" name="PPInstancePara" visibility="public"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_qeTdYJfFEeiMqIXZA29iGg" name="PPInstanceLog" visibility="public"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_vWbp8JfFEeiMqIXZA29iGg" memberEnd="_vWbp8ZfFEeiMqIXZA29iGg _vWbp9JfFEeiMqIXZA29iGg" navigableOwnedEnd="_vWbp9JfFEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_vWbp8ZfFEeiMqIXZA29iGg" name="pProcesss" type="_yDrIwJfEEeiMqIXZA29iGg" association="_vWbp8JfFEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vWbp8pfFEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vWbp85fFEeiMqIXZA29iGg" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_vWbp9JfFEeiMqIXZA29iGg" name="pProcessParas" type="_1r5MoJfEEeiMqIXZA29iGg" aggregation="composite" association="_vWbp8JfFEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vWcRAJfFEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vWcRAZfFEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_wRPsYJfFEeiMqIXZA29iGg" memberEnd="_wRPsYZfFEeiMqIXZA29iGg _wRPsZJfFEeiMqIXZA29iGg" navigableOwnedEnd="_wRPsZJfFEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_wRPsYZfFEeiMqIXZA29iGg" name="pPInstances" type="_j6P6gJfFEeiMqIXZA29iGg" association="_wRPsYJfFEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wRPsYpfFEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wRPsY5fFEeiMqIXZA29iGg" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_wRPsZJfFEeiMqIXZA29iGg" name="pPInstanceParas" type="_mbXzcJfFEeiMqIXZA29iGg" aggregation="composite" association="_wRPsYJfFEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wRPsZZfFEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wRPsZpfFEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_4qU3MJfFEeiMqIXZA29iGg" name="pProcesssToPPInstances" memberEnd="_4qU3MZfFEeiMqIXZA29iGg _4qU3NJfFEeiMqIXZA29iGg" navigableOwnedEnd="_4qU3NJfFEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_4qU3MZfFEeiMqIXZA29iGg" name="pProcesss" type="_yDrIwJfEEeiMqIXZA29iGg" association="_4qU3MJfFEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4qU3MpfFEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4qU3M5fFEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_4qU3NJfFEeiMqIXZA29iGg" name="pPInstances" type="_j6P6gJfFEeiMqIXZA29iGg" aggregation="shared" association="_4qU3MJfFEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4qU3NZfFEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4qU3NpfFEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Luqq0JfGEeiMqIXZA29iGg" name="pPInstancesToPPInstanceLogs" memberEnd="_Luqq0ZfGEeiMqIXZA29iGg _Luqq1JfGEeiMqIXZA29iGg" navigableOwnedEnd="_Luqq1JfGEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_Luqq0ZfGEeiMqIXZA29iGg" name="pPInstances" type="_j6P6gJfFEeiMqIXZA29iGg" association="_Luqq0JfGEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Luqq0pfGEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Luqq05fGEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_Luqq1JfGEeiMqIXZA29iGg" name="pPInstanceLogs" type="_qeTdYJfFEeiMqIXZA29iGg" aggregation="shared" association="_Luqq0JfGEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Luqq1ZfGEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Luqq1pfGEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_US8ZAJfGEeiMqIXZA29iGg" name="ProcessModelBuilder" visibility="public">
+      <generalization xmi:id="_e0QboJfGEeiMqIXZA29iGg" general="_spDDEIghEeiVOfuwFtjBNw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_koNXQJfGEeiMqIXZA29iGg" client="_US8ZAJfGEeiMqIXZA29iGg" supplier="_n3PJ8JfEEeiMqIXZA29iGg"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tMpdgJfGEeiMqIXZA29iGg" name="FlyMemoryProcessModelRestService" visibility="public">
+      <ownedOperation xmi:id="_7NTU0JfGEeiMqIXZA29iGg" name="getFlyProcessModelNames"/>
+      <ownedOperation xmi:id="_7NT74JfGEeiMqIXZA29iGg" name="getFlyProcessModelByName"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_09xQcJfGEeiMqIXZA29iGg" memberEnd="_09xQcZfGEeiMqIXZA29iGg _09x3gJfGEeiMqIXZA29iGg" navigableOwnedEnd="_09x3gJfGEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_09xQcZfGEeiMqIXZA29iGg" name="flyMemoryProcessModelRestServices" type="_tMpdgJfGEeiMqIXZA29iGg" association="_09xQcJfGEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_09xQcpfGEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_09xQc5fGEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_09x3gJfGEeiMqIXZA29iGg" name="flyMemoryProcessModels" type="_dq4DoJfEEeiMqIXZA29iGg" association="_09xQcJfGEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_09x3gZfGEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_09x3gpfGEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_28zI8JfGEeiMqIXZA29iGg" client="_tMpdgJfGEeiMqIXZA29iGg" supplier="_n3PJ8JfEEeiMqIXZA29iGg"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_EB_dkJfHEeiMqIXZA29iGg" name="FlyProcessModelImporter" visibility="public">
+      <ownedOperation xmi:id="_NnxsEJfHEeiMqIXZA29iGg" name="imporProcessModels"/>
+      <ownedOperation xmi:id="_NnxsEZfHEeiMqIXZA29iGg" name="importAll"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_LhacgJfHEeiMqIXZA29iGg" memberEnd="_LhacgZfHEeiMqIXZA29iGg _LhachJfHEeiMqIXZA29iGg" navigableOwnedEnd="_LhachJfHEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_LhacgZfHEeiMqIXZA29iGg" name="flyProcessModelImporters" type="_EB_dkJfHEeiMqIXZA29iGg" association="_LhacgJfHEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LhacgpfHEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Lhacg5fHEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_LhachJfHEeiMqIXZA29iGg" name="flyMemoryProcessModels" type="_dq4DoJfEEeiMqIXZA29iGg" association="_LhacgJfHEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LhachZfHEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LhachpfHEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_4SlKgJhSEeiMqIXZA29iGg" name="ProcessCall" visibility="public">
+      <ownedOperation xmi:id="_6k39QJhSEeiMqIXZA29iGg" name="startProcess"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_9U08YJhSEeiMqIXZA29iGg" name="SvrProcess" visibility="public" isAbstract="true">
+      <generalization xmi:id="_-tRWAJhSEeiMqIXZA29iGg" general="_4SlKgJhSEeiMqIXZA29iGg"/>
+      <ownedOperation xmi:id="_DCebsJhTEeiMqIXZA29iGg" name="startProcess"/>
+      <ownedOperation xmi:id="_F1n4wJhTEeiMqIXZA29iGg" name="process"/>
+      <ownedOperation xmi:id="_I1MBMJhTEeiMqIXZA29iGg" name="getParameter"/>
+      <ownedOperation xmi:id="_KpTqMJhTEeiMqIXZA29iGg" name="validateParameter"/>
+      <ownedOperation xmi:id="_NuSeIJhTEeiMqIXZA29iGg" name="prepare" isAbstract="true"/>
+      <ownedOperation xmi:id="_PyCekJhTEeiMqIXZA29iGg" name="doIt" isAbstract="true"/>
+      <ownedOperation xmi:id="_TjungJhTEeiMqIXZA29iGg" name="postProcess"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ZAr_cJhTEeiMqIXZA29iGg" name="ProcessInfo" visibility="public">
+      <generalization xmi:id="_mkIWUJhTEeiMqIXZA29iGg" general="_j6P6gJfFEeiMqIXZA29iGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_dPY0gJhTEeiMqIXZA29iGg" memberEnd="_dPY0gZhTEeiMqIXZA29iGg _dPZbkJhTEeiMqIXZA29iGg" navigableOwnedEnd="_dPZbkJhTEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_dPY0gZhTEeiMqIXZA29iGg" name="svrProcesss" type="_9U08YJhSEeiMqIXZA29iGg" association="_dPY0gJhTEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dPY0gphTEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dPY0g5hTEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_dPZbkJhTEeiMqIXZA29iGg" name="processInfos" type="_ZAr_cJhTEeiMqIXZA29iGg" association="_dPY0gJhTEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dPZbkZhTEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dPZbkphTEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_0HSZUJhTEeiMqIXZA29iGg" name="ProcessInfoParameter" visibility="public">
+      <generalization xmi:id="_3AD9QJhTEeiMqIXZA29iGg" general="_mbXzcJfFEeiMqIXZA29iGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_4JUrYJhTEeiMqIXZA29iGg" memberEnd="_4JUrYZhTEeiMqIXZA29iGg _4JVScJhTEeiMqIXZA29iGg" navigableOwnedEnd="_4JVScJhTEeiMqIXZA29iGg">
+      <ownedEnd xmi:id="_4JUrYZhTEeiMqIXZA29iGg" name="processInfos" type="_ZAr_cJhTEeiMqIXZA29iGg" association="_4JUrYJhTEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4JUrYphTEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4JUrY5hTEeiMqIXZA29iGg" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_4JVScJhTEeiMqIXZA29iGg" name="processInfoParameters" type="_0HSZUJhTEeiMqIXZA29iGg" aggregation="composite" association="_4JUrYJhTEeiMqIXZA29iGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4JVScZhTEeiMqIXZA29iGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4JVScphTEeiMqIXZA29iGg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_LN03EJhUEeiMqIXZA29iGg" client="_9U08YJhSEeiMqIXZA29iGg" supplier="_n3PJ8JfEEeiMqIXZA29iGg"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_9Q3-kJhUEeiMqIXZA29iGg" name="ProcessUtil" visibility="public">
+      <ownedOperation xmi:id="__qEDgJhUEeiMqIXZA29iGg" name="startDatabaseProcedure"/>
+      <ownedOperation xmi:id="_E-ejcJhVEeiMqIXZA29iGg" name="startJavaProcess"/>
+      <ownedOperation xmi:id="_MvSNUJhVEeiMqIXZA29iGg" name="startScriptProcess"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_KJvucJhVEeiMqIXZA29iGg" client="_9Q3-kJhUEeiMqIXZA29iGg" supplier="_4SlKgJhSEeiMqIXZA29iGg"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_yiVQ4JhXEeiMqIXZA29iGg" name="ProcessCtl" visibility="public">
+      <interfaceRealization xmi:id="_tZhHgJhYEeiMqIXZA29iGg" client="_yiVQ4JhXEeiMqIXZA29iGg" supplier="_rvw7cJhYEeiMqIXZA29iGg" contract="_rvw7cJhYEeiMqIXZA29iGg"/>
+      <ownedOperation xmi:id="_wQD20JhYEeiMqIXZA29iGg" name="start"/>
+      <ownedOperation xmi:id="_zKb9QJhYEeiMqIXZA29iGg" name="run"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_pecZEJhYEeiMqIXZA29iGg" client="_yiVQ4JhXEeiMqIXZA29iGg" supplier="_9Q3-kJhUEeiMqIXZA29iGg"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_rvw7cJhYEeiMqIXZA29iGg" name="Runnable" visibility="public"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_9SZEsJhYEeiMqIXZA29iGg" client="_yiVQ4JhXEeiMqIXZA29iGg" supplier="_ZAr_cJhTEeiMqIXZA29iGg"/>
   </packagedElement>
 </uml:Model>

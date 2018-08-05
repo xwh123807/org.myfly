@@ -3,22 +3,16 @@ package org.myfly.platform.core.flydata;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.myfly.platform.CoreApplication;
 import org.myfly.platform.core.datamodel.define.FlyDataModel;
 import org.myfly.platform.core.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.model.test.PTMaster;
+import org.myfly.platform.core.test.ServiceTestCase;
 import org.myfly.platform.core.testmodel.AssertEntity;
 import org.myfly.platform.core.testmodel.TestModel;
 import org.myfly.platform.core.utils.AppUtil;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = CoreApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
-public class FlyEntityUtilsTest {
+public class FlyEntityUtilsTest extends ServiceTestCase {
 	private TestModel model;
 
 	@Before
@@ -44,7 +38,6 @@ public class FlyEntityUtilsTest {
 	public void fromEntity() {
 		FlyEntityMap flyEntity = FlyEntityUtils.fromEntity(model.getTestEntity());
 		Assert.assertNotNull(flyEntity);
-		Assert.assertNotNull(flyEntity.get("details"));
 	}
 
 	@Test

@@ -52,7 +52,7 @@ public class FlyMemoryViewModelRestService {
 	}
 
 	@GetMapping("{windowName}/{tabName}")
-	public FTab getFlyColumnByName(@PathVariable("windowName") String windowName,
+	public FTab getTabByName(@PathVariable("windowName") String windowName,
 			@PathVariable("tabName") String tabName) {
 		return getFlyViewModelByName(windowName).getTabs().get(tabName);
 	}

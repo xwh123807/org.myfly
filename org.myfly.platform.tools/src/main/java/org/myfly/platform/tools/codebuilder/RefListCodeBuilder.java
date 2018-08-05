@@ -38,8 +38,8 @@ public class RefListCodeBuilder extends AbstractCodeBuilder<ADReference> {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("package " + getPackageName() + ";").append("\n");
 		buffer.append("\n");
-		buffer.append("import org.myfly.platform.core3.metadata.annotation.FlyRefItem;").append("\n");
-		buffer.append("import org.myfly.platform.core3.metadata.annotation.FlyRefList;").append("\n");
+		buffer.append("import org.myfly.platform.core.datamodel.annotation.FlyRefItem;").append("\n");
+		buffer.append("import org.myfly.platform.core.datamodel.annotation.FlyRefList;").append("\n");
 		buffer.append("\n");
 		buffer.append("public enum " + getClassNameWithLanguage() + " {").append("\n");
 		getSources().forEach(item -> {

@@ -2,6 +2,7 @@ package org.myfly.platform.core.process.internal;
 
 import org.myfly.platform.core.process.annotation.FlyProcess;
 import org.myfly.platform.core.process.annotation.FlyProcessParam;
+import org.myfly.platform.core.process.service.SvrProcess;
 
 /**
  * 更改用户密码 org.compiere.process.UserPassword

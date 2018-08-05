@@ -8,7 +8,7 @@ public class ExportConstants {
 			"AD_EMailConfig", "EXP_Processor", "EXP_ProcessorParameter", "AD_Image", "AD_Language",
 			"AD_ReplicationStrategy", };
 
-	public static String[] EXPORT_DATAMODEL_TABLES = { "AD_DataType", "AD_Element", "AD_EntityType", "AD_Reference",
+	public static String[] EXPORT_DATAMODEL_TABLES = { "AD_Element", "AD_EntityType", "AD_Reference",
 			"AD_Ref_List", "AD_Table", "AD_Column", "AD_Ref_Table", "AD_View_Definition", "AD_View", "AD_View_Column" };
 
 	public static String[] EXPORT_PROCESS_TABLES = { "AD_Process", "AD_Process_Para", "AD_Process_Access",

@@ -9,6 +9,7 @@ import javax.persistence.Table;
 
 import org.myfly.platform.core.datamodel.annotation.FlyRefTable;
 import org.myfly.platform.core.datamodel.annotation.FlyTable;
+import org.myfly.platform.core.domain.FlyDataType;
 import org.myfly.platform.core.domain.FlyEntity;
 
 @Entity
@@ -38,13 +39,16 @@ public class PProcessPara extends FlyEntity {
 	private Boolean isMandatory;
 
 	@Column
-	private BigDecimal fieldLength;
+	private Integer fieldLength;
 
 	@Column(length = 20)
 	private String valueMax;
 
 	@Column(length = 30)
 	private String columnName;
+	
+	@Column(length = 30)
+	private FlyDataType dataType;
 
 	@Column(length = 255)
 	private String description;
@@ -81,9 +85,6 @@ public class PProcessPara extends FlyEntity {
 
 	@Column(length = 20)
 	private String valueMin;
-
-	@Column(length = 32)
-	private String referenceValueID;
 
 	@Column(length = 2000)
 	private String defaultValue;
@@ -129,11 +130,11 @@ public class PProcessPara extends FlyEntity {
 		this.isMandatory = isMandatory;
 	}
 
-	public BigDecimal getFieldLength() {
+	public Integer getFieldLength() {
 		return fieldLength;
 	}
 
-	public void setFieldLength(BigDecimal fieldLength) {
+	public void setFieldLength(Integer fieldLength) {
 		this.fieldLength = fieldLength;
 	}
 
@@ -249,14 +250,6 @@ public class PProcessPara extends FlyEntity {
 		this.valueMin = valueMin;
 	}
 
-	public String getReferenceValueID() {
-		return referenceValueID;
-	}
-
-	public void setReferenceValueID(String referenceValueID) {
-		this.referenceValueID = referenceValueID;
-	}
-
 	public String getDefaultValue() {
 		return defaultValue;
 	}
@@ -295,5 +288,13 @@ public class PProcessPara extends FlyEntity {
 
 	public void setApiName(String apiName) {
 		this.apiName = apiName;
+	}
+
+	public FlyDataType getDataType() {
+		return dataType;
+	}
+
+	public void setDataType(FlyDataType dataType) {
+		this.dataType = dataType;
 	}
 }

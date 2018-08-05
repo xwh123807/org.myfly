@@ -12,10 +12,13 @@ import java.net.URLDecoder;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -301,5 +304,30 @@ public class ClassUtil {
 		} catch (ClassNotFoundException e) {
 			throw new IllegalArgumentException("[" + className + "]类找不到, " + e.getMessage());
 		}
+	}
+
+	/**
+	 * 获取指定包packageName下有注解annotationClass的类
+	 * 
+	 * @param packageName
+	 * @param annotationClass
+	 * @return
+	 */
+	public static List<Class<?>> getClassesByAnnotation(String packageName,
+			Class<? extends Annotation> annotationClass) {
+		return ClassUtil.getClasses(packageName).stream().filter(item -> item.getAnnotation(annotationClass) != null)
+				.collect(Collectors.toList());
+	}
+
+	/**
+	 * 获取类targetClass下有注解annotationClass的属性
+	 * 
+	 * @param targetClass
+	 * @param annotationClass
+	 * @return
+	 */
+	public static List<Field> getFieldsByAnnotation(Class<?> targetClass, Class<? extends Annotation> annotationClass) {
+		return Stream.of(targetClass.getDeclaredFields()).filter(item -> item.getAnnotation(annotationClass) != null)
+				.collect(Collectors.toList());
 	}
 }

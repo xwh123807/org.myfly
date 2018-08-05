@@ -7,6 +7,7 @@ import java.util.List;
 import org.myfly.platform.core.domain.IFlyEntity;
 import org.myfly.platform.core.domain.IFlyMetaEntity;
 import org.myfly.platform.core.flydata.internal.FlyEntityUtils;
+import org.myfly.platform.core.process.service.ProcessCall;
 
 public abstract class AbstractBuilder<S extends IFlyEntity, T extends IFlyEntity> {
 
@@ -67,6 +68,20 @@ public abstract class AbstractBuilder<S extends IFlyEntity, T extends IFlyEntity
 	}
 
 	public List<T> convertEntityClass(Class<? extends IFlyEntity> entityClass) {
+		return null;
+	}
+	
+	/**
+	 * 从过程类构建
+	 * @param processClass
+	 * @return
+	 */
+	public List<T> loadFromProcessClass(Class<? extends ProcessCall> processClass){
+		List<T> list = convertProcessClass(processClass);
+		return list;
+	}
+
+	public List<T> convertProcessClass(Class<? extends ProcessCall> processClass) {
 		return null;
 	}
 }
