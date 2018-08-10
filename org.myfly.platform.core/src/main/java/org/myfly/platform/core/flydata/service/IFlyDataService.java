@@ -147,4 +147,13 @@ public interface IFlyDataService {
 	 * @return
 	 */
 	public Page<FlyEntityMap> findAll(String entityName, Specification<?> spec, Pageable pageable);
+
+	/**
+	 * 
+	 * @param entityName
+	 * @param keyField
+	 * @param keyValue
+	 * @return
+	 */
+	public FlyEntityMap findByKey(String entityName, String keyField, String keyValue);
 }

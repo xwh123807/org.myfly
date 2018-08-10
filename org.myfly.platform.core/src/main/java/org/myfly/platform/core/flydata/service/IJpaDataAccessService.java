@@ -50,7 +50,7 @@ public interface IJpaDataAccessService {
 	 * @param keyParams
 	 * @return
 	 */
-	<T> T findOne(Class<T> entityClass, Map<String, Object> keyParams);
+	<T> T findOne(Class<T> entityClass, Specification<?> specifications);
 	/**
 	 * 查找指定表中所有的数据
 	 * 

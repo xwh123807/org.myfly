@@ -40,6 +40,7 @@ public class FlyDataRestService {
 						new RestApiInfo("{entityName}", "updateEntity", HttpMethod.PUT),
 						new RestApiInfo("{entityName}", "patchEntity", HttpMethod.PATCH),
 						new RestApiInfo("{entityName}/{uid}", "find", HttpMethod.GET),
+						new RestApiInfo("{entityName}/{keyField}/{keyValue}", "findByKey", HttpMethod.GET),
 						new RestApiInfo("{entityName}/{uid}", "delOne", HttpMethod.DELETE) });
 	}
 
@@ -107,6 +108,12 @@ public class FlyDataRestService {
 			@RequestParam(name = "hasSubTable", required = false, defaultValue = "true") boolean hasSubTable,
 			@RequestParam(name = "subTableAttrs", required = false, defaultValue = "null") String[] subTableAttrs) {
 		return flyDataService.find(entityName, uid, hasSubTable, subTableAttrs);
+	}
+
+	@GetMapping("{entityName}/{keyField}/{keyValue}")
+	public FlyEntityMap findByKey(@PathVariable("entityName") String entityName,
+			@PathVariable("keyField") String keyField, @PathVariable("keyValue") String keyValue) {
+		return flyDataService.findByKey(entityName, keyField, keyValue);
 	}
 
 	/**

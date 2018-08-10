@@ -1,7 +1,9 @@
 package org.myfly.platform.core.flydata.internal;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -239,6 +241,27 @@ public class FlyDataService implements IFlyDataService {
 		List<?> list = jpaService.findAll(getEntityClass(entityName),
 				SpecificationUtils.toSpecification(dataModel, example));
 		return toFlyEntityMapList(dataModel, list, false, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.myfly.platform.core.flydata.service.IFlyDataService#findByKey(java.lang.
+	 * String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public FlyEntityMap findByKey(String entityName, String keyField, String keyValue) {
+		FlyDataModel dataModel = getFlyDataModel(entityName);
+		Map<String, Object> keyParams = new HashMap<>();
+		keyParams.put(keyField, keyValue);
+		Object entity = jpaService.findOne(getEntityClass(entityName),
+				SpecificationUtils.toSpecification(dataModel, keyParams));
+		if (entity != null) {
+			return FlyEntityUtils.fromEntity(getFlyDataModel(entityName), entity);
+		} else {
+			return null;
+		}
 	}
 
 	/*

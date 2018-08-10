@@ -28,6 +28,10 @@ export default {
      */
     windowName: { type: String },
     /**
+     * 健值字段
+     */
+    keyField: { type: String },
+    /**
      * 记录UID，对应主键记录值
      */
     uid: { type: String }
@@ -85,7 +89,11 @@ export default {
           self.viewModel = self.viewModels[windowName];
           self.tabModel = self.viewModel.tabs[self.viewModel.mainTabName];
           if (isSearch && self.uid) {
-            self.searchHandler(self.tabModel.tableApiName, self.uid);
+            self.searchHandler(
+              self.tabModel.tableApiName,
+              self.keyField,
+              self.uid
+            );
           }
         }
       });
@@ -95,10 +103,11 @@ export default {
      * @param tableApiName  实体名
      * @param uid   主键
      */
-    searchHandler(tableApiName, uid) {
+    searchHandler(tableApiName, keyField, uid) {
       if (tableApiName && uid) {
         var self = this;
-        this.$http.get("/flydata3/" + tableApiName + "/" + uid).then(data => {
+        let url = "/flydata3/" + tableApiName + (uid ? "/" + uid : "");
+        this.$http.get(url).then(data => {
           self.data = data;
           self.loaded = true;
           self.setTabTitle({

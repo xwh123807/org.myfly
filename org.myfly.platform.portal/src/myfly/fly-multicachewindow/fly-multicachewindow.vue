@@ -7,7 +7,8 @@
           <fly-richlistwindow v-show="route.path === activeRoutePath" :windowName="route.params.windowName"></fly-richlistwindow>
         </div>
         <div v-for="route in dynamicFormRoutes" :key="route.path">
-          <fly-formwindow v-show="route.path === activeRoutePath" :windowName="route.params.windowName" :uid="route.params.uid"></fly-formwindow>
+          <fly-formwindow v-show="route.path === activeRoutePath" :windowName="route.params.windowName" 
+            :keyField="route.params.keyField" :uid="route.params.uid"></fly-formwindow>
         </div>
         <div v-for="route in dynamicProcessRoutes" :key="route.path">
           <fly-processwindow v-show="route.path === activeRoutePath" :processName="route.params.processName"></fly-processwindow>

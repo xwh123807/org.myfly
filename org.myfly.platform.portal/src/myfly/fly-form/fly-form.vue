@@ -71,6 +71,7 @@ export default {
         params: {
           dynamicType: "form",
           windowName: column.relationTable,
+          keyField: column.model,
           uid: data[column.model]
         }
       };

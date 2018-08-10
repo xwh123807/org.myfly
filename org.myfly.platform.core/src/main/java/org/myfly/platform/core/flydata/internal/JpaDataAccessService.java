@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.myfly.platform.core.flydata.service.IJpaDataAccessService;
@@ -78,9 +79,15 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 		entityManager.refresh(entity);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T findOne(Class<T> entityClass, Map<String, Object> keyParams) {
-		return null;
+	public <T> T findOne(Class<T> entityClass, Specification<?> specifications) {
+		List<T> list = getSimpleJpaRepository(entityClass).findAll(specifications);
+		if (list != null && list.size() == 1) {
+			return list.get(0);
+		} else {
+			throw new EntityNotFoundException();
+		}
 	}
 
 	/*
