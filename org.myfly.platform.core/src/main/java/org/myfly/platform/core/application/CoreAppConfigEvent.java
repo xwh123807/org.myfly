@@ -12,9 +12,10 @@ import org.myfly.platform.core.dbinit.resources.MyElement_zh_CN;
 import org.myfly.platform.core.dbinit.resources.MyRefLists_zh_CN;
 import org.myfly.platform.core.domain.AppStartLevel;
 import org.myfly.platform.core.domain.FlyDataType;
+import org.myfly.platform.core.process.define.FlyProcessModelImporter;
 import org.myfly.platform.core.starter.IAppConfigEvent;
 import org.myfly.platform.core.starter.ICodeLevelDataModelRegister;
-import org.myfly.platform.core.starter.ICodeLevelViewModelRegister;
+import org.myfly.platform.core.starter.ICodeLevelModelRegister;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,9 @@ import org.springframework.stereotype.Component;
 public class CoreAppConfigEvent implements IAppConfigEvent {
 	@Autowired
 	private FlyDataModelImporter flyDataModelImporter;
+	
+	@Autowired
+	private FlyProcessModelImporter flyProcessModelImporter;
 
 	@Autowired
 	private Core3SystemData systemData;
@@ -41,6 +45,7 @@ public class CoreAppConfigEvent implements IAppConfigEvent {
 		if (initDB) {
 			systemData.initCore3SystemData();
 			flyDataModelImporter.importAll();
+			flyProcessModelImporter.importAll();
 		}
 	}
 
@@ -65,8 +70,13 @@ public class CoreAppConfigEvent implements IAppConfigEvent {
 	}
 
 	@Override
-	public void loadCodeLevelViewModels(ICodeLevelViewModelRegister modelRegister) {
+	public void loadCodeLevelViewModels(ICodeLevelModelRegister modelRegister) {
 
+	}
+
+	@Override
+	public void loadCodeLevelProcessModels(ICodeLevelModelRegister modelRegister) {
+		modelRegister.registerFlyProcessModelsFromPackage("org.myfly.platform.core");
 	}
 
 }

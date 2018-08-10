@@ -15,5 +15,11 @@ import java.lang.annotation.Target;
 @Target({ FIELD })
 @Retention(RUNTIME)
 public @interface FlyProcessParam {
+	String name();
 
+	String description() default "";
+
+	String help() default "";
+	
+	String element() default "";
 }

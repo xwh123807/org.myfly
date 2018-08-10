@@ -94,11 +94,34 @@ public class FField extends PField implements IDefinition {
 
 	public PField toFieldPO() {
 		PField result = new PField();
-		result.setFieldID(getFieldID());
-		result.setFieldGroupID(getFieldGroupID());
 		result.setColumnID(getColumnID());
 		result.setDataType(getDataType());
+		result.setDefaultValue(getDefaultValue());
+		result.setDisplayLength(getDisplayLength());
+		result.setDisplayLogic(getDisplayLogic());
 		result.setEntityType(getEntityType());
+		result.setFieldGroupID(getFieldGroupID());
+		result.setFieldID(getFieldID());
+		result.setIncludedTab(getIncludedTab());
+		result.setInfoFactoryClass(getInfoFactoryClass());
+		result.setIsAllowCopy(getIsAllowCopy());
+		result.setIsCentrallyMaintained(getIsCentrallyMaintained());
+		result.setIsDisplayed(getIsDisplayed());
+		result.setIsDisplayedGrid(getIsDisplayedGrid());
+		result.setIsEmbedded(getIsEmbedded());
+		result.setIsEncrypted(getIsEncrypted());
+		result.setIsFieldOnly(getIsFieldOnly());
+		result.setIsHeading(getIsHeading());
+		result.setIsMandatory(getIsMandatory());
+		result.setIsReadOnly(getIsReadOnly());
+		result.setIsSameLine(getIsSameLine());
+		result.setObscureType(getObscureType());
+		result.setPreferredWidth(getPreferredWidth());
+		result.setReferenceID(getReferenceID());
+		result.setSeqNo(getSeqNo());
+		result.setSeqNoGrid(getSeqNoGrid());
+		result.setSortNo(getSortNo());
+		result.setTabID(getTabID());
 		FlyEntityUtils.copyFlyMetaFields(result, this);
 		return result;
 	}
@@ -123,9 +146,11 @@ public class FField extends PField implements IDefinition {
 		switch (getFlyColumn().getDataType()) {
 		case Table:
 		case TableDirect:
-			setRelationTable(element.getRefTable().getTableApiName());
-			setRelationKeyColumn(element.getRefTable().getKeyColumnName());
-			setRelationDisplayColumn(element.getRefTable().getDisplayColumnName());
+			if (element.getRefTable() != null) {
+				setRelationTable(element.getRefTable().getTableApiName());
+				setRelationKeyColumn(element.getRefTable().getKeyColumnName());
+				setRelationDisplayColumn(element.getRefTable().getDisplayColumnName());
+			}
 			setModel(element.getApiName());
 			break;
 		case List:
@@ -194,6 +219,7 @@ public class FField extends PField implements IDefinition {
 
 	/**
 	 * 判断是否为引用列
+	 * 
 	 * @return
 	 */
 	public boolean isRefColumn() {

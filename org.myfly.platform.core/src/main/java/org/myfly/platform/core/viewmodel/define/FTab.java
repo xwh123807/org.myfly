@@ -120,10 +120,31 @@ public class FTab extends PTab implements IDefinition {
 
 	public PTab toTabPO() {
 		PTab result = new PTab();
+		result.setCommitWarning(getCommitWarning());
+		result.setDisplayLogic(getDisplayLogic());
+		result.setEntityType(getEntityType());
+		result.setHasTree(getHasTree());
+		result.setImageID(getImageID());
+		result.setImportFields(getImportFields());
+		result.setIncludedTab(getIncludedTab());
+		result.setIsAdvancedTab(getIsAdvancedTab());
+		result.setIsInfoTab(getIsInfoTab());
+		result.setIsInsertRecord(getIsInsertRecord());
+		result.setIsReadOnly(getIsReadOnly());
+		result.setIsSingleRow(getIsSingleRow());
+		result.setIsSortTab(getIsSortTab());
+		result.setIsTranslationTab(getIsTranslationTab());
+		result.setOrderByClause(getOrderByClause());
+		result.setParentColumn(getParentColumn());
+		result.setProcessing(getProcessing());
+		result.setReadOnlyLogic(getReadOnlyLogic());
+		result.setSeqNo(getSeqNo());
 		result.setTabID(getTabID());
 		result.setTableID(getTableID());
-		result.setEntityType(getEntityType());
+		result.setTabLevel(getTabLevel());
 		result.setTableStyle(getTableStyle());
+		result.setWhereClause(getWhereClause());
+		result.setWindowID(getWindowID());
 		FlyEntityUtils.copyFlyMetaFields(result, this);
 		return result;
 	}

@@ -26,8 +26,8 @@ import org.myfly.platform.core.utils.EntityClassUtil;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CodeLevelModelRegister implements ICodeLevelDataModelRegister {
-	private static Log log = LogFactory.getLog(CodeLevelModelRegister.class);
+public class CodeLevelDataModelRegister implements ICodeLevelDataModelRegister {
+	private static Log log = LogFactory.getLog(CodeLevelDataModelRegister.class);
 
 	private FlyMemoryDataModel getFlyMemoryDataModel() {
 		return FlyMemoryDataModel.getInstance();

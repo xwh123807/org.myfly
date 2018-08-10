@@ -44,7 +44,7 @@ public class ApplicationStarter implements ApplicationRunner {
 	private ICodeLevelDataModelRegister codeLevelDataModelRegister;
 
 	@Autowired(required = false)
-	private ICodeLevelViewModelRegister codeLevelViewModelRegister;
+	private ICodeLevelModelRegister codeLevelModelRegister;
 
 	@Autowired
 	public void setApplicationContext(ApplicationContext applicationContext) {
@@ -130,7 +130,8 @@ public class ApplicationStarter implements ApplicationRunner {
 		processConfigEvent(new IAppConfigEventExecutor() {
 			@Override
 			public void execute(IAppConfigEvent appConfigEvent) {
-				appConfigEvent.loadCodeLevelViewModels(codeLevelViewModelRegister);
+				appConfigEvent.loadCodeLevelViewModels(codeLevelModelRegister);
+				appConfigEvent.loadCodeLevelProcessModels(codeLevelModelRegister);
 			}
 		});
 

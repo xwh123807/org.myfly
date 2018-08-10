@@ -3,7 +3,7 @@ package org.myfly.platform.report.application;
 import org.myfly.platform.core.domain.AppStartLevel;
 import org.myfly.platform.core.starter.IAppConfigEvent;
 import org.myfly.platform.core.starter.ICodeLevelDataModelRegister;
-import org.myfly.platform.core.starter.ICodeLevelViewModelRegister;
+import org.myfly.platform.core.starter.ICodeLevelModelRegister;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -29,7 +29,12 @@ public class ReportAppConfigEvent implements IAppConfigEvent {
 	}
 
 	@Override
-	public void loadCodeLevelViewModels(ICodeLevelViewModelRegister modelRegister) {
+	public void loadCodeLevelViewModels(ICodeLevelModelRegister modelRegister) {
+	}
+
+	@Override
+	public void loadCodeLevelProcessModels(ICodeLevelModelRegister modelRegister) {
+
 	}
 
 }

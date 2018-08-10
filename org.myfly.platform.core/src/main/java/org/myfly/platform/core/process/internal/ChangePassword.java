@@ -10,24 +10,24 @@ import org.myfly.platform.core.process.service.SvrProcess;
  * @author xiangwanhong
  *
  */
-@FlyProcess
+@FlyProcess(name = "更改密码")
 public class ChangePassword extends SvrProcess {
-	@FlyProcessParam
+	@FlyProcessParam(name = "User")
 	private String userID;
 
-	@FlyProcessParam
+	@FlyProcessParam(name = "旧密码", element = "password")
 	private String oldPassword;
 
-	@FlyProcessParam
+	@FlyProcessParam(name = "新密码", element = "password")
 	private String newPassword;
 
-	@FlyProcessParam
+	@FlyProcessParam(name = "新邮箱", element = "eMail")
 	private String newEMail;
 
-	@FlyProcessParam
+	@FlyProcessParam(name = "邮箱用户名", element = "eMailUser")
 	private String newEMailUser;
 
-	@FlyProcessParam
+	@FlyProcessParam(name = "邮箱密码", element = "eMailUserPW")
 	private String newEMailUserPW;
 
 	@Override

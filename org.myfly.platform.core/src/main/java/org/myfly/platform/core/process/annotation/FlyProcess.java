@@ -15,5 +15,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RUNTIME)
 public @interface FlyProcess {
+	String name();
 
+	String description() default "";
+	
+	String help() default "";
 }

@@ -1,83 +1,31 @@
 <template>
-    <div>
-        <div>{{routes}}</div>
-        <div v-for="route in listRoutes" :key="route.path">
-          <fly-listwindow v-show="route.path === current" :windowName="route.params.windowName"></fly-listwindow>
+    <div class="fly-multicachewindow">
+        <div v-for="route in dynamicListRoutes" :key="route.path" v-if="route.params.type === 'list'">
+          <fly-listwindow v-show="route.path === activeRoutePath" :windowName="route.params.windowName"></fly-listwindow>
         </div>
-        <div v-for="route in formRoutes" :key="route.path">
-          <fly-formwindow v-show="route.path === current" :windowName="route.params.windowName" :uid="route.params.uid"></fly-formwindow>
+        <div v-for="route in dynamicListRoutes" :key="route.path" v-if="route.params.type === 'richlist'">
+          <fly-richlistwindow v-show="route.path === activeRoutePath" :windowName="route.params.windowName"></fly-richlistwindow>
+        </div>
+        <div v-for="route in dynamicFormRoutes" :key="route.path">
+          <fly-formwindow v-show="route.path === activeRoutePath" :windowName="route.params.windowName" :uid="route.params.uid"></fly-formwindow>
+        </div>
+        <div v-for="route in dynamicProcessRoutes" :key="route.path">
+          <fly-processwindow v-show="route.path === activeRoutePath" :processName="route.params.processName"></fly-processwindow>
         </div>
     </div>
 </template>
 <script>
+import { mapGetters, mapState } from "vuex";
 export default {
   name: "fly-multicachewindow",
   data() {
-    return {
-      /**
-       * {path: route.path, name: route.name}
-       */
-      routes: [],
-      current: null
-    };
-  },
-  beforeRouteEnter(to, from, next) {
-    console.info("beforeRouteEnter: " + to.path);
-    next(vm => {
-      vm.addRoute(to);
-      vm.current = to.path;
-    });
-  },
-  beforeRouteUpdate(to, from, next) {
-    console.info("beforeRouteUpdate: " + to.path);
-    this.addRoute(to);
-    this.current = to.path;
-    next();
-  },
-  beforeRouteLeave(to, from, next) {
-    //console.info("beforeRouteLeave: " + to.path);
-    next();
-  },
-  created() {
-    console.info("created");
-  },
-  activated() {
-    console.info("activated");
-  },
-  deactivated() {
-    console.info("deactivated");
+    return {};
   },
   computed: {
-    /**
-     * 动态类型，listwindow
-     */
-    dynamicType() {
-      return this.$route.params.dynamicType;
-    },
-    listRoutes() {
-      return this.routes.filter(item => item.params.dynamicType === "list");
-    },
-    formRoutes() {
-      return this.routes.filter(item => item.params.dynamicType === "form");
-    }
-  },
-  methods: {
-    addRoute(route) {
-      let flag = false;
-      for (let item of this.routes) {
-        if (item.path === route.path) {
-          flag = true;
-          break;
-        }
-      }
-      if (!flag) {
-        this.routes.push({
-          path: route.path,
-          name: route.name,
-          params: route.params
-        });
-      }
-    }
+    ...mapState({
+      activeRoutePath: ({ flyRouter }) => flyRouter.activeRoutePath
+    }),
+    ...mapGetters(["dynamicListRoutes", "dynamicFormRoutes", "dynamicProcessRoutes"])
   }
 };
 </script>

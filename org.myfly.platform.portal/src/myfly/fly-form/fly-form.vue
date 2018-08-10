@@ -13,7 +13,7 @@
                                 <span v-else>{{column.dataType === 'YesNo' ? '&nbsp;' : column.name + '&nbsp;&nbsp;'}}</span>
                             </el-col>
                             <el-col :span="column.dataType === 'Text' ? 21 : 18">
-                                <el-date-picker v-if="column.dataType === 'Date'" type="date" v-model="data[column.model]" style="width:100%"></el-date-picker>
+                                <!-- <el-date-picker v-if="column.dataType === 'Date'" type="date" v-model="data[column.model]" style="width:100%"></el-date-picker>
                                 <el-date-picker v-else-if="column.dataType === 'DateTime'" type="datetime" v-model="data[column.model]" style="width:100%"></el-date-picker>
                                 <el-select v-else-if="column.dataType === 'List'" v-model="data[column.model]" 
                                   style="width:100%" default-first-option clearable>
@@ -26,7 +26,8 @@
                                 <el-input v-else-if="column.dataType === 'ID'" v-model="data[column.model]" disabled style="width:100%"></el-input>
                                 <el-input v-else-if="column.dataType === 'Table'" v-model="data[column.model + '__label']" prefix-icon="el-icon-search"></el-input>
                                 <el-input v-else-if="column.dataType === 'TableDirect'" v-model="data[column.model + '__label']" prefix-icon="el-icon-search"></el-input>
-                                <el-input v-else v-model="data[column.model]"></el-input>
+                                <el-input v-else v-model="data[column.model]"></el-input> -->
+                                <fly-input :column="column" :data="data"></fly-input>
                             </el-col>
                         </el-row>
                     </el-form-item>

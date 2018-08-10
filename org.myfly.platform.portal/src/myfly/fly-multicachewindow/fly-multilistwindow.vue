@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div v-for="route in dynamicListRoutes" :key="route.path" v-if="route.params.dynamicType === 'list'">
+        <div v-for="route in dynamicListRoutes" :key="route.path" v-if="route.params.type === 'list'">
           <fly-listwindow v-show="route.path === activeRoutePath" :windowName="route.params.windowName"></fly-listwindow>
         </div>
-        <div v-for="route in dynamicListRoutes" :key="route.path" v-if="route.params.dynamicType === 'richlist'">
+        <div v-for="route in dynamicListRoutes" :key="route.path" v-if="route.params.type === 'richlist'">
           <fly-richlistwindow v-show="route.path === activeRoutePath" :windowName="route.params.windowName"></fly-richlistwindow>
         </div>
     </div>

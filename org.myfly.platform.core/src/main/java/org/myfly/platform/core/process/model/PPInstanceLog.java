@@ -34,7 +34,7 @@ public class PPInstanceLog extends FlyEntity {
 	private BigDecimal pNumber;
 
 	@Column(length = 2000)
-	private String pmsg;
+	private String pMsg;
 
 	@Column
 	private Date pDate;
@@ -71,12 +71,12 @@ public class PPInstanceLog extends FlyEntity {
 		this.pNumber = pNumber;
 	}
 
-	public String getPmsg() {
-		return pmsg;
+	public String getPMsg() {
+		return pMsg;
 	}
 
-	public void setPmsg(String pmsg) {
-		this.pmsg = pmsg;
+	public void setPmsg(String pMsg) {
+		this.pMsg = pMsg;
 	}
 
 	public Date getpDate() {

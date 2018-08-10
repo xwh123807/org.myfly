@@ -77,13 +77,13 @@ public class FlyViewModel extends PWindow implements IDefinition {
 
 	public PWindow toWindowPO() {
 		PWindow result = new PWindow();
-		result.setWindowID(getWindowID());
 		result.setApiName(getApiName());
 		result.setEntityType(getEntityType());
 		result.setIsBetaFunctionality(getIsBetaFunctionality());
 		result.setIsDefault(getIsDefault());
 		result.setIsSOTrx(getIsSOTrx());
 		result.setProcessing(getProcessing());
+		result.setWindowID(getWindowID());
 		result.setWindowType(getWindowType());
 		result.setWinHeight(getWinHeight());
 		result.setWinWidth(getWinWidth());

@@ -33,5 +33,11 @@ public interface IAppConfigEvent {
 	 * 加载代码级显示模型
 	 * @param modelRegister
 	 */
-	void loadCodeLevelViewModels(ICodeLevelViewModelRegister modelRegister);
+	void loadCodeLevelViewModels(ICodeLevelModelRegister modelRegister);
+	
+	/**
+	 * 加载代码级过程模型
+	 * @param modelRegister
+	 */
+	void loadCodeLevelProcessModels(ICodeLevelModelRegister modelRegister);
 }

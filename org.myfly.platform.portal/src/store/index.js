@@ -5,6 +5,7 @@ import cnode from './cnode'
 import user from './user'
 import viewModel from './viewModel'
 import flyRouter from './flyRouter'
+import processModel from './processModel'
 
 Vue.use(Vuex)
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     cnode,
     user,
     viewModel,
-    flyRouter
+    flyRouter,
+    processModel
   }
 })

@@ -92,7 +92,7 @@ public class PProcessPara extends FlyEntity {
 	@Column(length = 2000)
 	private String displayLogic;
 
-	@Column(length = 22)
+	@Column(length = 32)
 	private String elementID;
 
 	@Column

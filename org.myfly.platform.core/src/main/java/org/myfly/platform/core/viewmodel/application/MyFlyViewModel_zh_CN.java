@@ -43,5 +43,10 @@ public enum MyFlyViewModel_zh_CN {
 			@FlyTab(name = "Window", description = "Window", help = "", table = "PWindow"),
 			@FlyTab(name = "Tab", description = "", help = "", table = "PTab", tabLevel = 1),
 			@FlyTab(name = "Field", description = "", help = "", table = "PField", tabLevel = 2) })
-	Window
+	Window,
+	//
+	@FlyWindow(name = "Process", description = "Process", help = "", tabs = {
+			@FlyTab(name = "Process", description = "Process", help = "", table = "PProcess"),
+			@FlyTab(name = "Process Para", description = "", help = "", table = "PProcessPara", tabLevel = 1)})
+	Process
 }

@@ -118,5 +118,13 @@ public enum MyElement_zh_CN {
 	//
 	@FlyElement(columnName = "JoinClause", name = "Join Clause", description = "", //
 			dataType = FlyDataType.String, entityType = "D", printName = "Join Clause", fieldLength = 255)
-	joinClause
+	joinClause,
+	//
+	@FlyElement(columnName = "PinstanceID", name = "Process Instance ID", description = "", help = "", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "Process Instance ID", fieldLength = 32)
+	pinstanceID,
+	//
+	@FlyElement(columnName = "PinstanceLogID", name = "Process Instance Log ID", description = "", help = "", //
+			dataType = FlyDataType.Table, entityType = "D", printName = "Process Instance Log ID", fieldLength = 32)
+	pinstanceLogID
 }

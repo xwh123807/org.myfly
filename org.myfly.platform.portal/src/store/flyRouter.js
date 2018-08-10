@@ -16,13 +16,19 @@ const getters = {
      * 获取动态列表路由
      */
     dynamicListRoutes: state => {
-        return state.routes.filter(item => item.path.startsWith("/dynamic/list/") || item.path.startsWith("/dynamic/richlist/"));
+        return state.routes.filter(item => item.params.type === "list" || item.params.type === "richlist");
     },
     /**
      * 获取动态表单路由
      */
     dynamicFormRoutes: state => {
-        return state.routes.filter(item => item.path.startsWith("/dynamic/form/"));
+        return state.routes.filter(item => item.params.type === "form");
+    },
+    /**
+     * 获取动态过程路由
+     */
+    dynamicProcessRoutes: state => {
+        return state.routes.filter(item => item.params.type === "process");
     }
 }
 
@@ -35,6 +41,17 @@ const actions = {
     addTab({
         commit
     }, data) {
+        let type = "";
+        if (data.path.startsWith("/dynamic/form/")) {
+            type = "form";
+        } else if (data.path.startsWith("/dynamic/process/")) {
+            type = "process";
+        } else if (data.path.startsWith("/dynamic/list/")) {
+            type = "list";
+        } else if (data.path.startsWith("/dynamic/richlist/")) {
+            type = "richlist";
+        }
+        data.params.type = type;
         commit("ADD_TAB", data);
     },
     /**
