@@ -14,7 +14,7 @@ import org.myfly.platform.core.domain.FlyEntity;
 
 @Entity
 @Table(name = "PT_Process_Para")
-@FlyTable(name = "Process Parameter", description = "", help = "")
+@FlyTable(name = "过程参数", description = "", help = "")
 @FlyRefTable(apiName = "processParaID", name = "进程参数", keyColumn = "processParaID", displayColumn = "name")
 public class PProcessPara extends FlyEntity {
 	/**

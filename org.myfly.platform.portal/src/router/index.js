@@ -25,6 +25,7 @@ export default new Router({
         { path: '/dynamic/list/:windowName', name: 'dynamic-list', component: ()=>import("@/myfly/fly-multicachewindow/fly-multicachewindow") },
         { path: '/dynamic/richlist/:windowName', name: 'dynamic-richlist', component: ()=>import("@/myfly/fly-multicachewindow/fly-multicachewindow") },
         { path: '/dynamic/form/:windowName/:uid', name: 'dynamic-form', component:  ()=>import("@/myfly/fly-multicachewindow/fly-multicachewindow") },
+        { path: '/dynamic/form/:windowName/:keyField/:uid', name: 'dynamic-form2', component:  ()=>import("@/myfly/fly-multicachewindow/fly-multicachewindow") },
         { path: '/dynamic/process/:processName', name: 'dynamic-process', component:  ()=>import("@/myfly/fly-multicachewindow/fly-multicachewindow") },
         { path: '/dynamicRichListWindow/:windowName', name: 'dynamicRichListWindow', component: page('myfly/dynamic-richlistwindow') },
         { path: '/dynamicFormWindow/:windowName/:uid', name: 'dynamicFormWindow', component: page('myfly/dynamic-formwindow') },

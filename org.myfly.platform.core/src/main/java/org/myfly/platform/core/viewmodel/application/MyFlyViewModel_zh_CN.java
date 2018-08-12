@@ -5,8 +5,8 @@ import org.myfly.platform.core.viewmodel.annotation.FlyWindow;
 
 public enum MyFlyViewModel_zh_CN {
 	//
-	@FlyWindow(name = "Data Type", description = "数据类型", help = "", tabs = {
-			@FlyTab(name = "Data Type", description = "数据类型", help = "", table = "PDataType") })
+	@FlyWindow(name = "数据类型", description = "数据类型", help = "", tabs = {
+			@FlyTab(name = "数据类型", description = "数据类型", help = "", table = "PDataType") })
 	DataType,
 	//
 	@FlyWindow(name = "实体类型", description = "实体类型", help = "", tabs = {
@@ -14,7 +14,8 @@ public enum MyFlyViewModel_zh_CN {
 	EntityType,
 	//
 	@FlyWindow(name = "系统元素", description = "系统元素", help = "", tabs = {
-			@FlyTab(name = "系统元素", description = "系统元素", help = "", table = "PElement") })
+			@FlyTab(name = "系统元素", description = "系统元素", help = "", table = "PElement"),
+			@FlyTab(name = "使用字段", table = "PColumn", tabLevel = 1) })
 	Element,
 	//
 	@FlyWindow(name = "引用", description = "引用", tabs = { @FlyTab(name = "引用", table = "PReference"),
@@ -34,19 +35,19 @@ public enum MyFlyViewModel_zh_CN {
 	@FlyWindow(name = "用户", tabs = { @FlyTab(name = "用户", table = "PUser") })
 	User,
 	//
-	@FlyWindow(name = "Table", description = "Table", help = "", tabs = {
-			@FlyTab(name = "Table", description = "Table", help = "", table = "PTable"),
-			@FlyTab(name = "Column", description = "", help = "", table = "PColumn", tabLevel = 1) })
+	@FlyWindow(name = "表", description = "Table", help = "", tabs = {
+			@FlyTab(name = "表", description = "Table", help = "", table = "PTable"),
+			@FlyTab(name = "列", description = "", help = "", table = "PColumn", tabLevel = 1) })
 	Table,
 	//
-	@FlyWindow(name = "Window", description = "Window", help = "", tabs = {
-			@FlyTab(name = "Window", description = "Window", help = "", table = "PWindow"),
-			@FlyTab(name = "Tab", description = "", help = "", table = "PTab", tabLevel = 1),
-			@FlyTab(name = "Field", description = "", help = "", table = "PField", tabLevel = 2) })
+	@FlyWindow(name = "窗口", description = "Window", help = "", tabs = {
+			@FlyTab(name = "窗口", description = "Window", help = "", table = "PWindow"),
+			@FlyTab(name = "页", description = "", help = "", table = "PTab", tabLevel = 1),
+			@FlyTab(name = "字段", description = "", help = "", table = "PField", tabLevel = 2) })
 	Window,
 	//
-	@FlyWindow(name = "Process", description = "Process", help = "", tabs = {
-			@FlyTab(name = "Process", description = "Process", help = "", table = "PProcess"),
-			@FlyTab(name = "Process Para", description = "", help = "", table = "PProcessPara", tabLevel = 1)})
+	@FlyWindow(name = "过程", description = "Process", help = "", tabs = {
+			@FlyTab(name = "过程", description = "Process", help = "", table = "PProcess"),
+			@FlyTab(name = "过程参数", description = "", help = "", table = "PProcessPara", tabLevel = 1) })
 	Process
 }

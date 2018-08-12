@@ -1,6 +1,5 @@
 <template>
     <div class="fly-subtable">
-        <hr/>
         <el-row>
           <el-col :span="4">
             <el-button-group>

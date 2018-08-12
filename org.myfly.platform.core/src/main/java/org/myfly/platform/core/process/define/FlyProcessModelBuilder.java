@@ -35,6 +35,7 @@ public class FlyProcessModelBuilder extends AbstractBuilder<PProcess, FlyProcess
 			process.setProcessID(UUIDUtil.newUUID());
 			process.setName(anno.name());
 			process.setDescription(anno.description());
+			process.setHelp(anno.help());
 			process.setParas(buildProcessParas(process, processClass));
 			FlyEntityUtils.updateFlyEntityForSystem(process);
 			result.add(process);

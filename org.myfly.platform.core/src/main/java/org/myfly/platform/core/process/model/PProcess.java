@@ -13,7 +13,7 @@ import org.myfly.platform.core.domain.FlyEntity;
 
 @Entity
 @Table(name = "PT_Process")
-@FlyTable(name = "Process", description = "Process or Report", help = "")
+@FlyTable(name = "过程", description = "Process or Report", help = "")
 @FlyRefTable(apiName = "processID", keyColumn = "processID", displayColumn = "name", name = "进程")
 public class PProcess extends FlyEntity {
 	/**
@@ -22,7 +22,7 @@ public class PProcess extends FlyEntity {
 	private static final long serialVersionUID = 640570265000229678L;
 
 	@Id
-	@Column(length = 32)
+	@Column(name="ProcessID", length = 32)
 	private String processID;
 	
 	@Column(length = 255, name = "ApiName", unique = true)

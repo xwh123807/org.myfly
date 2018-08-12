@@ -6,6 +6,7 @@ import user from './user'
 import viewModel from './viewModel'
 import flyRouter from './flyRouter'
 import processModel from './processModel'
+import dataModel from './dataModel'
 
 Vue.use(Vuex)
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     user,
     viewModel,
     flyRouter,
-    processModel
+    processModel,
+    dataModel
   }
 })

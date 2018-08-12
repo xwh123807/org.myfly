@@ -51,6 +51,10 @@ public class FField extends PField implements IDefinition {
 	 * 引用值列表值
 	 */
 	private List<FRefListItem> refListItems;
+	/**
+	 * 
+	 */
+	private String element;
 
 	@Override
 	public String getKey() {
@@ -154,6 +158,7 @@ public class FField extends PField implements IDefinition {
 			setModel(element.getApiName());
 			break;
 		case List:
+			setElement(element.getRefList().getApiName());
 			setRelationTable(PRefList.class.getName());
 			setRelationKeyColumn("refListID");
 			setRelationDisplayColumn("name");
@@ -224,5 +229,13 @@ public class FField extends PField implements IDefinition {
 	 */
 	public boolean isRefColumn() {
 		return FlyDataTypeUtils.isRefColumn(getDataType());
+	}
+
+	public String getElement() {
+		return element;
+	}
+
+	public void setElement(String element) {
+		this.element = element;
 	}
 }

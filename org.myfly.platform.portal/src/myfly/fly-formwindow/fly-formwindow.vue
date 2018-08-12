@@ -106,7 +106,7 @@ export default {
     searchHandler(tableApiName, keyField, uid) {
       if (tableApiName && uid) {
         var self = this;
-        let url = "/flydata3/" + tableApiName + (uid ? "/" + uid : "");
+        let url = "/flydata3/" + tableApiName + (keyField ? "/" + keyField : "") + (uid ? "/" + uid : "");
         this.$http.get(url).then(data => {
           self.data = data;
           self.loaded = true;

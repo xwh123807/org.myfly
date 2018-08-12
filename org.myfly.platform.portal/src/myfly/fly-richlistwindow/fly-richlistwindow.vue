@@ -1,11 +1,11 @@
 <template>
      <div class="fly-richlistwindow">
-      <div>
+      <!-- <div>
         <el-button-group>
           <el-button icon="fa fa-refresh" size="medium" @click="refreshHandler"></el-button>
           <el-button icon="fa fa-search" size="medium"></el-button>
         </el-button-group>
-      </div>
+      </div> -->
       <fly-subtable ref="flySubTable" :windowName="windowName" :tabName="viewModel.mainTabName" :needLoaded="loaded">
       </fly-subtable>
      </div>

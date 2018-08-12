@@ -2,14 +2,12 @@ const menus = [
   { id: '0', label: '控制面板', path: '/', icon: 'fa fa-dashboard' },
   {
     id: 'x1', icon: 'fa fa-server', label: '字典', submenu: [
-      { id: 'x1010', label: '数据类型', icon: 'fa fa-window-maximize', path: '/dynamic/list/datatype' },
-      { id: 'x1020', label: '实体类型', icon: 'fa fa-window-maximize', path: '/dynamic/list/entitytype' },
-      { id: 'x1030', label: '系统元素', icon: 'fa fa-window-maximize', path: '/dynamic/list/element' },
-      { id: 'x1040', label: '引用表', icon: 'fa fa-window-maximize', path: '/dynamic/list/reference' },
-      { id: 'x1050', label: '表', icon: 'fa fa-window-maximize', path: '/dynamic/list/table' },
-      { id: 'x1051', label: '表2', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/table' },
-      { id: 'x1060', label: '窗口', icon: 'fa fa-window-maximize', path: '/dynamic/list/window' },
-      { id: 'x107', label: '窗口2', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/window' },
+      { id: 'x1010', label: '数据类型', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/datatype' },
+      { id: 'x1020', label: '实体类型', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/entitytype' },
+      { id: 'x1030', label: '系统元素', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/element' },
+      { id: 'x1040', label: '引用表', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/reference' },
+      { id: 'x1051', label: '表', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/table' },
+      { id: 'x107', label: '窗口', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/window' },
       { id: 'x108', label: '过程', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/process' }
     ]
   },
@@ -19,10 +17,15 @@ const menus = [
     ]
   },
   {
+    id: 'x4', icon: 'fa fa-building', label: '报告', submenu: [
+      { id: 'x41', label: '用户', icon: 'fa fa-file-pdf-o', path: '/dynamic/report/user' }
+    ]
+  },
+  {
     id: 'x2', icon: 'fa fa-compass', label: '组织', submenu: [
       { id: 'x21012', label: '客户', icon: 'fa fa-address-card-o', path: '/dynamic/richlist/client' },
-      { id: 'x2102', label: '组织', icon: 'fa fa-american-sign-language-interpreting', path: '/dynamic/list/org' },
-      { id: 'x2103', label: '用户', icon: 'fa fa-user-circle', path: '/dynamic/list/user' },
+      { id: 'x2102', label: '组织', icon: 'fa fa-american-sign-language-interpreting', path: '/dynamic/richlist/org' },
+      { id: 'x2103', label: '用户', icon: 'fa fa-user-circle', path: '/dynamic/richlist/user' },
       { id: 'x2104', label: '客户:System', icon: 'fa fa-user-o', path: '/dynamic/form/client/40289f65642bc6b401642bc6b6160000' },
       { id: 'x2105', label: '用户:System', icon: 'fa fa-user-o', path: '/dynamic/form/user/40289f65642bc6b401642bc6b6160002' },
       { id: 'x2106', label: '用户:SuperUser', icon: 'fa fa-user-o', path: '/dynamic/form/user/40289f65642bc6b401642bc6b6160003' }
