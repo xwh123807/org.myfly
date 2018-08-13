@@ -5,7 +5,7 @@ const menus = [
       { id: 'x1010', label: '数据类型', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/datatype' },
       { id: 'x1020', label: '实体类型', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/entitytype' },
       { id: 'x1030', label: '系统元素', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/element' },
-      { id: 'x1040', label: '引用表', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/reference' },
+      { id: 'x1040', label: '引用', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/reference' },
       { id: 'x1051', label: '表', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/table' },
       { id: 'x107', label: '窗口', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/window' },
       { id: 'x108', label: '过程', icon: 'fa fa-window-maximize', path: '/dynamic/richlist/process' }

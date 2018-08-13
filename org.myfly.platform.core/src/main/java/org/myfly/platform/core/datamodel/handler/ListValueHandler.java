@@ -5,8 +5,6 @@ import org.myfly.platform.core.datamodel.define.FRefList;
 import org.myfly.platform.core.datamodel.define.FRefListItem;
 import org.myfly.platform.core.datamodel.define.FlyColumn;
 import org.myfly.platform.core.datamodel.define.IValueHandler;
-import org.myfly.platform.core.flydata.service.FlyEntityMap;
-import org.springframework.util.Assert;
 
 /**
  * 列表(一般为枚举)数据类型字段值读取类
@@ -34,16 +32,13 @@ public class ListValueHandler extends DefaultValueHandler implements IValueHandl
 			}
 			if (StringUtils.isNotBlank(keyValue)) {
 				FRefListItem listItem = refList.getItems().get(keyValue);
-				Assert.notNull(listItem, "在refList[" + refList.getName() + "]中找不到项目[" + keyValue + "]");
 				RefObject result = new RefObject();
-				result.setUid(listItem.getRefListID());
-				result.setLabel(listItem.getName());
-				// FlyEntityMap result = new FlyEntityMap();
-				// result.put("refListID", listItem.getRefListID());
-				// result.put("value", listItem.getValue());
-				// result.put("name", listItem.getName());
-				// result.put("description", listItem.getDescription());
-				// result.put("help", listItem.getHelp());
+				if (listItem != null) {
+					result.setUid(listItem.getRefListID());
+					result.setLabel(listItem.getName());
+				}else {
+					result.setLabel("在refList[" + refList.getName() + "]中找不到项目[" + keyValue + "]");
+				}
 				return result;
 			}
 		}

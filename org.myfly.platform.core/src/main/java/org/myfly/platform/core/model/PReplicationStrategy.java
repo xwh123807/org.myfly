@@ -21,7 +21,7 @@ public class PReplicationStrategy extends FlyMetaEntity {
 	private static final long serialVersionUID = -3586532049046238841L;
 
 	@Id
-	@Column(length = 32)
+	@Column(name="ReplicationStrategyID", length = 32)
 	private String replicationStrategyID;
 
 	@Column(name = "Value", length = 40, unique = true)

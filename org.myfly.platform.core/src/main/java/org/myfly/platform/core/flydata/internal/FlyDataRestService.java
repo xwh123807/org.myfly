@@ -1,5 +1,6 @@
 package org.myfly.platform.core.flydata.internal;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.myfly.platform.core.domain.RestApiInfo;
 import org.myfly.platform.core.domain.RestControllerInfo;
 import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.flydata.service.IFlyDataService;
+import org.myfly.platform.core.flydata.service.IIDNameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +29,8 @@ public class FlyDataRestService {
 	private IFlyDataService flyDataService;
 	@Autowired
 	private IFlyDataModelService dataModelService;
+	@Autowired
+	private IIDNameService idNameService;
 
 	private FlyDataModel getFlyDataModel(String entityName) {
 		return dataModelService.getFlyDataModel(entityName);
@@ -34,14 +38,15 @@ public class FlyDataRestService {
 
 	@RequestMapping(value = { "", "help" })
 	public RestControllerInfo help() {
-		return new RestControllerInfo("flydata3", "数据访问服务",
-				new RestApiInfo[] { new RestApiInfo("save/{entityName}", "saveEntity", HttpMethod.POST),
-						new RestApiInfo("{entityName}", "saveAndFindEntity", HttpMethod.POST),
-						new RestApiInfo("{entityName}", "updateEntity", HttpMethod.PUT),
-						new RestApiInfo("{entityName}", "patchEntity", HttpMethod.PATCH),
-						new RestApiInfo("{entityName}/{uid}", "find", HttpMethod.GET),
-						new RestApiInfo("{entityName}/{keyField}/{keyValue}", "findByKey", HttpMethod.GET),
-						new RestApiInfo("{entityName}/{uid}", "delOne", HttpMethod.DELETE) });
+		return new RestControllerInfo("flydata3", "数据访问服务", new RestApiInfo[] {
+				new RestApiInfo("save/{entityName}", "saveEntity", HttpMethod.POST),
+				new RestApiInfo("{entityName}", "saveAndFindEntity", HttpMethod.POST),
+				new RestApiInfo("{entityName}", "updateEntity", HttpMethod.PUT),
+				new RestApiInfo("{entityName}", "patchEntity", HttpMethod.PATCH),
+				new RestApiInfo("{entityName}/{uid}", "find", HttpMethod.GET),
+				new RestApiInfo("{entityName}/{keyField}/{keyValue}", "findByKey", HttpMethod.GET),
+				new RestApiInfo("{entityName}/{uid}", "delOne", HttpMethod.DELETE),
+				new RestApiInfo("idNames/{entityName}/{keyColumn}/{displayColumn}", "findIDNames", HttpMethod.GET) });
 	}
 
 	/**
@@ -153,5 +158,28 @@ public class FlyDataRestService {
 	@RequestMapping(value = "{entityName}/{uid}", method = RequestMethod.DELETE)
 	public void delOne(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid) {
 		flyDataService.delOne(entityName, uid);
+	}
+
+	/**
+	 * 获取实体ID和名称列
+	 * 
+	 * @param entityName
+	 * @return
+	 */
+	@GetMapping("idNames/{entityName}/{keyColumn}/{displayColumn}")
+	public List<FlyEntityMap> findIDNames(@PathVariable("entityName") String entityName,
+			@PathVariable("keyColumn") String keyColumn, @PathVariable("displayColumn") String displayColumn) {
+		FlyDataModel dataModel = getFlyDataModel(entityName);
+		List<Map<String, Object>> list = idNameService.getIDNames(dataModel.getTableName(),
+				dataModel.getColumnMap().get(keyColumn).getColumnName(),
+				dataModel.getColumnMap().get(displayColumn).getColumnName());
+		List<FlyEntityMap> result = new ArrayList<>();
+		list.forEach(item -> {
+			FlyEntityMap tmap = new FlyEntityMap();
+			tmap.put(keyColumn, item.get(IIDNameService.UID_COLUMN));
+			tmap.put(displayColumn, item.get(IIDNameService.NAME_COLUMN));
+			result.add(tmap);
+		});
+		return result;
 	}
 }

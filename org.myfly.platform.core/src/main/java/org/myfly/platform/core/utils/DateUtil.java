@@ -68,7 +68,7 @@ public class DateUtil {
 	public static String sqldateToStr(java.sql.Date value) {
 		return dateToStr(value);
 	}
-	
+
 	public static String sqltimeToStr(java.sql.Time value) {
 		return timeToStr(value);
 	}
@@ -136,8 +136,10 @@ public class DateUtil {
 	 */
 	public static Date datetimeStrToDate(String datetimestr) {
 		Date date = null;
+		String format = datetimestr.substring(10, 11).equals("T") ? "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+				: "yyyy-MM-dd HH:mm:ss";
 		try {
-			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(datetimestr);
+			date = new SimpleDateFormat(format).parse(datetimestr);
 		} catch (ParseException e) {
 			if (log.isErrorEnabled()) {
 				log.error("时间转换错误，格式yyyy-MM-dd HH:mm:ss[" + datetimestr + "], 错误信息：" + e.getMessage());
@@ -184,7 +186,7 @@ public class DateUtil {
 		date.setTime(dateStrToDate(value));
 		return date;
 	}
-	
+
 	public static Timestamp datetimeStrToTimestamp(String value) {
 		return new Timestamp(datetimeStrToDate(value).getTime());
 	}

@@ -71,5 +71,11 @@ public class StringUtilTest{
 	public void addUnderscores() {
 		Assert.assertEquals("pt_column", StringUtil.addUnderscores("PT_Column"));
 		Assert.assertEquals("pt_entity_type", StringUtil.addUnderscores("PT_EntityType"));
+		Assert.assertEquals("clientid", StringUtil.addUnderscores("ClientID"));
+		Assert.assertEquals("clientid", StringUtil.addUnderscores("clientID"));
+		Assert.assertEquals("entity_type", StringUtil.addUnderscores("entityType"));
+		Assert.assertEquals("entity_type", StringUtil.addUnderscores("EntityType"));
+		Assert.assertEquals("entity_typeid", StringUtil.addUnderscores("entityTypeID"));
+		Assert.assertEquals("entity_typeid", StringUtil.addUnderscores("EntityTypeID"));
 	}
 }

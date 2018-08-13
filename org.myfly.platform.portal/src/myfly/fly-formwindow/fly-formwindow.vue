@@ -9,6 +9,7 @@
                 <el-button icon="fa fa-close" @click="backHandler()"></el-button>
             </el-button-group>
         </el-row>
+        <div>{{data}}</div>
         <fly-form ref="flyForm" :tabModel="tabModel" :data="data"></fly-form>
         <el-row v-for="subTabName in tabModel.subTabs" v-bind:key="subTabName">
           <fly-subtable :windowName="windowName" :tabName="subTabName" :parentKeyColumn="tabModel.keyColumn" 

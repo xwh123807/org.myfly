@@ -158,11 +158,11 @@ public class FField extends PField implements IDefinition {
 			setModel(element.getApiName());
 			break;
 		case List:
-			setElement(element.getRefList().getApiName());
 			setRelationTable(PRefList.class.getName());
 			setRelationKeyColumn("refListID");
 			setRelationDisplayColumn("name");
 			if (element.getRefList() != null) {
+				setElement(element.getRefList().getApiName());
 				List<FRefListItem> items = new ArrayList<>(element.getRefList().getItems().values());
 				setRefListItems(items);
 			}

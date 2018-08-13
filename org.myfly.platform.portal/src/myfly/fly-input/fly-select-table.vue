@@ -37,7 +37,7 @@ export default {
     ...mapActions(["getRefTable"]),
     prepareDataModel(relationTable, relationKeyColumn, relationDisplayColumn) {
       if (relationTable && relationKeyColumn && relationDisplayColumn) {
-        this.getRefList({
+        this.getRefTable({
           relationTable: relationTable,
           relationKeyColumn: relationKeyColumn,
           relationDisplayColumn: relationDisplayColumn,

@@ -21,7 +21,7 @@ public class PEmailConfig extends FlyEntity {
 	private static final long serialVersionUID = -3089925813304383070L;
 
 	@Id
-	@Column(length = 32)
+	@Column(name="EmailConfigID", length = 32)
 	private String emailConfigID;
 
 	@Column(length = 60)

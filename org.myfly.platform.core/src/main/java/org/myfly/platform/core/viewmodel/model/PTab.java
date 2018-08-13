@@ -25,7 +25,7 @@ public class PTab extends FlyMetaEntity implements IFlyViewTab {
 	private static final long serialVersionUID = -3115436765057343911L;
 
 	@Id
-	@Column(length = 32)
+	@Column(name="TabID", length = 32)
 	private String tabID;
 
 	@Column(length = 32)

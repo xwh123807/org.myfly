@@ -4,7 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.myfly.platform.core.datamodel.define.FRefTable;
 import org.myfly.platform.core.datamodel.define.FlyColumn;
 import org.myfly.platform.core.datamodel.define.FlyDataModel;
-import org.myfly.platform.core.flydata.service.FlyEntityMap;
 import org.myfly.platform.core.utils.AppUtil;
 
 public class TableDirectValueHandler extends DefaultValueHandler {
@@ -46,14 +45,4 @@ public class TableDirectValueHandler extends DefaultValueHandler {
 		return keyValue;
 	}
 
-	@Override
-	public void setFieldValueForEntity(Object entity, Object value) {
-		// if (value instanceof Map) {
-		// Object ooEntity = FlyEntityUtils.toEntity(getFlyDataModel(), (Map<String,
-		// Object>) value, false);
-		// super.setFieldValueForEntity(entity, ooEntity);
-		// } else {
-		// super.setFieldValueForEntity(entity, value);
-		// }
-	}
 }

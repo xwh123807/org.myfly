@@ -21,7 +21,7 @@ public class PImage extends FlyEntity {
 	private static final long serialVersionUID = -2263361220472355322L;
 
 	@Id
-	@Column(length = 32)
+	@Column(name="ImageID", length = 32)
 	private String imageID;
 
 	@Column

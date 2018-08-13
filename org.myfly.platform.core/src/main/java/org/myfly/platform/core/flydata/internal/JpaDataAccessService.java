@@ -172,7 +172,7 @@ public class JpaDataAccessService implements IJpaDataAccessService {
 
 	@Override
 	public <T> T updateEntity(Serializable uid, T entity) {
-		return entity;
+		return entityManager.merge(entity);
 	}
 
 	/*
