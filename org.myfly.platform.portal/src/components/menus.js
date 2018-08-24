@@ -26,9 +26,10 @@ const menus = [
       { id: 'x21012', label: '客户', icon: 'fa fa-address-card-o', path: '/dynamic/richlist/client' },
       { id: 'x2102', label: '组织', icon: 'fa fa-american-sign-language-interpreting', path: '/dynamic/richlist/org' },
       { id: 'x2103', label: '用户', icon: 'fa fa-user-circle', path: '/dynamic/richlist/user' },
-      { id: 'x2104', label: '客户:System', icon: 'fa fa-user-o', path: '/dynamic/form/client/40289f65642bc6b401642bc6b6160000' },
-      { id: 'x2105', label: '用户:System', icon: 'fa fa-user-o', path: '/dynamic/form/user/40289f65642bc6b401642bc6b6160002' },
-      { id: 'x2106', label: '用户:SuperUser', icon: 'fa fa-user-o', path: '/dynamic/form/user/40289f65642bc6b401642bc6b6160003' }
+      { id: 'x2104', label: '客户:System', icon: 'fa fa-user-o', path: '/dynamic/form/client/1000000932658043' },
+      { id: 'x2105', label: '用户:System', icon: 'fa fa-user-o', path: '/dynamic/form/user/1000001506439287' },
+      { id: 'x2106', label: '用户:SuperUser', icon: 'fa fa-user-o', path: '/dynamic/form/user/1000001947959881' },
+      { id: 'x2107', label: '组织:*', icon: 'fa fa-user-o', path: '/dynamic/form/org/1000000785171079' }
     ]
   },
   {

@@ -95,4 +95,15 @@ public class FRefList extends PReference implements IDefinition {
 	public String toString() {
 		return "apiName: " + getApiName() + ", name: " + getName();
 	}
+
+	public FRefListItem getRefListItemByRefListID(String refListID) {
+		FRefListItem result = null;
+		for (FRefListItem item : getItems().values()) {
+			if (item.getRefListID().equals(refListID)) {
+				result = item;
+				break;
+			}
+		}
+		return result;
+	}
 }

@@ -2,7 +2,6 @@ package org.myfly.platform.core.viewmodel.service;
 
 import org.myfly.platform.core.domain.IFlyEntity;
 import org.myfly.platform.core.domain.IFlyMetaEntity;
-import org.myfly.platform.core.viewmodel.model.WindowType;
 
 public interface IFlyViewModel extends IFlyEntity, IFlyMetaEntity {
 	String getWindowID();
@@ -41,9 +40,9 @@ public interface IFlyViewModel extends IFlyEntity, IFlyMetaEntity {
 
 	void setProcessing(Boolean processing);
 
-	WindowType getWindowType();
+	String getWindowType();
 
-	void setWindowType(WindowType windowType);
+	void setWindowType(String windowType);
 
 	Integer getWinHeight();
 

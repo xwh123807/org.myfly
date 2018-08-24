@@ -13,7 +13,13 @@ public class DataTypeBuilder extends AbstractBuilder<PDataType, FDataType> {
 
 	@Override
 	public FDataType convert(PDataType builder) {
-		return null;
+		FDataType result = new FDataType();
+		result.setFromDB(true);
+		result.setDataType(builder.getDataType());
+		result.setDataTypeID(builder.getDataTypeID());
+		result.setEntityType(builder.getEntityType());
+		FlyEntityUtils.copyFlyMetaFields(result, builder);
+		return result;
 	}
 
 	@Override
@@ -23,11 +29,11 @@ public class DataTypeBuilder extends AbstractBuilder<PDataType, FDataType> {
 
 		FDataType result = new FDataType();
 		result.setDataType(field.getName());
+		result.setDataTypeID(UUIDUtil.newUUID());
 		result.setEntityType(anno.entityType().name());
 		result.setName(anno.name());
 		result.setDescription(anno.description());
 		result.setHelp(anno.help());
-		result.setDataTypeID(UUIDUtil.newUUID());
 		FlyEntityUtils.updateFlyEntityForSystem(result);
 		return result;
 	}

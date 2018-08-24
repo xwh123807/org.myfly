@@ -14,7 +14,18 @@ public class ElementBuilder extends AbstractBuilder<PElement, FElement> {
 
 	@Override
 	public FElement convert(PElement builder) {
-		return null;
+		FElement result = new FElement();
+		result.setFromDB(true);
+		result.setApiName(builder.getApiName());
+		result.setColumnName(builder.getColumnName());
+		result.setDataType(builder.getDataType());
+		result.setElementID(builder.getElementID());
+		result.setEntityType(builder.getEntityType());
+		result.setFieldLength(builder.getFieldLength());
+		result.setPrintName(builder.getPrintName());
+		result.setReferenceID(builder.getReferenceID());
+		FlyEntityUtils.copyFlyMetaFields(result, builder);
+		return result;
 	}
 
 	@Override

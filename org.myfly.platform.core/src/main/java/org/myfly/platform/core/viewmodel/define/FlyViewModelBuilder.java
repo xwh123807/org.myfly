@@ -2,6 +2,7 @@ package org.myfly.platform.core.viewmodel.define;
 
 import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.myfly.platform.core.datamodel.builder.AbstractBuilder;
@@ -14,15 +15,110 @@ import org.myfly.platform.core.viewmodel.annotation.FlyFieldGroup;
 import org.myfly.platform.core.viewmodel.annotation.FlyTab;
 import org.myfly.platform.core.viewmodel.annotation.FlyWindow;
 import org.myfly.platform.core.viewmodel.annotation.TableStyle;
+import org.myfly.platform.core.viewmodel.model.PField;
+import org.myfly.platform.core.viewmodel.model.PTab;
 import org.myfly.platform.core.viewmodel.model.PWindow;
-import org.myfly.platform.core.viewmodel.model.WindowType;
 import org.springframework.util.Assert;
 
 public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> {
 
+	public FlyViewModel convert(PWindow window, List<PTab> tabs, List<PField> fields) {
+		FlyViewModel result = convert(window);
+		result.setTabs(new LinkedHashMap<>());
+		tabs.forEach(tab -> {
+			FTab ftab = convert(tab);
+			ftab.setFields(new LinkedHashMap<>());
+			fields.stream().filter(item -> item.getTabID().equals(ftab.getTabID())).forEach(field -> {
+				ftab.getFields().put(field.getName(), convert(field));
+			});
+			result.getTabs().put(ftab.getName(), ftab);
+		});
+		return result;
+	}
+
 	@Override
 	public FlyViewModel convert(PWindow builder) {
-		return null;
+		FlyViewModel result = new FlyViewModel();
+		result.setFromDB(true);
+		copyFlyMetaFields(result, builder);
+		result.setApiName(builder.getApiName());
+		result.setEntityType(builder.getEntityType());
+		result.setIsBetaFunctionality(builder.getIsBetaFunctionality());
+		result.setIsDefault(builder.getIsDefault());
+		result.setIsSOTrx(builder.getIsSOTrx());
+		result.setProcessing(builder.getProcessing());
+		result.setWindowID(builder.getWindowID());
+		result.setWindowType(builder.getWindowType());
+		result.setWinHeight(builder.getWinHeight());
+		result.setWinWidth(builder.getWinWidth());
+		return result;
+	}
+
+	public FTab convert(PTab builder) {
+		FTab result = new FTab();
+		result.setFromDB(true);
+		copyFlyMetaFields(result, builder);
+		result.setCommitWarning(builder.getCommitWarning());
+		result.setDisplayLogic(builder.getDisplayLogic());
+		result.setEntityType(builder.getEntityType());
+		result.setHasTree(builder.getHasTree());
+		result.setImageID(builder.getImageID());
+		result.setImportFields(builder.getImportFields());
+		result.setIncludedTab(builder.getIncludedTab());
+		result.setIsAdvancedTab(builder.getIsAdvancedTab());
+		result.setIsInfoTab(builder.getIsInfoTab());
+		result.setIsInsertRecord(builder.getIsInsertRecord());
+		result.setIsReadOnly(builder.getIsReadOnly());
+		result.setIsSingleRow(builder.getIsSingleRow());
+		result.setIsSortTab(builder.getIsSortTab());
+		result.setIsTranslationTab(builder.getIsTranslationTab());
+		result.setOrderByClause(builder.getOrderByClause());
+		result.setParentColumn(builder.getParentColumn());
+		result.setProcessing(builder.getProcessing());
+		result.setReadOnlyLogic(builder.getReadOnlyLogic());
+		result.setSeqNo(builder.getSeqNo());
+		result.setTabID(builder.getTabID());
+		result.setTableID(builder.getTableID());
+		result.setTableStyle(builder.getTableStyle());
+		result.setTabLevel(builder.getTabLevel());
+		result.setWhereClause(builder.getWhereClause());
+		result.setWindowID(builder.getWindowID());
+		return result;
+	}
+
+	public FField convert(PField builder) {
+		FField result = new FField();
+		result.setFromDB(true);
+		copyFlyMetaFields(result, builder);
+		result.setColumnID(builder.getColumnID());
+		result.setDataType(builder.getDataType());
+		result.setDefaultValue(builder.getDefaultValue());
+		result.setDisplayLength(builder.getDisplayLength());
+		result.setDisplayLogic(builder.getDisplayLogic());
+		result.setEntityType(builder.getEntityType());
+		result.setFieldGroupID(builder.getFieldGroupID());
+		result.setFieldID(builder.getFieldID());
+		result.setIncludedTab(builder.getIncludedTab());
+		result.setInfoFactoryClass(builder.getInfoFactoryClass());
+		result.setIsAllowCopy(builder.getIsAllowCopy());
+		result.setIsCentrallyMaintained(builder.getIsCentrallyMaintained());
+		result.setIsDisplayed(builder.getIsDisplayed());
+		result.setIsDisplayedGrid(builder.getIsDisplayedGrid());
+		result.setIsEmbedded(builder.getIsEmbedded());
+		result.setIsEncrypted(builder.getIsEncrypted());
+		result.setIsFieldOnly(builder.getIsFieldOnly());
+		result.setIsHeading(builder.getIsHeading());
+		result.setIsMandatory(builder.getIsMandatory());
+		result.setIsReadOnly(builder.getIsReadOnly());
+		result.setIsSameLine(builder.getIsSameLine());
+		result.setObscureType(builder.getObscureType());
+		result.setPreferredWidth(builder.getPreferredWidth());
+		result.setReferenceID(builder.getReferenceID());
+		result.setSeqNo(builder.getSeqNo());
+		result.setSeqNoGrid(builder.getSeqNoGrid());
+		result.setSortNo(builder.getSortNo());
+		result.setTabID(builder.getTabID());
+		return result;
 	}
 
 	@Override
@@ -36,7 +132,6 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 		result.setDescription(anno.description());
 		result.setHelp(anno.help());
 		result.setEntityType(anno.entityTpye());
-		result.setWindowType(anno.windowType());
 		FlyEntityUtils.updateFlyEntityForSystem(result);
 		result.setTabs(new LinkedHashMap<>());
 		FlyTab[] tabAnnos = anno.tabs();
@@ -50,24 +145,25 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 	}
 
 	private void updateSubTabs(FlyViewModel result) {
-		//上一次访问节点
+		// 上一次访问节点
 		FTab last = result.getMainTab();
-		//上一层节点
+		// 上一层节点
 		FTab prior = null;
 		last.setSubTabs(new String[] {});
 		for (FTab item : result.getTabs().values()) {
 			if (!item.getTabID().equals(last.getTabID())) {
 				if (item.getTabLevel().intValue() > last.getTabLevel().intValue()) {
-					//下一级
+					// 下一级
 					last.setSubTabs(ArrayUtils.add(last.getSubTabs(), item.getName()));
 					prior = last;
-				}else {
-					//平级
+				} else {
+					// 平级
 					prior.setSubTabs(ArrayUtils.add(prior.getSubTabs(), item.getName()));
 				}
 				last = item;
 			}
-		};
+		}
+		;
 	}
 
 	private FTab buildTab(FlyTab anno) {
@@ -125,7 +221,6 @@ public class FlyViewModelBuilder extends AbstractBuilder<PWindow, FlyViewModel> 
 		result.setDescription(dataModel.getDescription());
 		result.setHelp(dataModel.getHelp());
 		result.setEntityType(dataModel.getEntityType());
-		result.setWindowType(WindowType.M);
 		FlyEntityUtils.updateFlyEntityForSystem(result);
 		result.setTabs(new LinkedHashMap<>());
 		FTab tab = buildTab(dataModel);

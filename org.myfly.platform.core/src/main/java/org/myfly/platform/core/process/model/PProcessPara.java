@@ -10,13 +10,13 @@ import javax.persistence.Table;
 import org.myfly.platform.core.datamodel.annotation.FlyRefTable;
 import org.myfly.platform.core.datamodel.annotation.FlyTable;
 import org.myfly.platform.core.domain.FlyDataType;
-import org.myfly.platform.core.domain.FlyEntity;
+import org.myfly.platform.core.domain.FlyMetaEntity;
 
 @Entity
 @Table(name = "PT_Process_Para")
 @FlyTable(name = "过程参数", description = "", help = "")
 @FlyRefTable(apiName = "processParaID", name = "进程参数", keyColumn = "processParaID", displayColumn = "name")
-public class PProcessPara extends FlyEntity {
+public class PProcessPara extends FlyMetaEntity {
 	/**
 	 * 
 	 */
@@ -28,9 +28,6 @@ public class PProcessPara extends FlyEntity {
 	
 	@Column(length = 255, name = "ApiName", unique = true)
 	private String apiName;
-
-	@Column(length = 60)
-	private String name;
 
 	@Column(length = 32)
 	private String entityType;
@@ -49,12 +46,6 @@ public class PProcessPara extends FlyEntity {
 	
 	@Column(length = 30)
 	private FlyDataType dataType;
-
-	@Column(length = 255)
-	private String description;
-
-	@Column(length = 2000)
-	private String help;
 
 	@Column(length = 32)
 	private String processID;
@@ -106,14 +97,6 @@ public class PProcessPara extends FlyEntity {
 		this.processParaID = processParaID;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getEntityType() {
 		return entityType;
 	}
@@ -152,22 +135,6 @@ public class PProcessPara extends FlyEntity {
 
 	public void setColumnName(String columnName) {
 		this.columnName = columnName;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getHelp() {
-		return help;
-	}
-
-	public void setHelp(String help) {
-		this.help = help;
 	}
 
 	public String getProcessID() {

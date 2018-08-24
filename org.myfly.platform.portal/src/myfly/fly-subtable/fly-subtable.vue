@@ -3,7 +3,7 @@
         <el-row>
           <el-col :span="4">
             <el-button-group>
-              <el-button :icon="viewMode === 'form' ? 'fa fa-table' : 'fa fa-server'" type="text" @click="switchMode">{{tabName}}</el-button>
+              <el-button :icon="viewMode === 'form' ? 'fa fa-table' : 'fa fa-server'" type="text" @click="switchMode">{{tabModel.name}}</el-button>
             </el-button-group>
           </el-col>
           <el-col  :span="20">
@@ -12,6 +12,7 @@
               <el-button icon="fa fa-undo" size=""></el-button>
               <el-button icon="fa fa-file" size="medium"></el-button>
               <el-button icon="fa fa-copy" size="medium"></el-button>
+              <el-button type="primary" icon="fa fa-save" @click="saveHandler"></el-button>
               <el-button :icon="viewMode === 'form' ? 'fa fa-table' : 'fa fa-server'" @click="switchMode" size="medium"></el-button>
               <el-button type="primary" icon="el-icon-d-arrow-left" :disabled="firstDisabled" @click="toFirstHandler" size="medium"></el-button>
               <el-button type="primary" icon="el-icon-arrow-left" :disabled="priorDisabled" @click="toPriorHandler" size="medium"></el-button>
@@ -27,9 +28,9 @@
           </fly-eltable>
         </el-row>
         <el-row class="form" v-show="viewMode === 'form'">
-          <fly-form :tabModel="tabModel" :data="currentRow"></fly-form>
+          <fly-form ref="flyForm" :tabModel="tabModel" :data="currentRow"></fly-form>
           <el-row v-for="subTabName in tabModel.subTabs" v-bind:key="subTabName">
-            <fly-subtable :windowName="windowName" :tabName="subTabName" :parentKeyColumn="keyColumn" 
+            <fly-subtable :windowName="windowName" :tabModel="viewModel.tabs[subTabName]" :parentKeyColumn="keyColumn" 
               :parentUid="currentRow[keyColumn]" :needLoaded="loaded">
             </fly-subtable>
           </el-row>
@@ -46,9 +47,9 @@ export default {
      */
     windowName: { type: String },
     /**
-     * tab名称
+     * tab显示模型
      */
-    tabName: { type: String },
+    tabModel: { type: Object },
     /**
      * tab对应父实体的主键名称
      */
@@ -60,14 +61,10 @@ export default {
     /**
      * 父模型已准备好
      */
-    needLoaded: { type: Boolean }
+    needLoaded: { type: Boolean, default: false }
   },
   data() {
     return {
-      /**
-       * tab显示模型
-       */
-      tabModel: {},
       /**
        * tab数据
        */
@@ -103,12 +100,18 @@ export default {
     };
   },
   created() {
-    this.prepareViewModel(this.windowName, true);
+    if (this.needLoaded){
+      this.refreshHandler();
+    }
   },
+  destroyed() {},
   computed: {
     ...mapState({
       viewModels: ({ viewModel }) => viewModel.viewModels
     }),
+    viewModel() {
+      return this.viewModels[this.windowName];
+    },
     /**
      * 实体主键
      */
@@ -118,27 +121,24 @@ export default {
     /**
      * 当前行数据
      */
-    currentRow() {
-      var data = this.tabData[this.currentRowIndex];
-      return data ? data : {};
+    currentRow: {
+      get() {
+        var data = this.tabData[this.currentRowIndex];
+        return data ? data : {};
+      },
+      set(val) {
+        this.tabData[this.currentRowIndex] = val;
+      }
     }
   },
   watch: {
     needLoaded(to) {
-      if (to) {
-        this.searchHandler(
-          this.tabModel.tableApiName,
-          this.parentKeyColumn,
-          this.parentUid
-        );
+      if (to === true) {
+        this.refreshHandler();
       }
     },
     currentRowIndex(to) {
-      this.searchHandler(
-        this.tabModel.tableApiName,
-        this.parentKeyColumn,
-        this.parentUid
-      );
+      this.refreshHandler();
     }
   },
   methods: {
@@ -153,18 +153,28 @@ export default {
         callback: () => {
           var viewModel = self.viewModels[windowName];
           self.tabModel = viewModel.tabs[self.tabName];
+          if (!self.tabModel) {
+            self.$message.info(self.tabName);
+          }
           if (isSearch && self.needLoaded) {
-            this.searchHandler(
-              self.tabModel.tableApiName,
-              self.parentKeyColumn,
-              self.parentUid
-            );
+            self.refreshHandler();
           }
         }
       });
     },
-    refreshHandler(){
-      this.searchHandler(this.tabModel.tableApiName, this.parentKeyColumn, this.parentUid);
+    /**
+     * 刷新数据
+     */
+    refreshHandler() {
+      if (this.tabModel) {
+        this.searchHandler(
+          this.tabModel.tableApiName,
+          this.parentKeyColumn,
+          this.parentUid
+        );
+      } else {
+        this.$message.error("刷新错误, tabName:" + this.tabName);
+      }
     },
     /**
      * 查询子表数据
@@ -276,6 +286,28 @@ export default {
       this.lastDisabled = isEmpty || this.tabData.length - 1 === index;
       this.priorDisabled = isEmpty || index === 0;
       this.nextDisabled = isEmpty || this.tabData.length - 1 === index;
+    },
+    /**
+     * 保存
+     */
+    saveHandler() {
+      var result = this.$refs.flyForm.validate();
+      result.then(val => {
+        if (val === true) {
+          this.$http
+            .put(
+              "/flydata3/update/" +
+                this.tabModel.tableApiName +
+                "/" +
+                this.currentRow[this.keyColumn],
+              this.currentRow
+            )
+            .then(result => {
+              this.currentRow = result;
+              this.$message.success("保存成功.");
+            });
+        }
+      });
     }
   }
 };

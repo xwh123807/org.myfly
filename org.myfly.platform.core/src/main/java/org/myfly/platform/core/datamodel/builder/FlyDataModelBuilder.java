@@ -18,6 +18,7 @@ import org.myfly.platform.core.datamodel.annotation.FlyField;
 import org.myfly.platform.core.datamodel.annotation.FlyTable;
 import org.myfly.platform.core.datamodel.define.FlyColumn;
 import org.myfly.platform.core.datamodel.define.FlyDataModel;
+import org.myfly.platform.core.datamodel.model.PColumn;
 import org.myfly.platform.core.datamodel.model.PTable;
 import org.myfly.platform.core.dbinit.resources.EntityType;
 import org.myfly.platform.core.domain.FlyDataType;
@@ -31,9 +32,88 @@ import org.myfly.platform.core.utils.UUIDUtil;
 public class FlyDataModelBuilder extends AbstractBuilder<PTable, FlyDataModel> {
 	private static Log log = LogFactory.getLog(FlyDataModelBuilder.class);
 
+	/**
+	 * 从实体类构建
+	 * @param table
+	 * @param items
+	 * @return
+	 */
+	public FlyDataModel convert(PTable table, List<PColumn> items) {
+		FlyDataModel result = convert(table);
+		result.setColumnMap(new LinkedHashMap<>());
+		items.forEach(item -> {
+			result.getColumnMap().put(item.getApiName(), convert(item));
+		});
+		return result;
+	}
+
 	@Override
 	public FlyDataModel convert(PTable builder) {
-		return null;
+		FlyDataModel result = new FlyDataModel();
+		result.setFromDB(true);
+		copyFlyMetaFields(result, builder);
+		result.setAccessLevel(builder.getAccessLevel());
+		result.setaCTriggerLength(builder.getaCTriggerLength());
+		result.setApiName(builder.getApiName());
+		result.setCopyColumnsFromTable(builder.getCopyColumnsFromTable());
+		result.setDisplayColumn(builder.getDisplayColumn());
+		result.setEntityType(builder.getEntityType());
+		result.setImportTable(builder.getImportTable());
+		result.setIsCentrallyMaintained(builder.getIsCentrallyMaintained());
+		result.setIsChangeLog(builder.getIsChangeLog());
+		result.setIsDeleteable(builder.getIsDeleteable());
+		result.setIsDocument(builder.getIsDocument());
+		result.setIsHighVolume(builder.getIsHighVolume());
+		result.setIsIgnoreMigration(builder.getIsIgnoreMigration());
+		result.setIsSecurityEnabled(builder.getIsSecurityEnabled());
+		result.setIsView(builder.getIsView());
+		result.setReplicationType(builder.getReplicationType());
+		result.setTableID(builder.getTableID());
+		result.setTableName(builder.getTableName());
+		result.setWindowID(builder.getWindowID());
+		return result;
+	}
+
+	public FlyColumn convert(PColumn builder) {
+		FlyColumn result = new FlyColumn();
+		result.setFromDB(true);
+		copyFlyMetaFields(result, builder);
+		result.setApiName(builder.getApiName());
+		result.setCallout(builder.getCallout());
+		result.setColumnID(builder.getColumnID());
+		result.setColumnName(builder.getColumnName());
+		result.setColumnSQL(builder.getColumnSQL());
+		result.setDataType(builder.getDataType());
+		result.setDefaultValue(builder.getDefaultValue());
+		result.setElementID(builder.getElementID());
+		result.setEntityType(builder.getEntityType());
+		result.setFieldLength(builder.getFieldLength());
+		result.setFormatPattern(builder.getFormatPattern());
+		result.setInfoFactoryClass(builder.getInfoFactoryClass());
+		result.setIsAllowCopy(builder.getIsAllowCopy());
+		result.setIsAllowLogging(builder.getIsAllowLogging());
+		result.setIsAlwaysUpdateable(builder.getIsAlwaysUpdateable());
+		result.setIsAutocomplete(builder.getIsAutocomplete());
+		result.setIsEncrypted(builder.getIsEncrypted());
+		result.setIsIdentifier(builder.getIsIdentifier());
+		result.setIsKey(builder.getIsKey());
+		result.setIsMandatory(builder.getIsMandatory());
+		result.setIsParent(builder.getIsParent());
+		result.setIsRange(builder.getIsRange());
+		result.setIsSelectionColumn(builder.getIsSelectionColumn());
+		result.setIsSyncDatabase(builder.getIsSyncDatabase());
+		result.setIsTranslated(builder.getIsTranslated());
+		result.setIsUpdateable(builder.getIsUpdateable());
+		result.setMandatoryLogic(builder.getMandatoryLogic());
+		result.setReadOnlyLogic(builder.getReadOnlyLogic());
+		result.setReferenceID(builder.getReferenceID());
+		result.setSeqNo(builder.getSeqNo());
+		result.setTableID(builder.getTableID());
+		result.setValueMax(builder.getValueMax());
+		result.setValueMin(builder.getValueMin());
+		result.setVersion(builder.getVersion());
+		result.setvFormat(builder.getvFormat());
+		return result;
 	}
 
 	@Override
@@ -155,7 +235,7 @@ public class FlyDataModelBuilder extends AbstractBuilder<PTable, FlyDataModel> {
 			column.setIsMandatory(col.nullable());
 		}
 		if (StringUtils.isBlank(column.getColumnName())) {
-			column.setColumnName(StringUtil.getHibernateName(column.getApiName()));
+			column.setColumnName(column.getApiName());
 		}
 		if (FlyDataType.NONE.equals(column.getDataType())) {
 			FlyDataTypeUtils.updatColumnFromField(column, property);

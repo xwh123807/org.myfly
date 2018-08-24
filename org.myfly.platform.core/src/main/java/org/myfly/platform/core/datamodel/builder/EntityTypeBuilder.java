@@ -14,6 +14,7 @@ public class EntityTypeBuilder extends AbstractBuilder<PEntityType, FEntityType>
 	public FEntityType convert(PEntityType builder) {
 		FEntityType result = new FEntityType();
 		copyFlyMetaFields(result, builder);
+		result.setFromDB(true);
 		result.setClasspath(builder.getClasspath());
 		result.setEntityType(builder.getEntityType());
 		result.setEntityTypeID(builder.getEntityTypeID());

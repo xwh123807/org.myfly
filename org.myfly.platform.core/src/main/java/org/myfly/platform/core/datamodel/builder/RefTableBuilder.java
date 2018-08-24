@@ -18,7 +18,16 @@ public class RefTableBuilder extends AbstractBuilder<PReference, FRefTable> {
 
 	@Override
 	public FRefTable convert(PReference builder) {
-		return null;
+		FRefTable result = new FRefTable();
+		result.setFromDB(true);
+		copyFlyMetaFields(result, builder);
+		result.setApiName(builder.getApiName());
+		result.setEntityType(builder.getEntityType());
+		result.setIsOrderByValue(builder.getIsOrderByValue());
+		result.setReferenceID(builder.getReferenceID());
+		result.setValidationType(builder.getValidationType());
+		result.setvFormat(builder.getvFormat());
+		return result;
 	}
 
 	@Override

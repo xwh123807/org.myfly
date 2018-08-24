@@ -44,7 +44,7 @@ public class PWindow extends FlyMetaEntity implements IFlyViewModel {
 	private Boolean processing;
 
 	@Column(name = "WindowType")
-	private WindowType windowType;
+	private String windowType;
 
 	@Column(name = "WinHeight")
 	private Integer winHeight;
@@ -174,7 +174,7 @@ public class PWindow extends FlyMetaEntity implements IFlyViewModel {
 	 * @see org.myfly.platform.core3.model.view.IFlyViewModel#getWindowType()
 	 */
 	@Override
-	public WindowType getWindowType() {
+	public String getWindowType() {
 		return windowType;
 	}
 
@@ -186,7 +186,7 @@ public class PWindow extends FlyMetaEntity implements IFlyViewModel {
 	 * platform.core3.model.view.WindowType)
 	 */
 	@Override
-	public void setWindowType(WindowType windowType) {
+	public void setWindowType(String windowType) {
 		this.windowType = windowType;
 	}
 

@@ -77,5 +77,7 @@ public class StringUtilTest{
 		Assert.assertEquals("entity_type", StringUtil.addUnderscores("EntityType"));
 		Assert.assertEquals("entity_typeid", StringUtil.addUnderscores("entityTypeID"));
 		Assert.assertEquals("entity_typeid", StringUtil.addUnderscores("EntityTypeID"));
+		Assert.assertEquals("field_groupid", StringUtil.addUnderscores("fieldGroupID"));
+		Assert.assertEquals("field_groupid", StringUtil.addUnderscores("FieldGroupID"));
 	}
 }

@@ -13,6 +13,7 @@ import org.myfly.platform.core.flydata.internal.FlyEntityUtils;
 import org.myfly.platform.core.process.annotation.FlyProcess;
 import org.myfly.platform.core.process.annotation.FlyProcessParam;
 import org.myfly.platform.core.process.model.PProcess;
+import org.myfly.platform.core.process.model.PProcessPara;
 import org.myfly.platform.core.process.service.ProcessCall;
 import org.myfly.platform.core.utils.ClassUtil;
 import org.myfly.platform.core.utils.UUIDUtil;
@@ -20,9 +21,80 @@ import org.springframework.util.StringUtils;
 
 public class FlyProcessModelBuilder extends AbstractBuilder<PProcess, FlyProcessModel> {
 
+	/**
+	 * 从实体类构建
+	 * 
+	 * @param process
+	 * @param paras
+	 * @return
+	 */
+	public FlyProcessModel convert(PProcess process, List<PProcessPara> paras) {
+		FlyProcessModel result = convert(process);
+		result.setParas(new LinkedHashMap<>());
+		paras.forEach(item -> {
+			result.getParas().put(item.getName(), convert(item));
+		});
+		return result;
+	}
+
 	@Override
 	public FlyProcessModel convert(PProcess builder) {
-		return null;
+		FlyProcessModel result = new FlyProcessModel();
+		result.setFromDB(true);
+		copyFlyMetaFields(result, builder);
+		result.setAccessLevel(builder.getAccessLevel());
+		result.setApiName(builder.getApiName());
+		result.setBrowseID(builder.getBrowseID());
+		result.setClassname(builder.getClassname());
+		result.setCopyFromProcess(builder.getCopyFromProcess());
+		result.setEntityType(builder.getEntityType());
+		result.setFormID(builder.getFormID());
+		result.setGenerateClass(builder.getGenerateClass());
+		result.setIsBetaFunctionality(builder.getIsBetaFunctionality());
+		result.setIsDirectPrint(builder.getIsDirectPrint());
+		result.setIsReport(builder.getIsReport());
+		result.setIsServerProcess(builder.getIsServerProcess());
+		result.setJasperReport(builder.getJasperReport());
+		result.setPrintFormatID(builder.getPrintFormatID());
+		result.setProcedureName(builder.getProcedureName());
+		result.setProcessID(builder.getProcessID());
+		result.setReportViewID(builder.getReportViewID());
+		result.setShowHelp(builder.getShowHelp());
+		result.setStatisticCount(builder.getStatisticCount());
+		result.setStatisticSeconds(builder.getStatisticSeconds());
+		result.setValue(builder.getValue());
+		result.setWorkflowID(builder.getWorkflowID());
+		result.setWorkflowValue(builder.getWorkflowValue());
+		return result;
+	}
+
+	public FProcessPara convert(PProcessPara builder) {
+		FProcessPara result = new FProcessPara();
+		result.setFromDB(true);
+		copyFlyMetaFields(result, builder);
+		result.setApiName(builder.getApiName());
+		result.setColumnName(builder.getColumnName());
+		result.setDataType(builder.getDataType());
+		result.setDefaultValue(builder.getDefaultValue());
+		result.setDefaultValue2(builder.getDefaultValue2());
+		result.setDisplayLogic(builder.getDisplayLogic());
+		result.setElementID(builder.getElementID());
+		result.setEntityType(builder.getEntityType());
+		result.setFieldLength(builder.getFieldLength());
+		result.setIsCentrallyMaintained(builder.getIsCentrallyMaintained());
+		result.setIsInfoOnly(builder.getIsInfoOnly());
+		result.setIsMandatory(builder.getIsMandatory());
+		result.setIsRange(builder.getIsRange());
+		result.setProcessID(builder.getProcessID());
+		result.setProcessParaID(builder.getProcessParaID());
+		result.setReadOnlyLogic(builder.getReadOnlyLogic());
+		result.setReferenceID(builder.getReferenceID());
+		result.setSeqNo(builder.getSeqNo());
+		result.setValRuleID(builder.getValRuleID());
+		result.setValueMax(builder.getValueMax());
+		result.setValueMin(builder.getValueMin());
+		result.setvFormat(builder.getvFormat());
+		return result;
 	}
 
 	@Override

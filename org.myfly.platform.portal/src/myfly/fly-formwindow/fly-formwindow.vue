@@ -9,10 +9,10 @@
                 <el-button icon="fa fa-close" @click="backHandler()"></el-button>
             </el-button-group>
         </el-row>
-        <div>{{data}}</div>
+        <!-- <div>{{data}}</div> -->
         <fly-form ref="flyForm" :tabModel="tabModel" :data="data"></fly-form>
         <el-row v-for="subTabName in tabModel.subTabs" v-bind:key="subTabName">
-          <fly-subtable :windowName="windowName" :tabName="subTabName" :parentKeyColumn="tabModel.keyColumn" 
+          <fly-subtable :windowName="windowName" :tabModel="viewModel.tabs[subTabName]" :parentKeyColumn="tabModel.keyColumn" 
             :parentUid="keyValue" :needLoaded="loaded">
           </fly-subtable>
         </el-row>
@@ -137,14 +137,14 @@ export default {
       var result = this.$refs.flyForm.validate();
       result.then(val => {
         if (val === true) {
-          console.info("校验成功.");
           this.$http
             .put(
-              "/flydata3/" + this.tabModel.tableApiName + "/" + this.keyValue,
+              "/flydata3/update/" + this.tabModel.tableApiName + "/" + this.keyValue,
               this.data
             )
             .then(result => {
-              console.info(result);
+              this.data = result;
+              this.$message.success("保存成功.");
             });
         }
       });

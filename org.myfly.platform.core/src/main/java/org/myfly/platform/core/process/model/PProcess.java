@@ -9,13 +9,13 @@ import javax.persistence.Table;
 
 import org.myfly.platform.core.datamodel.annotation.FlyRefTable;
 import org.myfly.platform.core.datamodel.annotation.FlyTable;
-import org.myfly.platform.core.domain.FlyEntity;
+import org.myfly.platform.core.domain.FlyMetaEntity;
 
 @Entity
 @Table(name = "PT_Process")
 @FlyTable(name = "过程", description = "Process or Report", help = "")
 @FlyRefTable(apiName = "processID", keyColumn = "processID", displayColumn = "name", name = "进程")
-public class PProcess extends FlyEntity {
+public class PProcess extends FlyMetaEntity {
 	/**
 	 * 
 	 */
@@ -28,14 +28,8 @@ public class PProcess extends FlyEntity {
 	@Column(length = 255, name = "ApiName", unique = true)
 	private String apiName;
 
-	@Column(length = 255)
-	private String description;
-
 	@Column(length = 32)
 	private String entityType;
-
-	@Column(length = 60)
-	private String name;
 
 	@Column(length = 32)
 	private String workflowID;
@@ -67,9 +61,6 @@ public class PProcess extends FlyEntity {
 	@Column
 	private BigDecimal statisticSeconds;
 
-	@Column(length = 2000)
-	private String help;
-
 	@Column(length = 32)
 	private String reportViewID;
 
@@ -100,14 +91,6 @@ public class PProcess extends FlyEntity {
 	@Column
 	private Boolean isReport;
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public String getProcessID() {
 		return processID;
 	}
@@ -122,14 +105,6 @@ public class PProcess extends FlyEntity {
 
 	public void setEntityType(String entityType) {
 		this.entityType = entityType;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getWorkflowID() {
@@ -210,14 +185,6 @@ public class PProcess extends FlyEntity {
 
 	public void setStatisticSeconds(BigDecimal statisticSeconds) {
 		this.statisticSeconds = statisticSeconds;
-	}
-
-	public String getHelp() {
-		return help;
-	}
-
-	public void setHelp(String help) {
-		this.help = help;
 	}
 
 	public String getReportViewID() {

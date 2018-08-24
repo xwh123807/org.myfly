@@ -32,11 +32,14 @@ public class ListValueHandler extends DefaultValueHandler implements IValueHandl
 			}
 			if (StringUtils.isNotBlank(keyValue)) {
 				FRefListItem listItem = refList.getItems().get(keyValue);
+				if (listItem == null) {
+					listItem = refList.getRefListItemByRefListID(keyValue);
+				}
 				RefObject result = new RefObject();
 				if (listItem != null) {
 					result.setUid(listItem.getRefListID());
 					result.setLabel(listItem.getName());
-				}else {
+				} else {
 					result.setLabel("在refList[" + refList.getName() + "]中找不到项目[" + keyValue + "]");
 				}
 				return result;

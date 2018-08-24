@@ -37,6 +37,9 @@ public enum FlyDataType{
 	//
 	@FlyField(name = "List", description = "Reference List")
 	List,
+	//Java 枚举类型
+	@FlyField(name = "Enum", description="Java 枚举类型")
+	Enum,
 	//
 	@FlyField(name = "Table", description = "Table List")
 	Table,

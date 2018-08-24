@@ -6,7 +6,7 @@
           <el-button icon="fa fa-search" size="medium"></el-button>
         </el-button-group>
       </div> -->
-      <fly-subtable ref="flySubTable" :windowName="windowName" :tabName="viewModel.mainTabName" :needLoaded="loaded">
+      <fly-subtable ref="flySubTable" :windowName="windowName" :tabModel="tabModel" :needLoaded="loaded">
       </fly-subtable>
      </div>
 </template>
@@ -27,12 +27,17 @@ export default {
        */
       viewModel: {},
       /**
+       * 主tab显示模型
+       */
+      tabModel: {},
+      /**
        * 模型是否已经加载
        */
       loaded: false
     };
   },
   created() {
+    this.loaded = false;
     this.prepareViewModel(this.windowName);
   },
   computed: {
@@ -52,6 +57,7 @@ export default {
         windowName: windowName,
         callback: () => {
           self.viewModel = self.viewModels[windowName];
+          self.tabModel = self.viewModel.tabs[self.viewModel.mainTabName];
           self.setTabTitle({
             path: self.$route.path,
             name: self.viewModel.name

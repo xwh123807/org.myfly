@@ -13,7 +13,7 @@ import org.myfly.platform.core.viewmodel.annotation.TableStyle;
 import org.myfly.platform.core.viewmodel.service.IFlyViewTab;
 
 @Entity
-@Table
+@Table(name="PT_Tab")
 @FlyTable(name = "Tab", description = "Tab within a Window")
 @FlyReferences(references = {
 		@FlyRefTable(apiName = "tabID", name = "PTab ID", keyColumn = "tabID", displayColumn = "name"),

@@ -40,8 +40,9 @@ public class FlyDataRestService {
 	public RestControllerInfo help() {
 		return new RestControllerInfo("flydata3", "数据访问服务", new RestApiInfo[] {
 				new RestApiInfo("save/{entityName}", "saveEntity", HttpMethod.POST),
-				new RestApiInfo("{entityName}", "saveAndFindEntity", HttpMethod.POST),
+				new RestApiInfo("{entityName}", "saveAndReturnEntity", HttpMethod.POST),
 				new RestApiInfo("{entityName}", "updateEntity", HttpMethod.PUT),
+				new RestApiInfo("update/{entityName}", "updateAndReturnEntity", HttpMethod.PUT),
 				new RestApiInfo("{entityName}", "patchEntity", HttpMethod.PATCH),
 				new RestApiInfo("{entityName}/{uid}", "find", HttpMethod.GET),
 				new RestApiInfo("{entityName}/{keyField}/{keyValue}", "findByKey", HttpMethod.GET),
@@ -68,7 +69,7 @@ public class FlyDataRestService {
 	 * @return
 	 */
 	@PostMapping("{entityName}")
-	public FlyEntityMap saveAndFindEntity(@PathVariable("entityName") String entityName,
+	public FlyEntityMap saveAndReturnEntity(@PathVariable("entityName") String entityName,
 			@RequestBody FlyEntityMap flyEntity) {
 		return flyDataService.saveEntityAndReturn(entityName, flyEntity);
 	}
@@ -84,6 +85,19 @@ public class FlyDataRestService {
 	public void updateEntity(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid,
 			@RequestBody FlyEntityMap flyEntity) {
 		flyDataService.updateEntity(entityName, uid, flyEntity);
+	}
+	
+	/**
+	 * 修改并返回实体
+	 * @param entityName
+	 * @param uid
+	 * @param flyEntity
+	 */
+	@RequestMapping(value = "update/{entityName}/{uid}", method = RequestMethod.PUT)
+	public FlyEntityMap updateAndReturnEntity(@PathVariable("entityName") String entityName, @PathVariable("uid") String uid,
+			@RequestBody FlyEntityMap flyEntity) {
+		flyDataService.updateEntity(entityName, uid, flyEntity);
+		return find(entityName, uid, true, null);
 	}
 
 	/**
